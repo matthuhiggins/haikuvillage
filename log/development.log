@@ -1,1 +1,0 @@
-  [4;36;1mHaiku Columns (0.000000)[0m   [0;1mMysql::Error: #42S02Table 'haiku-dev.haikus' doesn't exist: SHOW FIELDS FROM haikus[0m
