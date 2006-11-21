@@ -1,0 +1,13 @@
+<h1>New haiku</h1>
+
+<p>Here is my haiku:</p>
+<div id="preview">
+</div>
+
+<%= start_form_tag :action => :add_haiku %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Add the haiku to the cart" %>
+<%= end_form_tag %>
+
+
+<%= link_to 'Back', :action => 'list' %>

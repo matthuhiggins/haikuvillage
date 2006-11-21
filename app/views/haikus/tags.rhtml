@@ -1,0 +1,7 @@
+<h1>tags</h1>
+
+<% for tag in @tags %>
+<div>
+  <%= h(tag.name) %> :  <%= h(tag.count) %>
+</div>
+<% end %>

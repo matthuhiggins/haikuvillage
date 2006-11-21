@@ -1,0 +1,17 @@
+<h1>Listing haikus</h1>
+
+<% for haiku in @haikus %>
+<div class="haikuSection">
+  <%= render( :partial => "haiku", :object => haiku ) %>
+  <%= render( :partial => "haiku_tags", :locals => { :haiku => haiku.db_haiku } ) %>
+  <div class="actions">
+    <%= link_to 'Show', :action => 'show', :id => haiku %>
+    <%= link_to 'Edit', :action => 'edit', :id => haiku %>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => haiku }, :post => true %>
+  </div>
+</div>
+<% end %>
+
+<br />
+
+<%= link_to 'New haiku', :action => 'new' %>

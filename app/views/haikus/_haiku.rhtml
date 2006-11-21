@@ -1,0 +1,4 @@
+<div class="haiku">
+  <h2><%= h(haiku.title) %></h2>
+  <%= render(:partial => "line", :collection => haiku.lines ) %>
+</div>

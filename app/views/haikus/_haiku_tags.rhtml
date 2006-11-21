@@ -1,0 +1,5 @@
+<div class="tags">Tags:
+<% for tag in haiku.tags do %>
+  <span class="tag"><%= tag.name %> <%= tag.haiku_tags.size %></span>
+<% end %>
+</div>
