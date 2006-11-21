@@ -13,8 +13,8 @@ module EN
 module Syllable
   # use dictionary if possible
   begin
-    require 'syllable/dictionary.rb'
-    require 'syllable/guess.rb'
+    require 'lingua/syllable/dictionary.rb'
+    require 'lingua/syllable/guess.rb'
     
     def Syllable.syllables(word)
       begin

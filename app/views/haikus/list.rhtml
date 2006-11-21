@@ -7,7 +7,7 @@
   <div class="actions">
     <%= link_to 'Show', :action => 'show', :id => haiku %>
     <%= link_to 'Edit', :action => 'edit', :id => haiku %>
-    <%= link_to 'Destroy', { :action => 'destroy', :id => haiku }, :post => true %>
+    <%= link_to 'Destroy', { :action => 'destroy', :id => haiku }, :method => :post %>
   </div>
 </div>
 <% end %>

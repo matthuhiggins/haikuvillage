@@ -4,10 +4,10 @@
 <div id="preview">
 </div>
 
-<%= start_form_tag :action => :add_haiku %>
+<% form_tag :action => :add_haiku do %>
   <%= render :partial => 'form' %>
   <%= submit_tag "Add the haiku to the cart" %>
-<%= end_form_tag %>
+<% end %>
 
 
 <%= link_to 'Back', :action => 'list' %>

@@ -2,10 +2,15 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 2) do
 
-  create_table "haiku_tags", :force => true do |t|
+  create_table "haiku_tags", :id => false, :force => true do |t|
+    t.column "haiku_id", :integer, :null => false
+    t.column "tag_id",   :integer, :null => false
   end
+
+  add_index "haiku_tags", ["haiku_id"], :name => "index_haiku_tags_on_haiku_id"
+  add_index "haiku_tags", ["tag_id"], :name => "index_haiku_tags_on_tag_id"
 
   create_table "haikus", :force => true do |t|
     t.column "title", :string
@@ -13,14 +18,6 @@ ActiveRecord::Schema.define(:version => 4) do
     t.column "line2", :string
     t.column "line3", :string
   end
-
-  create_table "haikus_tags", :id => false, :force => true do |t|
-    t.column "haiku_id", :integer, :default => 0, :null => false
-    t.column "tag_id",   :integer, :default => 0, :null => false
-  end
-
-  add_index "haikus_tags", ["haiku_id"], :name => "index_haikus_tags_on_haiku_id"
-  add_index "haikus_tags", ["tag_id"], :name => "index_haikus_tags_on_tag_id"
 
   create_table "tags", :force => true do |t|
     t.column "name", :string
