@@ -2,25 +2,81 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 2) do
+ActiveRecord::Schema.define(:version => 1) do
 
-  create_table "haiku_tags", :id => false, :force => true do |t|
+  create_table "group_haikus", :id => false, :force => true do |t|
+    t.column "group_id", :integer, :null => false
     t.column "haiku_id", :integer, :null => false
-    t.column "tag_id",   :integer, :null => false
   end
 
-  add_index "haiku_tags", ["haiku_id"], :name => "index_haiku_tags_on_haiku_id"
-  add_index "haiku_tags", ["tag_id"], :name => "index_haiku_tags_on_tag_id"
+  create_table "group_user_types", :force => true do |t|
+    t.column "name", :string, :default => "", :null => false
+  end
+
+  create_table "group_users", :id => false, :force => true do |t|
+    t.column "group_id",         :integer, :null => false
+    t.column "user_id",          :integer, :null => false
+    t.column "groupusertype_id", :integer, :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.column "name",        :string,   :limit => 100, :default => "", :null => false
+    t.column "description", :text,                    :default => "", :null => false
+    t.column "isadultonly", :boolean,                                 :null => false
+    t.column "isprivate",   :boolean,                                 :null => false
+    t.column "created_at",  :datetime
+  end
+
+  create_table "haiku_comments", :force => true do |t|
+    t.column "haiku_id",   :integer,                  :null => false
+    t.column "user_id",    :integer,                  :null => false
+    t.column "text",       :text,     :default => "", :null => false
+    t.column "created_at", :datetime,                 :null => false
+  end
+
+  create_table "haiku_tags", :id => false, :force => true do |t|
+    t.column "haiku_id",   :integer,  :null => false
+    t.column "tag_id",     :integer,  :null => false
+    t.column "created_at", :datetime, :null => false
+  end
 
   create_table "haikus", :force => true do |t|
-    t.column "title", :string
-    t.column "line1", :string
-    t.column "line2", :string
-    t.column "line3", :string
+    t.column "title",      :string,   :limit => 100, :default => "", :null => false
+    t.column "line1",      :string,                  :default => "", :null => false
+    t.column "line2",      :string,                  :default => "", :null => false
+    t.column "line3",      :string,                  :default => "", :null => false
+    t.column "user_id",    :string,                  :default => "", :null => false
+    t.column "created_at", :datetime,                                :null => false
   end
 
   create_table "tags", :force => true do |t|
-    t.column "name", :string
+    t.column "name", :string, :limit => 64, :default => "", :null => false
+  end
+
+  create_table "user_haiku_favorites", :id => false, :force => true do |t|
+    t.column "user_id",    :integer, :null => false
+    t.column "haiku_id",   :integer, :null => false
+    t.column "created_at", :integer, :null => false
+  end
+
+  create_table "user_logins", :id => false, :force => true do |t|
+    t.column "user_id",   :integer, :null => false
+    t.column "logindate", :integer, :null => false
+  end
+
+  create_table "user_users", :id => false, :force => true do |t|
+    t.column "sourceuser_id", :integer, :null => false
+    t.column "targetuser_id", :integer, :null => false
+    t.column "accepted",      :boolean, :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.column "username",     :string, :limit => 100, :default => "", :null => false
+    t.column "useralias",    :string, :limit => 100
+    t.column "email",        :string, :limit => 100, :default => "", :null => false
+    t.column "hashpassword", :string,                :default => "", :null => false
+    t.column "salt",         :string,                :default => "", :null => false
+    t.column "created_at",   :string,                :default => "", :null => false
   end
 
 end

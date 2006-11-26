@@ -1,0 +1,32 @@
+body {
+	color: brown;
+	font: 12pt tahoma;
+}
+
+sup {
+	font-size: 10pt;
+}
+
+textarea {
+	color: gray;
+	font: 10pt tahoma;
+}
+
+#preview {
+	font-size: 14pt;
+	height: 100px;
+	width: 400px;
+}
+
+#preview .syllables {
+	font-size: 16pt;
+	width: 100px;
+}
+
+.valid {
+	color: green;
+}
+
+.invalid {
+	color: red;
+}
