@@ -11,31 +11,9 @@ class HaikusController < ApplicationController
   def list
     @haikus = Haiku.get_haikus.map{|haiku| HaikuView.from_haiku(haiku)}
   end
-  
-  def tags
-    @tags = Tag.get_popular_tags
-  end
-
-  def show
-    @haiku = HaikuView.from_haiku(Haiku.find(params[:id]))
-  end
 
   def new
     @haiku = HaikuView.new
-  end
-
-  def edit
-    @haiku = HaikuView.from_haiku(Haiku.find(params[:id]))
-  end
-
-  def update
-    @haiku = Haiku.find(params[:id])
-    if @haiku.update_attributes(params[:haiku])
-      flash[:notice] = 'Haiku was successfully updated.'
-      redirect_to :action => 'show', :id => @haiku
-    else
-      render :action => 'edit'
-    end
   end
 
   def destroy
@@ -52,9 +30,17 @@ class HaikusController < ApplicationController
       flash[:notice] = @haiku.title
       redirect_to :action => 'show', :id => @haiku
     else
-      flash[:notice] = 'Haiku was not saved!'    
+      flash[:notice] = 'Haiku was not saved!'  
     end
   end
   
-  
+  def tags
+    if params[:id]
+      @haikus = Haiku.get_haikus_by_tag_name(params[:id]).map{|haiku| HaikuView.from_haiku(haiku)}
+      render :action => "list"
+    else
+      @populartags = Tag.get_popular_tags
+      @recenttags = Tag.get_popular_tags
+    end
+  end  
 end

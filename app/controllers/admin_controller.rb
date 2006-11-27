@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  layout "admin"
   before_filter :authorize
   
   def index
@@ -15,6 +16,6 @@ class AdminController < ApplicationController
         flash[:notice] = e.message
       end
     end
-    redirect_to(:action => :list_users)
+    redirect_to(:action => :index)
   end
 end

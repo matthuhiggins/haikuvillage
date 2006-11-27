@@ -1,14 +1,9 @@
-<!--
- ! Excerpted from "Agile Web Development with Rails, 2nd Ed."
- ! We make no guarantees that this code is fit for any purpose. 
- ! Visit http://www.pragmaticprogrammer.com/titles/rails2 for more book information.
--->
 <div class="depot-form">
 
   <%= error_messages_for 'user' %>
 
   <fieldset>
-    <legend>Enter User Details</legend>
+    <legend>Register</legend>
 
     <% form_for :user do |form| %>
       <p>
@@ -31,7 +26,7 @@
         <%= form.password_field :password_confirmation, :size => 40 %>
       </p>
 
-      <%= submit_tag "Add User", :class => "submit" %>
+      <%= submit_tag "Register", :class => "submit" %>
     
     <% end %>  
   </fieldset>

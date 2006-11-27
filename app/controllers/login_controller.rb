@@ -7,7 +7,7 @@ class LoginController < ApplicationController
       user = User.authenticate(params[:username], params[:password])
       if user
         session[:user_id] = user.id
-        redirect_to(:action => "index")
+        redirect_to(:action => "index", :model => "haikus")
       else
         flash[:notice] = "Invalid user/password combination"
       end
@@ -19,7 +19,7 @@ class LoginController < ApplicationController
     if request.post? and @user.save
       flash.now[:notice] = "User #{@user.username} created"
       session[:user_id] = @user.id
-      redirect_to(:action => "index")
+      redirect_to(:action => "index", :controller => "haikus")
     end
   end
 

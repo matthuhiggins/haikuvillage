@@ -14,4 +14,8 @@ class Haiku < ActiveRecord::Base
   def self.get_haikus
     find(:all)
   end
+  
+  def self.get_haikus_by_tag_name(tag_name)
+    find(:all)
+  end    
 end

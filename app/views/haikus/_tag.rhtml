@@ -1,0 +1,7 @@
+<% if show_popularity %>
+  <%= get_tag_span(tag.count) %>
+<% else %>
+  <span>
+<% end %>
+  <%= link_to h(tag.name), {:action => "tags", :id => h(tag.name)} %>
+</span>
