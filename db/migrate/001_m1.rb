@@ -61,7 +61,7 @@ class M1 < ActiveRecord::Migration
       t.column :username, :string, :null => false, :limit => 100
       t.column :useralias, :string, :null => true, :limit => 100
       t.column :email, :string, :null => false, :limit => 100
-      t.column :hashpassword, :string, :null => false
+      t.column :hashed_password, :string, :null => false
       t.column :salt, :string, :null => false
       t.column :created_at, :datetime, :null => false
     end
