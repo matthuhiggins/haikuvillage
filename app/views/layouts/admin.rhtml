@@ -1,0 +1,17 @@
+<html>
+<head>
+  <title>Admin Controller</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+
+<div>
+  <%= link_to "View Users", :controller => "items", :action => "index" %>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= yield  %>
+
+</body>
+</html>
