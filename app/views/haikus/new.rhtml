@@ -1,13 +1,23 @@
 <h1>New haiku</h1>
 
+
+<% form_tag({:action => :add_haiku}, :id => "haiku_form") do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag("Add the haiku to the cart", :id => "commit") %>
+<% end %>
+
 <p>Here is my haiku:</p>
 <div id="preview">
 </div>
 
-<% form_tag :action => :add_haiku do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag "Add the haiku to the cart" %>
-<% end %>
+<script type="text/javascript">
+new Form.Observer('haiku_form', 0.7, function(element, value) {
+                $("commit").enabled = haikuMaster(element.lastHaiku.value,
+                        $F("haiku_haiku_text"), $("preview"));
+                $("commit").enabled = false;
+                element.lastHaiku.value = $F("haiku_haiku_text");
+            });
+</script>
 
 
 <%= link_to 'Back', :action => 'list' %>

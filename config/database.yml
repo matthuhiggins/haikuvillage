@@ -14,7 +14,7 @@ development:
   adapter: mysql
   database: haiku_development
   username: root
-  password:
+  password: sa
   host: localhost
 
 # Warning: The database defined as 'test' will be erased and

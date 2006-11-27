@@ -119,8 +119,11 @@ function haikuMaster(oldValue, newValue, element) {
 		});
 
 	newWordsToAjax.each(function(word){
-		wordCacheHash[word.key] = new Word(word.value.text, Math.round(Math.random()*2)+1, true);
+		new Ajax.Request("/syllables/" + word.value.text + ";json", {
+			method: "get",
+			onComplete: updateWordCacheHash
 		});
+	});
 
 	element.innerHTML = "";
 	haiku = textToHaiku(newValue);
@@ -131,4 +134,9 @@ function haikuMaster(oldValue, newValue, element) {
 		});
 
 	return isValidHaiku(haiku);
+}
+
+function updateWordCacheHash( originalRequest ){
+	var response = eval("(" + originalRequest.responseText + ")");
+	wordCacheHash[response.word] = new Word(response.word, response.syllables, true);
 }

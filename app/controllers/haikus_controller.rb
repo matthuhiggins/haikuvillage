@@ -26,6 +26,9 @@ class HaikusController < ApplicationController
     logger.debug("text: " + @haiku_view.haiku_text.inspect)
     logger.debug("the content: " + @haiku_view.inspect)
     @haiku = Haiku.from_haiku_view(@haiku_view)
+    
+    @haiku.user_id = 2 #TODO: replace this with actual user association
+    
     if @haiku.save 
       flash[:notice] = @haiku.title
       redirect_to :action => 'show', :id => @haiku
