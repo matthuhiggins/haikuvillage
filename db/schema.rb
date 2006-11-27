@@ -2,81 +2,114 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 1) do
+ActiveRecord::Schema.define(:version => 3) do
 
   create_table "group_haikus", :id => false, :force => true do |t|
-    t.column "group_id", :integer, :null => false
-    t.column "haiku_id", :integer, :null => false
+    t.column "group_id", :integer, :default => 0, :null => false
+    t.column "haiku_id", :integer, :default => 0, :null => false
   end
+
+  add_index "group_haikus", ["group_id"], :name => "group_haikus_group_id_foreign_key"
+  add_index "group_haikus", ["haiku_id"], :name => "group_haikus_haiku_id_foreign_key"
 
   create_table "group_user_types", :force => true do |t|
     t.column "name", :string, :default => "", :null => false
   end
 
   create_table "group_users", :id => false, :force => true do |t|
-    t.column "group_id",         :integer, :null => false
-    t.column "user_id",          :integer, :null => false
-    t.column "groupusertype_id", :integer, :null => false
+    t.column "group_id", :integer, :default => 0, :null => false
+    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "group_user_type_id", :integer, :default => 0, :null => false
   end
+
+  add_index "group_users", ["group_id"], :name => "group_users_group_id_foreign_key"
+  add_index "group_users", ["user_id"], :name => "group_users_user_id_foreign_key"
+  add_index "group_users", ["group_user_type_id"], :name => "group_users_group_user_type_id_foreign_key"
 
   create_table "groups", :force => true do |t|
-    t.column "name",        :string,   :limit => 100, :default => "", :null => false
-    t.column "description", :text,                    :default => "", :null => false
-    t.column "isadultonly", :boolean,                                 :null => false
-    t.column "isprivate",   :boolean,                                 :null => false
-    t.column "created_at",  :datetime
-  end
-
-  create_table "haiku_comments", :force => true do |t|
-    t.column "haiku_id",   :integer,                  :null => false
-    t.column "user_id",    :integer,                  :null => false
-    t.column "text",       :text,     :default => "", :null => false
-    t.column "created_at", :datetime,                 :null => false
-  end
-
-  create_table "haiku_tags", :id => false, :force => true do |t|
-    t.column "haiku_id",   :integer,  :null => false
-    t.column "tag_id",     :integer,  :null => false
+    t.column "name", :string, :limit => 100, :default => "", :null => false
+    t.column "description", :text, :default => "", :null => false
+    t.column "isadultonly", :boolean, :default => false, :null => false
+    t.column "isprivate", :boolean, :default => false, :null => false
     t.column "created_at", :datetime, :null => false
   end
 
-  create_table "haikus", :force => true do |t|
-    t.column "title",      :string,   :limit => 100, :default => "", :null => false
-    t.column "line1",      :string,                  :default => "", :null => false
-    t.column "line2",      :string,                  :default => "", :null => false
-    t.column "line3",      :string,                  :default => "", :null => false
-    t.column "user_id",    :string,                  :default => "", :null => false
-    t.column "created_at", :datetime,                                :null => false
+  add_index "groups", ["name"], :name => "groups_name_index"
+  add_index "groups", ["created_at"], :name => "groups_created_at_index"
+
+  create_table "haiku_comments", :force => true do |t|
+    t.column "haiku_id", :integer, :default => 0, :null => false
+    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "text", :text, :default => "", :null => false
+    t.column "created_at", :datetime, :null => false
   end
+
+  add_index "haiku_comments", ["haiku_id"], :name => "haiku_comments_haiku_id_index"
+  add_index "haiku_comments", ["user_id"], :name => "haiku_comments_user_id_index"
+  add_index "haiku_comments", ["created_at"], :name => "haiku_comments_created_at_index"
+
+  create_table "haiku_tags", :id => false, :force => true do |t|
+    t.column "haiku_id", :integer, :default => 0, :null => false
+    t.column "tag_id", :integer, :default => 0, :null => false
+    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "created_at", :datetime, :null => false
+  end
+
+  add_index "haiku_tags", ["tag_id", "haiku_id"], :name => "haiku_tags_tag_id_index", :unique => true
+  add_index "haiku_tags", ["haiku_id"], :name => "haiku_tags_haiku_id_index"
+
+  create_table "haikus", :force => true do |t|
+    t.column "title", :string, :limit => 100, :default => "", :null => false
+    t.column "line1", :string, :default => "", :null => false
+    t.column "line2", :string, :default => "", :null => false
+    t.column "line3", :string, :default => "", :null => false
+    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "created_at", :datetime, :null => false
+  end
+
+  add_index "haikus", ["user_id"], :name => "haikus_user_id_index"
+  add_index "haikus", ["created_at"], :name => "haikus_created_at_index"
 
   create_table "tags", :force => true do |t|
     t.column "name", :string, :limit => 64, :default => "", :null => false
   end
 
+  add_index "tags", ["name"], :name => "tags_name_index", :unique => true
+
   create_table "user_haiku_favorites", :id => false, :force => true do |t|
-    t.column "user_id",    :integer, :null => false
-    t.column "haiku_id",   :integer, :null => false
-    t.column "created_at", :integer, :null => false
+    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "haiku_id", :integer, :default => 0, :null => false
+    t.column "created_at", :integer, :default => 0, :null => false
   end
+
+  add_index "user_haiku_favorites", ["user_id", "haiku_id"], :name => "user_haiku_favorites_user_id_index", :unique => true
+  add_index "user_haiku_favorites", ["haiku_id"], :name => "user_haiku_favorites_haiku_id_index"
 
   create_table "user_logins", :id => false, :force => true do |t|
-    t.column "user_id",   :integer, :null => false
-    t.column "logindate", :integer, :null => false
+    t.column "user_id", :integer, :default => 0, :null => false
+    t.column "logindate", :datetime, :null => false
   end
+
+  add_index "user_logins", ["user_id"], :name => "user_logins_user_id_foreign_key"
 
   create_table "user_users", :id => false, :force => true do |t|
-    t.column "sourceuser_id", :integer, :null => false
-    t.column "targetuser_id", :integer, :null => false
-    t.column "accepted",      :boolean, :null => false
+    t.column "sourceuser_id", :integer, :default => 0, :null => false
+    t.column "targetuser_id", :integer, :default => 0, :null => false
+    t.column "accepted", :boolean, :default => false, :null => false
   end
 
+  add_index "user_users", ["sourceuser_id"], :name => "user_users_sourceuser_id_foreign_key"
+  add_index "user_users", ["targetuser_id"], :name => "user_users_targetuser_id_foreign_key"
+
   create_table "users", :force => true do |t|
-    t.column "username",     :string, :limit => 100, :default => "", :null => false
-    t.column "useralias",    :string, :limit => 100
-    t.column "email",        :string, :limit => 100, :default => "", :null => false
-    t.column "hashpassword", :string,                :default => "", :null => false
-    t.column "salt",         :string,                :default => "", :null => false
-    t.column "created_at",   :string,                :default => "", :null => false
+    t.column "username", :string, :limit => 100, :default => "", :null => false
+    t.column "useralias", :string, :limit => 100
+    t.column "email", :string, :limit => 100, :default => "", :null => false
+    t.column "hashed_password", :string, :default => "", :null => false
+    t.column "salt", :string, :default => "", :null => false
+    t.column "created_at", :datetime, :null => false
   end
+
+  add_index "users", ["username"], :name => "users_username_index", :unique => true
 
 end

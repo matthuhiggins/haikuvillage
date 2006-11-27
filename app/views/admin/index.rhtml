@@ -7,9 +7,9 @@
                              :id => user},
                            { # html options
                              :method  => :post,
-                             :confirm => "Really delete #{user.name}?"
+                             :confirm => "Really delete #{user.username}?"
                            } %>
-        <%= h(user.name) %>
+        <%= h(user.username) %>
     </li>
   <% end %>
 </ul>
