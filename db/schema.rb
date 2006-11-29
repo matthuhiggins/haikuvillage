@@ -5,8 +5,8 @@
 ActiveRecord::Schema.define(:version => 3) do
 
   create_table "group_haikus", :id => false, :force => true do |t|
-    t.column "group_id", :integer, :null => false
-    t.column "haiku_id", :integer, :null => false
+    t.column "group_id", :integer, :default => 0, :null => false
+    t.column "haiku_id", :integer, :default => 0, :null => false
   end
 
   add_index "group_haikus", ["group_id"], :name => "group_haikus_group_id_foreign_key"
@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(:version => 3) do
   end
 
   create_table "group_users", :id => false, :force => true do |t|
-    t.column "group_id",           :integer, :null => false
-    t.column "user_id",            :integer, :null => false
-    t.column "group_user_type_id", :integer, :null => false
+    t.column "group_id",           :integer, :default => 0, :null => false
+    t.column "user_id",            :integer, :default => 0, :null => false
+    t.column "group_user_type_id", :integer, :default => 0, :null => false
   end
 
   add_index "group_users", ["group_id"], :name => "group_users_group_id_foreign_key"
@@ -27,19 +27,19 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "group_users", ["group_user_type_id"], :name => "group_users_group_user_type_id_foreign_key"
 
   create_table "groups", :force => true do |t|
-    t.column "name",        :string,   :limit => 100, :default => "", :null => false
-    t.column "description", :text,                    :default => "", :null => false
-    t.column "isadultonly", :boolean,                                 :null => false
-    t.column "isprivate",   :boolean,                                 :null => false
-    t.column "created_at",  :datetime,                                :null => false
+    t.column "name",        :string,   :limit => 100, :default => "",    :null => false
+    t.column "description", :text,                    :default => "",    :null => false
+    t.column "isadultonly", :boolean,                 :default => false, :null => false
+    t.column "isprivate",   :boolean,                 :default => false, :null => false
+    t.column "created_at",  :datetime,                                   :null => false
   end
 
   add_index "groups", ["name"], :name => "index_groups_on_name"
   add_index "groups", ["created_at"], :name => "index_groups_on_created_at"
 
   create_table "haiku_comments", :force => true do |t|
-    t.column "haiku_id",   :integer,                  :null => false
-    t.column "user_id",    :integer,                  :null => false
+    t.column "haiku_id",   :integer,  :default => 0,  :null => false
+    t.column "user_id",    :integer,  :default => 0,  :null => false
     t.column "text",       :text,     :default => "", :null => false
     t.column "created_at", :datetime,                 :null => false
   end
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haiku_comments", ["created_at"], :name => "index_haiku_comments_on_created_at"
 
   create_table "haiku_tags", :id => false, :force => true do |t|
-    t.column "haiku_id",   :integer,  :null => false
-    t.column "tag_id",     :integer,  :null => false
-    t.column "user_id",    :integer,  :null => false
-    t.column "created_at", :datetime, :null => false
+    t.column "haiku_id",   :integer,  :default => 0, :null => false
+    t.column "tag_id",     :integer,  :default => 0, :null => false
+    t.column "user_id",    :integer,  :default => 0, :null => false
+    t.column "created_at", :datetime,                :null => false
   end
 
   add_index "haiku_tags", ["tag_id", "haiku_id"], :name => "index_haiku_tags_on_tag_id_and_haiku_id", :unique => true
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 3) do
     t.column "line1",      :string,                  :default => "", :null => false
     t.column "line2",      :string,                  :default => "", :null => false
     t.column "line3",      :string,                  :default => "", :null => false
-    t.column "user_id",    :integer,                                 :null => false
+    t.column "user_id",    :integer,                 :default => 0,  :null => false
     t.column "created_at", :datetime,                                :null => false
   end
 
@@ -77,37 +77,37 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "user_haiku_favorites", :id => false, :force => true do |t|
-    t.column "user_id",    :integer, :null => false
-    t.column "haiku_id",   :integer, :null => false
-    t.column "created_at", :integer, :null => false
+    t.column "user_id",    :integer, :default => 0, :null => false
+    t.column "haiku_id",   :integer, :default => 0, :null => false
+    t.column "created_at", :integer, :default => 0, :null => false
   end
 
   add_index "user_haiku_favorites", ["user_id", "haiku_id"], :name => "index_user_haiku_favorites_on_user_id_and_haiku_id", :unique => true
   add_index "user_haiku_favorites", ["haiku_id"], :name => "index_user_haiku_favorites_on_haiku_id"
 
   create_table "user_logins", :id => false, :force => true do |t|
-    t.column "user_id",   :integer,  :null => false
-    t.column "logindate", :datetime, :null => false
+    t.column "user_id",   :integer,  :default => 0, :null => false
+    t.column "logindate", :datetime,                :null => false
   end
 
   add_index "user_logins", ["user_id"], :name => "user_logins_user_id_foreign_key"
 
   create_table "user_users", :id => false, :force => true do |t|
-    t.column "sourceuser_id", :integer, :null => false
-    t.column "targetuser_id", :integer, :null => false
-    t.column "accepted",      :boolean, :null => false
+    t.column "sourceuser_id", :integer, :default => 0,     :null => false
+    t.column "targetuser_id", :integer, :default => 0,     :null => false
+    t.column "accepted",      :boolean, :default => false, :null => false
   end
 
   add_index "user_users", ["sourceuser_id"], :name => "user_users_sourceuser_id_foreign_key"
   add_index "user_users", ["targetuser_id"], :name => "user_users_targetuser_id_foreign_key"
 
   create_table "users", :force => true do |t|
-    t.column "username",     :string,   :limit => 100, :default => "", :null => false
-    t.column "useralias",    :string,   :limit => 100
-    t.column "email",        :string,   :limit => 100, :default => "", :null => false
-    t.column "hashpassword", :string,                  :default => "", :null => false
-    t.column "salt",         :string,                  :default => "", :null => false
-    t.column "created_at",   :datetime,                                :null => false
+    t.column "username",        :string,   :limit => 100, :default => "", :null => false
+    t.column "useralias",       :string,   :limit => 100
+    t.column "email",           :string,   :limit => 100, :default => "", :null => false
+    t.column "hashed_password", :string,                  :default => "", :null => false
+    t.column "salt",            :string,                  :default => "", :null => false
+    t.column "created_at",      :datetime,                                :null => false
   end
 
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true

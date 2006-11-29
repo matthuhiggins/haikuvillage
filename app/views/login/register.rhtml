@@ -26,7 +26,8 @@
         <%= form.password_field :password_confirmation, :size => 40 %>
       </p>
 
-      <%= submit_tag "Register", :class => "submit" %>
+      <%= submit_tag "Register", :name => "register" %>
+      <%= submit_tag "Cancel", :name => "cancel" %>      
     
     <% end %>  
   </fieldset>

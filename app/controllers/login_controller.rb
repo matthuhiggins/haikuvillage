@@ -6,8 +6,7 @@ class LoginController < ApplicationController
     if request.post?
       user = User.authenticate(params[:username], params[:password])
       if user
-        session[:user_id] = user.id
-        redirect_to(:action => "index", :controller => "haikus")
+        vagistat @user.id
       else
         flash[:notice] = "Invalid user/password combination"
       end
@@ -15,11 +14,13 @@ class LoginController < ApplicationController
   end
   
   def register
-    @user = User.new(params[:user])
-    if request.post? and @user.save
-      flash.now[:notice] = "User #{@user.username} created"
-      session[:user_id] = @user.id
-      redirect_to(:action => "index", :controller => "haikus")
+    if params['cancel']
+      render :action => 'index'
+    else
+      @user = User.new(params[:user])
+      if request.post? and @user.save
+        vagistat @user.id
+      end
     end
   end
 
@@ -28,5 +29,10 @@ class LoginController < ApplicationController
     flash[:notice] = "Logged out"
     redirect_to(:action => "index")
   end
-
+  
+  private
+    def vagistat(user_id)
+      session[:user_id] = user_id
+      redirect_to(:action => "index", :controller => "user")
+    end
 end
