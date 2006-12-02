@@ -16,12 +16,12 @@ class M2 < ActiveRecord::Migration
     
     add_foreign_key :haiku_comments, :haiku_id, :haikus
     add_foreign_key :haiku_comments, :user_id, :users
-    
+
+    add_foreign_key :haiku_favorites, :haiku_id, :haikus
+    add_foreign_key :haiku_favorites, :user_id, :users    
+
     add_foreign_key :haiku_tags, :haiku_id, :haikus
     add_foreign_key :haiku_tags, :tag_id, :tags
-    
-    add_foreign_key :user_haiku_favorites, :haiku_id, :haikus
-    add_foreign_key :user_haiku_favorites, :user_id, :users
     
     add_foreign_key :user_logins, :user_id, :users
     
@@ -41,12 +41,12 @@ class M2 < ActiveRecord::Migration
     
     remove_foreign_key :haiku_comments, :haiku_id
     remove_foreign_key :haiku_comments, :user_id
-    
+        
+    remove_foreign_key :haiku_favorites
+    remove_foreign_key :haiku_favorites
+        
     remove_foreign_key :haiku_tags, :haiku_id
     remove_foreign_key :haiku_tags, :tag_id
-    
-    remove_foreign_key :user_haiku_favorites
-    remove_foreign_key :user_haiku_favorites
     
     remove_foreign_key :user_logins, :user_id
     

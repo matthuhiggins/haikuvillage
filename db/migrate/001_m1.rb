@@ -36,6 +36,7 @@ class M1 < ActiveRecord::Migration
       t.column :line2, :string, :null => false, :limit => 255
       t.column :line3, :string, :null => false, :limit => 255
       t.column :user_id, :integer, :null => false
+      t.column :user_haiku_favorites_count, :integer, :null => false, :default => 0
       t.column :created_at, :datetime, :null => false
     end
 
@@ -46,6 +47,12 @@ class M1 < ActiveRecord::Migration
       t.column :created_at, :datetime, :null => false
     end
     
+    create_table :haiku_favorites, :id => false do |t|
+      t.column :user_id, :integer, :null => false
+      t.column :haiku_id, :integer, :null => false
+      t.column :created_at, :integer, :null => false
+    end    
+
     create_table :haiku_tags, :id => false do |t|
       t.column :haiku_id, :integer, :null => false
       t.column :tag_id, :integer, :null => false
@@ -55,6 +62,8 @@ class M1 < ActiveRecord::Migration
 
     create_table :tags do |t|
       t.column :name, :string, :null => false, :limit => 64
+      t.column :haiku_tags_count, :integer, :null => false, :default => 0
+      t.column :created_at, :datetime, :null => false
     end    
 
     create_table :users do |t|
@@ -64,12 +73,6 @@ class M1 < ActiveRecord::Migration
       t.column :hashed_password, :string, :null => false
       t.column :salt, :string, :null => false
       t.column :created_at, :datetime, :null => false
-    end
-    
-    create_table :user_haiku_favorites, :id => false do |t|
-      t.column :user_id, :integer, :null => false
-      t.column :haiku_id, :integer, :null => false
-      t.column :created_at, :integer, :null => false
     end
 
     create_table :user_logins, :id => false do |t|
@@ -91,10 +94,10 @@ class M1 < ActiveRecord::Migration
     drop_table :group_user_types
     drop_table :haikus
     drop_table :haiku_comments
+    drop_table :haiku_favorites
     drop_table :haiku_tags
     drop_table :tags
     drop_table :users
-    drop_table :user_haiku_favorites
     drop_table :user_logins
     drop_table :user_users
   end

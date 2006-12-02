@@ -12,7 +12,7 @@ class SyllablesController < ApplicationController
     out << "'syllables':" << syllable_count(params[:word]).to_s << ","
     out << "}"
     render :text => out
-  end 
+  end
 
   def syllable_count( word )
     Lingua::EN::Syllable.syllables(word)

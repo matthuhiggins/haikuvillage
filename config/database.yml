@@ -22,14 +22,14 @@ development:
 # Do not set this db to the same as development or production.
 test:
   adapter: mysql
-  database: haiku_test
+  database: trunk_test
   username: root
   password:
   host: localhost
 
 production:
   adapter: mysql
-  database: haiku_production
+  database: trunk_production
   username: root
   password: 
   host: localhost

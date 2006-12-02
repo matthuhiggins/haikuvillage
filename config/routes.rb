@@ -17,9 +17,6 @@ ActionController::Routing::Routes.draw do |map|
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
-  map.syllables "syllables/:word", :controller => "syllables", :action => "count", :word => /\w+/
-  map.syllables "syllables/:word;json", :controller => "syllables", :action => "count_json", :word => /\w+/
-
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'
 end
