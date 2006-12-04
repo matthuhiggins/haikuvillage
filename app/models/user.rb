@@ -1,12 +1,12 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
+  has_many :favorites, :through => :haiku_favorites, :source => :user
+  has_many :haikus
   
   validates_presence_of :username
-  validates_uniqueness_of :username
-  
-  validates_presence_of :email
- 
+  validates_uniqueness_of :username  
+  validates_presence_of :email 
   attr_accessor :password_confirmation
   validates_confirmation_of :password
   validates_presence_of :password

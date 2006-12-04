@@ -2,7 +2,7 @@ class M1 < ActiveRecord::Migration
   def self.up
    create_table :groups do |t|
       t.column :name, :string, :null => false, :limit => 100
-      t.column :description, :text, :null => false
+      t.column :description, :string, :null => false, :limit => 1000
       t.column :isadultonly, :boolean, :null => false
       t.column :isprivate, :boolean, :null => false
       t.column :created_at, :datetime, :null => false
@@ -43,7 +43,7 @@ class M1 < ActiveRecord::Migration
     create_table :haiku_comments do |t|
       t.column :haiku_id, :integer, :null => false
       t.column :user_id, :integer, :null => false
-      t.column :text, :text, :null => false
+      t.column :text, :string, :null => false, :limit => 1000
       t.column :created_at, :datetime, :null => false
     end
     
@@ -56,7 +56,7 @@ class M1 < ActiveRecord::Migration
     create_table :haiku_tags, :id => false do |t|
       t.column :haiku_id, :integer, :null => false
       t.column :tag_id, :integer, :null => false
-      t.column :user_id, :integer, :null => false
+      #t.column :user_id, :integer, :null => false
       t.column :created_at, :datetime, :null => false
     end
 

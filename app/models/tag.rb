@@ -1,22 +1,32 @@
 class Tag < ActiveRecord::Base
   has_many :haiku_tags
   has_many :haikus, :through => :haiku_tags
+
+  validates_presence_of :name
   
+  def self.add_haiku_tag(tag_name, haiku)
+    tag = Tag.find(:first, :conditions => ["name = ?", tag_name])
+    tag = Tag.create!(:name => tag_name) unless tag
+    #tag.haiku_tags_count = tag.haiku_tags_count + 1
+    tag.haiku_tags.create(:haiku => haiku)
+    tag.save!
+    tag
+  end
+  
+  def self.remove_haiku_tag(tag_name, haiku)
+  end
+    
+
   def self.get_popular_tags
-    self.get_tags(:use_count, 5)
+    Tag Order.find(:all,
+                   :order => "haiku_tags_count",
+                   :limit => 10)
   end
   
   def self.get_recent_tags
-    self.get_tags(:created_at, 5)
-  end
-  
-  private
-  
-  def self.get_tags(order_by, limit)
-    Tag.find_by_sql %{
-        select *
-        from tags
-        order by #{order_by}
-        limit #{limit}}
+    Tag Order.find(:all,
+                   :conditions => ["created_at > ?", 1.week.ago],
+                   :order => "haiku_tags_count",
+                   :limit => 10)
   end
 end

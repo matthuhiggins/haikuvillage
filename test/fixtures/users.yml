@@ -1,5 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+user_joe:
   id: 1
-another:
+  username: joe
+  hashed_password: xyz
+  created_at: <%= Time.now.to_s(:db) %>
+  
+user_bob:
   id: 2
+  username: bob
+  hashed_password: xyz
+  created_at: <%= Time.now.to_s(:db) %>
+  

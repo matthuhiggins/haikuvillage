@@ -11,10 +11,10 @@ class M3 < ActiveRecord::Migration
     add_index :haikus, :user_id
     add_index :haikus, :created_at
 
-    add_index :haiku_favorites, [:user_id, :haiku_id], :unique => true
+    add_index :haiku_favorites, [:user_id, :haiku_id], :unique => true # clustered index
     add_index :haiku_favorites, :haiku_id    
 
-    add_index :haiku_tags, [:tag_id, :haiku_id], :unique => true
+    add_index :haiku_tags, [:tag_id, :haiku_id], :unique => true # clustered index
     add_index :haiku_tags, :haiku_id
   
     add_index :tags, :name, :unique => true

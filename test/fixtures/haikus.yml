@@ -1,5 +1,17 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+hello:
   id: 1
-another:
+  title: first
+  line1: this is my haiku
+  line2: i cannot count to seven
+  line3: but i can attempt
+  user_id: 1
+  created_at: <%= Time.now.to_s(:db) %>
+  
+bye:
   id: 2
+  title: last
+  line1: this is my haiku
+  line2: i cannot count to seven
+  line3: but i can attempt
+  user_id: 1
+  created_at: <%= Time.now.to_s(:db) %>
