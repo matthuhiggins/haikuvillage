@@ -12,6 +12,10 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
   # map.connect '', :controller => "welcome"
+  # 
+  
+  map.syllables "syllables/:word;json", :controller => "syllables", :action => "count_json"
+  map.syllables "syllables/:word", :controller => "syllables", :action => "count"
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
