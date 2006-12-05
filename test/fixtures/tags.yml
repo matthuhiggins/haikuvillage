@@ -2,8 +2,10 @@ fall:
   id: 1
   name: fall
   created_at: <%= Time.now.to_s(:db) %>
-  
+  haiku_tags_count: 0
+    
 winter:
   id: 2
   name: winter
   created_at: <%= Time.now.to_s(:db) %>
+  haiku_tags_count: 0

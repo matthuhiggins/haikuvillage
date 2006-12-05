@@ -1,10 +1,10 @@
 class Haiku < ActiveRecord::Base
-  validates_presence_of :title, :line1, :line2, :line3
-
   belongs_to :user
   has_many :haiku_tags
   has_many :tags, :through => :haiku_tags
   has_many :favorites, :through => :haiku_favorites, :source => :haiku
+
+  validates_presence_of :title, :line1, :line2, :line3
 
   def self.from_haiku_view(haiku_view)
     h = self.new
@@ -14,10 +14,11 @@ class Haiku < ActiveRecord::Base
   end   
   
   def self.get_haikus
-    find(:all)
+    Haiku.find(:all)
   end
   
   def self.get_haikus_by_tag_name(tag_name)
-    find(:all)
+    Haiku.find(:all,
+               :conditions => "poop")
   end    
 end

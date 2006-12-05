@@ -36,7 +36,7 @@ class M1 < ActiveRecord::Migration
       t.column :line2, :string, :null => false, :limit => 255
       t.column :line3, :string, :null => false, :limit => 255
       t.column :user_id, :integer, :null => false
-      t.column :user_haiku_favorites_count, :integer, :null => false, :default => 0
+      t.column :haiku_favorites_count, :integer, :null => false, :default => 0
       t.column :created_at, :datetime, :null => false
     end
 
