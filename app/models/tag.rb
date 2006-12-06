@@ -8,7 +8,6 @@ class Tag < ActiveRecord::Base
     tag = Tag.find(:first, :conditions => ["name = ?", tag_name])
     tag = Tag.create!(:name => tag_name) unless tag
     tag.haiku_tags.create(:haiku => haiku)
-    #tag.haiku_tags_count = 0 #tag.haiku_tags_count + 1
     tag.save!
     tag
   end

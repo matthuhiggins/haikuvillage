@@ -10,4 +10,3 @@ user_bob:
   username: bob
   hashed_password: xyz
   created_at: <%= Time.now.to_s(:db) %>
-  

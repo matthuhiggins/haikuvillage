@@ -2,7 +2,8 @@ class Haiku < ActiveRecord::Base
   belongs_to :user
   has_many :haiku_tags
   has_many :tags, :through => :haiku_tags
-  has_many :favorites, :through => :haiku_favorites, :source => :haiku
+  has_many :haiku_favorites
+  has_many :happy_users, :through => :haiku_favorites, :source => :user
 
   validates_presence_of :title, :line1, :line2, :line3
 
@@ -18,7 +19,13 @@ class Haiku < ActiveRecord::Base
   end
   
   def self.get_haikus_by_tag_name(tag_name)
-    Haiku.find(:all,
-               :conditions => "poop")
-  end    
+    Haiku.find(:all)
+  end
+  
+  def self.get_haikus_by_popularity
+    Tag.find(:all,
+             :order => "haiku_favorites_count",
+             :limit => 10)
+  end
+  
 end
