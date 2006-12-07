@@ -1,5 +1,5 @@
 body {
-	color: brown;
+	color: black;
 	font: 12pt tahoma;
 	margin: 0;
 	padding: 0;
@@ -37,15 +37,25 @@ textarea {
 	position: absolute;
 	bottom: 0;
 	background-color: #ccffcc;
-	width: 70%; /* See note below */
-	text-align: center;
-	padding: 0 15%;
+	width: 100%; /* See note below */
+	padding: 0 0%;
 }
-
 /* SBMH -- see http://css-discuss.incutio.com/?page=BoxModelHack 
  * Stupid hack lets IE see 100%, others see 70%. 
  */
 #footer {
     \width: 100%;
-    w\idth: 70%;
+    w\idth: 100%;
+}
+
+#left-footer {
+    float: left;
+    text-align: left;
+    width: 49%;
+}
+
+#right-footer {
+    float: right;
+    text-align: right;
+    width: 49%;
 }

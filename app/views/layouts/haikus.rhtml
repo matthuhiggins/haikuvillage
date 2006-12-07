@@ -10,12 +10,12 @@
 <div id="navigation">
   <ul>
     <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
+    <li><%= link_to "Add Haiku", :controller => "haikus", :action => "new" %></li>
     <li><%= link_to "My Stuff", :controller => "mine", :action => "index" %>
       <ul>
         <li><%= link_to "My Tags", :controller => "mine", :action => "tags" %></li>
         <li><%= link_to "My Favorites", :controller => "mine", :action => "favorites" %></li>
         <li><%= link_to "My Haikus", :controller => "mine", :action => "index" %></li> 
-        <li><%= link_to "Add Haiku", :controller => "mine", :action => "new" %></li>
       </ul>
     </li>
     <li>Groups</li>
@@ -40,16 +40,18 @@
 <%= yield  %>
 
 <div id="footer">
-  <span>
+  <div id="left-footer">
   <% if session[:user_id] == nil -%>
     logout
   <% else -%>
     login
   <% end %>  
-  </span>
+  </div>
   
-  <span>Haiku Village</span>
-  
+  <div id="right-footer">
+    Haiku Village
+  </div>  
 </div>
+
 </body>
 </html>
