@@ -105,38 +105,39 @@ function textToHaiku(text){
 //var wordRequestHash = $H();
 
 function haikuMaster(oldValue, newValue, element) {
-	var curHaikuWords = textToWords(newValue);
-
 	oldWordHash = $H();	
 	textToWords(oldValue).each(function(word){
 		oldWordHash[word.text] = word;
 	});
 	
-	//get rid of any "new" words that are not in the current haiku
-	wordCacheHash.each(function(word){
-	   if ( curHaikuWords[word.text] == undefined ){
-	       wordCacheHash[word.text] = undefined;
-	   }
+	var newWordArray = textToWords(newValue);
+	newWordHash = $H();	
+	newWordArray.each(function(word){
+		newWordHash[word.text] = word;
 	});
 	
-	//request any new words
 	wordCacheHash.each(function(word){
-        if ( word.state == "new" ){
-            word.state = "requested";
-    		new Ajax.Request("/syllables/" + word.value.text + ";json", {
+	   if (word.value.state == "new" && newWordHash[word.value.text] == undefined) {
+	       delete wordCacheHash[word.value.text];
+        }
+	});	
+		
+    newWordArray.findAll(function(word){
+	   return wordCacheHash[word.text] != undefined && wordCacheHash[word.text].state == "new";
+	}).each(function(word){
+            word.state = "requesting";
+    		new Ajax.Request("/syllables/" + word.text + ";json", {
     			method: "get",
     			onComplete: updateWordCacheHash
     		});
-    	}
 	});
 	
 	//Find the changed words from last cycle
-	curHaikuWords.each(function(word){
+	newWordArray.each(function(word){
 		if (oldWordHash[word.text] != undefined && 
 		    wordCacheHash[word.text] == undefined ){
-			word.state = "new";
 			wordCacheHash[word.text] = word;
-		} 
+		}
 	});
 		
 	haiku = renderHaiku( newValue, element );
@@ -152,9 +153,9 @@ function renderHaiku( haikuText, element ){
 			new Effect.Highlight(element, {startcolor: '#77db08'});
 		});
 		
-	wordCacheHash.each(function(word2){
-	   if ( word2.state == "responded"){
-		  word2.value.state = "static";
+	wordCacheHash.each(function(word){
+	   if ( word.value.state == "responded"){
+		  word.value.state = "static";
 	   }
 	});
 	
