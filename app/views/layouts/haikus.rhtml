@@ -1,21 +1,19 @@
 <html>
 <head>
   <title>Haikus: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'haiku' %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "haiku" %>
 </head>
 <body>
-
-<h2>Haiku Village</h2>
 
 <div id="navigation">
   <ul>
     <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
     <li><%= link_to "My Stuff", :controller => "mine", :action => "index" %>
       <ul>
-        <li><%= link_to "My Favorites", :controller => "mine", :action => "favorites" %></li>
         <li><%= link_to "My Tags", :controller => "mine", :action => "tags" %></li>
+        <li><%= link_to "My Favorites", :controller => "mine", :action => "favorites" %></li>
         <li><%= link_to "My Haikus", :controller => "mine", :action => "index" %></li> 
         <li><%= link_to "Add Haiku", :controller => "mine", :action => "new" %></li>
       </ul>
@@ -37,10 +35,21 @@
   </ul>
 </div>
 
-
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>
 
+<div id="footer">
+  <span>
+  <% if session[:user_id] == nil -%>
+    logout
+  <% else -%>
+    login
+  <% end %>  
+  </span>
+  
+  <span>Haiku Village</span>
+  
+</div>
 </body>
 </html>

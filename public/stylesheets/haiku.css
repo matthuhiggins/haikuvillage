@@ -1,6 +1,8 @@
 body {
 	color: brown;
 	font: 12pt tahoma;
+	margin: 0;
+	padding: 0;
 }
 
 sup {
@@ -29,4 +31,21 @@ textarea {
 
 .invalid {
 	color: red;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	background-color: #ccffcc;
+	width: 70%; /* See note below */
+	text-align: center;
+	padding: 0 15%;
+}
+
+/* SBMH -- see http://css-discuss.incutio.com/?page=BoxModelHack 
+ * Stupid hack lets IE see 100%, others see 70%. 
+ */
+#footer {
+    \width: 100%;
+    w\idth: 70%;
 }
