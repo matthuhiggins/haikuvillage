@@ -7,10 +7,33 @@
 </head>
 <body>
 
+<h2>Haiku Village</h2>
+
 <div id="navigation">
   <ul>
-    <li>Add Haiku</li>
-    <li></li>
+    <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
+    <li><%= link_to "My Stuff", :controller => "mine", :action => "index" %>
+      <ul>
+        <li><%= link_to "My Favorites", :controller => "mine", :action => "favorites" %></li>
+        <li><%= link_to "My Tags", :controller => "mine", :action => "tags" %></li>
+        <li><%= link_to "My Haikus", :controller => "mine", :action => "index" %></li> 
+        <li><%= link_to "Add Haiku", :controller => "mine", :action => "new" %></li>
+      </ul>
+    </li>
+    <li>Groups</li>
+      <ul>
+        <li>Your Groups</li>
+        <li>Recent Groups</li>
+        <li>Create New Group</li>
+      </ul>
+    </li>
+    <li><%= link_to "Explore", :controller => "haikus", :action => "index" %></li>
+      <ul>
+        <li><%= link_to "Popular Tags", :controller => "haikus", :action => "tags" %></li>
+        <li><%= link_to "Popular Favorites", :controller => "haikus", :action => "favorites" %>
+        <li><%= link_to "Recent Haikus", :controller => "haikus", :action => "recent" %>
+      </ul>
+    </li>
   </ul>
 </div>
 
