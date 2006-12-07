@@ -27,7 +27,7 @@ class HaikusController < ApplicationController
     logger.debug("the content: " + @haiku_view.inspect)
     @haiku = Haiku.from_haiku_view(@haiku_view)
     
-    @haiku.user_id = 2 #TODO: replace this with actual user association
+    @haiku.user_id = session[:user_id]
     
     if @haiku.save 
       flash[:notice] = @haiku.title
@@ -35,7 +35,6 @@ class HaikusController < ApplicationController
     else
       flash[:notice] = 'Haiku was not saved!'  
       redirect_to :action => 'new'
-      new
     end
   end
   

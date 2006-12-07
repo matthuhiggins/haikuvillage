@@ -8,12 +8,12 @@ var wordCacheHash = $H();
 function Word() {
 	this.text = arguments[0];
 	this.syllables = arguments[1];
-	this.isNew = arguments[2];
+	this.state = arguments[2];
 
 	this.toElement = function(){
 		wordSpan = document.createElement('span');
 		wordSpan.innerHTML = this.text;
-		if (this.isNew && this.syllables > 0)
+		if (this.state == "responded" && this.syllables > 0)
 			Element.addClassName(wordSpan, 'new');
 		syllableSup = document.createElement('sup');
 		syllableSup.innerHTML = this.syllables > 0 ? this.syllables : '?';
@@ -81,7 +81,7 @@ function isValidHaiku(haiku){
 function textToWords(text) {
 	text = text.compact();
 	return $A(text.split(/ |\n/)).map(function(value) {
-		return wordCacheHash[value] == undefined ? new Word(value, 0, true) : wordCacheHash[value];
+		return wordCacheHash[value] == undefined ? new Word(value, 0, "new") : wordCacheHash[value];
 	});
 }
 function textToLine(text, index){
@@ -101,42 +101,67 @@ function textToHaiku(text){
 	return h;
 }
 
-function haikuMaster(oldValue, newValue, element) {
-	wordCacheHash.each(function(word2){
-		word2.value.isNew = false;
-	});
+//TODO: Allow for use of more than one haiku on the page
+//var wordRequestHash = $H();
 
-	oldWordHash = $H();
+function haikuMaster(oldValue, newValue, element) {
+	var curHaikuWords = textToWords(newValue);
+
+	oldWordHash = $H();	
 	textToWords(oldValue).each(function(word){
 		oldWordHash[word.text] = word;
-		});
-	
-	newWordsToAjax = $H();
-	textToWords(newValue).each(function(word){
-		if (oldWordHash[word.text] != undefined &&
-				wordCacheHash[word.text] == undefined)
-			newWordsToAjax[word.text] = word;
-		});
-
-	newWordsToAjax.each(function(word){
-		new Ajax.Request("/syllables/" + word.value.text + ";json", {
-			method: "get",
-			onComplete: updateWordCacheHash
-		});
 	});
+	
+	//get rid of any "new" words that are not in the current haiku
+	wordCacheHash.each(function(word){
+	   if ( curHaikuWords[word.text] == undefined ){
+	       wordCacheHash[word.text] = undefined;
+	   }
+	});
+	
+	//request any new words
+	wordCacheHash.each(function(word){
+        if ( word.state == "new" ){
+            word.state = "requested";
+    		new Ajax.Request("/syllables/" + word.value.text + ";json", {
+    			method: "get",
+    			onComplete: updateWordCacheHash
+    		});
+    	}
+	});
+	
+	//Find the changed words from last cycle
+	curHaikuWords.each(function(word){
+		if (oldWordHash[word.text] != undefined && 
+		    wordCacheHash[word.text] == undefined ){
+			word.state = "new";
+			wordCacheHash[word.text] = word;
+		} 
+	});
+		
+	haiku = renderHaiku( newValue, element );
+	return isValidHaiku(haiku);
+}
 
+function renderHaiku( haikuText, element ){
 	element.innerHTML = "";
-	haiku = textToHaiku(newValue);
+	haiku = textToHaiku(haikuText);
 	element.appendChild(haiku.toElement());
 	
 	document.getElementsByClassName("new", element).each(function(element) {
 			new Effect.Highlight(element, {startcolor: '#77db08'});
 		});
-
-	return isValidHaiku(haiku);
+		
+	wordCacheHash.each(function(word2){
+	   if ( word2.state == "responded"){
+		  word2.value.state = "static";
+	   }
+	});
+	
+	return haiku;
 }
 
 function updateWordCacheHash( originalRequest ){
 	var response = eval("(" + originalRequest.responseText + ")");
-	wordCacheHash[response.word] = new Word(response.word, response.syllables, true);
+	wordCacheHash[response.word] = new Word(response.word, response.syllables, "responded");
 }
