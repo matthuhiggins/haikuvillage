@@ -28,4 +28,7 @@ class Haiku < ActiveRecord::Base
              :limit => 10)
   end
   
+  def self.get_haikus_by_recent_popularity
+  end
+  
 end

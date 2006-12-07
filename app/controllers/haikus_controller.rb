@@ -34,6 +34,7 @@ class HaikusController < ApplicationController
       redirect_to :action => 'list'
     else
       flash[:notice] = 'Haiku was not saved!'  
+      redirect_to :action => 'new'
       new
     end
   end

@@ -51,8 +51,8 @@ class M1 < ActiveRecord::Migration
       t.column :user_id, :integer, :null => false
       t.column :haiku_id, :integer, :null => false
       t.column :created_at, :integer, :null => false
-    end    
-
+    end
+    
     create_table :haiku_tags, :id => false do |t|
       t.column :haiku_id, :integer, :null => false
       t.column :tag_id, :integer, :null => false

@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 3) do
 
   add_index "haiku_favorites", ["user_id", "haiku_id"], :name => "index_haiku_favorites_on_user_id_and_haiku_id", :unique => true
   add_index "haiku_favorites", ["haiku_id", "user_id", "created_at"], :name => "index_haiku_favorites_on_haiku_id_and_user_id_and_created_at"
+  add_index "haiku_favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
 
   create_table "haiku_tags", :id => false, :force => true do |t|
     t.column "haiku_id",   :integer,  :default => 0, :null => false
@@ -63,7 +64,8 @@ ActiveRecord::Schema.define(:version => 3) do
   end
 
   add_index "haiku_tags", ["tag_id", "haiku_id"], :name => "index_haiku_tags_on_tag_id_and_haiku_id", :unique => true
-  add_index "haiku_tags", ["haiku_id", "tag_id", "created_at"], :name => "index_haiku_tags_on_haiku_id_and_tag_id_and_created_at"
+  add_index "haiku_tags", ["haiku_id", "tag_id"], :name => "index_haiku_tags_on_haiku_id_and_tag_id"
+  add_index "haiku_tags", ["created_at", "tag_id"], :name => "index_haiku_tags_on_created_at_and_tag_id"
 
   create_table "haikus", :force => true do |t|
     t.column "title",                 :string,   :limit => 100, :default => "", :null => false

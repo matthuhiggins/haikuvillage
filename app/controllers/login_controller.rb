@@ -33,6 +33,6 @@ class LoginController < ApplicationController
   private
     def vagistat(user_id)
       session[:user_id] = user_id
-      redirect_to(:action => "index", :controller => "user")
+      redirect_to(:action => "index", :controller => "haikus")
     end
 end
