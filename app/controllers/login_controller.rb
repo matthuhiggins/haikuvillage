@@ -1,5 +1,5 @@
 class LoginController < ApplicationController  
-  layout "haikus"
+  layout "login"
     
   def index
     session[:user_id] = nil

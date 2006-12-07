@@ -41,10 +41,10 @@
 
 <div id="footer">
   <div id="left-footer">
-  <% if session[:user_id] == nil -%>
-    logout
+  <% if session[:user_id] -%>
+    <%= link_to "logout", :controller => "login", :action => "logout" %>
   <% else -%>
-    login
+    <%= link_to "login", :controller => "login", :action => "index" %>
   <% end %>  
   </div>
   
