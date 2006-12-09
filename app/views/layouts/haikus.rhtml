@@ -2,12 +2,13 @@
 <head>
   <title>Haikus: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'haiku' %>
+  <%= stylesheet_link_tag 'main' %>  
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "haiku" %>
 </head>
 <body>
 
-<div id="navigation">
+<div id="menu-x">
   <ul>
     <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
     <li><%= link_to "Add Haiku", :controller => "haikus", :action => "new" %></li>
@@ -40,7 +41,7 @@
 <%= yield  %>
 
 <div id="footer">
-  <div id="left-footer">
+  <div id="footer-left">
   <% if session[:user_id] -%>
     <%= link_to "logout", :controller => "login", :action => "logout" %>
   <% else -%>
@@ -48,7 +49,7 @@
   <% end %>  
   </div>
   
-  <div id="right-footer">
+  <div id="footer-right">
     Haiku Village
   </div>  
 </div>

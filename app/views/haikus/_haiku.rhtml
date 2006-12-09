@@ -1,4 +1,7 @@
 <div class="haiku">
-  <h2><%= h(haiku.title) %></h2>
+  <span class="haiku-title"><%= h(haiku.title) %></span>
   <%= render(:partial => "line", :collection => haiku.lines ) %>
+  <div class="haiku-info">
+    Created on: <%= haiku.db_haiku.created_at.to_s(:long) %>
+  </div>
 </div>

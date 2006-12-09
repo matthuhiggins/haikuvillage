@@ -23,19 +23,19 @@ class HaikusController < ApplicationController
   
   def add_haiku
     @haiku_view = HaikuView.new(params[:haiku][:title], params[:haiku][:haiku_text])
-    logger.debug("text: " + @haiku_view.haiku_text.inspect)
-    logger.debug("the content: " + @haiku_view.inspect)
     @haiku = Haiku.from_haiku_view(@haiku_view)
-    
     @haiku.user_id = session[:user_id]
-    
-    if @haiku.save 
-      flash[:notice] = @haiku.title
-      redirect_to :action => 'list'
-    else
-      flash[:notice] = 'Haiku was not saved!'  
-      redirect_to :action => 'new'
-    end
+
+    logger.debug("text: " + @haiku_view.haiku_text.inspect)
+    logger.debug("the content: " + @haiku_view.inspect)    
+
+    @haiku.save!
+    redirect_to :action => 'list'
+    #flash[:notice] = @haiku.title
+#    else
+#      flash[:notice] = 'Haiku was not saved!'  
+#      redirect_to :action => 'new'
+#    end
   end
   
   def tags
