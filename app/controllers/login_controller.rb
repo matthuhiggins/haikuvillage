@@ -6,7 +6,7 @@ class LoginController < ApplicationController
     if request.post?
       user = User.authenticate(params[:username], params[:password])
       if user
-        vagistat @user.id
+        vagistat user.id
       else
         flash[:notice] = "Invalid user/password combination"
       end

@@ -6,6 +6,13 @@ class Haiku < ActiveRecord::Base
   has_many :happy_users, :through => :haiku_favorites, :source => :user
 
   validates_presence_of :title, :line1, :line2, :line3
+  
+  def validate
+#    errors.add_to_base("Invalid syllable count") unless 
+#        line1.syllables == 5 &&
+#        line2.syllables == 7 &&
+#        line3.syllables == 5
+  end  
 
   def self.from_haiku_view(haiku_view)
     h = self.new

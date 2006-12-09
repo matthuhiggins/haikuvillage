@@ -1,7 +1,13 @@
 <html>
+<head>
+  <%= stylesheet_link_tag 'login' %>
+  <%= javascript_include_tag :defaults %>
+</head>
 <body>
 
-<%= yield  %>
+<div id="main-frame">
+  <%= yield  %>
+</div>
 
 </body>
 </html>
