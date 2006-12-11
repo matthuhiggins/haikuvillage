@@ -9,13 +9,17 @@ class HaikusController < ApplicationController
 
   def new
     if request.post?
-      @haiku = Haiku.new(params[:haiku])
+      @haiku = Haiku.new()
+      @haiku.title = params[:haiku][:title]
+      @haiku.text = params[:haiku][:text]
       @haiku.user_id = session[:user_id]
+      logger.debug("haiku " + @haiku.inspect)
+    
       if @haiku.save
         flash[:notice] = "great success"
-        redirect_to :action => 'list'
-      else
-        flash[:notice] = "no success"
+        redirect_to :action => 'index'
+      #else
+      #  flash[:notice] = "no success"
       end
     end
   end
@@ -25,7 +29,6 @@ class HaikusController < ApplicationController
     redirect_to :action => 'index'
   end
   
-    #logger.debug("text: " + @haiku_view.haiku_text.inspect)
     #logger.debug("the content: " + @haiku_view.inspect)    
   
   def tags

@@ -4,8 +4,8 @@
 <script type="text/javascript">
 new Form.Observer('haiku_form', 0.4, function(element, value) {
                 $("commit").enabled = haikuMaster(element.lastHaiku.value,
-                        $F("haiku_haiku_text"), $("preview"));
+                        $F("haiku_text"), $("preview"));
                 $("commit").enabled = false;
-                element.lastHaiku.value = $F("haiku_haiku_text");
+                element.lastHaiku.value = $F("haiku_text");
             });
 </script>
