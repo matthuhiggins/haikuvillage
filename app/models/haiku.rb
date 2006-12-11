@@ -8,41 +8,23 @@ class Haiku < ActiveRecord::Base
   validates_presence_of :title, :line1, :line2, :line3
 
   def validate
-    if (line1 == nil)
-      errors.add("Missing first line")
-      logger.debug("1st")
-    end
-    
-    if (line2 == nil)
-      errors.add("Missing second line")
-      logger.debug("2nd")
-    end
-    
-    if (line3 == nil)
-      errors.add("Missing third line")
-      logger.debug("3rd")
-    else
-      lines = [line1, line2, line3].map {|line| Line.new(line)}
-      valid_syllable_counts = [5, 7, 5]
-    
-      lines.each_index do |index|
-        if (lines[index].syllables != valid_syllable_counts[index])
-          errors.add("Invalid syllable count on line #{index+1}") 
-          logger.debug("Invalid syllable count on line #{index+1}, #{lines[index].syllables}")
-        end
+    valid_syllable_counts = [5, 7, 5]
+    [1..3].collect do |line_number|
+      if read_attribute("line#{line_number}") == nil
+        errors.add("Missing line #{line_number}")
+      elsif Line.new(line).syllables != valid_syllable_counts[line_number-1]
+          errors.add("Invalid syllable count on line #{line_number}")        
       end
     end
   end
   
   def text
-    [read_attribute("line1"), read_attribute("line2"), read_attribute("line3")].join("\n")
+    [1..3].collect{|line_number| read_attribute("line#{line_number}")}.join("\n")
   end
   
   def text=(haiku_text)
     lines = haiku_text.split("\n")
-    write_attribute("line1", lines[0])
-    write_attribute("line2", lines[1])
-    write_attribute("line3", lines[2])
+    [1..3].each{|line_number| write_attribute("line#{line_number}", lines[line_number])}
   end
 
   # Search functions

@@ -13,13 +13,10 @@ class HaikusController < ApplicationController
       @haiku.title = params[:haiku][:title]
       @haiku.text = params[:haiku][:text]
       @haiku.user_id = session[:user_id]
-      logger.debug("haiku " + @haiku.inspect)
-    
+   
       if @haiku.save
         flash[:notice] = "great success"
         redirect_to :action => 'index'
-      #else
-      #  flash[:notice] = "no success"
       end
     end
   end
@@ -28,8 +25,6 @@ class HaikusController < ApplicationController
     Haiku.find(params[:id]).destroy
     redirect_to :action => 'index'
   end
-  
-    #logger.debug("the content: " + @haiku_view.inspect)    
   
   def tags
     if params[:id]
