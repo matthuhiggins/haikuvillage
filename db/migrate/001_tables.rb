@@ -23,13 +23,9 @@ class M1 < ActiveRecord::Migration
     create_table :group_users, :id => false do |t|
       t.column :group_id, :integer, :null => false
       t.column :user_id, :integer, :null => false
-      t.column :group_user_type_id, :integer, :null => false
+      t.column :user_type, :string, :null => false
     end
-    
-    create_table :group_user_types do |t|
-      t.column :name, :string, :null => false
-    end
-    
+     
     create_table :haikus do |t|
       t.column :title, :string, :null => false, :limit => 100
       t.column :line1, :string, :null => false, :limit => 255

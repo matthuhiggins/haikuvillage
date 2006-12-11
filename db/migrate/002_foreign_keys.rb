@@ -10,7 +10,6 @@ class M2 < ActiveRecord::Migration
     
     add_foreign_key :group_users, :group_id, :groups
     add_foreign_key :group_users, :user_id, :users
-    add_foreign_key :group_users, :group_user_type_id, :group_user_types
     
     add_foreign_key :haikus, :user_id, :users
     

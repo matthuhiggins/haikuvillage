@@ -5,22 +5,28 @@ class Haiku < ActiveRecord::Base
   has_many :haiku_favorites
   has_many :happy_users, :through => :haiku_favorites, :source => :user
 
-  validates_presence_of :title, :line1, :line2, :line3
-  
+  validates_presence_of :title, :line1, :line2, :line3  
+  valid_syllable_counts = [5, 7, 5]
+
   def validate
-#    errors.add_to_base("Invalid syllable count") unless 
-#        line1.syllables == 5 &&
-#        line2.syllables == 7 &&
-#        line3.syllables == 5
+    lines = [line1, line2, line3].map {|line| Line.new(line)}
+
+    lines.each_index do |index|
+      if (lines[index].syllables == valid_syllable_counts[index])
+        errors.add_to_base("Invalid syllable count on line #{index+1}") 
+      end
+    end
   end  
 
-  def self.from_haiku_view(haiku_view)
-    h = self.new
-    h.title = haiku_view.title
-    h.line1, h.line2, h.line3 = haiku_view.lines.map {|line| line.text }
-    h
-  end   
+  def text
+    [line1, line2, line3].join("\n")
+  end
   
+  def text=(haiku_text)
+    line1, line2, line3 = text.split("\n")
+  end
+  
+  # Search functions
   def self.get_haikus
     Haiku.find(:all)
   end
