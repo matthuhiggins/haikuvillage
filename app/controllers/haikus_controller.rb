@@ -8,7 +8,16 @@ class HaikusController < ApplicationController
   end
 
   def new
-    @haiku = Haiku.new
+    if request.post?
+      @haiku = Haiku.new(params[:haiku])
+      @haiku.user_id = session[:user_id]
+      if @haiku.save
+        flash[:notice] = "great success"
+        redirect_to :action => 'list'
+      else
+        flash[:notice] = "no success"
+      end
+    end
   end
 
   def delete
@@ -16,16 +25,8 @@ class HaikusController < ApplicationController
     redirect_to :action => 'index'
   end
   
-  def add_haiku
-    @haiku = Haiku.new(params[:haiku])
-    @haiku.user_id = session[:user_id]
-
     #logger.debug("text: " + @haiku_view.haiku_text.inspect)
     #logger.debug("the content: " + @haiku_view.inspect)    
-
-    @haiku.save!
-    redirect_to :action => 'list'
-  end
   
   def tags
     if params[:id]

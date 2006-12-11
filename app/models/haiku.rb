@@ -6,11 +6,11 @@ class Haiku < ActiveRecord::Base
   has_many :happy_users, :through => :haiku_favorites, :source => :user
 
   validates_presence_of :title, :line1, :line2, :line3  
-  valid_syllable_counts = [5, 7, 5]
 
   def validate
     lines = [line1, line2, line3].map {|line| Line.new(line)}
-
+    valid_syllable_counts = [5, 7, 5]
+    
     lines.each_index do |index|
       if (lines[index].syllables == valid_syllable_counts[index])
         errors.add_to_base("Invalid syllable count on line #{index+1}") 

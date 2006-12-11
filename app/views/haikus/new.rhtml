@@ -1,6 +1,6 @@
 <h1>New haiku</h1>
 
-<% form_tag({:action => :add_haiku}, :id => "haiku_form") do %>
+<% form_tag({:action => :new}, :id => "haiku_form") do %>
   <%= render :partial => 'form' %>
   <%= submit_tag("Create new haiku", :id => "commit") %>
 <% end %>
