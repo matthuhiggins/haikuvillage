@@ -4,7 +4,7 @@
   <%= render(:partial => "line", :object => haiku.line2) %>
   <%= render(:partial => "line", :object => haiku.line3) %>  
   <div class="haiku-info">
-    Created on: <%= haiku.created_at.to_s(:long) %>
-    Add to favorite
+    Created on: <%= haiku.created_at.to_s(:long) %> <br/>
+    <%= link_to_remote 'Add to favorite', :url => {:action => 'add_to_favorite', :id => haiku } %>
   </div>
 </div>

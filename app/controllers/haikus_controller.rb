@@ -4,7 +4,7 @@ class HaikusController < ApplicationController
          :redirect_to => { :action => :list }
 
   def index
-    @haikus = Haiku.get_haikus
+    @haikus = HaikuSearch.get_haikus
   end
 
   def new
@@ -23,6 +23,19 @@ class HaikusController < ApplicationController
       end
     end
   end
+  
+  def add_to_favorite
+    begin                     
+      haiku = Haiku.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error("Attempt to access invalid haiku #{params[:id]}")
+      redirect_to_index("Invalid product")
+    else
+      logger.debug("I WIN")
+      haiku.haiku_favorites.create(:user_id => session[:user_id])
+      redirect_to_index
+    end
+  end
 
   def delete
     Haiku.find(params[:id]).destroy
@@ -37,5 +50,12 @@ class HaikusController < ApplicationController
       @populartags = Tag.get_popular_tags
       @recenttags = Tag.get_popular_tags
     end
+  end
+  
+  private
+  
+  def redirect_to_index(msg = nil)
+    flash[:notice] = msg if msg
+    redirect_to :action => :index
   end  
 end

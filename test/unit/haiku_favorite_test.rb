@@ -7,7 +7,7 @@ class HaikuFavoriteTest < Test::Unit::TestCase
     haiku = haikus(:hello)
     joe = users(:user_joe)        
    
-    haiku.haiku_favorites.create(:user => joe)
+    haiku.haiku_favorites.create(:user_id => joe.id)
     haiku.save!
     
     assert_equal 1, haiku.haiku_favorites(:refresh).size

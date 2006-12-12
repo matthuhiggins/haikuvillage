@@ -1,76 +1,55 @@
-# Logfile created on Tue Dec 05 21:53:12 Pacific Standard Time 2006 by logger.rb/1.5.2.7
-  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
-  [4;35;1mHaiku Columns (0.003000)[0m   [0mSHOW FIELDS FROM haikus[0m
-  [4;36;1mHaiku Load (0.001000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM users[0m
-  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
-  [4;35;1mHaikuFavorite Columns (0.002000)[0m   [0mSHOW FIELDS FROM haiku_favorites[0m
-  [4;36;1mSQL (0.001000)[0m   [0;1mINSERT INTO haiku_favorites (`haiku_id`, `user_id`, `created_at`) VALUES(1, 1, 0)[0m
-  [4;35;1mHaiku Load (0.000000)[0m   [0mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET haiku_favorites_count = haiku_favorites_count + 1 WHERE (id = 1) [0m
-  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET `created_at` = '2006-12-05 21:53:13', `haiku_favorites_count` = 0, `title` = 'first', `line3` = 'but i can attempt', `user_id` = 1, `line2` = 'i cannot count to seven', `line1` = 'this is my haiku' WHERE id = 1[0m
-  [4;35;1mHaikuFavorite Load (0.001000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;36;1mHaikuFavorite Load (0.000000)[0m   [0;1mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;35;1mSQL (0.027000)[0m   [0mROLLBACK[0m
-  [4;36;1mSQL (0.001000)[0m   [0;1mBEGIN[0m
-  [4;35;1mHaiku Columns (0.002000)[0m   [0mSHOW FIELDS FROM haikus[0m
-  [4;36;1mHaiku Load (0.001000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;35;1mUser Columns (0.002000)[0m   [0mSHOW FIELDS FROM users[0m
-  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
-  [4;35;1mSQL (0.000000)[0m   [0mROLLBACK[0m
-  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
-  [4;35;1mHaiku Columns (0.002000)[0m   [0mSHOW FIELDS FROM haikus[0m
-  [4;36;1mHaiku Load (0.000000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;35;1mUser Columns (0.002000)[0m   [0mSHOW FIELDS FROM users[0m
-  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
-  [4;35;1mSQL (0.000000)[0m   [0mROLLBACK[0m
+# Logfile created on Mon Dec 11 20:28:07 Pacific Standard Time 2006 by logger.rb/1.5.2.7
   [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
   [4;35;1mHaiku Columns (0.003000)[0m   [0mSHOW FIELDS FROM haikus[0m
   [4;36;1mHaiku Load (0.000000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
   [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM users[0m
   [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
-  [4;35;1mSQL (0.000000)[0m   [0mROLLBACK[0m
-  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
-  [4;35;1mHaiku Columns (0.003000)[0m   [0mSHOW FIELDS FROM haikus[0m
-  [4;36;1mHaiku Load (0.000000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;35;1mUser Columns (0.002000)[0m   [0mSHOW FIELDS FROM users[0m
-  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
-  [4;35;1mHaikuFavorite Columns (0.003000)[0m   [0mSHOW FIELDS FROM haiku_favorites[0m
-  [4;36;1mSQL (0.000000)[0m   [0;1mINSERT INTO haiku_favorites (`haiku_id`, `user_id`, `created_at`) VALUES(1, 1, 0)[0m
+  [4;35;1mHaikuFavorite Columns (0.013000)[0m   [0mSHOW FIELDS FROM haiku_favorites[0m
+  [4;36;1mSQL (0.003000)[0m   [0;1mINSERT INTO haiku_favorites (`haiku_id`, `user_id`, `created_at`) VALUES(1, 1, 0)[0m
   [4;35;1mHaiku Load (0.000000)[0m   [0mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET haiku_favorites_count = haiku_favorites_count + 1 WHERE (id = 1) [0m
+  [4;36;1mHaiku Update (0.016000)[0m   [0;1mUPDATE haikus SET haiku_favorites_count = haiku_favorites_count + 1 WHERE (id = 1) [0m
   [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET `created_at` = '2006-12-05 22:00:48', `haiku_favorites_count` = 0, `title` = 'first', `line3` = 'but i can attempt', `user_id` = 1, `line2` = 'i cannot count to seven', `line1` = 'this is my haiku' WHERE id = 1[0m
-  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;36;1mHaikuFavorite Load (0.001000)[0m   [0;1mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;35;1mSQL (0.024000)[0m   [0mROLLBACK[0m
-  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
-  [4;35;1mHaiku Columns (0.003000)[0m   [0mSHOW FIELDS FROM haikus[0m
-  [4;36;1mHaiku Load (0.000000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;35;1mUser Columns (0.002000)[0m   [0mSHOW FIELDS FROM users[0m
-  [4;36;1mUser Load (0.001000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
-  [4;35;1mHaikuFavorite Columns (0.003000)[0m   [0mSHOW FIELDS FROM haiku_favorites[0m
-  [4;36;1mSQL (0.000000)[0m   [0;1mINSERT INTO haiku_favorites (`haiku_id`, `user_id`, `created_at`) VALUES(1, 1, 0)[0m
-  [4;35;1mHaiku Load (0.000000)[0m   [0mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET haiku_favorites_count = haiku_favorites_count + 1 WHERE (id = 1) [0m
-  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;36;1mHaiku Update (0.001000)[0m   [0;1mUPDATE haikus SET `created_at` = '2006-12-05 22:06:15', `haiku_favorites_count` = 0, `title` = 'first', `line3` = 'but i can attempt', `user_id` = 1, `line2` = 'i cannot count to seven', `line1` = 'this is my haiku' WHERE id = 1[0m
-  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;36;1mHaikuFavorite Load (0.000000)[0m   [0;1mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;35;1mSQL (0.019000)[0m   [0mROLLBACK[0m
-  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
-  [4;35;1mHaiku Columns (0.002000)[0m   [0mSHOW FIELDS FROM haikus[0m
-  [4;36;1mHaiku Load (0.000000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;35;1mUser Columns (0.001000)[0m   [0mSHOW FIELDS FROM users[0m
-  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
-  [4;35;1mHaikuFavorite Columns (0.002000)[0m   [0mSHOW FIELDS FROM haiku_favorites[0m
-  [4;36;1mSQL (0.000000)[0m   [0;1mINSERT INTO haiku_favorites (`haiku_id`, `user_id`, `created_at`) VALUES(1, 1, 0)[0m
-  [4;35;1mHaiku Load (0.000000)[0m   [0mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
-  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET haiku_favorites_count = haiku_favorites_count + 1 WHERE (id = 1) [0m
-  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
-  [4;36;1mHaiku Update (0.001000)[0m   [0;1mUPDATE haikus SET `created_at` = '2006-12-05 22:06:55', `haiku_favorites_count` = 0, `title` = 'first', `line3` = 'but i can attempt', `user_id` = 1, `line2` = 'i cannot count to seven', `line1` = 'this is my haiku' WHERE id = 1[0m
+"this is my haiku"
+"i cannot count to seven"
+"but i can attempt"
+  [4;36;1mHaiku Update (0.001000)[0m   [0;1mUPDATE haikus SET `created_at` = '2006-12-11 20:28:07', `haiku_favorites_count` = 0, `title` = 'first', `line3` = 'but i can attempt', `user_id` = 1, `line2` = 'i cannot count to seven', `line1` = 'this is my haiku' WHERE id = 1[0m
   [4;35;1mHaikuFavorite Load (0.001000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
   [4;36;1mHaikuFavorite Load (0.000000)[0m   [0;1mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
   [4;35;1mUser Load (0.000000)[0m   [0mSELECT users.* FROM users INNER JOIN haiku_favorites ON users.id = haiku_favorites.user_id WHERE ((haiku_favorites.haiku_id = 1)) [0m
-  [4;36;1mSQL (0.018000)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.036000)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mHaiku Columns (0.003000)[0m   [0mSHOW FIELDS FROM haikus[0m
+  [4;36;1mHaiku Load (0.000000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
+  [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM users[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+  [4;35;1mHaikuFavorite Columns (0.003000)[0m   [0mSHOW FIELDS FROM haiku_favorites[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mINSERT INTO haiku_favorites (`haiku_id`, `user_id`, `created_at`) VALUES(1, 1, 0)[0m
+  [4;35;1mHaiku Load (0.000000)[0m   [0mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
+  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET haiku_favorites_count = haiku_favorites_count + 1 WHERE (id = 1) [0m
+  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
+"this is my haiku"
+"i cannot count to seven"
+"but i can attempt"
+  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET `created_at` = '2006-12-11 20:28:45', `haiku_favorites_count` = 0, `title` = 'first', `line3` = 'but i can attempt', `user_id` = 1, `line2` = 'i cannot count to seven', `line1` = 'this is my haiku' WHERE id = 1[0m
+  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
+  [4;36;1mHaikuFavorite Load (0.000000)[0m   [0;1mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT users.* FROM users INNER JOIN haiku_favorites ON users.id = haiku_favorites.user_id WHERE ((haiku_favorites.haiku_id = 1)) [0m
+  [4;36;1mSQL (0.020000)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mHaiku Columns (0.003000)[0m   [0mSHOW FIELDS FROM haikus[0m
+  [4;36;1mHaiku Load (0.000000)[0m   [0;1mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
+  [4;35;1mUser Columns (0.003000)[0m   [0mSHOW FIELDS FROM users[0m
+  [4;36;1mUser Load (0.000000)[0m   [0;1mSELECT * FROM users WHERE (users.id = 1) [0m
+  [4;35;1mHaikuFavorite Columns (0.003000)[0m   [0mSHOW FIELDS FROM haiku_favorites[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mINSERT INTO haiku_favorites (`haiku_id`, `user_id`, `created_at`) VALUES(1, 1, 0)[0m
+  [4;35;1mHaiku Load (0.000000)[0m   [0mSELECT * FROM haikus WHERE (haikus.id = 1) [0m
+  [4;36;1mHaiku Update (0.000000)[0m   [0;1mUPDATE haikus SET haiku_favorites_count = haiku_favorites_count + 1 WHERE (id = 1) [0m
+  [4;35;1mHaikuFavorite Load (0.000000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
+"this is my haiku"
+"i cannot count to seven"
+"but i can attempt"
+  [4;36;1mHaiku Update (0.001000)[0m   [0;1mUPDATE haikus SET `created_at` = '2006-12-11 20:30:48', `haiku_favorites_count` = 0, `title` = 'first', `line3` = 'but i can attempt', `user_id` = 1, `line2` = 'i cannot count to seven', `line1` = 'this is my haiku' WHERE id = 1[0m
+  [4;35;1mHaikuFavorite Load (0.001000)[0m   [0mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
+  [4;36;1mHaikuFavorite Load (0.000000)[0m   [0;1mSELECT * FROM haiku_favorites WHERE (haiku_favorites.haiku_id = 1) [0m
+  [4;35;1mUser Load (0.000000)[0m   [0mSELECT users.* FROM users INNER JOIN haiku_favorites ON users.id = haiku_favorites.user_id WHERE ((haiku_favorites.haiku_id = 1)) [0m
+  [4;36;1mSQL (0.023000)[0m   [0;1mROLLBACK[0m

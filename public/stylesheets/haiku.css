@@ -16,3 +16,13 @@
 .invalid {
 	color: red;
 }
+
+.haiku-title {
+    color: green;
+    font-size: 14pt;
+}
+
+.haiku-info {
+    color: gray;
+    font-size: 8pt;
+}
