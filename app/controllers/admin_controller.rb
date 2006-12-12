@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   layout "admin"
   
-  #before_filter :authorize
+  before_filter :authorize
   
   def index
     @all_users = User.find(:all)
