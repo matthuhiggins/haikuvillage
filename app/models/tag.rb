@@ -5,13 +5,16 @@ class Tag < ActiveRecord::Base
   validates_presence_of :name
   
   def self.add_haiku_tag(tag_name, haiku)
-    tag = Tag.find(:first, :conditions => ["name = ?", tag_name])
-    tag = Tag.create!(:name => tag_name) unless tag
+    tag = create_or_get_tag(tag_name)
     tag.haiku_tags.create(:haiku => haiku)
     tag.save!
     tag
   end
   
+  def self.create_or_get_tag(tag_name)
+    Tag.find(:first, :conditions => ["name = ?", tag_name]) || Tag.create!(:name => tag_name)
+  end
+    
   def self.remove_haiku_tag(tag_name, haiku)
   end
     
