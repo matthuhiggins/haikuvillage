@@ -3,6 +3,7 @@ class Line < ActiveRecord::Base
   
   def initialize(linetext)
     @words = []
+    logger.debug(linetext.inspect)
     for word in linetext.split
       @words << Word.new(word)
     end

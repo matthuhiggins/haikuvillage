@@ -9,11 +9,14 @@ class Haiku < ActiveRecord::Base
 
   def validate
     valid_syllable_counts = [5, 7, 5]
-    [1..3].collect do |line_number|
+    for line_number in 1..3
       if read_attribute("line#{line_number}") == nil
         errors.add("Missing line #{line_number}")
-      elsif Line.new(line).syllables != valid_syllable_counts[line_number-1]
+      else
+        line = Line.new(read_attribute("line#{line_number}"))
+        if line.syllables != valid_syllable_counts[line_number-1]
           errors.add("Invalid syllable count on line #{line_number}")        
+        end
       end
     end
   end
@@ -24,7 +27,9 @@ class Haiku < ActiveRecord::Base
   
   def text=(haiku_text)
     lines = haiku_text.split("\n")
-    [1..3].each{|line_number| write_attribute("line#{line_number}", lines[line_number])}
+    for line_number in 1..3
+      write_attribute("line#{line_number}", lines[line_number-1])
+    end
   end
 
   # Search functions

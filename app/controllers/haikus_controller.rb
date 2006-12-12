@@ -13,10 +13,13 @@ class HaikusController < ApplicationController
       @haiku.title = params[:haiku][:title]
       @haiku.text = params[:haiku][:text]
       @haiku.user_id = session[:user_id]
-   
+      
+      logger.debug("saving")
       if @haiku.save
         flash[:notice] = "great success"
         redirect_to :action => 'index'
+      else
+        logger.debug("done saving")
       end
     end
   end
