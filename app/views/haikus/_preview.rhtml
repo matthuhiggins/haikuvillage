@@ -2,10 +2,10 @@
 </div>
 
 <script type="text/javascript">
-new Form.Observer('haiku_form', 0.4, function(element, value) {
-                $("commit").enabled = haikuMaster(element.lastHaiku.value,
+new PeriodicalExecuter(function() {
+                $("commit").enabled = haikuMaster($F("lastHaiku"),
                         $F("haiku_text"), $("preview"));
                 $("commit").enabled = false;
-                element.lastHaiku.value = $F("haiku_text");
-            });
+                $("lastHaiku").value = $F("haiku_text");
+            }, 0.4);
 </script>

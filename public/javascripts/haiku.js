@@ -3,6 +3,8 @@ String.prototype.compact = function() {
 	return this.replace(/\n +/, '\n').replace(/ +/g, ' ').replace(/^\s+|\s+$/, '');
 };
 
+
+
 var wordCacheHash = $H();
 
 function Word() {
@@ -105,31 +107,35 @@ function textToHaiku(text){
 //var wordRequestHash = $H();
 
 function haikuMaster(oldValue, newValue, element) {
+    //populate hash of haiku from previous tick
 	oldWordHash = $H();	
 	textToWords(oldValue).each(function(word){
 		oldWordHash[word.text] = word;
 	});
 	
+	//populate hash of current haiku
 	var newWordArray = textToWords(newValue);
 	newWordHash = $H();	
 	newWordArray.each(function(word){
 		newWordHash[word.text] = word;
 	});
 	
-	wordCacheHash.each(function(word){
-	   if (word.value.state == "new" && newWordHash[word.value.text] == undefined) {
-	       delete wordCacheHash[word.value.text];
+	//get rid of words that were in the cache for one cycle
+	wordCacheHash.each(function(kvPair){
+	   if (kvPair.value.state == "new" && newWordHash[kvPair.value.text] == undefined) {
+	       delete wordCacheHash[kvPair.value.text];
         }
 	});	
-		
-    newWordArray.findAll(function(word){
-	   return wordCacheHash[word.text] != undefined && wordCacheHash[word.text].state == "new";
-	}).each(function(word){
-            word.state = "requesting";
-    		new Ajax.Request("/syllables/" + word.text + ";json", {
-    			method: "get",
-    			onComplete: updateWordCacheHash
-    		});
+	
+	//ajax any new words left in the cache
+    newWordHash.findAll(function(kvPair){
+	   return wordCacheHash[kvPair.value.text] != undefined && wordCacheHash[kvPair.value.text].state == "new";
+	}).each(function(kvPair){
+        kvPair.value.state = "requesting";
+		new Ajax.Request("/syllables/" + kvPair.value.text + ";json", {
+			method: "get",
+			onComplete: updateWordCacheHash
+		});
 	});
 	
 	//Find the changed words from last cycle
@@ -153,9 +159,9 @@ function renderHaiku( haikuText, element ){
 			new Effect.Highlight(element, {startcolor: '#77db08'});
 		});
 		
-	wordCacheHash.each(function(word){
-	   if ( word.value.state == "responded"){
-		  word.value.state = "static";
+	wordCacheHash.each(function(kvPair){
+	   if ( kvPair.value.state == "responded"){
+		  kvPair.value.state = "static";
 	   }
 	});
 	
