@@ -1,7 +1,17 @@
-<%= hidden_field_tag 'lastHaiku'  %></p>
-<p><label for="haiku_title">Title</label><br/>
-<%= text_field 'haiku', 'title'  %></p>
+<% form_for :haiku, :html => {:id => 'haiku_form'} do |form| %>
+  <%= hidden_field_tag 'lastHaiku'  %></p>
+  <p>
+    <label for="haiku_title">Title</label><br/>
+    <%= text_field 'haiku', 'title'  %>
+  </p>
 
-<p><label for="text">Haiku Text</label><br/>
-<%= text_area 'haiku', 'text', :cols=>40, :rows=>3  %>
+  <p>
+    <label for="text">Haiku Text</label><br/>
+    <%= text_area 'haiku', 'text', :cols=>40, :rows=>3  %>
+  </p>
 
+  <%= submit_tag("Create new haiku", :id => "commit") %>
+<% end %>
+
+<p>Here is my haiku:</p>
+<%= render :partial => "preview" %>

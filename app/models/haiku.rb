@@ -5,7 +5,7 @@ class Haiku < ActiveRecord::Base
   has_many :haiku_favorites
   has_many :happy_users, :through => :haiku_favorites, :source => :user
 
-  validates_presence_of :title, :line1, :line2, :line3
+  validates_presence_of :title, :line1, :line2, :line3, :user_id
 
   def validate
     valid_syllable_counts = [5, 7, 5]
@@ -15,19 +15,19 @@ class Haiku < ActiveRecord::Base
       else
         line = Line.new(read_attribute("line#{line_number}"))
         if line.syllables != valid_syllable_counts[line_number-1]
-          errors.add("Invalid syllable count on line #{line_number}")        
+          errors.add("syllable count on line #{line_number}")        
         end
       end
     end
   end
   
   def text
-    [1..3].collect{|line_number| read_attribute("line#{line_number}")}.join("\n")
+    (1..3).collect{|line_number| read_attribute("line#{line_number}")}.join("\n")
   end
   
   def text=(haiku_text)
     lines = haiku_text.split("\n")
-    for line_number in 1..3
+    (1..3).each do |line_number|
       write_attribute("line#{line_number}", lines[line_number-1])
     end
   end

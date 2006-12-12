@@ -1,9 +1,3 @@
 <h1>New haiku</h1>
-
-<% form_tag({:action => :new}, :id => "haiku_form") do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag("Create new haiku", :id => "commit") %>
-<% end %>
-
-<p>Here is my haiku:</p>
-<%= render :partial => "preview" %>
+<%= error_messages_for 'haiku' %>
+<%= render :partial => "form" %>
