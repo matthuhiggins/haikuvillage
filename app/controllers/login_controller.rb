@@ -15,7 +15,7 @@ class LoginController < ApplicationController
   
   def register
     if params['cancel']
-      render :action => 'index'
+      redirect_to :action => 'index'
     else
       @user = User.new(params[:user])
       if request.post? and @user.save
