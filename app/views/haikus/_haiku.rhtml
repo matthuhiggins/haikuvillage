@@ -25,6 +25,10 @@
       
     <% end -%>
     
+    Favorite Users: <%= haiku.haiku_favorites_count %>
+    
+    <br />
+    
     Tags: <%= render(:partial => "tag", 
                      :collection => haiku.tags) %>
     <br/>

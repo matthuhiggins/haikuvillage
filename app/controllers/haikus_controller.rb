@@ -30,12 +30,17 @@ class HaikusController < ApplicationController
   
   def tags
     if params[:id]
-      @haikus = Haiku.get_haikus_by_tag_name
-      render :action => "list"
+      @haikus = HaikuSearch.get_haikus_by_tag_name(params[:id])
+      render :action => "index"
     else
       @populartags = Tag.get_popular_tags
       @recenttags = Tag.get_popular_tags
     end
+  end
+  
+  def favorites
+    @haikus = HaikuSearch.get_haikus_by_popularity
+    render :action => "index"
   end
   
   def add_haiku_to_favorites

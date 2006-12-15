@@ -9,9 +9,9 @@ class HaikuSearch
   end
   
   def self.get_haikus_by_popularity
-    Tag.find(:all,
-             :order => "haiku_favorites_count",
-             :limit => 10)
+    Haiku.find(:all,
+               :order => "haiku_favorites_count desc",
+               :limit => 10)
   end
   
   def self.get_haikus_by_recent_popularity
