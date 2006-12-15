@@ -14,28 +14,21 @@ textarea {
 	font: 10pt tahoma;
 }
 
-#footer {
+#main-title {
 	position: absolute;
-	bottom: 0;
+	top: 0;
 	background-color: #ccffcc;
 	width: 100%; /* See note below */
 	padding: 0 0%;
 }
-/* SBMH -- see http://css-discuss.incutio.com/?page=BoxModelHack 
- * Stupid hack lets IE see 100%, others see 70%. 
- */
-#footer {
-    \width: 100%;
-    w\idth: 100%;
-}
 
-#footer-left {
+#main-title-left {
     float: left;
     text-align: left;
     width: 49%;
 }
 
-#footer-right {
+#main-title-right {
     float: right;
     text-align: right;
     width: 49%;

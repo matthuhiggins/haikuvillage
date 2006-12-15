@@ -7,16 +7,29 @@
   <%= javascript_include_tag "haiku" %>
 </head>
 <body>
+<div id="main-title">
+  <div id="main-title-left">
+  <% if session[:user_id] -%>
+    <%= link_to "logout", logout_url %>
+  <% else -%>
+    <%= link_to "login", login_url %>
+  <% end %>  
+  </div>
+  
+  <div id="main-title-right">
+    Haiku Village
+  </div>  
+</div>
 
 <div id="menu-x">
   <ul>
     <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
     <li><%= link_to "Add Haiku", :controller => "haikus", :action => "new" %></li>
-    <li><%= link_to "My Stuff", :controller => "mine", :action => "index" %>
+    <li><%= link_to "My Stuff", :controller => "my_haiku", :action => "index" %>
       <ul>
-        <li><%= link_to "My Tags", :controller => "mine", :action => "tags" %></li>
-        <li><%= link_to "My Favorites", :controller => "mine", :action => "favorites" %></li>
-        <li><%= link_to "My Haikus", :controller => "mine", :action => "index" %></li> 
+        <li><%= link_to "My Tags", :controller => "my_haiku", :action => "tags" %></li>
+        <li><%= link_to "My Favorites", :controller => "my_haiku", :action => "favorites" %></li>
+        <li><%= link_to "My Haikus", :controller => "my_haiku", :action => "index" %></li> 
       </ul>
     </li>
     <li>Groups</li>
@@ -39,20 +52,6 @@
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>
-
-<div id="footer">
-  <div id="footer-left">
-  <% if session[:user_id] -%>
-    <%= link_to "logout", logout_url %>
-  <% else -%>
-    <%= link_to "login", login_url %>
-  <% end %>  
-  </div>
-  
-  <div id="footer-right">
-    Haiku Village
-  </div>  
-</div>
 
 </body>
 </html>

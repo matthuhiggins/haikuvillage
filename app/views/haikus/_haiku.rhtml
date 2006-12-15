@@ -1,10 +1,16 @@
-<div class="haiku">
+<%= haiku_div_tag(haiku) %>
   <span class="haiku-title"><%= h(haiku.title) %></span>
   <%= render(:partial => "line", :object => haiku.line1) %>
   <%= render(:partial => "line", :object => haiku.line2) %>
   <%= render(:partial => "line", :object => haiku.line3) %>  
   <div class="haiku-info">
     Created on: <%= haiku.created_at.to_s(:long) %> <br/>
-    <%= link_to 'Add to favorite', :action => 'add_to_favorite', :id => haiku %>
+    
+    <% if session[:user_id] -%>
+      <%= link_to 'Add to favorite',  :controller => 'my_haiku',
+                                      :action => 'add_haiku_to_favorites', 
+                                      :id => haiku %>
+    <% end -%> 
+    
   </div>
 </div>

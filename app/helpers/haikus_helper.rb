@@ -1,9 +1,7 @@
 #import 'vendor/lingua'
-module HaikusHelper
-
-  def syllables_for(word)
-  1
-   # Lingua::EN::Syllable.syllables(word)
+module HaikusHelper 
+  def haiku_div_tag(haiku)
+    "<div id=\"haiku-#{haiku.id}\" class=\"haiku\">"
   end
   
   def get_tag_span(tagcount, attributes = {})

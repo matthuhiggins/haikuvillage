@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class MyHaikuController < ApplicationController
   layout "haikus"
   
   before_filter :authorize

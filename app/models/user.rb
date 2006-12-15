@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
       end
     end
     user
-  end  
+  end
   
   # 'password' is a virtual attribute  
   def password
@@ -48,4 +48,3 @@ class User < ActiveRecord::Base
     self.salt = self.object_id.to_s + rand.to_s
   end
 end
-
