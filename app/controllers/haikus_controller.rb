@@ -5,6 +5,10 @@ class HaikusController < ApplicationController
   def index
     @haikus = HaikuSearch.get_haikus
   end
+  
+  def show
+    @haiku = Haiku.find(params[:id])
+  end
 
   def new
     if request.post?

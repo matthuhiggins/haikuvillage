@@ -1,0 +1,5 @@
+<%= render :partial => "haiku" %>
+<h3>Comments</h3>
+<%= render :partial => "comment", :collection => @haiku.comments %>
+<% form_for :haiku, :html => {:id => 'haiku_form'} do |form| %>
+<% end %>
