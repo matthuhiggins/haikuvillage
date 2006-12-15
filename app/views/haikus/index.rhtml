@@ -1,14 +1,2 @@
-<h1>Listing haikus</h1>
-
-<% for haiku in @haikus %>
-<div class="haikuSection">
-  <%= render( :partial => "haiku", :object => haiku ) %>
-
-  <%= render(:partial => "tag", 
-             :collection => haiku.tags) %>
-             
-  <div><%= pluralize(haiku.comments.count, "comment") %></div>
-</div>
-<% end %>
-
-<br />
+<h1>Welcome to Haiku Village</h1>
+<%= render( :partial => "haiku", :collection => @haikus ) %>

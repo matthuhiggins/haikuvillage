@@ -8,14 +8,25 @@
     
     <% if @user -%>
       <% if @user.favorites.exists?(haiku) %>
-        <%= link_to 'Remove from favorites',  :controller => 'my_haiku',
-                                              :action => 'remove_haiku_from_favorites', 
-                                              :id => haiku %>        
+        <%= link_to_remote 'Remove from favorites',  
+            :url => {:action => :remove_haiku_from_favorites, :id => haiku } %>
       <% else %>
-        <%= link_to 'Add to favorite',  :controller => 'my_haiku',
-                                        :action => 'add_haiku_to_favorites', 
-                                        :id => haiku %>
+        <%= link_to_remote 'Add to favorites',  
+            :url => {:action => :add_haiku_to_favorites, :id => haiku } %>
       <% end %>
+      <br />
+           
+      <%= form_remote_tag :url => { :action => :add_tags_to_haiku, :id => haiku } %>                    
+        <%= text_field_tag :tags, params[:tags] %>
+        <%= submit_tag "Add tags" %>
+      <%= end_form_tag %>
+      
+      <br />
+      
     <% end -%>
+    
+    Tags: <%= render(:partial => "tag", 
+                     :collection => haiku.tags) %>
+    <br/>
   </div>
 </div>

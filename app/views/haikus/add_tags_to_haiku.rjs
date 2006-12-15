@@ -1,0 +1,1 @@
+page.replace_html("haiku-#{@haiku.id}", :partial => "haiku", :object => @haiku)

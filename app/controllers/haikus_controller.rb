@@ -1,5 +1,4 @@
 class HaikusController < ApplicationController
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [ :destroy, :create, :update ],
          :redirect_to => { :action => :list }
 
@@ -36,6 +35,24 @@ class HaikusController < ApplicationController
     else
       @populartags = Tag.get_popular_tags
       @recenttags = Tag.get_popular_tags
+    end
+  end
+  
+  def add_haiku_to_favorites
+    @haiku = Haiku.find(params[:id])
+    @haiku.haiku_favorites.create(:user_id => session[:user_id])
+  end
+  
+  def remove_haiku_from_favorites
+    HaikuFavorite.delete_all("user_id = #{session[:user_id]} and haiku_id = #{params[:id]}")
+    @haiku = Haiku.find(params[:id])
+  end
+  
+  def add_tags_to_haiku
+    tags = params[:tags]
+    @haiku = Haiku.find(params[:id])
+    tags.split.each do |tag|
+      Tag.add_haiku_tag(tag, @haiku)
     end
   end
 end

@@ -10,10 +10,6 @@ class Tag < ActiveRecord::Base
     tag.save!
     tag
   end
-  
-  def self.create_or_get_tag(tag_name)
-    Tag.find(:first, :conditions => ["name = ?", tag_name]) || Tag.create!(:name => tag_name)
-  end
     
   def self.remove_haiku_tag(tag_name, haiku)
   end
@@ -31,4 +27,10 @@ class Tag < ActiveRecord::Base
              :order => "haiku_tags_count",
              :limit => 10)
   end
+  
+  private
+
+  def self.create_or_get_tag(tag_name)
+    Tag.find(:first, :conditions => ["name = ?", tag_name]) || Tag.create!(:name => tag_name)
+  end  
 end
