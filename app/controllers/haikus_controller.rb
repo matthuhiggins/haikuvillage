@@ -21,7 +21,7 @@ class HaikusController < ApplicationController
       else
         logger.debug("done saving")
       end
-    end
+    end 
   end
   
   def delete

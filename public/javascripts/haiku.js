@@ -3,8 +3,6 @@ String.prototype.compact = function() {
 	return this.replace(/\n +/, '\n').replace(/ +/g, ' ').replace(/^\s+|\s+$/, '');
 };
 
-
-
 var wordCacheHash = $H();
 
 function Word() {
@@ -122,14 +120,16 @@ function haikuMaster(oldValue, newValue, element) {
 	
 	//get rid of words that were in the cache for one cycle
 	wordCacheHash.each(function(kvPair){
-	   if (kvPair.value.state == "new" && newWordHash[kvPair.value.text] == undefined) {
+	   if (kvPair.value.state == "new" && 
+	       newWordHash[kvPair.value.text] == undefined) {
 	       delete wordCacheHash[kvPair.value.text];
         }
 	});	
 	
 	//ajax any new words left in the cache
     newWordHash.findAll(function(kvPair){
-	   return wordCacheHash[kvPair.value.text] != undefined && wordCacheHash[kvPair.value.text].state == "new";
+	   return wordCacheHash[kvPair.value.text] != undefined && 
+	           wordCacheHash[kvPair.value.text].state == "new";
 	}).each(function(kvPair){
         kvPair.value.state = "requesting";
 		new Ajax.Request("/syllables/" + kvPair.value.text + ";json", {

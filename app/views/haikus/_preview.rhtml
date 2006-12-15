@@ -1,6 +1,7 @@
 <div id="preview">
 </div>
 
+<%= hidden_field_tag "lastHaiku"  %>
 <script type="text/javascript">
 new PeriodicalExecuter(function() {
                 $("commit").enabled = haikuMaster($F("lastHaiku"),

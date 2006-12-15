@@ -6,6 +6,8 @@
 
   <%= render(:partial => "tag", 
              :collection => haiku.tags) %>
+             
+  <div><%= pluralize(haiku.comments.count, "comment") %></div>
 </div>
 <% end %>
 

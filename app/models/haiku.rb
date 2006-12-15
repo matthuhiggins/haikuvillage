@@ -4,6 +4,7 @@ class Haiku < ActiveRecord::Base
   has_many :tags, :through => :haiku_tags
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_users, :through => :haiku_favorites, :source => :user
+  has_many :comments, :class_name => "HaikuComment"
 
   validates_presence_of :title, :line1, :line2, :line3, :user_id
 
