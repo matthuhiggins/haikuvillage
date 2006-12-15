@@ -6,11 +6,16 @@
   <div class="haiku-info">
     Created on: <%= haiku.created_at.to_s(:long) %> <br/>
     
-    <% if session[:user_id] -%>
-      <%= link_to 'Add to favorite',  :controller => 'my_haiku',
-                                      :action => 'add_haiku_to_favorites', 
-                                      :id => haiku %>
-    <% end -%> 
-    
+    <% if @user -%>
+      <% if @user.favorites.exists?(haiku) %>
+        <%= link_to 'Remove from favorites',  :controller => 'my_haiku',
+                                              :action => 'remove_haiku_from_favorites', 
+                                              :id => haiku %>        
+      <% else %>
+        <%= link_to 'Add to favorite',  :controller => 'my_haiku',
+                                        :action => 'add_haiku_to_favorites', 
+                                        :id => haiku %>
+      <% end %>
+    <% end -%>
   </div>
 </div>

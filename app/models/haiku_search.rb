@@ -5,7 +5,7 @@ class HaikuSearch
   end
   
   def self.get_haikus_by_tag_name(tag_name)
-    Haiku.find(:all)
+    Tag.find(:first, :conditions => {:name => tag_name}).haikus
   end
   
   def self.get_haikus_by_popularity

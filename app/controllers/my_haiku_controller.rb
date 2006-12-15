@@ -20,11 +20,16 @@ class MyHaikuController < ApplicationController
       haiku = Haiku.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       logger.error("Attempt to access invalid haiku #{params[:id]}")
-      redirect_to_index("Invalid product")
+      redirect_to_index("Invalid haiku")
     else
       haiku.haiku_favorites.create(:user_id => session[:user_id])
       redirect_to_index
     end
+  end
+  
+  def remove_haiku_from_favorites
+    HaikuFavorite.delete_all("haiku_id = 1")
+    redirect_to_index
   end
   
   private
