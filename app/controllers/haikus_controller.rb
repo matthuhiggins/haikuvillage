@@ -24,7 +24,7 @@ class HaikusController < ApplicationController
       else
         logger.debug("done saving")
       end
-    end 
+    end
   end
   
   def delete
@@ -47,6 +47,11 @@ class HaikusController < ApplicationController
     render :action => "index"
   end
   
+  def recent
+    @haikus = HaikuSearch.get_haikus_by_created_at
+    render :action => "index"
+  end
+    
   def add_haiku_to_favorites
     @haiku = Haiku.find(params[:id])
     @haiku.haiku_favorites.create(:user_id => session[:user_id])

@@ -14,6 +14,12 @@ class HaikuSearch
                :limit => 10)
   end
   
+  def self.get_haikus_by_created_at
+    Haiku.find(:all,
+               :order => "created_at desc",
+               :limit => 10)
+  end  
+  
   def self.get_haikus_by_recent_popularity
   end
 end
