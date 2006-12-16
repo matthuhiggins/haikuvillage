@@ -8,7 +8,7 @@
                              :method  => :post,
                              :confirm => "Really delete #{user.username}?"
                            } %>
-        <%= h(user.username) %>
+        <%= h(user.username) %> <i>(<%= user.useralias %>)</i>
     </li>
   <% end %>
 </ul>

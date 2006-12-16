@@ -1,5 +1,5 @@
 <%= haiku_div_tag(haiku) %>
-  <span class="haiku-title"><%= h(haiku.title) %></span>
+  <span class="haiku-title"><%= link_to h(haiku.title), :action => :show, :id => haiku %></span>
   <%= render(:partial => "line", :object => haiku.line1) %>
   <%= render(:partial => "line", :object => haiku.line2) %>
   <%= render(:partial => "line", :object => haiku.line3) %>  

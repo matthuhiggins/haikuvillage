@@ -69,4 +69,18 @@ class HaikusController < ApplicationController
       Tag.add_haiku_tag(tag, @haiku)
     end
   end
+  
+  def add_comment
+    @haiku = Haiku.find(params[:haiku][:id])
+    comment = @haiku.comments.new(params[:comment])
+    comment.haiku = @haiku
+    comment.user_id = session[:user_id]
+    comment.save
+    redirect_to :back
+  end
+  
+  def delete_comment
+    HaikuComment.delete(params[:id])
+    redirect_to :back
+  end
 end
