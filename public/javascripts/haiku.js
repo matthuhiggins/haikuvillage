@@ -47,7 +47,7 @@ function Line() {
 		lineDiv = document.createElement('div');
 		syllableSpan = document.createElement('span');
 		syllableSpan.addClassName(isValidSyllables(this.syllables(), this.row) ?
-				'valid' : 'invalid');
+				'valid-line' : 'invalid-line');
 		syllableSpan.addClassName('syllables');
 		syllableSpan.innerHTML = (this.isCalculating() ? '?' : this.syllables()) + ' - ';
 		lineDiv.appendChild(syllableSpan);
@@ -146,13 +146,18 @@ function haikuMaster(oldValue, newValue, element) {
 		}
 	});
 		
-	haiku = renderHaiku( newValue, element );
-	return isValidHaiku(haiku);
+	newHaiku = textToHaiku(newValue);	
+	oldHaiku = textToHaiku(oldValue);
+	renderHaiku(newHaiku, element);
+	if (isValidHaiku(newHaiku) && !isValidHaiku(oldHaiku)) {
+	   element.morph('background:#080;color:#fff');
+	}
+	
+	return true;
 }
 
-function renderHaiku( haikuText, element ){
+function renderHaiku(haiku, element){
 	element.innerHTML = "";
-	haiku = textToHaiku(haikuText);
 	element.appendChild(haiku.toElement());
 	
 	document.getElementsByClassName("new", element).each(function(element) {
@@ -164,8 +169,6 @@ function renderHaiku( haikuText, element ){
 		  kvPair.value.state = "static";
 	   }
 	});
-	
-	return haiku;
 }
 
 function updateWordCacheHash( originalRequest ){

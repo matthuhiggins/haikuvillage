@@ -9,12 +9,16 @@
 	width: 100px;
 }
 
-.valid {
+.valid-line {
 	color: green;
 }
 
-.invalid {
+.invalid-line {
 	color: red;
+}
+
+.valid-haiku {
+    color: blue;
 }
 
 .haiku-title {
