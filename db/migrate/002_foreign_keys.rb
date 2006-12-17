@@ -1,6 +1,6 @@
 require "migration_helpers"
 
-class M2 < ActiveRecord::Migration
+class ForeignKeys < ActiveRecord::Migration
 
   extend MigrationHelpers
  

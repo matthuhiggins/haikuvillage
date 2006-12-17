@@ -1,4 +1,4 @@
-class M3 < ActiveRecord::Migration
+class Indexes < ActiveRecord::Migration
   
   def self.up
     add_index :groups, :name

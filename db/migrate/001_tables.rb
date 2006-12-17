@@ -1,4 +1,4 @@
-class M1 < ActiveRecord::Migration
+class Tables < ActiveRecord::Migration
   def self.up
    create_table :groups do |t|
       t.column :name, :string, :null => false, :limit => 100
