@@ -1,1 +1,2 @@
-page.replace_html("haiku-favorite-#{@haiku.id}", :partial => "haiku", :object => @haiku)
+page.replace_html("haiku-favorite-#{@haiku.id}", :partial => "modify_favorite", :locals => {:haiku => @haiku})
+page["haiku-favorite-#{@haiku.id}"].visual_effect :highlight

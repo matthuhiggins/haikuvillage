@@ -7,7 +7,7 @@
     Created on: <%= haiku.created_at.to_s(:long) %> <br/>
     
     <% if @user -%>
-      <%= render(:partial => "modify_favorite", :locals => { :haiku => haiku }) %>
+      <%= render(:partial => "modify_favorite", :locals => {:haiku => haiku}) %>
       <br />
            
       <%= form_remote_tag :url => { :action => :add_tags_to_haiku, :id => haiku } %>                    
