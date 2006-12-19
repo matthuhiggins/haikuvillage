@@ -33,3 +33,9 @@ textarea {
     text-align: right;
     width: 49%;
 }
+
+#main-frame {
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
+}

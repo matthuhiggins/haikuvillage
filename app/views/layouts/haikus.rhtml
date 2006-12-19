@@ -9,15 +9,15 @@
 <body>
 <div id="main-title">
   <div id="main-title-left">
+    Haiku Village
+  </div>
+  
+  <div id="main-title-right">
   <% if session[:user_id] -%>
     <%= link_to "logout", logout_url %>
   <% else -%>
     <%= link_to "login", login_url %>
   <% end %>
-  </div>
-  
-  <div id="main-title-right">
-    Haiku Village
   </div>  
 </div>
 
@@ -51,7 +51,9 @@
 
 <p style="color: green"><%= flash[:notice] %></p>
 
-<%= yield  %>
+<div id="main-frame">
+  <%= yield  %>
+</div>
 
 </body>
 </html>
