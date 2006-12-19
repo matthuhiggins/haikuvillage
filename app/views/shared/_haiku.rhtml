@@ -23,9 +23,8 @@
     
     <br />
     
-    Tags: <%= render(:partial => "tag", 
-                     :collection => haiku.tags) %>
-    <br/>
+    Tags: <%= render(:partial => "tag", :collection => haiku.tags) %>
+    <br />
     <div><%= link_to pluralize(haiku.comments.count, "comment"), :action => "show", :id => haiku %></div>
   </div>
 </div>
