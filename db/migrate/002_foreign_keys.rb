@@ -4,13 +4,7 @@ class ForeignKeys < ActiveRecord::Migration
 
   extend MigrationHelpers
  
-  def self.up
-    add_foreign_key :group_haikus, :group_id, :groups
-    add_foreign_key :group_haikus, :haiku_id, :haikus
-    
-    add_foreign_key :group_users, :group_id, :groups
-    add_foreign_key :group_users, :user_id, :users
-    
+  def self.up  
     add_foreign_key :haikus, :user_id, :users
     
     add_foreign_key :haiku_comments, :haiku_id, :haikus
@@ -21,6 +15,12 @@ class ForeignKeys < ActiveRecord::Migration
 
     add_foreign_key :haiku_tags, :haiku_id, :haikus
     add_foreign_key :haiku_tags, :tag_id, :tags
+
+    add_foreign_key :school_haikus, :group_id, :groups
+    add_foreign_key :school_haikus, :haiku_id, :haikus
+    
+    add_foreign_key :school_users, :group_id, :groups
+    add_foreign_key :school_users, :user_id, :users
     
     add_foreign_key :user_logins, :user_id, :users
     
