@@ -1,25 +1,25 @@
 body {
-	color: black;
-	font: 12pt tahoma;
-	margin: 0;
-	padding: 0;
+    color: black;
+    font: 12pt tahoma;
+    margin: 0;
+    padding: 0;
 }
 
 sup {
-	font-size: 10pt;
+    font-size: 10pt;
 }
 
 textarea {
-	color: gray;
-	font: 10pt tahoma;
+    color: gray;
+    font: 10pt tahoma;
 }
 
 #main-title {
-	position: absolute;
-	top: 0;
-	background-color: #ccffcc;
-	width: 100%; /* See note below */
-	padding: 0 0%;
+    position: absolute;
+    top: 0;
+    background-color: #ccffcc;
+    width: 100%; /* See note below */
+    padding: 0 0%;
 }
 
 #main-title-left {
