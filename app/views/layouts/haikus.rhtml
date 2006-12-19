@@ -39,11 +39,11 @@
         <li>Create New Group</li>
       </ul>
     </li>
-    <li><%= link_to "Explore", :controller => "haikus", :action => "index" %></li>
+    <li><%= link_to "Explore", :controller => "haikus", :action => "index" %>
       <ul>
-        <li><%= link_to "Popular Tags", {:controller => "haikus", :action => "tags", :id => nil} %></li>
-        <li><%= link_to "Popular Favorites", :controller => "haikus", :action => "favorites" %>
-        <li><%= link_to "Recent Haikus", :controller => "haikus", :action => "recent" %>
+        <% %w{ tags favorites recent }.each do |action| -%>
+          <li><%= link_to_unless_current(action.capitalize, {:controller => "haikus", :action => action}) %></li>
+        <% end -%>
       </ul>
     </li>
   </ul>
