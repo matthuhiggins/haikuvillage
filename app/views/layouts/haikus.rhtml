@@ -25,11 +25,11 @@
   <ul>
     <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
     <li><%= link_to "Add Haiku", :controller => "haikus", :action => "new" %></li>
-    <li><%= link_to "My Stuff", :controller => "my_haiku", :action => "index" %>
+    <li><%= link_to "My Haiku", :controller => "my_haiku", :action => "index" %>
       <ul>
-        <li><%= link_to "My Tags", :controller => "my_haiku", :action => "tags" %></li>
-        <li><%= link_to "My Favorites", :controller => "my_haiku", :action => "favorites" %></li>
-        <li><%= link_to "My Haikus", :controller => "my_haiku", :action => "index" %></li> 
+        <% %w{ tags favorites }.each do |action| -%>
+          <li><%= link_to_unless_current(action.capitalize, {:controller => "my_haiku", :action => action}) %></li>
+        <% end -%>
       </ul>
     </li>
     <li>Groups</li>
