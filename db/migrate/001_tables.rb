@@ -1,31 +1,5 @@
 class Tables < ActiveRecord::Migration
-  def self.up
-   create_table :groups do |t|
-      t.column :name, :string, :null => false, :limit => 100
-      t.column :description, :string, :null => false, :limit => 1000
-      t.column :isadultonly, :boolean, :null => false
-      t.column :isprivate, :boolean, :null => false
-      t.column :created_at, :datetime, :null => false
-    end
-    
-    #create_table :group_topics do |t|
-    #  t.column :grouptopicname, :string, :null => false
-    #  t.column :groupid, :integer, :null => false
-    #  t.column :created_at, :integer, :null => false
-    #end
-
-
-    create_table :group_haikus, :id => false do |t|
-      t.column :group_id, :integer, :null => false
-      t.column :haiku_id, :integer, :null => false
-    end
-    
-    create_table :group_users, :id => false do |t|
-      t.column :group_id, :integer, :null => false
-      t.column :user_id, :integer, :null => false
-      t.column :user_type, :string, :null => false
-    end
-     
+  def self.up  
     create_table :haikus do |t|
       t.column :title, :string, :null => false, :limit => 100
       t.column :line1, :string, :null => false, :limit => 255
@@ -55,6 +29,26 @@ class Tables < ActiveRecord::Migration
       #t.column :user_id, :integer, :null => false
       t.column :created_at, :datetime, :null => false
     end
+    
+   create_table :schools do |t|
+      t.column :name, :string, :null => false, :limit => 100
+      t.column :description, :string, :null => false, :limit => 1000
+      t.column :isadultonly, :boolean, :null => false
+      t.column :isprivate, :boolean, :null => false
+      t.column :created_at, :datetime, :null => false
+    end
+    
+    create_table :school_haikus, :id => false do |t|
+      t.column :group_id, :integer, :null => false
+      t.column :haiku_id, :integer, :null => false
+      t.column :created_at, :datetime, :null => false
+    end
+    
+    create_table :school_users, :id => false do |t|
+      t.column :group_id, :integer, :null => false
+      t.column :user_id, :integer, :null => false
+      t.column :user_type, :string, :null => false
+    end    
 
     create_table :tags do |t|
       t.column :name, :string, :null => false, :limit => 64
