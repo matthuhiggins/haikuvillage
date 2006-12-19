@@ -1,2 +1,5 @@
-<h1>Welcome to Haiku Village</h1>
+<% content_for(:header) do %>
+  Listing out haikus
+<% end %>
+
 <%= render(:partial => "haiku", :collection => @haikus) %>

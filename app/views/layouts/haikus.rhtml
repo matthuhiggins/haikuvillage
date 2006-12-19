@@ -49,10 +49,11 @@
   </ul>
 </div>
 
-<p style="color: green"><%= flash[:notice] %></p>
-
 <div id="main-frame">
-  <%= yield  %>
+  <p style="color: green"><%= flash[:notice] %></p>
+  <h2><%= yield :header %></h2>
+  
+  <%= yield :layout %>
 </div>
 
 </body>
