@@ -39,13 +39,13 @@ class Tables < ActiveRecord::Migration
     end
     
     create_table :school_haikus, :id => false do |t|
-      t.column :group_id, :integer, :null => false
+      t.column :school_id, :integer, :null => false
       t.column :haiku_id, :integer, :null => false
       t.column :created_at, :datetime, :null => false
     end
     
     create_table :school_users, :id => false do |t|
-      t.column :group_id, :integer, :null => false
+      t.column :school_id, :integer, :null => false
       t.column :user_id, :integer, :null => false
       t.column :user_type, :string, :null => false
     end    
@@ -78,10 +78,9 @@ class Tables < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :groups
-    drop_table :group_haikus
-    drop_table :group_users
-    drop_table :group_user_types
+    drop_table :schools
+    drop_table :school_haikus
+    drop_table :school_users
     drop_table :haikus
     drop_table :haiku_comments
     drop_table :haiku_favorites

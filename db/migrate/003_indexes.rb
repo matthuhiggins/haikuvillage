@@ -18,11 +18,11 @@ class Indexes < ActiveRecord::Migration
     add_index :schools, :name, :unique => true
     add_index :schools, :created_at
 
-    add_index :school_haikus, [:group_id, :haiku_id], :unique => true
-    add_index :school_haikus, [:haiku_id, :group_id]
+    add_index :school_haikus, [:school_id, :haiku_id], :unique => true
+    add_index :school_haikus, [:haiku_id, :school_id]
     
-    add_index :school_users, [:group_id, :user_id], :unique => true
-    add_index :school_users, [:user_id, :group_id]  
+    add_index :school_users, [:school_id, :user_id], :unique => true
+    add_index :school_users, [:user_id, :school_id]  
 
     add_index :tags, :name, :unique => true
     add_index :tags, :haiku_tags_count

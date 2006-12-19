@@ -4,34 +4,6 @@
 
 ActiveRecord::Schema.define(:version => 3) do
 
-  create_table "group_haikus", :id => false, :force => true do |t|
-    t.column "group_id", :integer, :null => false
-    t.column "haiku_id", :integer, :null => false
-  end
-
-  add_index "group_haikus", ["group_id", "haiku_id"], :name => "index_group_haikus_on_group_id_and_haiku_id", :unique => true
-  add_index "group_haikus", ["haiku_id", "group_id"], :name => "index_group_haikus_on_haiku_id_and_group_id"
-
-  create_table "group_users", :id => false, :force => true do |t|
-    t.column "group_id",  :integer,                 :null => false
-    t.column "user_id",   :integer,                 :null => false
-    t.column "user_type", :string,  :default => "", :null => false
-  end
-
-  add_index "group_users", ["group_id", "user_id"], :name => "index_group_users_on_group_id_and_user_id", :unique => true
-  add_index "group_users", ["user_id", "group_id"], :name => "index_group_users_on_user_id_and_group_id"
-
-  create_table "groups", :force => true do |t|
-    t.column "name",        :string,   :limit => 100,  :default => "", :null => false
-    t.column "description", :string,   :limit => 1000, :default => "", :null => false
-    t.column "isadultonly", :boolean,                                  :null => false
-    t.column "isprivate",   :boolean,                                  :null => false
-    t.column "created_at",  :datetime,                                 :null => false
-  end
-
-  add_index "groups", ["name"], :name => "index_groups_on_name"
-  add_index "groups", ["created_at"], :name => "index_groups_on_created_at"
-
   create_table "haiku_comments", :force => true do |t|
     t.column "haiku_id",   :integer,                                  :null => false
     t.column "user_id",    :integer,                                  :null => false
@@ -74,6 +46,35 @@ ActiveRecord::Schema.define(:version => 3) do
 
   add_index "haikus", ["user_id"], :name => "index_haikus_on_user_id"
   add_index "haikus", ["created_at"], :name => "index_haikus_on_created_at"
+
+  create_table "school_haikus", :id => false, :force => true do |t|
+    t.column "school_id",  :integer,  :null => false
+    t.column "haiku_id",   :integer,  :null => false
+    t.column "created_at", :datetime, :null => false
+  end
+
+  add_index "school_haikus", ["school_id", "haiku_id"], :name => "index_school_haikus_on_school_id_and_haiku_id", :unique => true
+  add_index "school_haikus", ["haiku_id", "school_id"], :name => "index_school_haikus_on_haiku_id_and_school_id"
+
+  create_table "school_users", :id => false, :force => true do |t|
+    t.column "school_id", :integer,                 :null => false
+    t.column "user_id",   :integer,                 :null => false
+    t.column "user_type", :string,  :default => "", :null => false
+  end
+
+  add_index "school_users", ["school_id", "user_id"], :name => "index_school_users_on_school_id_and_user_id", :unique => true
+  add_index "school_users", ["user_id", "school_id"], :name => "index_school_users_on_user_id_and_school_id"
+
+  create_table "schools", :force => true do |t|
+    t.column "name",        :string,   :limit => 100,  :default => "", :null => false
+    t.column "description", :string,   :limit => 1000, :default => "", :null => false
+    t.column "isadultonly", :boolean,                                  :null => false
+    t.column "isprivate",   :boolean,                                  :null => false
+    t.column "created_at",  :datetime,                                 :null => false
+  end
+
+  add_index "schools", ["name"], :name => "index_schools_on_name", :unique => true
+  add_index "schools", ["created_at"], :name => "index_schools_on_created_at"
 
   create_table "tags", :force => true do |t|
     t.column "name",             :string,   :limit => 64, :default => "", :null => false
