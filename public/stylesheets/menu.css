@@ -6,6 +6,7 @@ ul#top-menu, ul#top-menu ul, ul#top-menu li
 }
 
 ul#top-menu li {
+    padding: 10px;
     float: left;
 }
 
@@ -21,6 +22,8 @@ ul#sub-menu {
 
 ul#sub-menu li {
     float: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 ul#sub-menu li a

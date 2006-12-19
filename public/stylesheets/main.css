@@ -1,8 +1,9 @@
 body {
     color: black;
     font: 12pt tahoma;
-    margin: 0;
-    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
 }
 
 sup {
@@ -15,27 +16,24 @@ textarea {
 }
 
 #main-title {
-    position: absolute;
-    top: 0;
-    background-color: #ccffcc;
-    width: 100%; /* See note below */
+    width: 100%;
     padding: 0 0%;
 }
 
 #main-title-left {
+    background-color: #ccffcc;
     float: left;
     text-align: left;
-    width: 49%;
+    width: 50%;
 }
 
 #main-title-right {
+    background-color: #ccffcc;
     float: right;
     text-align: right;
-    width: 49%;
+    width: 50%;
 }
 
-#main-frame {
-    margin-left: auto;
-    margin-right: auto;
-    width: 650px;
+#main-div {
+
 }
