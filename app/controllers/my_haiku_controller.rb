@@ -25,6 +25,16 @@ class MyHaikuController < ApplicationController
     @haiku.haiku_favorites.create(:user_id => session[:user_id])
   end
   
+  def favorites
+    @haikus = Haiku.find(:all,
+               :order => "created_at desc",
+               :limit => 10)
+  end
+  
+  def index
+    @haikus = Haiku.find(:all, :conditions => {:user_id => session[:user_id]}, :limit => 10)
+  end    
+  
   def remove_haiku_from_favorites
     HaikuFavorite.delete_all("user_id = #{session[:user_id]} and haiku_id = #{params[:id]}")
     @haiku = Product.update(params[:id],  "haiku_favorites_count = haiku_favorites_count - 1")
