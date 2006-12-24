@@ -8,7 +8,7 @@
     Created on: <%= haiku.created_at.to_s(:long) %> <br/>
     
     <% if @user -%>
-      <%= render(:partial => "modify_favorite", :locals => {:haiku => haiku}) %>
+      <%= render(:partial => "shared/modify_favorite", :locals => {:haiku => haiku}) %>
       <br />
            
       <%= form_remote_tag :url => { :action => :add_tags_to_haiku, :id => haiku } %>
@@ -24,7 +24,7 @@
     
     <br />
     
-    Tags: <%= render(:partial => "shared\tag", :collection => haiku.tags) %>
+    Tags: <%= render(:partial => "shared/tag", :collection => haiku.tags) %>
     <br />
     <div><%= link_to pluralize(haiku.comments.count, "comment"), :action => "show", :id => haiku %></div>
   </div>
