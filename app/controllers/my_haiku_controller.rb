@@ -27,8 +27,14 @@ class MyHaikuController < ApplicationController
   
   def favorites
     @haikus = Haiku.find(:all,
+               :conditions => {:user_id => session[:user_id]},
                :order => "created_at desc",
                :limit => 10)
+    redirect_to :action => 'index'               
+  end
+  
+  def tags
+    
   end
   
   def index

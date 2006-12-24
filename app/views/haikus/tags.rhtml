@@ -1,14 +1,14 @@
 <h1>Tags</h1>
 <div id="recent-tags">
   <h2>Recent Tags</h2>
-  <%= render(:partial => "tag", 
+  <%= render(:partial => "shared/tag", 
              :collection => @recenttags,
              :locals => {:show_popularity => false}) %>
 </div>
 
 <div id="popular-tags">
   <h2>Popular Tags</h2>
-  <%= render(:partial => "tag", 
+  <%= render(:partial => "shared/tag", 
              :collection => @populartags,
              :locals => {:show_popularity => true}) %>
 </div>
