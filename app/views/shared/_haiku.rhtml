@@ -11,7 +11,10 @@
       <%= render(:partial => "shared/modify_favorite", :locals => {:haiku => haiku}) %>
       <br />
            
-      <%= form_remote_tag :url => { :action => :add_tags_to_haiku, :id => haiku } %>
+      <%= form_remote_tag :url => {
+          :controller => :my_haiku,
+          :action     => :add_tags_to_haiku,
+          :id         => haiku } %>
         <%= text_field_tag :tags, params[:tags] %>
         <%= submit_tag "Add tags" %>
       <%= end_form_tag %>
