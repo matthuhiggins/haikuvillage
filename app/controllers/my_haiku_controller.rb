@@ -3,6 +3,23 @@ class MyHaikuController < ApplicationController
 
   before_filter :authorize
   
+  def new
+    if request.post?
+      @haiku = Haiku.new()
+      @haiku.title = params[:haiku][:title]
+      @haiku.text = params[:haiku][:text]
+      @haiku.user_id = session[:user_id]
+      
+      logger.debug("saving")
+      if @haiku.save
+        flash[:notice] = "great success"
+        redirect_to :action => 'index'
+      else
+        logger.debug("done saving")
+      end
+    end
+  end  
+  
   def add_haiku_to_favorites
     @haiku = Haiku.find(params[:id])
     @haiku.haiku_favorites.create(:user_id => session[:user_id])
