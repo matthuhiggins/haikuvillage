@@ -43,7 +43,7 @@ class MyHaikuController < ApplicationController
   
   def remove_haiku_from_favorites
     HaikuFavorite.delete_all("user_id = #{session[:user_id]} and haiku_id = #{params[:id]}")
-    @haiku = Product.update(params[:id],  "haiku_favorites_count = haiku_favorites_count - 1")
+    @haiku = Haiku.update(params[:id],  :haiku_favorites_count =>  "haiku_favorites_count - 1")
   end
   
   def add_tags_to_haiku
