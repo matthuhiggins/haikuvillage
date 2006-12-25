@@ -26,15 +26,12 @@ class MyHaikuController < ApplicationController
   end
   
   def favorites
-    @haikus = Haiku.find(:all,
-               :conditions => {:user_id => session[:user_id]},
-               :order => "created_at desc",
-               :limit => 10)
+    @haikus = User.find(session[:user_id]).favorites
     redirect_to :action => 'index'               
   end
   
   def tags
-    
+    @tags = Tag.get_tags_for_user(session[:user_id])
   end
   
   def index
@@ -48,9 +45,8 @@ class MyHaikuController < ApplicationController
   
   def add_tags_to_haiku
     tags = params[:tags]
-    @haiku = Haiku.find(params[:id])
     tags.split.each do |tag|
-      Tag.add_haiku_tag(tag, @haiku)
+      Tag.add_haiku_tag(tag, params[:id])
     end
   end
   

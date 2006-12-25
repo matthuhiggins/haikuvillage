@@ -26,7 +26,6 @@ class Tables < ActiveRecord::Migration
     create_table :haiku_tags, :id => false do |t|
       t.column :haiku_id, :integer, :null => false
       t.column :tag_id, :integer, :null => false
-      #t.column :user_id, :integer, :null => false
       t.column :created_at, :datetime, :null => false
     end
     

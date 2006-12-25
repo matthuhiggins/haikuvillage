@@ -1,0 +1,7 @@
+<% content_for(:header) do %>
+  These are my tags
+<% end %>
+
+<% for tag in @tags %>
+  <%= link_to h(tag.name), {:controller => :haikus, :action => "tags", :id => h(tag.name)} %>
+<% end %>

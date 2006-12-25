@@ -4,9 +4,9 @@ class Tag < ActiveRecord::Base
 
   validates_presence_of :name
   
-  def self.add_haiku_tag(tag_name, haiku)
+  def self.add_haiku_tag(tag_name, haiku_id)
     tag = create_or_get_tag(tag_name)
-    tag.haiku_tags.create(:haiku => haiku)
+    tag.haiku_tags.create(:haiku_id => haiku_id)
     tag.save!
     tag
   end
@@ -26,6 +26,13 @@ class Tag < ActiveRecord::Base
              :conditions => ["created_at > ?", 1.week.ago],
              :order => "haiku_tags_count",
              :limit => 10)
+  end
+  
+  def self.get_tags_for_user(user_id)
+    Tag.find(:all,
+             :select => "distinct t.*",
+             :joins => "as t join haiku_tags ht join haikus h",
+             :conditions => ["h.user_id = ?" , user_id])  
   end
   
   private

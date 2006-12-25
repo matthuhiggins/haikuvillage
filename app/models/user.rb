@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
   has_many :haiku_favorites
   has_many :haikus
   
+  attr_accessor :password_confirmation
+
   validates_presence_of :username
   validates_uniqueness_of :username  
   validates_presence_of :email 
-  attr_accessor :password_confirmation
   validates_confirmation_of :password
   validates_presence_of :password
 
@@ -36,7 +37,7 @@ class User < ActiveRecord::Base
     @password = pwd
     create_new_salt
     self.hashed_password = User.encrypted_password(self.password, self.salt)
-  end  
+  end
   
   private
   
