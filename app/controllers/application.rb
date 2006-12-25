@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   def authorize
     unless @user = User.find_by_id(session[:user_id])
+      session[:original_uri] = request.request_uri
       flash[:notice] = "Please log in"
       redirect_to(:controller => "login", :action => "index")
     end

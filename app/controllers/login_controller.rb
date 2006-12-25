@@ -6,7 +6,7 @@ class LoginController < ApplicationController
     if request.post?
       user = User.authenticate(params[:username], params[:password])
       if user
-        vagistat user.id
+        login_and_redirect(user.id)
       else
         flash[:notice] = "Invalid user/password combination"
       end
@@ -19,7 +19,7 @@ class LoginController < ApplicationController
     else
       @user = User.new(params[:user])
       if request.post? and @user.save
-        vagistat @user.id
+        login_and_redirect(@user.id)
       end
     end
   end
@@ -31,8 +31,10 @@ class LoginController < ApplicationController
   end
   
   private
-    def vagistat(user_id)
+    def login_and_redirect(user_id)
       session[:user_id] = user_id
-      redirect_to(:action => "index", :controller => "haikus")
+      uri = session[:original_uri]
+      session[:original_uri] = nil
+      redirect_to(uri || { :action => "index" })
     end
 end

@@ -27,7 +27,7 @@ class MyHaikuController < ApplicationController
   
   def favorites
     @haikus = User.find(session[:user_id]).favorites
-    redirect_to :action => 'index'               
+    render :action => "index"
   end
   
   def tags
@@ -48,6 +48,7 @@ class MyHaikuController < ApplicationController
     tags.split.each do |tag|
       Tag.add_haiku_tag(tag, params[:id])
     end
+    @haiku = Haiku.find(params[:id])
   end
   
   def add_comment
