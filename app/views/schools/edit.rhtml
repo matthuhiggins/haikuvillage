@@ -1,0 +1,32 @@
+<h1>Editing school</h1>
+
+<%= error_messages_for :school %>
+
+<% form_for(:school, :url => school_path(@school), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Name</b><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_field :description %>
+  </p>
+
+  <p>
+    <b>Isadultonly</b><br />
+    <%= f.check_box :isadultonly %>
+  </p>
+
+  <p>
+    <b>Isprivate</b><br />
+    <%= f.check_box :isprivate %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', school_path(@school) %> |
+<%= link_to 'Back', schools_path %>

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :favorites, :through => :haiku_favorites, :source => :haiku
   has_many :haiku_favorites
   has_many :haikus
+  has_many :school_users
+  has_many :schools, :through => :school_users
   
   attr_accessor :password_confirmation
 

@@ -1,0 +1,7 @@
+<li><%= link_to user.useralias, :controller => "users", :action => "show", :id => user %>
+
+<% if user.school_users.find(:first, :conditions => 
+    ["school_id = ?", school.id ] ).user_type == "admin" %>
+<i>(admin)</i>
+<% end %>
+</li>

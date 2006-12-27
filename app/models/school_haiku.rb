@@ -1,4 +1,4 @@
 class SchoolHaiku < ActiveRecord::Base
-  has_one :school
-  has_one :haiku
+  belongs_to :school
+  belongs_to :haiku
 end
