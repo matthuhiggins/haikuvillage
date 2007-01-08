@@ -147,7 +147,7 @@ function haikuMaster(oldValue, newValue, element) {
         kvPair.value.state = "requesting";
 	});
     if (wordSet != "")
-        new Ajax.Request("/syllables/" + wordSet + ";json", {
+        new Ajax.Request("/syllables/" + wordSet + ".json", {
             method: "get",
             onComplete: updateWordCacheHash
         });	
@@ -186,8 +186,6 @@ function renderHaiku(haiku, element){
 }
 
 function updateWordCacheHash( originalRequest ){
-    alert(originalRequest.responseText)
-   
 	var response = eval("(" + originalRequest.responseText + ")");
 	$A(response).each(function(item){
         wordCacheHash[item.text] = new Word(item.text, item.syllables, "responded");

@@ -2,11 +2,11 @@ class SyllablesController < ApplicationController
   require "lingua/syllable"
 
   def count
-    render :text => syllable_count(params[:word])
-  end
-
-  def count_json
-    render :text => params[:word].split("-").collect { |word| Word.new(word) }.to_json
+    words = params[:word].split("-").collect { |word| Word.new(word) }
+    respond_to do |format|
+      format.json { render :text => words.to_json }
+    end
+    
   end
 
 end
