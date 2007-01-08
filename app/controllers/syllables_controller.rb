@@ -6,15 +6,7 @@ class SyllablesController < ApplicationController
   end
 
   def count_json
-    out = ""
-    out << "{"
-    out << "'word': '" << params[:word] << "',"
-    out << "'syllables':" << syllable_count(params[:word]).to_s << ","
-    out << "}"
-    render :text => out
+    render :text => params[:word].split("-").collect { |word| Word.new(word) }.to_json
   end
 
-  def syllable_count( word )
-    Lingua::EN::Syllable.syllables(word)
-  end 
 end

@@ -127,7 +127,7 @@ function haikuMaster(oldValue, newValue, element) {
 	});	
 	
 	//ajax any new words left in the cache
-    newWordHash.findAll(function(kvPair){
+    /*newWordHash.findAll(function(kvPair){
 	   return wordCacheHash[kvPair.value.text] != undefined && 
 	           wordCacheHash[kvPair.value.text].state == "new";
 	}).each(function(kvPair){
@@ -136,8 +136,22 @@ function haikuMaster(oldValue, newValue, element) {
 			method: "get",
 			onComplete: updateWordCacheHash
 		});
-	});
+	});*/
 	
+    wordSet = "";
+    newWordHash.findAll(function(kvPair){
+	   return wordCacheHash[kvPair.value.text] != undefined && 
+	           wordCacheHash[kvPair.value.text].state == "new";
+	}).each(function(kvPair){
+	    wordSet += (wordSet != "" ? "-" : "") + kvPair.value.text;
+        kvPair.value.state = "requesting";
+	});
+    if (wordSet != "")
+        new Ajax.Request("/syllables/" + wordSet + ";json", {
+            method: "get",
+            onComplete: updateWordCacheHash
+        });	
+
 	//Find the changed words from last cycle
 	newWordArray.each(function(word){
 		if (oldWordHash[word.text] != undefined && 
@@ -172,6 +186,10 @@ function renderHaiku(haiku, element){
 }
 
 function updateWordCacheHash( originalRequest ){
+    alert(originalRequest.responseText)
+   
 	var response = eval("(" + originalRequest.responseText + ")");
-	wordCacheHash[response.word] = new Word(response.word, response.syllables, "responded");
+	$A(response).each(function(item){
+        wordCacheHash[item.text] = new Word(item.text, item.syllables, "responded");
+    });
 }
