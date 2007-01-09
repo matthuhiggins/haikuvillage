@@ -12,29 +12,16 @@
   <%= javascript_include_tag "haiku" %>
 </head>
 <body>
-<div id="main-title">
-  <div id="main-title-left">
-    Haiku Village
-  </div>
-  
-  <div id="main-title-right">
-  <% if session[:user_id] -%>
-    <%= link_to "logout", logout_url %>
-  <% else -%>
-    <%= link_to "login", login_url %>
-  <% end %>
-  </div>  
-</div>
 
-<div id="menu-div">
+<div id="header">
+  <%= image_tag "haikuvillage.gif" %>
+
   <ul id="top-menu">
     <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
     <li><%= link_to "My Haiku", :controller => "my_haiku", :action => "index" %>
       <ul id="sub-menu">
         <li><%= link_to "Add Haiku", :controller => "my_haiku", :action => "new" %></li>
-        <% %w{ tags favorites }.each do |action| -%>
-          <li><%= link_to_unless_current(action.capitalize, {:controller => "my_haiku", :action => action}) %></li>
-        <% end -%>
+        <%= render_list_items(%w{ tags favorites preferences }, "my_haiku") %>
       </ul>
     </li>
     <li><%= link_to "Schools", :controller => "schools" %></li>
@@ -46,25 +33,22 @@
     </li>
     <li><%= link_to "Explore", :controller => "haikus", :action => "index" %>
       <ul id="sub-menu">
-        <% %w{ tags favorites recent }.each do |action| -%>
-          <li><%= link_to_unless_current(action.capitalize, {:controller => "haikus", :action => action}) %></li>
-        <% end -%>
+        <%= render_list_items(%w{ tags favorites recent }, "haikus") %>
       </ul>
     </li>
     <li><%= link_to "Search", :controller => "search", :action => "index" %>
       <ul id="sub-menu">
-        <% %w{ haikus users schools}.each do |action| -%>
-          <li><%= link_to_unless_current(action.capitalize, {:controller => "haikus", :action => action}) %></li>
-        <% end -%>
-      </ul>    
+        <%= render_list_items(%w{ haikus users tag schools }, "search") %>
+      </ul>
     </li>
   </ul>
-</div>
-
-<br/>
-<br/>
-<br/>
-<br/>
+  
+  <% if session[:user_id] -%>
+    <%= link_to "logout", logout_url %>
+  <% else -%>
+    <%= link_to "login", login_url %>
+  <% end %>
+</div>  
 
 <div id="header-div">
   <%= yield :header %>

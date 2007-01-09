@@ -127,17 +127,6 @@ function haikuMaster(oldValue, newValue, element) {
 	});	
 	
 	//ajax any new words left in the cache
-    /*newWordHash.findAll(function(kvPair){
-	   return wordCacheHash[kvPair.value.text] != undefined && 
-	           wordCacheHash[kvPair.value.text].state == "new";
-	}).each(function(kvPair){
-        kvPair.value.state = "requesting";
-		new Ajax.Request("/syllables/" + kvPair.value.text + ";json", {
-			method: "get",
-			onComplete: updateWordCacheHash
-		});
-	});*/
-	
     wordSet = "";
     newWordHash.findAll(function(kvPair){
 	   return wordCacheHash[kvPair.value.text] != undefined && 

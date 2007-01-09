@@ -16,4 +16,12 @@ module ApplicationHelper
     attrs = tag_options(attributes.stringify_keys)
     "<span #{attrs}>"
   end
+  
+  def render_list_items(items, controller)
+    result = ""
+    items.each do |action|
+      result << "<li>#{link_to(action.capitalize, {:controller => controller, :action => action})}</li>"
+    end
+    result
+  end  
 end
