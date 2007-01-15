@@ -1,5 +1,4 @@
 class SyllablesController < ApplicationController
-  require "lingua/syllable"
 
   def count
     words = params[:word].split("-").collect { |word| Word.new(word) }
