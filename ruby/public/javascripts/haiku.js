@@ -101,9 +101,6 @@ function textToHaiku(text){
 	return h;
 }
 
-//TODO: Allow for use of more than one haiku on the page
-//var wordRequestHash = $H();
-
 function haikuMaster(oldValue, newValue, element) {
     //populate hash of haiku from previous tick
 	oldWordHash = $H();	
@@ -152,11 +149,8 @@ function haikuMaster(oldValue, newValue, element) {
 	newHaiku = textToHaiku(newValue);	
 	oldHaiku = textToHaiku(oldValue);
 	renderHaiku(newHaiku, element);
-	if (isValidHaiku(newHaiku) && !isValidHaiku(oldHaiku)) {
-	   element.morph('background:#080;color:#fff');
-	}
-	
-	return true;
+	   	
+	return isValidHaiku(newHaiku);
 }
 
 function renderHaiku(haiku, element){

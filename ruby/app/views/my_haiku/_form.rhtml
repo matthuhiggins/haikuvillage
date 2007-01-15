@@ -1,3 +1,6 @@
+<p>Here is my haiku:</p>
+<%= render :partial => "preview" %>
+
 <% form_for :haiku, :html => {:id => 'haiku_form'} do |form| %>
   <p>
     <label for="haiku_title">Title</label><br/>
@@ -11,6 +14,3 @@
 
   <%= submit_tag("Create new haiku", :id => "commit") %>
 <% end %>
-
-<p>Here is my haiku:</p>
-<%= render :partial => "preview" %>
