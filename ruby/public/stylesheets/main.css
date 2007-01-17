@@ -1,12 +1,16 @@
 body {
-    color: black;
+    background: #b2b2b2;
+    color: #636466;
     font: 12pt tahoma;
     margin: 0;
-    margin-left: auto;
-    margin-right: auto;
     padding: 0;
-    width: 1000px;
 }
+
+a:active, a:hover, a:link, a:visited {
+    color: #636466;
+    text-decoration: none;
+}
+
 
 sup {
     font-size: 10pt;
@@ -17,13 +21,22 @@ textarea {
     font: 10pt tahoma;
 }
 
-#header {
-    width: 100%;
-    padding: 0 0%;
-    position: absolute;
+#login {
+    color: blue;
+    float: right;
+    text-align: right;
 }
 
-#main-div {
-    position: absolute;
-    top: 100px;
+#navigation {
+    height: 50px;
+    width: 100%;
+    padding: 0 0%;
+}
+
+#frame {
+    background: white;
+    height: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
 }

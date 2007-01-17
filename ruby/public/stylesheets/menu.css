@@ -1,57 +1,16 @@
-ul#top-menu {
-  float: left;
+ul#menu {
+    float: left;
 }
 
-ul#top-menu, ul#top-menu ul, ul#top-menu li
-{
+ul#menu, ul#menu li {
     margin: 0px;
     padding: 0px;
     list-style-type: none;
 }
 
-ul#top-menu li {
-    padding: 10px;
+ul#menu li {
     float: left;
-}
-
-ul#top-menu li a:hover
-{
-    color: #ffff00;
-    background-color: #003366;
-}
-
-ul#sub-menu {
-    display: none;
-}
-
-ul#sub-menu li {
-    float: none;
-    padding: 0px;
-    margin: 0px;
-}
-
-ul#sub-menu li a
-{
-    padding: 0px;
-    margin: 0px;
-}
-
-ul#top-menu li:hover ul#sub-menu
-{
-    background-color: white;
-    border-bottom: solid 1px black;
-    border-left: dotted 1px gray;
-    border-right: solid 1px black;
-    border-top: dotted 1px gray;
-    display: block;
-    padding-top: 5px;
-    position: absolute;
-}
-
-ul#top-menu li:hover ul#sub-menu li a
-{
-    display: block;
-    width: 10em;
-    border: none;
-    padding: 2px;
+    margin: 0;
+    padding: 0;
+    padding-right: 20px;
 }

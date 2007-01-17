@@ -13,50 +13,39 @@
 </head>
 <body>
 
-<div id="header">
-  <%= image_tag "haikuvillage.gif" %>
+<div id="frame">
 
-  <ul id="top-menu">
-    <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
-    <li><%= link_to "My Haiku", :controller => "my_haiku", :action => "index" %>
-      <ul id="sub-menu">
-        <li><%= link_to "Add Haiku", :controller => "my_haiku", :action => "new" %></li>
-        <%= render_list_items(%w{ tags favorites preferences }, "my_haiku") %>
-      </ul>
-    </li>
-    <li><%= link_to "Schools", :controller => "schools" %></li>
-      <ul id="sub-menu">
-        <li>Your Groups</li>
-        <li>Recent Groups</li>
-        <li>Create New Group</li>
-      </ul>
-    </li>
-    <li><%= link_to "Explore", :controller => "haikus", :action => "index" %>
-      <ul id="sub-menu">
-        <%= render_list_items(%w{ tags favorites recent }, "haikus") %>
-      </ul>
-    </li>
-    <li><%= link_to "Search", :controller => "search", :action => "index" %>
-      <ul id="sub-menu">
-        <%= render_list_items(%w{ haikus users tag schools }, "search") %>
-      </ul>
-    </li>
-  </ul>
-  
-  <% if session[:user_id] -%>
-    <%= link_to "logout", logout_url %>
-  <% else -%>
-    <%= link_to "login", login_url %>
-  <% end %>
-</div>  
+  <div id="navigation">
+    <ul id="menu">
+      <li><%= image_tag "haikuvillage.gif" %></li>
+      <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
+      <li>/</li>
+      <li><%= link_to "My Haiku", :controller => "my_haiku", :action => "index" %></li>
+      <li>/</li>
+      <li><%= link_to "Schools", :controller => "schools" %></li>
+      <li>/</li>
+      <li><%= link_to "Explore", :controller => "haikus", :action => "index" %></li>
+      <li>/</li>
+      <li><%= link_to "Search", :controller => "search", :action => "index" %></li>
+    </ul>
 
-<div id="header-div">
-  <%= yield :header %>
-</div>
+    <div id="login">
+      <% if session[:user_id] -%>
+      <%= link_to "sign in", logout_url %>
+      <% else -%>
+      <%= link_to "sign out", login_url %>
+      <% end %>
+    </div>
+  </div>  
+
+  <div id="content">
+    <h2><%= yield :header %></h2>
   
-<div id="main-div">
-  <p style="color: green"><%= flash[:notice] %></p>
-  <%= yield :layout %>
+    <p style="color: green"><%= flash[:notice] %></p>
+  
+    <%= yield :layout %>
+  </div>
+
 </div>
 
 </body>
