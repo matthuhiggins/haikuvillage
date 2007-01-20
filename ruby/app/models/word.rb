@@ -13,12 +13,9 @@ class Word < ActiveRecord::Base
   private
   
   def count_syllables(wordtext)
-    #
-    #  count_letter_syllables(wordtext)
-    #else
-    if (wordtext.length == 1) and (wordtext =~ /[a-zA-Z]/) then
-      count_letter_syllables(wordtext)
-    elsif (wordtext =~ /^[0-9]/) then
+    if wordtext =~ /^[a-zA-Z](\.[a-zA-Z]\.?)*$/ then
+      wordtext.split(/\.| |/).sum{ |letter| count_letter_syllables(letter) }
+    elsif (wordtext =~ /[0-9]+/) then
       wordtext.en.numwords.split.sum{ |numeric_word| count_syllables(numeric_word) }
     else
       Lingua::EN::Syllable.syllables(wordtext)

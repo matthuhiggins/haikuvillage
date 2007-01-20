@@ -81,6 +81,7 @@ function isValidHaiku(haiku){
 function textToWords(text) {
 	text = text.compact();
 	return $A(text.split(/ |\n/)).map(function(value) {
+	    //value = value.replace(/[^0-9,a-z,A-Z]/gi, '');
 		return wordCacheHash[value] == undefined ? new Word(value, 0, "new") : wordCacheHash[value];
 	});
 }
@@ -99,6 +100,10 @@ function textToHaiku(text){
 		return index < 3;
 	});
 	return h;
+}
+
+function encodeHaikuWord(word){
+    return encodeURIComponent(word.replace(/\./g, '%2e').replace(/\-/g, '%2d'));
 }
 
 function haikuMaster(oldValue, newValue, element) {
@@ -129,7 +134,7 @@ function haikuMaster(oldValue, newValue, element) {
 	   return wordCacheHash[kvPair.value.text] != undefined && 
 	           wordCacheHash[kvPair.value.text].state == "new";
 	}).each(function(kvPair){
-	    wordSet += (wordSet != "" ? "-" : "") + kvPair.value.text;
+	    wordSet += (wordSet != "" ? "-" : "") + encodeHaikuWord(kvPair.value.text);
         kvPair.value.state = "requesting";
 	});
     if (wordSet != "")
