@@ -102,7 +102,7 @@ function textToHaiku(text){
 }
 
 function encodeHaikuWord(word){
-    return encodeURIComponent(word.replace(/\./g, '%2e').replace(/\-/g, '%2d'));
+  return encodeURIComponent(word.replace(/\./g, '%2e').replace(/\-/g, '%2d'));
 }
 
 function haikuMaster(oldValue, newValue, element) {

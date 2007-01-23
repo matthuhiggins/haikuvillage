@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   map.connect '', :controller => "welcome"
   
-  map.syllables "syllables/:word.:format", :controller => "syllables", :action => "count"
+  map.syllables "syllables/:word.:format", :word => %r{.+}, :controller => "syllables", :action => "count"
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
