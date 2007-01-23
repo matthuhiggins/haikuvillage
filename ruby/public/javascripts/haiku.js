@@ -3,6 +3,11 @@ String.prototype.compact = function() {
   return this.replace(/\n +/, '\n').replace(/ +/g, ' ').replace(/^\s+|\s+$/, '');
 };
 
+String.prototype.hash = function() {
+  return '@' + this.replace(/^[^\w]|[^\w]$/, '');
+};
+
+
 var wordCacheHash = $H();
 
 function Word() {
@@ -80,8 +85,11 @@ function isValidHaiku(haiku){
 function textToWords(text) {
   text = text.compact();
   return $A(text.split(/ |\n/)).map(function(value) {
-      //value = value.replace(/[^0-9,a-z,A-Z]/gi, '');
-    return wordCacheHash[value] == undefined ? new Word(value, 0, "new") : wordCacheHash[value];
+    word = wordCacheHash[value.hash()];
+    if (word == undefined)
+      return new Word(value, 0, "new");
+    else
+      return new Word(value, word.syllables, word.state);
   });
 }
 function textToLine(text, index){
@@ -109,29 +117,29 @@ function haikuMaster(oldValue, newValue, element) {
     //populate hash of haiku from previous tick
   oldWordHash = $H();  
   textToWords(oldValue).each(function(word){
-    oldWordHash[word.text] = word;
+    oldWordHash[word.text.hash()] = word;
   });
   
   //populate hash of current haiku
   var newWordArray = textToWords(newValue);
   newWordHash = $H();  
   newWordArray.each(function(word){
-    newWordHash[word.text] = word;
+    newWordHash[word.text.hash()] = word;
   });
   
   //get rid of words that were in the cache for one cycle
   wordCacheHash.each(function(kvPair){
      if (kvPair.value.state == "new" && 
-         newWordHash[kvPair.value.text] == undefined) {
-         delete wordCacheHash[kvPair.value.text];
+         newWordHash[kvPair.value.text.hash()] == undefined) {
+         delete wordCacheHash[kvPair.value.text.hash()];
         }
   });  
   
   //ajax any new words left in the cache
     wordSet = "";
     newWordHash.findAll(function(kvPair){
-     return wordCacheHash[kvPair.value.text] != undefined && 
-             wordCacheHash[kvPair.value.text].state == "new";
+     return wordCacheHash[kvPair.value.text.hash()] != undefined && 
+             wordCacheHash[kvPair.value.text.hash()].state == "new";
   }).each(function(kvPair){
       wordSet += (wordSet != "" ? "-" : "") + encodeHaikuWord(kvPair.value.text);
         kvPair.value.state = "requesting";
@@ -144,9 +152,9 @@ function haikuMaster(oldValue, newValue, element) {
 
   //Find the changed words from last cycle
   newWordArray.each(function(word){
-    if (oldWordHash[word.text] != undefined && 
-        wordCacheHash[word.text] == undefined ){
-      wordCacheHash[word.text] = word;
+    if (oldWordHash[word.text.hash()] != undefined && 
+        wordCacheHash[word.text.hash()] == undefined ){
+      wordCacheHash[word.text.hash()] = word;
     }
   });
     
@@ -175,6 +183,6 @@ function renderHaiku(haiku, element){
 function updateWordCacheHash( originalRequest ){
   var response = eval("(" + originalRequest.responseText + ")");
   $A(response).each(function(item){
-        wordCacheHash[item.text] = new Word(item.text, item.syllables, "responded");
+        wordCacheHash[item.text.hash()] = new Word(item.text, item.syllables, "responded");
     });
 }
