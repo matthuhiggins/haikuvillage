@@ -21,7 +21,7 @@ function Word() {
     if (this.state == "responded" && this.syllables > 0)
       Element.addClassName(wordSpan, 'new');
     syllableSup = document.createElement('sup');
-    syllableSup.innerHTML = this.syllables > 0 ? this.syllables : '?';
+    syllableSup.innerHTML = this.syllables > -1 ? this.syllables : '?';
     wordSpan.appendChild(syllableSup);
     return wordSpan;
   }
@@ -37,7 +37,7 @@ function Line() {
 
   this.isCalculating = function(){
     return this.words.any(function(word){
-      return word.syllables < 1;
+      return word.syllables < 0;
     });
   }
 
@@ -87,7 +87,7 @@ function textToWords(text) {
   return $A(text.split(/ |\n/)).map(function(value) {
     word = wordCacheHash[value.hash()];
     if (word == undefined)
-      return new Word(value, 0, "new");
+      return new Word(value, -1, "new");
     else
       return new Word(value, word.syllables, word.state);
   });
