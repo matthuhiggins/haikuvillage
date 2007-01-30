@@ -6,7 +6,7 @@ class Haiku < ActiveRecord::Base
   has_many :happy_users, :through => :haiku_favorites, :source => :user
   has_many :comments, :class_name => "HaikuComment"
 
-  validates_presence_of :title, :line1, :line2, :line3, :user_id
+  validates_presence_of :line1, :line2, :line3, :user_id
 
   def validate
     valid_syllable_counts = [5, 7, 5]

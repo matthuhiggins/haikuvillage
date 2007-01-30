@@ -6,7 +6,6 @@ class MyHaikuController < ApplicationController
   def new
     if request.post?
       @haiku = Haiku.new()
-      @haiku.title = params[:haiku][:title]
       @haiku.text = params[:haiku][:text]
       @haiku.user_id = session[:user_id]
       

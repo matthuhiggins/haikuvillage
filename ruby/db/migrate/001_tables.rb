@@ -1,7 +1,6 @@
 class Tables < ActiveRecord::Migration
   def self.up  
     create_table :haikus do |t|
-      t.column :title, :string, :null => false, :limit => 100
       t.column :line1, :string, :null => false, :limit => 255
       t.column :line2, :string, :null => false, :limit => 255
       t.column :line3, :string, :null => false, :limit => 255

@@ -13,7 +13,7 @@ class Word < ActiveRecord::Base
   private
   
   def count_syllables(wordtext)
-    wordtext = wordtext.gsub(/^[^\w]|[^\w]$|"/, '')
+    wordtext = wordtext.gsub(/^[^\w]+|[^\w]+$|"+/, '')
          
     # ie spiz's or mike's
     if wordtext =~ /'s$/ then
@@ -30,7 +30,6 @@ class Word < ActiveRecord::Base
 
     # ie 546
     elsif wordtext =~ /^[0-9]+$/ then
-      logger.debug("spizm")
       wordtext.en.numwords.split.sum{ |numeric_word| count_syllables(numeric_word) }
       
     # ie 1st or 2nd or 101st
