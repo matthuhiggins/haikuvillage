@@ -1,5 +1,5 @@
 require "lingua/syllable"
-require "lingusitics/linguistics"
+require "linguistics/linguistics.rb"
 Linguistics::use(:en) # extends Array, String, and Numeric
 
 class Word < ActiveRecord::Base
