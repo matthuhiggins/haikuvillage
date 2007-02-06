@@ -63,4 +63,11 @@ class MyHaikuController < ApplicationController
     HaikuComment.delete(params[:id])
     redirect_to :back
   end
+  
+  private
+  
+  def get_sub_menu
+    @sub_menu = %w{ index new tags favorites }
+  end
+  
 end

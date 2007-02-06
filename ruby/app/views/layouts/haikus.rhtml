@@ -39,8 +39,14 @@
       <%= link_to "sign in", login_url %>
     <% end %>
     </div>
-            
-  </div>  
+
+  </div>
+
+  <div id="sub-menu">  
+    <% @sub_menu.each do |action| -%>
+      <%= link_to(action.capitalize, :action => action) %>
+    <% end -%>
+  </div>
 
   <div id="content">
     <h2><%= yield :header %></h2>

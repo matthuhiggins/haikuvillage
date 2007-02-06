@@ -34,5 +34,11 @@ class HaikusController < ApplicationController
     @haikus = HaikuSearch.get_haikus_by_created_at
     render :action => "index"
   end
+  
+  private
+  
+  def get_sub_menu
+    @sub_menu = %w{ index favorites recent }
+  end
     
 end

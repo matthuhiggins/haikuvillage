@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
 
-  before_filter :set_user
+  before_filter :get_sub_menu,:set_user
+  
+  private
+
+  def get_sub_menu
+    @sub_menu = %w{}
+  end
     
   def set_user
     @user = User.find_by_id(session[:user_id])
