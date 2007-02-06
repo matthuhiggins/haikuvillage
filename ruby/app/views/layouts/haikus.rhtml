@@ -29,13 +29,17 @@
       <li><%= link_to "Search", :controller => "search", :action => "index" %></li>
     </ul>
 
-    <div id="login">
-      <% if session[:user_id] -%>
-      <%= link_to "sign in", logout_url %>
-      <% else -%>
-      <%= link_to "sign out", login_url %>
-      <% end %>
+    <div id="user-corner">
+    <% if session[:user_id] -%>
+      welcome <strong><%= @user.username %></strong>
+      <br/>
+      <%= link_to "sign out", logout_url %>
+      
+    <% else -%>
+      <%= link_to "sign in", login_url %>
+    <% end %>
     </div>
+            
   </div>  
 
   <div id="content">

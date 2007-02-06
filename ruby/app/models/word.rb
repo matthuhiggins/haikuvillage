@@ -35,7 +35,6 @@ class Word < ActiveRecord::Base
     # ie 1st or 2nd or 101st
     elsif wordtext =~ /^[0-9]+(st|rd|th)$/ then
       wordtext = wordtext.gsub(/(st|rd|th)$/, '')
-
       if [10,12].include?(wordtext.to_i % 100) || wordtext.to_i % 10 == 0
         count_syllables(wordtext)
       elsif [0,2].include?(wordtext.to_i % 10)

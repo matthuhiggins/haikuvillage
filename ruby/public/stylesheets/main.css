@@ -21,8 +21,7 @@ textarea {
     font: 10pt tahoma;
 }
 
-#login {
-    color: blue;
+#user-corner {
     float: right;
     text-align: right;
 }
