@@ -1,3 +1,3 @@
 page.replace_html("haiku-#{@haiku.id}", :partial => "shared/haiku", :object => @haiku)
 
-page["haiku-#{@haiku.id}-tags"].visual_effect :highlight
+page["haiku-tags-#{@haiku.id}"].visual_effect :highlight
