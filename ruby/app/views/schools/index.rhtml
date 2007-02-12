@@ -1,4 +1,4 @@
-<h1>Listing schools</h1>
+<h1>Available Schools</h1>
 
 <table>
   <tr>
@@ -9,17 +9,16 @@
   </tr>
   
 <% for school in @schools %>
-  <tr>
-    <td><%=h school.name %></td>
-    <td><%=h school.description %></td>
-    <td><%=h school.isadultonly %></td>
-    <td><%=h school.isprivate %></td>
-    <td><%= link_to 'Show', school_path(school) %></td>
-    <td><%= link_to 'Edit', edit_school_path(school) %></td>
-  </tr>
+<h2><%=h school.name %></h2>
+<p><i>
+<% if school.isadultonly %>Adult<% end %>
+<% if school.isprivate %>Private<% end %>
+</i></p>
+<p><%=h school.description %></p>
+<%= link_to 'Show', school_path(school) %> 
+<%= link_to 'Edit', edit_school_path(school) %>
+<br />
 <% end %>
-</table>
-
 <br />
 
 <%= link_to 'New school', new_school_path %>
