@@ -65,8 +65,21 @@ function Line() {
 
 var Haiku = Class.create();
 Haiku.prototype = {
-  initialize: function(element) {
-    this.lines = [];
+  initialize: function(text) {
+    if (text == "") {
+      all_lines = $A([
+        "type your haiku here",
+        "begin the sharing process",
+        "and the lord will rise"]);
+    } else {
+      all_lines = $A(text.split("\n"));
+    }
+  
+    this.lines = all_lines.map(function(line, index){
+      return textToLine(line, index);
+    }).findAll(function(line, index){
+      return index < 3;
+    });
   },
 
   toElement: function(){
@@ -100,25 +113,6 @@ function textToLine(text, index){
   l.words = textToWords(text);
   l.row = index;
   return l;
-}
-
-function textToHaiku(text){
-  if (text == "") {
-    lines = $A([
-      "type your haiku here",
-      "begin the sharing process",
-      "and the lord will rise"]);
-  } else {
-    lines = $A(text.split("\n"));
-  }
-  
-  h = new Haiku();
-  h.lines = lines.map(function(line, index){
-    return textToLine(line, index);
-  }).findAll(function(line, index){
-    return index < 3;
-  });
-  return h;
 }
 
 function encodeHaikuWord(word){
@@ -170,8 +164,8 @@ function haikuMaster(oldValue, newValue, element) {
     }
   });
     
-  newHaiku = textToHaiku(newValue);  
-  oldHaiku = textToHaiku(oldValue);
+  newHaiku = new Haiku(newValue);  
+  oldHaiku = new Haiku(oldValue);
   renderHaiku(newHaiku, element);
        
   return isValidHaiku(newHaiku);
