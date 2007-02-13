@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @group.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @group.description %>
+</p>
+
+<p>
+  <b>Isadultonly:</b>
+  <%=h @group.isadultonly %>
+</p>
+
+<p>
+  <b>Isprivate:</b>
+  <%=h @group.isprivate %>
+</p>
+
+<p><b>Members</b></p>
+<ul>
+<%= render :partial => "user", :collection => @group.users, :locals => { :group => @group } %>
+</ul>
+
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>

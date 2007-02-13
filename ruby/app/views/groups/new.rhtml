@@ -1,8 +1,8 @@
-<h2>New school</h2>
+<h2>New group</h2>
 
-<%= error_messages_for :school %>
+<%= error_messages_for :group %>
 
-<% form_for(:school, :url => schools_path) do |f| %>
+<% form_for(:group, :url => groups_path) do |f| %>
   <p>
     Name<br />
     <%= f.text_field :name %>
@@ -15,12 +15,12 @@
 
   <p>
     <%= f.check_box :isadultonly %>
-    This school contains adult content
+    This group contains adult content
   </p>
 
   <p>
     <%= f.check_box :isprivate %> 
-    This school is private
+    This group is private
   </p>
 
   <p>
@@ -28,4 +28,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', schools_path %>
+<%= link_to 'Back', groups_path %>

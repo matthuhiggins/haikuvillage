@@ -1,0 +1,24 @@
+<h1>Available Groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Isadultonly</th>
+    <th>Isprivate</th>
+  </tr>
+  
+<% for group in @groups %>
+<h2><%=h group.name %></h2>
+<p><i>
+<% if group.isadultonly %>Adult<% end %>
+<% if group.isprivate %>Private<% end %>
+</i></p>
+<p><%=h group.description %></p>
+<%= link_to 'Show', group_path(group) %> 
+<%= link_to 'Edit', edit_group_path(group) %>
+<br />
+<% end %>
+<br />
+
+<%= link_to 'New group', new_group_path %>

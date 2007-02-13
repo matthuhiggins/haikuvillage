@@ -1,8 +1,8 @@
-<h1>Editing school</h1>
+<h1>Editing group</h1>
 
-<%= error_messages_for :school %>
+<%= error_messages_for :group %>
 
-<% form_for(:school, :url => school_path(@school), :html => { :method => :put }) do |f| %>
+<% form_for(:group, :url => school_path(@group), :html => { :method => :put }) do |f| %>
   <p>
     <b>Name</b><br />
     <%= f.text_field :name %>
@@ -28,5 +28,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', school_path(@school) %> |
-<%= link_to 'Back', schools_path %>
+<%= link_to 'Show', group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
