@@ -10,12 +10,15 @@ String.prototype.hash = function() {
 
 var wordCacheHash = $H();
 
-function Word() {
-  this.text = arguments[0];
-  this.syllables = arguments[1];
-  this.state = arguments[2];
+var Word = Class.create();
+Word.prototype = {
+  initialize: function(text, syllables, state) {
+    this.text = text;
+    this.syllables = syllables;
+    this.state = state;
+  },
 
-  this.toElement = function(){
+  toElement: function(){
     wordSpan = document.createElement('span');
     wordSpan.innerHTML = this.text;
     if (this.state == "responded" && this.syllables > 0)
@@ -27,30 +30,44 @@ function Word() {
   }
 }
 
+function textToWords(text) {
+  text = text.compact();
+  return $A(text.split(/ |\n/)).map(function(value) {
+    word = wordCacheHash[value.hash()];
+    if (word == undefined)
+      return new Word(value, -1, "new");
+    else
+      return new Word(value, word.syllables, word.state);
+  });
+}
+
 function isValidSyllables(syllables, row){
   return (syllables == 5 && (row == 0 || row == 2)) || (syllables == 7 && row == 1);
 }
 
-function Line() {
-  this.words = $A();
-  this.row = -1;
+var Line = Class.create();
+Line.prototype = {
+  initialize: function(text, line_number) {
+    this.words = textToWords(text);
+    this.line_number = line_number;
+  },
 
-  this.isCalculating = function(){
+  isCalculating: function(){
     return this.words.any(function(word){
       return word.syllables < 0;
     });
-  }
+  },
 
-  this.syllables = function(){
+  syllables: function(){
     return eval(this.words.map(function(word){
       return word.syllables;
     }).join("+"));
-  }
+  },
     
-  this.toElement = function(){
+  toElement: function(){
     lineDiv = document.createElement('div');
     syllableSpan = document.createElement('span');
-    syllableSpan.addClassName(isValidSyllables(this.syllables(), this.row) ?
+    syllableSpan.addClassName(isValidSyllables(this.syllables(), this.line_number) ?
         'valid-line' : 'invalid-line');
     syllableSpan.addClassName('syllables');
     syllableSpan.innerHTML = (this.isCalculating() ? '?' : this.syllables()) + ' - ';
@@ -75,10 +92,10 @@ Haiku.prototype = {
       all_lines = $A(text.split("\n"));
     }
   
-    this.lines = all_lines.map(function(line, index){
-      return textToLine(line, index);
-    }).findAll(function(line, index){
-      return index < 3;
+    this.lines = all_lines.map(function(text, line_number){
+      return new Line(text, line_number);
+    }).findAll(function(text, line_number){
+      return line_number < 3;
     });
   },
 
@@ -96,23 +113,6 @@ function isValidHaiku(haiku){
     isValidSyllables(haiku.lines[0].syllables(), 0) &&
     isValidSyllables(haiku.lines[1].syllables(), 1) &&
     isValidSyllables(haiku.lines[2].syllables(), 2);
-}
-
-function textToWords(text) {
-  text = text.compact();
-  return $A(text.split(/ |\n/)).map(function(value) {
-    word = wordCacheHash[value.hash()];
-    if (word == undefined)
-      return new Word(value, -1, "new");
-    else
-      return new Word(value, word.syllables, word.state);
-  });
-}
-function textToLine(text, index){
-  l = new Line();
-  l.words = textToWords(text);
-  l.row = index;
-  return l;
 }
 
 function encodeHaikuWord(word){
