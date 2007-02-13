@@ -32,6 +32,10 @@ class Word < ActiveRecord::Base
     elsif wordtext =~ /^[0-9]+$/ then
       wordtext.en.numwords.split.sum{ |numeric_word| count_syllables(numeric_word) }
       
+    # ie 3:15
+    elsif wordtext =~ /^[0-9][1|2]?:[0-5][0-9]$/ then
+      wordtext.split(/:/).sum{ |number| count_syllables(number) }
+
     # ie 1st or 2nd or 101st
     elsif wordtext =~ /^[0-9]+(st|rd|th)$/ then
       wordtext = wordtext.gsub(/(st|rd|th)$/, '')
@@ -41,7 +45,7 @@ class Word < ActiveRecord::Base
         count_syllables(wordtext) + 1
       else
         count_syllables(wordtext)        
-      end      
+      end
 
     # ie r2d2, v12
     elsif wordtext =~ /[a-zA-Z][0-9]|[0-9][a-zA-Z]/
