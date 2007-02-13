@@ -28,7 +28,7 @@ class Tables < ActiveRecord::Migration
       t.column :created_at, :datetime, :null => false
     end
     
-   create_table :schools do |t|
+   create_table :groups do |t|
       t.column :name, :string, :null => false, :limit => 100
       t.column :description, :string, :null => false, :limit => 1000
       t.column :isadultonly, :boolean, :null => false
@@ -36,14 +36,14 @@ class Tables < ActiveRecord::Migration
       t.column :created_at, :datetime, :null => false
     end
     
-    create_table :school_haikus, :id => false do |t|
-      t.column :school_id, :integer, :null => false
+    create_table :group_haikus, :id => false do |t|
+      t.column :group_id, :integer, :null => false
       t.column :haiku_id, :integer, :null => false
       t.column :created_at, :datetime, :null => false
     end
     
-    create_table :school_users, :id => false do |t|
-      t.column :school_id, :integer, :null => false
+    create_table :group_users, :id => false do |t|
+      t.column :group_id, :integer, :null => false
       t.column :user_id, :integer, :null => false
       t.column :user_type, :string, :null => false
     end    
@@ -76,9 +76,9 @@ class Tables < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :schools
-    drop_table :school_haikus
-    drop_table :school_users
+    drop_table :groups
+    drop_table :group_haikus
+    drop_table :group_users
     drop_table :haikus
     drop_table :haiku_comments
     drop_table :haiku_favorites

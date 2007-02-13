@@ -16,11 +16,11 @@ class ForeignKeys < ActiveRecord::Migration
     add_foreign_key :haiku_tags, :haiku_id, :haikus
     add_foreign_key :haiku_tags, :tag_id, :tags
 
-    add_foreign_key :school_haikus, :school_id, :schools
-    add_foreign_key :school_haikus, :haiku_id, :haikus
+    add_foreign_key :group_haikus, :group_id, :groups
+    add_foreign_key :group_haikus, :haiku_id, :haikus
     
-    add_foreign_key :school_users, :school_id, :schools
-    add_foreign_key :school_users, :user_id, :users
+    add_foreign_key :group_users, :group_id, :groups
+    add_foreign_key :group_users, :user_id, :users
     
     add_foreign_key :user_logins, :user_id, :users
     
@@ -29,11 +29,11 @@ class ForeignKeys < ActiveRecord::Migration
   end
 
   def self.down
-    remove_foreign_key :school_haikus, :school_id
-    remove_foreign_key :school_haikus, :haiku_id
+    remove_foreign_key :group_haikus, :group_id
+    remove_foreign_key :group_haikus, :haiku_id
     
-    remove_foreign_key :school_users, :school_id
-    remove_foreign_key :school_users, :user_id
+    remove_foreign_key :group_users, :group_id
+    remove_foreign_key :group_users, :user_id
     
     remove_foreign_key :haikus, :user_id
     
