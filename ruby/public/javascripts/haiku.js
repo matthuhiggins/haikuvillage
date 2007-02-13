@@ -63,16 +63,19 @@ function Line() {
   }
 }
 
-function Haiku(){
-  this.lines = null;
+var Haiku = Class.create();
+Haiku.prototype = {
+  initialize: function(element) {
+    this.lines = [];
+  },
 
-  this.toElement = function(){
+  toElement: function(){
     haikuDiv = document.createElement('div');
     this.lines.each(function(line, index){
       haikuDiv.appendChild(line.toElement());
     });
     return haikuDiv;
-  } 
+  }
 }
 
 function isValidHaiku(haiku){
@@ -100,8 +103,17 @@ function textToLine(text, index){
 }
 
 function textToHaiku(text){
+  if (text == "") {
+    lines = $A([
+      "type your haiku here",
+      "begin the sharing process",
+      "and the lord will rise"]);
+  } else {
+    lines = $A(text.split("\n"));
+  }
+  
   h = new Haiku();
-  h.lines = $A(text.split("\n")).map(function(line, index){
+  h.lines = lines.map(function(line, index){
     return textToLine(line, index);
   }).findAll(function(line, index){
     return index < 3;
