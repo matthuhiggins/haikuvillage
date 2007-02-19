@@ -1,17 +1,24 @@
-// Both strips and converts multiple spaces to one.
-String.prototype.compact = function() {
-  return this.replace(/\n +/, '\n').replace(/ +/g, ' ').replace(/^\s+|\s+$/, '');
-};
-
-String.prototype.hash = function() {
-  return '@' + this.replace(/^[^\w]|[^\w]$/, '');
-};
-
+Object.extend(String.prototype, {
+  compact: function() {
+    return this.replace(/\n +/, '\n').replace(/ +/g, ' ').replace(/^\s+|\s+$/, '');  
+  },
+  
+  hash: function() {
+    return '@' + this.replace(/^[^\w]|[^\w]$/, '');
+  }
+});
 
 var wordCacheHash = $H();
 
 var Word = Class.create();
-Word.prototype = {
+Object.extend(Word, {
+  COMPLETE: 'complete',
+  NEW: 'new',
+  REQUESTING: 'requesting',
+  RESPONDED: 'responded'
+});
+
+Object.extend(Word.prototype, {
   initialize: function(text, syllables, state) {
     this.text = text;
     this.syllables = syllables;
@@ -21,21 +28,21 @@ Word.prototype = {
   toElement: function(){
     wordSpan = document.createElement('span');
     wordSpan.innerHTML = this.text;
-    if (this.state == "responded" && this.syllables > 0)
-      Element.addClassName(wordSpan, 'new');
+    if (this.state == Word.RESPONDED && this.syllables > 0)
+      Element.addClassName(wordSpan, Word.NEW);
     syllableSup = document.createElement('sup');
     syllableSup.innerHTML = this.syllables > -1 ? this.syllables : '?';
     wordSpan.appendChild(syllableSup);
     return wordSpan;
   }
-}
+});
 
 function textToWords(text) {
   text = text.compact();
   return $A(text.split(/ |\n/)).map(function(value) {
     word = wordCacheHash[value.hash()];
     if (word == undefined)
-      return new Word(value, -1, "new");
+      return new Word(value, -1, Word.NEW);
     else
       return new Word(value, word.syllables, word.state);
   });
@@ -57,7 +64,7 @@ Line.prototype = {
       return word.syllables < 0;
     });
   },
-
+  
   syllables: function(){
     return eval(this.words.map(function(word){
       return word.syllables;
@@ -120,7 +127,7 @@ function encodeHaikuWord(word){
 }
 
 function haikuMaster(oldValue, newValue, element) {
-    //populate hash of haiku from previous tick
+  // populate hash of haiku from previous tick
   oldWordHash = $H();  
   textToWords(oldValue).each(function(word){
     oldWordHash[word.text.hash()] = word;
@@ -135,20 +142,20 @@ function haikuMaster(oldValue, newValue, element) {
   
   //get rid of words that were in the cache for one cycle
   wordCacheHash.each(function(kvPair){
-     if (kvPair.value.state == "new" && 
+     if (kvPair.value.state == Word.NEW && 
          newWordHash[kvPair.value.text.hash()] == undefined) {
-         delete wordCacheHash[kvPair.value.text.hash()];
-        }
+       delete wordCacheHash[kvPair.value.text.hash()];
+     }
   });  
   
   //ajax any new words left in the cache
     wordSet = "";
     newWordHash.findAll(function(kvPair){
      return wordCacheHash[kvPair.value.text.hash()] != undefined && 
-             wordCacheHash[kvPair.value.text.hash()].state == "new";
+             wordCacheHash[kvPair.value.text.hash()].state == Word.NEW;
   }).each(function(kvPair){
       wordSet += (wordSet != "" ? "-" : "") + encodeHaikuWord(kvPair.value.text);
-        kvPair.value.state = "requesting";
+        kvPair.value.state = Word.REQUESTING;
   });
     if (wordSet != "")
         new Ajax.Request("/syllables/" + wordSet + ".json", {
@@ -165,7 +172,6 @@ function haikuMaster(oldValue, newValue, element) {
   });
     
   newHaiku = new Haiku(newValue);  
-  oldHaiku = new Haiku(oldValue);
   renderHaiku(newHaiku, element);
        
   return isValidHaiku(newHaiku);
@@ -178,17 +184,17 @@ function renderHaiku(haiku, element){
   document.getElementsByClassName("new", element).each(function(element) {
       new Effect.Highlight(element, {startcolor: '#77db08'});
     });
-    
+  
   wordCacheHash.each(function(kvPair){
-     if ( kvPair.value.state == "responded"){
-      kvPair.value.state = "static";
+     if (kvPair.value.state == Word.RESPONDED){
+      kvPair.value.state = Word.COMPLETE;
      }
   });
 }
 
-function updateWordCacheHash( originalRequest ){
+function updateWordCacheHash(originalRequest){
   var response = eval("(" + originalRequest.responseText + ")");
   $A(response).each(function(item){
-        wordCacheHash[item.text.hash()] = new Word(item.text, item.syllables, "responded");
+        wordCacheHash[item.text.hash()] = new Word(item.text, item.syllables, Word.RESPONDED);
     });
 }
