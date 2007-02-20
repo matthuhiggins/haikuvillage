@@ -7,7 +7,7 @@ Object.extend(String.prototype, {
     return '@' + this.replace(/^[^\w]|[^\w]$/, '');
   },
   
-  mixin: function(object) {
+  format: function(object) {
     return new Template(this).evaluate(object);
   }
 });
@@ -35,7 +35,7 @@ Word.prototype = {
 
   toHTML: function(){
     return "<span class=#{state}>#{text}<sup>#{syllables}</sup></span>"
-        .mixin({state: this.state,
+        .format({state: this.state,
                 text: this.text,
                 syllables: this.syllables > -1 ? this.syllables : '?'});
   }
@@ -77,7 +77,7 @@ Line.prototype = {
   },
     
   toHTML: function(){
-    return "<div><span class=\"syllables #{valid}\">#{syllables} - </span>#{text}</div>".mixin(
+    return "<div><span class=\"syllables #{valid}\">#{syllables} - </span>#{text}</div>".format(
         {valid: this.isValid() ? 'valid-line' : 'invalid-line',
          syllables: this.isCalculating() ? '?' : this.syllables(),
          text: this.words.map(function(word){return word.toHTML();}).join(' ')});
@@ -111,7 +111,7 @@ Haiku.prototype = {
   },
 
   toHTML: function(){
-    return "<div>#{lines}</div>".mixin(
+    return "<div>#{lines}</div>".format(
         {lines: this.lines.map(function(line){return line.toHTML();}).join(' ')});
   }
 }
