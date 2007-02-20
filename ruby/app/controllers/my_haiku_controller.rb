@@ -29,6 +29,10 @@ class MyHaikuController < ApplicationController
     render :action => "index"
   end
   
+  def groups
+    @groups = User.find(session[:user_id]).groups
+  end
+  
   def tags
     @tags = Tag.get_tags_for_user(session[:user_id])
   end
