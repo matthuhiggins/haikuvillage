@@ -1,10 +1,14 @@
 Object.extend(String.prototype, {
   compact: function() {
-    return this.replace(/\n +/, '\n').replace(/ +/g, ' ').replace(/^\s+|\s+$/, '');  
+    return this.escapeHTML().replace(/\n +/, '\n').replace(/ +/g, ' ').strip();  
   },
   
   hash: function() {
     return '@' + this.replace(/^[^\w]|[^\w]$/, '');
+  },
+  
+  mixin: function(object) {
+    return new Template(this).evaluate(object);
   }
 });
 
@@ -18,24 +22,24 @@ Object.extend(Word, {
   RESPONDED: 'responded'
 });
 
-Object.extend(Word.prototype, {
+Word.prototype = {
   initialize: function(text, syllables, state) {
     this.text = text;
     this.syllables = syllables;
     this.state = state;
   },
+  
+  encoded: function(){
+    return encodeURIComponent(this.text.replace(/\./g, '%2e').replace(/\-/g, '%2d'));
+  },  
 
-  toElement: function(){
-    wordSpan = document.createElement('span');
-    wordSpan.innerHTML = this.text;
-    if (this.state == Word.RESPONDED && this.syllables > 0)
-      Element.addClassName(wordSpan, Word.NEW);
-    syllableSup = document.createElement('sup');
-    syllableSup.innerHTML = this.syllables > -1 ? this.syllables : '?';
-    wordSpan.appendChild(syllableSup);
-    return wordSpan;
+  toHTML: function(){
+    return "<span class=#{state}>#{text}<sup>#{syllables}</sup></span>"
+        .mixin({state: this.state,
+                text: this.text,
+                syllables: this.syllables > -1 ? this.syllables : '?'});
   }
-});
+}
 
 function textToWords(text) {
   text = text.compact();
@@ -46,10 +50,6 @@ function textToWords(text) {
     else
       return new Word(value, word.syllables, word.state);
   });
-}
-
-function isValidSyllables(syllables, row){
-  return (syllables == 5 && (row == 0 || row == 2)) || (syllables == 7 && row == 1);
 }
 
 var Line = Class.create();
@@ -70,20 +70,17 @@ Line.prototype = {
       return word.syllables;
     }).join("+"));
   },
+  
+  isValid: function(){
+    return (this.syllables() == 5 && (this.line_number == 0 || this.line_number == 2)) 
+        || (this.syllables() == 7 && this.line_number == 1);
+  },
     
-  toElement: function(){
-    lineDiv = document.createElement('div');
-    syllableSpan = document.createElement('span');
-    syllableSpan.addClassName(isValidSyllables(this.syllables(), this.line_number) ?
-        'valid-line' : 'invalid-line');
-    syllableSpan.addClassName('syllables');
-    syllableSpan.innerHTML = (this.isCalculating() ? '?' : this.syllables()) + ' - ';
-    lineDiv.appendChild(syllableSpan);
-    this.words.each(function(word){
-      lineDiv.appendChild(word.toElement());
-      lineDiv.innerHTML += " ";
-    });
-    return lineDiv;
+  toHTML: function(){
+    return "<div><span class=\"syllables #{valid}\">#{syllables} - </span>#{text}</div>".mixin(
+        {valid: this.isValid() ? 'valid-line' : 'invalid-line',
+         syllables: this.isCalculating() ? '?' : this.syllables(),
+         text: this.words.map(function(word){return word.toHTML();}).join(' ')});
   }
 }
 
@@ -105,25 +102,18 @@ Haiku.prototype = {
       return line_number < 3;
     });
   },
-
-  toElement: function(){
-    haikuDiv = document.createElement('div');
-    this.lines.each(function(line, index){
-      haikuDiv.appendChild(line.toElement());
+  
+  isValid: function(){
+    return this.lines.length == 3 &&
+    this.lines.all(function(line){
+      return line.isValid();
     });
-    return haikuDiv;
+  },
+
+  toHTML: function(){
+    return "<div>#{lines}</div>".mixin(
+        {lines: this.lines.map(function(line){return line.toHTML();}).join(' ')});
   }
-}
-
-function isValidHaiku(haiku){
-  return haiku.lines.length == 3 &&
-    isValidSyllables(haiku.lines[0].syllables(), 0) &&
-    isValidSyllables(haiku.lines[1].syllables(), 1) &&
-    isValidSyllables(haiku.lines[2].syllables(), 2);
-}
-
-function encodeHaikuWord(word){
-  return encodeURIComponent(word.replace(/\./g, '%2e').replace(/\-/g, '%2d'));
 }
 
 function haikuMaster(oldValue, newValue, element) {
@@ -142,7 +132,7 @@ function haikuMaster(oldValue, newValue, element) {
       return wordCacheHash[word.text.hash()] != undefined && 
           wordCacheHash[word.text.hash()].state == Word.NEW;
   }).each(function(word){
-      wordSet += (wordSet != "" ? "-" : "") + encodeHaikuWord(word.text);
+      wordSet += (wordSet != "" ? "-" : "") + word.encoded();
       word.state = Word.REQUESTING;
   });
   
@@ -162,14 +152,13 @@ function haikuMaster(oldValue, newValue, element) {
   newHaiku = new Haiku(newValue);  
   renderHaiku(newHaiku, element);
        
-  return isValidHaiku(newHaiku);
+  return newHaiku.isValid();
 }
 
 function renderHaiku(haiku, element){
-  element.innerHTML = "";
-  element.appendChild(haiku.toElement());
+  element.innerHTML = haiku.toHTML();
   
-  document.getElementsByClassName("new", element).each(function(element) {
+  document.getElementsByClassName(Word.RESPONDED, element).each(function(element) {
       new Effect.Highlight(element, {startcolor: '#77db08'});
     });
   
