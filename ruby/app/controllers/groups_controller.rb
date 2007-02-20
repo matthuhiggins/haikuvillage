@@ -82,4 +82,9 @@ class GroupsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  #user should only be able to hit this if they're signed-in
+  def join
+    @group = Group.find(params[:id])
+    @user
 end

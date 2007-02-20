@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
   
+  def is_subscribed_to( group )
+    self.groups.include?(group)
+  end
+  
   private
   
   def self.encrypted_password(password, salt)
