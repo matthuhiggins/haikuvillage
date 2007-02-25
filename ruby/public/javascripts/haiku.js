@@ -116,6 +116,15 @@ Haiku.prototype = {
   }
 }
 
+Haiku.PeriodicalUpdater = Classe.create();
+Object.extend(Haiku.PeriodicalUpdater.prototype, PeriodicalExecuter.prototype)
+Object.extend(Haiku.PeriodicalUpdater.prototype, {
+  initialize: function(textArea, previewElement) {
+    this.textArea = textArea;
+    this.previewElement = previewElement;
+  }
+});
+
 function haikuMaster(oldValue, newValue, element) {
   // populate hash of haiku from previous tick
   oldWordHash = $H();  
@@ -162,9 +171,9 @@ function renderHaiku(haiku, element){
       new Effect.Highlight(element, {startcolor: '#77db08'});
     });
   
-  wordCacheHash.each(function(kvPair){
-     if (kvPair.value.state == Word.RESPONDED){
-      kvPair.value.state = Word.COMPLETE;
+  wordCacheHash.pluck('value').each(function(word){
+     if (word.state == Word.RESPONDED){
+      word.state = Word.COMPLETE;
      }
   });
 }
