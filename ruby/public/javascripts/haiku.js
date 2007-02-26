@@ -127,7 +127,7 @@ Object.extend(Haiku.PeriodicalUpdater.prototype, {
 
 function haikuMaster(oldValue, newValue, element) {
   // populate hash of haiku from previous tick
-  oldWordHash = $H();  
+  oldWordHash = $H();
   textToWords(oldValue).each(function(word){
     oldWordHash[word.text.hash()] = word;
   });
@@ -171,7 +171,7 @@ function renderHaiku(haiku, element){
       new Effect.Highlight(element, {startcolor: '#77db08'});
     });
   
-  wordCacheHash.pluck('value').each(function(word){
+  wordCacheHash.values().each(function(word){
      if (word.state == Word.RESPONDED){
       word.state = Word.COMPLETE;
      }
