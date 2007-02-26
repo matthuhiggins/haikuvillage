@@ -1,19 +1,6 @@
 <div id="preview">
 </div>
 
-<%= hidden_field_tag "lastHaiku"  %>
 <script type="text/javascript">
-  oldIsValid = false;
-  newIsValid = false;
-  new PeriodicalExecuter(function() {
-      oldIsValid = newIsValid;
-      newIsValid = haikuMaster($F("lastHaiku"), $F("haiku_text"), $("preview"));
-      
-      if (!oldIsValid && newIsValid)
-	      $("preview").morph('background:#080;color:#fff');
-	  else if (oldIsValid && !newIsValid)
-	      $("preview").morph('background:#fff; color:#000');
-
-      $("lastHaiku").value = $F("haiku_text");
-    }, 0.4);
+  new Haiku.PeriodicalUpdater("haiku_text", "preview");
 </script>
