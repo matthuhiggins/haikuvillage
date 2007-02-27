@@ -1,0 +1,25 @@
+<% for haiku in @haikus %>
+  <div style="cursor:move;border:1px solid black;float:left" class="haiku">
+    <div class="haiku-line"><%= h(haiku.line1) %></div>
+    <div class="haiku-line"><%= h(haiku.line2) %></div>
+    <div class="haiku-line"><%= h(haiku.line3) %></div>
+  </div>
+<% end %>
+  
+<script>
+  document.getElementsByClassName("haiku", document).each(function(haiku){
+    new Draggable(haiku, {
+        revert: true });
+  });
+</script>
+
+<div id="target" style="clear:both;width:100%;height:500px;border:1px solid black;">
+</div>
+
+
+<script>
+  Droppables.add("target", {
+      accept: 'haiku',
+      onDrop: function(element) 
+          { $("target").appendChild(element); }});
+</script>
