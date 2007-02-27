@@ -12,8 +12,6 @@ Object.extend(String.prototype, {
   }
 });
 
-//var wordCacheHash = $H();
-
 var Word = Class.create();
 Object.extend(Word, {
   COMPLETE: 'complete',

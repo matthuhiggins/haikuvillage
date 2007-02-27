@@ -70,7 +70,7 @@ class MyHaikuController < ApplicationController
   private
   
   def get_sub_menu
-    @sub_menu = %w{ index new tags favorites }
+    @sub_menu = %w{ index new tags favorites set }
   end
   
 end
