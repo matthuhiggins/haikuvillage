@@ -30,7 +30,11 @@ class MyHaikuController < ApplicationController
   
   def index
     @haikus = Haiku.find(:all, :conditions => {:user_id => session[:user_id]}, :limit => 10)
-  end    
+  end
+  
+  def sets
+    @haikus = Haiku.find(:all, :conditions => {:user_id => session[:user_id]})    
+  end
   
   def tags
     @tags = Tag.get_tags_for_user(session[:user_id])
@@ -70,7 +74,7 @@ class MyHaikuController < ApplicationController
   private
   
   def get_sub_menu
-    @sub_menu = %w{ index new tags favorites set }
+    @sub_menu = %w{ index new tags favorites sets }
   end
   
 end
