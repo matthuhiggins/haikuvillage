@@ -158,18 +158,18 @@ Haiku.PeriodicalUpdater.prototype = {
     });
     
     // render the haiku
-    newHaiku = new Haiku($F(this.textArea), wordInfo);    
+    newHaiku = new Haiku($F(this.textArea), wordInfo);
     $(this.previewElement).innerHTML = newHaiku.toHTML();  
     document.getElementsByClassName(Word.RESPONDED, $(this.previewElement)).each(function(element) {
       new Effect.Highlight(element, {startcolor: '#77db08'});
     });
-  
+    
     wordInfo.values().each(function(word){
         if (word.state == Word.RESPONDED){
           word.state = Word.COMPLETE;
         }
     });
-    
+
     this.lastHaikuText = $F(this.textArea);
   }
 }
