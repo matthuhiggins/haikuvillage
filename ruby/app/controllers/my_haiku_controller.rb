@@ -14,15 +14,10 @@ class MyHaikuController < ApplicationController
         flash[:notice] = "great success"
         redirect_to :action => 'index'
       else
-        logger.debug("done saving")
+        logger.debug("failed to save")
       end
     end
   end  
-  
-  def add_haiku_to_favorites
-    @haiku = Haiku.find(params[:id])
-    @haiku.haiku_favorites.create(:user_id => session[:user_id])
-  end
   
   def favorites
     @haikus = User.find(session[:user_id]).favorites
@@ -33,13 +28,18 @@ class MyHaikuController < ApplicationController
     @groups = User.find(session[:user_id]).groups
   end
   
+  def index
+    @haikus = Haiku.find(:all, :conditions => {:user_id => session[:user_id]}, :limit => 10)
+  end    
+  
   def tags
     @tags = Tag.get_tags_for_user(session[:user_id])
   end
   
-  def index
-    @haikus = Haiku.find(:all, :conditions => {:user_id => session[:user_id]}, :limit => 10)
-  end    
+  def add_haiku_to_favorites
+    @haiku = Haiku.find(params[:id])
+    @haiku.haiku_favorites.create(:user_id => session[:user_id])
+  end
   
   def remove_haiku_from_favorites
     HaikuFavorite.delete_all("user_id = #{session[:user_id]} and haiku_id = #{params[:id]}")
@@ -55,9 +55,8 @@ class MyHaikuController < ApplicationController
   end
   
   def add_comment
-    @haiku = Haiku.find(params[:haiku][:id])
-    comment = @haiku.comments.new(params[:comment])
-    comment.haiku = @haiku
+    comment = comments.new(params[:comment])
+    comment.haiku = params[:haiku][:id]
     comment.user_id = session[:user_id]
     comment.save
     redirect_to :back
