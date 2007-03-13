@@ -1,19 +1,10 @@
-<h1>Available Groups</h1>
-  
-<% for group in @groups %>
-  <h2><%=h group.name %></h2>
-  <p><i>
-  <% if group.isadultonly %>Adult<% end %>
-  <% if group.isprivate %>Private<% end %>
-  </i></p>
-  <p><%=h group.description %></p>
-  <%= link_to 'Show', group_path(group) %> 
-  <%= link_to 'Edit', edit_group_path(group) %>
-  <% if session[:user_id] && !@user.is_subscribed_to( group ) %>
-  <%= link_to 'Join', :action => 'join', :id => group %>
-  <% end %>
-  <br />
+<% if session[:user_id] %>
+<h1>Groups you administer:</h1>
+<%= render :partial => "group", :collection => @user.groups %>
 <% end %>
+
+<h1>Available Groups</h1>
+<%= render :partial => "group", :collection => @groups %>
 <br />
 
 <%= link_to 'New group', new_group_path %>

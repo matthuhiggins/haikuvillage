@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     self.groups.include?(group)
   end
   
+  def administers( group )
+    is_subscribed_to( group ) && self.group_users.find(:first, :conditions => ["group_id = ?", group.id]).user_type == "admin"
+  end
+  
   private
   
   def self.encrypted_password(password, salt)

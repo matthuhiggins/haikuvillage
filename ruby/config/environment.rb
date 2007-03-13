@@ -58,3 +58,6 @@ end
 # end
 
 # Include your application configuration below
+#require 'ferret'
+#require 'acts_as_ferret'
+

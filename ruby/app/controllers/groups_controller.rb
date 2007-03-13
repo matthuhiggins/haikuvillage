@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-    @groups = Group.find(:all)
+    @groups = Group.find(:all, :limit => 20)
 
     respond_to do |format|
       format.html # index.rhtml
@@ -87,4 +87,5 @@ class GroupsController < ApplicationController
   def join
     @group = Group.find(params[:id])
     @user
+  end
 end
