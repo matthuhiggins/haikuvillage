@@ -1,4 +1,7 @@
 class Haiku < ActiveRecord::Base
+  after_destroy :destroy_index
+  after_save :save_index
+
   belongs_to :user
   has_many :haiku_tags
   has_many :tags, :through => :haiku_tags
@@ -34,6 +37,12 @@ class Haiku < ActiveRecord::Base
   end
 
   private
+  
+  def destroy_index  
+  end
+  
+  def save_index  
+  end
   
   def get_line_text(line_number)
     read_attribute("line#{number}")
