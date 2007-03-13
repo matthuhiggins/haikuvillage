@@ -64,12 +64,10 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haiku_tags", ["created_at", "tag_id"], :name => "index_haiku_tags_on_created_at_and_tag_id"
 
   create_table "haikus", :force => true do |t|
-    t.column "line1",                 :string,   :default => "", :null => false
-    t.column "line2",                 :string,   :default => "", :null => false
-    t.column "line3",                 :string,   :default => "", :null => false
-    t.column "user_id",               :integer,                  :null => false
-    t.column "haiku_favorites_count", :integer,  :default => 0,  :null => false
-    t.column "created_at",            :datetime,                 :null => false
+    t.column "text",                  :string,   :limit => 765, :default => "", :null => false
+    t.column "user_id",               :integer,                                 :null => false
+    t.column "haiku_favorites_count", :integer,                 :default => 0,  :null => false
+    t.column "created_at",            :datetime,                                :null => false
   end
 
   add_index "haikus", ["user_id"], :name => "index_haikus_on_user_id"

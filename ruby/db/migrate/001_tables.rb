@@ -1,9 +1,7 @@
 class Tables < ActiveRecord::Migration
   def self.up  
     create_table :haikus do |t|
-      t.column :line1, :string, :null => false, :limit => 255
-      t.column :line2, :string, :null => false, :limit => 255
-      t.column :line3, :string, :null => false, :limit => 255
+      t.column :text, :string, :null => false, :limit => 765
       t.column :user_id, :integer, :null => false
       t.column :haiku_favorites_count, :integer, :null => false, :default => 0
       t.column :created_at, :datetime, :null => false
