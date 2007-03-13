@@ -118,8 +118,7 @@ Haiku.PeriodicalUpdater.prototype = {
   },
   
   updateWordCacheHash: function (originalRequest){
-    var response = eval("(" + originalRequest.responseText + ")");
-    $A(response).each((function(word){           
+    $A(originalRequest.responseText.evalJSON()).each((function(word){           
         this.wordInfo[word.text.hash()] = new Word(word.text, word.syllables, Word.RESPONDED);
     }).bind(this));
   },
