@@ -6,15 +6,6 @@ class HaikusController < ApplicationController
     @haikus = HaikuSearch.get_haikus
   end
   
-  def show
-    @haiku = Haiku.find(params[:id])
-  end
-    
-  def delete
-    Haiku.find(params[:id]).destroy
-    redirect_to :action => 'index'
-  end
-  
   def tags
     if params[:id]
       @haikus = HaikuSearch.get_haikus_by_tag_name(params[:id])
@@ -33,6 +24,12 @@ class HaikusController < ApplicationController
   def recent
     @haikus = HaikuSearch.get_haikus_by_created_at
     render :action => "index"
+  end
+  
+  def search
+    if request.post? and not params[:search].blank?
+      @haikus = Haiku.find_by_contents(params[:search])
+    end
   end
   
   private

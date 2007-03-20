@@ -1,0 +1,6 @@
+<% form_for :search, :html => {:id => 'search_form'} do |form| %>
+  <p>
+    <%= text_area 'search', 'search', :cols => 40, :rows => 1  %>
+  </p>
+  <%= submit_tag("Search", :id => "search") %>
+<% end %>
