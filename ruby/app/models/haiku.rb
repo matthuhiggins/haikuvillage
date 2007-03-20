@@ -18,10 +18,10 @@ class Haiku < ActiveRecord::Base
     if split_lines.length != 3
       errors.add("Need three lines")
     else
-      valid_syllable_counts.each do |line_number|
-        line = Line.new(split_lines[line_number])
-        if line.syllables != valid_syllable_counts[line_number]
-          errors.add("line #{line_number} is invalid")
+      for line_index in 0..2
+        line = Line.new(split_lines[line_index])
+        if line.syllables != valid_syllable_counts[line_index]
+          errors.add("line #{line_index} is invalid")
         end
       end
     end
