@@ -13,7 +13,7 @@ class LoginController < ApplicationController
     end
   end
   
-  def register
+  def register    
     if params['cancel']
       redirect_to :action => 'index'
     else

@@ -6,7 +6,7 @@
   <title>Haikus: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'haiku' %>
   <%= stylesheet_link_tag 'main' %>
-  <%= stylesheet_link_tag 'menu' %>  
+  <%= stylesheet_link_tag 'menu' %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "haiku" %>
 </head>
@@ -38,14 +38,9 @@
       <%= link_to "sign in", login_url %>
     <% end %>
     </div>
-
   </div>
-
-  <div id="sub-menu">  
-    <% @sub_menu.each do |action| -%>
-      <%= link_to(action.capitalize, :action => action) %>
-    <% end -%>
-  </div>
+  
+  <%= render :partial => "shared/sub_menu" %>
 
   <div id="content">
     <h2><%= yield :header %></h2>
