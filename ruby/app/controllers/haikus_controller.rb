@@ -28,14 +28,14 @@ class HaikusController < ApplicationController
   
   def search
     if request.post? and not params[:search].blank?
-      @haikus = Haiku.find_by_contents(params[:search])
+      @haikus = Haiku.find_by_contents(params[:search][:text])
     end
   end
   
   private
   
   def get_sub_menu
-    @sub_menu = %w{ index favorites recent }
+    @sub_menu = %w{ index favorites recent search }
   end
     
 end
