@@ -138,7 +138,7 @@ Haiku.PeriodicalUpdater.prototype = {
             wordInfo[word.text.hash()].state == Word.NEW;
     }).each(function(word){
         wordSet += (wordSet != "" ? "-" : "") + word.encoded();
-        word.state = Word.REQUESTING;
+        wordInfo[word.text.hash()].state = Word.REQUESTING;
     });
     
     if (wordSet != "") {
