@@ -58,5 +58,4 @@ end
 # end
 
 # Include your application configuration below
-#require 'ferret/lib/ferret'
-#require 'ferret'
+require 'ferret'
