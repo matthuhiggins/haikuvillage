@@ -1,6 +1,5 @@
 class Haiku < ActiveRecord::Base
-  after_destroy :destroy_index
-  after_save :save_index
+  acts_as_ferret :fields => [:text]
 
   belongs_to :user
   has_many :haiku_tags
@@ -25,14 +24,5 @@ class Haiku < ActiveRecord::Base
         end
       end
     end
-  end
-
-  private
-  
-  def destroy_index  
-  end
-  
-  def save_index  
-  end
-  
+  end  
 end
