@@ -1,3 +1,4 @@
 <% if @haikus %>
   <%= render(:partial => "shared/haiku", :collection => @haikus) %>
+  <%= render(:partial => "shared/paginate", :locals => {:collection => @haikus }) -%>
 <% end %>
