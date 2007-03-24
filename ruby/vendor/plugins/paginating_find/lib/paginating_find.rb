@@ -14,7 +14,7 @@ module PaginatingFind
   end
 
   module ClassMethods
-    DEFAULT_PAGE_SIZE = 10
+    DEFAULT_PAGE_SIZE = 4
     VALID_COUNT_OPTIONS = [:select, :conditions, :joins, :distinct, :include, :having, :group]
     
     # Enhancements to Base find method to support record paging. The :page option

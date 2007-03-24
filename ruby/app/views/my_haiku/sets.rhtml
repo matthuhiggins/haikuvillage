@@ -1,8 +1,8 @@
 <% for haiku in @haikus %>
   <div style="cursor:move;border:1px solid black;float:left" class="haiku">
-    <div class="haiku-line"><%= h(haiku.line1) %></div>
-    <div class="haiku-line"><%= h(haiku.line2) %></div>
-    <div class="haiku-line"><%= h(haiku.line3) %></div>
+    <% for line in haiku.text.split("\n") %>
+      <div class="haiku-line"><%= h(line) %></div>
+    <% end %>
   </div>
 <% end %>
   

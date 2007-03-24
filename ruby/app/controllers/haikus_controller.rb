@@ -3,7 +3,8 @@ class HaikusController < ApplicationController
          :redirect_to => { :action => :list }
 
   def index
-    @haikus = Haiku.find(:all, :page => {})
+    @haikus = Haiku.find(:all, 
+                         :page => {:current => params[:page]})
   end
   
   def tags
@@ -17,15 +18,15 @@ class HaikusController < ApplicationController
   end
   
   def favorites
-    @haikus = Haiku.find( :all,
-                          :page => {},
-                          :order => "haiku_favorites_count desc")
+    @haikus = Haiku.find(:all,
+                         :page => {:curent => params[:page]},
+                         :order => "haiku_favorites_count desc")
     render :action => "index"
   end
   
   def recent
     @haikus = Haiku.find(:all, 
-                         :page => {},
+                         :page => {:curent => params[:page]},
                          :order => "created_at desc")
     render :action => "index"
   end
