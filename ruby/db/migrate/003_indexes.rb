@@ -22,7 +22,7 @@ class Indexes < ActiveRecord::Migration
     add_index :group_haikus, [:haiku_id, :group_id]
     
     add_index :group_users, [:group_id, :user_id], :unique => true
-    add_index :group_users, [:user_id, :group_id]  
+    add_index :group_users, [:user_id, :group_id]
 
     add_index :tags, :name, :unique => true
     add_index :tags, :haiku_tags_count

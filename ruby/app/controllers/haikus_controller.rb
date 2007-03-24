@@ -31,8 +31,11 @@ class HaikusController < ApplicationController
   end
   
   def search
-    if request.post? and not params[:search].blank?
-      @haikus = Haiku.find_by_contents(params[:search][:text])
+    unless params[:q].blank?
+      current = 1 unless params[:p]
+      @haikus = Haiku.paginating_ferret_search({:q => params[:q],
+                                                :current => 1,
+                                                :page_size => 10})
     end
   end
   
