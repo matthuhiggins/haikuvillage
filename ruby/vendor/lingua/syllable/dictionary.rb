@@ -11,7 +11,7 @@ module Syllable
     @@dbmext     = nil
     
     # use an available dbm-style hash
-    [ 'gdbm', 'dbm'].each do | dbm |
+    [ 'sdbm', 'dbm', 'gdbm'].each do | dbm |
       begin
         require dbm
         @@dbmclass = Module.const_get(dbm.upcase)
