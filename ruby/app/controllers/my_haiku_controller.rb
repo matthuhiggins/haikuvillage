@@ -20,7 +20,12 @@ class MyHaikuController < ApplicationController
   end  
   
   def favorites
-    @haikus = User.find(session[:user_id]).favorites
+    @haikus = Haiku.find(:all,
+      :page => {:current => params[:page]},
+      :conditions => ["hf.user_id = ?", session[:user_id]],
+      :joins => "join haiku_favorites hf on haikus.id = hf.haiku_id",
+      :select => "haikus.*")
+      
     render :action => "index"
   end
   
@@ -29,13 +34,15 @@ class MyHaikuController < ApplicationController
   end
   
   def index
-    @haikus = Haiku.find(:all, :page => {},
-                               :conditions => {:user_id => session[:user_id]})
+    @haikus = Haiku.find(:all,
+                         :page => {:current => params[:page]},
+                         :conditions => {:user_id => session[:user_id]})
   end
   
   def sets
-    @haikus = Haiku.find(:all, :page => {},
-                               :conditions => {:user_id => session[:user_id]})    
+    @haikus = Haiku.find(:all,
+                         :page => {:current => params[:page]},
+                         :conditions => {:user_id => session[:user_id]})    
   end
   
   def tags

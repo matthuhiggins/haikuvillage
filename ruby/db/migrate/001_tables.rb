@@ -17,7 +17,7 @@ class Tables < ActiveRecord::Migration
     create_table :haiku_favorites, :id => false do |t|
       t.column :user_id, :integer, :null => false
       t.column :haiku_id, :integer, :null => false
-      t.column :created_at, :integer, :null => false
+      t.column :created_at, :datetime, :null => false
     end
     
     create_table :haiku_tags, :id => false do |t|

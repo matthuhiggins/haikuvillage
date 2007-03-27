@@ -3,7 +3,7 @@ class HaikusController < ApplicationController
          :redirect_to => { :action => :list }
 
   def index
-    @haikus = Haiku.find(:all, 
+    @haikus = Haiku.find(:all,
                          :page => {:current => params[:page]})
   end
   
