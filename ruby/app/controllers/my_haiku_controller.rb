@@ -35,14 +35,14 @@ class MyHaikuController < ApplicationController
   
   def index
     @haikus = Haiku.find(:all,
-                         :page => {:current => params[:page]},
-                         :conditions => {:user_id => session[:user_id]})
+      :page => {:current => params[:page]},
+      :conditions => {:user_id => session[:user_id]})
   end
   
   def sets
     @haikus = Haiku.find(:all,
-                         :page => {:current => params[:page]},
-                         :conditions => {:user_id => session[:user_id]})    
+      :page => {:current => params[:page]},
+      :conditions => {:user_id => session[:user_id]})    
   end
   
   def tags

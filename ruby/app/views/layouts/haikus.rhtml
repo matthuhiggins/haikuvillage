@@ -17,13 +17,13 @@
   <div id="navigation">
     <ul id="menu">
       <li><%= image_tag "haikuvillage.gif" %></li>
-      <li><%= link_to "Home", :controller => " ", :action => "index" %></li>
+      <li><%= main_menu_link_to("Home", " ") %></li>
       <li>/</li>
-      <li><%= link_to "My Haiku", :controller => "my_haiku", :action => "index" %></li>
+      <li><%= main_menu_link_to("My Haiku", "my_haiku") %></li>
       <li>/</li>
-      <li><%= link_to "Groups", :controller => "groups" %></li>
+      <li><%= main_menu_link_to("Groups", "groups") %></li>
       <li>/</li>
-      <li><%= link_to "Explore", :controller => "haikus", :action => "index" %></li>
+      <li><%= main_menu_link_to("Explore", "haikus") %></li>
     </ul>
 
     <div id="user-corner">

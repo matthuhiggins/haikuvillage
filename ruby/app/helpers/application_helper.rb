@@ -7,6 +7,12 @@ module ApplicationHelper
     "<div id=\"haiku-favorite-#{haiku.id}\">"
   end
   
+  def main_menu_link_to(name, controller)
+    link_to_unless_current(name, {:controller => controller, :action => "index"}) do |name| 
+      link_to(name, {:controller => controller, :action => "index"}, {:class => "selected"})
+    end
+  end
+  
 
   # copied from http://www.igvita.com/blog/2006/09/10/faster-pagination-in-rails/
   # This leverages the pagination_find plugin
