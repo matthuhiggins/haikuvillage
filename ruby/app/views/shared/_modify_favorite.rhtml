@@ -1,11 +1,11 @@
 <%= modify_favorite_div_tag(haiku) %>
   <% if @user.favorites.exists?(haiku) %>
-    <%= link_to_remote 'Remove from favorites', :url => {
+    <%= link_to_remote '- Remove from favorites', :url => {
         :controller => :my_haiku,
         :action     => :remove_haiku_from_favorites,
         :id        => haiku } %>
   <% else %>
-    <%= link_to_remote 'Add to favorites', :url => {
+    <%= link_to_remote '+ Add to favorites', :url => {
         :controller => :my_haiku,
         :action     => :add_haiku_to_favorites, 
         :id => haiku } %>

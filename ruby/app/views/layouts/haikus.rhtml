@@ -15,16 +15,19 @@
 <div id="frame">
 
   <div id="navigation">
-    <ul id="menu">
-      <li><%= image_tag "haikuvillage.gif" %></li>
-      <li><%= main_menu_link_to("Home", " ") %></li>
-      <li>/</li>
-      <li><%= main_menu_link_to("My Haiku", "my_haiku") %></li>
-      <li>/</li>
-      <li><%= main_menu_link_to("Groups", "groups") %></li>
-      <li>/</li>
-      <li><%= main_menu_link_to("Explore", "haikus") %></li>
-    </ul>
+    <div id="menu">
+      <ul id="top-menu">
+        <li><%= main_menu_link_to("Home", " ") %></li>
+        <li>/</li>
+        <li><%= main_menu_link_to("My Haiku", "my_haiku") %></li>
+        <li>/</li>
+        <li><%= main_menu_link_to("Groups", "groups") %></li>
+        <li>/</li>
+        <li><%= main_menu_link_to("Explore", "haikus") %></li>
+      </ul>
+      <br/>
+      <%= render :partial => "shared/sub_menu" %>
+    </div>
 
     <div id="user-corner">
     <% if session[:user_id] -%>
@@ -37,8 +40,6 @@
     <% end %>
     </div>
   </div>
-  
-  <%= render :partial => "shared/sub_menu" %>
 
   <div id="content">
     <h2><%= yield :header %></h2>

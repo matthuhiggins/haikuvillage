@@ -1,5 +1,3 @@
-<div id="sub-menu">  
-  <% @sub_menu.each do |action| -%>
-    <%= link_to(action.capitalize, :action => action) %>
-  <% end -%>
-</div>
+<span id="sub-menu">  
+  <%= @sub_menu.map{ |action| link_to(action.capitalize, :action => action) }.join(' / ') %>
+</span>

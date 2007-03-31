@@ -78,7 +78,7 @@ Haiku.prototype = {
       all_lines = $A([
         "type your haiku here",
         "begin the sharing process",
-        "and the lord will rise"]);
+        "and you will be glad"]);
     } else {
       all_lines = $A(text.split("\n"));
     }
