@@ -9,7 +9,7 @@ ul#top-menu, ul#top-menu li {
     padding: 0px;
 }
 
-ul#menu li .selected {
+ul#top-menu li .selected {
     background-color: #bebebe;
 }
 
