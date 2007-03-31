@@ -14,3 +14,7 @@ ul#menu li {
     padding: 0;
     padding-right: 20px;
 }
+
+ul#menu li .selected {
+    background-color: #bebebe;
+}

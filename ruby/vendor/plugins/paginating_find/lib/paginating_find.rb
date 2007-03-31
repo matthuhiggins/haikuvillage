@@ -123,10 +123,12 @@ module PaginatingFind
     
     def paginating_ferret_search(options)
       count = total_hits(options[:q], :limit => :all)
-
-      PagingEnumerator.new(options[:page_size], count, false, options[:current], 1) do |page|
-        offset = (options[:current].to_i - 1) * options[:page_size]
-        limit = options[:page_size]
+      current = page_options[:current] && page_options[:current].to_i > 0 ? page_options[:current] : 1
+      page_size = page_options[:size] || DEFAULT_PAGE_SIZE
+      
+      PagingEnumerator.new(page_size, count, false, current, 1) do |page|
+        offset = (current - 1) * page_size
+        limit = page_size
 
         res = find_by_contents(options[:q], {:offset => offset, :limit => limit})
       end
