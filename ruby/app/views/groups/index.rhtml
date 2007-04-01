@@ -3,6 +3,8 @@
 <%= render :partial => "group", :collection => @user.groups %>
 <% end %>
 
-<h1>Available Groups</h1>
+<% content_for(:header) do %>
+  Groups
+<% end %>
+
 <%= render :partial => "group", :collection => @groups %>
-<br />

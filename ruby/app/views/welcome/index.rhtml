@@ -1,1 +1,7 @@
-Hello world
+<% content_for(:header) do %>
+  Recent haikus
+<% end %>
+
+<% for line in @haiku.text.split("\n") %>
+  <div class="haiku-line"><%= h(line) %></div>
+<% end %>
