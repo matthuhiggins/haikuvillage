@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
-  map.connect '', :controller => "welcome"
+  map.connect '', :controller => "welcome", :action => "index"
   
   map.syllables "syllables/:word.:format", :word => %r{.+}, :controller => "syllables", :action => "count"
 

@@ -9,7 +9,11 @@ class HaikusController < ApplicationController
   
   def tags
     if params[:id]
-      @haikus = HaikuSearch.get_haikus_by_tag_name(params[:id])
+      @haikus = Haiku.find(:all,
+        :page => {:current => params[:page]},
+        :conditions => ["t.name = ?", params[:id]],
+        :joins => "join haiku_tags ht on haikus.id = ht.haiku_id join tags t on ht.tag_id = t.id",
+        :select => "haikus.*")
       render :action => "index"
     else
       @populartags = Tag.get_popular_tags

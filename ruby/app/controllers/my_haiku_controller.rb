@@ -11,7 +11,7 @@ class MyHaikuController < ApplicationController
       
       logger.debug("saving")
       if @haiku.save
-        flash[:notice] = "great success"
+        flash[:notice] = "Your Haiku has been saved"
         redirect_to :action => 'index'
       else
         logger.debug("failed to save")
