@@ -14,7 +14,7 @@ module ApplicationHelper
     end
   end
   
-  def yui_javascript_asset_tag(source)
+  def yui_asset_tag(source)
     source = compute_public_path("#{source}", "yui/#{source}/assets", 'css')
     tag("link", { "rel" => "Stylesheet", "type" => "text/css", "media" => "screen", "href" => source })
   end
@@ -24,7 +24,7 @@ module ApplicationHelper
     content_tag("script", "", { "type" => "text/javascript", "src" => source })
   end
   
-  def yui_javascript_include_tag(*sources)
+  def yui_include_tag(*sources)
     tags = []
     sources.each do |source|
       tags << yui_javascript_asset_tag(source) if defined?(RAILS_ROOT) && File.exists?("#{RAILS_ROOT}/public/yui/#{source}/assets/#{source}.css")
