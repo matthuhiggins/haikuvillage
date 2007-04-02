@@ -1,3 +1,7 @@
+<% content_for(:head) do -%>
+  <%= javascript_include_tag "prototype", "effects", "haiku" -%>
+<% end -%>
+
 <h1>New haiku</h1>
 <%= error_messages_for 'haiku' %>
 
