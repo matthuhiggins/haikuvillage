@@ -27,7 +27,7 @@ module ApplicationHelper
   def yui_include_tag(*sources)
     tags = []
     sources.each do |source|
-      tags << yui_javascript_asset_tag(source) if defined?(RAILS_ROOT) && File.exists?("#{RAILS_ROOT}/public/yui/#{source}/assets/#{source}.css")
+      tags << yui_asset_tag(source) if defined?(RAILS_ROOT) && File.exists?("#{RAILS_ROOT}/public/yui/#{source}/assets/#{source}.css")
       tags << yui_javascript_tag(source)
     end
     tags.join("\n")
