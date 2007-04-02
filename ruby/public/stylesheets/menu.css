@@ -29,6 +29,16 @@ ul#top-menu li {
 }
 
 .pagination ul {
+    clear: both;
     font-size: 12px;
     list-style-type: none;
+}
+
+.pagination ul li {
+    display: inline;
+    padding-right: 15px;
+}
+
+.pagination .currentpage {
+    color: red;
 }

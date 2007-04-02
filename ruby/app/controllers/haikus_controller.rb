@@ -47,7 +47,7 @@ class HaikusController < ApplicationController
   private
   
   def get_sub_menu
-    @sub_menu = %w{ index favorites recent search }
+    @sub_menu = %w{ index favorites recent tags search }
   end
     
 end

@@ -1,25 +1,16 @@
-<div class="depot-form">
+<div id="login">
   <%= error_messages_for 'user' %>
 
   <fieldset>
     <legend>Sign in to Haiku Village</legend>
 
     <% form_tag do %>
-      <p>
-        <label for="name">Username:</label>
-        <%= text_field_tag :username, params[:username] %>
-      </p>
-
-      <p>
-        <label for="password">Password:</label>
-        <%= password_field_tag :password, params[:password] %>
-      </p>
-  
-      <p>
-        <%= submit_tag "Login" %>
-      </p>
+      <label for="username"><%= text_field_tag :username, params[:username] %>Username:</label>
+      <label for="password"><%= password_field_tag :password, params[:password] %>Password:</label>
+      <%= submit_tag "Login" %>
     <% end %>
   </fieldset>
+
   <p>
     Not registered?
     <%= link_to "Sign up", register_url %>.

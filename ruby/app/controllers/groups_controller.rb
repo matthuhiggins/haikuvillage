@@ -92,6 +92,6 @@ class GroupsController < ApplicationController
   private
   
   def get_sub_menu
-    @sub_menu = %w{ index new }
+    @sub_menu = %w{ index new search }
   end
 end
