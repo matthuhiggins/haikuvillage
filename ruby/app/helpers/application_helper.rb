@@ -14,6 +14,24 @@ module ApplicationHelper
     end
   end
   
+  def yui_javascript_asset_tag(source)
+    source = compute_public_path("#{source}", "yui/#{source}/assets", 'css')
+    tag("link", { "rel" => "Stylesheet", "type" => "text/css", "media" => "screen", "href" => source })
+  end
+  
+  def yui_javascript_tag(source)
+    source = compute_public_path("#{source}-min", "yui/#{source}", 'js')
+    content_tag("script", "", { "type" => "text/javascript", "src" => source })
+  end
+  
+  def yui_javascript_include_tag(*sources)
+    tags = []
+    sources.each do |source|
+      tags << yui_javascript_asset_tag(source) if defined?(RAILS_ROOT) && File.exists?("#{RAILS_ROOT}/public/yui/#{source}/assets/#{source}.css")
+      tags << yui_javascript_tag(source)
+    end
+    tags.join("\n")
+  end
 
   # copied from http://www.igvita.com/blog/2006/09/10/faster-pagination-in-rails/
   # This leverages the pagination_find plugin
