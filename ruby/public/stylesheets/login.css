@@ -1,19 +1,23 @@
 #login {
-    width: 300px;
+    width: 350px;
 }
 
 #register {
-    width: 450px;
+    width: 500px;
 }
 
 form label{
-    display:block;
-    height:2em;
-    padding:10px 10px 0;
+    display: block;
+    height: 2em;
+    padding: 10px 10px 0;
 }
 
 form label input {
     margin-right:20px;
     float:right;
     clear:right;
+}
+
+.yuibutton#mine button {
+    /* width: 5em; */
 }
