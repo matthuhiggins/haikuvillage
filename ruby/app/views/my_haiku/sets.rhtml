@@ -1,3 +1,7 @@
+<% content_for(:head) do %>
+  <%= yui_include_tag "yahoo-dom-event", "dragdrop" %>
+<% end -%>
+
 <% for haiku in @haikus %>
   <div style="cursor:move;border:1px solid black;float:left" class="haiku">
     <% for line in haiku.text.split("\n") %>
