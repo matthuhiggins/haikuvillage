@@ -1,12 +1,18 @@
 <% if session[:user_id] %>
+
+<% if @user.admin_groups %>
 <h1>Groups you administer:</h1>
-<%= render :partial => "shared/group", :collection => @user.groups %>
+<%= render :partial => "shared/group", :collection => @user.admin_groups %>
 <% end %>
 
-<% content_for(:title) do %>
-  Groups
+<% if @user.non_admin_groups %>
+<h1>Groups you belong to:</h1>
+<%= render :partial => "shared/group", :collection => @user.non_admin_groups %>
+<% end %>
+
 <% end %>
 
 <% if !@groups.nil? %>
+  <h1>All Groups</h1>
   <%= render :partial => "shared/group", :collection => @groups %>
 <% end %>

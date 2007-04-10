@@ -49,6 +49,18 @@ class User < ActiveRecord::Base
     is_subscribed_to( group ) && self.group_users.find(:first, :conditions => ["group_id = ?", group.id]).user_type == "admin"
   end
   
+  def join( group )
+    self.groups << group unless is_subscribed_to(group)
+  end
+  
+  def admin_groups
+    self.group_users.find(:all, :conditions => ["user_type = 'admin'"]).map{|group_user| group_user.group}
+  end
+  
+  def non_admin_groups
+    self.group_users.find(:all, :conditions => ["user_type <> 'admin'"]).map{|group_user| group_user.group}
+  end
+  
   private
   
   def self.encrypted_password(password, salt)

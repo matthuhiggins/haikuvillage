@@ -86,7 +86,7 @@ class GroupsController < ApplicationController
   #user should only be able to hit this if they're signed-in
   def join
     @group = Group.find(params[:id])
-    @user
+    User.find(session[:user_id]).join(@group)
   end
   
   private
