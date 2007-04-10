@@ -1,3 +1,6 @@
 <span id="sub-menu">  
-  <%= @sub_menu.map{ |action| link_to(action.capitalize, :action => action) }.join(' / ') %>
+  <%= @sub_menu.map do |menu_item|
+        options = menu_item.last.is_a?(String) ? {:action => menu_item.last} : menu_item.last
+        link_to(menu_item.first.to_s, options)
+      end.join(' / ') %>
 </span>

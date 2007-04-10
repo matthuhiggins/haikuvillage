@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def get_sub_menu
-    @sub_menu = %w{}
+    @sub_menu = []
   end
     
   def set_user

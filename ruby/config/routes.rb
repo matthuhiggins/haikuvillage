@@ -5,15 +5,11 @@ ActionController::Routing::Routes.draw do |map|
   # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
 
-  # You can have the root of your site routed by hooking up '' 
-  # -- just remember to delete public/index.html.
+  # home page
   map.connect '', :controller => "welcome", :action => "index"
   
+  # the sick syllable counter
   map.syllables "syllables/:word.:format", :word => %r{.+}, :controller => "syllables", :action => "count"
-
-  # Allow downloading Web Service WSDL as a file with an extension
-  # instead of a file named 'wsdl'
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # login/logout/register
   map.login 'login/', :controller => "login", :action => "index"

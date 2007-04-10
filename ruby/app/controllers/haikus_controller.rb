@@ -38,7 +38,13 @@ class HaikusController < ApplicationController
   private
   
   def get_sub_menu
-    @sub_menu = %w{ index favorites recent tags search }
+    @sub_menu = [
+      ["Haikus", "index"],
+      ["Favorites", "favorites"],
+      ["Recent", "recent"],
+      ["Tags", "tags"],
+      ["Search", {:action => "haikus", :controller => "search"}]
+    ]
   end
     
 end
