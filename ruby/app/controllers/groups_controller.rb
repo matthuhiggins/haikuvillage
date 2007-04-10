@@ -89,6 +89,15 @@ class GroupsController < ApplicationController
     @user
   end
   
+  def search
+    unless params[:q].blank?
+      current = 1 unless params[:p]
+      @groups = Group.paginating_ferret_search({:q => params[:q],
+                                                :current => 1,
+                                                :page_size => 10})
+    end
+  end
+  
   private
   
   def get_sub_menu
