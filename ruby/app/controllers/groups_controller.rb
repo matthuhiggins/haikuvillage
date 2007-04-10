@@ -97,6 +97,5 @@ class GroupsController < ApplicationController
       ["Create Group", "new"],
       ["Search Groups", {:action => "groups", :controller => "search"}]
     ]
-
   end
 end
