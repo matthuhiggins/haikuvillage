@@ -2,28 +2,44 @@
   <%= yui_include_tag "yahoo-dom-event", "dragdrop" %>
 <% end -%>
 
-<% for haiku in @haikus %>
-  <div style="cursor:move;border:1px solid black;float:left" class="haiku">
-    <% for line in haiku.text.split("\n") %>
-      <div class="haiku-line"><%= h(line) %></div>
-    <% end %>
-  </div>
-<% end %>
-  
-<script>
-  document.getElementsByClassName("haiku", document).each(function(haiku){
-    new Draggable(haiku, {
-        revert: true });
-  });
-</script>
-
-<div id="target" style="clear:both;width:100%;height:500px;border:1px solid black;">
+<div id="haiku-list" style="float:left">
+  <% for haiku in @haikus %>
+    <%= haiku_div_tag(haiku, {:style => "cursor:move;border:1px solid black"}) %>
+      <% for line in haiku.text.split("\n") %>
+        <div class="haiku-line"><%= h(line) %></div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
-
-<script>
-  Droppables.add("target", {
-      accept: 'haiku',
-      onDrop: function(element) 
-          { $("target").appendChild(element); }});
+<script type="text/javascript">
+SetsApp = function() {
+  return {
+    init: function() {
+      var items = YAHOO.util.Dom.getElementsByClassName('haiku');
+      for (var i = 0, length = items.length; i < length; i++) {
+        dd = new YAHOO.util.DD(items[i].id);
+      }
+    }
+  }
+}();
+    
+YAHOO.util.Event.addListener(window, "load", SetsApp.init);
 </script>
+ 
+<div id="target" style="float:left;asdfasdggasdf342234height:500px;border:1px solid black;">
+  <div id="top-left" class="target"></div>
+  <div id="top-right" class="target"></div>
+  <div id="bottom-left" class="target"></div>
+  <div id="bottom-right" class="target"></div>      
+</div>
+
+<style>
+.target {
+  border: 1px solid black;
+  float: left;
+  height: 150px;
+  margin: 50px;
+  width: 250px;
+}
+</style>
