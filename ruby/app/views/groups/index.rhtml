@@ -7,4 +7,6 @@
   Groups
 <% end %>
 
-<%= render :partial => "shared/group", :collection => @groups %>
+<% if !@groups.nil? %>
+  <%= render :partial => "shared/group", :collection => @groups %>
+<% end %>
