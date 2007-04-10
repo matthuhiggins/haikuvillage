@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
     self.groups << group unless is_subscribed_to(group)
   end
   
+  def leave( group )
+    
+  end
+  
   def admin_groups
     self.group_users.find(:all, :conditions => ["user_type = 'admin'"]).map{|group_user| group_user.group}
   end

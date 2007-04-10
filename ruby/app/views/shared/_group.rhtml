@@ -1,13 +1,6 @@
- <h2><%=h group.name %></h2>
-  <p><i>
-  <% if group.isadultonly %>Adult<% end %>
-  <% if group.isprivate %>Private<% end %>
-  </i></p>
-  <p><%=h group.description %></p>
-  <%= link_to 'Show', group_path(group) %>
-  <% if session[:user_id] && @user.administers( group ) %> 
-  <%= link_to 'Edit', edit_group_path(group) %>
-  <% end %>
-  <% if session[:user_id] && !@user.is_subscribed_to( group ) %>
-  <%= link_to 'Join', :action => 'join', :id => group %>
-  <% end %>
+<p><%= link_to group.name, group_path(group) %>
+<i>
+<% if group.isadultonly %>Adult<% end %>
+<% if group.isprivate %>Private<% end %>
+</i>
+</p>

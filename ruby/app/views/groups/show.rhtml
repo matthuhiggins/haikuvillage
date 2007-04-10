@@ -23,6 +23,19 @@
 <%= render :partial => "user", :collection => @group.users, :locals => { :group => @group } %>
 </ul>
 
+<h3>Actions</h3>
+<p>
+<% if session[:user_id] && !@user.is_subscribed_to( @group ) %>
+<%= link_to 'Join', :action => 'join', :id => @group %>
+<% end %>
+</p>
+<p>
+<% if session[:user_id] && @user.is_subscribed_to( @group ) %>
+<% link_to "Leave", :action => "leave", :id => @group %>
+<% end %>
+</p>
 
+<p>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+</p>
