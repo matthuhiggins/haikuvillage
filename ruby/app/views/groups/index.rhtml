@@ -1,6 +1,6 @@
 <% if session[:user_id] %>
 <h1>Groups you administer:</h1>
-<%= render :partial => "group", :collection => @user.groups %>
+<%= render :partial => "shared/group", :collection => @user.groups %>
 <% end %>
 
 <% content_for(:title) do %>
