@@ -26,5 +26,6 @@ class Haiku < ActiveRecord::Base
         end
       end
     end
-  end  
+  end
+
 end
