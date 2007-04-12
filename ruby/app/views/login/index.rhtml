@@ -1,5 +1,5 @@
 <% content_for(:head) do %>
-  <%= yui_include_tag "fonts", "yahoo-dom-event", "element", "button" %>
+  <%= yui_include_tag "yahoo-dom-event", "element", "button" %>
 <% end -%>
 
 <div id="login">
@@ -23,4 +23,8 @@
     Not registered?
     <%= link_to "Sign up", register_url %>.
   </p>
+  
+  <script type="text/javascript">
+    YAHOO.util.Dom.get('username').focus();
+  </script>
 </div>

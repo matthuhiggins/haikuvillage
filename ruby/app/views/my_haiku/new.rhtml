@@ -1,5 +1,6 @@
 <% content_for(:head) do %>
   <%= javascript_include_tag "haiku" %>
+  <%= yui_include_tag "yahoo-dom-event", "element", "button" %>
 <% end -%>
 
 <h1>New haiku</h1>
@@ -20,3 +21,10 @@
 
   <%= submit_tag("Create new haiku", :id => "commit") %>
 <% end %>
+
+
+<script type="text/javascript">
+  var button = new YAHOO.widget.Button("commit", { id: "mine" });
+  $('haiku_text').focus();
+</SCRIPT>  
+</script>
