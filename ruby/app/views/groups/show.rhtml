@@ -31,7 +31,7 @@
 </p>
 <p>
 <% if session[:user_id] && @user.is_subscribed_to( @group ) %>
-<% link_to "Leave", :action => "leave", :id => @group %>
+<%= link_to "Leave", :action => "leave", :id => @group %>
 <% end %>
 </p>
 

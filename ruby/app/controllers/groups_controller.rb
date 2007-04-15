@@ -87,6 +87,13 @@ class GroupsController < ApplicationController
   def join
     @group = Group.find(params[:id])
     User.find(session[:user_id]).join(@group)
+    redirect_to group_url(@group)
+  end
+  
+  def leave
+    @group = Group.find(params[:id])
+    User.find(session[:user_id]).leave(@group)
+    redirect_to groups_url
   end
   
   private
