@@ -2,36 +2,5 @@
   <% for line in haiku.text.split("\n") %>
     <div class="haiku-line"><%= h(line) %></div>
   <% end %>
-    
-  <div class="haiku-info">
-    Created on: <%= haiku.created_at.to_s(:long) %> <br/>
-    Created by: <%= haiku.user.username %> <br/>
-    <%= "<div id=\"haiku-tags-#{haiku.id}\" class=\"haiku\">" %>
-      Tags:
-      <%= render(:partial => "shared/tag", :collection => haiku.tags) %>
-    </div>
-    
-    Popularity: <%= haiku.haiku_favorites_count %>
-
-    <div>    
-      <%= link_to pluralize(haiku.comments.count, "comment"),
-          :action => "show",
-          :id => haiku %>
-    </div>    
-    
-    <% if @user -%>
-      <%= render(:partial => "shared/modify_favorite", :locals => {:haiku => haiku}) %>
-      <br />
-           
-      <% form_remote_tag :url => {
-          :controller => :my_haiku,
-          :action     => :add_tags_to_haiku,
-          :id         => haiku } do %>
-        <%= text_field_tag :tags, params[:tags] %>
-        <%= submit_tag "Add Tag" %>
-      <% end %>
-    <% end -%>
-    
-  </div>
 </div>
 <br/>

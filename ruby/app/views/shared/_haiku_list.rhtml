@@ -1,5 +1,5 @@
 <% if @haikus %>
   <%= render(:partial => "shared/paginate", :locals => {:collection => @haikus }) -%>
-  <%= render(:partial => "shared/haiku", :collection => @haikus) %>
+  <%= render(:partial => "shared/haiku_summary", :collection => @haikus, :spacer_template => "shared/haiku_divider") %>
   <%= render(:partial => "shared/paginate", :locals => {:collection => @haikus }) -%>
 <% end %>

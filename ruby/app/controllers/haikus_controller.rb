@@ -35,6 +35,10 @@ class HaikusController < ApplicationController
     render :action => "index"
   end
   
+  def show 
+    @haiku = Haiku.find(params[:id])
+  end
+  
   private
   
   def get_sub_menu
