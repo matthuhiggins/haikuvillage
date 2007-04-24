@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-    @groups = Group.find(:all, :limit => 20)
+    @groups = Group.find(:all, :page => {:current => params[:page]})
 
     respond_to do |format|
       format.html # index.rhtml
