@@ -12,7 +12,4 @@
 
 <% end %>
 
-<% if !@groups.nil? %>
-  <h1>All Groups</h1>
-  <%= render :partial => "shared/group", :collection => @groups %>
-<% end %>
+<%= render :partial => "shared/group_list", :collection => @groups %>
