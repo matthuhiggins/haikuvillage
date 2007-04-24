@@ -1,8 +1,12 @@
 class WelcomeController < ApplicationController
-  layout "haikus"
+  layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   
   def index
-    @haiku = Haiku.find(:first, :order => "created_at desc")
+    @haikus = Haiku.find(:all, :order => "id desc", :limit => 5)
+  end
+  
+  def next
+    @haiku = Haiku.find(:first, :order => "id desc")
   end
 
 end
