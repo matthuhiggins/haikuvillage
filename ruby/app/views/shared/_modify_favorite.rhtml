@@ -1,13 +1,21 @@
+<script type="text/javascript">
+  function hello_world(id) {
+    $(id).innerHTML += " (processing)";
+  }
+</script>
+
 <%= modify_favorite_div_tag(haiku) %>
   <% if @user.favorites.exists?(haiku) %>
     <%= link_to_remote '- Remove from favorites', :url => {
         :controller => :my_haiku,
         :action     => :remove_haiku_from_favorites,
-        :id        => haiku } %>
+        :id        => haiku },
+        :before     => "hello_world('haiku-favorite-#{haiku.id}')" %>
   <% else %>
     <%= link_to_remote '+ Add to favorites', :url => {
         :controller => :my_haiku,
         :action     => :add_haiku_to_favorites, 
-        :id => haiku } %>
+        :id => haiku },
+        :before     => "hello_world('haiku-favorite-#{haiku.id}')" %>
   <% end %>
 </div>
