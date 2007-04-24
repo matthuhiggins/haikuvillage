@@ -1,2 +1,7 @@
-<p><%= @comment.created_at %></p>
-<p><%= @comment.text %></p>
+<p><%= comment.created_at %></p>
+<p><%= comment.text %></p>
+<% if comment.user_id == session[:user_id] %>
+  <%= link_to "Remove my comment", 
+         comment_url(@haiku,comment),
+         :method  => :delete %>
+<% end %>

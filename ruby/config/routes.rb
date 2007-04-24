@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :groups
+  map.resources :haikus do |haiku|
+    haiku.resources :comments, :controller => "haiku_comment"
+  end
   
   # Sample of named route:
   # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'

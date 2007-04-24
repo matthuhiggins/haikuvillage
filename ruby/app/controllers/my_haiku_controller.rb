@@ -67,19 +67,6 @@ class MyHaikuController < ApplicationController
     @haiku = Haiku.find(params[:id])
   end
   
-  def add_comment
-    comment = comments.new(params[:comment])
-    comment.haiku = params[:haiku][:id]
-    comment.user_id = session[:user_id]
-    comment.save
-    redirect_to :back
-  end
-  
-  def delete_comment
-    HaikuComment.delete(params[:id])
-    redirect_to :back
-  end
-  
   private
   
   def get_sub_menu
