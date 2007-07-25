@@ -61,11 +61,11 @@ class User < ActiveRecord::Base
   end
   
   def admin_groups
-    self.group_users.find(:all, :conditions => ["user_type = 'admin'"]).map{|group_user| group_user.group}
+    groups = self.group_users.find(:all, :conditions => ["user_type = 'admin'"]).map{|group_user| group_user.group}
   end
   
   def non_admin_groups
-    self.group_users.find(:all, :conditions => ["user_type <> 'admin'"]).map{|group_user| group_user.group}
+    groups = self.group_users.find(:all, :conditions => ["user_type <> 'admin'"]).map{|group_user| group_user.group}
   end
   
   private
