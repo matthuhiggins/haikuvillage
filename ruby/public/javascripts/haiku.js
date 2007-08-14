@@ -172,9 +172,9 @@ Haiku.PeriodicalUpdater.prototype = {
 }
 
 function textToWords(text, wordInfo) {
-  text = text.compact();
+  var text = text.compact();
   return $A(text.split(/ |\n/)).map(function(value) {
-    word = wordInfo[value.hash()];
+    var word = wordInfo[value.hash()];
     if (word == undefined)
       return new Word(value, -1, Word.NEW);
     else
