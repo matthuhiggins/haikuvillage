@@ -39,12 +39,6 @@ class MyHaikuController < ApplicationController
       :conditions => {:user_id => session[:user_id]})
   end
   
-  def sets
-    @haikus = Haiku.find(:all,
-      :page => {:current => params[:page]},
-      :conditions => {:user_id => session[:user_id]})    
-  end
-  
   def tags
     @tags = Tag.get_tags_for_user(session[:user_id])
   end
@@ -74,8 +68,7 @@ class MyHaikuController < ApplicationController
       ["My Stuff", "index"],
       ["Create Haiku", "new"],
       ["My Tags", "tags"],
-      ["My Favorites", "favorites"],
-      ["My Sets", "sets"]
+      ["My Favorites", "favorites"]
     ]
   end
   
