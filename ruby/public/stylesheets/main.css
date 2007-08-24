@@ -52,6 +52,7 @@ textarea {
 #leftside {
 float: left;
 width: 70%;
+text-align: left;
 }
 
 #rightside {
