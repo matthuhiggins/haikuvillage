@@ -10,7 +10,7 @@ ul#top-menu, ul#top-menu li {
 }
 
 ul#top-menu li .selected {
-    background-color: #bebebe;
+    color: lightgreen;
 }
 
 ul#top-menu li {

@@ -1,7 +1,36 @@
-<% content_for(:title) do %>
-  Recent haikus
+<% content_for(:head) do %>
+  <%= javascript_include_tag "haiku" %>
+  <%= yui_include_tag "yahoo-dom-event", "element", "button" %>
+<% end -%>
+
+<%= error_messages_for 'haiku' %>
+
+<p>Share your haiku:</p>
+<div id="preview"></div>
+
+<script type="text/javascript">
+  new Haiku.PeriodicalUpdater("haiku_text", "preview");
+</script>
+
+<% form_for :haiku, :html => {:id => 'haiku_form'} do |form| %>
+  <p>
+    <label for="text">Haiku Text</label><br/>
+    <%= text_area 'haiku', 'text', :cols=>40, :rows=>3  %>
+  </p>
+
+  <%= submit_tag("Create new haiku", :id => "commit") %>
 <% end %>
 
+
+<script type="text/javascript">
+  var button = new YAHOO.widget.Button("commit", { id: "mine" });
+  $('haiku_text').focus();
+</script>
+
+<% content_for :right_side do %>
+<div id="rightside">
+
+<h2>Recent Haikus</h2>
 <div id="recent-haikus">
   <%= render (:partial => "shared/haiku", :collection => @haikus) %>
 </div>
@@ -24,3 +53,5 @@
     }
   });
 </script>
+</div>
+<% end %>

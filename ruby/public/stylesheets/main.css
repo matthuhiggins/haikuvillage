@@ -11,7 +11,6 @@ a:active, a:hover, a:link, a:visited {
     text-decoration: none;
 }
 
-
 sup {
     font-size: 10pt;
 }
@@ -24,11 +23,18 @@ textarea {
 #user-corner {
     float: right;
     text-align: right;
+    color: lightgrey;
 }
 
 #navigation {
+    padding-top: 1em;
     height: 50px;
     width: 100%;
+    background-color: black;
+}
+
+#navigation a {
+    color: lightgrey;
 }
 
 #frame {
@@ -41,4 +47,14 @@ textarea {
 
 #content {
     padding: 10px;
+}
+
+#leftside {
+float: left;
+width: 70%;
+}
+
+#rightside {
+    float: right;
+    width: 30%;
 }
