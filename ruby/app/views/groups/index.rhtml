@@ -1,15 +1,22 @@
 <% if session[:user_id] %>
+  <div id="left">
+    <% unless @user.non_admin_groups.empty? %>
+      <h1>Groups you belong to:</h1>
+      <%= render :partial => "shared/group", :collection => @user.non_admin_groups %>
+    <% else %>
+      You do not belong to any groups.
+    <% end %>
+  </div>
+  
+  <div id="right">
+    <% unless @user.admin_groups.empty? %>
+      <h1>Groups you administer:</h1>
+      <%= render :partial => "shared/group", :collection => @user.admin_groups %>
+    <% else %>
+      You do not administer any groups.
+    <% end %>
+  </div>
 
-<% if @user.admin_groups %>
-<h1>Groups you administer:</h1>
-<%= render :partial => "shared/group", :collection => @user.admin_groups %>
+<% else %>
+  <%= render :partial => "shared/groups" %>
 <% end %>
-
-<% if @user.non_admin_groups %>
-<h1>Groups you belong to:</h1>
-<%= render :partial => "shared/group", :collection => @user.non_admin_groups %>
-<% end %>
-
-<% end %>
-
-<%= render :partial => "shared/groups" %>
