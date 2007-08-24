@@ -8,18 +8,18 @@
 <h2>Share your haiku:</h2>
 <div id="preview"></div>
 
-<script type="text/javascript">
-  new Haiku.PeriodicalUpdater("haiku_text", "preview");
-</script>
-
 <% form_for :haiku, :html => {:id => 'haiku_form'} do |form| %>
   <p>
-    <label for="text">Haiku Text</label><br/>
+    <label for="text">My Haiku</label><br/>
     <%= form.text_area :text, :cols=>40, :rows=>3  %>
   </p>
 
   <%= submit_tag("Create", :id => "commit") %>
 <% end %>
+
+<script type="text/javascript">
+  new Haiku.PeriodicalUpdater("haiku_text", "preview");
+</script>
 
 
 <script type="text/javascript">
@@ -30,28 +30,28 @@
 <% content_for :right_side do %>
 <div id="rightside">
 
-<h2>Recent Haikus</h2>
-<div id="recent-haikus">
-  <%= render (:partial => "shared/haiku", :collection => @haikus) %>
-</div>
+  <h2>Recent Haikus</h2>
+  <div id="recent-haikus">
+    <%= render (:partial => "shared/haiku", :collection => @haikus) %>
+  </div>
 
-<div id="next-haiku" style="display:none"></div>
+  <div id="next-haiku" style="display:none"></div>
 
-<script type="text/javascript">
-  new Ajax.PeriodicalUpdater($('next-haiku'),
-  "<%= (url_for :controller => 'welcome', :action => 'next') -%>", {
-    method: 'get',
-    frequency: 3,
-    onSuccess: function() {
-      var haikus = Element.getElementsByClassName('recent-haikus', 'haiku');
-      var next_haiku = Element.getElementsByClassName('next-haiku', 'haiku').first();
-      if (haikus.first().id != next_haiku.id) {
-        $('recent-haikus').innerHTML = $('next-haiku').innerHTML + $('recent-haikus').innerHTML;
-        new Effect.Highlight(next_haiku.id);
-        Element.remove(haikus.last().id);
+  <script type="text/javascript">
+    new Ajax.PeriodicalUpdater($('next-haiku'),
+    "<%= (url_for :controller => 'welcome', :action => 'next') -%>", {
+      method: 'get',
+      frequency: 3,
+      onSuccess: function() {
+        var haikus = Element.getElementsByClassName('recent-haikus', 'haiku');
+        var next_haiku = Element.getElementsByClassName('next-haiku', 'haiku').first();
+        if (haikus.first().id != next_haiku.id) {
+          $('recent-haikus').innerHTML = $('next-haiku').innerHTML + $('recent-haikus').innerHTML;
+          new Effect.Highlight(next_haiku.id);
+          Element.remove(haikus.last().id);
+        }
       }
-    }
-  });
-</script>
+    });
+  </script>
 </div>
 <% end %>

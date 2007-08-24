@@ -11,21 +11,16 @@ class Haiku < ActiveRecord::Base
   validates_presence_of :user_id
 
   def validate
-    valid_syllable_counts = [5, 7, 5]
-    valid_linecount = 3
+    valid_syllables = [5, 7, 5]
     
     split_lines = text.split("\r\n")
-    logger.debug('split lines: ' + split_lines.inspect)
-    if split_lines.length != valid_linecount
+    if split_lines.length != valid_syllables.size
       errors.add("Need three lines")
     else
-      for line_index in 0..valid_linecount - 1
-        line = Line.new(split_lines[line_index])
-        if line.syllables != valid_syllable_counts[line_index]
-          errors.add("line #{line_index} is invalid")
-        end
+      input_syllables = split_lines.collect { |line_text| Line.new(line_text).syllables }
+      valid_syllables.zip(input_syllables).each_with_index do |pair, line_number|
+        errors.add("line #{line_number}") unless pair.first == pair.last
       end
     end
   end
-
 end
