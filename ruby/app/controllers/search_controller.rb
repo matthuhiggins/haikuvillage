@@ -3,11 +3,11 @@ class SearchController < ApplicationController
   layout "haikus"
 
   def haikus
-    @haikus = load_items(Haiku)
+    render_search{ @haikus = load_items(Haiku) }
   end
   
   def groups
-    @groups = load_items(Group)
+    render_search{ @groups = load_items(Group) }
   end
   
   private
@@ -18,5 +18,10 @@ class SearchController < ApplicationController
                                         :current => 1,
                                         :page_size => 4})
       end
+    end
+    
+    def render_search
+      yield
+      render :template => "search/index"
     end
 end

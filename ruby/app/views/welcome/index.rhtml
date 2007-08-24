@@ -5,7 +5,7 @@
 
 <%= error_messages_for 'haiku' %>
 
-<p>Share your haiku:</p>
+<h2>Share your haiku:</h2>
 <div id="preview"></div>
 
 <script type="text/javascript">
@@ -15,10 +15,10 @@
 <% form_for :haiku, :html => {:id => 'haiku_form'} do |form| %>
   <p>
     <label for="text">Haiku Text</label><br/>
-    <%= text_area 'haiku', 'text', :cols=>40, :rows=>3  %>
+    <%= form.text_area :text, :cols=>40, :rows=>3  %>
   </p>
 
-  <%= submit_tag("Create new haiku", :id => "commit") %>
+  <%= submit_tag("Create", :id => "commit") %>
 <% end %>
 
 

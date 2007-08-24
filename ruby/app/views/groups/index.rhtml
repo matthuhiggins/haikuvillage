@@ -1,5 +1,5 @@
 <% if session[:user_id] %>
-  <div id="left">
+  <div id="leftside">
     <% unless @user.non_admin_groups.empty? %>
       <h1>Groups you belong to:</h1>
       <%= render :partial => "shared/group", :collection => @user.non_admin_groups %>
@@ -8,7 +8,7 @@
     <% end %>
   </div>
   
-  <div id="right">
+  <div id="rightside">
     <% unless @user.admin_groups.empty? %>
       <h1>Groups you administer:</h1>
       <%= render :partial => "shared/group", :collection => @user.admin_groups %>

@@ -66,7 +66,7 @@ class MyHaikuController < ApplicationController
   def get_sub_menu
     @sub_menu = [
       ["My Stuff", "index"],
-      ["Create Haiku", "new"],
+      ["Create", "new"],
       ["My Tags", "tags"],
       ["My Favorites", "favorites"]
     ]

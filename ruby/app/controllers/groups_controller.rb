@@ -101,7 +101,7 @@ class GroupsController < ApplicationController
   def get_sub_menu
     @sub_menu = [
       ["Groups", "index"],
-      ["Create Group", "new"],
+      ["Create", "new"],
       ["Search Groups", {:action => "groups", :controller => "search"}]
     ]
   end
