@@ -43,8 +43,8 @@
     method: 'get',
     frequency: 3,
     onSuccess: function() {
-      haikus = Element.getElementsByClassName('recent-haikus', 'haiku');
-      next_haiku = Element.getElementsByClassName('next-haiku', 'haiku').first();
+      var haikus = Element.getElementsByClassName('recent-haikus', 'haiku');
+      var next_haiku = Element.getElementsByClassName('next-haiku', 'haiku').first();
       if (haikus.first().id != next_haiku.id) {
         $('recent-haikus').innerHTML = $('next-haiku').innerHTML + $('recent-haikus').innerHTML;
         new Effect.Highlight(next_haiku.id);
