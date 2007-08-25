@@ -18,55 +18,46 @@ class Tables < ActiveRecord::Migration
     end
     
     create_table :haiku_tags, :id => false do |t|
-      t.column :haiku_id, :integer, :null => false
-      t.column :tag_id, :integer, :null => false
-      t.column :created_at, :datetime, :null => false
+      t.integer :haiku_id, tag_id, :null => false
+      t.timestamps
     end
     
    create_table :groups do |t|
-      t.column :name, :string, :null => false, :limit => 100
-      t.column :description, :string, :null => false, :limit => 1000
-      t.column :isadultonly, :boolean, :null => false
-      t.column :isprivate, :boolean, :null => false
-      t.column :created_at, :datetime, :null => false
+      t.string :name, :null => false, :limit => 100
+      t.string :description, :null => false, :limit => 1000
+      t.boolean :isadultonly, :isprivate, :null => false
+      t.timestamps
     end
     
     create_table :group_haikus, :id => false do |t|
-      t.column :group_id, :integer, :null => false
-      t.column :haiku_id, :integer, :null => false
-      t.column :created_at, :datetime, :null => false
+      t.integer :group_id, haiku_id, :null => false
+      t.timestamps
     end
     
     create_table :group_users, :id => false do |t|
-      t.column :group_id, :integer, :null => false
-      t.column :user_id, :integer, :null => false
-      t.column :user_type, :string, :null => false
+      t.integer :group_id, :user_id, :null => false
+      t.string :user_type, :null => false
     end    
 
     create_table :tags do |t|
-      t.column :name, :string, :null => false, :limit => 64
-      t.column :haiku_tags_count, :integer, :null => false, :default => 0
-      t.column :created_at, :datetime, :null => false
+      t.string :name :null => false, :limit => 64
+      t.integer :haiku_tags_count, :null => false, :default => 0
+      t.timestamps
     end    
 
     create_table :users do |t|
-      t.column :username, :string, :null => false, :limit => 100
-      t.column :useralias, :string, :null => true, :limit => 100
-      t.column :email, :string, :null => false, :limit => 100
-      t.column :hashed_password, :string, :null => false
-      t.column :salt, :string, :null => false
-      t.column :created_at, :datetime, :null => false
+      t.string :username, :useralias, :email, :hashed_password, :salt, :null => false, :limit => 100
+      t.timestamps
     end
 
     create_table :user_logins, :id => false do |t|
-      t.column :user_id, :integer, :null => false
-      t.column :logindate, :datetime, :null => false
+      t.integer :user_id, :null => false
+      t.datetime :logindate, :null => false
     end
     
     create_table :user_users, :id => false do |t|
-      t.column :sourceuser_id, :integer, :null => false
-      t.column :targetuser_id, :integer, :null => false
-      t.column :accepted, :boolean, :null => false
+      t.integer :sourceuser_id, :targetuser_id, :null => false
+      t.boolean :accepted, :null => false
     end
   end
 
