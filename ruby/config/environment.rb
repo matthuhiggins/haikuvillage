@@ -30,6 +30,10 @@ Rails::Initializer.run do |config|
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
 
+  config.action_controller.session = {
+    :session_key => '_rails_session',
+    :secret      => '29bcd7b28512987fd1190aa8a4a1eab9'
+  }
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
   # config.action_controller.session_store = :active_record_store

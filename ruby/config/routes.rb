@@ -1,10 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :groups
   
-  # Sample of named route:
-  # map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
   # home page
   map.connect '', :controller => "welcome", :action => "index"
   

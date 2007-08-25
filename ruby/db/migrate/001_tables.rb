@@ -1,23 +1,20 @@
 class Tables < ActiveRecord::Migration
   def self.up  
     create_table :haikus do |t|
-      t.column :text, :string, :null => false, :limit => 765
-      t.column :user_id, :integer, :null => false
-      t.column :haiku_favorites_count, :integer, :null => false, :default => 0
-      t.column :created_at, :datetime, :null => false
+      t.string :text, :null => false, :limit => 765
+      t.integer :user_id, haiku_favorites_count, :null => false, :default => 0
+      t.timestamps
     end
 
     create_table :haiku_comments do |t|
-      t.column :haiku_id, :integer, :null => false
-      t.column :user_id, :integer, :null => false
-      t.column :text, :string, :null => false, :limit => 1000
-      t.column :created_at, :datetime, :null => false
+      t.integer :haiku_id, :user_id, :null => false
+      t.column :text, :null => false, :limit => 1000
+      t.timestamps
     end
     
     create_table :haiku_favorites, :id => false do |t|
-      t.column :user_id, :integer, :null => false
-      t.column :haiku_id, :integer, :null => false
-      t.column :created_at, :datetime, :null => false
+      t.integer :user_id, :haiku_id, :null => false
+      t.timestamps
     end
     
     create_table :haiku_tags, :id => false do |t|

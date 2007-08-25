@@ -10,7 +10,7 @@
 
   <div>    
     <%= link_to pluralize(haiku.comments.count, "comment"),
-        :controller => :haikus,
+        :controller => "haikus",
         :action => "show",
         :id => haiku %>
   </div>    
@@ -20,7 +20,7 @@
     <br />
          
     <% form_remote_tag :url => {
-        :controller => :my_haiku,
+        :controller => "my_haiku",
         :action     => :add_tags_to_haiku,
         :id         => haiku } do %>
       <%= text_field_tag :tags, params[:tags] %>

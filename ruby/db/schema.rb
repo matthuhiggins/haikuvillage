@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haiku_comments", ["user_id", "created_at"], :name => "index_haiku_comments_on_user_id_and_created_at"
 
   create_table "haiku_favorites", :id => false, :force => true do |t|
-    t.column "user_id",    :integer, :null => false
-    t.column "haiku_id",   :integer, :null => false
-    t.column "created_at", :integer, :null => false
+    t.column "user_id",    :integer,  :null => false
+    t.column "haiku_id",   :integer,  :null => false
+    t.column "created_at", :datetime, :null => false
   end
 
   add_index "haiku_favorites", ["user_id", "haiku_id"], :name => "index_haiku_favorites_on_user_id_and_haiku_id", :unique => true
