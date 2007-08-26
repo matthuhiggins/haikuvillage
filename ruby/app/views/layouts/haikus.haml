@@ -27,6 +27,7 @@
           = render :partial => "shared/sub_menu"
         #user-corner
           - if session[:user_id]
+          Welcome
           %strong= @user.username
           %br
           = link_to "sign out", logout_url
