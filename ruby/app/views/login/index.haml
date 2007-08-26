@@ -1,0 +1,27 @@
+- content_for(:head) do
+= yui_include_tag "yahoo-dom-event", "element", "button"
+- end
+
+#login
+  = error_messages_for 'user'
+
+  %script
+    var button = new YAHOO.widget.Button("login_button", { id: "mine", type: "submit" });
+
+  %fieldset
+    %legend Sign in to Haiku Village
+
+    - form_tag do
+    %label{ :for => "username" }
+      = text_field_tag :username, params[:username]
+      Username:
+    %label{ :for => "password" }
+      = password_field_tag :password, params[:password]
+      Password:
+    = submit_tag "Login", {:id => "login_button"}
+    - end
+    %script YAHOO.util.Dom.get('username').focus();
+
+  %p 
+    Not registered?
+    = link_to("Sign up", register_url)
