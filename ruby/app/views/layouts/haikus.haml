@@ -24,6 +24,7 @@
             %li /
             %li= main_menu_link_to("Explore", "haikus")
           %br
+          = render :partial => "shared/sub_menu"
         #user-corner
           - if session[:user_id]
           %strong= @user.username
