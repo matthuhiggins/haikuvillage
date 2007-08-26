@@ -10,7 +10,8 @@
   = render(:partial => "shared/tag", :collection => haiku.tags)
   </div>
   
-  Popularity:= haiku.haiku_favorites_count
+  Popularity:
+  = haiku.haiku_favorites_count
 
   %div
     = link_to pluralize(haiku.comments.count, "comment"), :controller => "haikus", :action => "show", :id => haiku  
