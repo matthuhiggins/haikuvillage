@@ -2,7 +2,7 @@ class Tables < ActiveRecord::Migration
   def self.up  
     create_table :haikus do |t|
       t.string :text, :null => false, :limit => 765
-      t.integer :user_id, haiku_favorites_count, :null => false, :default => 0
+      t.integer :user_id, :haiku_favorites_count, :null => false, :default => 0
       t.timestamps
     end
 
@@ -38,9 +38,15 @@ class Tables < ActiveRecord::Migration
       t.integer :group_id, :user_id, :null => false
       t.string :user_type, :null => false
     end    
+    
+    create_table :sessions do |t|
+      t.string :session_id, :null => false
+      t.text :data
+      t.timestamps
+    end
 
     create_table :tags do |t|
-      t.string :name :null => false, :limit => 64
+      t.string :name, :null => false, :limit => 64
       t.integer :haiku_tags_count, :null => false, :default => 0
       t.timestamps
     end    
@@ -69,6 +75,7 @@ class Tables < ActiveRecord::Migration
     drop_table :haiku_comments
     drop_table :haiku_favorites
     drop_table :haiku_tags
+    drop_table :sessions
     drop_table :tags
     drop_table :users
     drop_table :user_logins

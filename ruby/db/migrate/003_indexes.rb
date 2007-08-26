@@ -23,6 +23,9 @@ class Indexes < ActiveRecord::Migration
     
     add_index :group_users, [:group_id, :user_id], :unique => true
     add_index :group_users, [:user_id, :group_id]
+    
+    add_index :sessions, :session_id
+    add_index :sessions, :updated_at
 
     add_index :tags, :name, :unique => true
     add_index :tags, :haiku_tags_count
