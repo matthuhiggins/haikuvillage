@@ -8,7 +8,7 @@ class Tables < ActiveRecord::Migration
 
     create_table :haiku_comments do |t|
       t.integer :haiku_id, :user_id, :null => false
-      t.column :text, :null => false, :limit => 1000
+      t.string :text, :null => false, :limit => 1000
       t.timestamps
     end
     
@@ -18,7 +18,7 @@ class Tables < ActiveRecord::Migration
     end
     
     create_table :haiku_tags, :id => false do |t|
-      t.integer :haiku_id, tag_id, :null => false
+      t.integer :haiku_id, :tag_id, :null => false
       t.timestamps
     end
     
@@ -30,7 +30,7 @@ class Tables < ActiveRecord::Migration
     end
     
     create_table :group_haikus, :id => false do |t|
-      t.integer :group_id, haiku_id, :null => false
+      t.integer :group_id, :haiku_id, :null => false
       t.timestamps
     end
     
