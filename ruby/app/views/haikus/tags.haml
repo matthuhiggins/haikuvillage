@@ -1,8 +1,0 @@
-%h1 Tags
-#recent-tags
-  %h2 Recent Tags
-  = render(:partial => "tag", :collection => @recenttags, :locals => {:show_popularity => false})
-
-#popular-tags
-  %h2 Popular Tags
-  = render(:partial => "tag", :collection => @populartags, :locals => {:show_popularity => true})

@@ -3,34 +3,26 @@ class HaikusController < ApplicationController
          :redirect_to => { :action => :list }
 
   def index
-    @haikus = paginated_haikus({})
-  end
-  
-  def tags
-    if params[:id]
-      @haikus = paginated_haikus(
-        :conditions => ["t.name = ?", params[:id]],
-        :joins => "join haiku_tags ht on haikus.id = ht.haiku_id join tags t on ht.tag_id = t.id",
-        :select => "haikus.*")
-      render :action => "index"
-    else
-      @populartags = Tag.get_popular_tags
-      @recenttags = Tag.get_recent_tags
-    end
+    render_index
   end
   
   def favorites
-    @haikus = paginated_haikus(:order => "haiku_favorites_count desc")
-    render :action => "index"
+    render_index{ paginated_haikus(:order => "haiku_favorites_count desc") }
   end
   
   def recent
-    @haikus = paginated_haikus(:order => "created_at desc")
-    render :action => "index"
+    render_index{ paginated_haikus(:order => "created_at desc") }
   end
   
-  def show 
-    @haiku = Haiku.find(params[:id])
+  def haikus
+    render_index do
+      unless params[:q].blank?
+        current = 1 unless params[:p]
+        Haiku.paginating_ferret_search({:q => params[:q],
+                                        :current => 1,
+                                        :page_size => 4})
+      end
+    end
   end
   
   private
@@ -45,7 +37,12 @@ class HaikusController < ApplicationController
     ]
   end
   
-  def paginated_haikus(options)
+  def render_index
+    @haikus = block_given? ? yield : paginated_haikus
+    render :action => :index
+  end
+  
+  def paginated_haikus(options = {})
     Haiku.find(:all, (options.merge({:page => {:current => params[:page]}})))
   end
   
