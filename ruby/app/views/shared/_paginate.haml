@@ -17,7 +17,7 @@
         = n
       - else
       %li
-        = "..." if last_page+1
+        = "..." if last_page+1 < n
         = link_to_remote n, :url => {:id => params[:id], :page => n}, :update => 'haikus'
       - end
       - last_page = n
