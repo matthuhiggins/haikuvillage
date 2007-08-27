@@ -5,32 +5,6 @@ module ApplicationHelper
       link_to(name, {:controller => controller, :action => "index"}, {:class => "selected"})
     end
   end
-  
-  def yui_component_tag(source)
-    if ["yahoo-dom-event"].include?(source)
-      file_name = "#{source}"
-    elsif ["button", "element"].include?(source)
-      file_name = "#{source}-beta-min"
-    else
-      file_name = "#{source}-min"
-    end
-    
-    if ["reset", "fonts"].include?(source)
-      stylesheet_link_tag("/yui/#{source}/#{source}")
-    else    
-      javascript_include_tag("/yui/#{source}/#{file_name}")
-    end
-  end
-  
-  def yui_include_tag(*sources)
-    tags = []
-    sources.each do |source|
-      tags << stylesheet_link_tag("/yui/#{source}/assets/#{source}") if defined?(RAILS_ROOT) && 
-          File.exists?("#{RAILS_ROOT}/public/yui/#{source}/assets/#{source}.css")
-      tags << yui_component_tag(source)
-    end
-    tags.join("\n")
-  end
 
   # copied from http://www.igvita.com/blog/2006/09/10/faster-pagination-in-rails/
   # This leverages the pagination_find plugin

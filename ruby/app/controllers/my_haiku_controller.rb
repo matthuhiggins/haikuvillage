@@ -8,8 +8,6 @@ class MyHaikuController < ApplicationController
       @haiku = Haiku.new()
       @haiku.text = params[:haiku][:text]
       @haiku.user_id = session[:user_id]
-      
-      logger.debug("saving")
       if @haiku.save
         flash[:notice] = "Your Haiku has been saved"
         redirect_to :action => 'index'
