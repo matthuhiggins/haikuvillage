@@ -1,6 +1,7 @@
 body {
-    background-color: #90ce45;
+    background-color: #77b239;
     background-image: url(/images/bg-page.png);
+    background-repeat: repeat-x;
     color: black;
     font: 12pt tahoma;
     margin: 0;
