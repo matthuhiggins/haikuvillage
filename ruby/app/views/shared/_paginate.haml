@@ -1,31 +1,31 @@
 - if collection.page_count != collection.first_page
   .pagination
-  %ul
-    - if collection.previous_page?
-    %li.nextpage
-      = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :update => 'haikus'
-    - else
-    %li.disablepage
-      &#171; previous
-    - end
- 
-    - last_page = 0
-
-    - windowed_pagination_links(collection, :window_size => 2, :link_to_current_page => true, :always_show_anchors => true) do |n|
-      - if collection.page == n
-      %li.currentpage
-        = n
+    %ul
+      - if collection.previous_page?
+      %li.nextpage
+        = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :update => 'haikus'
       - else
-      %li
-        = "..." if last_page+1 < n
-        = link_to_remote n, :url => {:id => params[:id], :page => n}, :update => 'haikus'
+      %li.disablepage
+        &#171; previous
       - end
-      - last_page = n
  
-    - if collection.next_page?
-    %li.nextpage
-      = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :update => 'haikus'
-    - else
-    %li.disablepage
-      &#171; next
-    - end
+      - last_page = 0
+
+      - windowed_pagination_links(collection, :window_size => 2, :link_to_current_page => true, :always_show_anchors => true) do |n|
+        - if collection.page == n
+        %li.currentpage
+          = n
+        - else
+        %li
+          = "..." if last_page+1 < n
+          = link_to_remote n, :url => {:id => params[:id], :page => n}, :update => 'haikus'
+        - end
+        - last_page = n
+ 
+      - if collection.next_page?
+      %li.nextpage
+        = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :update => 'haikus'
+      - else
+      %li.disablepage
+        &#171; next
+      - end
