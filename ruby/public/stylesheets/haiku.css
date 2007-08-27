@@ -9,6 +9,20 @@
 	width: 100px;
 }
 
+#haiku_box {
+    overflow: hidden;
+    width: 300px;
+}
+
+#haiku_hidden {
+    width: 600px;
+}
+
+.haiku_fragment {
+    float: left;
+    width: 250px;
+}
+
 .valid-line {
 	color: green;
 }
