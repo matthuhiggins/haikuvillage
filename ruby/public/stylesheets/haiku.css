@@ -21,12 +21,12 @@
     color: blue;
 }
 
-.haiku-title {
-    color: green;
-    font-size: 14pt;
+.haiku {
 }
 
-.haiku-info {
-    color: gray;
-    font-size: 8pt;
+.haiku .author {
+    color: black;
+    font: 10pt Verdana;
+    padding-top: 10px;
+    text-transform: uppercase;
 }
