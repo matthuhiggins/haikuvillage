@@ -2,6 +2,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :get_sub_menu,:set_user
   
+  protected
+  
+  def paginated_haikus(options = {})
+    Haiku.find(:all, (options.merge({:page => {:current => params[:page]}})))
+  end
+  
   private
 
   def get_sub_menu

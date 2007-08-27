@@ -6,7 +6,7 @@ class HaikusController < ApplicationController
     render_index
   end
   
-  def favorites
+  def popular
     render_index{ paginated_haikus(:order => "haiku_favorites_count desc") }
   end
   
@@ -26,7 +26,7 @@ class HaikusController < ApplicationController
   def get_sub_menu
     @sub_menu = [
       ["Haikus", "index"],
-      ["Favorites", "favorites"],
+      ["Popular", "popular"],
       ["Recent", "recent"],
       ["Search", "search"]
     ]
@@ -40,10 +40,4 @@ class HaikusController < ApplicationController
       render :action => :index
     end    
   end
-  
-  def paginated_haikus(options = {})
-    Haiku.find(:all, (options.merge({:page => {:current => params[:page]}})))
-  end
-  
-    
 end
