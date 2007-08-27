@@ -21,7 +21,8 @@
     color: blue;
 }
 
-.haiku {
+.haiku .haiku-line {
+    font: 10pt Palatino Linotype;
 }
 
 .haiku .author {
@@ -29,4 +30,8 @@
     font: 10pt Verdana;
     padding-top: 10px;
     text-transform: uppercase;
+}
+
+.other {
+    float: right;
 }

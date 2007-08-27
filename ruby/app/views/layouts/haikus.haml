@@ -31,12 +31,7 @@
           - end
          
       #content
-        #leftside
-          %h2
-            = yield :title
-          %p= flash[:notice]
-          = yield :layout
-        #rightside
-          = yield :right_side
-        #cleartag
+        %h2= yield :title
+        %p= flash[:notice]
+        = yield :layout
       #foot

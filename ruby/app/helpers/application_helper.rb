@@ -1,8 +1,4 @@
-module ApplicationHelper
-  def modify_favorite_div_tag(haiku)
-    "<div id=\"haiku-favorite-#{haiku.id}\">"
-  end
-  
+module ApplicationHelper  
   def main_menu_link_to(name, controller)
     uri = @controller.request.request_uri.gsub(/^\//, '').split(/\//).first
     link_to_unless(uri == controller, name, {:controller => controller, :action => "index"}) do |name| 

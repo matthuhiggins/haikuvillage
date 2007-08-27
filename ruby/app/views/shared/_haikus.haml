@@ -1,10 +1,17 @@
-- if @haikus
-- if @haikus.empty?
-No results
-- else
-= render(:partial => "shared/paginate", :locals => {:collection => @haikus })
-= render(:partial => "shared/haiku", :collection => @haikus, :spacer_template => "shared/haiku_divider")
-= render(:partial => "shared/paginate", :locals => {:collection => @haikus })
-%br
-- end
-- end
+#haikus
+  - if @haikus
+  - if @haikus.empty?
+  No results
+  - else
+  = render(:partial => "shared/paginate", :locals => {:collection => @haikus })
+  - @haikus.each_with_index do |haiku, index|
+    %div[haiku]
+      - for line in haiku.text.split("\n")
+      .haiku-line= h(line)
+      - end
+      .author= haiku.user.username
+  
+  = render(:partial => "shared/paginate", :locals => {:collection => @haikus })
+  %br
+  - end
+  - end

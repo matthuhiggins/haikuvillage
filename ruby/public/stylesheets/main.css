@@ -60,6 +60,7 @@ textarea {
     padding-bottom: 10px;
     background-image: url(/images/bg-body.png);
     background-repeat: repeat-y;
+    text-align: left;
 }
 
 #cleartag {
@@ -69,15 +70,4 @@ textarea {
 #foot {
     background-image: url(/images/bg-bottom.png);
     height: 30px;
-}
-
-#leftside {
-	float: left;
-	width: 70%;
-	text-align: left;
-}
-
-#rightside {
-    float: right;
-    width: 30%;
 }

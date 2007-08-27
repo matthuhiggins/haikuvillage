@@ -3,7 +3,7 @@
   %ul
     - if collection.previous_page?
     %li.nextpage
-      = link_to '&#171; previous', { :page => collection.previous_page }
+      = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :update => 'haikus'
     - else
     %li.disablepage
       &#171; previous
@@ -18,13 +18,13 @@
       - else
       %li
         = "..." if last_page+1
-        = link_to n, :id => params[:id], :page => n
+        = link_to_remote n, :url => {:id => params[:id], :page => n}, :update => 'haikus'
       - end
       - last_page = n
  
     - if collection.next_page?
     %li.nextpage
-      = link_to 'next &#187;', { :page => collection.next_page }
+      = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :update => 'haikus'
     - else
     %li.disablepage
       &#171; next

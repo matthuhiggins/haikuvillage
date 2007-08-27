@@ -34,7 +34,11 @@ class HaikusController < ApplicationController
   
   def render_index
     @haikus = block_given? ? yield : paginated_haikus
-    render :action => :index
+    if params[:page]
+      render :partial => 'shared/haikus'
+    else
+      render :action => :index
+    end    
   end
   
   def paginated_haikus(options = {})
