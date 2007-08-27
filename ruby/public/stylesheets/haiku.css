@@ -15,12 +15,13 @@
 }
 
 #haiku_hidden {
-    width: 600px;
+    width: 900px;
+    margin-left: -300px;
 }
 
 .haiku_fragment {
     float: left;
-    width: 250px;
+    width: 300px;
 }
 
 .valid-line {
