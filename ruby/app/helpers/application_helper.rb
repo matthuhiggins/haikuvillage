@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def haiku_div_tag(haiku, options = {})
-    tag(:div, {:id => "haiku-#{haiku.id}", :class => "haiku"}.merge(options), true)
-  end
-  
   def modify_favorite_div_tag(haiku)
     "<div id=\"haiku-favorite-#{haiku.id}\">"
   end

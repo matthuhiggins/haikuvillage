@@ -67,7 +67,6 @@ class MyHaikuController < ApplicationController
     @sub_menu = [
       ["My Stuff", "index"],
       ["Create", "new"],
-      ["My Tags", "tags"],
       ["My Favorites", "favorites"]
     ]
   end

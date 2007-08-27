@@ -1,7 +1,0 @@
-<% content_for(:title) do %>
-  These are my tags
-<% end %>
-
-<% for tag in @tags %>
-  <%= link_to h(tag.name), {:controller => :haikus, :action => "tags", :id => h(tag.name)} %>
-<% end %>
