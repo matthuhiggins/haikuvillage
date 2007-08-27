@@ -13,8 +13,8 @@
     %label{:for => "text"} My Haiku
     %br
     = form.text_area (:text, :cols => 40, :rows => 3)
-
-    = submit_tag("Create", :id => "commit")
+    %p
+      = submit_tag("Create", :id => "commit")
   - end
 
   %script new Haiku.PeriodicalUpdater("haiku_text", "preview");
