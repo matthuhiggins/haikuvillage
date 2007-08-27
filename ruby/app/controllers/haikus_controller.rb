@@ -14,26 +14,21 @@ class HaikusController < ApplicationController
     render_index{ paginated_haikus(:order => "created_at desc") }
   end
   
-  def haikus
-    render_index do
-      unless params[:q].blank?
-        current = 1 unless params[:p]
-        Haiku.paginating_ferret_search({:q => params[:q],
+  def search
+    unless params[:q].blank?
+      current = 1 unless params[:p]
+      @haikus = Haiku.paginating_ferret_search({:q => params[:q],
                                         :current => 1,
                                         :page_size => 4})
-      end
     end
   end
-  
-  private
   
   def get_sub_menu
     @sub_menu = [
       ["Haikus", "index"],
       ["Favorites", "favorites"],
       ["Recent", "recent"],
-      ["Tags", "tags"],
-      ["Search", {:action => "haikus", :controller => "search"}]
+      ["Search", "search"]
     ]
   end
   
