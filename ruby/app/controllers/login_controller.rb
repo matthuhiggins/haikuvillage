@@ -35,6 +35,6 @@ class LoginController < ApplicationController
       session[:user_id] = user_id
       uri = session[:original_uri]
       session[:original_uri] = nil
-      redirect_to(uri || { :controller => :haikus, :action => "index" })
+      redirect_to(uri || { :controller => 'haikus', :action => "index" })
     end
 end
