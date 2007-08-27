@@ -1,2 +1,12 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+function object(o) {
+  function F() {}
+  F.prototype = o;
+  return new F();
+}
+
+function set() {
+  var result = {};
+  for (var i = 0; i < arguments.length; i++)
+    result[arguments[i]] = true;
+  return result;
+}

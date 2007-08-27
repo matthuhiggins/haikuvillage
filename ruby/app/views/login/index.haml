@@ -1,12 +1,10 @@
 - content_for(:head) do
 = yui_include_tag "yahoo-dom-event", "element", "button"
+= javascript_include_tag "required"
 - end
 
 #login
   = error_messages_for 'user'
-
-  %script
-    var button = new YAHOO.widget.Button("login_button", { id: "mine", type: "submit" });
 
   %fieldset
     %legend Sign in to Haiku Village

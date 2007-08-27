@@ -64,7 +64,15 @@ textarea {
     text-align: left;
 }
 
-#cleartag {
+.left_side {
+    float: left;
+}
+
+.right_side {
+    float: right;
+}
+
+.cleartag {
     clear: both;
 }
 
