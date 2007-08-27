@@ -1,5 +1,6 @@
 body {
-    background: #90ce45;
+    background-color: #90ce45;
+    background-image: url(/images/bg-page.png);
     color: #636466;
     font: 12pt tahoma;
     margin: 0;
@@ -34,8 +35,8 @@ textarea {
 #navigation {
     padding-top: 1em;
     height: 50px;
-    width: 100%;
-    background-color: black;
+    background-image: url(/images/bg-head.png);
+    background-repeat: repeat-y;
 }
 
 #navigation a {
@@ -43,15 +44,31 @@ textarea {
 }
 
 #frame {
-    background: white;
-    height: 900px;
+    height: 700px;
     margin-left: auto;
     margin-right: auto;
-    width: 900px;
+    width: 740px;
+}
+
+#content, #navigation {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 #content {
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-image: url(/images/bg-body.png);
+    background-repeat: repeat-y;
+}
+
+#cleartag {
+    clear: both;
+}
+
+#foot {
+    background-image: url(/images/bg-bottom.png);
+    height: 30px;
 }
 
 #leftside {
