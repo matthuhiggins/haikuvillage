@@ -1,6 +1,14 @@
 require 'set'
 module Higgode
   module Yeeha #:nodoc:
+  
+    @@dependencies = {
+      'datatable' => 'datasource',
+      'menu' => 'container'
+    }
+    
+    @@beta = Set.new('button', 'element', 'datasource', 'datasource')
+    
     def build_requirements(libraries)
       libraries.inject(SortedSet.new(libraries)) do |requirements, library|
         requirements.merge(@@dependencies[library])
