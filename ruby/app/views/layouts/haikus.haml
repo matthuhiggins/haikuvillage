@@ -14,10 +14,8 @@
       #navigation
         #menu
           %ul#top-menu
-            %li#logo= image_tag("haikuvillage.gif")
+            %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
             %li= main_menu_link_to("My Haiku", "my_haiku")
-            %li /
-            %li= main_menu_link_to("Groups", "groups")
             %li /
             %li= main_menu_link_to("Explore", "haikus")
           %br
