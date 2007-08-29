@@ -3,7 +3,7 @@
     %ul
       - if collection.previous_page?
       %li.nextpage
-        = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :update => 'paginated_haikus'
+        = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :complete => "paginate(request, false)"
       - end
  
       - last_page = 0
@@ -21,5 +21,5 @@
  
       - if collection.next_page?
       %li.nextpage
-        = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :update => 'paginated_haikus'
+        = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :complete => "paginate(request, true)"
       - end

@@ -1,21 +1,2 @@
 #paginated_haikus
-  - if @haikus
-  - if @haikus.empty?
-  No results
-  - else
-  = render(:partial => "shared/paginate", :locals => {:collection => @haikus })
-  #haiku_box
-    #haiku_hidden
-      #haiku_left.haiku_fragment
-        = render :partial => "shared/haikus_fragment", :locals => { :haikus => @haikus }
-    
-      #haiku_center.haiku_fragment
-        = render :partial => "shared/haikus_fragment", :locals => { :haikus => @haikus }
-
-      #haiku_right.haiku_fragment
-        = render :partial => "shared/haikus_fragment", :locals => { :haikus => @haikus }
-  
-  = render(:partial => "shared/paginate", :locals => {:collection => @haikus })
-  %br
-  - end
-  - end
+  = render :partial => "shared/haikus_paginated", :locals => { :haikus => haikus }
