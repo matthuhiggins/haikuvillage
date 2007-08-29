@@ -1,44 +1,30 @@
 require 'set'
 module Higgode
-  module Yeeha #:nodoc:
-  
-    @@dependencies = {
-      'datatable' => 'datasource',
-      'menu' => 'container'
-    }
-    
-    @@beta = Set.new('button', 'element', 'datasource', 'datasource')
-    
-    def build_requirements(libraries)
-      libraries.inject(SortedSet.new(libraries)) do |requirements, library|
-        requirements.merge(@@dependencies[library])
-      end.to_a
-    end
+  module Yeeha #:nodoc:  
+    @@aggregate = Set.new(['yahoo-dom-event', 'utilities', 'reset-fonts-grids'])
+    @@beta = Set.new(['button', 'element', 'datasource', 'datasource'])
+    @@css = Set.new(['reset', 'base', 'fonts', 'grids', 'reset-fonts-grids'])
+    @@control = Set.new(['container', 'menu', 'autocomplete', 'button', 'calendar', 'colorpicker', 'datatable', 'tabview', 'treeview'])
     
     def yui_component_tag(source)
-      if ["yahoo-dom-event", "utilities"].include?(source)
-        file_name = "#{source}"
-      elsif ["button", "element"].include?(source)
-        file_name = "#{source}-beta-min"
+      file_name = @@beta.include?(source) ? "#{source}-beta" : source      
+      file_name = "#{file_name}-min" unless  @@aggregate.include?(source)
+      if @@css.include?(source)
+        stylesheet_link_tag("#{yui_root}/#{source}/#{file_name}")
+      elsif @@control.include?(source)
+        [stylesheet_link_tag("#{yui_root}/#{source}/assets/skins/sam/#{file_name}"),
+            javascript_include_tag("#{yui_root}/#{source}/#{file_name}")].join("\n")       
       else
-        file_name = "#{source}-min"
-      end
-  
-      if ["reset", "fonts"].include?(source)
-        stylesheet_link_tag("http://yui.yahooapis.com/2.3.0/build/#{source}/#{source}")
-      else    
-        javascript_include_tag("http://yui.yahooapis.com/2.3.0/build/#{source}/#{file_name}")
+        javascript_include_tag("#{yui_root}/#{source}/#{file_name}")
       end
     end
   
     def yui_include_tag(*sources)
-      tags = [yui_component_tag('utilities')]
-      sources.each do |source|
-        tags << stylesheet_link_tag("/yui/#{source}/assets/#{source}") if defined?(RAILS_ROOT) && 
-            File.exists?("#{RAILS_ROOT}/public/yui/#{source}/assets/#{source}.css")
-        tags << yui_component_tag(source)
-      end
-      tags.join("\n")
+      sources.map { |source| yui_component_tag(source) }.join("\n")
+    end
+    
+    def yui_root
+      "http://yui.yahooapis.com/2.3.0/build"
     end
   end
 end
