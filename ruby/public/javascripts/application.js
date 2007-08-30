@@ -21,13 +21,12 @@ function findElementById(responseText, div_id) {
     if (newElements.length > 0) {
         return newElements[0].innerHTML;
     } else {
-        alert("no success");
         return null;
     }
 }
 
 function paginate(request, isNext) {
-	var start = isNext ? 0 : -1200;
+	var start = isNext ? 0 : '-1200px';
 	var attributes = { 'margin-left': { to: -600 } };
 
     var newFragment = findElementById(request.responseText, "haiku_center");
@@ -37,9 +36,9 @@ function paginate(request, isNext) {
 	YAHOO.util.Dom.get("haiku_left").innerHTML = original;
 	YAHOO.util.Dom.get("haiku_right").innerHTML = original;
     YAHOO.util.Dom.setStyle("haiku_hidden", 'margin-left', start);
+
     YAHOO.util.Dom.get("haiku_center").innerHTML = newFragment;
     YAHOO.util.Dom.get("pagination").innerHTML = newPagination;
-	
     var anim = new YAHOO.util.Anim('haiku_hidden', attributes, 1, YAHOO.util.Easing.easeOut);
     anim.animate();
 }
