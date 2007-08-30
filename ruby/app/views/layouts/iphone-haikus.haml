@@ -1,0 +1,40 @@
+!!! XML
+!!!
+%html
+  %head
+    %title Haikus
+    <meta  name="viewport" content="width=320; initial-scale=1.0">
+    = stylesheet_link_tag "http://yui.yahooapis.com/2.3.0/build/reset-fonts-grids/reset-fonts-grids.css"
+    = stylesheet_link_tag 'main'
+    = stylesheet_link_tag 'menu'
+    = stylesheet_link_tag 'iphone'
+    = yui_include_tag 'utilities', 'button'
+    = javascript_include_tag 'prototype', 'effects'
+    = javascript_include_tag 'application', 'button_up'
+    = yield :head
+  %body
+    #frame
+      #navigation
+        #menu
+          %ul#top-menu
+            %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
+            %li= main_menu_link_to("My Haiku", "my_haiku")
+            %li /
+            %li= main_menu_link_to("Explore", "haikus")
+          %br
+          = render :partial => "shared/sub_menu"
+        #user-corner
+          - if session[:user_id]
+          Welcome
+          %strong= @user.username
+          %br
+          = link_to "sign out", logout_url
+          - else
+          = link_to "sign in", login_url
+          - end
+         
+      #content
+        %h2= yield :title
+        %p= flash[:notice]
+        = yield :layout
+      #foot
