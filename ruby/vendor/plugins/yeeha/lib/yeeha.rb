@@ -1,6 +1,6 @@
 require 'set'
 module Higgode
-  module Yeeha #:nodoc:  
+  module Yeeha #:nodoc
     @@aggregate = Set.new(['yahoo-dom-event', 'utilities', 'reset-fonts-grids'])
     @@beta = Set.new(['button', 'element', 'datasource', 'datasource'])
     @@css = Set.new(['reset', 'base', 'fonts', 'grids', 'reset-fonts-grids'])

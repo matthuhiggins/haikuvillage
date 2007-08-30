@@ -11,17 +11,17 @@
 
 #haiku_box {
     overflow: hidden;
-    width: 300px;
+    width: 600px;
 }
 
 #haiku_hidden {
-    width: 900px;
-    margin-left: -300px;
+    width: 1800px;
+    margin-left: -600px;
 }
 
 .haiku_fragment {
     float: left;
-    width: 300px;
+    width: 600px;
 }
 
 .valid-line {
