@@ -34,4 +34,5 @@ end
 # Include your application configuration below
 require 'ferret'
 
-Sass::plugin.options[:always_update] = true
+Sass::Plugin.options[:always_update] = true
+Sass::Plugin.options[:style] = :expanded
