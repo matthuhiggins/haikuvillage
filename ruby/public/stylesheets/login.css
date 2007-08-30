@@ -1,9 +1,76 @@
+#login, #login-border-top, #login-border-bottom,
+#register, #register-border-top, #register-border-bottom {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login, #register {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-repeat: repeat-y;
+}
+
 #login {
-    width: 350px;
+    width: 310px;
+    background-image: url(/images/bg-login-middle.png);
+}
+
+#login-border-top {
+    margin-top: 5em;
+    width: 390px;
+    height: 31px;
+    background-image: url(/images/bg-login-top.png);
+    background-repeat: no-repeat;
+}
+
+#login-border-bottom {
+    width: 390px;
+    height: 31px;
+    background-image: url(/images/bg-login-bottom.png);
+    background-repeat: no-repeat;;
+}
+
+#register-border-top {
+    margin-top: 5em;
+    width: 440px;
+    height: 31px;
+    background-image: url(/images/bg-register-top.png);
+    background-repeat: no-repeat;;
+}
+
+#register-border-bottom {
+    width: 440px;
+    height: 31px;
+    background-image: url(/images/bg-register-bottom.png);
+    background-repeat: no-repeat;;
+}
+
+#login fieldset, 
+#register fieldset {
+    border: 0px solid black;
+}
+
+#login fieldset legend,
+#register fieldset legend {
+    display: none;
+}
+
+#login_button {
+    margin-top: 1em;
+    width: 7em;
+    height: 3em;
+    font-weight: bold;
+}
+
+#main-frame {
+    text-align: center;
 }
 
 #register {
-    width: 500px;
+    width: 360px;
+    background-image: url(/images/bg-register-middle.png);
 }
 
 form label{
@@ -16,8 +83,18 @@ form label input {
     margin-right:20px;
     float:right;
     clear:right;
+    border: 2px solid #CCC;
 }
 
-.yuibutton#mine button {
-    /* width: 5em; */
+#register input {
+	width: 150px;
+	margin-left: 20px;
+}
+
+#register label {
+	text-align: right;
+}
+
+#submit-buttons {
+	margin-top: 1em;
 }

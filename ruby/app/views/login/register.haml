@@ -1,3 +1,4 @@
+#register-border-top
 #register
   = error_messages_for 'user'
 
@@ -20,7 +21,8 @@
       = form.text_field :password_confirmation, :size => 40
       Confirm:
 
-
-    = submit_tag "Register", :name => "register"
-    = submit_tag "Cancel", :name => "cancel"    
+    #submit-buttons
+      = submit_tag "Register", :name => "register"
+      = submit_tag "Cancel", :name => "cancel"    
     - end
+#register-border-bottom
