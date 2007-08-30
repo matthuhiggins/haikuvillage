@@ -1,6 +1,6 @@
 #login-border-top
 #login.centered
-  = error_messages_for 'user'
+  %p= flash[:notice]
   %fieldset
     %legend Sign in to Haiku Village
 

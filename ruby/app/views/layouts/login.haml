@@ -9,5 +9,5 @@
     = javascript_include_tag 'application', 'button_up'
     = yield :head
   %body
-    %p= flash[:notice]
-    #main-frame= yield
+    #main-frame
+      = yield
