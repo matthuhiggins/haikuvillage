@@ -1,0 +1,91 @@
+!login_width = 350
+!register_width = 400
+!shadow_width = 20
+
+#login, #register
+  :padding
+    :left = 20 + !shadow_width + px
+    :right = 20 + !shadow_width + px
+    :top 20px
+    :bottom 20px
+  :background-repeat repeat-y
+
+#login
+  :width = !login_width - !shadow_width * 2 + px
+  :background-image url(/images/bg-login-middle.png)
+  
+#register
+  :width = !register_width - !shadow_width * 2 + px
+  :background-image url(/images/bg-register-middle.png)
+
+#login, #login-border-top, #login-border-bottom, #register, #register-border-top, #register-border-bottom 
+  :margin
+    :left auto
+    :right auto
+
+#login-border-top
+  :width = !login_width + !shadow_width * 2 + px
+  :height 31px
+  :margin-top 5em
+  :background
+    :image url(/images/bg-login-top.png)
+    :repeat no-repeat
+
+#login-border-bottom
+  :width = !login_width + !shadow_width * 2 + px
+  :height 31px
+  :background
+    :image url(/images/bg-login-bottom.png)
+    :repeat no-repeat
+
+#register-border-top
+  :width = !register_width + !shadow_width * 2 + px
+  :height 31px
+  :margin-top 5em
+  :background
+    :image url(/images/bg-register-top.png)
+    :repeat no-repeat
+
+#register-border-bottom 
+  :width = !register_width + !shadow_width * 2 + px
+  :height 31px
+  :background
+    :image url(/images/bg-register-bottom.png)
+    :repeat no-repeat
+
+#register 
+  input
+    :width 150px
+    :margin-left 20px
+  label
+    :text-align right
+
+#login, #register
+  fieldset
+    :border 0px solid black
+    legend
+      :display none
+
+#login_button
+  :margin-top 1em
+  :width 7em
+  :height 3em
+  :font-weight bold
+
+#main-frame
+  :text-align center
+
+form 
+  label
+    :display block
+    :height 2em
+    :padding 10px 10px 0
+
+    input
+      :margin-right 20px
+      :float right
+      :clear right
+      :border 2px solid #CCC
+
+#submit-buttons
+  :margin-top 1em
