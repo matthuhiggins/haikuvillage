@@ -32,5 +32,5 @@ module ApplicationHelper
     # Print end page if anchors are enabled
     html << yield(pagingEnum.last_page) if always_show_anchors and not last == pagingEnum.last_page
     html
-  end  
+  end
 end

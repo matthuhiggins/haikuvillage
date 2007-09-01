@@ -41,6 +41,6 @@ function paginate(request, isNext) {
 
     YAHOO.util.Dom.get("haiku_center").innerHTML = newFragment.innerHTML;
     YAHOO.util.Dom.get("pagination").innerHTML = newPagination.innerHTML;
-    var anim = new YAHOO.util.Anim('haiku_hidden', attributes, 1, YAHOO.util.Easing.easeOut);
+    var anim = new YAHOO.util.Anim('haiku_hidden', attributes, 0.6, YAHOO.util.Easing.easeOut);
     anim.animate();
 }
