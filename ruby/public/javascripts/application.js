@@ -11,18 +11,20 @@ function set() {
   return result;
 }
 
+function getEl(element) {
+  if (typeof element == 'string')
+    element = document.getElementById(element);
+  return element;
+}
+
 function findElementById(responseText, div_id) {
     var div = document.createElement('div');
     div.innerHTML = responseText;
-    var finder = function(el) {
-        return el.id && el.id == div_id;
-    }
-    var newElements = YAHOO.util.Dom.getElementsBy(finder, 'div', div);
-    if (newElements.length > 0) {
-        return newElements[0].innerHTML;
-    } else {
-        return null;
-    }
+    var newElements = YAHOO.util.Dom.getElementsBy(function(el) {
+            return el.id && el.id == div_id;
+        }, 'div', div);
+	
+	return newElements.length > 0 ? newElements[0] : null;
 }
 
 function paginate(request, isNext) {
@@ -37,8 +39,8 @@ function paginate(request, isNext) {
 	YAHOO.util.Dom.get("haiku_right").innerHTML = original;
     YAHOO.util.Dom.setStyle("haiku_hidden", 'margin-left', start);
 
-    YAHOO.util.Dom.get("haiku_center").innerHTML = newFragment;
-    YAHOO.util.Dom.get("pagination").innerHTML = newPagination;
+    YAHOO.util.Dom.get("haiku_center").innerHTML = newFragment.innerHTML;
+    YAHOO.util.Dom.get("pagination").innerHTML = newPagination.innerHTML;
     var anim = new YAHOO.util.Anim('haiku_hidden', attributes, 1, YAHOO.util.Easing.easeOut);
     anim.animate();
 }

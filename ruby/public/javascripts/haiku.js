@@ -156,9 +156,14 @@ Haiku.PeriodicalUpdater.prototype = {
     
     // render the haiku
     newHaiku = new Haiku($F(this.textArea), wordInfo);
-    $(this.previewElement).innerHTML = newHaiku.toHTML();  
-    document.getElementsByClassName(Word.RESPONDED, $(this.previewElement)).each(function(element) {
-      new Effect.Highlight(element, {startcolor: '#77db08'});
+    getEl(this.previewElement).innerHTML = newHaiku.toHTML();  
+    document.getElementsByClassName(Word.RESPONDED, getEl(this.previewElement)).each(function(element) {
+        var attributes = {
+            color: { to: '#06e' }, 
+            backgroundColor: { from: '#77db08', to: '#fff' }
+        }; 
+        var anim = new YAHOO.util.ColorAnim(element, attributes, 1, YAHOO.util.Easing.easeOut);
+		anim.animate();
     });
     
     wordInfo.values().each(function(word){
