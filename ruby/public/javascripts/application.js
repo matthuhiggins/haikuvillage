@@ -52,27 +52,34 @@ function paginate(request, isNext) {
 }
 
 function addHaiku(text) {
-	var emptyHaikuDiv = createDomFromText("<div class='haiku' id='empty_haiku'>&nbsp;</div>");
-	YAHOO.util.Dom.setStyle(emptyHaikuDiv, 'margin-top', '-90px');
-	var haikuList = getEl("haiku_box");
+    var haikuList = getEl("haiku_box");
 	
-	emptyHaikuDiv = YAHOO.util.Dom.insertBefore(emptyHaikuDiv, YAHOO.util.Dom.getFirstChild(haikuList));
-    var scrollAnim = new YAHOO.util.Anim(emptyHaikuDiv, {'margin-top': { from: -90, to: 0 }}, 0.3, YAHOO.util.Easing.easeOut);
-	
-	scrollAnim.onComplete.subscribe(function(type, args) {
+    var fadeIn = function () {
 		var newHaikuDiv = createDomFromText(text);
+				
 		YAHOO.util.Dom.setStyle(newHaikuDiv, 'color', '#fff');
 		haikuList.replaceChild(newHaikuDiv, emptyHaikuDiv);
-		colorAttributes = {
-			color: { from: '#fff', to:'#000' }
-			//backgroundColor: { from: '#77db08', to: '#fff' }			
+		var colorAttributes = {
+			color: { from: '#fff', to:'#000' }		
 		};
 		
 		var colorAnim = new YAHOO.util.ColorAnim(newHaikuDiv.id, colorAttributes, 0.5, YAHOO.util.Easing.easeOut);
 		colorAnim.animate();		
 	    if (YAHOO.util.Dom.getChildren(haikuList).length > 4) {
             haikuList.removeChild(YAHOO.util.Dom.getLastChild(haikuList));
-	}});
-	
-	scrollAnim.animate();
+		}
+	}
+		
+	var emptyHaikuDiv = createDomFromText("<div class='haiku' id='empty_haiku'>&nbsp;</div>");
+	if (YAHOO.util.Dom.getChildren(haikuList).length === 0) {
+		haikuList.appendChild(emptyHaikuDiv);
+		emptyHaikuDiv = getEl("empty_haiku");
+		fadeIn();
+    } else {	   
+	    YAHOO.util.Dom.setStyle(emptyHaikuDiv, 'margin-top', '-90px');	
+	    emptyHaikuDiv = YAHOO.util.Dom.insertBefore(emptyHaikuDiv, YAHOO.util.Dom.getFirstChild(haikuList));
+        var scrollAnim = new YAHOO.util.Anim(emptyHaikuDiv, {'margin-top': { from: -90, to: 0 }}, 0.3, YAHOO.util.Easing.easeOut);	
+	    scrollAnim.onComplete.subscribe(fadeIn);
+	    scrollAnim.animate();
+	}
 }
