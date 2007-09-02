@@ -12,7 +12,7 @@ module Higgode
       if @@css.include?(source)
         stylesheet_link_tag("#{yui_root}/#{source}/#{file_name}")
       elsif @@control.include?(source)
-        [stylesheet_link_tag("#{yui_root}/#{source}/assets/skins/sam/#{file_name}"),
+        [stylesheet_link_tag("#{yui_root}/#{source}/assets/skins/sam/#{source}"),
             javascript_include_tag("#{yui_root}/#{source}/#{file_name}")].join("\n")       
       else
         javascript_include_tag("#{yui_root}/#{source}/#{file_name}")

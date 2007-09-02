@@ -54,7 +54,7 @@ function paginate(request, isNext) {
 function addHaiku(text) {
 	newHaikuDiv = createDomFromText(text);
 	YAHOO.util.Dom.setStyle(newHaikuDiv, 'margin-top', '-90px');
-	haikuList = getEl("haiku_center");
+	haikuList = getEl("haiku_box");
 	
 	YAHOO.util.Dom.insertBefore(newHaikuDiv, YAHOO.util.Dom.getFirstChild(haikuList));
     var attributes = { 
@@ -62,8 +62,10 @@ function addHaiku(text) {
 		'margin-top': { from: -90, to: 0 }
     };
     var anim = new YAHOO.util.ColorAnim(newHaikuDiv.id, attributes, 0.6, YAHOO.util.Easing.easeOut);
+	anim.onComplete.subscribe(function(type, args) {
+	    if (YAHOO.util.Dom.getChildren(haikuList).length > 4) {
+            haikuList.removeChild(YAHOO.util.Dom.getLastChild(haikuList));
+	}});
+	
 	anim.animate();
-	if (YAHOO.util.Dom.getChildren(haikuList).length > 4) {
-		haikuList.removeChild(YAHOO.util.Dom.getLastChild(haikuList));
-	}
 }

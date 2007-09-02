@@ -10,9 +10,6 @@
   %p
     #preview      
 
-  %script
-    new Haiku.PeriodicalUpdater("haiku_text", "preview");
-
   - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "addHaiku(request.responseText);" do |form|
     %p
       %label{:for => "text"}
@@ -26,6 +23,9 @@
   %script
     $('haiku_text').focus();
     
+  %script
+    new Haiku.PeriodicalUpdater("haiku_text", "preview");
+    
 .right_side
   %h3 Recently added
-  = render(:partial => "shared/haikus")
+  = render(:partial => "shared/haikus_active", :locals => { :haikus => @haikus })

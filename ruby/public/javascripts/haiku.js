@@ -74,14 +74,7 @@ Line.prototype = {
 var Haiku = Class.create();
 Haiku.prototype = {
   initialize: function(text, wordInfo) {
-    if (text == "") {
-      all_lines = $A([
-        "type your haiku here",
-        "begin the sharing process",
-        "and you will be glad"]);
-    } else {
-      all_lines = $A(text.split("\n"));
-    }
+    all_lines = $A(text.split("\n"));
   
     this.lines = all_lines.map(function(text, line_number){
       return new Line(text, line_number, wordInfo);
