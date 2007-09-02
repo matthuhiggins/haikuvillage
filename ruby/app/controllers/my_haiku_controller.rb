@@ -3,17 +3,15 @@ class MyHaikuController < ApplicationController
 
   before_filter :authorize
   
-  def new
-    if request.post?
-      @haiku = Haiku.new()
-      @haiku.text = params[:haiku][:text]
-      @haiku.user_id = session[:user_id]
-      if @haiku.save
-        flash[:notice] = "Your Haiku has been saved"
-        redirect_to :action => 'index'
-      else
-        logger.debug("failed to save")
-      end
+  def create
+    @haiku = Haiku.new()
+    @haiku.text = params[:haiku][:text]
+    @haiku.user_id = session[:user_id]
+    if @haiku.save
+      flash[:notice] = "Your Haiku has been saved"
+      redirect_to :action => 'index'
+    else
+      logger.debug("failed to save")
     end
   end  
   
@@ -45,7 +43,6 @@ class MyHaikuController < ApplicationController
   def get_sub_menu
     @sub_menu = [
       ["My Stuff", "index"],
-      ["Create", "new"],
       ["My Favorites", "favorites"]
     ]
   end

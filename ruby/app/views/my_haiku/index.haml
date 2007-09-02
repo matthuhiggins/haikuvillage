@@ -1,4 +1,30 @@
-- content_for(:title) do
-  These are my haikus
+- content_for(:head) do
+  = javascript_include_tag "haiku"
 
-= render(:partial => "shared/haikus")
+- content_for(:title) do
+  My Haiku
+
+.left_side
+  = error_messages_for 'haiku'
+
+  %p
+    #preview      
+
+  %script
+    new Haiku.PeriodicalUpdater("haiku_text", "preview");
+
+  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'} do |form|
+    %p
+      %label{:for => "text"}
+        Haiku Text
+      %br
+      = text_area 'haiku', 'text', :cols => 40, :rows => 3
+
+    = submit_tag("Create new haiku", :id => "commit")
+
+
+  %script
+    $('haiku_text').focus();
+    
+.right_side
+  = render(:partial => "shared/haikus")

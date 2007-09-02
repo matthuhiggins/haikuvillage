@@ -28,8 +28,8 @@ function findElementById(responseText, div_id) {
 }
 
 function paginate(request, isNext) {
-	var start = isNext ? 0 : '-1200px';
-	var attributes = { 'margin-left': { to: -600 } };
+	var start = isNext ? 0 : '-600px';
+	var attributes = { 'margin-left': { to: -300 } };
 
     var newFragment = findElementById(request.responseText, "haiku_center");
     var newPagination = findElementById(request.responseText, "pagination");

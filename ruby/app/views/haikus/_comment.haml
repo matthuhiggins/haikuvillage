@@ -1,5 +1,0 @@
-%p= comment.created_at
-%p= comment.text
-- if comment.user_id == session[:user_id]
-= link_to "Remove my comment", comment_url(@haiku,comment), :method  => :delete
-- end
