@@ -23,9 +23,9 @@ function getEl(element) {
   return element;
 }
 
-function getElementInText(responseText, div_id) {
+function getElementInText(text, div_id) {
     var div = document.createElement('div');
-    div.innerHTML = responseText;
+    div.innerHTML = text;
     var newElements = YAHOO.util.Dom.getElementsBy(function(el) {
             return el.id && el.id == div_id;
         }, 'div', div);
