@@ -7,11 +7,13 @@ class MyHaikuController < ApplicationController
     @haiku = Haiku.new
     @haiku.text = params[:haiku][:text]
     @haiku.user_id = session[:user_id]
+    logger.debug(@haiku.text)
     if @haiku.save
+      logger.debug("successful save")
       render :partial => 'shared/haiku', :locals => { :haiku => @haiku }
     else
       logger.debug("failed to save")
-      render :text => @haiku.errors.to_s, :layout => false
+      render :text => @haiku.errors.full_messages.to_s, :layout => false
     end
   end  
   

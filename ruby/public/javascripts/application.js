@@ -11,6 +11,12 @@ function set() {
   return result;
 }
 
+function createDomFromText(text) {
+	var div = document.createElement('div');
+	div.innerHTML = text;
+	return YAHOO.util.Dom.getFirstChild(div);
+}
+
 function getEl(element) {
   if (typeof element == 'string')
     element = document.getElementById(element);
@@ -43,4 +49,21 @@ function paginate(request, isNext) {
     YAHOO.util.Dom.get("pagination").innerHTML = newPagination.innerHTML;
     var anim = new YAHOO.util.Anim('haiku_hidden', attributes, 0.6, YAHOO.util.Easing.easeOut);
     anim.animate();
+}
+
+function addHaiku(text) {
+	newHaikuDiv = createDomFromText(text);
+	YAHOO.util.Dom.setStyle(newHaikuDiv, 'margin-top', '-90px');
+	haikuList = getEl("haiku_center");
+	
+	YAHOO.util.Dom.insertBefore(newHaikuDiv, YAHOO.util.Dom.getFirstChild(haikuList));
+    var attributes = { 
+        backgroundColor: { from: '#77db08', to: '#fff' },
+		'margin-top': { from: -90, to: 0 }
+    };
+    var anim = new YAHOO.util.ColorAnim(newHaikuDiv.id, attributes, 0.6, YAHOO.util.Easing.easeOut);
+	anim.animate();
+	if (YAHOO.util.Dom.getChildren(haikuList).length > 4) {
+		haikuList.removeChild(YAHOO.util.Dom.getLastChild(haikuList));
+	}
 }
