@@ -17,7 +17,7 @@ function getEl(element) {
   return element;
 }
 
-function findElementById(responseText, div_id) {
+function getElementInText(responseText, div_id) {
     var div = document.createElement('div');
     div.innerHTML = responseText;
     var newElements = YAHOO.util.Dom.getElementsBy(function(el) {
@@ -31,8 +31,8 @@ function paginate(request, isNext) {
 	var start = isNext ? 0 : '-600px';
 	var attributes = { 'margin-left': { to: -300 } };
 
-    var newFragment = findElementById(request.responseText, "haiku_center");
-    var newPagination = findElementById(request.responseText, "pagination");
+    var newFragment = getElementInText(request.responseText, "haiku_center");
+    var newPagination = getElementInText(request.responseText, "pagination");
 
 	original = YAHOO.util.Dom.get("haiku_center").innerHTML;
 	YAHOO.util.Dom.get("haiku_left").innerHTML = original;

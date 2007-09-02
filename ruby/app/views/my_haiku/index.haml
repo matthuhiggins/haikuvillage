@@ -13,7 +13,7 @@
   %script
     new Haiku.PeriodicalUpdater("haiku_text", "preview");
 
-  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'} do |form|
+  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "alert(request.responseText)" do |form|
     %p
       %label{:for => "text"}
         Haiku Text

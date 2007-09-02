@@ -4,14 +4,14 @@ class MyHaikuController < ApplicationController
   before_filter :authorize
   
   def create
-    @haiku = Haiku.new()
+    @haiku = Haiku.new
     @haiku.text = params[:haiku][:text]
     @haiku.user_id = session[:user_id]
     if @haiku.save
-      flash[:notice] = "Your Haiku has been saved"
-      redirect_to :action => 'index'
+      render :partial => 'shared/haiku', :locals => { :haiku => @haiku }
     else
       logger.debug("failed to save")
+      render :text => @haiku.errors.to_s, :layout => false
     end
   end  
   
