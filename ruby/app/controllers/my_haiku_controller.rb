@@ -15,7 +15,7 @@ class MyHaikuController < ApplicationController
       logger.debug("failed to save")
       render :text => @haiku.errors.full_messages.to_s, :layout => false
     end
-  end  
+  end
   
   def favorites
     @haikus = paginated_haikus(

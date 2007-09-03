@@ -1,48 +1,29 @@
 - content_for(:head) do
-= javascript_include_tag "haiku"
-- end
+  = javascript_include_tag "haiku"
+  
+- content_for(:title) do
+  Create your haiku
 
 .left_side
   = error_messages_for 'haiku'
 
-  %h2 Share your haiku:
   #preview
 
-  - form_for :haiku, :html => {:id => 'haiku_form'} do |form|
-  %p
-    %label{:for => "text"} My Haiku
-    %br
-    = form.text_area (:text, :cols => 40, :rows => 3)
+  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "getEl('haiku_text').value = ''; addHaiku(request.responseText);" do |form|
     %p
-      = submit_tag("Create", :id => "commit")
-  - end
+      %label{:for => "text"} My Haiku
+      %br
+      = form.text_area (:text, :cols => 40, :rows => 3)
+      
+      %p
+        = submit_tag("Create", :id => "commit")
 
-  %script new Haiku.PeriodicalUpdater("haiku_text", "preview");
-
-  %script
+  %script 
+    new Haiku.PeriodicalUpdater("haiku_text", "preview");
     $('haiku_text').focus();
 
 .right_side
-  %h2 Recent Haikus
-  #recent-haikus
-    = render (:partial => "shared/haiku", :collection => @haikus)
-
-    #next-haiku"{:style => "display:none"}
-
-    %script
-      new Ajax.PeriodicalUpdater($('next-haiku'),
-      = "'#{(url_for :controller => 'welcome', :action => 'next')}', {"
-      \      method: 'get',
-      \      frequency: 3,
-      \      onSuccess: function() {
-      \        var haikus = Element.getElementsByClassName('recent-haikus', 'haiku');
-      \        var next_haiku = Element.getElementsByClassName('next-haiku', 'haiku').first();
-      \        if (haikus.first().id != next_haiku.id) {
-      \          $('recent-haikus').innerHTML = $('next-haiku').innerHTML + $('recent-haikus').innerHTML;
-      \          new Effect.Highlight(next_haiku.id);
-      \          Element.remove(haikus.last().id);
-      \        }
-      \      }
-      \    });
+  %h3 Recently added
+  = render(:partial => "shared/haikus_active", :locals => { :haikus => @haikus })
 
 .cleartag

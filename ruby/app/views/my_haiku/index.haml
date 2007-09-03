@@ -7,25 +7,23 @@
 .left_side
   = error_messages_for 'haiku'
 
-  %p
-    #preview      
+  #preview      
 
-  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "addHaiku(request.responseText);" do |form|
+  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "getEl('haiku_text').value = ''; addHaiku(request.responseText);" do |form|
     %p
-      %label{:for => "text"}
-        Haiku Text
+      %label{:for => "text"} Haiku Text
       %br
-      = text_area 'haiku', 'text', :cols => 40, :rows => 3
+      = form.text_area (:text, :cols => 40, :rows => 3)
 
-    = submit_tag("Create new haiku", :id => "commit")
+      %p
+        = submit_tag("Create", :id => "commit")
 
-
-  %script
-    $('haiku_text').focus();
-    
-  %script
+  %script 
     new Haiku.PeriodicalUpdater("haiku_text", "preview");
+    $('haiku_text').focus();
     
 .right_side
   %h3 Recently added
   = render(:partial => "shared/haikus_active", :locals => { :haikus => @haikus })
+  
+.cleartag
