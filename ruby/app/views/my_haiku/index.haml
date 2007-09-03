@@ -16,7 +16,7 @@
       = form.text_area (:text, :cols => 40, :rows => 3)
 
       %p
-        = submit_tag("Create", :id => "commit")
+        = submit_tag("Create", :id => "commit", :class => "disabled")
 
   %script 
     new Haiku.PeriodicalUpdater("haiku_text", "preview");
