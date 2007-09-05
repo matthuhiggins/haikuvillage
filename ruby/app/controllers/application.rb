@@ -4,6 +4,19 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  def create_haiku(text)
+    @haiku = Haiku.new
+    @haiku.text = params[:haiku][:text]
+
+    yield(@haiku)
+    
+    if @haiku.save
+      render :partial => 'shared/haiku', :locals => { :haiku => @haiku }
+    else
+      render :text => "", :layout => false
+    end
+  end
+  
   def paginated_haikus(options = {})
     Haiku.find(:all, (options.merge({:page => {:current => params[:page]}})))
   end

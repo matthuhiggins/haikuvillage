@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
     user
   end
   
+  def self.get_anonymous
+    anon = find(:first, :conditions => {:username => "anonymous"})    
+    anon = create(:username => "anonymous",
+        :useralias => "Anonymous",
+        :email => "",
+        :password => "sa",
+        :password_confirmation => "sa") unless anon
+    anon 
+  end
+  
   # 'password' is a virtual attribute  
   def password
     @password

@@ -13,7 +13,7 @@ class Haiku < ActiveRecord::Base
   def validate
     valid_syllables = [5, 7, 5]
     
-    split_lines = text.split("\n")
+    split_lines = text.split(/\n|\r/)
     if split_lines.length != valid_syllables.size
       errors.add("Need three lines")
     else
