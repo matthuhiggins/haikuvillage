@@ -41,33 +41,6 @@ class User < ActiveRecord::Base
     self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
   
-  def is_subscribed_to( group )
-    self.groups.include?(group)
-  end
-  
-  def administers( group )
-    is_subscribed_to( group ) && self.group_users.find(:first, :conditions => ["group_id = ?", group.id]).user_type == "admin"
-  end
-  
-  def join( group )
-    self.groups << group unless is_subscribed_to(group)
-  end
-  
-  def leave( group )
-    if is_subscribed_to(group)
-      GroupUser.delete_all("user_id = #{self.id} and group_id = #{group.id}")
-      #self.group_users.find_by_group_id(group).destroy
-    end
-  end
-  
-  def admin_groups
-    groups = self.group_users.find(:all, :conditions => ["user_type = 'admin'"]).map{|group_user| group_user.group}
-  end
-  
-  def non_admin_groups
-    groups = self.group_users.find(:all, :conditions => ["user_type <> 'admin'"]).map{|group_user| group_user.group}
-  end
-  
   private
   
   def self.encrypted_password(password, salt)
