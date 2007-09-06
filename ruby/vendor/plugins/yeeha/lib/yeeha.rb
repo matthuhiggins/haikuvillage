@@ -24,7 +24,8 @@ module Higgode
     end
     
     def yui_root
-      "http://yui.yahooapis.com/2.3.0/build"
+      #"http://yui.yahooapis.com/2.3.0/build"
+      "/yui"
     end
   end
 end

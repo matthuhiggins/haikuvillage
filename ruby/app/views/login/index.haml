@@ -13,7 +13,7 @@
       Password:
     = submit_tag "Login", {:id => "login_button"}
     - end
-    %script YAHOO.util.Dom.get('username').focus();
+    %script{ :type => "text/javascript" } YAHOO.util.Dom.get('username').focus();
 
   %p 
     Not registered?
