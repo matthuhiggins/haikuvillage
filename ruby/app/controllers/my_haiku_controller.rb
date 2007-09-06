@@ -1,5 +1,9 @@
 class MyHaikuController < ApplicationController
   layout "haikus"
+  
+  set_sub_menu [
+      ["My Stuff", "index"],
+      ["My Favorites", "favorites"]]
 
   before_filter :authorize
   
@@ -31,14 +35,4 @@ class MyHaikuController < ApplicationController
     HaikuFavorite.delete_all("user_id = #{session[:user_id]} and haiku_id = #{params[:id]}")
     @haiku = Haiku.update(params[:id],  :haiku_favorites_count =>  "haiku_favorites_count - 1")
   end
-  
-  private
-  
-  def get_sub_menu
-    @sub_menu = [
-      ["My Stuff", "index"],
-      ["My Favorites", "favorites"]
-    ]
-  end
-  
 end

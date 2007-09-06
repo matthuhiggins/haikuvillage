@@ -1,6 +1,19 @@
 class ApplicationController < ActionController::Base
-
-  before_filter :get_sub_menu,:set_user
+  class << self
+    def set_sub_menu(menu_items)
+      write_inheritable_attribute "menu_items", menu_items
+    end
+    
+    def sub_menu
+      @menu_items ||= read_inheritable_attribute("menu_items") || []
+    end
+  end
+  
+  before_filter :set_user
+  
+  def sub_menu
+    self.class.sub_menu
+  end
   
   protected
   
@@ -22,11 +35,7 @@ class ApplicationController < ActionController::Base
   end
   
   private
-
-  def get_sub_menu
-    @sub_menu = []
-  end
-    
+      
   def set_user
     @user = User.find_by_id(session[:user_id])
   end  
