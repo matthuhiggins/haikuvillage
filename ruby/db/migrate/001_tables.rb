@@ -52,7 +52,7 @@ class Tables < ActiveRecord::Migration
     end    
 
     create_table :users do |t|
-      t.string :username, :useralias, :email, :hashed_password, :salt, :null => false, :limit => 100
+      t.string :useralias, :email, :hashed_password, :salt, :null => false, :limit => 100
       t.timestamps
     end
 

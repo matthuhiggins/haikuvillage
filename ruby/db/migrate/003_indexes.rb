@@ -31,7 +31,7 @@ class Indexes < ActiveRecord::Migration
     add_index :tags, :haiku_tags_count
     add_index :tags, :created_at
     
-    add_index :users, :username, :unique => true
+    add_index :users, :email, :unique => true
   end
 
   def self.down

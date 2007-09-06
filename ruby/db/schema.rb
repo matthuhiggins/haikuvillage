@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "user_users", ["targetuser_id"], :name => "user_users_targetuser_id_foreign_key"
 
   create_table "users", :force => true do |t|
-    t.string   "username",        :limit => 100, :default => "", :null => false
     t.string   "useralias",       :limit => 100, :default => "", :null => false
     t.string   "email",           :limit => 100, :default => "", :null => false
     t.string   "hashed_password", :limit => 100, :default => "", :null => false
@@ -126,6 +125,6 @@ ActiveRecord::Schema.define(:version => 3) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

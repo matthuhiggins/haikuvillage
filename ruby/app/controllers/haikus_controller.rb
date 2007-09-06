@@ -30,6 +30,6 @@ class HaikusController < ApplicationController
       render :partial => 'shared/haikus_paginated', :locals => { :haikus => @haikus }
     else
       render :action => action
-    end    
+    end
   end
 end

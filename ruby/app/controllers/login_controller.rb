@@ -4,7 +4,7 @@ class LoginController < ApplicationController
   def index
     session[:user_id] = nil
     if request.post?
-      user = User.authenticate(params[:username], params[:password])
+      user = User.authenticate(params[:email], params[:password])
       if user
         login_and_redirect(user.id)
       else

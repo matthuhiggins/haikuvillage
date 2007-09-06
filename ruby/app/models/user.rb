@@ -9,9 +9,8 @@ class User < ActiveRecord::Base
   
   attr_accessor :password_confirmation
 
-  validates_presence_of :username
-  validates_uniqueness_of :username  
   validates_presence_of :email 
+  validates_uniqueness_of :email  
   validates_confirmation_of :password
   validates_presence_of :password
 
@@ -19,8 +18,8 @@ class User < ActiveRecord::Base
     errors.add_to_base("Missing password") if hashed_password.blank?
   end  
   
-  def self.authenticate(username, password)
-    user = self.find_by_username(username)
+  def self.authenticate(email, password)
+    user = self.find_by_email(email)
     if user
       expected_password = encrypted_password(password, user.salt)
       if user.hashed_password != expected_password
@@ -31,10 +30,9 @@ class User < ActiveRecord::Base
   end
   
   def self.get_anonymous
-    anon = find(:first, :conditions => {:username => "anonymous"})    
-    anon = create(:username => "anonymous",
+    anon = find(:first, :conditions => {:email => "anonymous"})    
+    anon = create(:email => "anonymous",
         :useralias => "Anonymous",
-        :email => "",
         :password => "sa",
         :password_confirmation => "sa") unless anon
     anon 

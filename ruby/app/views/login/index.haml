@@ -5,15 +5,15 @@
     %legend Sign in to Haiku Village
 
     - form_tag do
-    %label{ :for => "username" }
-      = text_field_tag :username, params[:username]
-      Username:
+    %label{ :for => "email" }
+      = text_field_tag :email, params[:email]
+      E-Mail:
     %label{ :for => "password" }
       = password_field_tag :password, params[:password]
       Password:
     = submit_tag "Login", {:id => "login_button"}
     - end
-    %script{ :type => "text/javascript" } YAHOO.util.Dom.get('username').focus();
+    %script{ :type => "text/javascript" } YAHOO.util.Dom.get('email').focus();
 
   %p 
     Not registered?

@@ -2,8 +2,8 @@ class MyHaikuController < ApplicationController
   layout "haikus"
   
   set_sub_menu [
-      ["My Stuff", "index"],
-      ["My Favorites", "favorites"]]
+      ["Create", "index"],
+      ["Favorites", "favorites"]]
 
   before_filter :authorize
   
