@@ -1,7 +1,4 @@
 class HaikusController < ApplicationController
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def index
     render_index
   end
@@ -26,8 +23,6 @@ class HaikusController < ApplicationController
   def get_sub_menu
     @sub_menu = [
       ["Haikus", "index"],
-      ["Popular", "popular"],
-      ["Recent", "recent"],
       ["Search", "search"]
     ]
   end
