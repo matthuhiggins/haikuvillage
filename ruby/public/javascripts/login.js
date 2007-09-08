@@ -1,6 +1,6 @@
 Village.Login = {
     hideRegistration: function() {
-        
+        alert("not implemented")
     },
     
     showRegistration: function () {
@@ -9,16 +9,15 @@ Village.Login = {
             for(var i = 0; i < labels.length; i++) {
                 YAHOO.util.Dom.setStyle(labels[i], 'visibility', 'visible');
             }
-            showRegisterButtons();
         }
         
         function showRegisterButtons() {
-            var anim2 = new YAHOO.util.Anim('register-buttons', { 'left': { to: 0 } }, 0.5, YAHOO.util.Easing.easeOut);        
-            anim2.animate();
+            var showButtons = new YAHOO.util.Anim('register-buttons', { 'left': { to: 0 } }, 0.5, YAHOO.util.Easing.easeOut);        
+            showButtons.animate();
         }
         
-        function animateInputBoxes() {
-            function animateInputBox(id, attributes) {
+        function showRegisterBoxes() {
+            function showRegisterBox(id, attributes) {
                 var object = getEl(id);
                 YAHOO.util.Dom.setStyle(object, 'visibility', 'visible');
                 var animation = new YAHOO.util.Anim(object, attributes, 0.2); 
@@ -26,13 +25,15 @@ Village.Login = {
                 animation.animate();
             }
 
-            animateInputBox('password_confirmation_box', { 'margin-top': { to: 0 } });
-            animateInputBox('alias_box', { 'margin-bottom': { to: 0 } });    
+            showRegisterBox('password_confirmation_box', { 'margin-top': { to: 0 } });
+            showRegisterBox('alias_box', { 'margin-bottom': { to: 0 } });    
         }
         
         getEl('user_alias').focus();
-        var loginOut = new YAHOO.util.Anim('login-buttons', { 'left': { to: -200 } }, 0.5, YAHOO.util.Easing.easeIn);        
-        loginOut.onComplete.subscribe(animateInputBoxes);
+        var loginOut = new YAHOO.util.Anim('login-buttons', { 'left': { to: -200 } }, 0.2, YAHOO.util.Easing.easeIn);        
+        loginOut.onComplete.subscribe(showRegisterBoxes);
+        loginOut.onComplete.subscribe(showRegisterButtons);
+        
         loginOut.animate();
     }
 };
