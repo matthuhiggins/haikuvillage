@@ -1,10 +1,10 @@
 !register_width = 400
 !shadow_width = 20
 
-p
-  :text-align center  
-
 #register
+  :margin
+    :left auto
+    :right auto
   :padding
     :left = 20 + !shadow_width + px
     :right = 20 + !shadow_width + px
@@ -13,11 +13,6 @@ p
   :background-repeat repeat-y
   :width = !register_width - !shadow_width * 2 + px
   :background-image url(/images/bg-register-middle.png)
-
-#register
-  :margin
-    :left auto
-    :right auto
 
 .border
   :width = !register_width + !shadow_width * 2 + px
@@ -46,8 +41,20 @@ form
     :border 2px solid #CCC
     :width 150px
 
-#submit-buttons
-  :margin-top 1em
+#button-box
+  :height 80px
+  :overflow hidden
+  :position relative
+  :width 200px
+
+#login-buttons
+  :position absolute
+  :left 0
+
+#register-buttons
+  :position absolute
+  :left -200px
+  :width 200px
   
 .input_box
   :height 50px

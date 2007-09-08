@@ -4,39 +4,40 @@
   = error_messages_for 'user'
 
   - form_tag do
-    #useralias.input_box{:style => "visibility: hidden; margin-bottom: -50px;"}
+    #useralias_box.input_box{:style => "visibility: hidden; margin-bottom: -50px;"}
       %label{ :for => "useralias", :style => "visibility: hidden;" }
         Display Name:
       = text_field_tag :useralias, :size => 40
 
-    #email.input_box
+    #email_box.input_box
       %label{ :for => "email" }
         Email:
       = text_field_tag :email, params[:email]
       
-    #password.input_box
+    #password_box.input_box
       %label{:for => "password"}
         Password:
       = password_field_tag :password, params[:password]
         
-    #password_confirmation.input_box{:style => "visibility: hidden; margin-top: -50px;"}
+    #password_confirmation_box.input_box{:style => "visibility: hidden; margin-top: -50px;"}
       %label{ :for => "password_confirmation", :style => "visibility: hidden;" }
         Confirm:
       = password_field_tag :password_confirmation, :size => 40
       
-    #submit-buttons
+    
+    #button-box
       #login-buttons
         = submit_tag "Login", {:id => "login_button"}
-      
+        %p 
+          Not registered?
+          %span#sign_up.soft_link
+            Sign up
+
+    
       #register-buttons
         = submit_tag "Register", :name => "register"
-        %button
+        %button#register_cancel
           Cancel
-    
-    %script YAHOO.util.Dom.get('email').focus();
-
-  %p 
-    Not registered?
-    %span#sign_up.soft_link
-      Sign up
+            
+    %script getEl('email').focus();
 #bottom.border

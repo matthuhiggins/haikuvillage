@@ -11,7 +11,8 @@ Village.Buttons = {
         YAHOO.util.Dom.generateId(inputButtons);
         for(var i = 0; i < inputButtons.length; i++) {
   	        isDisabled = false;//YAHOO.util.Dom.hasClass(inputButtons[i].id, 'disabled');
-            Village.Buttons.buttonRegistry[inputButtons[i].id] =
+            originalId = inputButtons[i].id;
+            Village.Buttons.buttonRegistry[originalId] =
                 new YAHOO.widget.Button(inputButtons[i].id, {disabled: isDisabled});
         }
     }

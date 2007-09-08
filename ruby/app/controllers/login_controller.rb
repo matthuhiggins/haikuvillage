@@ -3,24 +3,29 @@ class LoginController < ApplicationController
     
   def index
     session[:user_id] = nil
+    logger.debug(params.inspect)
     if request.post?
-      user = User.authenticate(params[:email], params[:password])
-      if user
-        login_and_redirect(user.id)
-      else
-        flash[:notice] = "Invalid user/password combination"
+      if params["commit"]
+        login
+      elsif params["register"]
+        register
       end
     end
   end
   
-  def register    
-    if params['cancel']
-      redirect_to :action => 'index'
+  def login
+    @user = User.authenticate(params[:email], params[:password])
+    if @user
+      login_and_redirect(@user.id)
     else
-      @user = User.new(params[:user])
-      if request.post? and @user.save
-        login_and_redirect(@user.id)
-      end
+      flash[:notice] = "Invalid user/password combination"
+    end    
+  end
+  
+  def register    
+    @user = User.new(params[:user])
+    if request.post? and @user.save
+      login_and_redirect(@user.id)
     end
   end
 
