@@ -1,7 +1,7 @@
 !register_width = 400
 !shadow_width = 20
 
-#main-frame
+p
   :text-align center  
 
 #register
@@ -13,32 +13,26 @@
   :background-repeat repeat-y
   :width = !register_width - !shadow_width * 2 + px
   :background-image url(/images/bg-register-middle.png)
-  input
-    :width 150px
-    :margin-left 20px
-  label
-    :text-align right
-  fieldset
-    :border 0px solid black
-    legend
-      :display none
-      
-#register, #register-border-top, #register-border-bottom 
+
+#register
   :margin
     :left auto
     :right auto
 
-#register-border-top
+.border
   :width = !register_width + !shadow_width * 2 + px
   :height 31px
+  :margin
+    :left auto
+    :right auto
+
+#top.border
   :margin-top 5em
   :background
     :image url(/images/bg-register-top.png)
     :repeat no-repeat
 
-#register-border-bottom 
-  :width = !register_width + !shadow_width * 2 + px
-  :height 31px
+#bottom.border
   :background
     :image url(/images/bg-register-bottom.png)
     :repeat no-repeat
@@ -46,14 +40,18 @@
 form 
   label
     :display block
-    :height 2em
-    :padding 10px 10px 0
+    :font-size 10pt
 
-    input
-      :margin-right 20px
-      :float right
-      :clear right
-      :border 2px solid #CCC
+  input
+    :border 2px solid #CCC
+    :width 150px
 
 #submit-buttons
   :margin-top 1em
+  
+.input_box
+  :height 50px
+
+.soft_link
+  :cursor pointer
+  :color #636466

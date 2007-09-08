@@ -81,5 +81,5 @@ function addHaiku(text) {
         var scrollAnim = new YAHOO.util.Anim(emptyHaikuDiv, {'margin-top': { from: -90, to: 0 }}, 0.3, YAHOO.util.Easing.easeOut);	
 	    scrollAnim.onComplete.subscribe(fadeIn);
 	    scrollAnim.animate();
-	}
+    }
 }
