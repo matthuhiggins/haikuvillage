@@ -1,21 +1,22 @@
-#login-border-top
-#login.centered
+#register-border-top
+#register
   %p= flash[:notice]
-  %fieldset
-    %legend Sign in to Haiku Village
+  = error_messages_for 'user'
 
-    - form_tag do
+  - form_tag do
     %label{ :for => "email" }
       = text_field_tag :email, params[:email]
-      E-Mail:
+      Email:
     %label{ :for => "password" }
       = password_field_tag :password, params[:password]
       Password:
-    = submit_tag "Login", {:id => "login_button"}
-    - end
+      
+    #submit-buttons
+      = submit_tag "Login", {:id => "login_button"}
+    
     %script{ :type => "text/javascript" } YAHOO.util.Dom.get('email').focus();
 
   %p 
     Not registered?
     = link_to("Sign up", register_url)
-#login-border-bottom
+#register-border-bottom

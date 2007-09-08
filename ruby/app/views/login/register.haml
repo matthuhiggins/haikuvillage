@@ -2,24 +2,25 @@
 #register
   = error_messages_for 'user'
 
-  %fieldset
-    %legend Register
-    - form_for :user do |form|
-    %label{ :for => "useralias" }
-      = form.text_field :useralias, :size => 40
-      Display Name:
-    %label{ :for => "email" }
-      = form.text_field :email, :size => 40
-      Email:
-    %label{ : => "user_password" }
-      = form.text_field :password, :size => 40
-      Password:
-    %label{ :for => "user_password_confirmation" }
-      = form.text_field :password_confirmation, :size => 40
-      Confirm:
+  - form_for :user do |form|
+    .input
+      %label{ :for => "useralias" }
+        = form.text_field :useralias, :size => 40
+        Display Name:
+    .input
+      %label{ :for => "email" }
+        = form.text_field :email, :size => 40
+        Email:
+    .input
+      %label{ : => "user_password" }
+        = form.text_field :password, :size => 40
+        Password:
+    .input
+      %label{ :for => "user_password_confirmation" }
+        = form.text_field :password_confirmation, :size => 40
+        Confirm:
 
     #submit-buttons
       = submit_tag "Register", :name => "register"
-      = submit_tag "Cancel", :name => "cancel"    
-    - end
+      = submit_tag "Cancel", :name => "cancel"
 #register-border-bottom
