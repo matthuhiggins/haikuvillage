@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   def self.get_anonymous
     anon = find(:first, :conditions => {:email => "anonymous"})    
     anon = create(:email => "anonymous",
-        :useralias => "Anonymous",
+        :alias => "Anonymous",
         :password => "sa",
         :password_confirmation => "sa") unless anon
     anon 

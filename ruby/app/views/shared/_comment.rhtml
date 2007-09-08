@@ -1,6 +1,6 @@
 <div class="comment">
 <p><%= comment.text %></p>
-<p><i>From <%= comment.user.useralias %></i></p>
+<p><i>From <%= comment.user.alias %></i></p>
 <% if comment.user_id == session[:user_id] %>
   <%= link_to "Remove my comment", 
         {:action => 'delete_comment', :id => comment },

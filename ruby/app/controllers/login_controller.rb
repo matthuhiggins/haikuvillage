@@ -14,7 +14,7 @@ class LoginController < ApplicationController
   end
   
   def login
-    @user = User.authenticate(params[:email], params[:password])
+    @user = User.authenticate(params[:user][:email], params[:user][:password])
     if @user
       login_and_redirect(@user.id)
     else

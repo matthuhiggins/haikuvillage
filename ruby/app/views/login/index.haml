@@ -3,26 +3,26 @@
   %p= flash[:notice]
   = error_messages_for 'user'
 
-  - form_tag do
-    #useralias_box.input_box{:style => "visibility: hidden; margin-bottom: -50px;"}
-      %label{ :for => "useralias", :style => "visibility: hidden;" }
+  - form_for :user do |f|
+    #alias_box.input_box{:style => "visibility: hidden; margin-bottom: -50px;"}
+      %label{ :for => "alias", :style => "visibility: hidden;" }
         Display Name:
-      = text_field_tag :useralias, :size => 40
+      = f.text_field :alias, :size => 40
 
     #email_box.input_box
       %label{ :for => "email" }
         Email:
-      = text_field_tag :email, params[:email]
+      = f.text_field :email
       
     #password_box.input_box
       %label{:for => "password"}
         Password:
-      = password_field_tag :password, params[:password]
+      = f.password_field :password
         
     #password_confirmation_box.input_box{:style => "visibility: hidden; margin-top: -50px;"}
       %label{ :for => "password_confirmation", :style => "visibility: hidden;" }
         Confirm:
-      = password_field_tag :password_confirmation, :size => 40
+      = f.password_field :password_confirmation, :size => 40
       
     
     #button-box
@@ -39,5 +39,5 @@
         %button#register_cancel
           Cancel
             
-    %script getEl('email').focus();
+    %script getEl('user_email').focus();
 #bottom.border

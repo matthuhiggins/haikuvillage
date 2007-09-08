@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "user_users", ["targetuser_id"], :name => "user_users_targetuser_id_foreign_key"
 
   create_table "users", :force => true do |t|
-    t.string   "useralias",       :limit => 100, :default => "", :null => false
+    t.string   "alias",           :limit => 100, :default => "", :null => false
     t.string   "email",           :limit => 100, :default => "", :null => false
     t.string   "hashed_password", :limit => 100, :default => "", :null => false
     t.string   "salt",            :limit => 100, :default => "", :null => false

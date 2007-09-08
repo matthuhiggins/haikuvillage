@@ -1,4 +1,4 @@
-<li><%= link_to user.useralias || user.email, :controller => "users", :action => "show", :id => user %>
+<li><%= link_to user.alias || user.email, :controller => "users", :action => "show", :id => user %>
 
 <% if user.group_users.find(:first, :conditions => 
     ["group_id = ?", group.id ] ).user_type == "admin" %>

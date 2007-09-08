@@ -27,10 +27,10 @@ Village.Login = {
             }
 
             animateInputBox('password_confirmation_box', { 'margin-top': { to: 0 } });
-            animateInputBox('useralias_box', { 'margin-bottom': { to: 0 } });    
+            animateInputBox('alias_box', { 'margin-bottom': { to: 0 } });    
         }
         
-        getEl('useralias').focus();
+        getEl('user_alias').focus();
         var loginOut = new YAHOO.util.Anim('login-buttons', { 'left': { to: -200 } }, 0.5, YAHOO.util.Easing.easeIn);        
         loginOut.onComplete.subscribe(animateInputBoxes);
         loginOut.animate();
