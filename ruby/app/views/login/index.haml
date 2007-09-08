@@ -4,15 +4,33 @@
   = error_messages_for 'user'
 
   - form_tag do
-    %label{ :for => "email" }
-      = text_field_tag :email, params[:email]
-      Email:
-    %label{ :for => "password" }
-      = password_field_tag :password, params[:password]
-      Password:
+    #useralias.input{ :style => "display:none" }
+      %label{ :for => "useralias" }
+        = text_field_tag :useralias, :size => 40
+        Display Name:
+
+    #email.input
+      %label{ :for => "email" }
+        = text_field_tag :email, params[:email]
+        Email:
+      
+    #password.input
+      %label{ :for => "password" }
+        = password_field_tag :password, params[:password]
+        Password:
+        
+    #password_confirmation.input{ :style => "display:none" }
+      %label{ :for => "password_confirmation" }
+        = password_field_tag :password_confirmation, :size => 40
+        Confirm:
       
     #submit-buttons
-      = submit_tag "Login", {:id => "login_button"}
+      #login-buttons
+        = submit_tag "Login", {:id => "login_button"}
+      
+      #register-buttons{ :style => "display: none" }
+        = submit_tag "Register", :name => "register"
+        = submit_tag "Cancel", :name => "cancel"
     
     %script{ :type => "text/javascript" } YAHOO.util.Dom.get('email').focus();
 
