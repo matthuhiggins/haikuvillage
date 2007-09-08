@@ -1,6 +1,6 @@
 Village = {};
 Village.Buttons = {
-	makeYui: function initializeButtons() {
+	makeYui: function() {
 	    inputButtons = YAHOO.util.Dom.getElementsBy(function(element){
             return (element.tagName == 'INPUT') && (element.type in set('submit', 'reset', 'button'));
         });
