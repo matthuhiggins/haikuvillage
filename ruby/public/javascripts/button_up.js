@@ -18,7 +18,8 @@ Village.Buttons = {
 	
 	haikuFlyOver: function() {
 		function handleMouseOverOut(e, haikuDiv) {
-			var stuff = YAHOO.util.Dom.getElementsByClassName('add_to_favorites');
+			//alert(haikuDiv.id);
+			var stuff = YAHOO.util.Dom.getElementsByClassName('add_to_favorites', 'p', haikuDiv);
 			for(var i = 0; i < stuff.length; i++) {
 				var newOpacity = e.type === 'mouseover' ? 1 : 0;				
 				var anim = new YAHOO.util.Anim(stuff[i], { opacity: { to: newOpacity } }, 1.0, YAHOO.util.Easing.easeOut);

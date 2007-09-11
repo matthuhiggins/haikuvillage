@@ -80,7 +80,7 @@ Village.util = {
     	} else {	   
 	    	YAHOO.util.Dom.setStyle(emptyHaikuDiv, 'margin-top', '-90px');	
 	    	emptyHaikuDiv = YAHOO.util.Dom.insertBefore(emptyHaikuDiv, YAHOO.util.Dom.getFirstChild(haikuList));
-        	var scrollAnim = new YAHOO.util.Anim(emptyHaikuDiv, {'margin-top': { from: -90, to: 0 }}, 0.3, YAHOO.util.Easing.easeOut);
+        	var scrollAnim = new YAHOO.util.Anim(emptyHaikuDiv, {'margin-top': { from: -110, to: 0 }}, 0.3, YAHOO.util.Easing.easeOut);
 	    	scrollAnim.onComplete.subscribe(fadeIn);
 	    	scrollAnim.animate();
 		}
