@@ -3,7 +3,7 @@
     %ul
       - if collection.previous_page?
       %li.nextpage
-        = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "paginate(request, false)"
+        = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "Village.util.paginate(request, false)"
       - end
  
       - last_page = 0
@@ -21,7 +21,7 @@
  
       - if collection.next_page?
       %li.nextpage
-        = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "paginate(request, true)"
+        = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "Village.util.paginate(request, true)"
       - end
       %span#pagination_loader{:style => "display:none"}
         = image_tag("ajax-loader.gif")

@@ -1,4 +1,3 @@
-Village = {};
 Village.Buttons = {    
     buttonRegistry: {},
     

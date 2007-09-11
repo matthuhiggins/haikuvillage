@@ -9,7 +9,7 @@
 
   #preview      
 
-  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "getEl('haiku_text').value = ''; addHaiku(request.responseText);" do |form|
+  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "getEl('haiku_text').value = ''; Village.util.addHaiku(request.responseText);" do |form|
     %p
       %label{:for => "text"} Haiku Text
       %br
