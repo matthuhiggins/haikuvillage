@@ -3,3 +3,8 @@
   .haiku-line= h(line)
   - end
   .author= haiku.user.alias
+  -if session[:user_id]
+  %p.add_to_favorites
+    %button
+      Add to favorites
+  -end
