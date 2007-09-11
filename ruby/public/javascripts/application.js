@@ -40,13 +40,13 @@ function paginate(request, isNext) {
     var newFragment = getElementInText(request.responseText, "haiku_center");
     var newPagination = getElementInText(request.responseText, "pagination");
 
-	original = YAHOO.util.Dom.get("haiku_center").innerHTML;
-	YAHOO.util.Dom.get("haiku_left").innerHTML = original;
-	YAHOO.util.Dom.get("haiku_right").innerHTML = original;
+	original = getEl("haiku_center").innerHTML;
+	getEl("haiku_left").innerHTML = original;
+	getEl("haiku_right").innerHTML = original;
     YAHOO.util.Dom.setStyle("haiku_hidden", 'margin-left', start);
 
-    YAHOO.util.Dom.get("haiku_center").innerHTML = newFragment.innerHTML;
-    YAHOO.util.Dom.get("pagination").innerHTML = newPagination.innerHTML;
+    getEl("haiku_center").innerHTML = newFragment.innerHTML;
+    getEl("pagination").innerHTML = newPagination.innerHTML;
     var anim = new YAHOO.util.Anim('haiku_hidden', attributes, 0.6, YAHOO.util.Easing.easeOut);
     anim.animate();
 }
@@ -60,7 +60,7 @@ function addHaiku(text) {
 		YAHOO.util.Dom.setStyle(newHaikuDiv, 'color', '#fff');
 		haikuList.replaceChild(newHaikuDiv, emptyHaikuDiv);
 		var colorAttributes = {
-			color: { from: '#fff', to:'#000' }		
+			color: { from: '#fff', to:'#000' }
 		};
 		
 		var colorAnim = new YAHOO.util.ColorAnim(newHaikuDiv.id, colorAttributes, 0.5, YAHOO.util.Easing.easeOut);
@@ -78,7 +78,7 @@ function addHaiku(text) {
     } else {	   
 	    YAHOO.util.Dom.setStyle(emptyHaikuDiv, 'margin-top', '-90px');	
 	    emptyHaikuDiv = YAHOO.util.Dom.insertBefore(emptyHaikuDiv, YAHOO.util.Dom.getFirstChild(haikuList));
-        var scrollAnim = new YAHOO.util.Anim(emptyHaikuDiv, {'margin-top': { from: -90, to: 0 }}, 0.3, YAHOO.util.Easing.easeOut);	
+        var scrollAnim = new YAHOO.util.Anim(emptyHaikuDiv, {'margin-top': { from: -90, to: 0 }}, 0.3, YAHOO.util.Easing.easeOut);
 	    scrollAnim.onComplete.subscribe(fadeIn);
 	    scrollAnim.animate();
     }
