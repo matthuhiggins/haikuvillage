@@ -1,5 +1,3 @@
-# Be sure to restart your web server when you modify this file.
-
 # Uncomment below to force Rails into production mode when 
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
@@ -14,8 +12,9 @@ Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/vendor/gems/ferret-0.10.9-mswin32/lib  )
+  config.load_paths += %W( #{RAILS_ROOT}/vendor/ferret/lib  )
   config.load_paths += %W( #{RAILS_ROOT}/vendor/linguistics/lib )
+  config.load_paths += %W( #{RAILS_ROOT}/vendor/lingua/en )
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)
@@ -31,12 +30,3 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   config.active_record.default_timezone = :utc
 end
-
-# Include your application configuration below
-require 'ferret'
-require "lingua/syllable"
-require "linguistics"
-Linguistics::use(:en) # extends Array, String, and Numeric
-
-Sass::Plugin.options[:always_update] = true
-Sass::Plugin.options[:style] = :expanded
