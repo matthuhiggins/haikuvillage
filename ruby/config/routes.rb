@@ -1,6 +1,4 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :groups
-  
+ActionController::Routing::Routes.draw do |map|  
   # home page
   map.connect '', :controller => "welcome", :action => "index"
   
