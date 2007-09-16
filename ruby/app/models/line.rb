@@ -2,19 +2,16 @@ class Line < ActiveRecord::Base
   attr_reader :words
   
   def initialize(linetext)
-    @words = []
-    logger.debug(linetext.inspect)
-    for word in linetext.split
-      @words << Word.new(word)
-    end
+    @words = linetext.split.map{ |word| Word.new(word) }
   end
   
   def syllables
-    @words.sum { |word| word.syllables }
+    @words.sum(&:syllables)
   end
   
   def text
-    @words.map { |word| word.text }.join(" ")
+    @words * " "
   end
+  alias_method :to_s, :text
   
 end
