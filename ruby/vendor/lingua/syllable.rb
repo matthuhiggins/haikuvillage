@@ -11,24 +11,29 @@ module EN
 # module Lingua::EN::Syllable::Guess. For more details, see there and
 # Lingua::EN::Syllable::Dictionary.
 module Syllable
-  # use dictionary if possible
-  begin
-    require 'lingua/syllable/dictionary.rb'
-    require 'lingua/syllable/guess.rb'
-    
-    def Syllable.syllables(word)
-      begin
-        return Dictionary::syllables(word)
-      rescue Dictionary::LookUpError
-        return Guess::syllables(word)
-      end
-    end
-  end
+	# use dictionary if possible
+	begin
+		require 'lingua/en/syllable/dictionary.rb'
+		require 'lingua/en/syllable/guess.rb'
+		
+		def Syllable.syllables(word)
+			begin
+				return Dictionary::syllables(word)
+			rescue Dictionary::LookUpError
+				return Guess::syllables(word)
+			end
+		end
+	rescue LoadError # dictionary not available?
+		require 'lingua/en/syllable/guess.rb'
+		def Syllable.syllables(word)
+			Guess::syllables word
+		end
+	end
 end
 end
 end
 
 if __FILE__ == $0
-  ARGV.each { | word |  puts "'#{word}' : " + 
-    Lingua::EN::Syllable::syllables(word).to_s }
+	ARGV.each { | word |  puts "'#{word}' : " + 
+		Lingua::EN::Syllable::syllables(word).to_s }
 end
