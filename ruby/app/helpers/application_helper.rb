@@ -28,6 +28,12 @@ module ApplicationHelper
     html
   end
   
+  def link_to_page(page)
+    params_with_page = params
+    params_with_page[:page] = page
+    link_to_remote page, :url => params_with_page, :update => 'paginated_haikus'
+  end
+  
   def link_to_adjacent_page(text, collection, adjacency)
     params_with_page = params
     params_with_page[:page] = collection.send("#{adjacency}_page")
