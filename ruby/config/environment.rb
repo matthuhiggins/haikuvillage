@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.2.3'
+RAILS_GEM_VERSION = '2.0'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -34,7 +34,7 @@ end
 # Include your application configuration below
 require 'ferret'
 require "lingua/syllable"
-require "linguistics/linguistics"
+require "linguistics"
 Linguistics::use(:en) # extends Array, String, and Numeric
 
 Sass::Plugin.options[:always_update] = true
