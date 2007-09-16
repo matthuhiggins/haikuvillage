@@ -35,11 +35,16 @@ module ApplicationHelper
   end
   
   def link_to_adjacent_page(text, collection, adjacency)
-    params_with_page = params
-    params_with_page[:page] = collection.send("#{adjacency}_page")
-    link_to_remote text,
-        :url => params_with_page,
-        :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML",
-        :complete => "Village.util.paginate(request, '#{adjacency}')"
+    adjacent_page = collection.send("#{adjacency}_page")
+    if adjacent_page
+      params_with_page = params
+      params_with_page[:page] = collection.send("#{adjacency}_page")
+      link_to_remote text,
+          :url => params_with_page,
+          :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML",
+          :complete => "Village.util.paginate(request, '#{adjacency}')"
+    else
+      text
+    end
   end
 end
