@@ -33,6 +33,9 @@ end
 
 # Include your application configuration below
 require 'ferret'
+require "lingua/syllable"
+require "linguistics/linguistics"
+Linguistics::use(:en) # extends Array, String, and Numeric
 
 Sass::Plugin.options[:always_update] = true
 Sass::Plugin.options[:style] = :expanded

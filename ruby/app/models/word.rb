@@ -1,7 +1,3 @@
-require "lingua/syllable"
-require "linguistics/linguistics"
-Linguistics::use(:en) # extends Array, String, and Numeric
-
 class Word < ActiveRecord::Base
   attr_reader :text, :syllables
   
