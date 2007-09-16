@@ -10,27 +10,28 @@ module ApplicationHelper
   # This leverages the pagination_find plugin
   def windowed_pagination_links(pagingEnum, options)
     link_to_current_page = options[:link_to_current_page]
-    always_show_anchors = options[:always_show_anchors]
     padding = options[:window_size]
 
     current_page = pagingEnum.page
-    html = ''
 
     #Calculate the window start and end pages 
     padding = padding < 0 ? 0 : padding
     first = pagingEnum.page_exists?(current_page  - padding) ? current_page - padding : 1
     last = pagingEnum.page_exists?(current_page + padding) ? current_page + padding : pagingEnum.last_page
 
-    # Print start page if anchors are enabled
-    html << yield(1) if always_show_anchors and not first == 1
-
+    html = ''
     # Print window pages
     first.upto(last) do |page|
-      (current_page == page && !link_to_current_page) ? html << page : html << yield(page)
+      html << ((current_page == page && !link_to_current_page) ? page : yield(page))
     end
 
-    # Print end page if anchors are enabled
-    html << yield(pagingEnum.last_page) if always_show_anchors and not last == pagingEnum.last_page
     html
+  end
+  
+  def link_to_adjacent_page(text, page)
+    link_to_remote text,
+        :url => { :page => page },
+        :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML",
+        :complete => "Village.util.paginate(request, false)"
   end
 end
