@@ -5,9 +5,7 @@ class Word < ActiveRecord::Base
     @text = wordtext
     @syllables = count_syllables(wordtext)
   end
-  
-  alias_method :to_s, :text
-  
+    
   private
   
   def count_syllables(wordtext)

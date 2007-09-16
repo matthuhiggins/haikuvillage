@@ -6,12 +6,6 @@ class Line < ActiveRecord::Base
   end
   
   def syllables
-    @words.sum(&:syllables)
+    @words.sum{ |word| word.syllables }
   end
-  
-  def text
-    @words * " "
-  end
-  alias_method :to_s, :text
-  
 end

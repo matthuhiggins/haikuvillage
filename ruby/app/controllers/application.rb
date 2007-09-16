@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def create_haiku(text)
     @haiku = Haiku.new
     @haiku.text = params[:haiku][:text]
-
+    
     yield(@haiku)
     
     if @haiku.save
