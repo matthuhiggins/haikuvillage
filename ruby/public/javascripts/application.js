@@ -35,8 +35,8 @@ function getElementInText(text, div_id) {
 
 Village = {};
 Village.util = {
-	paginate: function (request, isNext) {
-	var start = isNext ? 0 : '-600px';
+	paginate: function (request, adjacency) {
+	var start = adjacency === 'next' ? 0 : '-600px';
 		var attributes = { 'margin-left': { to: -300 } };
 
     	var newFragment = getElementInText(request.responseText, "haiku_center");

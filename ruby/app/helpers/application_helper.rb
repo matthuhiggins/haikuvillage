@@ -11,11 +11,11 @@ module ApplicationHelper
   def windowed_pagination_links(pagingEnum, options)
     link_to_current_page = options[:link_to_current_page]
     padding = options[:window_size]
+    padding = padding < 0 ? 0 : padding
 
     current_page = pagingEnum.page
 
-    #Calculate the window start and end pages 
-    padding = padding < 0 ? 0 : padding
+    #Calculate the window start and end pages
     first = pagingEnum.page_exists?(current_page  - padding) ? current_page - padding : 1
     last = pagingEnum.page_exists?(current_page + padding) ? current_page + padding : pagingEnum.last_page
 
@@ -28,10 +28,12 @@ module ApplicationHelper
     html
   end
   
-  def link_to_adjacent_page(text, page)
+  def link_to_adjacent_page(text, collection, adjacency)
+    params_with_page = params
+    params_with_page[:page] = collection.send("#{adjacency}_page")
     link_to_remote text,
-        :url => { :page => page },
+        :url => params_with_page,
         :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML",
-        :complete => "Village.util.paginate(request, false)"
+        :complete => "Village.util.paginate(request, '#{adjacency}')"
   end
 end

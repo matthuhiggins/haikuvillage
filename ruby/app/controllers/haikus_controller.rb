@@ -18,8 +18,8 @@ class HaikusController < ApplicationController
   def search
     unless params[:q].blank?
       render_paginated(:search) do
-        current = 1 unless params[:p]
-        Haiku.paginating_ferret_search(:q => params[:q], :current => 1, :page_size => 4)
+        page = params[:page] || 1
+        Haiku.paginating_ferret_search(:q => params[:q], :current => page.to_i, :page_size => 4)
       end
     end
   end

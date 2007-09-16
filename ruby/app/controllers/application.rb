@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
   end
   
   def paginated_haikus(options = {})
-    Haiku.find(:all, (options.merge({:page => {:current => params[:page]}})))
+    options[:page] = {:current => params[:page] || 1}
+    Haiku.find(:all, options)
   end
   
   private

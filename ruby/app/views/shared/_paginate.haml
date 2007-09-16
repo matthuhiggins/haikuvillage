@@ -1,7 +1,7 @@
 %ul
   - if collection.previous_page?
   %li.nextpage
-    = link_to_adjacent_page('&#171; previous', collection.previous_page)
+    = link_to_adjacent_page('&#171; previous', collection, :previous)
   - end
 
   - last_page = 0
@@ -19,7 +19,7 @@
 
   - if collection.next_page?
   %li.nextpage
-    = link_to_adjacent_page('next &#187;', collection.next_page)
+    = link_to_adjacent_page('next &#187;', collection, :next)
   - end
   %span#pagination_loader{:style => "display:none"}
     = image_tag("ajax-loader.gif")
