@@ -14,7 +14,8 @@ Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/vendor/gems/ferret-0.10.9-mswin32/lib )
+  config.load_paths += %W( #{RAILS_ROOT}/vendor/gems/ferret-0.10.9-mswin32/lib,
+    #{RAILS_ROOT}/vendor/linguistics )
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)
