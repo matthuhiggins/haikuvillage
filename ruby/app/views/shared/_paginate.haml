@@ -1,27 +1,25 @@
-- if collection.page_count != collection.first_page
-  .pagination
-    %ul
-      - if collection.previous_page?
-      %li.nextpage
-        = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "Village.util.paginate(request, false)"
-      - end
- 
-      - last_page = 0
+%ul
+  - if collection.previous_page?
+  %li.nextpage
+    = link_to_remote '&#171; previous', :url => { :page => collection.previous_page }, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "Village.util.paginate(request, false)"
+  - end
 
-      - windowed_pagination_links(collection, :window_size => 2, :link_to_current_page => true, :always_show_anchors => true) do |n|
-        - if collection.page == n
-        %li.currentpage
-          = n
-        - else
-        %li
-          = "..." if last_page+1 < n
-          = link_to_remote n, :url => {:id => params[:id], :page => n}, :update => 'paginated_haikus'
-        - end
-        - last_page = n
- 
-      - if collection.next_page?
-      %li.nextpage
-        = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "Village.util.paginate(request, true)"
-      - end
-      %span#pagination_loader{:style => "display:none"}
-        = image_tag("ajax-loader.gif")
+  - last_page = 0
+
+  - windowed_pagination_links(collection, :window_size => 2, :link_to_current_page => true, :always_show_anchors => true) do |n|
+    - if collection.page == n
+    %li.currentpage
+      = n
+    - else
+    %li
+      = "..." if last_page+1 < n
+      = link_to_remote n, :url => {:id => params[:id], :page => n}, :update => 'paginated_haikus'
+    - end
+    - last_page = n
+
+  - if collection.next_page?
+  %li.nextpage
+    = link_to_remote 'next &#187;', :url => {:page => collection.next_page}, :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML", :complete => "Village.util.paginate(request, true)"
+  - end
+  %span#pagination_loader{:style => "display:none"}
+    = image_tag("ajax-loader.gif")
