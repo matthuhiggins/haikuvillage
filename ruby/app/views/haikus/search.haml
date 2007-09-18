@@ -1,3 +1,6 @@
+- content_for(:head) do
+  = javascript_include_tag "search"
+
 %form{:action => :search, :method => "get"}
   =text_field_tag("q", params[:q], :id => "q", :size => 30)
   %input{:type => "submit", :value => "Search"}
@@ -5,3 +8,7 @@
   %script document.getElementById('q').focus();
 
 = render(:partial => "shared/haikus")
+
+- if params[:q]
+= highlight_search(params[:q])
+- end
