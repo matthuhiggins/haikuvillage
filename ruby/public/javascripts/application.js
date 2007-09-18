@@ -36,10 +36,10 @@ function getElementInText(text, div_id) {
 Village = {};
 Village.util = {
 	paginate: function (request, adjacency) {
-	var start = adjacency === 'next' ? 0 : '-600px';
-		var attributes = { 'margin-left': { to: -300 } };
+        var start = adjacency === 'next' ? 0 : '-600px';
+        var attributes = { 'margin-left': { to: -300 } };
 
-    	var newFragment = getElementInText(request.responseText, "haiku_center");
+        var newFragment = getElementInText(request.responseText, "haiku_center");
     	var newPagination = getElementInText(request.responseText, "pagination");
 
 		original = getEl("haiku_center").innerHTML;
@@ -49,8 +49,9 @@ Village.util = {
 
     	getEl("haiku_center").innerHTML = newFragment.innerHTML;
     	getEl("pagination").innerHTML = newPagination.innerHTML;
-    	var anim = new YAHOO.util.Anim('haiku_hidden', attributes, 0.6, YAHOO.util.Easing.easeOut);
-    	anim.animate();
+    	var scrollAnim = new YAHOO.util.Anim('haiku_hidden', attributes, 0.6, YAHOO.util.Easing.easeOut);
+    	scrollAnim.onComplete.subscribe(this.notifyHaikuObservers, this, this)
+    	scrollAnim.animate();
 	},
 
 	addHaiku: function (text) {
@@ -84,5 +85,18 @@ Village.util = {
 	    	scrollAnim.onComplete.subscribe(fadeIn);
 	    	scrollAnim.animate();
 		}
+	},
+	
+	haikuRefreshObservers: [],
+	
+	registerWithHaikuRefresh: function(fn) {
+	    YAHOO.util.Event.addListener(window, 'load', fn);
+	    this.haikuRefreshObservers.push(fn);
+	},
+	
+	notifyHaikuObservers: function() {
+	    for (var i = 0; i < this.haikuRefreshObservers.length; i++) {
+	       this.haikuRefreshObservers[i]();
+	    };
 	}
 }

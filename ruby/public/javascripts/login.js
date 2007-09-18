@@ -1,6 +1,19 @@
 Village.Login = {
+    swapButtonsAnim: function(oldButtons, newButtons, tweenAnim) {
+      function showNewButtons() {
+          var showButtons = new YAHOO.util.Anim(newButtons, { 'left': { to: 0 } }, 0.5, YAHOO.util.Easing.easeOut);        
+          showButtons.animate();          
+      }
+      var hideOldButtons = new YAHOO.util.Anim(oldButtons, { 'left': { to: -200 } }, 0.2, YAHOO.util.Easing.easeIn);
+      hideOldButtons.onComplete.subscribe(tweenAnim);
+      tweenAnim.onComplete.subscribe(showNewButtons);
+      return hideOldButtons;
+    },
+    
     hideRegistration: function() {
-        alert("not implemented")
+        getEl('user_email').focus();
+        var swapAnim = Village.Login.swapButtonsAnim('register-buttons', 'login-buttons');
+        swapAnim.animate();
     },
     
     showRegistration: function () {
@@ -10,31 +23,24 @@ Village.Login = {
                 YAHOO.util.Dom.setStyle(labels[i], 'visibility', 'visible');
             }
         }
-        
-        function showRegisterButtons() {
-            var showButtons = new YAHOO.util.Anim('register-buttons', { 'left': { to: 0 } }, 0.5, YAHOO.util.Easing.easeOut);        
-            showButtons.animate();
-        }
-        
+                
         function showRegisterBoxes() {
             function showRegisterBox(id, attributes) {
                 var object = getEl(id);
                 YAHOO.util.Dom.setStyle(object, 'visibility', 'visible');
                 var animation = new YAHOO.util.Anim(object, attributes, 0.2); 
-                animation.onComplete.subscribe(showLabels, object)
+                animation.onComplete.subscribe(showLabels, object);
                 animation.animate();
+                return animation;
             }
 
             showRegisterBox('password_confirmation_box', { 'margin-top': { to: 0 } });
-            showRegisterBox('alias_box', { 'margin-bottom': { to: 0 } });    
+            return showRegisterBox('alias_box', { 'margin-bottom': { to: 0 } });    
         }
         
         getEl('user_alias').focus();
-        var loginOut = new YAHOO.util.Anim('login-buttons', { 'left': { to: -200 } }, 0.2, YAHOO.util.Easing.easeIn);        
-        loginOut.onComplete.subscribe(showRegisterBoxes);
-        loginOut.onComplete.subscribe(showRegisterButtons);
-        
-        loginOut.animate();
+        var loginOutAnim = Village.Login.swapButtonsAnim('login-buttons', 'register-buttons', showRegisterBoxes());
+        loginOutAnim.animate();
     }
 };
 
