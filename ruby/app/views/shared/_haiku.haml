@@ -8,6 +8,6 @@
   - end
   -if session[:user_id]
   %p.add_to_favorites
-    %button
+    %button.favorites_button{:name => 'add'}
       Add to favorites
   -end

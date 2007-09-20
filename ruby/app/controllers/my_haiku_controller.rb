@@ -26,13 +26,15 @@ class MyHaikuController < ApplicationController
     @haikus = paginated_haikus(:conditions => {:user_id => session[:user_id]})
   end
   
-  def add_haiku_to_favorites
+  def add_favorite
     @haiku = Haiku.find(params[:id])
     @haiku.haiku_favorites.create(:user_id => session[:user_id])
+    head :ok
   end
   
-  def remove_haiku_from_favorites
+  def remove_favorite
     HaikuFavorite.delete_all("user_id = #{session[:user_id]} and haiku_id = #{params[:id]}")
-    @haiku = Haiku.update(params[:id],  :haiku_favorites_count =>  "haiku_favorites_count - 1")
+    #Haiku.update(params[:id],  :haiku_favorites_count =>  "haiku_favorites_count - 1")
+    head :ok
   end
 end
