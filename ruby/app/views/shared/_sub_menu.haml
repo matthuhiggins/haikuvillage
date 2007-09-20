@@ -1,5 +1,6 @@
 %span#sub-menu
   - links = controller.sub_menu.map do |menu_item|
     - options = menu_item.last.is_a?(String) ? {:action => menu_item.last} : menu_item.last
-    - link_to(menu_item.first.to_s, options)
+    - html_options = {:class => "selected"} if params[:action] == menu_item.last
+    - link_to(menu_item.first.to_s, options, html_options)
   = links.join(' / ')
