@@ -1,0 +1,29 @@
+- content_for(:head) do
+  = javascript_include_tag "haiku"
+
+- content_for(:title) do
+  = @title
+
+.left_side
+  = error_messages_for 'haiku'
+
+  #preview      
+
+  - remote_form_for :haiku, :url => {:action => :create}, :html => {:id => 'haiku_form'}, :complete => "getEl('haiku_text').value = ''; Village.util.addHaiku(request.responseText);" do |form|
+    %p
+      %label{:for => "text"} Haiku Text
+      %br
+      = form.text_area (:text, :cols => 40, :rows => 3)
+
+      %p
+        = submit_tag("Create", :id => "commit", :class => "disabled")
+
+  %script 
+    new Haiku.PeriodicalUpdater("haiku_text", "preview");
+    $('haiku_text').focus();
+    
+.right_side
+  %h3 Recently added
+  = render(:partial => "shared/haikus_active", :locals => { :haikus => @haikus })
+  
+.cleartag
