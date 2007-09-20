@@ -1,5 +1,6 @@
 Village.Buttons = {    
-    buttonRegistry: {},
+    registry: {},
+    registeredClassNames: {},
     
 	makeYui: function() {
 	    var inputButtons = YAHOO.util.Dom.getElementsBy(function(element){
@@ -10,10 +11,21 @@ Village.Buttons = {
   
         YAHOO.util.Dom.generateId(inputButtons);
         for(var i = 0; i < inputButtons.length; i++) {
-  	        isDisabled = false;
-            originalId = inputButtons[i].id;
-            Village.Buttons.buttonRegistry[originalId] =
-                new YAHOO.widget.Button(inputButtons[i].id, {disabled: isDisabled});
+  	        var isDisabled = false;
+            var originalId = inputButtons[i].id;
+            var onClickFn = null;
+            for(className in Village.Buttons.registeredClassNames) {
+                if (YAHOO.util.Dom.hasClass(inputButtons[i], className)) {
+                    onClickFn = Village.Buttons.registeredClassNames[className];
+                    break;
+                }                
+            }
+            button = new YAHOO.widget.Button(inputButtons[i].id, {disabled: isDisabled});
+            if (onClickFn) {
+                button.addListener('click', onClickFn, originalId);
+            }
+            Village.Buttons.registry[originalId] = button;
+                
         }
     },
 	
@@ -30,10 +42,35 @@ Village.Buttons = {
 		var haikuDivs = YAHOO.util.Dom.getElementsByClassName('haiku');
 		for(var i = 0; i < haikuDivs.length; i++) {
 			YAHOO.util.Event.addListener(haikuDivs[i], "mouseover", handleMouseOverOut, haikuDivs[i]);
-			YAHOO.util.Event.addListener(haikuDivs[i], "mouseout", handleMouseOverOut, haikuDivs[i]);
+			YAHOO.util.Event.addListener(haikuDivs[i], "mouseout", handleMouseOverOut, haikuDivs[i]);			
 		}
+	},
+	
+	registerClassOnClick: function(className, fn) {
+	    Village.Buttons.registeredClassNames[className] = fn;
 	}
 };
 
 Village.util.registerWithHaikuRefresh(Village.Buttons.makeYui);
 Village.util.registerWithHaikuRefresh(Village.Buttons.haikuFlyOver);
+
+Village.Buttons.registerClassOnClick('favorites_button', function(eventType, buttonId) {    
+    var buttonObj = Village.Buttons.registry[buttonId];
+    var buttonEl = getEl(buttonId);
+    
+    var action = buttonObj.get('name');
+    alert(action);
+    
+    buttonObj.set("disabled", true);
+    buttonObj.set("label", 'Adding...');
+    
+    var haiku = YAHOO.util.Dom.getAncestorByClassName (buttonEl, 'haiku');
+    haiku_id = haiku.id.replace("haiku_", "");
+    new Ajax.Request("/my_haiku/" + action + "_favorite/" + haiku_id, {
+          method: "post",
+          onComplete: function() {
+              buttonObj.set("disabled", false); 
+              buttonObj.set("label", 'Remove from favorites');
+              buttonObj.set('name', action == 'add' ? 'remove' : 'add');
+          }});
+});

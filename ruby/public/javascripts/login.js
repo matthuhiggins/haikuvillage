@@ -47,5 +47,5 @@ Village.Login = {
 YAHOO.util.Event.addListener('sign_up', "click", Village.Login.showRegistration);
 
 YAHOO.util.Event.addListener(window, "load", function() {
-    Village.Buttons.buttonRegistry["register_cancel"].addListener('click', Village.Login.hideRegistration); 
+    Village.Buttons.registry["register_cancel"].addListener('click', Village.Login.hideRegistration); 
 });
