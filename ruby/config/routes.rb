@@ -5,7 +5,6 @@ ActionController::Routing::Routes.draw do |map|
   # the sick syllable counter
   map.syllables "syllables/:word.:format", :word => %r{.+}, :controller => "syllables", :action => "count"
 
-  # login/logout/register
   map.login 'login/', :controller => "login", :action => "index"
   map.logout 'logout/', :controller => "login", :action => "logout"
   map.register 'register/', :controller => "login", :action => "register"

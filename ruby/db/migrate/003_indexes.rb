@@ -32,6 +32,7 @@ class Indexes < ActiveRecord::Migration
     add_index :tags, :created_at
     
     add_index :users, :email, :unique => true
+    add_index :alias, :unique => true
   end
 
   def self.down

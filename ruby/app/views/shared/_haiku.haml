@@ -3,7 +3,9 @@
     - for line in haiku.text.split("\n")
     .haiku-line= h(line)
     - end
-  .author= haiku.user.alias
+  - if session[:user_id] != haiku.user.id
+  .author= link_to h(haiku.user.alias), {:controller => "haikus", :action => "user", :id => h(haiku.user.id)}
+  - end
   -if session[:user_id]
   %p.add_to_favorites
     %button

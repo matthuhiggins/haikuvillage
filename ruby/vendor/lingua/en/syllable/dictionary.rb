@@ -96,7 +96,7 @@ module Syllable
 		
 		private
 		def Dictionary.load_dictionary
-			@@dictionary = @@dbmclass.new( __FILE__[0..-14] + 'dict')
+			@@dictionary = @@dbmclass.new( __FILE__[0..-14] + 'dict.db')
 			if @@dictionary.keys.length.zero?
 				raise LoadError, "dictionary file not found"
 			end
