@@ -18,12 +18,15 @@ class MyHaikuController < ApplicationController
       :conditions => ["hf.user_id = ?", session[:user_id]],
       :joins => "join haiku_favorites hf on haikus.id = hf.haiku_id",
       :select => "haikus.*")
-      
-    render :action => "index"
+
+    @title = "My Haiku"
+    render :template => "templates/input"
   end
   
   def index
     @haikus = paginated_haikus(:conditions => {:user_id => session[:user_id]})
+    @title = "My Haiku"
+    render :template => "templates/input"
   end
   
   def add_favorite

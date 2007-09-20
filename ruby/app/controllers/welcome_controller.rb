@@ -3,6 +3,8 @@ class WelcomeController < ApplicationController
     
   def index
     @haikus = paginated_haikus(:order => "id desc")
+    @title = "Create your haiku"
+    render :template => "templates/input"
   end
   
   def next
