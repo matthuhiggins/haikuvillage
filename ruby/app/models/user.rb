@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   def validate
     errors.add_to_base("Missing password") if hashed_password.blank?
-  end  
+  end
   
   def self.authenticate(email, password)
     user = self.find_by_email(email)
@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
     @password = pwd
     create_new_salt
     self.hashed_password = User.encrypted_password(self.password, self.salt)
+  end
+  
+  def favorite_haiku_ids
+    @favorite_haiku_ids ||= haiku_favorites.inject(Set.new) { |set, favorite| set.add(favorite.haiku_id) }
   end
   
   private

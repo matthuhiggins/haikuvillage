@@ -8,6 +8,10 @@
   - end
   -if session[:user_id]
   %p.add_to_favorites
+    - unless @user.favorite_haiku_ids.include?(haiku.id)
     %button.favorites_button{:name => 'add'}
-      Add to favorites
+      Love it.
+    - else
+      Already love it.
+    -end
   -end
