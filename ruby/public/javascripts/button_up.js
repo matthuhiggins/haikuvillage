@@ -56,10 +56,8 @@ Village.util.registerWithHaikuRefresh(Village.Buttons.haikuFlyOver);
 
 Village.Buttons.registerClassOnClick('favorites_button', function(eventType, buttonId) {    
     var buttonObj = Village.Buttons.registry[buttonId];
-    var buttonEl = getEl(buttonId);
-    
+    var buttonEl = getEl(buttonId);    
     var action = buttonObj.get('name');
-    alert(action);
     
     buttonObj.set("disabled", true);
     buttonObj.set("label", 'Adding...');
@@ -67,10 +65,8 @@ Village.Buttons.registerClassOnClick('favorites_button', function(eventType, but
     var haiku = YAHOO.util.Dom.getAncestorByClassName (buttonEl, 'haiku');
     haiku_id = haiku.id.replace("haiku_", "");
     new Ajax.Request("/my_haiku/" + action + "_favorite/" + haiku_id, {
-          method: "post",
-          onComplete: function() {
-              buttonObj.set("disabled", false); 
-              buttonObj.set("label", 'Remove from favorites');
-              buttonObj.set('name', action == 'add' ? 'remove' : 'add');
-          }});
+        method: "post",
+        onComplete: function() {
+            buttonEl.parentNode.innerHTML = "You love it.";
+    }});
 });
