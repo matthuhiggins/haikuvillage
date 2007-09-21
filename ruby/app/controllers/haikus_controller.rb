@@ -17,7 +17,7 @@ class HaikusController < ApplicationController
   
   def search
     unless params[:q].blank?
-      render_paginated(:search) do
+      render_paginated("search") do
         page = params[:page] || 1
         Haiku.paginating_ferret_search(:q => params[:q], :current => page.to_i, :page_size => 4)
       end
@@ -31,12 +31,12 @@ class HaikusController < ApplicationController
     end
   end
   
-  def render_paginated(action = :index)
+  def render_paginated(template = "templates/listing")
     @haikus = block_given? ? yield : paginated_haikus
     if params[:page]
       render :partial => 'shared/haikus_paginated', :locals => { :haikus => @haikus }
     else
-      render :action => action
+      render :template => template
     end
   end
 end

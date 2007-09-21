@@ -20,7 +20,7 @@ class MyHaikuController < ApplicationController
       :select => "haikus.*")
 
     @title = "My Haiku"
-    render :template => "templates/input"
+    render :template => "templates/listing"
   end
   
   def index
