@@ -8,13 +8,21 @@ class Word < ActiveRecord::Base
     
   private
   
-  def count_syllables(wordtext)
+  def count_syllables(word_text)
+    begin
+      return Lingua::EN::Syllable::Dictionary::syllables(word)
+    rescue Dictionary::LookUpError
+      return guess_syllables(word_text)
+    end
+  end
+  
+  def guess_syllables(wordtext)
     wordtext = wordtext.gsub(/^[^\w]+|[^\w]+$|"+/, '')
          
     # ie spiz's or mike's
     if wordtext =~ /'s$/ then
       wordtext = wordtext.gsub( /'s$/, '')
-      (if wordtext =~ /^6$|[0|2-9]6$|[x|z]$/ then 1 else 0 end) + count_syllables(wordtext)
+      (wordtext =~ /^6$|[0|2-9]6$|[x|z]$/ ? 1 : 0) + count_syllables(wordtext)
 
     # ie boy/girl or re-factor
     elsif wordtext =~ /\/|-/ then
@@ -49,7 +57,7 @@ class Word < ActiveRecord::Base
 
     # a normal word
     elsif wordtext =~ /^[a-zA-Z|']+$/ then
-      Lingua::EN::Syllable.syllables(wordtext)
+      Lingua::EN::Syllable::Guess::syllables(wordtext)
       
     # the word is not countable.
     else
@@ -62,10 +70,6 @@ class Word < ActiveRecord::Base
   private
   
   def count_letter_syllables(letter)
-    if (letter.downcase == "w")
-      3
-    else
-      1
-    end
+     letter.downcase == "w" ? 3 : 1
   end
 end
