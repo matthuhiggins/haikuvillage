@@ -10,8 +10,8 @@ class Word < ActiveRecord::Base
   
   def count_syllables(word_text)
     begin
-      return Lingua::EN::Syllable::Dictionary::syllables(word)
-    rescue Dictionary::LookUpError
+      return Lingua::EN::Syllable::Dictionary::syllables(word_text)
+    rescue Lingua::EN::Syllable::Dictionary::LookUpError
       return guess_syllables(word_text)
     end
   end
