@@ -1,4 +1,4 @@
-class Word < ActiveRecord::Base
+class Word
   attr_reader :text, :syllables
   
   def initialize(wordtext)
@@ -9,11 +9,12 @@ class Word < ActiveRecord::Base
   private
   
   def count_syllables(word_text)
-    begin
-      return Lingua::EN::Syllable::Dictionary::syllables(word_text)
-    rescue Lingua::EN::Syllable::Dictionary::LookUpError
-      return guess_syllables(word_text)
-    end
+    guess_syllables(word_text)
+    # begin
+    #   Lingua::EN::Syllable::Dictionary::syllables(word_text)
+    # rescue Lingua::EN::Syllable::Dictionary::LookUpError
+    #   guess_syllables(word_text)
+    # end
   end
   
   def guess_syllables(wordtext)
@@ -63,11 +64,7 @@ class Word < ActiveRecord::Base
     else
       0
     end
-    
   end
-  
-    
-  private
   
   def count_letter_syllables(letter)
      letter.downcase == "w" ? 3 : 1

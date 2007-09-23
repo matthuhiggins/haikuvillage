@@ -1,4 +1,4 @@
-class Line < ActiveRecord::Base
+class Line
   attr_reader :words
   
   def initialize(linetext)
