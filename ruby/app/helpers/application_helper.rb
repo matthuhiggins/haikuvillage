@@ -9,7 +9,6 @@ module ApplicationHelper
   # copied from http://www.igvita.com/blog/2006/09/10/faster-pagination-in-rails/
   # This leverages the pagination_find plugin
   def windowed_pagination_links(pagingEnum, options)
-    link_to_current_page = options[:link_to_current_page]
     padding = options[:window_size]
     padding = padding < 0 ? 0 : padding
 
@@ -22,7 +21,7 @@ module ApplicationHelper
     html = ''
     # Print window pages
     first.upto(last) do |page|
-      html << ((current_page == page && !link_to_current_page) ? page : yield(page))
+      html << yield(page)
     end
 
     html
