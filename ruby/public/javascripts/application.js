@@ -35,6 +35,16 @@ function getElementInText(text, div_id) {
 
 Village = {};
 Village.util = {
+    getNextHaiku: function() {
+        function onSuccess(o) {
+            var haikuDiv = createDomFromText(o.responseText);
+            if (haikuDiv.id !== YAHOO.util.Dom.getFirstChild("haiku_box").id) {
+                Village.util.addHaiku(haikuDiv);
+            }            
+        }
+        var request = YAHOO.util.Connect.asyncRequest('GET', 'welcome/next', { success: onSuccess });
+    },
+    
 	paginate: function (request, adjacency) {
         var start = adjacency === 'next' ? 0 : '-600px';
         var attributes = { 'margin-left': { to: -300 } };
@@ -54,21 +64,22 @@ Village.util = {
     	scrollAnim.animate();
 	},
 
-	addHaiku: function (text) {
-	    if (text === "") return;
+	addHaiku: function (haikuDiv) {
+	    if (haikuDiv === "") return;
 	    
     	var haikuList = getEl("haiku_box");
 	
     	var fadeIn = function () {
-			var newHaikuDiv = createDomFromText(text);
+    	    if (typeof haikuDiv == 'string')
+                haikuDiv = createDomFromText(haikuDiv);
 				
-			YAHOO.util.Dom.setStyle(newHaikuDiv, 'color', '#fff');
-			haikuList.replaceChild(newHaikuDiv, emptyHaikuDiv);
+			YAHOO.util.Dom.setStyle(haikuDiv, 'color', '#fff');
+			haikuList.replaceChild(haikuDiv, emptyHaikuDiv);
 			var colorAttributes = {
 				color: { from: '#fff', to:'#000' }
 			};
 		
-			var colorAnim = new YAHOO.util.ColorAnim(newHaikuDiv.id, colorAttributes, 0.5, YAHOO.util.Easing.easeOut);
+			var colorAnim = new YAHOO.util.ColorAnim(haikuDiv.id, colorAttributes, 0.5, YAHOO.util.Easing.easeOut);
 			colorAnim.animate();		
 	    	if (YAHOO.util.Dom.getChildren(haikuList).length > 4) {
             	haikuList.removeChild(YAHOO.util.Dom.getLastChild(haikuList));
