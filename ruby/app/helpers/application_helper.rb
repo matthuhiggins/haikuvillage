@@ -6,17 +6,16 @@ module ApplicationHelper
     end
   end
 
-  # copied from http://www.igvita.com/blog/2006/09/10/faster-pagination-in-rails/
   # This leverages the pagination_find plugin
   def windowed_pagination_links(pagingEnum, options)
-    padding = options[:window_size]
-    padding = padding < 0 ? 0 : padding
+    padding = 2
+    num_links = padding * 2 + 1
 
     current_page = pagingEnum.page
 
-    #Calculate the window start and end pages
-    first = pagingEnum.page_exists?(current_page  - padding) ? current_page - padding : 1
-    last = pagingEnum.page_exists?(current_page + padding) ? current_page + padding : pagingEnum.last_page
+    #Calculate the window start and end page
+    first = [1, [current_page - padding, pagingEnum.last_page - padding * 2].min].max
+    last = [pagingEnum.last_page, [current_page + padding, 1 + padding * 2].max ].min
 
     html = ''
     # Print window pages

@@ -3,13 +3,12 @@
 
 %ul
   - last_page = 0
-  - windowed_pagination_links(collection, :window_size => 2, :always_show_anchors => true) do |n|
+  - windowed_pagination_links(collection, :always_show_anchors => true) do |n|
     - if collection.page == n
     %li.currentpage
       = n
     - else
     %li
-      = "..." if last_page + 1 < n
       = link_to_page(n)
     - end
     - last_page = n
