@@ -55,6 +55,8 @@ Village.util = {
 	},
 
 	addHaiku: function (text) {
+	    if (text === "") return;
+	    
     	var haikuList = getEl("haiku_box");
 	
     	var fadeIn = function () {
