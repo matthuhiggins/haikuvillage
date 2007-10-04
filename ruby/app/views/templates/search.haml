@@ -1,5 +1,8 @@
 - content_for(:head) do
   = javascript_include_tag "search"
+  
+- content_for(:title) do
+  Searching haikus
 
 %form{:action => :search, :method => "get"}
   =text_field_tag("q", params[:q], :id => "q", :size => 30)

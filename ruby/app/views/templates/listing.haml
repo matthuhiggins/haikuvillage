@@ -1,8 +1,4 @@
 - content_for(:title) do
-  - if @title
-  = @title
-  - else
-  Exploring haikus
-  - end
+  = @title || 'Exploring haikus'
 
 = render(:partial => "shared/haikus", :locals => {:haikus => @haikus } )
