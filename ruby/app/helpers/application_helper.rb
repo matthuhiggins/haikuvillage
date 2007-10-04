@@ -7,23 +7,14 @@ module ApplicationHelper
   end
 
   # This leverages the pagination_find plugin
-  def windowed_pagination_links(pagingEnum, options)
+  def windowed_pagination_links(pagingEnum)
     padding = 2
-    num_links = padding * 2 + 1
-
-    current_page = pagingEnum.page
 
     #Calculate the window start and end page
-    first = [1, [current_page - padding, pagingEnum.last_page - padding * 2].min].max
-    last = [pagingEnum.last_page, [current_page + padding, 1 + padding * 2].max ].min
+    first = [1, [pagingEnum.page - padding, pagingEnum.last_page - padding * 2].min].max
+    last = [pagingEnum.last_page, [pagingEnum.page + padding, 1 + padding * 2].max ].min
 
-    html = ''
-    # Print window pages
-    first.upto(last) do |page|
-      html << yield(page)
-    end
-
-    html
+    (first..last).inject('') {|html, page| html << yield(page)}
   end
   
   def link_to_page(page)

@@ -3,7 +3,7 @@
 
 %ul
   - last_page = 0
-  - windowed_pagination_links(collection, :always_show_anchors => true) do |n|
+  - windowed_pagination_links(collection) do |n|
     - if collection.page == n
     %li.currentpage
       = n
