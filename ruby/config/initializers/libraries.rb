@@ -1,3 +1,3 @@
-require "lingua/en/syllable"
+require "syllable"
 require "linguistics"
 Linguistics::use(:en)
