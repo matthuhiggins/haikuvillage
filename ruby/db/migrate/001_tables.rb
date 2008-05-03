@@ -37,12 +37,6 @@ class Tables < ActiveRecord::Migration
     create_table :group_users, :id => false do |t|
       t.integer :group_id, :user_id, :null => false
       t.string :user_type, :null => false
-    end    
-    
-    create_table :sessions do |t|
-      t.string :session_id, :null => false
-      t.text :data
-      t.timestamps
     end
 
     create_table :tags do |t|
