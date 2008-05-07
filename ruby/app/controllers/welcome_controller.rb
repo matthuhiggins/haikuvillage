@@ -18,8 +18,12 @@ class WelcomeController < ApplicationController
   end
   
   def create
-    create_haiku(params[:haiku][:text]) do |haiku|
-      haiku.user_id = User.get_anonymous.id
+    if session[:user_id]
+      Haiku.new(params[:haiku][:text]) do |haiku|
+        haiku.user_id = User.get_anonymous.id
+      end
+    else
+      
     end
   end
 

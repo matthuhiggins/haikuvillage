@@ -7,7 +7,7 @@ class Tables < ActiveRecord::Migration
     
     create_table :haikus do |t|
       t.integer :twitter_status_id, :user_id, :null => false
-      t.text :haiku, :limit => 153, :null => false
+      t.text :text, :limit => 153, :null => false
       t.timestamps
     end
     

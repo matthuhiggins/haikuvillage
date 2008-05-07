@@ -16,36 +16,29 @@ class ApplicationController < ActionController::Base
   end
   
   protected
-  
-  def create_haiku(text)
-    @haiku = Haiku.new
-    @haiku.text = params[:haiku][:text]
-    
-    yield(@haiku)
-    
-    if @haiku.save
-      render :partial => 'shared/haiku', :locals => { :haiku => @haiku }
-    else
-      render :text => "", :layout => false
+    def create_haiku(text)
+      if @haiku.save
+        render :partial => 'shared/haiku', :object => haiku
+      else
+        render :text => "", :layout => false
+      end
     end
-  end
   
-  def paginated_haikus(options = {})
-    options[:page] = {:current => params[:page] || 1}
-    Haiku.find(:all, options)
-  end
+    def paginated_haikus(options = {})
+      options[:page] = {:current => params[:page] || 1}
+      Haiku.find(:all, options)
+    end
   
   private
-      
-  def set_user
-    @user = User.find_by_id(session[:user_id])
-  end  
+    def set_user
+      @user = User.find_by_id(session[:user_id])
+    end  
   
-  def authorize
-    unless @user = User.find_by_id(session[:user_id])
-      session[:original_uri] = request.request_uri
-      flash[:notice] = "Please log in"
-      redirect_to(:controller => "login", :action => "index")
+    def authorize
+      unless @user = User.find_by_id(session[:user_id])
+        session[:original_uri] = request.request_uri
+        flash[:notice] = "Please log in"
+        redirect_to(:controller => "login", :action => "index")
+      end
     end
-  end
 end

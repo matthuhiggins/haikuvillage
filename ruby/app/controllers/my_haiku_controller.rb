@@ -8,7 +8,7 @@ class MyHaikuController < ApplicationController
   before_filter :authorize
   
   def create
-    create_haiku(params[:haiku][:text]) do |haiku|
+    Haiku.new(params[:haiku][:text]) do |haiku|
       haiku.user_id = session[:user_id]
     end
   end

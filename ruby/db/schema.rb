@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 3) do
   create_table "haikus", :force => true do |t|
     t.integer  "twitter_status_id", :limit => 11, :null => false
     t.integer  "user_id",           :limit => 11, :null => false
-    t.text     "haiku",                           :null => false
+    t.text     "text",                            :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
