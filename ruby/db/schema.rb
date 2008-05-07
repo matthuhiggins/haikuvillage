@@ -23,9 +23,10 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haiku_favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
 
   create_table "haikus", :force => true do |t|
-    t.integer  "twitter_status_id", :limit => 11, :null => false
-    t.integer  "user_id",           :limit => 11, :null => false
-    t.text     "text",                            :null => false
+    t.integer  "twitter_status_id",     :limit => 11,                :null => false
+    t.integer  "user_id",               :limit => 11,                :null => false
+    t.integer  "haiku_favorites_count", :limit => 11, :default => 0, :null => false
+    t.text     "text",                                               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

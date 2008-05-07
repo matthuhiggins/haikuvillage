@@ -18,11 +18,11 @@ class HaikusController < ApplicationController
   end
   
   def recent
-    render_paginated{ paginated_haikus(:order => "created_at desc") }
+    render_paginated { paginated_haikus(:order => "created_at desc") }
   end
   
   def render_paginated(template = "listing")
-    @haikus = block_given? ? yield : paginated_haikus
+    @haikus = Haiku.recent
     if params[:page]
       render :partial => 'shared/haikus_paginated', :locals => { :haikus => @haikus }
     else

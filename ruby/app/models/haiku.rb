@@ -4,6 +4,10 @@ class Haiku < ActiveRecord::Base
   has_many :happy_users, :through => :haiku_favorites, :source => :user
 
   validates_presence_of :user_id
+  validates_presence_of :text
+  
+  named_scope :recent, :order => 'created_at desc'
+  named_scope :popular, :order => 'haiku_favorites_count desc'
   
   before_create :twitter_update
 

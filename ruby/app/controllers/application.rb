@@ -16,12 +16,6 @@ class ApplicationController < ActionController::Base
   end
   
   protected
-  
-    def paginated_haikus(options = {})
-      # options[:page] = {:current => params[:page] || 1}
-      Haiku.find(:all, options)
-    end
-  
   private
     def current_user
       User.find(session[:user_id])

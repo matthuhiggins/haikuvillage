@@ -2,6 +2,8 @@ ActionController::Routing::Routes.draw do |map|
   # home page
   map.root :controller => "welcome", :action => "index"
   map.resource :session
+  map.resources :haikus, :collection => { :popular => :get }
+  map.resources :users
   
   # the sick syllable counter
   map.syllables "syllables/:word.:format", :word => %r{.+}, :controller => "syllables", :action => "count"

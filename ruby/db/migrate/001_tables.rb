@@ -7,6 +7,7 @@ class Tables < ActiveRecord::Migration
     
     create_table :haikus do |t|
       t.integer :twitter_status_id, :user_id, :null => false
+      t.integer :haiku_favorites_count, :null => false, :default => 0
       t.text :text, :limit => 153, :null => false
       t.timestamps
     end
