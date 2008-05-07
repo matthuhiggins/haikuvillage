@@ -9,9 +9,10 @@ RAILS_GEM_VERSION = '2.0'
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  config.load_paths += %W( #{RAILS_ROOT}/vendor/linguistics/lib )
-  config.load_paths += %W( #{RAILS_ROOT}/vendor/lingua/lib )
-
+  %w(linguistics lingua faster_xml_simple).each do |lib|
+    config.load_paths.push("#{RAILS_ROOT}/vendor/#{lib}/lib")
+  end
+  
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
   

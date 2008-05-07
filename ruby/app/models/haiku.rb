@@ -32,5 +32,8 @@ class Haiku < ActiveRecord::Base
     response = Net::HTTP.new(url.host, url.port).start {|http| http.request(request) }
 
     response.error! unless response.code[0..2].to_i == 200
+    
+    xml = XmlSimple.xml_in(response.body, 'keeproot' => false)
+    self[:twitter_status_id] = xml['id'].to_i
   end
 end
