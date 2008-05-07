@@ -23,14 +23,20 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haiku_favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
 
   create_table "haikus", :force => true do |t|
-    t.string   "text",                  :limit => 765,                :null => false
-    t.integer  "user_id",               :limit => 11,  :default => 0, :null => false
-    t.integer  "haiku_favorites_count", :limit => 11,  :default => 0, :null => false
+    t.integer  "twitter_status_id", :limit => 11, :null => false
+    t.integer  "user_id",           :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "haikus", ["user_id"], :name => "index_haikus_on_user_id"
   add_index "haikus", ["created_at"], :name => "index_haikus_on_created_at"
+
+  create_table "users", :force => true do |t|
+    t.string   "username",   :null => false
+    t.string   "password",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

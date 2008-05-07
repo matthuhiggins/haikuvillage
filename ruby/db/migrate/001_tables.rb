@@ -1,8 +1,12 @@
 class Tables < ActiveRecord::Migration
   def self.up  
+    create_table :users do |t|
+      t.string :username, :password, :null => false
+      t.timestamps
+    end
+    
     create_table :haikus do |t|
-      t.string :text, :null => false, :limit => 765
-      t.integer :user_id, :haiku_favorites_count, :null => false, :default => 0
+      t.integer :twitter_status_id, :user_id, :null => false
       t.timestamps
     end
     
