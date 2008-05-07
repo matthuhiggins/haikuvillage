@@ -1,6 +1,9 @@
 document.observe("dom:loaded", function() {
-  $('login_link').onclick = function(event){
-    Effect.toggle('login_form', 'appear');
-    return false;
-   };
+  var loginLink = $('login_link');
+  if (loginLink) {
+    loginLink.onclick = function(event) {
+      Effect.toggle('login_form', 'appear');
+      return false;
+     };
+  }
 });

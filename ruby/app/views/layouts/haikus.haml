@@ -30,7 +30,7 @@
         #user-corner
           - if session[:user_id]
           Welcome
-          %strong= @user.username
+          %strong= current_user.username
           %br
           = link_to "sign out", logout_url
           - end

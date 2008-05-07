@@ -4,9 +4,9 @@ class HaikusController < ApplicationController
         ["Popular", "popular"]]
   
   def create
-    Haiku.new(params[:haiku][:text]) do |haiku|
-      haiku.user_id = session[:user_id]
-    end
+    Haiku.create!(:text => params[:haiku][:text],
+                 :user => current_user)
+    render :text => 'success'
   end
   
   def index
