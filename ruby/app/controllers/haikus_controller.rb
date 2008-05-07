@@ -6,19 +6,21 @@ class HaikusController < ApplicationController
   def create
     Haiku.create!(:text => params[:haiku][:text],
                  :user => current_user)
-    render :text => 'success'
+    redirect_to create_url
+  end
+  
+  def new
+    
   end
   
   def index
     render_paginated
   end
+
+  alias :index :popular
   
   def popular
     render_paginated{ paginated_haikus(:order => "haiku_favorites_count desc") }
-  end
-  
-  def recent
-    render_paginated { paginated_haikus(:order => "created_at desc") }
   end
   
   def render_paginated(template = "listing")
