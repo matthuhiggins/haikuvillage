@@ -7,7 +7,6 @@ class Word
   end
     
   private
-  
   def count_syllables(word_text)
     guess_syllables(word_text)
     # begin
