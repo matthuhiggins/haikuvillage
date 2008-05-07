@@ -2,23 +2,18 @@ class SessionController < ApplicationController
   def create
     user = User.authenticate(params[:username], params[:password])
     if user
-      login_and_redirect(user.id)
+      session[:user_id] = user.id
     else
       flash[:notice] = "Invalid user/password combination"
-    end    
+    end
+    redirect_to root_url
   end
 
   def destroy
     session[:user_id] = nil
     flash[:notice] = "Logged out"
-    redirect_to(:action => "index")
+    redirect_to root_url
   end
   
   private
-    def login_and_redirect(user_id)
-      session[:user_id] = user_id
-      uri = session[:original_uri]
-      session[:original_uri] = nil
-      redirect_to(uri || { :controller => 'haikus', :action => "index" })
-    end
 end

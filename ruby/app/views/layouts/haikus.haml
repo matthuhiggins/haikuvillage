@@ -12,19 +12,19 @@
         #menu
           %ul#top-menu
             %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
-            %li= main_menu_link_to("Explore", "haikus")
+            %li= link_to 'Explore', :controller => 'haikus', :action => 'index'
             %li /
             - if session[:user_id]
-            %li= main_menu_link_to("Create", "create")
+            %li= link_to 'Create', create_url
             - else
-            %li
-              %span#login_link="Login"
+            %li#login_link= link_to 'Login', login_url
             - end
-            %form#login_form{:style => "display:none"}
-              %label{:for => 'login_form_username'}
-              %input{:id => 'login_form_username', :type => 'text', :size => 15}
-              %label{:for => 'login_form_password'}
-              %input{:id => 'login_form_password', :type => 'text', :size => 15}
+            %form#login_form{:action => login_url, :style => "display:none"}
+              %label{:for => 'login_form_username'}="Twitter Username"
+              %input{:id => 'login_form_username', :type => 'text', :name => 'username', :size => 15}
+              %label{:for => 'login_form_password'}="Password"
+              %input{:id => 'login_form_password', :type => 'password', :name => 'password', :size => 15}
+              %button{:type => 'submit'}="Go"
           %br
           = render :partial => "shared/sub_menu"
         #user-corner

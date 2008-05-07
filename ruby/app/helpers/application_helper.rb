@@ -1,11 +1,4 @@
 module ApplicationHelper  
-  def main_menu_link_to(name, controller)
-    uri = @controller.request.request_uri.gsub(/^\//, '').split(/\//).first
-    link_to_unless(uri == controller, name, {:controller => controller, :action => "index"}) do |name| 
-      link_to(name, {:controller => controller, :action => "index"}, {:class => "selected"})
-    end
-  end
-
   # This leverages the pagination_find plugin
   def windowed_pagination_links(pagingEnum)
     padding = 2
