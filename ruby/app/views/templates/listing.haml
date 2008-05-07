@@ -1,4 +1,10 @@
 - content_for(:title) do
   = @title || 'Exploring haikus'
 
+- content_for(:submenu) do
+  %span#sub-menu
+    = link_to "Recent", :controller => 'haikus', :action => 'index'
+    = '/'
+    = link_to "Popular", :controller => 'haikus', :action => 'popular'
+
 = render(:partial => "shared/haikus", :locals => {:haikus => @haikus } )

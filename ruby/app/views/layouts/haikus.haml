@@ -26,7 +26,7 @@
               %input{:id => 'login_form_password', :type => 'password', :name => 'password', :size => 15}
               %button{:type => 'submit'}="Go"
           %br
-          = render :partial => "shared/sub_menu"
+          = yield :submenu
         #user-corner
           - if session[:user_id]
           Welcome

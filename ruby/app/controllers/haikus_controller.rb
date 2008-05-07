@@ -1,8 +1,4 @@
 class HaikusController < ApplicationController
-  set_sub_menu [
-        ["Recent", "index"],
-        ["Popular", "popular"]]
-  
   def create
     Haiku.create!(:text => params[:haiku][:text],
                  :user => current_user)
@@ -10,14 +6,14 @@ class HaikusController < ApplicationController
   end
   
   def new
-    
+    @haikus = current_user.haikus.recent
+    @title = "Create your haiku"
+    render :template => "templates/input"
   end
   
   def index
     render_paginated
   end
-
-  alias :index :popular
   
   def popular
     render_paginated{ paginated_haikus(:order => "haiku_favorites_count desc") }

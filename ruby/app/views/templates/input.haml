@@ -27,8 +27,3 @@
   = render(:partial => "shared/haikus_active", :locals => { :haikus => @haikus })
   
 %br
-
-- if @refresh
-%script
-  //setInterval(Village.util.getNextHaiku, 5000);
-- end
