@@ -7,4 +7,4 @@
     = '/'
     = link_to "Popular", :controller => 'haikus', :action => 'popular'
 
-= render(:partial => "shared/haikus", :locals => {:haikus => @haikus } )
+= render(:partial => "shared/haikus", :object => @haikus)

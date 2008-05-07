@@ -11,7 +11,7 @@
 
 ActiveRecord::Schema.define(:version => 3) do
 
-  create_table "haiku_favorites", :id => false, :force => true do |t|
+  create_table "haiku_favorites", :force => true do |t|
     t.integer  "user_id",    :limit => 11, :null => false
     t.integer  "haiku_id",   :limit => 11, :null => false
     t.datetime "created_at"

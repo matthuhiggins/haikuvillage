@@ -12,8 +12,9 @@ class HaikusController < ApplicationController
   end
   
   def index
+    @haikus = Haiku.recent
     @title = "Recent Haikus"
-    render_paginated
+    render :template => "templates/listing"
   end
   
   def popular

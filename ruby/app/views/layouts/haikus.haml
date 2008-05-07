@@ -14,7 +14,7 @@
             %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
             %li= link_to 'Explore', :controller => 'haikus', :action => 'index'
             %li /
-            - if session[:user_id]
+            - if current_user
             %li= link_to 'Create', create_url
             - else
             %li#login_link= link_to 'Login', login_url
@@ -28,7 +28,7 @@
           %br
           = yield :submenu
         #user-corner
-          - if session[:user_id]
+          - if current_user
           Welcome
           %strong= current_user.username
           %br

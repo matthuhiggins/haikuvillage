@@ -1,18 +1,8 @@
-- if haikus
-- if haikus.empty?
+- if !haikus || haikus.empty?
 No results
 - else
 #haiku_box
-  #haiku_hidden
-    #haiku_left.haiku_fragment
-      \ &nbsp;
-      
-    #haiku_center.haiku_fragment
-      = render :partial => "shared/haikus_fragment", :locals => { :haikus => haikus }
-
-    #haiku_right.haiku_fragment
-      \ &nbsp;
-
+  #haiku_center.haiku_fragment
+    = render :partial => "shared/haikus_fragment", :locals => { :haikus => haikus }
 %br
-- end
 - end

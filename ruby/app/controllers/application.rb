@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
       
   private
     def current_user
-      User.find(session[:user_id])
+      session[:username] ? User.find_or_create_by_username(session[:username]) : nil
     end
     helper_method :current_user
 end

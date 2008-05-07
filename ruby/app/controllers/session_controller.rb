@@ -2,7 +2,7 @@ class SessionController < ApplicationController
   def create
     user = User.authenticate(params[:username], params[:password])
     if user
-      session[:user_id] = user.id
+      session[:username] = user.username
     else
       flash[:notice] = "Invalid user/password combination"
     end
@@ -10,7 +10,7 @@ class SessionController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:username] = nil
     flash[:notice] = "Logged out"
     redirect_to root_url
   end

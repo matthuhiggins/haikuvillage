@@ -12,7 +12,7 @@ class Tables < ActiveRecord::Migration
       t.timestamps
     end
     
-    create_table :haiku_favorites, :id => false do |t|
+    create_table :haiku_favorites do |t|
       t.integer :user_id, :haiku_id, :null => false
       t.timestamps
     end

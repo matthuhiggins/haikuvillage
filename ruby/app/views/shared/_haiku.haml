@@ -3,15 +3,15 @@
     - for line in haiku.text.split("\n")
     .haiku-line= h(line)
     - end
-  - if session[:user_id] != haiku.user.id
+  - if current_user != haiku.user
   .author= link_to h(haiku.user.username), { :controller => "users", :action => 'show', :id => haiku.user.username }
   - end
-  -if session[:user_id]
-  %p.add_to_favorites
-    - unless current_user.favorites.include?(haiku.id)
-    %button.favorites_button{:name => 'add'}
-      Love it.
-    - else
-      Already love it.
-    -end
-  -end
+  - if current_user 
+  - unless current_user.favorites.include?(haiku)
+  %span.add_to_favorites
+    = link_to "Add favorite", haiku_favorites_url(haiku), :method => :put
+  - else
+  %span.add_to_favorites
+    = link_to "Remove favorite", haiku_favorites_url(haiku), :method => :delete
+  - end
+  - end
