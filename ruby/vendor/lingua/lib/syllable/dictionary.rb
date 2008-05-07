@@ -13,23 +13,6 @@ module Syllable
 		require 'sdbm'
 		@@dbmclass = Module.const_get('SDBM')
 		
-		# use an available dbm-style hash
-    #     [ 'gdbm', 'dbm'].each do | dbm |
-    #   begin
-    #     require dbm
-    #     @@dbmclass = Module.const_get(dbm.upcase)
-    #   rescue => e
-    #     next
-    #   end
-    #   break
-    # end
-    
-		
-    # if @@dbmclass.nil?
-      # raise LoadError,
-        # "no dbm class available for Lingua::EN::Syllable::Dictionary"
-    # end
-		
 		# Look up word in the dbm dictionary.
 		def Dictionary.syllables(word)
 			if @@dictionary.nil?

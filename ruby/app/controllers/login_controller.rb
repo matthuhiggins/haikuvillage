@@ -3,16 +3,9 @@ class LoginController < ApplicationController
     
   def index
     session[:user_id] = nil
-    logger.debug(params.inspect)
-    if request.post?
-      if params["commit"]
-        login
-      elsif params["register"]
-        register
-      end
-    end
+    login if request.post?
   end
-  
+    
   def login
     @user = User.authenticate(params[:user][:email], params[:user][:password])
     if @user

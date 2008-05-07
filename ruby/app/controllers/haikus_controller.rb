@@ -25,7 +25,7 @@ class HaikusController < ApplicationController
   end
   
   def user
-    @title = "Haikus by " + User.find(params[:id]).alias 
+    @title = "Haikus by " + User.find(params[:id]).username 
     render_paginated do
       paginated_haikus(:conditions => ["user_id IN (?)", params[:id]])
     end

@@ -58,7 +58,7 @@ class Word
 
     # a normal word
     elsif wordtext =~ /^[a-zA-Z|']+$/ then
-      Lingua::EN::Syllable::Guess::syllables(wordtext)
+      Lingua::EN::Syllable::syllables(wordtext)
       
     # the word is not countable.
     else
