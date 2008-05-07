@@ -149,7 +149,7 @@ Haiku.PeriodicalUpdater.prototype = {
     
     // render the haiku
     newHaiku = new Haiku($F(this.textArea), wordInfo);
-    getEl(this.previewElement).innerHTML = newHaiku.toHTML();  
+    $(this.previewElement).innerHTML = newHaiku.toHTML();  
     document.getElementsByClassName(Word.RESPONDED, getEl(this.previewElement)).each(function(element) {
         var attributes = {
             color: { to: '#06e' }, 

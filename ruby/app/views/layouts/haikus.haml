@@ -3,12 +3,8 @@
 %html
   %head
     %title Haikus
-    = yui_include_tag 'reset-fonts-grids', 'utilities'
-    = javascript_include_tag 'prototype'
-    = javascript_include_tag 'application'
-    = stylesheet_link_tag 'haiku'
-    = stylesheet_link_tag 'main'
-    = stylesheet_link_tag 'menu'
+    = javascript_include_tag 'prototype', 'effects'
+    = stylesheet_link_tag 'haiku', 'main', 'menu'
     = yield :head
   %body.yui-skin-sam
     #frame

@@ -3,10 +3,7 @@
 %html
   %head
     %title Login
-    = stylesheet_link_tag 'login'
-    = stylesheet_link_tag 'main'
-    = yui_include_tag 'utilities', 'button'
-    = javascript_include_tag 'application', 'button_up', 'login'
+    = stylesheet_link_tag 'login', 'main'
     = yield :head
   %body.yui-skin-sam
     #main-frame
