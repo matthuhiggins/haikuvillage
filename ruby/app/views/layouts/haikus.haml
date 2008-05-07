@@ -3,18 +3,28 @@
 %html
   %head
     %title Haikus
-    = javascript_include_tag 'prototype', 'effects'
-    = stylesheet_link_tag 'haiku', 'main', 'menu'
+    = javascript_include_tag 'prototype', 'effects', 'application'
+    = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu'
     = yield :head
-  %body.yui-skin-sam
+  %body
     #frame
       #navigation
         #menu
           %ul#top-menu
             %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
-            %li= main_menu_link_to("My Haiku", "my_haiku")
-            %li /
             %li= main_menu_link_to("Explore", "haikus")
+            %li /
+            - if session[:user_id]
+            %li= main_menu_link_to("Create", "create")
+            - else
+            %li
+              %span#login_link="Login"
+            - end
+            %form#login_form{:style => "display:none"}
+              %label{:for => 'login_form_username'}
+              %input{:id => 'login_form_username', :type => 'text', :size => 15}
+              %label{:for => 'login_form_password'}
+              %input{:id => 'login_form_password', :type => 'text', :size => 15}
           %br
           = render :partial => "shared/sub_menu"
         #user-corner
@@ -23,8 +33,6 @@
           %strong= @user.username
           %br
           = link_to "sign out", logout_url
-          - else
-          = link_to "sign in", login_url
           - end
          
       #content

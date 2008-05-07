@@ -1,6 +1,4 @@
-class WelcomeController < ApplicationController
-  layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
-    
+class WelcomeController < ApplicationController    
   def index
     @haikus = paginated_haikus(:order => "id desc")
     @title = "Create your haiku"
@@ -16,15 +14,4 @@ class WelcomeController < ApplicationController
       render :text => "", :layout => false
     end
   end
-  
-  def create
-    if session[:user_id]
-      Haiku.new(params[:haiku][:text]) do |haiku|
-        haiku.user_id = User.get_anonymous.id
-      end
-    else
-      
-    end
-  end
-
 end

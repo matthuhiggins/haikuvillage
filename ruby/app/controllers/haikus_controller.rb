@@ -1,7 +1,13 @@
 class HaikusController < ApplicationController
   set_sub_menu [
-        ["Haikus", "index"],
-        ["Search", "search"]]
+        ["Recent", "index"],
+        ["Popular", "popular"]]
+  
+  def create
+    Haiku.new(params[:haiku][:text]) do |haiku|
+      haiku.user_id = session[:user_id]
+    end
+  end
   
   def index
     render_paginated
@@ -13,22 +19,6 @@ class HaikusController < ApplicationController
   
   def recent
     render_paginated{ paginated_haikus(:order => "created_at desc") }
-  end
-  
-  def search
-    render_paginated("search") do
-      unless params[:q].blank?      
-        page = params[:page] || 1
-        Haiku.paginating_ferret_search(:q => params[:q], :current => page.to_i, :page_size => 4)
-      end
-    end
-  end
-  
-  def user
-    @title = "Haikus by " + User.find(params[:id]).username 
-    render_paginated do
-      paginated_haikus(:conditions => ["user_id IN (?)", params[:id]])
-    end
   end
   
   def render_paginated(template = "listing")

@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
+  
   before_filter :set_user
   
   def sub_menu

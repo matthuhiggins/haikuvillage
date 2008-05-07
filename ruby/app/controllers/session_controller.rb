@@ -1,6 +1,6 @@
 class SessionController < ApplicationController  
   def create
-    user = User.authenticate(params[:user][:username], params[:user][:password])
+    user = User.authenticate(params[:username], params[:password])
     if user
       login_and_redirect(user.id)
     else
