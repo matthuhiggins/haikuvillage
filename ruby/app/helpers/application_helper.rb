@@ -20,7 +20,7 @@ module ApplicationHelper
   def link_to_page(page)
     params_with_page = params
     params_with_page[:page] = page
-    link_to_remote page, :url => params_with_page, :success => "getEl('paginated_haikus').innerHTML = request.responseText;Village.util.notifyHaikuObservers()"
+    link_to_remote page, :url => params_with_page, :success => "$('paginated_haikus').innerHTML = request.responseText;Village.util.notifyHaikuObservers()"
   end
   
   def link_to_adjacent_page(text, collection, adjacency)
@@ -30,7 +30,7 @@ module ApplicationHelper
       params_with_page[:page] = collection.send("#{adjacency}_page")
       link_to_remote text,
           :url => params_with_page,
-          :before => "this.parentNode.innerHTML = getEl('pagination_loader').innerHTML",
+          :before => "this.parentNode.innerHTML = $('pagination_loader').innerHTML",
           :complete => "Village.util.paginate(request, '#{adjacency}')"
     else
       text
