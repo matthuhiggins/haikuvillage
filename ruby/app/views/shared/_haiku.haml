@@ -4,7 +4,7 @@
     .haiku-line= h(line)
     - end
   - if session[:user_id] != haiku.user.id
-  .author= link_to h(haiku.user.username), { :controller => "users", :id => haiku.user.username }
+  .author= link_to h(haiku.user.username), { :controller => "users", :action => 'show', :id => haiku.user.username }
   - end
   -if session[:user_id]
   %p.add_to_favorites

@@ -12,19 +12,13 @@ class HaikusController < ApplicationController
   end
   
   def index
+    @title = "Recent Haikus"
     render_paginated
   end
   
   def popular
-    render_paginated{ paginated_haikus(:order => "haiku_favorites_count desc") }
-  end
-  
-  def render_paginated(template = "listing")
-    @haikus = Haiku.recent
-    if params[:page]
-      render :partial => 'shared/haikus_paginated', :locals => { :haikus => @haikus }
-    else
-      render :template => "templates/#{template}"
-    end
+    @haikus = Haiku.popular
+    @title = "Popular haikus"
+    render :template => "templates/listing"
   end
 end
