@@ -1,9 +1,6 @@
 = render(:partial => "shared/haiku", :object => @haiku)
-%p 
-  By 
-  = @haiku.user.username
 
 %h3 Users who like this haiku:
 - @users.each do |user|
-%p= link_to user.username, user
+%p= link_to h(user.username), { :controller => "users", :action => 'show', :id =>  user.username }
 - end
