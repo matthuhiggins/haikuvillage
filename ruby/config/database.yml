@@ -16,5 +16,5 @@ production:
   adapter: mysql
   database: trunk_production
   username: root
-  password: 
+  password:
   host: localhost
