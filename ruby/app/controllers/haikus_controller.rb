@@ -14,6 +14,12 @@ class HaikusController < ApplicationController
     list_haikus(Haiku.recent)
   end
   
+  def show
+    @haiku = Haiku.find(params[:id])
+    @users = @haiku.happy_users(:limit => 6)
+    render :template => 'templates/haiku'
+  end
+  
   def popular
     @title = "Popular haikus"
     list_haikus(Haiku.popular)
