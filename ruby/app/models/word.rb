@@ -9,11 +9,6 @@ class Word
   private
   def count_syllables(word_text)
     guess_syllables(word_text)
-    # begin
-    #   Lingua::EN::Syllable::Dictionary::syllables(word_text)
-    # rescue Lingua::EN::Syllable::Dictionary::LookUpError
-    #   guess_syllables(word_text)
-    # end
   end
   
   def guess_syllables(wordtext)
