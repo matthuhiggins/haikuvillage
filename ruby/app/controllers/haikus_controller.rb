@@ -6,7 +6,7 @@ class HaikusController < ApplicationController
   
   def new
     @title = "Create your haiku"
-    input_haikus(current_user.haikus.recent)
+    input_haiku(current_user.haikus.recent)
   end
   
   def index
