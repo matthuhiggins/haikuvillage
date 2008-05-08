@@ -19,12 +19,14 @@
             - else
             %li#login_link= link_to 'Login', login_url
             - end
-            %form#login_form{:action => login_url, :style => "display:none"}
-              %label{:for => 'login_form_username'}="Twitter Username"
-              %input{:id => 'login_form_username', :type => 'text', :name => 'username', :size => 15}
-              %label{:for => 'login_form_password'}="Password"
-              %input{:id => 'login_form_password', :type => 'password', :name => 'password', :size => 15}
-              %button{:type => 'submit'}="Go"
+            %li
+              %form#login_form{:action => login_url, :style => "display:none"}
+                %label{:for => 'login_form_username'}="Twitter Username"
+                %input{:id => 'login_form_username', :type => 'text', :name => 'username', :size => 15}
+                %br
+                %label{:for => 'login_form_password'}="Password"
+                %input{:id => 'login_form_password', :type => 'password', :name => 'password', :size => 15}
+                %button{:type => 'submit'}="Go"
           %br
           = yield :submenu
         #user-corner

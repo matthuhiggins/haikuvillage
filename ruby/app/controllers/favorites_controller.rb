@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
   
   def show
     users = Haiku.find(params[:haiku_id]).happy_users(:limit => 6)
-    render :text => "people you like this haiku: #{users.map(&:username).join(" - ")}"
+    render :text => "people who like this haiku: #{users.map(&:username).join(" - ")}"
   end
   
   def destroy
