@@ -6,8 +6,8 @@ class Haiku < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :text
   
-  named_scope :recent, :order => 'haikus.id desc', :limit => 6
-  named_scope :popular, :order => 'haiku_favorites_count desc', :limit => 6
+  named_scope :recent, :order => 'haikus.id desc'
+  named_scope :popular, :order => 'haiku_favorites_count desc'
   
   before_create :twitter_update
 

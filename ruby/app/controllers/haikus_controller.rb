@@ -1,25 +1,21 @@
 class HaikusController < ApplicationController
   def create
-    Haiku.create!(:text => params[:haiku][:text],
-                 :user => current_user)
+    Haiku.create!(:text => params[:haiku][:text], :user => current_user)
     redirect_to create_url
   end
   
   def new
-    @haikus = current_user.haikus.recent
     @title = "Create your haiku"
-    render :template => "templates/input"
+    input_haikus(current_user.haikus.recent)
   end
   
   def index
-    @haikus = Haiku.recent
     @title = "Recent Haikus"
-    render :template => "templates/listing"
+    list_haikus(Haiku.recent)
   end
   
   def popular
-    @haikus = Haiku.popular
     @title = "Popular haikus"
-    render :template => "templates/listing"
+    list_haikus(Haiku.popular)
   end
 end
