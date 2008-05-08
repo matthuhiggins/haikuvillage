@@ -6,5 +6,9 @@
     = link_to "Recent", :controller => 'haikus', :action => 'index'
     = '/'
     = link_to "Popular", :controller => 'haikus', :action => 'popular'
+    - if current_user
+    = '/'
+    = link_to "Favorites", :controller => 'favorites', :action => 'index'
+    - end
 
 = render(:partial => "shared/haikus", :object => @haikus)

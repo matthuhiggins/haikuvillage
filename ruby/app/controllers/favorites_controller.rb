@@ -6,6 +6,11 @@ class FavoritesController < ApplicationController
     end
   end
   
+  def index 
+    @title = 'My Favorite Haikus'
+    list_haikus(current_user.favorites)
+  end
+  
   def destroy
     change_favorite do |haiku|
       HaikuFavorite.destroy_all(:user_id => current_user, :haiku_id => haiku)
