@@ -1,0 +1,5 @@
+= render(:partial => "shared/haiku", :object => @haiku)
+%p Users who like this haiku:
+- @users.each do |user|
+%p= user.username
+- end
