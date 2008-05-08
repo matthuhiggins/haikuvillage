@@ -1,7 +1,8 @@
 class FavoritesController < ApplicationController
   def update
     current_user.favorites << Haiku.find(params[:haiku_id])
-    render :text => 'added'
+    flash[:notice] = 'New favorite added!'
+    redirect_to haiku_url(Haiku.find(params[:haiku_id]))
   end
   
   def destroy

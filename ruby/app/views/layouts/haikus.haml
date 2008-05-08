@@ -38,6 +38,7 @@
           - end
          
       #content
+        = flash[:notice]
         %h2= yield :title
         = yield :layout
       #foot
