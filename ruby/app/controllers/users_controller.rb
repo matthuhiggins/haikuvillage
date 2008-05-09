@@ -8,8 +8,4 @@ class UsersController < ApplicationController
     @title = "Haikus that #{params[:id]} likes"
     list_haikus(User.find_by_username(params[:id]).favorites)
   end
-  
-  def index
-    
-  end
 end

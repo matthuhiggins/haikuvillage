@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haikus", ["created_at"], :name => "index_haikus_on_created_at"
 
   create_table "users", :force => true do |t|
-    t.string   "username",   :null => false
-    t.string   "password",   :null => false
+    t.string   "username",                                  :null => false
+    t.string   "password",                                  :null => false
+    t.integer  "haikus_count", :limit => 11, :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

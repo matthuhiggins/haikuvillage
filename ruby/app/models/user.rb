@@ -12,14 +12,11 @@ class User < ActiveRecord::Base
     http.start do |http|
       request = Net::HTTP::Get.new('/account/verify_credentials.xml')
       request.basic_auth username, password
-      begin
-        response = http.request(request)
-        response.value
-        if response.code[0..2].to_i == 200
-          find_or_create_by_username(:username => username, :password => password)
-        end
-      rescue
-      end
+      response = http.request(request)
+      response.value
+      find_or_create_by_username(:username => username, :password => password) if response.code[0..2].to_i == 200
     end
+  rescue => e
+    logger.debug(e.message)
   end
 end

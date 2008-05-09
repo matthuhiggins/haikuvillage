@@ -2,6 +2,7 @@ class Tables < ActiveRecord::Migration
   def self.up  
     create_table :users do |t|
       t.string :username, :password, :null => false
+      t.integer :haikus_count, :null => false, :default => 0
       t.timestamps
     end
     

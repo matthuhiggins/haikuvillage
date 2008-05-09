@@ -1,5 +1,5 @@
 class Haiku < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_users, :through => :haiku_favorites, :source => :user
 
