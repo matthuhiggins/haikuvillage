@@ -1,12 +1,10 @@
-class FavoritesController < ApplicationController  
+class FavoritesController < ApplicationController
+  include FavoritesHelper
+  
   def update
     change_favorite do |haiku|
       current_user.favorites << haiku
       respond_to do |f|
-        f.html { 
-          flash[:notice] = 'New favorite added!' 
-          redirect_to haiku
-        }
         f.js { render :partial => "shared/remove_favorite", :locals => {:haiku => haiku } }
       end
     end
@@ -21,10 +19,6 @@ class FavoritesController < ApplicationController
     change_favorite do |haiku|
       HaikuFavorite.destroy_all(:user_id => current_user, :haiku_id => haiku)
       respond_to do |f|
-        f.html { 
-          flash[:notice] = 'Favorite removed!'
-          redirect_to haiku
-        }
         f.js { render :partial => "shared/add_favorite", :locals => {:haiku => haiku } }
       end
     end

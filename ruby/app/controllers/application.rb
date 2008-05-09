@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   
+  helper :favorites
+  
   HAIKUS_PER_PAGE = 6
   
   private

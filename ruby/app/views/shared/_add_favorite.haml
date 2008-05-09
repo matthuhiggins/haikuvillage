@@ -1,1 +1,1 @@
-= link_to_remote "Add favorite", :url => haiku_favorites_url(haiku), :href => haiku_favorites_url(haiku), :method => :put, :update => haiku.unique_id("fav")
+= add_favorite_link(haiku)

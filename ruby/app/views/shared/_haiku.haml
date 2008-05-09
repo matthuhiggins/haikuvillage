@@ -6,12 +6,6 @@
   - if current_user != haiku.user
   .author= link_to h(haiku.user.username), { :controller => "users", :action => 'show', :id => haiku.user.username }
   - end
-  - if current_user 
-  - unless current_user.favorites.include?(haiku)
-  %span.add_to_favorites{ :id => haiku.unique_id("fav")}
-    = render :partial => "shared/add_favorite", :locals => {:haiku => haiku }
-  - else
-  %span.add_to_favorites{ :id => haiku.unique_id("fav")}
-    = render :partial => "shared/remove_favorite", :locals => {:haiku => haiku }
-  - end
+  - if current_user
+  = favorite_div(haiku)
   - end
