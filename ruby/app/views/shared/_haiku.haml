@@ -8,10 +8,10 @@
   - end
   - if current_user 
   - unless current_user.favorites.include?(haiku)
-  %span.add_to_favorites
-    = add_favorite_link(haiku)
+  %span.add_to_favorites{ :id => haiku.unique_id("fav")}
+    = render :partial => "shared/add_favorite", :locals => {:haiku => haiku }
   - else
-  %span.add_to_favorites
-    = remove_favorite_link(haiku)
+  %span.add_to_favorites{ :id => haiku.unique_id("fav")}
+    = render :partial => "shared/remove_favorite", :locals => {:haiku => haiku }
   - end
   - end

@@ -1,0 +1,1 @@
+= link_to_remote "Remove favorite", :url => haiku_favorites_url(haiku), :href => haiku_favorites_url(haiku), :method => :delete, :update => haiku.unique_id("fav")

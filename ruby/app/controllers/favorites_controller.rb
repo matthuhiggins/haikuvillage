@@ -7,7 +7,7 @@ class FavoritesController < ApplicationController
           flash[:notice] = 'New favorite added!' 
           redirect_to haiku
         }
-        f.js { render :text => ApplicationHelper.remove_favorite_link(haiku) }
+        f.js { render :partial => "shared/remove_favorite", :locals => {:haiku => haiku } }
       end
     end
   end
@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
           flash[:notice] = 'Favorite removed!'
           redirect_to haiku
         }
-        f.js { render :text => ApplicationHelper.add_favorite_link(haiku) }
+        f.js { render :partial => "shared/add_favorite", :locals => {:haiku => haiku } }
       end
     end
   end
@@ -38,24 +38,4 @@ class FavoritesController < ApplicationController
       logger.debug e
       head :unprocessable_entity
     end
-    
-    def add_favorite_link(haiku)
-      link_to_remote "Add favorite", 
-        :url => haiku_favorites_url(haiku), 
-        :href => haiku_favorites_url(haiku), 
-        :method => :put, 
-        :update => haiku.unique_id("fav"), 
-        :html => {:id => haiku.unique_id("fav")}
-    end
-    helper_method :add_favorite_link
-
-    def remove_favorite_link(haiku)
-      link_to_remote "Remove favorite", 
-        :url => haiku_favorites_url(haiku), 
-        :href => haiku_favorites_url(haiku), 
-        :method => :delete, 
-        :update => haiku.unique_id("fav"), 
-        :html => {:id => haiku.unique_id("fav")}
-    end
-    helper_method :remove_favorite_link
 end

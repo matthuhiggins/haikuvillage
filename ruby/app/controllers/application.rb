@@ -23,24 +23,4 @@ class ApplicationController < ActionController::Base
     end
     
     helper_method :current_user
-    
-    def add_favorite_link(haiku)
-      link_to_remote "Add favorite", 
-        :url => haiku_favorites_url(haiku), 
-        :href => haiku_favorites_url(haiku), 
-        :method => :put, 
-        :update => haiku.unique_id("fav"), 
-        :html => {:id => haiku.unique_id("fav")}
-    end
-    helper_method :add_favorite_link
-
-    def remove_favorite_link(haiku)
-      link_to_remote "Remove favorite", 
-        :url => haiku_favorites_url(haiku), 
-        :href => haiku_favorites_url(haiku), 
-        :method => :delete, 
-        :update => haiku.unique_id("fav"), 
-        :html => {:id => haiku.unique_id("fav")}
-    end
-    helper_method :remove_favorite_link
 end
