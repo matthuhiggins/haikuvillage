@@ -1,14 +1,11 @@
 *
   :outline 0
 
-#user-corner 
-  :float right
-  :text-align right
-
 #navigation 
   :color gray
+  :font-size 16px
+  :height 80px
   :padding-top 1em
-  :height 70px
   :background
     :image url(/images/bg-head.png)
     :repeat repeat-y
@@ -17,17 +14,25 @@
   .selected, a:hover
     :color green
 
-#menu
-  :float left
-
-ul#top-menu
+.top-menu
+  :font-size 14px
+  :height 45px
   li
-    :font-size 16px
-    :margin 0px
-    :padding 0px
-    :float left
-    :padding-right 20px
+    :height 30px
+    :line-height 30px
+    :padding-right 6px
 
+.bottom-menu
+  :font-size 14px
+  li
+    :padding-right 6px
+
+#global-navigation
+  :float left
+  li
+    :float left
+  .top-menu li
+    :padding-right 20px
   form#login_form
     :float left
     :font-size 10px
@@ -46,11 +51,15 @@ ul#top-menu
     input
       :border 1px solid #AAAAAA
       :height 16px
+      :padding-top 2px
       :width 90px
     button
       :font-size inherit
       :width 60px
 
-#sub-menu
-  :font-size 14px
-  
+#user-navigation 
+  :float right
+  :text-align right
+  :width 50%
+  li
+    :float right
