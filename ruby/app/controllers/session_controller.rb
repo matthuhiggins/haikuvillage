@@ -5,11 +5,8 @@ class SessionController < ApplicationController
     
     respond_to do |f|
       f.html do
-        if session[:username]
-          redirect_to(request.env["HTTP_REFERER"] || root_url)
-        else
-          flash[:notice] = "Invalid user/password combination"
-        end
+        flash[:notice] = "Invalid user/password combination" unless session[:username]
+        redirect_to referring_uri
       end
       f.js { head (session[:username] ? :ok : :bad_request) }
     end
@@ -21,10 +18,13 @@ class SessionController < ApplicationController
     respond_to do |f|
       f.html do
         flash[:notice] = "Logged out"
-        redirect_to root_url
+        redirect_to referring_uri
       end
     end
   end
   
   private
+    def referring_uri
+      request.env["HTTP_REFERER"] || root_url
+    end
 end
