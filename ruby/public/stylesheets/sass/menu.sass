@@ -1,5 +1,5 @@
-img
-  :border 0px
+*
+  :outline 0
 
 #user-corner 
   :float right
@@ -21,7 +21,6 @@ img
   :float left
 
 ul#top-menu
-  :list-style-type none
   li
     :font-size 16px
     :margin 0px
@@ -29,31 +28,29 @@ ul#top-menu
     :float left
     :padding-right 20px
 
-  form
-    :float right
+  form#login_form
+    :float left
+    :font-size 10px
+    div
+      :clear left
+      :height 18px
+      :margin-bottom 4px
+      & *
+        :float left
+        :margin-right 7px
+    label
+      :height 18px
+      :line-height 18px
+      :text-align right
+      :width 85px
+    input
+      :border 1px solid #AAAAAA
+      :height 16px
+      :width 90px
+    button
+      :font-size inherit
+      :width 60px
 
 #sub-menu
   :font-size 14px
-
-.pagination
-  .currentpage
-    :color red
-  ul
-    :float left
-    :font-size 14px
-    :height 30px
-    :list-style-type none
-     
-    li
-      :display inline
-      :float left
-      :padding-right 15px
-  .nextpage
-    :float left
-    :height 50px
-    :padding-left 10px
-    :width 30px
-
-#login_form
-  :font-size 10px
   
