@@ -40,4 +40,8 @@ class Haiku < ActiveRecord::Base
     xml = XmlSimple.xml_in(response.body, 'keeproot' => false)
     self[:twitter_status_id] = xml['id'].to_i
   end
+  
+  def unique_id(prefix)
+    prefix + id.to_s
+  end
 end

@@ -9,9 +9,9 @@
   - if current_user 
   - unless current_user.favorites.include?(haiku)
   %span.add_to_favorites
-    = link_to "Add favorite", haiku_favorites_url(haiku), :method => :put
+    = add_favorite_link(haiku)
   - else
   %span.add_to_favorites
-    = link_to "Remove favorite", haiku_favorites_url(haiku), :method => :delete
+    = remove_favorite_link(haiku)
   - end
   - end
