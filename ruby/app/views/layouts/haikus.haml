@@ -40,7 +40,9 @@
             %li= link_to 'Create', create_url
         - end
       #content
-        = flash[:notice]
+        - if flash[:notice]
+        #notice= flash[:notice]
+        - end
         %h2= yield :title
         = yield :layout
       #foot
