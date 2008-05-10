@@ -1,7 +1,3 @@
-# Uncomment below to force Rails into production mode when 
-# you don't control web/app server and can't set it the proper way
-# ENV['RAILS_ENV'] ||= 'production'
-
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.0'
 
@@ -12,9 +8,6 @@ Rails::Initializer.run do |config|
   %w(linguistics lingua faster_xml_simple).each do |lib|
     config.load_paths.push("#{RAILS_ROOT}/vendor/#{lib}/lib")
   end
-  
-  # (by default production uses :info, the others :debug)
-  # config.log_level = :debug
   
   config.action_controller.session = {
     :session_key => "_haiku_village",

@@ -5,18 +5,26 @@
   = @title
 
 .left_side
-  = error_messages_for 'haiku'
+  = error_messages_for :haiku
 
   #preview
 
   - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
     %p
-      %label{:for => "text"} Haiku Text
-      %br
-      = form.text_area (:text, :cols => 40, :rows => 3)
-
+      %h3='Haiku Text'
+      %div
+        = form.text_area (:text, :cols => 40, :rows => 3)
       %p
-        = submit_tag("Create", :id => "commit", :class => "disabled")
+        - if current_user
+        = form.submit "Create", :id => "commit"
+        - end
+        
+  - unless current_user
+    %a{:id => 'show_haiku_login'}='Login and Create'
+    - remote_form_for(:user, :url => login_url, :method => :post, :html => {:id => 'haiku_login', :style => 'display:none'}) do |login|
+      = login.text_field :username
+      = login.password_field :password
+      = login.submit "Create"
 
   %script 
     new Haiku.PeriodicalUpdater("haiku_text", "preview");
