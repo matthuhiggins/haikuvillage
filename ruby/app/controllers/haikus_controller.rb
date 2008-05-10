@@ -22,6 +22,13 @@ class HaikusController < ApplicationController
     render :template => 'templates/haiku'
   end
   
+  def destroy
+    haiku = Haiku.find(params[:id])
+    raise UnauthorizedDestroyRequest unless haiku.user == current_user
+    haiku.destroy
+    head :ok
+  end
+  
   def popular
     @title = "Popular haikus"
     list_haikus(Haiku.popular)

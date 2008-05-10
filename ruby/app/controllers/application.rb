@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  # Raised when a destroy action is performed on an object
+  # not owned by current_user
+  class UnauthorizedDestroyRequest < StandardError
+  end
+  
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   
   helper :favorites
