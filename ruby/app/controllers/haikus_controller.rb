@@ -18,7 +18,7 @@ class HaikusController < ApplicationController
   
   def show
     @haiku = Haiku.find(params[:id])
-    @users = @haiku.happy_users(:limit => 6)
+    @users = @haiku.happy_users.all(:limit => 6)
     render :template => 'templates/haiku'
   end
   
