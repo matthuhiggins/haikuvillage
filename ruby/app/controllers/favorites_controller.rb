@@ -1,6 +1,8 @@
 class FavoritesController < ApplicationController
   include FavoritesHelper
   
+  login_filter
+  
   def update
     change_favorite do |haiku|
       current_user.favorites << haiku
