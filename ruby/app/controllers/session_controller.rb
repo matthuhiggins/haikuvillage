@@ -24,9 +24,4 @@ class SessionController < ApplicationController
       end
     end
   end
-  
-  private
-    def referring_uri
-      request.env["HTTP_REFERER"] || root_url
-    end
 end

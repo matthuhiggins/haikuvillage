@@ -32,7 +32,10 @@ class HaikusController < ApplicationController
     haiku = Haiku.find(params[:id])
     raise UnauthorizedDestroyRequest unless haiku.user == current_user
     haiku.destroy
-    head :ok
+    respond_to do |f|
+      f.html { redirect_to referring_uri }
+      f.js   { head :ok }
+    end
   end
   
   def popular
