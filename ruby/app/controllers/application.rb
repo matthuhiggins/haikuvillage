@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper :favorites
   
-  HAIKUS_PER_PAGE = 5
+  HAIKUS_PER_PAGE = 10
   
   private
     def list_haikus(proxy, options = {})

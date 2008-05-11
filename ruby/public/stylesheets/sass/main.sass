@@ -37,12 +37,6 @@ textarea
   :color gray
   :font 10pt tahoma
 
-.left_side
-  :float left
-
-.right_side 
-  :float right
-
 #frame 
   :width 740px
   :margin
@@ -55,15 +49,28 @@ textarea
     :right 30px
 
 #content
+  :background
+    :image url(/images/bg-body.png)
+    :repeat repeat-y
   :height 600px
   :padding 
     :top 10px
     :bottom 10px
-  :background
-    :image url(/images/bg-body.png)
-    :repeat repeat-y
+  :position relative
   :text-align left
-  
+  .left_side
+    :float left
+    :padding-top 40px
+    :width 320px
+  .right_side 
+    :float left
+    :width 320px
+
+#pagination_more
+  :bottom 10px
+  :position absolute
+  :right 40px
+
 #foot 
   :background-image url(/images/bg-bottom.png)
   :height 30px

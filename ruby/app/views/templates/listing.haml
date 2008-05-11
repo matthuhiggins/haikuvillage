@@ -1,8 +1,12 @@
 - content_for(:title) do
   = @title || 'Exploring haikus'
 
-= render(:partial => "shared/haiku", :collection => @haikus)
+.left_side
+  = render(:partial => "shared/haiku", :collection => @haikus.values_at(1, 3, 5, 7, 9).compact)
 
-- if @haikus.size == 5
-= link_to 'More', :page => current_page + 1
+.right_side
+  = render(:partial => "shared/haiku", :collection => @haikus.values_at(2, 4, 6, 8, 10).compact)
+
+- if @haikus.size == 10
+= link_to 'More', {:page => current_page + 1}, {:id => 'pagination_more'}
 - end
