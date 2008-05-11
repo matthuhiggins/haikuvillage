@@ -45,3 +45,7 @@ trees:
 river:
   user: jane
   text: "The nature is calm\nThe river flows forever\nand ever for me."
+
+dog:
+  user: jane
+  text: "I was walking fast.\nI came across a small dog;\nHe said bark bark bark."

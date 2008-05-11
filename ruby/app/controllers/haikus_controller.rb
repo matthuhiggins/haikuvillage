@@ -2,7 +2,8 @@ class HaikusController < ApplicationController
   login_filter :only => [:new, :create]
   
   def create
-    Haiku.create!(:text => params[:haiku][:text], :user => current_user)
+    haiku = Haiku.create!(:text => params[:haiku][:text], :user => current_user)
+    flash[:new_haiku_id] = haiku.id
     redirect_to create_url
   end
   
