@@ -162,7 +162,7 @@ Haiku.PeriodicalUpdater.prototype = {
     var newHaiku = new Haiku($F(this.textArea), wordInfo);
     $(this.previewElement).innerHTML = newHaiku.toHTML();
     
-	$(this.previewElement).select("." + Word.RESPONDED).each(function(element){
+    $(this.previewElement).select("." + Word.RESPONDED).each(function(element){
         var effect = new Effect.Highlight(element);
     });
     

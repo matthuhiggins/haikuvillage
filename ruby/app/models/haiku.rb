@@ -1,4 +1,6 @@
 class Haiku < ActiveRecord::Base
+  VALID_SYLLABLES = [5, 7, 5]
+  
   belongs_to :user, :counter_cache => true
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_users, :through => :haiku_favorites, :source => :user
@@ -11,18 +13,16 @@ class Haiku < ActiveRecord::Base
   
   before_create :twitter_update
 
-  def validate
-    valid_syllables = [5, 7, 5]
-    
+  def validate    
     line_records = []
     text.each_line do |line_text|
       line_records << Line.new(line_text)
     end
     
-    if line_records.length != valid_syllables.size
+    if line_records.length != VALID_SYLLABLES.size
       errors.add("Need three lines")
     else
-      valid_syllables.zip(line_records).each_with_index do |(expected, line_record), line_number|
+      VALID_SYLLABLES.zip(line_records).each_with_index do |(expected, line_record), line_number|
         errors.add("line #{line_number}") unless expected == line_record.syllables
       end
     end
