@@ -1,6 +1,6 @@
 class SessionController < ApplicationController  
   def create
-    user = User.authenticate(params[:username], params[:password])
+    user = User.authenticate(params[:user][:username], params[:user][:password])
     session[:username] = user.username if user
     
     respond_to do |f|
@@ -8,7 +8,9 @@ class SessionController < ApplicationController
         flash[:notice] = "Invalid user/password combination" unless session[:username]
         redirect_to referring_uri
       end
-      f.js { head (session[:username] ? :ok : :bad_request) }
+      f.js do
+         head(session[:username] ? :ok : :bad_request)
+       end
     end
   end
 

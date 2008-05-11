@@ -16,11 +16,25 @@
     :color red
 
 form#haiku_login
+  :font-size 10px
   :margin-top 10px
   input
     :width 80px
-  input[type='submit']
-    :font-size 12px
+  .haiku_login_input_box
+    :float left
+    :height 36px
+    :margin-right 10px
+    :position relative
+    label
+      :display block
+      :height 16px
+    input[type='text'], input[type='password']
+      :height 16px
+      :padding-top 2px
+    input[type='submit']
+      :bottom 0
+      :font-size 12px
+      :position absolute
 
 .haiku
   :padding-bottom 10px

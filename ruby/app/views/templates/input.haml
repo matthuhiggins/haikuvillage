@@ -20,11 +20,19 @@
         - end
         
   - unless current_user
-    %a{:id => 'show_haiku_login'}='Login and Create'
-    - remote_form_for(:user, :url => login_url, :method => :post, :html => {:id => 'haiku_login', :style => 'display:none'}) do |login|
-      = login.text_field :username
-      = login.password_field :password
-      = login.submit "Create"
+    = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
+      - page.hide 'show_haiku_login'
+      - page['haiku_login'].visual_effect :appear
+      
+    - remote_form_for(:user, :before => "$('user_submit').hide()", :complete => "$('user_submit').show()", :success => "alert('good login');", :failure => "alert('bad login')", :url => login_url, :method => :post, :html => {:id => 'haiku_login', :style => 'display:none'}) do |login|
+      .haiku_login_input_box
+        %label="Twitter Username"
+        = login.text_field :username
+      .haiku_login_input_box
+        %label="Password"
+        = login.password_field :password
+      .haiku_login_input_box
+        = login.submit "Create"
 
   %script 
     new Haiku.PeriodicalUpdater("haiku_text", "preview");

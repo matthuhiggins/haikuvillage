@@ -18,5 +18,6 @@ class User < ActiveRecord::Base
     end
   rescue => e
     logger.debug(e.message)
+    return false
   end
 end

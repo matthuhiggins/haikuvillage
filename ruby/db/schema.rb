@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 3) do
   end
 
   add_index "haikus", ["user_id"], :name => "index_haikus_on_user_id"
-  add_index "haikus", ["created_at"], :name => "index_haikus_on_created_at"
+  add_index "haikus", ["created_at", "haiku_favorites_count"], :name => "index_haikus_on_created_at_and_haiku_favorites_count"
 
   create_table "users", :force => true do |t|
     t.string   "username",                                  :null => false
@@ -41,5 +41,7 @@ ActiveRecord::Schema.define(:version => 3) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end
