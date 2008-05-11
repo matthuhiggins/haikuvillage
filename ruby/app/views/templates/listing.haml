@@ -1,6 +1,3 @@
-- content_for(:title) do
-  = @title || 'Exploring haikus'
-
 .left_side
   = render(:partial => "shared/haiku", :collection => @haikus.values_at(0, 2, 4, 6, 8).compact)
 

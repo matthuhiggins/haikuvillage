@@ -2,7 +2,7 @@
 !!!
 %html
   %head
-    %title Haikus
+    %title= @title
     = javascript_include_tag 'prototype', 'effects', 'application'
     = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu'
     = yield :head
@@ -43,6 +43,6 @@
         - if flash[:notice]
         #notice= flash[:notice]
         - end
-        %h2= yield :title
+        %h2= @title
         = yield :layout
       #foot
