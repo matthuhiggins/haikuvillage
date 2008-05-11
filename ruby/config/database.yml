@@ -4,6 +4,7 @@ development:
   username: root
   password:
   host: localhost
+  socket: /tmp/mysql.sock
 
 test:
   adapter: mysql

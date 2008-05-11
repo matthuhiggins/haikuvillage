@@ -1,0 +1,47 @@
+from_wikipedia:
+  user: billy
+  text: "the first cold shower\neven the monkey seems to want\na little coat of straw"
+
+recursive:
+  user: billy
+  text: "Seven syllables\nAre required on line two\nI counted just right"
+
+ruby:
+  user: billy
+  text: "Inheritence sucks\nI would rather user modules\nto obfuscate code."
+  
+twitter:
+  user: billy
+  text: "What the fuck is so\nFreakin cool about twitter\nWhy not go outside?"
+
+brilliant:
+  user: joe
+  text: "I am genius\nPythogoreom's Thereom\nEasy believe me"
+
+subpar:
+  user: joe
+  text: "Dirty Sanchezes\nParty's and mexican chicks\nI will sleep instead"
+
+jazz:
+  user: joe
+  text: "Brubeck plays Five Step.\nDizzy Gillespie composed.\nNone of them could sing"
+
+poo:
+  user: fredrick
+  text: "I need to go soon.\nA lot of pressure builds. How\n I wish there were stalls."
+  
+iraq:
+  user: fredrick
+  text: "We went to Iraq.\nNever came back to The States\nThanks a lot George Bush."
+
+beer:
+  user: fredrick
+  text: "I love heineken.\nBut 40's are good also.\nQuality ain't cheap."
+
+trees:
+  user: jane
+  text: "A large tree stands tall\nIt's bark is gristled and old\nI will rest below."
+
+river:
+  user: jane
+  text: "The nature is calm\nThe river flows forever\nand ever for me."
