@@ -108,9 +108,10 @@ function textToWords(text, wordInfo) {
 
 Haiku.PeriodicalUpdater = Class.create();
 Haiku.PeriodicalUpdater.prototype = {
-  initialize: function(textArea, previewElement) {
+  initialize: function(textArea, previewElement, submitButton) {
     this.textArea = textArea;
     this.previewElement = previewElement;
+    this.submitButton = submitButton;
     this.lastHaikuText = "";
     this.wordInfo = {};
     this.start();
@@ -172,6 +173,8 @@ Haiku.PeriodicalUpdater.prototype = {
         word.state = Word.COMPLETE;
       }
     }
+    
+    $(this.submitButton).disabled = !newHaiku.isValid();
 
     this.lastHaikuText = $F(this.textArea);
   }
