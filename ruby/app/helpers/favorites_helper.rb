@@ -10,10 +10,8 @@ module FavoritesHelper
   
   def change_favorite_link(haiku, method = nil)
     method ||= current_user.favorites.include?(haiku) ? :delete : :put
-    value = link_to_remote image_tag(METHOD_TEXT[method][:image_url], :alt => METHOD_TEXT[method][:name]), 
+    link_to_remote image_tag(METHOD_TEXT[method][:image_url], :alt => METHOD_TEXT[method][:name]), 
       :url => haiku_favorites_url(haiku), :method => method, :update => dom_id(haiku, 'fav')
-    logger.debug(value)
-    value
   end
   
   def add_favorite_link(haiku)

@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   helper :favorites
     
   private
-  
     # HaikuEnv.haikus_per_page + 1 is returned so that the view knows if
     # there are more haikus on the next page.
     def list_haikus(proxy, options = {})
@@ -36,7 +35,7 @@ class ApplicationController < ActionController::Base
     end
     
     def current_user
-      @current_user ||= session[:username] ? User.find_or_create_by_username(session[:username]) : nil
+      @current_user ||= User.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
     end
     
     def current_page
