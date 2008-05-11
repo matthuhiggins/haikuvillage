@@ -31,7 +31,7 @@
       .haiku_login_input_box
         = login.submit "Create"
       #error_box
-        = error_messages_for(haiku)
+        = error_messages_for(:haiku)
 
   %script
     new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit");

@@ -2,11 +2,10 @@ class HaikusController < ApplicationController
   login_filter :only => [:new, :create]
   
   def create
-    haiku = Haiku.create(:text => params[:haiku][:text], :user => current_user)
-    if haiku.errors.empty?
-      flash[:new_haiku_id] = haiku.id
+    @haiku = Haiku.create(:text => params[:haiku][:text], :user => current_user)
+    if @haiku.errors.empty?
+      flash[:new_haiku_id] = @haiku.id
     else
-      @haiku = haiku
       flash[:notice] = "You must enter a valid haiku"
     end
     redirect_to create_url
