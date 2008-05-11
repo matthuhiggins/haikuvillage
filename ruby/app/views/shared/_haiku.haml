@@ -1,12 +1,9 @@
 - div_for(haiku, :class => flash[:new_haiku_id] == haiku.id ? 'new' : '') do
   .text
-    %a{:href=> haiku_url(haiku)}
-      - for line in haiku.text.split("\n")
-      .haiku-line= h(line)
-      - end
-  - if current_user != haiku.user
-  .author= link_to h(haiku.user.username), { :controller => "users", :action => 'show', :id => haiku.user.username }
-  - end
+    %a{:href => haiku_url(haiku)}
+      - haiku.text.each_line do |line|
+        .haiku-line= h(line)
+  .author= link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
   - if current_user
   = favorite_div(haiku)
   - end

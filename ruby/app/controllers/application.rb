@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
     
     def input_haiku(proxy, options = {})
-      options[:limit] = HAIKUS_PER_PAGE
+      options[:limit] = 5
       @haikus = proxy.all(options)
       render :template => "templates/input"
     end
