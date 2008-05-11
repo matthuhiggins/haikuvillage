@@ -32,7 +32,6 @@
     
 .right_side
   %h3 Recently added
-  #haiku_box
-    = render(:partial => "shared/haikus_fragment", :locals => { :haikus => @haikus })
+  = render(:partial => "shared/haiku", :collection => @haikus)
   
 %br

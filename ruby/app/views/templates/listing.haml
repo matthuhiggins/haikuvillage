@@ -1,4 +1,8 @@
 - content_for(:title) do
   = @title || 'Exploring haikus'
 
-= render(:partial => "shared/haikus", :object => @haikus)
+= render(:partial => "shared/haiku", :collection => @haikus)
+
+- if @haikus.size == 5
+= link_to 'More', :page => current_page + 1
+- end
