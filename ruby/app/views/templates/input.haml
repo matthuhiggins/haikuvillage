@@ -29,9 +29,9 @@
         %label="Password"
         = login.password_field :password
       .haiku_login_input_box
+        #haiku_login_message
         = login.submit "Create"
-  #error_box
-    = error_messages_for(:haiku)
+  = error_messages_for(:haiku)
 
   %script
     new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit");
