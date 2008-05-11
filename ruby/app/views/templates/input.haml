@@ -21,7 +21,7 @@
       - page.hide 'show_haiku_login'
       - page['haiku_login'].visual_effect :appear
       
-    - remote_form_for(:user, :before => "$('user_submit').hide()", :complete => "$('user_submit').show()", :success => "$('haiku_form').submit();", :failure => "$('error_box').innerHTML = 'bad login'", :url => login_url, :method => :post, :html => {:id => 'haiku_login', :style => 'display:none'}) do |login|
+    - remote_login_form do |login|
       .haiku_login_input_box
         %label="Twitter Username"
         = login.text_field :username
@@ -30,8 +30,8 @@
         = login.password_field :password
       .haiku_login_input_box
         = login.submit "Create"
-      #error_box
-        = error_messages_for(:haiku)
+  #error_box
+    = error_messages_for(:haiku)
 
   %script
     new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit");

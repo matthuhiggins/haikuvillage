@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   
-  helper :favorites
+  helper :favorites, :haikus
     
   private
     # HaikuEnv.haikus_per_page + 1 is returned so that the view knows if
