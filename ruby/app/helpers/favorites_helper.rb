@@ -1,7 +1,7 @@
 module FavoritesHelper
   METHOD_TEXT = {
-    :put => "Add favorite",
-    :delete => "Remove favorite"
+    :put => {:image_url => "no_favorite.png", :name => "Add favorite"},
+    :delete => {:image_url => "favorite.png", :name => "Remove favorite"}
   }
   
   def favorite_div(haiku)
@@ -10,7 +10,8 @@ module FavoritesHelper
   
   def change_favorite_link(haiku, method = nil)
     method ||= current_user.favorites.include?(haiku) ? :delete : :put
-    value = link_to_remote METHOD_TEXT[method], :url => haiku_favorites_url(haiku), :method => method, :update => dom_id(haiku, 'fav')
+    value = link_to_remote image_tag(METHOD_TEXT[method][:image_url], :alt => METHOD_TEXT[method][:name]), 
+      :url => haiku_favorites_url(haiku), :method => method, :update => dom_id(haiku, 'fav')
     logger.debug(value)
     value
   end
