@@ -8,26 +8,23 @@
   .syllables 
     :font-size 16pt
     :width 100px
+    
+  .valid-line 
+    :color green
 
-#haiku_login
+  .invalid-line 
+    :color red
+    
+#haiku_box 
+  :height 440px
+  :width 300px
+  
+form#haiku_login
+  :margin-top 10px
   input
     :width 80px
   input[type='submit']
     :font-size 12px
-    
-#haiku_box 
-  :overflow hidden
-  :height 440px
-  :width 300px
-
-.valid-line 
-  :color green
-
-.invalid-line 
-  :color red
-
-.valid-haiku 
-  :color blue
 
 .haiku
   :padding-bottom 10px
@@ -42,6 +39,3 @@
     :text-transform uppercase
   .search-highlight
     :font-weight bold
-
-.other 
-  :float right
