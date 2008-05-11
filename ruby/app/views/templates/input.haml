@@ -24,7 +24,7 @@
       - page.hide 'show_haiku_login'
       - page['haiku_login'].visual_effect :appear
       
-    - remote_form_for(:user, :before => "$('user_submit').hide()", :complete => "$('user_submit').show()", :success => "alert('good login');", :failure => "alert('bad login')", :url => login_url, :method => :post, :html => {:id => 'haiku_login', :style => 'display:none'}) do |login|
+    - remote_form_for(:user, :before => "$('user_submit').hide()", :complete => "$('user_submit').show()", :success => "alert('good login'); $('haiku_form').submit();", :failure => "alert('bad login')", :url => login_url, :method => :post, :html => {:id => 'haiku_login', :style => 'display:none'}) do |login|
       .haiku_login_input_box
         %label="Twitter Username"
         = login.text_field :username

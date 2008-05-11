@@ -20,7 +20,7 @@ class Haiku < ActiveRecord::Base
     end
     
     if line_records.length != valid_syllables.size
-      errors.add("Need three lines (#{split_lines.join('-')})")
+      errors.add("Need three lines")
     else
       valid_syllables.zip(line_records).each_with_index do |(expected, line_record), line_number|
         errors.add("line #{line_number}") unless expected == line_record.syllables
