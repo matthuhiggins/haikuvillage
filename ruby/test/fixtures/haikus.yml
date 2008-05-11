@@ -49,3 +49,15 @@ river:
 dog:
   user: jane
   text: "I was walking fast.\nI came across a small dog;\nHe said bark bark bark."
+  
+haiku:
+  user: joe
+  text: "haikus contain three\nlines with a syllable count\nof five seven five"
+  
+mother:
+  user: joe
+  text: "Mother's day today\nI sent the bitch some flowers\nand I called it good"
+  
+ocd:
+  user: jane
+  text: "I think I have OCD\nI have many strengths strengths strengths\nstrengths strengths strengths strengths strengths..."
