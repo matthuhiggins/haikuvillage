@@ -7,13 +7,14 @@ class ApplicationController < ActionController::Base
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   
   helper :favorites
-  
-  HAIKUS_PER_PAGE = 10
-  
+    
   private
+  
+    # HaikuEnv.haikus_per_page + 1 is returned so that the view knows if
+    # there are more haikus on the next page.
     def list_haikus(proxy, options = {})
-      offset = (current_page - 1) * HAIKUS_PER_PAGE
-      options.merge!(:offset => offset, :limit => HAIKUS_PER_PAGE)
+      offset = (current_page - 1) * HaikuEnv.haikus_per_page
+      options.merge!(:offset => offset, :limit => HaikuEnv.haikus_per_page + 1)
       
       @haikus = proxy.all(options)
       render :template => "templates/listing"
