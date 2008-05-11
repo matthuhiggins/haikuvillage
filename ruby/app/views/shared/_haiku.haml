@@ -8,5 +8,5 @@
   = favorite_div(haiku)
   - end
   - if haiku.user == current_user
-  = link_to 'Delete', haiku, :method => :delete
+  = link_to image_tag("trash.png", :alt => "Delete"), haiku, :method => :delete
   - end
