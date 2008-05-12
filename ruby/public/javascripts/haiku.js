@@ -130,6 +130,12 @@ Haiku.PeriodicalUpdater.prototype = {
    
   updateHaiku: function() {
     var oldWordHash = $H();
+    var somethingChanged = false;
+    
+    if ( this.lastHaikuText != $F(this.textArea) ){
+      somethingChanged = true;
+    }
+    
     textToWords(this.lastHaikuText).each(function(word){
       oldWordHash[word.text.hash()] = word;
     });
@@ -160,11 +166,21 @@ Haiku.PeriodicalUpdater.prototype = {
     
     // render the haiku
     var newHaiku = new Haiku($F(this.textArea));
-    $(this.previewElement).innerHTML = newHaiku.toHTML();
     
-    $(this.previewElement).select("." + Word.RESPONDED).each(function(element){
-        var effect = new Effect.Highlight(element);
-    });
+    for ( var key in Word.info ){
+      if ( Word.info[key].state === Word.RESPONDED ){
+        somethingChanged = true;
+        break;
+      }
+    }
+
+    if ( somethingChanged ){
+      $(this.previewElement).innerHTML = newHaiku.toHTML();
+    
+      $(this.previewElement).select("." + Word.RESPONDED).each(function(element){
+          var effect = new Effect.Highlight(element);
+      });
+    }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {
       var word = Word.info[key];
