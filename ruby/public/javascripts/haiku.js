@@ -129,7 +129,7 @@ Haiku.PeriodicalUpdater.prototype = {
   },
    
   updateHaiku: function() {
-    var oldWordHash = $H();
+    var oldWordHash = {};
     var somethingChanged = false;
     
     if ( this.lastHaikuText != $F(this.textArea) ){
