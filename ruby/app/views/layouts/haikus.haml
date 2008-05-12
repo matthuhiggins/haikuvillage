@@ -3,7 +3,7 @@
 %html
   %head
     %title= @title
-    = javascript_include_tag 'prototype', 'effects', 'application'
+    = javascript_include_tag 'prototype', 'effects',
     = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu'
     = yield :head
   %body
@@ -13,7 +13,9 @@
           %ul.top-menu
             %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
             - unless current_user
-            %li#login_link= link_to 'Login', login_url
+            %li
+              = link_to_function 'Login' do |page|
+                - page[:login_form].visual_effect :appear, :duration => 0.5
             %li
               - form_for :user, :url => login_url, :html => {:id => 'login_form', :style => "display:none"} do |form|
                 %div

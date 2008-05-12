@@ -13,8 +13,8 @@
         = form.text_area (:text, :cols => 40, :rows => 3)
       - if current_user
       %div
-        = form.submit "Create", :id => "commit", :disabled => true
-        - end
+        = form.submit "Create", :id => "commit_haiku", :disabled => true
+      - end
         
   - unless current_user
     = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
@@ -30,11 +30,11 @@
         = login.password_field :password
       .haiku_login_input_box
         #haiku_login_message
-        = login.submit "Create"
+        = login.submit "Create", :id => "commit_haiku", :disabled => true
   = error_messages_for(:haiku)
 
   %script
-    new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit");
+    new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
     $('haiku_text').focus();
     
 .right_side
