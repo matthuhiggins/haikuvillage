@@ -3,11 +3,12 @@
     = link_to haiku do
       - haiku.text.each_line do |line|
         .haiku-line= h(line)
-  .author= link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
-  - if current_user
-  = favorite_div(haiku)
-  - end
-  - if haiku.user == current_user
-  = link_to haiku, :method => :delete do
-    = image_tag("trash.png", :alt => "Delete")
-  - end
+  .haiku_details
+    %span.author= link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
+    - if current_user
+    = favorite_span(haiku)
+    - end
+    - if haiku.user == current_user
+    = link_to haiku, :method => :delete, :id => dom_id(haiku, 'del')  do
+      = image_tag("trash.png", :alt => "Delete")
+    - end

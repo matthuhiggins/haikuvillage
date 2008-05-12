@@ -11,16 +11,16 @@
       %h3='Haiku Text'
       %div
         = form.text_area (:text, :cols => 40, :rows => 3)
-      %p
-        - if current_user
-        = form.submit "Create", :id => "commit"
+      - if current_user
+      %div
+        = form.submit "Create", :id => "commit", :disabled => true
         - end
         
   - unless current_user
     = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
       - page.hide 'show_haiku_login'
       - page['haiku_login'].visual_effect :appear
-      
+
     - remote_login_form do |login|
       .haiku_login_input_box
         %label="Twitter Username"

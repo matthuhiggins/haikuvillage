@@ -1,23 +1,20 @@
 Object.extend(String.prototype, {
-  compact: function() {
+  squish: function() {
     return this.escapeHTML().replace(/\n +/, '\n').replace(/ +/g, ' ').strip();  
   },
   
   hash: function() {
     return '@' + this.replace(/^[^\w]|[^\w]$/, '');
-  },
-  
-  format: function(object) {
-    return new Template(this).evaluate(object);
   }
 });
 
 var Word = Class.create();
 Object.extend(Word, {
-  COMPLETE: 'complete',
-  NEW: 'new',
-  REQUESTING: 'requesting',
-  RESPONDED: 'responded'
+  COMPLETE    : 'complete',
+  NEW         : 'new',
+  REQUESTING  : 'requesting',
+  RESPONDED   : 'responded',
+  info        : {}
 });
 
 Word.prototype = {
@@ -32,7 +29,7 @@ Word.prototype = {
   },  
 
   toHTML: function(){
-    return "<span class=#{state}>#{text}<sup>#{syllables}</sup></span>".format({
+    return "<span class=#{state}>#{text}<sup>#{syllables}</sup></span>".interpolate({
       state: this.state,
       text: this.text,
       syllables: this.syllables > -1 ? this.syllables : '?'
@@ -42,8 +39,8 @@ Word.prototype = {
 
 var Line = Class.create();
 Line.prototype = {
-  initialize: function(text, line_number, wordInfo) {
-    this.words = textToWords(text, wordInfo);
+  initialize: function(text, line_number) {
+    this.words = textToWords(text);
     this.line_number = line_number;
   },
 
@@ -65,43 +62,48 @@ Line.prototype = {
   },
     
   toHTML: function(){
-    return "<div><span class=\"syllables #{valid}\">#{syllables} - </span>#{text}</div>".format({
+    return "<div><span class='syllables #{valid}'>#{syllables} - </span>#{text}</div>".interpolate({
       valid: this.isValid() ? 'valid-line' : 'invalid-line',
       syllables: this.isCalculating() ? '?' : this.syllables(),
-      text: this.words.map(function(word){ return word.toHTML(); }).join(' ')
+      text: this.words.invoke('toHTML').join(' ')
     });
   }
 };
 
 var Haiku = Class.create();
 Haiku.prototype = {
-  initialize: function(text, wordInfo) {
-    all_lines = $A(text.split("\n"));
-  
-    this.lines = all_lines.map(function(text, line_number){
-      return new Line(text, line_number, wordInfo);
-    }).findAll(function(text, line_number){
-      return line_number < 3;
+  initialize: function(text) {
+    if (text.blank()) {
+      this.lines = [];
+      return;
+    }
+    
+    this.lines = text.split("\n").map(function(text, line_number){
+      return new Line(text, line_number);
     });
+    
+    if (this.lines.length > 3)
+      this.lines.length = 3;
   },
   
-  isValid: function(){
+  isValid: function() {
     return this.lines.length == 3 &&
     this.lines.all(function(line){
       return line.isValid();
     });
   },
 
-  toHTML: function(){
-    return "<div>#{lines}</div>".format(
-        {lines: this.lines.map(function(line){return line.toHTML();}).join(' ')});
+  toHTML: function() {
+    return "<div>#{lines}</div>".interpolate({
+      lines: this.lines.invoke('toHTML').join(' ')
+    });
   }
 };
 
-function textToWords(text, wordInfo) {
-  text = text.compact();
+function textToWords(text) {
+  text = text.squish();
   return $A(text.split(/ |\n/)).map(function(value) {
-    var word = wordInfo[value.hash()];
+    var word = Word.info[value.hash()];
     return word === undefined ? new Word(value, -1, Word.NEW) : new Word(value, word.syllables, word.state);
   });
 }
@@ -113,7 +115,6 @@ Haiku.PeriodicalUpdater.prototype = {
     this.previewElement = previewElement;
     this.submitButton = submitButton;
     this.lastHaikuText = "";
-    this.wordInfo = {};
     this.start();
   },
   
@@ -123,26 +124,24 @@ Haiku.PeriodicalUpdater.prototype = {
   
   updateWordCacheHash: function (originalRequest){
     $A(originalRequest.responseText.evalJSON()).each((function(word){           
-        this.wordInfo[word.text.hash()] = new Word(word.text, word.syllables, Word.RESPONDED);
+        Word.info[word.text.hash()] = new Word(word.text, word.syllables, Word.RESPONDED);
     }).bind(this));
   },
    
   updateHaiku: function() {
-    var wordInfo = this.wordInfo;
     var oldWordHash = $H();
-    textToWords(this.lastHaikuText, wordInfo).each(function(word){
+    textToWords(this.lastHaikuText).each(function(word){
       oldWordHash[word.text.hash()] = word;
     });
 
-    var newWordArray = textToWords($F(this.textArea), this.wordInfo);
+    var newWordArray = textToWords($F(this.textArea));
 
     var wordSet = "";
     newWordArray.findAll(function(word){
-      return wordInfo[word.text.hash()] !== undefined && 
-            wordInfo[word.text.hash()].state == Word.NEW;
+      return Word.info[word.text.hash()] !== undefined && Word.info[word.text.hash()].state == Word.NEW;
     }).each(function(word){
       wordSet += (wordSet !== "" ? "-" : "") + word.encoded();
-      wordInfo[word.text.hash()].state = Word.REQUESTING;
+      Word.info[word.text.hash()].state = Word.REQUESTING;
     });
     
     if (wordSet !== "") {
@@ -154,21 +153,21 @@ Haiku.PeriodicalUpdater.prototype = {
 
     // Find the changed words from last cycle
     newWordArray.each(function(word){
-      if (oldWordHash[word.text.hash()] !== undefined && wordInfo[word.text.hash()] === undefined) {
-        wordInfo[word.text.hash()] = word;
+      if (oldWordHash[word.text.hash()] !== undefined && Word.info[word.text.hash()] === undefined) {
+        Word.info[word.text.hash()] = word;
       }
     });
     
     // render the haiku
-    var newHaiku = new Haiku($F(this.textArea), wordInfo);
+    var newHaiku = new Haiku($F(this.textArea));
     $(this.previewElement).innerHTML = newHaiku.toHTML();
     
     $(this.previewElement).select("." + Word.RESPONDED).each(function(element){
         var effect = new Effect.Highlight(element);
     });
     
-    for (var key in wordInfo) if (wordInfo.hasOwnProperty(key)) {
-      var word = wordInfo[key];
+    for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {
+      var word = Word.info[key];
       if (word.state === Word.RESPONDED) {
         word.state = Word.COMPLETE;
       }
