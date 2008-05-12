@@ -130,8 +130,13 @@ Haiku.PeriodicalUpdater.prototype = {
    
   updateHaiku: function() {
     var oldWordHash = {};
+    var somethingChanged = false;
     
-    textToWords(this.lastHaikuText).each(function(word){
+    if (this.lastHaikuText != $F(this.textArea)) {
+      somethingChanged = true;
+    }
+    
+    textToWords(this.lastHaikuText).each(function(word) {
       oldWordHash[word.text.hash()] = word;
     });
 
@@ -153,23 +158,29 @@ Haiku.PeriodicalUpdater.prototype = {
     }
 
     // Find the changed words from last cycle
-    newWordArray.each(function(word){
+    newWordArray.each(function(word) {
       if (oldWordHash[word.text.hash()] !== undefined && Word.info[word.text.hash()] === undefined) {
         Word.info[word.text.hash()] = word;
       }
     });
     
     // render the haiku
-    var newHaiku = new Haiku($F(this.textArea)),
-        newHtml = newHaiku.toHTML();
-        
-    if ($(this.previewElement).innerHTML !== newHtml) {
-      $(this.previewElement).innerHTML = newHtml;
-    }      
+    var newHaiku = new Haiku($F(this.textArea));
     
-    $(this.previewElement).select("." + Word.RESPONDED).each(function(element){
-        var effect = new Effect.Highlight(element);
-    });
+    for (var key in Word.info) {
+      if (Word.info[key].state === Word.RESPONDED) {
+        somethingChanged = true;
+        break;
+      }
+    }
+
+    if (somethingChanged) {
+      $(this.previewElement).innerHTML = newHaiku.toHTML();
+    
+      $(this.previewElement).select("." + Word.RESPONDED).each(function(element){
+          var effect = new Effect.Highlight(element);
+      });
+    }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {
       var word = Word.info[key];
