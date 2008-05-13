@@ -15,28 +15,32 @@ class Word
     wordtext = wordtext.gsub(/^[^\w]+|[^\w]+$|"+/, '')
          
     # ie spiz's or mike's
-    if wordtext =~ /'s$/ then
+    if wordtext =~ /'s$/
       wordtext = wordtext.gsub( /'s$/, '')
       (wordtext =~ /^6$|[0|2-9]6$|[x|z]$/ ? 1 : 0) + count_syllables(wordtext)
 
     # ie boy/girl or re-factor
-    elsif wordtext =~ /\/|-/ then
+    elsif wordtext =~ /\/|-/
       wordtext.split(/\/|-/).sum{ |word| count_syllables(word) }
 
-    # one letter. Optionally followed by a period and more letters ie G.W.B.
-    elsif wordtext =~ /^[a-zA-Z](\.[a-zA-Z]\.?)*$/ then
+    # one letter, optionally followed by a period and more letters ie G.W.B.
+    elsif wordtext =~ /^[a-zA-Z](\.[a-zA-Z]\.?)*$/
       wordtext.split(/\.| |/).sum{ |letter| count_letter_syllables(letter) }
+    
+    # All capitals: assumed to be an acronym
+    elsif wordtext =~ /^[A-Z]+$/
+      wordtext.split(//).sum { |letter| count_letter_syllables(letter) }
 
     # ie 546
     elsif wordtext =~ /^[0-9]+$/ then
       wordtext.en.numwords.split.sum{ |numeric_word| count_syllables(numeric_word) }
       
     # ie 3:15
-    elsif wordtext =~ /^[0-9][1|2]?:[0-5][0-9]$/ then
+    elsif wordtext =~ /^[0-9][1|2]?:[0-5][0-9]$/
       wordtext.split(/:/).sum{ |number| count_syllables(number) }
 
     # ie 1st or 2nd or 101st
-    elsif wordtext =~ /^[0-9]+(st|rd|th)$/ then
+    elsif wordtext =~ /^[0-9]+(st|rd|th)$/
       wordtext = wordtext.gsub(/(st|rd|th)$/, '')
       if [10,12].include?(wordtext.to_i % 100) || wordtext.to_i % 10 == 0
         count_syllables(wordtext)
