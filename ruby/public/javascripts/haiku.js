@@ -47,9 +47,9 @@ Word.prototype = {
 
 var Line = Class.create();
 Line.prototype = {
-  initialize: function(text, line_number) {
+  initialize: function(text, lineNumber) {
     this.words = Word.fromText(text);
-    this.line_number = line_number;
+    this.lineNumber = lineNumber;
   },
 
   isCalculating: function(){
@@ -65,8 +65,8 @@ Line.prototype = {
   },
   
   isValid: function(){
-    return (this.syllables() === 5 && (this.line_number === 0 || this.line_number === 2)) ||
-           (this.syllables() === 7 && this.line_number === 1);
+    return (this.syllables() === 5 && (this.lineNumber === 0 || this.lineNumber === 2)) ||
+           (this.syllables() === 7 && this.lineNumber === 1);
   },
     
   toHTML: function(){
@@ -86,8 +86,8 @@ Haiku.prototype = {
       return;
     }
     
-    this.lines = text.split("\n").map(function(text, line_number){
-      return new Line(text, line_number);
+    this.lines = text.split("\n").map(function(text, lineNumber){
+      return new Line(text, lineNumber);
     });
     
     if (this.lines.length > 3)
@@ -95,14 +95,12 @@ Haiku.prototype = {
   },
   
   isValid: function() {
-    return this.lines.all(function(line){
-      return line.isValid();
-    });
+    return this.lines.length === 3 && this.lines.invoke('isValid').every();
   },
 
   toHTML: function() {
     return "<div>#{lines}</div>".interpolate({
-      lines: this.lines.invoke('toHTML').join(' ')
+      lines: this.lines.invoke('toHTML').join('')
     });
   }
 };
@@ -111,6 +109,8 @@ Haiku.PeriodicalUpdater = Class.create();
 Haiku.PeriodicalUpdater.prototype = {
   initialize: function(textArea, previewElement, submitButton) {
     this.textArea = $(textArea);
+    this.limitTextArea(this.textArea);
+    
     this.previewElement = $(previewElement);
     this.submitButton = $(submitButton);
     this.lastHaikuText = '';
@@ -119,6 +119,23 @@ Haiku.PeriodicalUpdater.prototype = {
   
   start: function() {
     this.timer = setInterval(this.updateHaiku.bind(this), 400);
+  },
+  
+  limitTextArea: function(textArea) {
+    Event.observe(textArea, 'keyup', function() {
+      var lineText = $F(textArea).split(/\n/);
+      if (lineText.length > 3) {
+        lineText.length = 3;
+        textArea.value = lineText.join('\n');
+      }
+    });
+    
+    textArea.onkeypress = function(event) {
+      var lineText = $F(textArea).split(/\n/);
+      if (event.keyCode === Event.KEY_RETURN && lineText.length >= 3) {
+        return false;
+      }
+    }
   },
   
   requestWords: function(words) {
