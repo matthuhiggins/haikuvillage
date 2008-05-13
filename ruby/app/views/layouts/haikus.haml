@@ -15,14 +15,14 @@
             - unless current_user
             %li
               = link_to_function 'Login' do |page|
-                - page[:login_form].visual_effect :appear, :duration => 0.5
+                - page[:login_form].visual_effect(:appear, :duration => 0.3)
             %li
-              - form_for :user, :url => login_url, :html => {:id => 'login_form', :style => "display:none"} do |form|
+              - form_for :user, :url => login_url, :html => {:id => 'login_form', :style => "opacity: 0;"} do |form|
                 %div
-                  %label{:for => 'login_form_username'}='Twitter Username:'
+                  %label{:for => 'user_username'}='Twitter Username:'
                   = form.text_field :username
                 %div
-                  %label{:for => 'login_form_password'}='Password:'
+                  %label{:for => 'user_password'}='Password:'
                   = form.password_field :password
                   %button{:type => 'submit'}="Go"
             - end
