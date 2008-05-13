@@ -12,7 +12,8 @@
   - end
 %br
 %br
-%h3 Users who like this haiku:
-- @users.each do |user|
-%p= link_to h(user.username), { :controller => "users", :action => 'show', :id =>  user.username }
-- end
+- unless @users.empty?
+  %h3 Users who like this haiku:
+  - @users.each do |user|
+  %p= link_to h(user.username), { :controller => "users", :action => 'show', :id =>  user.username }
+  - end
