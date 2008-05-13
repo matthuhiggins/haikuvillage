@@ -179,7 +179,7 @@ Haiku.PeriodicalUpdater.prototype = {
     
       $(this.previewElement).select("." + Word.RESPONDED).each(function(element){
           var effect = new Effect.Highlight(element);
-      });
+      });    
     }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {
@@ -190,7 +190,6 @@ Haiku.PeriodicalUpdater.prototype = {
     }
     
     $(this.submitButton).disabled = !newHaiku.isValid();
-
     this.lastHaikuText = $F(this.textArea);
   }
 };
