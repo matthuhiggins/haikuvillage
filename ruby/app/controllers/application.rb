@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   
   helper :favorites, :haikus
+  
+  before_filter :basic_auth
       
   private
     # HaikuEnv.haikus_per_page + 1 is returned so that the view knows if
@@ -43,4 +45,12 @@ class ApplicationController < ActionController::Base
     end
     
     helper_method :current_user, :current_page
+    
+    def basic_auth
+      return if local_request?
+      
+      authenticate_or_request_with_http_basic do |user_name, password| 
+        user_name == 'haiku' && password == '575'
+      end
+    end
 end
