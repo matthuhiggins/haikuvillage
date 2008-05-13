@@ -7,7 +7,7 @@
   = favorite_span(@haiku)
   - end
   - if @haiku.user == current_user
-  = link_to @haiku, :method => :delete, :id => dom_id(@haiku, 'del')  do
+  = link_to ({:id => @haiku, :referrer => referring_uri}, {:method => :delete})  do
     = image_tag("trash.png", :alt => "Delete")
   - end
 %br

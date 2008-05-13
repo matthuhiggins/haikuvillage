@@ -30,10 +30,8 @@ class ApplicationController < ActionController::Base
       render :template => "templates/input"
     end
     
-    # Returns the url that requested the action. This makes it easy to redirect back
-    # to a url after performing a delete or update.
     def referring_uri
-      request.env["HTTP_REFERER"] || root_url
+      params[:referrer] || request.env["HTTP_REFERER"] || root_url
     end
     
     def current_user
@@ -44,7 +42,7 @@ class ApplicationController < ActionController::Base
       (params[:page] || 1).to_i
     end
     
-    helper_method :current_user, :current_page
+    helper_method :referring_uri, :current_user, :current_page
     
     def basic_auth
       return if local_request?
