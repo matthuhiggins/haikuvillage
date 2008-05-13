@@ -9,7 +9,7 @@ class Haiku < ActiveRecord::Base
   validates_presence_of :text
   
   named_scope :recent, :order => 'haikus.id desc'
-  named_scope :popular, :order => 'haiku_favorites_count desc'
+  named_scope :popular, :order => 'haiku_favorites_count desc', :conditions => "haiku_favorites_count > 0"
   
   before_create :twitter_update
 
