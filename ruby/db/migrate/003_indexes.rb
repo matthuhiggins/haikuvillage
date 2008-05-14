@@ -2,7 +2,7 @@ class Indexes < ActiveRecord::Migration
   
   def self.up
     add_index :haikus, :user_id
-    add_index :haikus, [:created_at, :haiku_favorites_count]
+    add_index :haikus, [:created_at, :favorited_count]
     
     add_index :users, :username
 

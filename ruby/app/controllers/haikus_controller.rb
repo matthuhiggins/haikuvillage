@@ -24,7 +24,7 @@ class HaikusController < ApplicationController
   def show
     @haiku = Haiku.find(params[:id])
     @users = @haiku.happy_users.all(:limit => 6)
-    @user_haikus = @haiku.user.haikus.all(:limit => 3, :order => "haiku_favorites_count desc")
+    @user_haikus = @haiku.user.haikus.all(:limit => 3, :order => "favorited_count desc")
     render :template => 'templates/haiku'
   end
   
