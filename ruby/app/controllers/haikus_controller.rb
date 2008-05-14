@@ -24,7 +24,7 @@ class HaikusController < ApplicationController
   def show
     @haiku = Haiku.find(params[:id])
     @users = @haiku.happy_users.all(:limit => 6)
-    @user_haikus = @haiku.user.haikus.all(:limit => 3, :order => "favorited_count desc")
+    @haikus_by_same_user = @haiku.user.haikus.all(:limit => 3, :order => "favorited_count desc", :conditions => ['id <> ?', @haiku])
   end
   
   def destroy
@@ -32,7 +32,6 @@ class HaikusController < ApplicationController
     raise UnauthorizedDestroyRequest unless haiku.user == current_user
     haiku.destroy
     
-    logger.debug(referring_uri)
     respond_to do |f|
       f.html { redirect_to referring_uri }
       f.js   { head :ok }

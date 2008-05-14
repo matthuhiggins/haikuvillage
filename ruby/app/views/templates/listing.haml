@@ -1,13 +1,13 @@
 .left_side
-  = render(:partial => "shared/haiku", :collection => @haikus.values_at(0, 2, 4, 6, 8).compact)
+  = render(:partial => "shared/haiku", :collection => @haikus.values_at(0, 2, 4, 6).compact)
 
 .right_side
-  = render(:partial => "shared/haiku", :collection => @haikus.values_at(1, 3, 5, 7, 9).compact)
+  = render(:partial => "shared/haiku", :collection => @haikus.values_at(1, 3, 5, 7).compact)
 
 #pagination
   - if current_page > 1
   = link_to 'Previous', {:page => current_page - 1}, {:id => 'pagination_prev'}
   - end
-  - if @haikus.size > 10
+  - if @haikus.size > HaikuEnv.haikus_per_page
   = link_to 'Next', {:page => current_page + 1}, {:id => 'pagination_next'}
   - end

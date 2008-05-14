@@ -1,5 +1,5 @@
 class HaikuEnv
-  HAIKUS_PER_PAGE = 10
+  HAIKUS_PER_PAGE = 8
   
   class << self
     def haikus_per_page

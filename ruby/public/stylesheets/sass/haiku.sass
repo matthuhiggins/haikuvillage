@@ -39,27 +39,35 @@ form#haiku_login
 a.haiku
   :background-color #eeeeee
   
-.haiku-line-big
-  :font-size 24px
+.haiku-big
+  :margin-bottom 20px
+  .haiku-line
+    :font-size 24px
+
+.haiku-big-details
+  :border 1px solid #999
+  :margin-bottom 15px
+  :padding 15px
 
 .haiku
   &.new
     :border 1px solid green
   :padding 10px 0 10px 15px
-  :height 90px
+  :height 120px
   .haiku-line
     :font-size 10pt
   .haiku_details
-    :margin-top 10px
-    .favorite_count
+    :padding 0 10px
+    .favorite
       :font-size 9pt
       :color grey
-  .author
-    :color black
-    :font
-      :family Lucida Grande, sans-serif
-      :size 12px
+    .author
+      :color black
+      :font
+        :family Lucida Grande, sans-serif
+        :size 12px
   .text
+    :padding 10px 10px
     :width 17em
     &:hover
       :background-color #efefef
