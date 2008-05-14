@@ -15,7 +15,7 @@ class Haiku < ActiveRecord::Base
 
   def validate    
     line_records = []
-    text.each_line |line_text| { line_records << Line.new(line_text) }
+    text.each_line { |line_text| line_records << Line.new(line_text) }
     
     if line_records.length != VALID_SYLLABLES.size
       errors.add("Need three lines")

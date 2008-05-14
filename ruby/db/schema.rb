@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(:version => 3) do
     t.integer  "favorited_count_week",  :limit => 11, :default => 0, :null => false
     t.integer  "favorited_count_month", :limit => 11, :default => 0, :null => false
     t.integer  "favorited_count_total", :limit => 11, :default => 0, :null => false
+    t.integer  "view_count_week",       :limit => 11, :default => 0, :null => false
+    t.integer  "view_count_month",      :limit => 11, :default => 0, :null => false
+    t.integer  "view_count_total",      :limit => 11, :default => 0, :null => false
     t.text     "text",                                               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -36,6 +39,9 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haikus", ["favorited_count_week"], :name => "index_haikus_on_favorited_count_week"
   add_index "haikus", ["favorited_count_month"], :name => "index_haikus_on_favorited_count_month"
   add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
+  add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
+  add_index "haikus", ["view_count_month"], :name => "index_haikus_on_view_count_month"
+  add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
 
   create_table "users", :force => true do |t|
     t.string   "username",                                     :null => false
