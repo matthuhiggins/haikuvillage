@@ -4,13 +4,11 @@
       - haiku.text.each_line do |line|
         .haiku-line= h(line)
   .haiku_details
-    .favorite_count
+    .favorite_count{:id => dom_id(haiku, 'fav_count')}
       Favorited
       = pluralize(haiku.favorited_count, "time")
     .author
       = link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
-      %span.author_count
-        ="(" + haiku.user.haikus_count.to_s + ")"
       - if current_user
       = favorite_span(haiku)
       - end

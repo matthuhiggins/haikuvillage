@@ -5,13 +5,9 @@ module FavoritesHelper
   }
   
   def favorite_span(haiku)
-    content_tag(:span, change_favorite_link(haiku), :id => dom_id(haiku, 'fav'))
+    content_tag(:span, change_favorite_link(haiku), :id => dom_id(haiku, 'change_fav'))
   end
-  
-  def change_favorite_link(haiku)
-    favorite_link(haiku, current_user.favorites.include?(haiku) ? :delete : :put)
-  end
-  
+    
   def add_favorite_link(haiku)
     favorite_link(haiku, :put)
   end
@@ -22,9 +18,18 @@ module FavoritesHelper
   
   private
   
+  def change_favorite_link(haiku)
+    favorite_link(haiku, current_user.favorites.include?(haiku) ? :delete : :put)
+  end
+  
   def favorite_link(haiku, method)
-    link_to_remote(:url => haiku_favorites_url(haiku), :method => method, :update => dom_id(haiku, 'fav')) do
-      image_tag(METHOD_TEXT[method][:image_url], :alt => METHOD_TEXT[method][:name])
-    end
+    link_to_remote(favorite_image_tag(method),
+        :url => haiku_favorites_url(haiku),
+        :method => method,
+        :update => dom_id(haiku, 'change_fav'))
+  end
+  
+  def favorite_image_tag(method)
+    image_tag(METHOD_TEXT[method][:image_url], :alt => METHOD_TEXT[method][:name])
   end
 end
