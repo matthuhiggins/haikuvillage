@@ -4,11 +4,17 @@
       - haiku.text.each_line do |line|
         .haiku-line= h(line)
   .haiku_details
-    %span.author= link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
-    - if current_user
-    = favorite_span(haiku)
-    - end
-    - if haiku.user == current_user
-    = link_to haiku, :method => :delete do
-      = image_tag("trash.png", :alt => "Delete")
-    - end
+    .favorite_count
+      Favorited
+      = pluralize(haiku.haiku_favorites_count, "time")
+    .author
+      = link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
+      %span.author_count
+        ="(" + haiku.user.haikus_count.to_s + ")"
+      - if current_user
+      = favorite_span(haiku)
+      - end
+      - if haiku.user == current_user
+      = link_to haiku, :method => :delete do
+        = image_tag("trash.png", :alt => "Delete")
+      - end
