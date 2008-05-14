@@ -23,6 +23,6 @@
         = image_tag("trash.png", :alt => "Delete")
   - unless @users.empty?
     .haiku-big-details
-      %h3= "#{pluralize(@haiku.favorited_count, 'user likes', 'users like')} this haiku:"
+      %h3= "#{pluralize(@haiku.favorited_count_total, 'user likes', 'users like')} this haiku:"
       - @users.each do |user|
         %p= link_to h(user.username), { :controller => "users", :action => 'show', :id =>  user.username }

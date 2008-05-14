@@ -14,4 +14,4 @@
           = image_tag("trash.png", :alt => "Delete")
     .favorite
       Favorited
-      = pluralize(haiku.favorited_count, "time")
+      = pluralize(haiku.favorited_count_total, "time")

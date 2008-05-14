@@ -2,7 +2,7 @@ class Tables < ActiveRecord::Migration
   def self.up  
     create_table :haikus do |t|
       t.integer :twitter_status_id, :user_id, :null => false
-      t.integer :favorited_count, :null => false, :default => 0
+      t.integer :favorited_count_week, :favorited_count_month, :favorited_count_total, :null => false, :default => 0
       t.text :text, :limit => 153, :null => false
       t.timestamps
     end

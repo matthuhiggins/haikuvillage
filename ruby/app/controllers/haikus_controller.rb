@@ -24,7 +24,7 @@ class HaikusController < ApplicationController
   def show
     @haiku = Haiku.find(params[:id])
     @users = @haiku.happy_users.all(:limit => 6)
-    @haikus_by_same_user = @haiku.user.haikus.all(:limit => 3, :order => "favorited_count desc", :conditions => ['id <> ?', @haiku])
+    @haikus_by_same_user = @haiku.user.haikus.all(:limit => 3, :order => "favorited_count_total desc", :conditions => ['id <> ?', @haiku])
   end
   
   def destroy
