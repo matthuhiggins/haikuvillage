@@ -191,7 +191,7 @@ Haiku.PeriodicalUpdater.prototype = {
 
     if (somethingChanged) {
       this.previewElement.innerHTML = currentHaiku.toHTML();
-      this.previewElement.getElementsByClassName(Word.RESPONDED).invoke('highlight');
+      $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
     }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {

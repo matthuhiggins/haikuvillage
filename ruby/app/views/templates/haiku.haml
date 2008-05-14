@@ -17,3 +17,8 @@
   - @users.each do |user|
   %p= link_to h(user.username), { :controller => "users", :action => 'show', :id =>  user.username }
   - end
+%br
+%br
+- unless @user_haikus.empty?
+  %h3 Other haikus by this user:
+  = render(:partial => "shared/haiku", :collection => @user_haikus)
