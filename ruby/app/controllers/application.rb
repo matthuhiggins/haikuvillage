@@ -13,13 +13,14 @@ class ApplicationController < ActionController::Base
   private
     # HaikuEnv.haikus_per_page + 1 is returned so that the view knows if
     # there are more haikus on the next page.
-    def list_haikus(proxy, options = {})
+    def list_haikus(source, method, options = {})
       offset = (current_page - 1) * HaikuEnv.haikus_per_page
       options.merge!(:offset => offset,
                      :limit => HaikuEnv.haikus_per_page + 1,
                      :include => :user)
-      
-      @haikus = proxy.all(options)
+                     
+      @title = options.delete(:title) || method.to_s.humanize
+      @haikus = source.send(method).all(options)
       render :template => "templates/listing"
     end
     

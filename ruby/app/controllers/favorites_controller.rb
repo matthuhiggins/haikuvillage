@@ -10,8 +10,7 @@ class FavoritesController < ApplicationController
   end
   
   def index 
-    @title = 'My Favorite Haikus' 
-    list_haikus(current_user.favorites)
+    list_haikus(current_user, :favorites, :title => "Your Favorite Haikues")
   end
   
   def destroy

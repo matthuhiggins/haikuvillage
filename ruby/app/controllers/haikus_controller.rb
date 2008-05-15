@@ -17,8 +17,7 @@ class HaikusController < ApplicationController
   end
   
   def index
-    @title = "Recent"
-    list_haikus(Haiku.recent)
+    list_haikus(Haiku, :recent)
   end
   
   def show
@@ -41,12 +40,10 @@ class HaikusController < ApplicationController
   end
   
   def top_favorites
-    @title = "Top Favorites"
-    list_haikus(Haiku.top_favorites)
+    list_haikus(Haiku, :top_favorites)
   end
   
   def most_viewed
-    @title = "Most Viewed"
-    list_haikus(Haiku.most_viewed)
+    list_haikus(Haiku, :most_viewed)
   end
 end
