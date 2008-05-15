@@ -50,4 +50,5 @@
         %h2= @title
         = yield :layout
       #foot
-      = render(:partial => "shared/analytics")
+      - if Rails.env == 'production'
+        = render(:partial => "shared/analytics")
