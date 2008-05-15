@@ -17,7 +17,7 @@ class HaikusController < ApplicationController
   end
   
   def index
-    @title = "Recent Haikus"
+    @title = "Recent"
     list_haikus(Haiku.recent)
   end
   

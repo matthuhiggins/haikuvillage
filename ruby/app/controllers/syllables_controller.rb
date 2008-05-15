@@ -9,5 +9,4 @@ class SyllablesController < ApplicationController
   end
   
   acts_as_cached
-
 end
