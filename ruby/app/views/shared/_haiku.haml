@@ -13,5 +13,7 @@
         = link_to haiku, :method => :delete do
           = image_tag("trash.png", :alt => "Delete")
     .favorite
-      Favorited
-      = pluralize(haiku.favorited_count_total, "time")
+      Favorited:
+      = haiku.favorited_count_total
+      Viewed:
+      = haiku.view_count_total
