@@ -23,9 +23,10 @@ class HaikusController < ApplicationController
   
   def show
     @haiku = Haiku.find(params[:id])
-    Haiku.update_counters(params[:id], :view_count_week => 1, :view_count_month => 1, :view_count_total => 1)
     @users = @haiku.happy_users.all(:limit => 6)
     @haikus_by_same_user = @haiku.user.haikus.all(:limit => 3, :order => "favorited_count_total desc", :conditions => ['id <> ?', @haiku])
+
+    Haiku.update_counters(params[:id], :view_count_week => 1, :view_count_month => 1, :view_count_total => 1)
   end
   
   def destroy
@@ -39,8 +40,13 @@ class HaikusController < ApplicationController
     end
   end
   
-  def popular
-    @title = "Popular haikus"
-    list_haikus(Haiku.popular)
+  def top_favorites
+    @title = "Top Favorites"
+    list_haikus(Haiku.top_favorites)
+  end
+  
+  def most_viewed
+    @title = "Most Viewed"
+    list_haikus(Haiku.most_viewed)
   end
 end

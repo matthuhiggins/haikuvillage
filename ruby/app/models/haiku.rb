@@ -9,7 +9,8 @@ class Haiku < ActiveRecord::Base
   validates_presence_of :text
   
   named_scope :recent, :order => 'haikus.id desc'
-  named_scope :popular, :order => 'favorited_count_total desc', :conditions => "favorited_count_total > 0"
+  named_scope :top_favorites, :order => 'favorited_count_total desc', :conditions => "favorited_count_total > 0"
+  named_scope :most_viewed, :order => 'view_count_week desc', :conditions => 'view_count_total > 0'
   
   before_create :twitter_update
 
