@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     
     def input_haiku(proxy, options = {})
       options.merge!(:limit => 4,
-                     :joins => :user)
+                     :include => :user)
       @haikus = proxy.all(options)
       render :template => "templates/input"
     end
