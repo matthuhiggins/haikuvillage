@@ -3,9 +3,9 @@ class Word
   
   LONGEST_SYLLABLE = 'strengths'.length # From the MikeSpizDB
   
-  def initialize(wordtext)
-    @text = wordtext
-    @syllables = count_syllables(wordtext)
+  def initialize(word_text)
+    @text = word_text
+    @syllables = count_syllables(word_text)
   end
     
   private
@@ -13,52 +13,52 @@ class Word
     [guess_syllables(word_text), (word_text.length / LONGEST_SYLLABLE) + 1].max
   end
   
-  def guess_syllables(wordtext)
-    wordtext = wordtext.gsub(/^[^\w]+|[^\w]+$|"+/, '')
+  def guess_syllables(word_text)
+    word_text = word_text.gsub(/^[^\w]+|[^\w]+$|"+/, '')
          
     # ie spiz's or mike's
-    if wordtext =~ /'s$/
-      wordtext = wordtext.gsub( /'s$/, '')
-      (wordtext =~ /^6$|[0|2-9]6$|[x|z]$/ ? 1 : 0) + count_syllables(wordtext)
+    if word_text =~ /'s$/
+      word_text = word_text.gsub( /'s$/, '')
+      (word_text =~ /^6$|[0|2-9]6$|[x|z]$/ ? 1 : 0) + count_syllables(word_text)
 
     # ie boy/girl or re-factor
-    elsif wordtext =~ /\/|-/
-      wordtext.split(/\/|-/).sum{ |word| count_syllables(word) }
+    elsif word_text =~ /\/|-/
+      word_text.split(/\/|-/).sum{ |word| count_syllables(word) }
 
     # one letter, optionally followed by a period and more letters ie G.W.B.
-    elsif wordtext =~ /^[a-zA-Z](\.[a-zA-Z]\.?)*$/
-      wordtext.split(/\.| |/).sum{ |letter| count_letter_syllables(letter) }
+    elsif word_text =~ /^[a-zA-Z](\.[a-zA-Z]\.?)*$/
+      word_text.split(/\.| |/).sum{ |letter| count_letter_syllables(letter) }
     
     # All capitals: assumed to be an acronym
-    elsif wordtext =~ /^[A-Z]+$/
-      wordtext.split(//).sum { |letter| count_letter_syllables(letter) }
+    elsif word_text =~ /^[A-Z]+$/
+      word_text.split(//).sum { |letter| count_letter_syllables(letter) }
 
     # ie 546
-    elsif wordtext =~ /^[0-9]+$/ then
-      wordtext.en.numwords.split.sum{ |numeric_word| count_syllables(numeric_word) }
+    elsif word_text =~ /^[0-9]+$/ then
+      word_text.en.numwords.split.sum{ |numeric_word| count_syllables(numeric_word) }
       
     # ie 3:15
-    elsif wordtext =~ /^[0-9][1|2]?:[0-5][0-9]$/
-      wordtext.split(/:/).sum{ |number| count_syllables(number) }
+    elsif word_text =~ /^[0-9][1|2]?:[0-5][0-9]$/
+      word_text.split(/:/).sum{ |number| count_syllables(number) }
 
     # ie 1st or 2nd or 101st
-    elsif wordtext =~ /^[0-9]+(st|rd|th)$/
-      wordtext = wordtext.gsub(/(st|rd|th)$/, '')
-      if [10,12].include?(wordtext.to_i % 100) || wordtext.to_i % 10 == 0
-        count_syllables(wordtext)
-      elsif [0,2].include?(wordtext.to_i % 10)
-        count_syllables(wordtext) + 1
+    elsif word_text =~ /^[0-9]+(st|rd|th)$/
+      word_text = word_text.gsub(/(st|rd|th)$/, '')
+      if [10,12].include?(word_text.to_i % 100) || word_text.to_i % 10 == 0
+        count_syllables(word_text)
+      elsif [0,2].include?(word_text.to_i % 10)
+        count_syllables(word_text) + 1
       else
-        count_syllables(wordtext)        
+        count_syllables(word_text)        
       end
 
     # ie r2d2, v12
-    elsif wordtext =~ /[a-zA-Z][0-9]|[0-9][a-zA-Z]/
-      wordtext.scan(/[0-9]+|[a-zA-Z]+/).sum{ |segment| count_syllables(segment) }
+    elsif word_text =~ /[a-zA-Z][0-9]|[0-9][a-zA-Z]/
+      word_text.scan(/[0-9]+|[a-zA-Z]+/).sum{ |segment| count_syllables(segment) }
 
     # a normal word
-    elsif wordtext =~ /^[a-zA-Z|']+$/ then
-      Lingua::EN::Syllable::syllables(wordtext)
+    elsif word_text =~ /^[a-zA-Z|']+$/ then
+      Lingua::EN::Syllable::syllables(word_text)
       
     # the word is not countable.
     else
