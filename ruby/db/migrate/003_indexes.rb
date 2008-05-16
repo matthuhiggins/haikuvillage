@@ -14,5 +14,6 @@ class Indexes < ActiveRecord::Migration
 
     add_index :haiku_favorites, [:user_id, :haiku_id, :created_at]
     add_index :haiku_favorites, [:haiku_id, :user_id], :unique => true
+    add_index :haiku_favorites, [:created_at, :haiku_id]
   end
 end
