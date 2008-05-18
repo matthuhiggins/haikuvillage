@@ -2,17 +2,16 @@ namespace :haiku do
   namespace :counters do
     desc 'Roll the haiku counters forward'
     task :roll => :environment do
-      ['week', 'month'].each { |interval| clear_summaries interval }
+      ['view', 'favorited'].each do |metric|
+        ['week', 'month'].each { |interval| clear_summary(metric, interval) }
+      end
     end
     
-    def clear_summaries(interval)
+    def clear_summary(metric, interval)
       weight = "#{interval_size(interval) - 1} / #{interval_size(interval)}"
+      column = "#{metric}_count_#{interval}"
       
-      Haiku.update_all("view_count_#{interval} = (#{weight})",
-        "view_count_#{interval} > 0")
-      
-      Haiku.update_all("favorited_count_#{interval} = (#{weight})",
-        "favorited_count_#{interval} > 0")
+      Haiku.update_all("#{column} = #{column} * (#{weight})", "#{column} > 0")
     end
     
     def interval_size(interval)
