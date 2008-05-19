@@ -1,5 +1,5 @@
 class SyllablesController < ApplicationController
-  def count
+  def index
     words = params[:words].split("-").collect do |word|
       word = URI.unescape(word)
       get_cache("word_count:#{word}") { Word.new(word) }

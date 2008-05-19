@@ -155,7 +155,7 @@ Haiku.PeriodicalUpdater.prototype = {
     
     words.each(markRequesting);
         
-    var request = new Ajax.Request("/syllables/count?words=" + encodedWords, {
+    var request = new Ajax.Request("/syllables?words=" + encodedWords, {
       method: 'get',
       onComplete: function(request) {
         request.responseText.evalJSON().each(markResponded);
