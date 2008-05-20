@@ -27,4 +27,5 @@ test:
 
 production:
   benchmarking: false
+  memory: 256
   servers: localhost:11211
