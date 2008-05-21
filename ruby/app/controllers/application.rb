@@ -11,16 +11,30 @@ class ApplicationController < ActionController::Base
   before_filter :basic_auth
       
   private
-    # HaikuEnv.haikus_per_page + 1 is returned so that the view knows if
-    # there are more haikus on the next page.
+    # Lists out haikus with pagination.
+    # * <tt>:cached_total</tt> -- Total number of entries for the current search. For performance reasons, we never want to count from the database
+    #   In the case that :cached_total is not provided, only Next and Previous links are provided
+    # * <tt>:title</tt> -- The header to display above the list. If not provided, method is humanized.
+    #
+    # Sets @haikus, @title and @page_links
     def list_haikus(source, method, options = {})
-      offset = (current_page - 1) * HaikuEnv.haikus_per_page
-      options.merge!(:offset => offset,
-                     :limit => HaikuEnv.haikus_per_page + 1,
-                     :include => :user)
+      cached_total = options[:cached_total].nil? ? 0 : source.send(options.delete(:cached_total))
+      
+      options.merge!(:page          => params[:page],
+                     :per_page      => HaikuEnv.haikus_per_page,
+                     :total_entries => cached_total,
+                     :include       => :user)
                      
       @title = options.delete(:title) || method.to_s.humanize
-      @haikus = source.send(method).all(options)
+      @haikus = source.send(method).paginate(options)
+      
+      if cached_total == 0
+        @haikus.total_entries = @haikus.offset + [@haikus.length, HaikuEnv.haikus_per_page].min + 1
+        @page_links = false
+      else
+        @page_links = true
+      end
+      
       render :template => "templates/listing"
     end
     
@@ -39,11 +53,7 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
     end
     
-    def current_page
-      (params[:page] || 1).to_i
-    end
-    
-    helper_method :referring_uri, :current_user, :current_page
+    helper_method :referring_uri, :current_user
     
     def basic_auth
       return if local_request?
