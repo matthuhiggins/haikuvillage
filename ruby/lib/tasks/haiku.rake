@@ -11,7 +11,7 @@ namespace :haiku do
       weight = "#{interval_size(interval) - 1} / #{interval_size(interval)}"
       column = "#{metric}_count_#{interval}"
       
-      Haiku.update_all("#{column} = #{column} * (#{weight})", "#{column} > 0")
+      Haiku.update_all("#{column} = floor(#{column} * (#{weight}))", "#{column} > 0")
     end
     
     def interval_size(interval)
