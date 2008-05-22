@@ -3,14 +3,13 @@ class Twitter
   AUTHENTICATE = "http://twitter.com/account/verify_credentials.xml"
   
   class << self
-    def authenticate(user)
-      twitter_head(AUTHENTICATE, user) do |code, data|
-        code == 200
-      end
+    def authenticate(username, password)
+      twitter_head(AUTHENTICATE, username, password) { |code, data| code == 200 }
     end
     
     def create_haiku(haiku)
-      twitter_post(STATUS_UPDATE, haiku.user, {'status' => "@haikuvillage #{haiku.text}"}) do |code, data|
+      user = haiku.user
+      twitter_post(STATUS_UPDATE, user.username, user.password, {'status' => "@haikuvillage #{haiku.text}"}) do |code, data|
         raise StandardError unless code == 200
         haiku[:twitter_status_id] = data['id'].to_i
       end
@@ -30,9 +29,9 @@ class Twitter
     
       [:get, :post, :put, :delete, :head].each do |verb|
         class_eval(<<-EVAL, __FILE__, __LINE__)
-          def twitter_#{verb}(path, user, data = nil, &block)
+          def twitter_#{verb}(path, username, password, data = nil, &block)
             request = new_request(:#{verb}, path)
-            request.basic_auth user.username, user.password
+            request.basic_auth username, password
             request.set_form_data(data, ';') if data
             make_request(request, URI.parse(path), &block)
           end
