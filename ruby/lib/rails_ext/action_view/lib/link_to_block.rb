@@ -1,4 +1,4 @@
-module ActionView
+module HaikuView
   module Helpers
     # Add the ability to pass a block to link_to
     #
