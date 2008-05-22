@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   end
   
   def authenticate(password)
-    new_record? ? authenticate_new(password) : authenticate_cached(password)
+    send(new_record? ? :authenticate_new : :authenticate_cached, password)
   end
   
   private
