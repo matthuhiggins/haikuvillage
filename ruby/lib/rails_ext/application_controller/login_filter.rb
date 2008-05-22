@@ -30,7 +30,3 @@ module LoginFilter
     end
   end
 end
-
-ActionController::Base.class_eval do
-  include LoginFilter
-end
