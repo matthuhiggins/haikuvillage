@@ -24,17 +24,17 @@ class ApplicationController < ActionController::Base
                      :per_page      => HaikuEnv.haikus_per_page,
                      :total_entries => cached_total,
                      :include       => :user)
-                     
+
       @title = options.delete(:title) || method.to_s.humanize
       @haikus = source.send(method).paginate(options)
-      
+
       if cached_total == 0
         @haikus.total_entries = @haikus.offset + [@haikus.length, HaikuEnv.haikus_per_page].min + 1
         @page_links = false
       else
         @page_links = true
       end
-      
+
       render :template => "templates/listing"
     end
     
@@ -44,11 +44,11 @@ class ApplicationController < ActionController::Base
       @haikus = proxy.all(options)
       render :template => "templates/input"
     end
-    
+
     def referring_uri
       params[:referrer] || request.env["HTTP_REFERER"] || root_url
     end
-    
+
     def current_user
       @current_user ||= User.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
     end

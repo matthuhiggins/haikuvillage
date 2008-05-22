@@ -1,7 +1,7 @@
 class Word
   attr_reader :text, :syllables
   
-  LONGEST_SYLLABLE = 'strengths'.length # From the MikeSpizDB
+  LONGEST_SYLLABLE = 'strengths'.length.to_f # From the MikeSpizDB
   
   def initialize(word_text)
     @text = word_text
@@ -10,7 +10,7 @@ class Word
     
   private
   def count_syllables(word_text)
-    [guess_syllables(word_text), (word_text.length / LONGEST_SYLLABLE) + 1].max
+    [guess_syllables(word_text), (word_text.length / LONGEST_SYLLABLE).ceil].max
   end
   
   def guess_syllables(word_text)

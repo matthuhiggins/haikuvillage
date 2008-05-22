@@ -1,19 +1,17 @@
 - div_for(haiku, :class => flash[:new_haiku_id] == haiku.id ? 'new' : '') do
   .text
-    = link_to haiku  do
+    = link_to haiku do
       - haiku.text.each_line do |line|
         .haiku-line= h(line)
   .haiku_details
-    .author
+    .haiku_detail
+      = "Created on #{haiku.created_at.to_s(:haiku)} by"
       = link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
-    .changes
-      - if current_user
+    .haiku_detail
+      = "Favorited: #{haiku.favorited_count_total}, Viewed: #{haiku.view_count_total}"
+    - if current_user
+      .haiku_detail
         = favorite_span(haiku)
-      - if haiku.user == current_user
-        = link_to haiku, :method => :delete do
-          = image_tag("trash.png", :alt => "Delete")
-    .favorite
-      Favorited:
-      = haiku.favorited_count_total
-      Viewed:
-      = haiku.view_count_total
+        - if haiku.user == current_user
+          = link_to haiku, :method => :delete do
+            = image_tag("trash.png", :alt => "Delete")
