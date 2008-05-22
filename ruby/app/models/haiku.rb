@@ -12,7 +12,7 @@ class Haiku < ActiveRecord::Base
   named_scope :top_favorites, :order => 'favorited_count_total desc', :conditions => "favorited_count_total > 0"
   named_scope :most_viewed, :order => 'view_count_week desc', :conditions => 'view_count_total > 0'
   
-  before_create :twitter_update
+  before_create { |haiku| Twitter.create_haiku(haiku) }
 
   def validate    
     line_records = []
@@ -25,18 +25,5 @@ class Haiku < ActiveRecord::Base
         errors.add("line #{line_number}") unless expected == line_record.syllables
       end
     end
-  end
-  
-  def twitter_update
-    url = URI.parse('http://twitter.com/statuses/update.xml')
-    request = Net::HTTP::Post.new(url.path)
-    request.basic_auth user.username, user.password
-    request.set_form_data({'status' => "@haikuvillage #{text}"}, ';')
-    response = Net::HTTP.new(url.host, url.port).start {|http| http.request(request) }
-
-    response.error! unless response.code[0..2].to_i == 200
-    
-    xml = XmlSimple.xml_in(response.body, 'keeproot' => false)
-    self[:twitter_status_id] = xml['id'].to_i
   end
 end
