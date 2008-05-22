@@ -132,6 +132,7 @@ Haiku.PeriodicalUpdater.prototype = {
     
     textArea.onkeypress = function(event) {
       var lineText = $F(textArea).split(/\n/);
+      if ( !event ) event = window.event; //IE fix
       if (event.keyCode === Event.KEY_RETURN && lineText.length >= 3) {
         return false;
       }
