@@ -1,2 +1,1 @@
-require 'login_filter'
-require 'link_to_block'
+require 'rails_ext/init'

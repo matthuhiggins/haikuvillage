@@ -11,20 +11,24 @@ module ActionView
     #     <%= haiku.created_at %>
     #     <%= haiku.user.username %>
     #   <% end %>
-    module UrlHelper      
+    module UrlBlockHelper
+      def self.included(base)
+        base.send :alias_method_chain, :link_to, :block
+      end
+      
       def link_to_with_block(*args, &block)
         link_to_without_block(block_given? ? capture(&block) : args.shift, *args)
       end
-      
-      alias_method_chain :link_to, :block
     end
     
-    module PrototypeHelper
+    module PrototypeBlockHelper
+      def self.included(base)
+        base.send :alias_method_chain, :link_to_remote, :block
+      end
+      
       def link_to_remote_with_block(*args, &block)
         link_to_remote_without_block(block_given? ? capture(&block) : args.shift, *args)
       end
-
-      alias_method_chain :link_to_remote, :block
     end
   end
 end

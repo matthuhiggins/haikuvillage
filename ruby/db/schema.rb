@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 3) do
+ActiveRecord::Schema.define(:version => 20080522013302) do
 
   create_table "haiku_favorites", :force => true do |t|
     t.integer  "user_id",    :limit => 11, :null => false
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(:version => 3) do
   add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
   add_index "haikus", ["view_count_month"], :name => "index_haikus_on_view_count_month"
   add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
+
+  create_table "logged_exceptions", :force => true do |t|
+    t.string   "exception_class"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.text     "message"
+    t.text     "backtrace"
+    t.text     "environment"
+    t.text     "request"
+    t.datetime "created_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",                                     :null => false
