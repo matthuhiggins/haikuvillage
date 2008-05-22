@@ -40,7 +40,6 @@ class HaikusController < ApplicationController
   end
   
   def top_favorites
-    x.p
     list_haikus(Haiku, :top_favorites)
   end
   
