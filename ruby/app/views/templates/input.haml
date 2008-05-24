@@ -1,6 +1,6 @@
 - javascript "haiku"
 
-.left_side
+.column.wide
   = error_messages_for :haiku
 
   #preview
@@ -36,7 +36,7 @@
     new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
     $('haiku_text').focus();
     
-.right_side
+.column.small
   %h3 Recently added
   = render(:partial => "shared/haiku", :collection => @haikus)
   

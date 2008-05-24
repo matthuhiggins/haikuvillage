@@ -1,4 +1,4 @@
-.left_side
+.column.wide
   .haiku-big
     - @haiku.text.each_line do |line|
       .haiku-line= h(line)
@@ -7,7 +7,7 @@
     %h3= "#{h(@haiku.user.username)} has #{pluralize(@haiku.user.haikus_count - 1, 'other haiku', 'more haikus')}:"
     = render(:partial => "shared/haiku", :collection => @haikus_by_same_user)
 
-.right_side  
+.column.small
   .haiku-big-details
     .author
       %span= 'Author:'
