@@ -1,8 +1,7 @@
 - div_for(haiku, :class => flash[:new_haiku_id] == haiku.id ? 'new' : '') do
-  .text
-    = link_to haiku do
-      - haiku.text.each_line do |line|
-        .haiku-line= h(line)
+  = link_to haiku, :class => 'text' do
+    - haiku.text.each_line do |line|
+      .haiku-line= h(line)
   .haiku_details
     .haiku_detail
       = "Created on #{haiku.created_at.to_s(:haiku)} by"
