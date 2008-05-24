@@ -3,13 +3,13 @@ module HaikuView
     # Add the ability to pass a block to link_to
     #
     # Instead of creating the link name inline:
-    #   <%= link_to haiku.text + haiku.created_at + haiku.user.username, haiku %>
+    #   <%= link_to haiku.text + haiku.created_at + haiku.author.username, haiku %>
     #
     # Pass a block for the link name:
     #   <%= link_to haiku do %>
     #     <%= haiku.text %>
     #     <%= haiku.created_at %>
-    #     <%= haiku.user.username %>
+    #     <%= haiku.author.username %>
     #   <% end %>
     module UrlBlockHelper
       def self.included(base)

@@ -5,12 +5,12 @@
   .haiku_details
     .haiku_detail
       = "Created on #{haiku.created_at.to_s(:haiku)} by"
-      = link_to h(haiku.user.username), {:controller => "users", :action => 'show', :id => haiku.user.username}
+      = link_to h(haiku.author.username), {:controller => "authors", :action => 'show', :id => haiku.author.username}
     .haiku_detail
       = "Favorited: #{haiku.favorited_count_total}, Viewed: #{haiku.view_count_total}"
-    - if current_user
+    - if current_author
       .haiku_detail
         = favorite_span(haiku)
-        - if haiku.user == current_user
+        - if haiku.author == current_author
           = link_to haiku, :method => :delete do
             = image_tag("trash.png", :alt => "Delete")

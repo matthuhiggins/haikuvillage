@@ -1,11 +1,11 @@
 class Haiku < ActiveRecord::Base
   VALID_SYLLABLES = [5, 7, 5]
   
-  belongs_to :user, :counter_cache => true
+  belongs_to :author, :counter_cache => true
   has_many :haiku_favorites, :dependent => :delete_all
-  has_many :happy_users, :through => :haiku_favorites, :source => :user
+  has_many :happy_authors, :through => :haiku_favorites, :source => :author
 
-  validates_presence_of :user_id
+  validates_presence_of :author_id
   validates_presence_of :text
   
   named_scope :recent, :order => 'haikus.id desc'

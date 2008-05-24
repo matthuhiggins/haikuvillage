@@ -11,20 +11,31 @@
 
 ActiveRecord::Schema.define(:version => 20080522013302) do
 
+  create_table "authors", :force => true do |t|
+    t.string   "username",                                     :null => false
+    t.string   "password",                                     :null => false
+    t.integer  "haikus_count",    :limit => 11, :default => 0, :null => false
+    t.integer  "favorites_count", :limit => 11, :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authors", ["username"], :name => "index_authors_on_username"
+
   create_table "haiku_favorites", :force => true do |t|
-    t.integer  "user_id",    :limit => 11, :null => false
+    t.integer  "author_id",  :limit => 11, :null => false
     t.integer  "haiku_id",   :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "haiku_favorites", ["haiku_id", "user_id"], :name => "index_haiku_favorites_on_haiku_id_and_user_id", :unique => true
-  add_index "haiku_favorites", ["user_id", "haiku_id", "created_at"], :name => "index_haiku_favorites_on_user_id_and_haiku_id_and_created_at"
+  add_index "haiku_favorites", ["haiku_id", "author_id"], :name => "index_haiku_favorites_on_haiku_id_and_author_id", :unique => true
+  add_index "haiku_favorites", ["author_id", "haiku_id", "created_at"], :name => "index_haiku_favorites_on_author_id_and_haiku_id_and_created_at"
   add_index "haiku_favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
 
   create_table "haikus", :force => true do |t|
     t.integer  "twitter_status_id",     :limit => 11,                :null => false
-    t.integer  "user_id",               :limit => 11,                :null => false
+    t.integer  "author_id",             :limit => 11,                :null => false
     t.integer  "favorited_count_week",  :limit => 11, :default => 0, :null => false
     t.integer  "favorited_count_month", :limit => 11, :default => 0, :null => false
     t.integer  "favorited_count_total", :limit => 11, :default => 0, :null => false
@@ -36,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20080522013302) do
     t.datetime "updated_at"
   end
 
-  add_index "haikus", ["user_id"], :name => "index_haikus_on_user_id"
+  add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
   add_index "haikus", ["favorited_count_week"], :name => "index_haikus_on_favorited_count_week"
   add_index "haikus", ["favorited_count_month"], :name => "index_haikus_on_favorited_count_month"
   add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
@@ -54,16 +65,5 @@ ActiveRecord::Schema.define(:version => 20080522013302) do
     t.text     "request"
     t.datetime "created_at"
   end
-
-  create_table "users", :force => true do |t|
-    t.string   "username",                                     :null => false
-    t.string   "password",                                     :null => false
-    t.integer  "haikus_count",    :limit => 11, :default => 0, :null => false
-    t.integer  "favorites_count", :limit => 11, :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

@@ -1,11 +1,11 @@
 class SessionController < ApplicationController  
   def create
-    user = User.authenticate(params[:user][:username], params[:user][:password])
-    session[:username] = user.username if user
+    author = Author.authenticate(params[:author][:username], params[:author][:password])
+    session[:username] = author.username if author
     
     respond_to do |f|
       f.html do
-        flash[:notice] = "Invalid user/password combination" unless session[:username]
+        flash[:notice] = "Invalid username/password combination" unless session[:username]
         redirect_to referring_uri
       end
       f.js do

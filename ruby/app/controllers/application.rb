@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # Raised when a destroy action is performed on an object
-  # not owned by current_user
+  # not owned by current_author
   class UnauthorizedDestroyRequest < StandardError
   end
   
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       options.merge!(:page          => params[:page],
                      :per_page      => HaikuEnv.haikus_per_page,
                      :total_entries => cached_total,
-                     :include       => :user)
+                     :include       => :author)
 
       @title = options.delete(:title) || method.to_s.humanize
       @haikus = source.send(method).paginate(options)
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     
     def input_haiku(proxy, options = {})
       options.merge!(:limit => 4,
-                     :include => :user)
+                     :include => :author)
       @haikus = proxy.all(options)
       render :template => "templates/input"
     end
@@ -49,11 +49,11 @@ class ApplicationController < ActionController::Base
       params[:referrer] || request.env["HTTP_REFERER"] || root_url
     end
 
-    def current_user
-      @current_user ||= User.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
+    def current_author
+      @current_author ||= Author.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
     end
     
-    helper_method :referring_uri, :current_user
+    helper_method :referring_uri, :current_author
     
     def basic_auth
       return if local_request?

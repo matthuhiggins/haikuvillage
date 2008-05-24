@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "welcome", :action => "index"
   
   map.resource :session
-  map.resources :users, :member => { :favorites => :get }
+  map.resources :authors, :member => { :favorites => :get }
   
   map.resources :haikus, :collection => {:top_favorites => :get, :most_viewed => :get}, :requirements => {:id => /.*/} do |haikus|
     haikus.resource :favorites

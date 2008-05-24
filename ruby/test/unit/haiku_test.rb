@@ -8,7 +8,7 @@ class HaikuTest < Test::Unit::TestCase
 #                      :line1 => "this is my first haiku",
 #                      :line2 => "i cannot count to seven",
 #                      :line3 => "but i can attempt")
-#    haiku.user = users(:user_joe)
+#    haiku.author = users(:user_joe)
 #    assert haiku.save
   end
   

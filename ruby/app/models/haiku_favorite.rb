@@ -1,6 +1,6 @@
 class HaikuFavorite < ActiveRecord::Base
   belongs_to :haiku
-  belongs_to :user, :counter_cache => :favorites_count
+  belongs_to :author, :counter_cache => :favorites_count
   
   after_create { |record| record.update_haiku_cache(1) }
   before_destroy { |record| record.update_haiku_cache(-1) }

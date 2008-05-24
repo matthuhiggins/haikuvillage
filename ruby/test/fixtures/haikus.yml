@@ -1,63 +1,63 @@
 from_wikipedia:
-  user: billy
+  author: billy
   text: "the first cold shower\neven the monkey seems to want\na little coat of straw"
 
 recursive:
-  user: billy
+  author: billy
   text: "Seven syllables\nAre required on line two\nI counted just right"
 
 ruby:
-  user: billy
-  text: "Inheritence sucks\nI would rather user modules\nto obfuscate code."
+  author: billy
+  text: "Inheritence sucks\nI would rather author modules\nto obfuscate code."
   
 twitter:
-  user: billy
+  author: billy
   text: "What the fuck is so\nFreakin cool about twitter\nWhy not go outside?"
 
 brilliant:
-  user: joe
+  author: joe
   text: "I am genius\nPythogoreom's Thereom\nEasy believe me"
 
 subpar:
-  user: joe
+  author: joe
   text: "Dirty Sanchezes\nParty's and mexican chicks\nI will sleep instead"
 
 jazz:
-  user: joe
+  author: joe
   text: "Brubeck plays Five Step.\nDizzy Gillespie composed.\nNone of them could sing"
 
 poo:
-  user: fredrick
+  author: fredrick
   text: "I need to go soon.\nA lot of pressure builds. How\n I wish there were stalls."
   
 iraq:
-  user: fredrick
+  author: fredrick
   text: "We went to Iraq.\nNever came back to The States\nThanks a lot George Bush."
 
 beer:
-  user: fredrick
+  author: fredrick
   text: "I love heineken.\nBut 40's are good also.\nQuality ain't cheap."
 
 trees:
-  user: jane
+  author: jane
   text: "A large tree stands tall\nIt's bark is gristled and old\nI will rest below."
 
 river:
-  user: jane
+  author: jane
   text: "The nature is calm\nThe river flows forever\nand ever for me."
 
 dog:
-  user: jane
+  author: jane
   text: "I was walking fast.\nI came across a small dog;\nHe said bark bark bark."
   
 haiku:
-  user: joe
+  author: joe
   text: "haikus contain three\nlines with a syllable count\nof five seven five"
   
 mother:
-  user: joe
+  author: joe
   text: "Mother's day today\nI sent the bitch some flowers\nand I called it good"
   
 ocd:
-  user: jane
+  author: jane
   text: "I think I have OCD\nI have many strengths strengths strengths\nstrengths strengths strengths strengths strengths..."

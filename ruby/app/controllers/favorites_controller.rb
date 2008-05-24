@@ -5,17 +5,17 @@ class FavoritesController < ApplicationController
   
   def update
     change_favorite do |haiku|
-      current_user.favorites << haiku
+      current_author.favorites << haiku
     end
   end
   
   def index 
-    list_haikus(current_user, :favorites, :title => "Your Favorite Haikus", :cached_total => :haikus_count)
+    list_haikus(current_author, :favorites, :title => "Your Favorite Haikus", :cached_total => :haikus_count)
   end
   
   def destroy
     change_favorite do |haiku|
-      HaikuFavorite.destroy_all(:user_id => current_user, :haiku_id => haiku)
+      HaikuFavorite.destroy_all(:author_id => current_author, :haiku_id => haiku)
     end
   end
   

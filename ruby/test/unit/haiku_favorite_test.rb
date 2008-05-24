@@ -13,7 +13,7 @@ class HaikuFavoriteTest < Test::Unit::TestCase
     assert_equal 1, haiku.haiku_favorites(:refresh).size
     assert_equal 1, haiku.haiku_favorites_count(:refresh)
     
-    assert_equal 1, haiku.happy_users(:refresh).size
+    assert_equal 1, haiku.happy_authors(:refresh).size
     
     #assert_equal 1, tag.haiku_favorites_count(:refresh)
     #assert_equal 1, tag.favorites(:refresh).size

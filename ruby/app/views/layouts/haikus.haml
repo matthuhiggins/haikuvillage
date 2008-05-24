@@ -12,17 +12,17 @@
         #global-navigation
           %ul.top-menu
             %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
-            - unless current_user
+            - unless current_author
             %li
               = link_to_function 'Login' do |page|
                 - page[:login_form].visual_effect(:appear, :duration => 0.3)
             %li
-              - form_for :user, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
+              - form_for :author, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
                 %div
-                  %label{:for => 'user_username'}='Twitter Username:'
+                  %label{:for => 'author_username'}='Twitter Authorname:'
                   = form.text_field :username
                 %div
-                  %label{:for => 'user_password'}='Password:'
+                  %label{:for => 'author_password'}='Password:'
                   = form.password_field :password
                   %button{:type => 'submit'}="Go"
             - end
@@ -32,14 +32,14 @@
             %li= link_to 'Top Favorites', :controller => 'haikus', :action => 'top_favorites'
             %li= '/'
             %li= link_to 'Most Viewed', :controller => 'haikus', :action => 'most_viewed'
-        - if current_user
-        #user-navigation
+        - if current_author
+        #author-navigation
           %ul.top-menu
             %li= link_to 'Logout', logout_url
           %ul.bottom-menu
             %li= link_to 'Favorites', :controller => 'favorites', :action => 'index'
             %li= '/'
-            %li= link_to 'My Haikus', :controller => 'users', :action => 'show', :id => current_user.username
+            %li= link_to 'My Haikus', :controller => 'authors', :action => 'show', :id => current_author.username
             %li= '/'
             %li= link_to 'Create', create_url
         - end
