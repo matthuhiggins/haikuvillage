@@ -12,15 +12,18 @@
 ActiveRecord::Schema.define(:version => 20080522013302) do
 
   create_table "authors", :force => true do |t|
-    t.string   "username",                                     :null => false
-    t.string   "password",                                     :null => false
-    t.integer  "haikus_count",    :limit => 11, :default => 0, :null => false
-    t.integer  "favorites_count", :limit => 11, :default => 0, :null => false
+    t.string   "username",                                        :null => false
+    t.string   "password",                                        :null => false
+    t.integer  "haikus_count_week",  :limit => 11, :default => 0, :null => false
+    t.integer  "haikus_count_total", :limit => 11, :default => 0, :null => false
+    t.integer  "favorites_count",    :limit => 11, :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "authors", ["username"], :name => "index_authors_on_username"
+  add_index "authors", ["haikus_count_week"], :name => "index_authors_on_haikus_count_week"
+  add_index "authors", ["haikus_count_total"], :name => "index_authors_on_haikus_count_total"
 
   create_table "haiku_favorites", :force => true do |t|
     t.integer  "author_id",  :limit => 11, :null => false
@@ -37,10 +40,8 @@ ActiveRecord::Schema.define(:version => 20080522013302) do
     t.integer  "twitter_status_id",     :limit => 11,                :null => false
     t.integer  "author_id",             :limit => 11,                :null => false
     t.integer  "favorited_count_week",  :limit => 11, :default => 0, :null => false
-    t.integer  "favorited_count_month", :limit => 11, :default => 0, :null => false
     t.integer  "favorited_count_total", :limit => 11, :default => 0, :null => false
     t.integer  "view_count_week",       :limit => 11, :default => 0, :null => false
-    t.integer  "view_count_month",      :limit => 11, :default => 0, :null => false
     t.integer  "view_count_total",      :limit => 11, :default => 0, :null => false
     t.text     "text",                                               :null => false
     t.datetime "created_at"
@@ -49,10 +50,8 @@ ActiveRecord::Schema.define(:version => 20080522013302) do
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
   add_index "haikus", ["favorited_count_week"], :name => "index_haikus_on_favorited_count_week"
-  add_index "haikus", ["favorited_count_month"], :name => "index_haikus_on_favorited_count_month"
   add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
   add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
-  add_index "haikus", ["view_count_month"], :name => "index_haikus_on_view_count_month"
   add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
 
   create_table "logged_exceptions", :force => true do |t|

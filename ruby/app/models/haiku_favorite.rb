@@ -6,6 +6,6 @@ class HaikuFavorite < ActiveRecord::Base
   before_destroy { |record| record.update_haiku_cache(-1) }
   
   def update_haiku_cache(value)
-    Haiku.update_counters(haiku.id, :favorited_count_week => value, :favorited_count_month => value, :favorited_count_total => value)
+    Haiku.update_counters(haiku.id, :favorited_count_week => value, :favorited_count_total => value)
   end
 end

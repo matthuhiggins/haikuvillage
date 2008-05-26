@@ -4,7 +4,7 @@
       .haiku-line= h(line)
       
   - unless @haikus_by_same_author.empty?
-    %h3= "#{h(@haiku.author.username)} has #{pluralize(@haiku.author.haikus_count - 1, 'other haiku', 'more haikus')}:"
+    %h3= "#{h(@haiku.author.username)} has #{pluralize(@haiku.author.haikus_count_total - 1, 'other haiku', 'more haikus')}:"
     = render(:partial => "shared/haiku", :collection => @haikus_by_same_author)
 
 .column.small
@@ -14,7 +14,7 @@
       %span= link_to h(@haiku.author.username), {:controller => "authors", :action => 'show', :id => @haiku.author.username}
     .haiku_count
       %span= 'Haikus:'
-      %span= @haiku.author.haikus_count
+      %span= @haiku.author.haikus_count_total
     - if current_author
     = favorite_span(@haiku)
     - end
