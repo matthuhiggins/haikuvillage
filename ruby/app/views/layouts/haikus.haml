@@ -11,7 +11,8 @@
       #navigation
         #global-navigation
           %ul.top-menu
-            %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "welcome", :action => "index")
+            %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "public", :action => "index")
+            %li= link_to 'About', about_url
             - unless current_author
             %li
               = link_to_function 'Login' do |page|
