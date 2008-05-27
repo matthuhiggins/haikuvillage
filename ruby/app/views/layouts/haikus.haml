@@ -20,7 +20,7 @@
             %li
               - form_for :author, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
                 %div
-                  %label{:for => 'author_username'}='Twitter Authorname:'
+                  %label{:for => 'author_username'}='Twitter username:'
                   = form.text_field :username
                 %div
                   %label{:for => 'author_password'}='Password:'
