@@ -8,11 +8,7 @@ Rails::Initializer.run do |config|
   %w(linguistics lingua faster_xml_simple).each do |lib|
     config.load_paths.push("#{RAILS_ROOT}/vendor/#{lib}/lib")
   end
-  
-  ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
-    :haiku => "%b %d, %Y"
-  )
-  
+    
   config.action_controller.session = {
     :session_key => "_haiku_village",
     :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
@@ -21,3 +17,7 @@ Rails::Initializer.run do |config|
   config.time_zone = "Pacific Time (US & Canada)"
   config.active_record.default_timezone = :utc
 end
+
+ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+  :haiku => "%b %d, %Y"
+)
