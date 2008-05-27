@@ -1,28 +1,8 @@
-.column.wide
-  .haiku-big
-    - @haiku.text.each_line do |line|
-      .haiku-line= h(line)
-      
-  - unless @haikus_by_same_author.empty?
-    %h3= "#{h(@haiku.author.username)} has #{pluralize(@haiku.author.haikus_count_total - 1, 'other haiku', 'more haikus')}:"
-    = render(:partial => "shared/haiku", :collection => @haikus_by_same_author)
-
-.column.small
-  .haiku-big-details
-    .author
-      %span= 'Author:'
-      %span= link_to h(@haiku.author.username), {:controller => "authors", :action => 'show', :id => @haiku.author.username}
-    .haiku_count
-      %span= 'Haikus:'
-      %span= @haiku.author.haikus_count_total
-    - if current_author
-    = favorite_span(@haiku)
-    - end
-    - if @haiku.author == current_author
-      = link_to ({:id => @haiku, :referrer => referring_uri}, {:method => :delete})  do
-        = image_tag("trash.png", :alt => "Delete")
-  - unless @authors.empty?
-    .haiku-big-details
-      %h3= "#{pluralize(@haiku.favorited_count_total, 'author likes', 'authors like')} this haiku:"
-      - @authors.each do |user|
-        %p= link_to h(author.username), { :controller => "authors", :action => 'show', :id =>  author.username }
+.haiku-big
+  = render :partial => 'shared/haiku', :object => @haiku
+  %br
+    
+- unless @haikus_by_same_author.empty?
+  %h3= "#{h(@haiku.author.username)} has #{pluralize(@haiku.author.haikus_count_total - 1, 'other haiku', 'more haikus')}:"
+  = render(:partial => "shared/haiku", :collection => @haikus_by_same_author)
+  %br

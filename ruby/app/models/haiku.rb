@@ -1,7 +1,7 @@
 class Haiku < ActiveRecord::Base
   VALID_SYLLABLES = [5, 7, 5]
   
-  belongs_to :author, :counter_cache => true
+  belongs_to :author
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :haiku_favorites, :source => :author
 
@@ -12,7 +12,10 @@ class Haiku < ActiveRecord::Base
   named_scope :top_favorites, :order => 'favorited_count_total desc', :conditions => "favorited_count_total > 0"
   named_scope :most_viewed, :order => 'view_count_week desc', :conditions => 'view_count_total > 0'
   
-  before_create { |haiku| Twitter.create_haiku(haiku) }
+  before_create  { |haiku| Twitter.create_haiku(haiku) }
+  after_create   { |haiku| Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1) }
+  before_destroy { |haiku| Author.update_counters(haiku.author_id, :haikus_count_week => -1, :haikus_count_total => -1) }
+  
 
   def validate    
     line_records = []

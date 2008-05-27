@@ -3,14 +3,11 @@
   :height 100px
   sup
     :font-size 8pt
-  
   .syllables 
     :font-size 16pt
     :width 100px
-    
   .valid-line 
     :color green
-
   .invalid-line 
     :color red
 
@@ -37,22 +34,14 @@ form#haiku_login
 
 a.haiku
   :background-color #eeeeee
-  
-.haiku-big
-  :margin-bottom 20px
-  .haiku-line
-    :font-size 24px
-
-.haiku-big-details
-  :border 1px solid #999
-  :margin-bottom 15px
-  :padding 15px
 
 .haiku
   &.new
     :border 1px solid green
-  :padding-top 10px
+  :float left
   :height 120px
+  :min-width 50%
+  :padding-top 10px
   a.text
     :color black
     :display block
@@ -73,3 +62,10 @@ a.haiku
       :clear left
       :float left
       :padding-top 4px
+
+.haiku-big
+  .haiku
+    :float none
+    :margin-bottom 20px
+    .haiku-line
+      :font-size 20px

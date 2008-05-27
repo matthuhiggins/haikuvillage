@@ -1,11 +1,11 @@
 class Line
   attr_reader :words
   
-  def initialize(linetext)
-    @words = linetext.split.map{ |word| Word.new(word) }
+  def initialize(text)
+    @words = text.split.map{ |word| Word.new(word) }
   end
   
   def syllables
-    @words.sum{ |word| word.syllables }
+    words.sum &:syllables
   end
 end
