@@ -4,7 +4,7 @@
   %head
     %title= @title
     = javascript_include_tag 'prototype', 'effects'
-    = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu'
+    = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu', :cache => 'haiku'
     = yield :head
   %body
     #frame
