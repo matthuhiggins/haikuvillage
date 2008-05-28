@@ -5,7 +5,7 @@ class Word
     end
   
     def guess_syllables(word_text)
-      word_text = word_text.gsub(/^[^\w]+|[^\w]+$|"+/, '')
+      word_text.gsub!(/^[^\w]+|[^\w]+$|"+/, '')
          
       # ie spiz's or mike's
       if word_text =~ /'s$/
@@ -14,38 +14,36 @@ class Word
 
       # ie boy/girl or re-factor
       elsif word_text =~ /\/|-/
-        word_text.split(/\/|-/).sum{ |word| count_syllables(word) }
+        word_text.split(/\/|-/).sum { |word| count_syllables(word) }
 
       # one letter, optionally followed by a period and more letters ie G.W.B.
       elsif word_text =~ /^[a-zA-Z](\.[a-zA-Z]\.?)*$/
-        word_text.split(/\.| |/).sum{ |letter| count_letter_syllables(letter) }
+        word_text.split(/\.| |/).sum { |letter| count_letter_syllables(letter) }
     
-      # All capitals: assumed to be an acronym
+      # ie USA. assumed to be an acronym
       elsif word_text =~ /^[A-Z]+$/
         word_text.split(//).sum { |letter| count_letter_syllables(letter) }
 
       # ie 546
       elsif word_text =~ /^[0-9]+$/ then
-        word_text.en.numwords.split.sum{ |numeric_word| count_syllables(numeric_word) }
-      
+        word_text.en.numwords.split.sum { |numeric_word| count_syllables(numeric_word) }
+
       # ie 3:15
       elsif word_text =~ /^[0-9][1|2]?:[0-5][0-9]$/
-        word_text.split(/:/).sum{ |number| count_syllables(number) }
+        word_text.split(/:/).sum { |number| count_syllables(number) }
 
       # ie 1st or 2nd or 101st
-      elsif word_text =~ /^[0-9]+(st|rd|th)$/
-        word_text = word_text.gsub(/(st|rd|th)$/, '')
-        if [10,12].include?(word_text.to_i % 100) || word_text.to_i % 10 == 0
-          count_syllables(word_text)
-        elsif [0,2].include?(word_text.to_i % 10)
+      elsif word_text =~ /^[0-9]+(st|rd|th|nd)$/
+        word_text = word_text.gsub(/(st|rd|th|nd)$/, '')
+        if ([0, 2].include?(word_text.to_i % 10)) && (word_text.to_i % 100 != 10)
           count_syllables(word_text) + 1
         else
-          count_syllables(word_text)        
+          count_syllables(word_text)
         end
 
       # ie r2d2, v12
       elsif word_text =~ /[a-zA-Z][0-9]|[0-9][a-zA-Z]/
-        word_text.scan(/[0-9]+|[a-zA-Z]+/).sum{ |segment| count_syllables(segment) }
+        word_text.scan(/[0-9]+|[a-zA-Z]+/).sum { |segment| count_syllables(segment) }
 
       # a normal word
       elsif word_text =~ /^[a-zA-Z|']+$/ then
@@ -69,6 +67,7 @@ class Word
     
   def initialize(word_text)
     @text = word_text
-    @syllables = get_cache("word_count:#{word_text}") { self.class.count_syllables(word_text) }
+    # @syllables = get_cache("word_count:#{word_text}") { self.class.count_syllables(word_text) }
+    @syllables = self.class.count_syllables(word_text)
   end
 end
