@@ -67,7 +67,6 @@ class Word
     
   def initialize(word_text)
     @text = word_text
-    # @syllables = get_cache("word_count:#{word_text}") { self.class.count_syllables(word_text) }
-    @syllables = self.class.count_syllables(word_text)
+    @syllables = get_cache("word_count:#{word_text}") { self.class.count_syllables(word_text) }
   end
 end
