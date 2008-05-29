@@ -7,10 +7,10 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.root :controller => 'public'
-  map.about '/about', :controller => 'public', :action => "about"
-  map.login 'login/', :controller => 'session', :action => 'create'
-  map.logout 'logout/', :controller => 'session', :action => 'destroy'
-  map.create 'create', :controller => 'haikus', :action => 'new'
+  map.about 'about',    :controller => 'public',  :action => "about"
+  map.login 'login',    :controller => 'session', :action => 'create'
+  map.logout 'logout',  :controller => 'session', :action => 'destroy'
+  map.create 'create',  :controller => 'haikus',  :action => 'new'
   
   map.connect 'logged_exceptions/:action/:id', :controller => 'logged_exceptions'
   
