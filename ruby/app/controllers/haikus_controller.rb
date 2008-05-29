@@ -22,7 +22,7 @@ class HaikusController < ApplicationController
   def show
     @haiku = Haiku.find(params[:id])
     @title = "A haiku by #{@haiku.author.username}"
-    @haikus_by_same_author = @haiku.author.haikus.all(:limit => 3, :order => "favorited_count_total desc", :conditions => ['id <> ?', @haiku])
+    @haikus_by_same_author = @haiku.author.haikus.all(:limit => 4, :order => "favorited_count_total desc", :conditions => ['id <> ?', @haiku])
 
     Haiku.update_counters(params[:id], :view_count_week => 1, :view_count_total => 1)
   end
