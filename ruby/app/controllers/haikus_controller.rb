@@ -43,6 +43,6 @@ class HaikusController < ApplicationController
   end
   
   def most_viewed
-    list_haikus(Haiku, :most_viewed)
+    list_haikus(Haiku, :most_viewed, :title => "Most Viewed (weekly)")
   end
 end

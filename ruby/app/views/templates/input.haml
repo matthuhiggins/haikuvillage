@@ -8,7 +8,7 @@
 
   - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
     %p
-      %h3='Haiku Text'
+      %h3='Write your haiku'
       %div
         = form.text_area (:text, :cols => 40, :rows => 3)
       - if current_author
@@ -38,7 +38,7 @@
     $('haiku_text').focus();
     
 .column.small
-  %h3= @right_title
+  %h2= @right_title
   = render(:partial => "shared/haiku", :collection => @haikus)
   
 %br
