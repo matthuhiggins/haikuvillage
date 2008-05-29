@@ -8,7 +8,7 @@
 
   - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
     %p
-      %h3='Write your haiku'
+      %h3='Type in haiku'
       %div
         = form.text_area (:text, :cols => 40, :rows => 3)
       - if current_author
