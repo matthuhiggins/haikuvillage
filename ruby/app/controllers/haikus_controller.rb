@@ -12,8 +12,7 @@ class HaikusController < ApplicationController
   end
   
   def new
-    @title = "Create your haiku"
-    input_haiku(current_author.haikus.recent)
+    input_haiku(current_author.haikus.recent, :left_title => 'Create a haiku', :right_title => 'Your recent haikus')
   end
   
   def index

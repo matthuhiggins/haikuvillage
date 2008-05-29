@@ -1,6 +1,5 @@
 class PublicController < ApplicationController    
   def index
-    @title = "Welcome to HaikuVillage"
-    input_haiku(Haiku.recent)
+    input_haiku(Haiku.recent, :left_title => 'Welcome to HaikuVillage', :right_title => 'Recent haikus')
   end
 end

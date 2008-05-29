@@ -1,3 +1,4 @@
+%h2= @title
 = render :partial => 'shared/haiku', :collection => @haikus
 %br
 = will_paginate @haikus, :id => 'pagination', :prev_label => 'Previous', :next_label => 'Next', :page_links => @page_links

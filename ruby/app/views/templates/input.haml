@@ -1,6 +1,7 @@
 - javascript "haiku"
 
 .column.wide
+  %h2= @left_title
   = error_messages_for :haiku
 
   #preview
@@ -37,7 +38,7 @@
     $('haiku_text').focus();
     
 .column.small
-  %h3 Recently added
+  %h3= @right_title
   = render(:partial => "shared/haiku", :collection => @haikus)
   
 %br

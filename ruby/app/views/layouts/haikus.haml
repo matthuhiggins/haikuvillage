@@ -45,9 +45,7 @@
         - end
       #content
         - if flash[:notice]
-        #notice= flash[:notice]
-        - end
-        %h2= @title
+          #notice= flash[:notice]
         = yield :layout
       #foot
       - if Rails.env == 'production'
