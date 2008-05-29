@@ -4,7 +4,7 @@ Object.extend(String.prototype, {
   },
   
   hash: function() {
-    return '@' + this.replace(/^[^\w]|[^\w]$/, '');
+    return '@' + this.replace(/^[^\w]+|[^\w]+$/, '');
   }
 });
 
