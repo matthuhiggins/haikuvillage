@@ -16,4 +16,8 @@ module HaikusHelper
       :html       => {:id => 'haiku_login', :style => 'display:none'},
       &block)
   end
+  
+  def current_haiku?(haiku)
+    haiku.id == flash[:new_haiku_id]
+  end
 end

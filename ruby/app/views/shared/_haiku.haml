@@ -1,4 +1,4 @@
-- div_for(haiku, :class => flash[:new_haiku_id] == haiku.id ? 'new' : '') do
+- div_for(haiku, :style => current_haiku?(haiku) ? 'display: none' : '') do
   = link_to haiku, :class => 'text' do
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
@@ -14,3 +14,6 @@
         - if haiku.author == current_author
           = link_to haiku, :method => :delete do
             = image_tag("trash.png", :alt => "Delete")
+- if current_haiku? haiku
+  = update_page_tag do |page|
+    - page[haiku].appear
