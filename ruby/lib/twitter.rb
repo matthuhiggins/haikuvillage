@@ -9,7 +9,8 @@ class Twitter
     
     def create_haiku(haiku)
       author = haiku.author
-      twitter_post(STATUS_UPDATE, author.username, author.password, {'status' => "@haikuvillage #{haiku.text}"}) do |code, data|
+      formatted_text = haiku.text.gsub(/\n/, '/ ')
+      twitter_post(STATUS_UPDATE, author.username, author.password, {'status' => "@haikuvillage #{formatted_text}"}) do |code, data|
         raise StandardError unless code == 200
         haiku[:twitter_status_id] = data['id'].to_i
       end
