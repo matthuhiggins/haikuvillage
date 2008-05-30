@@ -8,8 +8,7 @@
       = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu', :cache => 'haiku_cache'
   %body
     #frame
-      - cache("navigation_#{!current_author.nil?}") do
-        = render :partial => "shared/navigation"
+      = render :partial => "shared/navigation"
       #content
         - if flash[:notice]
           #notice= flash[:notice]

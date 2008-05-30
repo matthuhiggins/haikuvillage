@@ -1,34 +1,35 @@
-#navigation
-  #global-navigation
-    %ul.top-menu
-      %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "public", :action => "index")
-      %li= link_to 'About', about_url
-      - unless current_author
-        %li
-          = link_to_function 'Login' do |page|
-            - page[:login_form].visual_effect(:appear, :duration => 0.3)
-        %li
-          - form_for :author, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
-            %div
-              %label{:for => 'author_username'}='Twitter username:'
-              = form.text_field :username
-            %div
-              %label{:for => 'author_password'}='Password:'
-              = form.password_field :password
-              %button{:type => 'submit'}="Go"
-    %ul.bottom-menu
-      %li= link_to 'Recent', :controller => 'haikus', :action => 'index'
-      %li= '/'
-      %li= link_to 'Top Favorites', :controller => 'haikus', :action => 'top_favorites'
-      %li= '/'
-      %li= link_to 'Most Viewed', :controller => 'haikus', :action => 'most_viewed'
-  - if current_author
-    #author-navigation
+- cache("navigation_#{!current_author.nil?}") do
+  #navigation
+    #global-navigation
       %ul.top-menu
-        %li= link_to 'Logout', logout_url
+        %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "public", :action => "index")
+        %li= link_to 'About', about_url
+        - unless current_author
+          %li
+            = link_to_function 'Login' do |page|
+              - page[:login_form].visual_effect(:appear, :duration => 0.3)
+          %li
+            - form_for :author, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
+              %div
+                %label{:for => 'author_username'}='Twitter username:'
+                = form.text_field :username
+              %div
+                %label{:for => 'author_password'}='Password:'
+                = form.password_field :password
+                %button{:type => 'submit'}="Go"
       %ul.bottom-menu
-        %li= link_to 'Favorites', :controller => 'favorites', :action => 'index'
+        %li= link_to 'Recent', :controller => 'haikus', :action => 'index'
         %li= '/'
-        %li= link_to 'My Haikus', :controller => 'authors', :action => 'show', :id => current_author.username
+        %li= link_to 'Top Favorites', :controller => 'haikus', :action => 'top_favorites'
         %li= '/'
-        %li= link_to 'Create', create_url
+        %li= link_to 'Most Viewed', :controller => 'haikus', :action => 'most_viewed'
+    - if current_author
+      #author-navigation
+        %ul.top-menu
+          %li= link_to 'Logout', logout_url
+        %ul.bottom-menu
+          %li= link_to 'Favorites', :controller => 'favorites', :action => 'index'
+          %li= '/'
+          %li= link_to 'My Haikus', :controller => 'authors', :action => 'show', :id => current_author.username
+          %li= '/'
+          %li= link_to 'Create', create_url
