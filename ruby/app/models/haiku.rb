@@ -14,7 +14,7 @@ class Haiku < ActiveRecord::Base
   
   before_create  { |haiku| Twitter.create_haiku(haiku) }
   after_create   { |haiku| Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1) }
-  before_destroy { |haiku| Author.update_counters(haiku.author_id, :haikus_count_week => -1, :haikus_count_total => -1) }
+  before_destroy { |haiku| Author.update_counters(haiku.author_id, :haikus_count_total => -1) }
   
   def validate    
     line_records = []

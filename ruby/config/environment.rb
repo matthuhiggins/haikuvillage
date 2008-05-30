@@ -13,6 +13,8 @@ Rails::Initializer.run do |config|
     :session_key => "_haiku_village",
     :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
   }
+  
+  config.action_controller.cache_store = :mem_cache_store, "localhost"
 
   config.time_zone = "Pacific Time (US & Canada)"
   config.active_record.default_timezone = :utc
