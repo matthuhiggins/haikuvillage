@@ -1,6 +1,4 @@
-class SyllablesController < ApplicationController
-  caches_action :index, :cache_path => Proc.new { |controller| controller.params[:words] }
-  
+class SyllablesController < ApplicationController  
   def index
     words = params[:words].split("-").collect do |word|
       word = URI.unescape(word)
