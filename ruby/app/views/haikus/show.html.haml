@@ -1,6 +1,6 @@
-.haiku-big
-  = render :partial => 'shared/haiku', :object => @haiku
-  %br
+.center
+  .haiku-big
+    = render :partial => 'shared/haiku', :object => @haiku
     
 - unless @haikus_by_same_author.empty?
   %h2= "#{h(@haiku.author.username)} has #{pluralize(@haiku.author.haikus_count_total - 1, 'other haiku', 'more haikus')}:"
