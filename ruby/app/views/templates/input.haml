@@ -1,41 +1,39 @@
-- javascript "haiku"
+- cache(create_url) do
+  .column.wide
+    %h2= @title
 
-.column.wide
-  %h2= @title
-  = error_messages_for :haiku
+    #preview
 
-  #preview
-
-  - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
-    %p
-      %h3='Type in haiku'
-      %div
-        = form.text_area (:text, :cols => 40, :rows => 3)
-      - if current_author
-      %div
-        = form.submit "Create", :id => "commit_haiku", :disabled => true
-      - end
+    - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
+      %p
+        %h3='Type in haiku'
+        %div
+          = form.text_area (:text, :cols => 40, :rows => 3)
+        - if current_author
+        %div
+          = form.submit "Create", :id => "commit_haiku", :disabled => true
+        - end
         
-  - unless current_author
-    = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
-      - page.hide 'show_haiku_login'
-      - page['haiku_login'].visual_effect :appear
+    - unless current_author
+      = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
+        - page.hide 'show_haiku_login'
+        - page['haiku_login'].visual_effect :appear
 
-    - remote_login_form do |login|
-      .haiku_login_input_box
-        %label="Twitter Username"
-        = login.text_field :username
-      .haiku_login_input_box
-        %label="Password"
-        = login.password_field :password
-      .haiku_login_input_box
-        #haiku_login_message
-        = login.submit "Create", :id => "commit_haiku", :disabled => true
-  = error_messages_for(:haiku)
+      - remote_login_form do |login|
+        .haiku_login_input_box
+          %label="Twitter Username"
+          = login.text_field :username
+        .haiku_login_input_box
+          %label="Password"
+          = login.password_field :password
+        .haiku_login_input_box
+          #haiku_login_message
+          = login.submit "Create", :id => "commit_haiku", :disabled => true
+    = error_messages_for(:haiku)
 
-  %script
-    new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
-    $('haiku_text').focus();
+    %script
+      new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
+      $('haiku_text').focus();
     
 .column.small
   %h2= @right_title
