@@ -7,7 +7,7 @@ module HaikuView
       }
       
       def self.included(base)
-        base.send :alias_method_chain, :expand_javascript_sources, :google if true
+        base.send :alias_method_chain, :expand_javascript_sources, :google unless ActionController::Base.consider_all_requests_local
       end
       
       def expand_javascript_sources_with_google(sources)
