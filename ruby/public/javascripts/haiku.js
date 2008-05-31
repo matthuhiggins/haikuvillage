@@ -1,6 +1,6 @@
 Object.extend(String.prototype, {
   squish: function() {
-    return this.escapeHTML().replace(/\n +/, '\n').replace(/ +/g, ' ').strip();  
+    return this.escapeHTML().replace(/\s+/g, ' ').strip();
   },
   
   hash: function() {
