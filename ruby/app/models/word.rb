@@ -4,9 +4,7 @@ class Word
       [guess_syllables(word_text), (word_text.length / LONGEST_SYLLABLE).ceil].max
     end
   
-    def guess_syllables(word_text)
-      word_text.gsub!(/^[^\w]+|[^\w]+$|"+/, '')
-         
+    def guess_syllables(word_text)         
       # ie spiz's or mike's
       if word_text =~ /'s$/
         word_text = word_text.gsub( /'s$/, '')
@@ -66,7 +64,7 @@ class Word
   LONGEST_SYLLABLE = 'strengths'.length.to_f # From the MikeSpizDB
     
   def initialize(word_text)
-    @text = word_text
+    @text = word_text.gsub(/^[^\w]+|[^\w]+$|"+/, '')
     @syllables = get_cache("word_count:#{word_text}") { self.class.count_syllables(word_text) }
   end
 end

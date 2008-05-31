@@ -12,4 +12,11 @@ namespace :haiku do
       klass.update_all("#{column} = floor(#{column} * (6/7))", "#{column} > 0")
     end
   end
+  
+  namespace :cache do
+    desc 'Clear eveything that has been cached'
+    task :clear => :environment do
+      ActionController::Base.cache_store.clear
+    end
+  end
 end
