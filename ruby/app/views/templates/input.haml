@@ -3,6 +3,7 @@
     %h2= @title
 
     #preview
+      = image_tag "haiku-bg.png"
 
     - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
       %p

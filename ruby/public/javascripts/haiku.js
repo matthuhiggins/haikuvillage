@@ -191,8 +191,12 @@ Haiku.PeriodicalUpdater.prototype = {
     }
 
     if (somethingChanged) {
-      this.previewElement.innerHTML = currentHaiku.toHTML();
-      $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
+      if (currentHaiku.lines.length > 0){
+        this.previewElement.innerHTML = currentHaiku.toHTML();
+        $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
+      } else {
+        this.previewElement.innerHTML = '<img alt="haiku-bg" src="/images/haiku-bg.png" />'
+      }
     }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {
