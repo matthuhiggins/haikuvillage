@@ -64,7 +64,7 @@ class Word
   LONGEST_SYLLABLE = 'strengths'.length.to_f # From the MikeSpizDB
     
   def initialize(word_text)
-    @text = word_text.gsub(/^[^\w]+|[^\w]+$|"+/, '')
+    @text = word_text.gsub(/^[^\w]+|[^\w]+$|"+/, '').chomp
     @syllables = get_cache("word_count:#{word_text}") { self.class.count_syllables(word_text) }
   end
 end
