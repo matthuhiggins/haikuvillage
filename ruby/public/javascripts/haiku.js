@@ -18,7 +18,7 @@ Object.extend(Word, {
   
   fromText: function (text) {
     text = text.squish();
-    return $A(text.split(/ |\n/)).map(function(value) {
+    return $A(text.split(/ |\n|\r|\r\n/)).map(function(value) {
       var word = Word.info[value.hash()];
       return word === undefined ? new Word(value, -1, Word.NEW) : new Word(value, word.syllables, word.state);
     });
