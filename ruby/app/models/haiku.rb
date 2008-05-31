@@ -1,12 +1,21 @@
-class Haiku < ActiveRecord::Base
+class Haiku < ActiveRecord::Base  
+  class Line
+    attr_reader :words
+
+    def initialize(text)
+      @words = text.split.map{ |word| Word.new(word) }
+    end
+
+    def syllables
+      words.sum &:syllables
+    end
+  end
+  
   VALID_SYLLABLES = [5, 7, 5]
   
   belongs_to :author
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :haiku_favorites, :source => :author
-
-  validates_presence_of :author_id
-  validates_presence_of :text
   
   named_scope :recent, :order => 'haikus.id desc'
   named_scope :top_favorites, :order => 'favorited_count_week desc', :conditions => "favorited_count_week > 0"
@@ -15,6 +24,9 @@ class Haiku < ActiveRecord::Base
   before_create  { |haiku| Twitter.create_haiku(haiku) }
   after_create   { |haiku| Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1) }
   before_destroy { |haiku| Author.update_counters(haiku.author_id, :haikus_count_total => -1) }
+  
+  validates_presence_of :author_id
+  validates_presence_of :text
   
   def validate    
     line_records = []

@@ -4,7 +4,7 @@ class Word
       [guess_syllables(word_text), (word_text.length / LONGEST_SYLLABLE).ceil].max
     end
   
-    def guess_syllables(word_text)         
+    def guess_syllables(word_text)
       # ie spiz's or mike's
       if word_text =~ /'s$/
         word_text = word_text.gsub( /'s$/, '')
