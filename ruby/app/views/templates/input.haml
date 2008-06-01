@@ -10,10 +10,12 @@
         %h3='Type in haiku'
         %div
           = form.text_area (:text, :cols => 40, :rows => 3)
+          %br
+          %label{:for => 'haiku_subject_name'}= 'Subject:'
+          = subject_auto_complete
         - if current_author
-        %div
-          = form.submit "Create", :id => "commit_haiku", :disabled => true
-        - end
+          %div
+            = form.submit "Create", :id => "commit_haiku", :disabled => true
         
     - unless current_author
       = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|

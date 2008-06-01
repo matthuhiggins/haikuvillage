@@ -14,7 +14,7 @@ class Haiku < ActiveRecord::Base
   VALID_SYLLABLES = [5, 7, 5]
   
   belongs_to :author
-  belongs_to :subject
+  belongs_to :subject, :counter_cache => true
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :haiku_favorites, :source => :author
   
@@ -43,7 +43,7 @@ class Haiku < ActiveRecord::Base
   end
   
   def subject_name=(name)
-    self.subject = Subject.find_or_create_by_name(name) unless name.blank
-    self.subject_name = name
+    self.subject = Subject.find_or_create_by_name(name) unless name.blank?
+    self[:subject_name] = name
   end
 end

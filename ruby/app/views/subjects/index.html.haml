@@ -1,6 +1,8 @@
 %ul
   - @subjects.each do |subject|
-    %li= link_to subject.name, subject.name
+    %li
+      = link_to subject.name, :id => subject.name
+      = "(#{subject.haikus_count})"
 
 / = subjects_url
 = text_field_tag 'foo'

@@ -2,7 +2,7 @@ class HaikusController < ApplicationController
   login_filter :only => [:new, :create]
   
   def create
-    @haiku = Haiku.create(:text => params[:haiku][:text], :author => current_author)
+    @haiku = Haiku.create(:text => params[:haiku][:text], :subject_name => params[:haiku][:subject_name], :author => current_author)
     if @haiku.errors.empty?
       flash[:new_haiku_id] = @haiku.id
     else

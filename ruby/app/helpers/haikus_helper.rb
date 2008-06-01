@@ -17,7 +17,11 @@ module HaikusHelper
       &block)
   end
   
-  def current_haiku?(haiku)
+  def new_haiku?(haiku)
     haiku.id == flash[:new_haiku_id]
+  end
+  
+  def subject_auto_complete
+    text_field_with_auto_complete :haiku, :subject_name, {:size => 10}, {:url => formatted_subjects_path(:js), :method => :get, :param_name => 'search'}
   end
 end
