@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20080531233041) do
   end
 
   add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
+  add_index "subjects", ["name", "haikus_count"], :name => "index_subjects_on_name_and_haikus_count"
   add_index "subjects", ["haikus_count"], :name => "index_subjects_on_haikus_count"
   add_index "subjects", ["created_at"], :name => "index_subjects_on_created_at"
 

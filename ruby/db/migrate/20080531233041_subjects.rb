@@ -6,7 +6,8 @@ class Subjects < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :subjects, :name, :unique => true
+    add_index :subjects, :name, :unique => true 
+    add_index :subjects, [:name, :haikus_count]
     add_index :subjects, :haikus_count
     add_index :subjects, :created_at
     

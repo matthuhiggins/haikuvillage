@@ -6,4 +6,8 @@ class SubjectsController < ApplicationController
   def show
     list_haikus(Subject.find_by_name(params[:id]), :haikus, :title => "#{params[:id]} Haikus", :cached_total => :haikus_count)
   end
+  
+  def search
+    render :text => Subject.search(params[:id]).popular.to_json
+  end
 end
