@@ -1,3 +1,8 @@
 %ul
   - @subjects.each do |subject|
     %li= link_to subject.name, subject.name
+
+/ = subjects_url
+= text_field_tag 'foo'
+#foo_auto_complete
+= auto_complete_field 'foo', :url => formatted_subjects_path(:js), :method => :get, :param_name => 'search'
