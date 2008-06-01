@@ -23,6 +23,8 @@
         %li= link_to 'Top Favorites', :controller => 'haikus', :action => 'top_favorites'
         %li= '/'
         %li= link_to 'Most Viewed', :controller => 'haikus', :action => 'most_viewed'
+        %li= '/'
+        %li= link_to 'Subjects', :controller => 'subjects'
     - if current_author
       #author-navigation
         %ul.top-menu
