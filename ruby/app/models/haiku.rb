@@ -1,4 +1,4 @@
-class Haiku < ActiveRecord::Base  
+class Haiku < ActiveRecord::Base
   class Line
     attr_reader :words
 

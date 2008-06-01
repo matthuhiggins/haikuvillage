@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080522013302) do
+ActiveRecord::Schema.define(:version => 20080531233041) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                        :null => false
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20080522013302) do
     t.text     "text",                                               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subject_name"
+    t.integer  "subject_id",            :limit => 11
   end
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20080522013302) do
   add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
   add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
   add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
+  add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
@@ -64,5 +67,16 @@ ActiveRecord::Schema.define(:version => 20080522013302) do
     t.text     "request"
     t.datetime "created_at"
   end
+
+  create_table "subjects", :force => true do |t|
+    t.string   "name",                                      :null => false
+    t.integer  "haikus_count", :limit => 11, :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
+  add_index "subjects", ["haikus_count"], :name => "index_subjects_on_haikus_count"
+  add_index "subjects", ["created_at"], :name => "index_subjects_on_created_at"
 
 end

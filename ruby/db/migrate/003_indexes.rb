@@ -1,8 +1,6 @@
 class Indexes < ActiveRecord::Migration
-  
   def self.up
     add_index :haikus, :author_id
-    
     add_index :haikus, :favorited_count_week
     add_index :haikus, :favorited_count_total
     add_index :haikus, :view_count_week

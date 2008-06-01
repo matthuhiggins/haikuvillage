@@ -1,6 +1,5 @@
 class ForeignKeys < ActiveRecord::Migration
-
-  extend MigrationHelpers
+  # extend MigrationHelpers
  
   def self.up  
     add_foreign_key :haikus, :author_id, :authors
