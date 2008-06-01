@@ -4,9 +4,7 @@ class FavoritesController < ApplicationController
   login_filter
   
   def update
-    change_favorite do |haiku|
-      current_author.favorites << haiku
-    end
+    change_favorite { |haiku| current_author.favorites << haiku }
   end
   
   def index 
@@ -14,9 +12,7 @@ class FavoritesController < ApplicationController
   end
   
   def destroy
-    change_favorite do |haiku|
-      HaikuFavorite.destroy_all(:author_id => current_author, :haiku_id => haiku)
-    end
+    change_favorite { |haiku| HaikuFavorite.destroy_all(:author_id => current_author, :haiku_id => haiku) }
   end
   
   private
