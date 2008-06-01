@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|  
   map.resource :session
   map.resources :authors, :member => { :favorites => :get }
-  
-  map.resources :haikus, :collection => {:top_favorites => :get, :most_viewed => :get}, :requirements => {:id => /.*/} do |haikus|
+  map.resources :subjects
+  map.resources :haikus, :collection => {:top_favorites => :get, :most_viewed => :get} do |haikus|
     haikus.resource :favorites
   end
   
