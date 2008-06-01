@@ -14,6 +14,5 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connect 'logged_exceptions/:action/:id', :controller => 'logged_exceptions'
   
-  # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'
 end
