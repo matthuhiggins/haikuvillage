@@ -19,11 +19,6 @@ class FavoritesController < ApplicationController
     def change_favorite
       @haiku = Haiku.find(params[:haiku_id])
       yield(@haiku)
-      
-      respond_to do |f|
-        f.js
-      end
-      
     rescue => e
       logger.debug e
       head :unprocessable_entity
