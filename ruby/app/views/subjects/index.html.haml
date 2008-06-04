@@ -1,7 +1,7 @@
 %ul
   - @subjects.each do |subject|
     %li
-      = link_to subject.name, :id => subject.name
+      = link_to subject.name, :action => :show, :id => subject.name
       = "(#{subject.haikus_count})"
 
 / = subjects_url
