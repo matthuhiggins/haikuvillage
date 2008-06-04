@@ -1,11 +1,11 @@
 class HaikusController < ApplicationController
   class HaikusControllerError < StandardError
   end
-  # Raised when a destroy action is performed on an object
-  # not owned by current_author
+  # Raised when destroy is performed on a haiku not owned by current_author
   class UnauthorizedDestroyRequest < HaikusControllerError
   end
   
+  # Raised when update is performed on a haiku not owned by current_author  
   class UnauthorizedUpdateRequest < HaikusControllerError
   end
   
