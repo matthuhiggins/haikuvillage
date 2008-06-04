@@ -2,9 +2,20 @@
 #foo_auto_complete
 = auto_complete_field 'foo', :url => suggest_subjects_path, :method => :get, :param_name => 'q'
 
-%h3= 'Popular Subjects'
-%ul
-  - @popular_subjects.each do |subject|
-    %li
-      = link_to subject.name, :action => :show, :id => subject.name
-      = "(#{subject.haikus_count_total})"
+.column
+  %h3= 'Popular Subjects'
+  %ul.subject_list
+    - @popular_subjects.each do |subject|
+      %li
+        = link_to subject.name, :action => :show, :id => subject.name
+        %span.subject_metric
+          = "(#{subject.haikus_count_total} haikus)"
+
+.column
+  %h3= 'New Subjects'
+  %ul.subject_list
+    - @popular_subjects.each do |subject|
+      %li
+        = link_to subject.name, :action => :show, :id => subject.name
+        %span.subject_metric
+          = subject.created_at.to_s(:haiku)
