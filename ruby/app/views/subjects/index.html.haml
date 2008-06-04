@@ -1,10 +1,10 @@
-%ul
-  - @subjects.each do |subject|
-    %li
-      = link_to subject.name, :action => :show, :id => subject.name
-      = "(#{subject.haikus_count})"
-
-/ = subjects_url
 = text_field_tag 'foo'
 #foo_auto_complete
-= auto_complete_field 'foo', :url => formatted_subjects_path(:js), :method => :get, :param_name => 'search'
+= auto_complete_field 'foo', :url => suggest_subjects_path, :method => :get, :param_name => 'q'
+
+%h3= 'Popular Subjects'
+%ul
+  - @popular_subjects.each do |subject|
+    %li
+      = link_to subject.name, :action => :show, :id => subject.name
+      = "(#{subject.haikus_count_total})"

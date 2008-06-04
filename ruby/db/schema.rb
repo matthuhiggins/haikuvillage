@@ -69,15 +69,16 @@ ActiveRecord::Schema.define(:version => 20080531233041) do
   end
 
   create_table "subjects", :force => true do |t|
-    t.string   "name",                                      :null => false
-    t.integer  "haikus_count", :limit => 11, :default => 0, :null => false
+    t.string   "name",                                            :null => false
+    t.integer  "haikus_count_week",  :limit => 11, :default => 0, :null => false
+    t.integer  "haikus_count_total", :limit => 11, :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
-  add_index "subjects", ["name", "haikus_count"], :name => "index_subjects_on_name_and_haikus_count"
-  add_index "subjects", ["haikus_count"], :name => "index_subjects_on_haikus_count"
+  add_index "subjects", ["haikus_count_week"], :name => "index_subjects_on_haikus_count_week"
+  add_index "subjects", ["haikus_count_total"], :name => "index_subjects_on_haikus_count_total"
   add_index "subjects", ["created_at"], :name => "index_subjects_on_created_at"
 
 end

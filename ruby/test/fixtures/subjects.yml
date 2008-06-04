@@ -4,3 +4,5 @@ sciku:
   name: Sci-ku
 spring:
   name: Spring
+politics:
+  name: Politics

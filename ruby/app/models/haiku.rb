@@ -10,11 +10,9 @@ class Haiku < ActiveRecord::Base
       words.sum &:syllables
     end
   end
-  
-  VALID_SYLLABLES = [5, 7, 5]
-  
+    
   belongs_to :author
-  belongs_to :subject, :counter_cache => true
+  belongs_to :subject
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :haiku_favorites, :source => :author
   
@@ -22,12 +20,22 @@ class Haiku < ActiveRecord::Base
   named_scope :top_favorites, :order => 'favorited_count_week desc', :conditions => "favorited_count_week > 0"
   named_scope :most_viewed, :order => 'view_count_week desc', :conditions => 'view_count_week > 0'
   
+  after_create do |haiku|
+    Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
+    Subject.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.subject_id
+  end
+
   before_create  { |haiku| Twitter.create_haiku(haiku) }
-  after_create   { |haiku| Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1) }
-  before_destroy { |haiku| Author.update_counters(haiku.author_id, :haikus_count_total => -1) }
+  
+  before_destroy do |haiku|
+    Author.update_counters(haiku.author_id, :haikus_count_total => -1)
+    Subject.update_counters(haiku.subject_id, :haikus_count_total => -1) if haiku.subject_id
+  end
   
   validates_presence_of :author_id
   validates_presence_of :text
+  
+  VALID_SYLLABLES = [5, 7, 5]
   
   def validate    
     line_records = []
