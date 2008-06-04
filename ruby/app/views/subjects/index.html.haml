@@ -1,6 +1,4 @@
-= text_field_tag 'foo'
-#foo_auto_complete
-= auto_complete_field 'foo', :url => suggest_subjects_path, :method => :get, :param_name => 'q'
+= text_field_with_auto_complete :subject, :name, {:size => 10}, {:url => suggest_subjects_path, :method => :get, :param_name => 'q'}
 
 .column
   %h3= 'Popular Subjects'
