@@ -12,7 +12,7 @@
 .column
   %h3= 'New Subjects'
   %ul.subject_list
-    - @popular_subjects.each do |subject|
+    - @new_subjects.each do |subject|
       %li
         = link_to subject.name, :action => :show, :id => subject.name
         %span.subject_metric

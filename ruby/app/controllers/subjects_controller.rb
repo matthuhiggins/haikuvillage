@@ -1,7 +1,7 @@
 class SubjectsController < ApplicationController
   def index
-    @popular_subjects = Subject.all(:order => 'haikus_count_week desc')
-    @new_subjects = Subject.all(:order => "created_at desc")
+    @popular_subjects = Subject.popular
+    @new_subjects = Subject.recent
   end
   
   def show
