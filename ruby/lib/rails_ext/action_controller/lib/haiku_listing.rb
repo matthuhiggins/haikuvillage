@@ -5,7 +5,7 @@ module HaikuController
     # * <tt>:cached_total</tt> -- Total number of entries for the current search. For performance reasons, we never want to count from the database
     #   In the case that :cached_total is not provided, only Next and Previous links are provided
     # * <tt>:title</tt> -- The header to display above the list. If not provided, method is humanized.
-    #
+    # * <tt>:order_scope</tt> -- A custom order scope to override the default
     # Sets @haikus, @title and @page_links
     def list_haikus(source, options = {})
       cached_total = options.delete(:cached_total) || 0
@@ -31,7 +31,6 @@ module HaikuController
     VALID_SORT_SCOPES = [:recent, :most_viewed, :top_favorites].to_set
     
     def sort_scope_name
-      # raise StandardError
       if params[:order].nil?
         :recent
       else
