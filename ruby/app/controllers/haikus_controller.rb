@@ -1,4 +1,14 @@
 class HaikusController < ApplicationController
+  class HaikusControllerError < StandardError
+  end
+  # Raised when a destroy action is performed on an object
+  # not owned by current_author
+  class UnauthorizedDestroyRequest < HaikusControllerError
+  end
+  
+  class UnauthorizedUpdateRequest < HaikusControllerError
+  end
+  
   login_filter :only => [:new, :create]
   
   def create
@@ -36,6 +46,12 @@ class HaikusController < ApplicationController
       f.html { redirect_to referring_uri }
       f.js   { head :ok }
     end
+  end
+  
+  def update
+    haiku = Haiku.find(params[:id])
+    raise UnauthorizedUpdateRequest unless haiku.author == current_author
+    haiku.subject_name = params[:haiku][:subject_name]
   end
   
   def top_favorites
