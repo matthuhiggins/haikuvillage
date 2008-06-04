@@ -7,8 +7,8 @@ class FavoritesController < ApplicationController
     change_favorite { |haiku| current_author.favorites << haiku }
   end
   
-  def index 
-    list_haikus(current_author, :favorites, :title => "Your Favorite Haikus", :cached_total => :favorites_count)
+  def index
+    list_haikus(current_author.favorites, :title => "Your Favorite Haikus", :cached_total => current_author.favorites_count)
   end
   
   def destroy

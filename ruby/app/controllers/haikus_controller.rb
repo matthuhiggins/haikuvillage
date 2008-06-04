@@ -1,6 +1,7 @@
 class HaikusController < ApplicationController
   class HaikusControllerError < StandardError
   end
+  
   # Raised when destroy is performed on a haiku not owned by current_author
   class UnauthorizedDestroyRequest < HaikusControllerError
   end
@@ -26,7 +27,7 @@ class HaikusController < ApplicationController
   end
   
   def index
-    list_haikus(Haiku, :recent)
+    list_haikus(Haiku)
   end
   
   def show
@@ -52,13 +53,5 @@ class HaikusController < ApplicationController
     haiku = Haiku.find(params[:id])
     raise UnauthorizedUpdateRequest unless haiku.author == current_author
     haiku.subject_name = params[:haiku][:subject_name]
-  end
-  
-  def top_favorites
-    list_haikus(Haiku, :top_favorites, :title => "Top Favorites (weekly)")
-  end
-  
-  def most_viewed
-    list_haikus(Haiku, :most_viewed, :title => "Most Viewed (weekly)")
   end
 end
