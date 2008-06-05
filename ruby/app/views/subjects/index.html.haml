@@ -7,7 +7,7 @@
       %li
         = link_to subject.name, :action => :show, :id => subject.name
         %span.subject_metric
-          = "(#{subject.haikus_count_total} haikus)"
+          = "(#{pluralize subject.haikus_count_total, 'haiku'})"
 
 .column
   %h3= 'New Subjects'
