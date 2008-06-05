@@ -13,10 +13,7 @@
     #subject_form_container
       %h3= 'Subject'
       = subject_auto_complete
-      
-  = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
-    - page.hide 'show_haiku_login'
-    - page['haiku_login'].visual_effect :appear
+    = form.submit 'dummy', :disabled => true, :style => 'display: none;'
 
   - remote_login_form do |login|
     .haiku_login_input_box
@@ -28,6 +25,10 @@
     .haiku_login_input_box
       #haiku_login_message
       = login.submit "Create", :id => "commit_haiku", :disabled => true
+      
+  = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
+    - page.hide 'show_haiku_login'
+    - page['haiku_login'].visual_effect :appear
 
   %script
     new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
