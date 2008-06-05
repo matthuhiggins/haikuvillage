@@ -5,6 +5,6 @@ class AuthorsController < ApplicationController
   end
   
   def index
-    render :text => Author.all.inspect
+    @authors = Author.active
   end
 end

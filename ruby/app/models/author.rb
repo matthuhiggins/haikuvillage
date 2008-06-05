@@ -2,6 +2,9 @@ class Author < ActiveRecord::Base
   has_many :favorites, :through => :haiku_favorites, :source => :haiku
   has_many :haiku_favorites
   has_many :haikus
+    
+  named_scope :recent, :order => 'created_at desc', :conditions => "created_at > 0"
+  named_scope :active, :order => 'haikus_count_week desc', :conditions => 'haikus_count_week > 0'
   
   validates_presence_of :username
   validates_uniqueness_of :username

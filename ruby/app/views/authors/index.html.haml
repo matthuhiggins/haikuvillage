@@ -1,0 +1,8 @@
+.column
+  %h3= 'Active Authors'
+  %ul.subject_list
+    - @authors.each do |author|
+      %li
+        = link_to author.username, :action => :show, :id => author.username
+        %span.subject_metric
+          = "(#{author.haikus_count_total} haikus)"
