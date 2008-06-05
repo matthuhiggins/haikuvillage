@@ -3,7 +3,14 @@
 .center
   .haiku-big
     = render :partial => 'shared/haiku', :object => @haiku
-    
+
+- unless @haiku.happy_authors.empty?
+  %h2 Users who favorited this haiku:
+  %p{:style => "padding-left: 10px"}
+    - @haiku.happy_authors.each do |author|
+    = link_to h(author.username), {:controller => "authors", :action => 'show', :id => author.username}
+    - end
+  %br
 - unless @haikus_by_same_author.empty?
   %h2= "#{h(@haiku.author.username)} has #{pluralize(@haiku.author.haikus_count_total - 1, 'other haiku', 'more haikus')}:"
   = render(:partial => "shared/haiku", :collection => @haikus_by_same_author)
