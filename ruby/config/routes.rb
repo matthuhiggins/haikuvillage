@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.root :controller => 'public'
   map.about 'about',    :controller => 'public',  :action => "about"
+  map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"
   map.login 'login',    :controller => 'session', :action => 'create'
   map.logout 'logout',  :controller => 'session', :action => 'destroy'
   map.create 'create',  :controller => 'haikus',  :action => 'new'
