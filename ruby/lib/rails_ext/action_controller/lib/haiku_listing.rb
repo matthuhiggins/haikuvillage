@@ -29,10 +29,7 @@ module HaikuController
         @page_links = true
       end
       
-      respond_to do |f|
-        f.html render :template => "templates/listing"
-        f.atom
-      end
+      render :template => "templates/listing"
     end
         
     VALID_SORT_SCOPES = [:recent, :most_viewed, :top_favorites].to_set
