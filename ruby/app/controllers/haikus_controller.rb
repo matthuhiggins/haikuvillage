@@ -10,7 +10,7 @@ class HaikusController < ApplicationController
   class UnauthorizedUpdateRequest < HaikusControllerError
   end
   
-  login_filter :only => [:new, :create]
+  login_filter :only => [:new, :create, :update]
   
   def create
     @haiku = Haiku.create(:text => params[:haiku][:text], :subject_name => params[:haiku][:subject_name], :author => current_author)
@@ -33,7 +33,6 @@ class HaikusController < ApplicationController
   
   def show
     @haiku = Haiku.find(params[:id])
-    @title = "A haiku by #{@haiku.author.username}"
     @haikus_by_same_author = @haiku.author.haikus.all(:limit => 4, :order => "favorited_count_total desc", :conditions => ['id <> ?', @haiku])
 
     Haiku.update_counters(params[:id], :view_count_week => 1, :view_count_total => 1)
