@@ -5,6 +5,5 @@ class PublicController < ApplicationController
   
   def sitemap
     @last_haiku = Haiku.recent.first
-    render :layout => false
   end
 end
