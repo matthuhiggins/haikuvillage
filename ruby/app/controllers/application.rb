@@ -3,21 +3,14 @@ class ApplicationController < ActionController::Base
   
   helper :favorites, :haikus
         
-  private    
-    def input_haiku(proxy, options = {})
-      options.merge!(:limit => 4, :include => :author)
-      @title, @right_title = options.delete(:left_title), options.delete(:right_title)
-      @haikus = proxy.all(options)
-      render :template => "templates/input"
-    end
+  private
+  def referring_uri
+    params[:referrer] || request.env["HTTP_REFERER"] || root_url
+  end
 
-    def referring_uri
-      params[:referrer] || request.env["HTTP_REFERER"] || root_url
-    end
-
-    def current_author
-      @current_author ||= Author.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
-    end
-    
-    helper_method :referring_uri, :current_author
+  def current_author
+    @current_author ||= Author.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
+  end
+  
+  helper_method :referring_uri, :current_author
 end

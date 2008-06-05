@@ -23,7 +23,8 @@ class HaikusController < ApplicationController
   end
   
   def new
-    input_haiku(current_author.haikus.recent, :left_title => 'Create a haiku', :right_title => 'Your recent haikus')
+    @right_title = 'Your recent haikus'
+    @haikus = current_author.haikus.recent.all(:limit => 4, :include => :author)
   end
   
   def index
