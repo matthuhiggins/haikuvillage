@@ -1,9 +1,11 @@
-%h2= @title
+.haiku_listing
+  %h2= @title
 
-%span= link_to 'Recent', :order => 'recent'
-%span= link_to 'Most Viewed', :order => 'most_viewed'
-%span= link_to 'Top Favorites', :order => 'top_favorites'
+  %ul.sort_options
+    %li= haiku_sort_link :recent
+    %li= haiku_sort_link :most_viewed
+    %li= haiku_sort_link :top_favorites
 
-= render :partial => 'shared/haiku', :collection => @haikus
-%br
-= will_paginate @haikus, :id => 'pagination', :prev_label => 'Previous', :next_label => 'Next', :page_links => @page_links
+  = render :partial => 'shared/haiku', :collection => @haikus
+  %br
+  = will_paginate @haikus, :id => 'pagination', :prev_label => 'Previous', :next_label => 'Next', :page_links => @page_links

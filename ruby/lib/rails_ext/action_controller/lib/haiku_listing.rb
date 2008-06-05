@@ -1,5 +1,9 @@
 module HaikuController
   module HaikuListing
+    def self.included(base)
+      base.send(:helper_method, :haiku_sort_param)
+    end
+    
     private
     # Lists out haikus with pagination.
     # * <tt>:cached_total</tt> -- Total number of entries for the current search. For performance reasons, we never want to count from the database
@@ -16,7 +20,7 @@ module HaikuController
                      :include       => :author)
 
       @title = options.delete(:title) || 'Haikus'
-      @haikus = source.send(sort_scope_name).paginate(options)
+      @haikus = source.send(haiku_sort_param).paginate(options)
 
       if cached_total == 0
         @haikus.total_entries = @haikus.offset + [@haikus.length, HaikuEnv.haikus_per_page].min + 1
@@ -30,7 +34,7 @@ module HaikuController
         
     VALID_SORT_SCOPES = [:recent, :most_viewed, :top_favorites].to_set
     
-    def sort_scope_name
+    def haiku_sort_param
       if params[:order].nil?
         :recent
       else
