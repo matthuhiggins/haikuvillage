@@ -5,6 +5,7 @@ class AuthorsController < ApplicationController
   end
   
   def index
-    @authors = Author.active
+    @active_authors = Author.active.all(:limit => 10)
+    @brand_new_authors = Author.brand_new.all(:limit => 10)
   end
 end
