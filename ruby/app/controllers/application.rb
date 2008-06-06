@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
         
   private
   def referring_uri
-    params[:referrer] || request.env["HTTP_REFERER"] || root_url
+    request.env["HTTP_REFERER"] || root_url
   end
 
   def current_author

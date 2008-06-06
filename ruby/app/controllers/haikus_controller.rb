@@ -39,7 +39,7 @@ class HaikusController < ApplicationController
     haiku.destroy
     
     respond_to do |f|
-      f.html { redirect_to referring_uri }
+      f.html { redirect_to (haiku_url(haiku) == referring_uri ? create_url : referring_uri) }
       f.js   { head :ok }
     end
   end
