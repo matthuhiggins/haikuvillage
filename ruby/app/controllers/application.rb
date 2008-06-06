@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  layout proc { |controller| controller.request.format == :html ? 'haikus' : nil  }
+  layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
+  exempt_from_layout 'builder'
   
   helper :favorites, :haikus
         
