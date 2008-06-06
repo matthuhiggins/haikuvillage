@@ -24,8 +24,6 @@ class Haiku < ActiveRecord::Base
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
     Subject.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.subject_id
   end
-
-  before_create  { |haiku| Twitter.create_haiku(haiku) }
   
   before_destroy do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_total => -1)

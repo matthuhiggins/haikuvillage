@@ -12,7 +12,7 @@ class Twitter
       formatted_text = haiku.text.gsub(/\n/, '/ ')
       twitter_post(STATUS_UPDATE, author.username, author.password, {'status' => "@haikuvillage #{formatted_text}"}) do |code, data|
         raise StandardError unless code == 200
-        haiku[:twitter_status_id] = data['id'].to_i
+        haiku.update_attribute(:twitter_status_id, data['id'])
       end
     end
     

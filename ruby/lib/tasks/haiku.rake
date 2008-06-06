@@ -17,6 +17,16 @@ namespace :haiku do
     end
   end
   
+  namespace :twitter do
+    desc 'Upload haikus to twitter'
+    task :update => :environment do
+      begin
+        haikus = Haiku.all(:conditions => {:twitter_status_id => nil}, :order => :id, :limit => 10)
+        haikus.each { |haiku| Twitter.create_haiku(haiku) }
+      end while haikus.size > 0
+    end
+  end
+  
   namespace :cache do
     desc 'Clear eveything that has been cached'
     task :clear => :environment do
