@@ -11,7 +11,7 @@
       %h3= 'Type in haiku'
       = form.text_area (:text, :cols => 40, :rows => 3)
     #subject_form_container
-      %h3= 'Subject'
+      %h3= 'Subject (optional)'
       = subject_auto_complete
     %div
       = form.submit "Create", :id => "commit_haiku", :disabled => true

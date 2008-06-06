@@ -22,11 +22,6 @@ class HaikusController < ApplicationController
     redirect_to create_url
   end
   
-  def new
-    @right_title = 'Your recent haikus'
-    @haikus = current_author.haikus.recent.all(:limit => 4, :include => :author)
-  end
-  
   def index
     list_haikus(Haiku)
   end
