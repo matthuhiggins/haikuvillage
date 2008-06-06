@@ -7,11 +7,11 @@
         - if current_author
           %li= link_to 'My Haikus', :controller => 'authors', :action => 'show', :id => current_author.username
           %li= '/'
-        %li= link_to 'Explore', :controller => 'haikus'
+        %li= link_to_controller 'Explore', 'haikus'
         %li= '/'
-        %li= link_to 'Subjects', :controller => 'subjects'
+        %li= link_to_controller 'Subjects', 'subjects'
         %li= '/'
-        %li= link_to 'Authors', :controller => 'authors'
+        %li= link_to_controller 'Authors', 'authors'
     #author-navigation
       %ul.top-menu
         - unless current_author

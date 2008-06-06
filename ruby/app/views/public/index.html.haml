@@ -9,7 +9,7 @@
   - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
     #haiku_text_container
       %h3= 'Type in haiku'
-      = form.text_area (:text, :cols => 40, :rows => 3)
+      = form.text_area(:text, :cols => 40, :rows => 3)
     #subject_form_container
       %h3= 'Subject'
       = subject_auto_complete
