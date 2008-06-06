@@ -3,10 +3,20 @@
     #global-navigation
       %ul.top-menu
         %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "public", :action => "index")
-        %li= link_to 'About', about_url
+      %ul.bottom-menu
+        - if current_author
+          %li= link_to 'My Haikus', :controller => 'authors', :action => 'show', :id => current_author.username
+          %li= '/'
+        %li= link_to 'Explore', :controller => 'haikus'
+        %li= '/'
+        %li= link_to 'Subjects', :controller => 'subjects'
+        %li= '/'
+        %li= link_to 'Authors', :controller => 'authors'
+    #author-navigation
+      %ul.top-menu
         - unless current_author
           %li
-            = link_to_function 'Login' do |page|
+            = link_to_function 'Sign in' do |page|
               - page[:login_form].visual_effect(:appear, :duration => 0.3)
           %li
             - form_for :author, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
@@ -14,22 +24,10 @@
                 %label{:for => 'author_username'}='Twitter username:'
                 = form.text_field :username
               %div
-                %label{:for => 'author_password'}='Password:'
+                %label{:for => 'author_password'}='Twitter password:'
                 = form.password_field :password
                 %button{:type => 'submit'}="Go"
+        - else
+          %li= link_to 'Sign out', logout_url
       %ul.bottom-menu
-        %li= link_to 'Haikus', :controller => 'haikus'
-        %li= '/'
-        %li= link_to 'Subjects', :controller => 'subjects'
-        %li= '/'
-        %li= link_to 'Authors', :controller => 'authors'
-    - if current_author
-      #author-navigation
-        %ul.top-menu
-          %li= link_to 'Logout', logout_url
-        %ul.bottom-menu
-          %li= link_to 'Favorites', :controller => 'favorites', :action => 'index'
-          %li= '/'
-          %li= link_to 'My Haikus', :controller => 'authors', :action => 'show', :id => current_author.username
-          %li= '/'
-          %li= link_to 'Create', create_url
+        %li= link_to 'About', about_url
