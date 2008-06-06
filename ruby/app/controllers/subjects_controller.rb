@@ -1,15 +1,10 @@
 class SubjectsController < ApplicationController
   def index
     if params[:q]
-      if Subject.find_by_name(params[:q])
-        redirect_to :action => 'show', :id => params[:q]
-      else
-        @subjects = Subject.search(params[:q]).popular
-        render :action => 'search'
-      end
+      render_search(params[:q])
     else
-      @popular_subjects = Subject.popular
-      @new_subjects = Subject.recent
+      @popular_subjects = Subject.popular.all(:limit => 10)
+      @new_subjects = Subject.recent.all(:limit => 10)
     end
   end
   
@@ -19,6 +14,16 @@ class SubjectsController < ApplicationController
   end
   
   def suggest
-    @subjects = Subject.search(params[:q]).popular
+    @subjects = Subject.search(params[:q]).popular.all(:limit => 12)
   end
+  
+  private
+    def render_search(query)
+      if Subject.find_by_name(query)
+        redirect_to :action => 'show', :id => query
+      else
+        @subjects = Subject.search(query).popular.all(:limit => 20)
+        render :action => 'search'
+      end
+    end
 end
