@@ -1,0 +1,8 @@
+= render :partial => 'search_form'
+
+- if @subjects.empty?
+  No subjects matched your search.
+- else
+  %ul
+  - @subjects.each do |subject|
+    %li= link_to subject

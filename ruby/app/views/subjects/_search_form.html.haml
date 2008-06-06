@@ -1,0 +1,3 @@
+- form_tag subjects_url, :method => :get do
+  = text_field_with_auto_complete :subject, :name, {:name => 'q', :value => params[:q], :size => 10}, {:url => suggest_subjects_path, :method => :get, :param_name => 'q'}
+  = submit_tag 'Search', :name => nil

@@ -1,7 +1,16 @@
 class SubjectsController < ApplicationController
   def index
-    @popular_subjects = Subject.popular
-    @new_subjects = Subject.recent
+    if params[:q]
+      if Subject.find_by_name(params[:q])
+        redirect_to :action => 'show', :id => params[:q]
+      else
+        @subjects = Subject.search(params[:q]).popular
+        render :action => 'search'
+      end
+    else
+      @popular_subjects = Subject.popular
+      @new_subjects = Subject.recent
+    end
   end
   
   def show

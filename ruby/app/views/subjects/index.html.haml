@@ -1,11 +1,11 @@
-= text_field_with_auto_complete :subject, :name, {:size => 10}, {:url => suggest_subjects_path, :method => :get, :param_name => 'q'}
+= render :partial => 'search_form'
 
 .column
   %h3= 'Popular Subjects'
   %ul.subject_list
     - @popular_subjects.each do |subject|
       %li
-        = link_to subject.name, :action => :show, :id => subject.name
+        = link_to_subject subject
         %span.subject_metric
           = "(#{pluralize subject.haikus_count_total, 'haiku'})"
 
@@ -14,6 +14,6 @@
   %ul.subject_list
     - @new_subjects.each do |subject|
       %li
-        = link_to subject.name, :action => :show, :id => subject.name
+        = link_to_subject subject
         %span.subject_metric
           = subject.created_at.to_s(:haiku)
