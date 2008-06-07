@@ -1,15 +1,19 @@
+!red= #a20000
+!green= #647a4a
+!darkgrey= #555555
+!lightgrey= #999999
+
 #navigation 
   :color gray
   :font-size 16px
   :height 80px
-  :padding-top 1em
-  :background
-    :image url(/images/bg-head.png)
-    :repeat repeat-y
   a
     :color gray
   .selected
     :color #c71217
+  #sign-in a
+    :color= !red
+  
 
 .top-menu
   :font-size 14px
@@ -51,7 +55,6 @@
       :height 18px
       :line-height 18px
       :text-align right
-      :width 85px
     input
       :height 16px
       :padding-top 2px

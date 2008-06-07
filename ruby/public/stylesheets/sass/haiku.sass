@@ -1,21 +1,32 @@
+!red= #a20000
+!green= #647a4a
+!darkgrey= #555555
+!lightgrey= #999999
+
 #preview 
   :margin-bottom 1em
   :font-size 12pt
   :height 100px
+  :color= !darkgrey
   sup
     :font-size 8pt
+    :color black
   .syllables 
     :float left
     :margin-right 6px
     :width 2em
+    :text-align right
   .valid-line 
-    :color green
+    :color= !green
   .invalid-line 
-    :color red
+    :color= !red
+  .divider
+    :color= !lightgrey
 
 #haiku_form
   h3
-    padding-bottom: 4px
+    :padding-bottom 4px
+    :color= !red
   textarea 
     :color gray
     :font 10pt tahoma
@@ -65,17 +76,19 @@ a.haiku
     :padding 10px
     :text-decoration none
     &:hover
-      :background-color #efefef
+      :background-color #ffffff
     .haiku-line
       :clear left
       :float left
+      :background-color white
   .haiku_detail
     :clear left
     :color gray
     :float left
     :font-size 9pt
-    :padding 0 10px 4px 10px
+    :margin 0 10px 4px 10px
     :white-space nowrap
+    :background-color white
       
 .center
   :display table

@@ -8,7 +8,7 @@
 
   - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
     #haiku_text_container
-      %h3= 'Type in haiku'
+      %h3= 'Write a Haiku'
       = form.text_area (:text, :cols => 40, :rows => 3)
     #subject_form_container
       %h3= 'Subject (optional)'
@@ -21,7 +21,7 @@
     $('haiku_text').focus();
     
 .column.small
-  %h2= @right_title
+  #right-header= @right_title
   = render(:partial => "shared/haiku", :collection => @haikus)
   
 %br

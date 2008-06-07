@@ -2,7 +2,7 @@
   #navigation
     #global-navigation
       %ul.top-menu
-        %li#logo= link_to(image_tag("haikuvillage.gif"), :controller => "public", :action => "index")
+        %li#logo= link_to(image_tag("haikuvillage.png"), :controller => "public", :action => "index")
       %ul.bottom-menu
         - if current_author
           %li= link_to_controller 'Create', 'my'
@@ -15,7 +15,7 @@
     #author-navigation
       %ul.top-menu
         - unless current_author
-          %li
+          %li#sign-in
             = link_to_function 'Sign in' do |page|
               - page[:login_form].visual_effect(:appear, :duration => 0.3)
           %li

@@ -1,3 +1,8 @@
+!red= #a20000
+!green= #647a4a
+!darkgrey= #555555
+!lightgrey= #999999
+
 *
   :outline 0
   
@@ -7,11 +12,9 @@ html
 
 body 
   :background
-    :color #77b239
-    :image url(/images/bg-page.png)
-    :repeat repeat-x
+    :color #a1c873
   :color black
-  :font 12pt Tahoma, sans-serif
+  :font 12pt Trebuchet, sans-serif
   :height 100%
   :margin 0
   :padding 0
@@ -63,26 +66,23 @@ sup
   :color orange
   :padding 5px
 
-#frame 
-  :width 740px
-  :margin
-    :left auto
-    :right auto
-  
+#main, #content
+  :min-height 450px
+
 #content, #navigation
   :padding
-    :left 30px
     :right 30px
 
 #content
-  :min-height 200px
   :background
-    :image url(/images/bg-body.png)
-    :repeat repeat-y
+    :image url(/images/scenery-top.png)
+    :repeat no-repeat
+  :border 1px solid #888888
   :padding 
     :top 10px
     :bottom 10px
-  :position relative
+    :left 10px
+    :right 10px
   :text-align left
   .column
     :float left
@@ -92,14 +92,54 @@ sup
     .small
       :width 44%
 
-#pagination
-  :bottom 10px
-  :position absolute
-  :right 40px
+#right-header
+  :color #647a4a
+  :background-color white
 
 #foot 
-  :background-image url(/images/bg-bottom.png)
-  :height 30px
+  :background-image url(/images/paperEdge-bottom.png)
+  :backround-repeat no-repeat
+  :height 14px
+
+#top
+  :background
+    :image url(/images/bg-page-top.png)
+    :repeat no-repeat
+    :position bottom left
+  :margin 0 auto
+  :width 726px
+  :height 23px
+
+#body
+  :background
+    :image url(/images/bg-page-body.png)
+    :repeat repeat-y
+  :padding 0 0 0 28px
+  :margin 0 auto
+  :width 700px
+
+#main
+  :background
+    :image url(/images/scenery-bottom.png)
+    :repeat no-repeat
+    :position bottom
+    :color white
+  :width 666px
+
+#bottom
+  :background
+    :image url(/images/bg-page-bottom.png)
+    :repeat no-repeat
+    :position top left
+  :margin 0 auto
+  :width 726px
+  :height 29px
+  
+#intro
+  :width 280px
+  :font-size 80%
+  :margin-bottom 20px
+  :color= !darkgrey
 
 .haiku_listing
   h2
@@ -110,7 +150,7 @@ sup
       :display inline
       :font-size 90%
       :margin-right 7px
-  
+
 .subject_list
   li
     :clear left

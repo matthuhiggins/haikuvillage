@@ -70,7 +70,7 @@ Line.prototype = {
   },
     
   toHTML: function(){
-    return "<div><span class='syllables #{valid}'>#{syllables} - </span>#{text}</div>".interpolate({
+    return "<div><span class='syllables #{valid}'>#{syllables}<span class='divider'>| </span></span>#{text}</div>".interpolate({
       valid: this.isValid() ? 'valid-line' : 'invalid-line',
       syllables: this.isCalculating() ? '?' : this.syllables(),
       text: this.words.invoke('toHTML').join(' ')

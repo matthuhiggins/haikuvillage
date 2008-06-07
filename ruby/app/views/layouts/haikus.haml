@@ -8,12 +8,15 @@
       = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu', :cache => 'haiku_cache'
       = yield :head
   %body
-    #frame
-      = render :partial => "shared/navigation"
-      #content
-        - if flash[:notice]
-          #notice= flash[:notice]
-        = yield :layout
-      #foot
+    #top
+    #body
+      #head
+        = render :partial => "shared/navigation"
+      #main
+        #content
+          - if flash[:notice]
+            #notice= flash[:notice]
+          = yield :layout
+    #bottom
     - if Rails.env == 'production'
       = render :partial => "shared/analytics"
