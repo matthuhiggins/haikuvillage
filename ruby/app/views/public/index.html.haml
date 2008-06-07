@@ -35,7 +35,17 @@
     $('haiku_text').focus();
     
 .column.small
+  %h2= 'Some header'
+  %div
+    %span.global_count= number_with_delimiter @total_authors
+    %span.whatever= 'authors have written'
+  %div
+    %span.global_count= number_with_delimiter @total_haikus
+    %span.whatever= 'haikus about'
+  %div
+    %span.global_count= number_with_delimiter @total_subjects
+    %span.whatever= 'subjects'
   %h2= 'Recent haikus'
-  = render(:partial => "shared/haiku", :collection => @haikus)
+  = render(:partial => "shared/haiku", :collection => @recent_haikus)
   
 %br
