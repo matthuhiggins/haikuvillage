@@ -1,7 +1,7 @@
 - content_for :title, 'Welcome to HaikuVillage'
 
 .column.wide
-  #intro HaikuVillage is an online community of haiku authors anyone can join. HaikuVillage will auto-check your poem for proper structure.
+  #intro HaikuVillage is an online community of haiku authors anyone can join. The syllables in your haiku will be counted as you type.
 
   #preview
     = image_tag "haiku-bg.png"
@@ -26,7 +26,7 @@
       #haiku_login_message
       = login.submit "Create", :id => "commit_haiku", :disabled => true
       
-  = link_to_function("Login and Create", nil, :id => 'show_haiku_login') do |page|
+  = link_to_function("Sign in and Create", nil, :id => 'show_haiku_login') do |page|
     - page.hide 'show_haiku_login'
     - page['haiku_login'].visual_effect :appear
 
