@@ -4,7 +4,7 @@ class Author < ActiveRecord::Base
   has_many :haikus
     
   named_scope :brand_new, :order => 'created_at desc'
-  named_scope :active, :order => 'haikus_count_week desc', :conditions => 'haikus_count_week > 0'
+  named_scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
   
   validates_presence_of :username
   validates_uniqueness_of :username
