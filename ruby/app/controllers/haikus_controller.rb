@@ -10,7 +10,7 @@ class HaikusController < ApplicationController
   class UnauthorizedUpdateRequest < HaikusControllerError
   end
   
-  login_filter :only => [:new, :create, :update]
+  login_filter :only => [:new, :destroy, :create, :update]
   
   def create
     @haiku = Haiku.create(:text => params[:haiku][:text], :subject_name => params[:haiku][:subject_name], :author => current_author)
