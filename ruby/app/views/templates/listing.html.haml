@@ -1,7 +1,6 @@
 - content_for :head, auto_discovery_link_tag(:atom, :format =>"atom")
 .haiku_listing
   %h2= @title
-
   %ul.sort_options
     %li= haiku_sort_link :recent
     %li= haiku_sort_link :most_viewed
