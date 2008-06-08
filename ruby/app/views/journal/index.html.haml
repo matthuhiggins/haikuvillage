@@ -21,7 +21,7 @@
     $('haiku_text').focus();
     
 .column.small
-  #right-header= @right_title
+  %h2= 'Your recent haikus'
   = render(:partial => "shared/haiku", :collection => @haikus)
   
 %br
