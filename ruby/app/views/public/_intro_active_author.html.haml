@@ -1,13 +1,13 @@
 Welcome
 = current_author.username
 
-%div
+#welcome-instructions
   You can go to your
   = link_to 'journal', :controller => 'journal'
   to create and view your haikus, or browse other
   = link_to 'haikus', :controller => 'haikus'
   
-%div.subject_cloud
-  %h2= 'Subjects'
+.subject_cloud
+  %h3= 'Subjects'
   - @popular_subjects.each do |subject|
     %span= link_to subject.name, :controller => 'subjects', :id => subject.name
