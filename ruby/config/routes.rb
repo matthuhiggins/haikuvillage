@@ -11,7 +11,6 @@ ActionController::Routing::Routes.draw do |map|
   map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"
   map.login 'login',    :controller => 'session', :action => 'create'
   map.logout 'logout',  :controller => 'session', :action => 'destroy'
-  map.create 'create',  :controller => 'my'#,  :action => 'index'
   
   map.connect 'logged_exceptions/:action/:id', :controller => 'logged_exceptions'
   

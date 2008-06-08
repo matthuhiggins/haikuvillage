@@ -1,4 +1,4 @@
-class MyController < ApplicationController
+class JournalController < ApplicationController
   login_filter
   
   def index

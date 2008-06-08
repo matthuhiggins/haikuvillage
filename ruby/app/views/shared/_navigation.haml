@@ -5,7 +5,7 @@
         %li#logo= link_to(image_tag("haikuvillage.png"), :controller => "public", :action => "index")
       %ul.bottom-menu
         - if current_author
-          %li= link_to_controller 'Create', 'my'
+          %li= link_to_controller 'Journal', 'journal'
           %li= '/'
         %li= link_to_controller 'Explore', 'haikus'
         %li= '/'
