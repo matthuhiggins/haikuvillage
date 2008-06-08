@@ -4,6 +4,8 @@ class PublicController < ApplicationController
     @total_haikus = Haiku.count(:id)
     @total_subjects = Subject.count(:id)
     @total_authors = Author.count(:id)
+    
+    @popular_subjects = Subject.popular.all(:limit => 15) if current_author
   end
   
   def sitemap

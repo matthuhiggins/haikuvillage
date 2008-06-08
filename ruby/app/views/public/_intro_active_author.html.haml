@@ -7,4 +7,7 @@ Welcome
   to create and view your haikus, or browse other
   = link_to 'haikus', :controller => 'haikus'
   
-%div
+%div.subject_cloud
+  %h2= 'Subjects'
+  - @popular_subjects.each do |subject|
+    %span= link_to subject.name, :controller => 'subjects', :id => subject.name
