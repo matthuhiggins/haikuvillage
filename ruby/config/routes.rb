@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login',    :controller => 'session', :action => 'create'
   map.logout 'logout',  :controller => 'session', :action => 'destroy'
   
+  map.connect 'google08da94d9e67eee9b.html', :controller => 'public', :action => "about"
   map.connect 'logged_exceptions/:action/:id', :controller => 'logged_exceptions'
-  
   map.connect ':controller/:action/:id'
 end
