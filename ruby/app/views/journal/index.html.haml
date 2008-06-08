@@ -1,4 +1,10 @@
-- content_for :title, 'Create a haiku'
+- content_for :title, 'Haiku Journal'
+
+#user-summary
+  You have written
+  = link_to "#{current_author.haikus_count_total} haikus", :action => 'haikus'
+  and have
+  = link_to "#{current_author.favorites_count} favorites.", :action => 'favorites'
 
 .column.wide
   %h2= 'Create a haiku'
@@ -21,7 +27,10 @@
     $('haiku_text').focus();
     
 .column.small
-  %h2= 'Your recent haikus'
-  = render(:partial => "shared/haiku", :collection => @haikus)
-  
+  - unless @recent_haikus.empty?
+    %h2= 'Your recent haikus'
+    = render(:partial => "shared/haiku", :collection => @recent_haikus[0..1])
+    - if @recent_haikus.size > 2
+      = link_to 'View your haikus...', {:action => 'haikus'}, {:class => 'see_more_link'}
+        
 %br

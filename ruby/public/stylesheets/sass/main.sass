@@ -65,6 +65,7 @@ sup
 #notice
   :border 1px solid gray
   :color orange
+  :margin-bottom 5px
   :padding 5px
 
 #main, #content
@@ -138,32 +139,36 @@ sup
   
 #intro
   :width 280px
-  :font-size 80%
+  :font-size 90%
   :margin-bottom 20px
   :color= !darkgrey
+
+a.see_more_link
+  :clear both
+  :display block
 
 #haiku-summary
   :margin-top 20px
   :margin-bottom 30px
   
-.global_count
-  :color= !brown
-  :background-color white
-.whatever
-  :color= !green
-  :background-color white
-  a
+#haiku-summary
+  .count_value
+    :color= !brown
+    :background-color white
+  .count_text
     :color= !green
     :text-decoration none
     &:hover
       :text-decoration underline
       
 .subject_cloud
+  :width 100%
+  h2
+    :padding 15px 0 15px 0
   a
-    :color= !darkgrey
+    :color= !brown
+    :padding-right 10px
     :text-decoration none
+    :white-space nowrap
     &:hover
       :text-decoration underline
-      
-#welcome-instructions
-  :margin-bottom 20px

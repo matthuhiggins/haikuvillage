@@ -19,7 +19,7 @@ class SessionController < ApplicationController
 
     respond_to do |f|
       f.html do
-        flash[:notice] = "Logged out"
+        flash[:notice] = "You are signed out"
         redirect_to referring_uri
       end
     end
