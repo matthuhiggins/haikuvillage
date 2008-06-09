@@ -1,6 +1,6 @@
 class SessionController < ApplicationController  
   def create
-    author = Author.authenticate(params[:author][:username], params[:author][:password])
+    author = Author.authenticate(params[:session][:username], params[:session][:password])
     session[:username] = author.username if author
     
     respond_to do |f|

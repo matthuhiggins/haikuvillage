@@ -18,12 +18,12 @@
           = link_to_function 'Sign in' do |page|
             - page[:login_form].visual_effect(:appear, :duration => 0.3)
         %li
-          - form_for :author, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
+          - form_for :session, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
             %div
-              %label{:for => 'author_username'}='Twitter username:'
+              %label{:for => 'session_username'}='Twitter username:'
               = form.text_field :username
             %div
-              %label{:for => 'author_password'}='Twitter password:'
+              %label{:for => 'session_password'}='Twitter password:'
               = form.password_field :password
               %button{:type => 'submit'}="Go"
       - else
