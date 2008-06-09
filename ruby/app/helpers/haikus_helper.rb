@@ -1,6 +1,6 @@
 module HaikusHelper
   def remote_login_form(&block)
-    remote_form_for(:author,
+    remote_form_for(:session,
       :before => update_page do |page|
         page.replace_html('haiku_login_message', 'Logging in...')
       end,
