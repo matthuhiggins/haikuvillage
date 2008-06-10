@@ -13,8 +13,7 @@ module SubjectsHelper
     sorted_by_name = subjects.sort { |subject1, subject2| subject1.name <=> subject2.name }
     
     sorted_by_name.map do |subject|
-      link_to subject.name, {:controller => 'subjects', :id => subject.name}, {:style => "font-size: #{font_sizes[subject.name]}"}
-      # content_tag('span', link_tag)
+      link_to subject.name, {:controller => 'subjects', :action => 'show', :id => subject.name}, {:style => "font-size: #{font_sizes[subject.name]}"}
     end.join(' ')
   end
 end
