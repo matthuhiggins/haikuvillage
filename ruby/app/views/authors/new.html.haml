@@ -1,0 +1,21 @@
+- form_for :author, {:url => authors_url}  do |author|
+  %div
+    %h3= 'Username'
+    = author.text_field :username
+  %div
+    %h3= 'Password'
+    = author.password_field :password
+  
+  #preview
+    = image_tag "haiku-bg.png"
+  
+  #haiku_form
+    - fields_for :haiku do |haiku|
+      %h3= 'Type in haiku'
+      = haiku.text_area(:text, :cols => 40, :rows => 3)
+
+  = author.submit 'Register', :id => "create_account", :disabled => true
+
+%script
+  new Haiku.PeriodicalUpdater("haiku_text", "preview", "create_account");
+  $('haiku_text').focus();

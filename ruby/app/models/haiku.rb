@@ -32,10 +32,11 @@ class Haiku < ActiveRecord::Base
   
   validates_presence_of :author_id
   validates_presence_of :text
+  validate :valid_syllables?
   
   VALID_SYLLABLES = [5, 7, 5]
   
-  def validate    
+  def valid_syllables?
     line_records = []
     text.each_line { |line_text| line_records << Line.new(line_text) }
     

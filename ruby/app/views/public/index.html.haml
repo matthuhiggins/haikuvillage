@@ -2,6 +2,9 @@
 
 .column.wide
   = render :partial => current_author ? 'intro_active_author' : 'intro_new_author'
+  .subject_cloud
+    %h2= 'Popular subjects'
+    = subject_cloud(@popular_subjects)
     
 .column.small
   #haiku-summary
