@@ -14,6 +14,6 @@ class Author < ActiveRecord::Base
   end
   
   def authenticate(password)
-    self.password == password
+    self if self.password == password
   end
 end
