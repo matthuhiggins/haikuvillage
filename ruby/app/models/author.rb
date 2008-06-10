@@ -7,7 +7,8 @@ class Author < ActiveRecord::Base
   named_scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
   
   validates_presence_of :email, :username, :password, :on => :create
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, :on => :create
+  validates_format_of :username, :with => /\A[a-z0-9]\Z/i, :message => 'can only contain numbers and letters', :on => :create
   
   def self.authenticate(username, password)
     find_or_initialize_by_username(username).authenticate(password)
