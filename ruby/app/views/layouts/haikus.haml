@@ -5,7 +5,7 @@
     %title= @title || yield(:title)
     - cache('javascripts_css') do
       = javascript_include_tag 'prototype', 'effects', 'controls', 'haiku'
-      = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu', 'subjects', 'journal', :cache => 'haiku_cache'
+      = stylesheet_link_tag 'reset-min', 'haiku', 'main', 'menu', 'subjects', 'journal', 'register', :cache => 'haiku_cache'
       = yield :head
   %body
     #top

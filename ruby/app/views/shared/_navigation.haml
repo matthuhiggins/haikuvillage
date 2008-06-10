@@ -23,10 +23,10 @@
         %li
           - form_for :session, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
             %div
-              %label{:for => 'session_username'}='Twitter username:'
+              %label{:for => 'session_username'}='Username:'
               = form.text_field :username
             %div
-              %label{:for => 'session_password'}='Twitter password:'
+              %label{:for => 'session_password'}='Password:'
               = form.password_field :password
               %button{:type => 'submit'}="Go"
       - else

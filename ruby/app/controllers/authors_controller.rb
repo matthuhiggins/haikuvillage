@@ -13,16 +13,18 @@ class AuthorsController < ApplicationController
   end
   
   def create
-    @haiku = Haiku.new(params[:haiku])
-    raise InvalidHaikuException unless @haiku.valid_syllables?
-    @author = Author.new(params[:author])
+    haiku = Haiku.new(params[:haiku])
+    raise InvalidHaikuException unless haiku.valid_syllables?
+    author = Author.new(params[:author])
     
-    if @author.save && (@author.haikus << @haiku)
-      session[:username] = @author.username
-      flash[:notice] = 'Registration successful'
+    if author.save && (author.haikus << haiku)
+      session[:username] = author.username
+      flash[:new_haiku_id] = haiku.id
+      # flash[:notice] = 'Registration successful'
       redirect_to :controller => 'journal'
     else
-      render :action => 'new'
+      flash[:notice] = author.errors.map { |attr, msg| "#{attr} #{msg}" }.join('<br />')
+      redirect_to :controller => 'public', :action => 'register'
     end
   end
 end

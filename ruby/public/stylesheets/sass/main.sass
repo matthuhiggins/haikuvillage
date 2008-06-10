@@ -31,6 +31,19 @@ a
 br
   :clear both
 
+form
+  h3
+    :margin-top 10px
+    :padding 4px 0
+    :color= !red
+  textarea 
+    :color gray
+    :font 10pt tahoma
+    :overflow auto
+  input[type="text"], input[type="password"]
+    :color gray
+    :font 10pt tahoma
+
 h2
   :color #444444
   :font-size 125%
@@ -63,10 +76,12 @@ sup
   :font-size 10pt
 
 #notice
+  :background-color white
   :border 1px solid gray
   :color orange
-  :margin-bottom 5px
+  :margin-bottom 15px
   :padding 5px
+  :text-align center
 
 #main, #content
   :min-height 450px
@@ -82,7 +97,7 @@ sup
   :border 1px solid #888888
   :padding 
     :top 10px
-    :bottom 40px
+    :bottom 90px
     :left 15px
     :right 15px
   :text-align left
@@ -141,6 +156,7 @@ sup
   :width 280px
   :font-size 90%
   :margin-bottom 20px
+  :line-height 105%
   :color= !darkgrey
 
 a.see_more_link
