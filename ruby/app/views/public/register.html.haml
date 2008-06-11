@@ -1,16 +1,19 @@
 - content_for :title, 'Register'
 
-- form_for :author, :url => authors_url, :html => {:id => 'register_form'}  do |author|
+- form_for :author, :url => register_url, :html => {:id => 'register_form'}  do |author|
   %h2= 'Register'
   
   %div
     %h3= 'Email'
+    = error_message_on :author, :email
     = author.text_field :email
   %div
     %h3= 'Username'
+    = error_message_on :author, :username
     = author.text_field :username
   %div
     %h3= 'Password'
+    = error_message_on :author, :password
     = author.password_field :password
   
   #preview

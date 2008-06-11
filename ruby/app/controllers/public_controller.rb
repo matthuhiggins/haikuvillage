@@ -11,4 +11,18 @@ class PublicController < ApplicationController
   def sitemap
     @last_haiku = Haiku.recent.first
   end
+  
+  def register
+    if request.post?
+      @haiku = Haiku.new(params[:haiku])
+      raise InvalidHaikuException unless @haiku.valid_syllables?
+      @author = Author.new(params[:author])
+    
+      if @author.save && (author.haikus << @haiku)
+        session[:username] = @author.username
+        flash[:new_haiku_id] = @haiku.id
+        redirect_to :controller => 'journal'
+      end
+    end
+  end
 end
