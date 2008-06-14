@@ -41,7 +41,7 @@
   }
 </style>
 
-<a class="site-link" href="http://www.haikuvillage.com">HaikuVillage.com</a>
+<%= link_to 'HaikuVillage.com', "http://www.haikuvillage.com", :class => 'site-link', :popup => true %>
 
 <div class="haiku">
 <% @random_haiku.text.each_line do |line| %>
@@ -51,11 +51,12 @@
 
 <div class="foot">
   See more haikus by
-  <%= link_to @random_haiku.author.username,
-      :controller => 'authors',
-      :action => 'show',
-      :id => @random_haiku.author.username,
-      :only_path => false %>
+  <%= link_to @random_haiku.author.username, {
+        :controller => 'authors',
+        :action => 'show',
+        :id => @random_haiku.author.username,
+        :only_path => false },
+      :popup => true %>
 </div>
 ]]>
 </Content>
