@@ -4,12 +4,13 @@
 <Content type="html"><![CDATA[
 <style>
   body {
-    margin: 0;
+    border: 1px solid #A1C873;
+    margin: 4px;
   }
 
   p {
     margin: 0;
-    padding: 10px 0 0 8px;
+    padding: 7px 0 0 8px;
   }
 
   a {
@@ -21,6 +22,10 @@
     font-size: 85%;
     padding: 4px;
   }
+ 
+  div.haiku {
+    margin-top: 20px;
+  }
 
   div.foot {
     color: gray;
@@ -31,9 +36,11 @@
 
 <a class="site-link" href="http://www.haikuvillage.com">HaikuVillage.com</a>
 
+<div class="haiku">
 <% @random_haiku.text.each_line do |line| %>
   <p><%= h(line) %></p>
 <% end %>
+</div>
 
 <div class="foot">
   See more haikus by
