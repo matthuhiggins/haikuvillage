@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="HaikuVillage Random Haiku" />
+<Content type="html"><![CDATA[
+<style>
+  body {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 10px 0 0 8px;
+  }
+
+  a {
+    color: #355CA6;
+  }
+
+  a.site-link {
+    float: right;
+    font-size: 85%;
+    padding: 4px;
+  }
+
+  div.foot {
+    color: gray;
+    margin: 0;
+    padding: 10px 0 0 8px;
+  }
+</style>
+
+<a class="site-link" href="http://www.haikuvillage.com">HaikuVillage.com</a>
+
+<% @random_haiku.text.each_line do |line| %>
+  <p><%= h(line) %></p>
+<% end %>
+
+<div class="foot">
+  See more haikus by
+  <%= link_to @random_haiku.author.username,
+      :controller => 'authors',
+      :action => 'show',
+      :id => @random_haiku.author.username,
+      :only_path => false %>
+</div>
+]]>
+</Content>
+</Module>
+

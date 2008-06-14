@@ -12,6 +12,12 @@ class PublicController < ApplicationController
     @last_haiku = Haiku.recent.first
   end
   
+  def google_gadget
+    haikus = Haiku.all(:limit => 10, :order => :created_at)
+    @random_haiku = haikus[rand(haikus.size)]
+    render :layout => false
+  end
+  
   def register
     if request.post?
       @haiku = Haiku.new(params[:haiku])

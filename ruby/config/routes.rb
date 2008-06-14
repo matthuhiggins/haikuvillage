@@ -10,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
   map.about 'about',    :controller => 'public',  :action => "about"
   map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"
   map.register 'register', :controller => "public", :action => "register"
+  map.register 'google_gadget', :controller => "public", :action => "google_gadget", :format => "xml"
+  
   map.login 'login',    :controller => 'session', :action => 'create'
   map.logout 'logout',  :controller => 'session', :action => 'destroy'
   
