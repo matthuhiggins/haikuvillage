@@ -1,0 +1,36 @@
+img {
+  behavior: url(/stylesheets/iepngfix.htc);
+}
+
+body {
+  text-align: center;
+}
+#body {
+  background-image: none;
+  background-color: white;
+  padding: 10px;
+}
+
+#top {
+   background-image: none;
+}
+
+#bottom {
+  background-image: none;
+}
+
+#main {
+  height: 500px;
+}
+
+#content {
+  height: 500px;
+}
+
+#author-navigation {
+  width: 200px;
+}
+
+#pagination {
+  clear:both;
+}
