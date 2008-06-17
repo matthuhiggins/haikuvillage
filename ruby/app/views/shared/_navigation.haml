@@ -2,20 +2,18 @@
   #global-navigation
     %ul.top-menu
       %li#logo= link_to(image_tag("haikuvillage.png"), :controller => "public", :action => "index")
-    %ul.bottom-menu
+    %ul.bottom-menu#nav-menu
       - if current_author
         %li= link_to_controller 'Journal', 'journal'
-        %li= '/'
       %li= link_to_controller 'Explore', 'haikus'
-      %li= '/'
       %li= link_to_controller 'Subjects', 'subjects'
-      %li= '/'
       %li= link_to_controller 'Authors', 'authors'
   #author-navigation
     %ul.top-menu
       - unless current_author
         %li#sign-in
           = link_to_function 'Sign in' do |page|
+            - page["sign-in"].hide
             - page[:login_form].visual_effect(:appear, :duration => 0.3)
         %li
           - form_for :session, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
@@ -25,7 +23,7 @@
             %div
               %label{:for => 'session_password'}='Password:'
               = form.password_field :password
-              %button{:type => 'submit'}="Go"
+              %button{:type => 'submit'}=">"
       - else
         %li= link_to 'Sign out', logout_url
     %ul.bottom-menu

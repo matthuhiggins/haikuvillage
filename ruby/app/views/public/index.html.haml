@@ -26,7 +26,7 @@
 .column.small{:style => 'margin-top: 100px'}
   #preview{:class => 'empty'}
   %h2#write= 'Write a haiku'
-  - form_for :haiku, :url => haikus_url do |haiku|
+  - form_for :haiku, :url => haikus_url, :html => {:id => 'create_haiku_form'} do |haiku|
     = haiku.text_area(:text, :cols => 37, :rows => 3)
     = haiku.submit 'Create', :id => "create_haiku", :disabled => true
 %script
