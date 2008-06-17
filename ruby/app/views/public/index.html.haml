@@ -2,11 +2,7 @@
 
 .column.wide
   = render :partial => current_author ? 'intro_active_author' : 'intro_new_author'
-  .subject_cloud
-    %h2= 'Popular subjects'
-    = subject_cloud(@popular_subjects)
-    
-.column.small
+  %p= "Join the village:"
   #haiku-summary
     .summary-line
       %span.count_value= number_with_delimiter @total_authors
@@ -21,6 +17,13 @@
     .summary-line
       %span.count_value= number_with_delimiter @total_subjects
       %span.count_text= link_to 'subjects', :controller => 'subjects'
+      
+  - if current_author
+  .subject_cloud
+    %h2= 'Popular subjects'
+    = subject_cloud(@popular_subjects)
+  - end
+.column.small
   #preview
     = image_tag "haiku-bg.png"
   %h2= 'Write a haiku'
