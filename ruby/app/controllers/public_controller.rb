@@ -29,6 +29,8 @@ class PublicController < ApplicationController
         flash[:new_haiku_id] = @haiku.id
         redirect_to :controller => 'journal'
       end
+    else
+      @haiku = Haiku.new(:text => session[:new_haiku_text])
     end
   end
 end

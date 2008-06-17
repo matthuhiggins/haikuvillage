@@ -1,8 +1,18 @@
 - content_for :title, 'Register'
 
+.center
+  %h2= "Share your haiku with the village"
+  .haiku-big
+    .haiku
+      .text
+        - @haiku.text.each_line do |line|
+          .haiku-line= h(line)
+
 .column.small
-  %h2= "Already a user?"
+  %h3= "Already a user?"
   - form_for :session, :url => login_url, :html => {:id => 'register_login_form'} do |form|
+    - fields_for :haiku do |haiku|
+      = haiku.hidden_field :text
     %div
       %h3= 'Username'
       = form.text_field :username
@@ -12,9 +22,10 @@
     = form.submit "Sign in"
 
 .column.wide
+  %h3= 'Create a new account'
   - form_for :author, :url => register_url, :html => {:class => 'register_form'}  do |author|
-    %h2= 'Create a new account'
-  
+    - fields_for :haiku do |haiku|
+      = haiku.hidden_field :text
     %div
       %h3= 'Email'
       = error_message_on :author, :email
@@ -26,17 +37,7 @@
     %div
       %h3= 'Password'
       = error_message_on :author, :password
-      = author.password_field :password
-  
-    #preview{:class => flash[:new_haiku_text].nil? ? 'empty' : ''}
-  
-    - fields_for :haiku do |haiku|
-      %h3= 'Write your first haiku'
-      = haiku.text_area(:text, :cols => 40, :rows => 3, :value => flash[:new_haiku_text])
+      = author.password_field :password  
 
     %div
-      = author.submit 'Register', :id => "create_account", :disabled => true
-
-  %script
-    new Haiku.PeriodicalUpdater("haiku_text", "preview", "create_account");
-    $('author_email').focus();
+      = author.submit 'Register', :id => "create_account"

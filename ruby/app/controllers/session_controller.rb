@@ -1,27 +1,25 @@
 class SessionController < ApplicationController  
   def create
     author = Author.authenticate(params[:session][:username], params[:session][:password])
-    session[:username] = author.username if author
+    session[:username] = author ? author.username : nil
     
-    respond_to do |f|
-      f.html do
-        flash[:notice] = "Invalid username/password combination" unless session[:username]
+    if session[:username]
+      if params[:haiku]
+        haiku = Haiku.new(params[:haiku])
+        raise InvalidHaikuException unless haiku.valid_syllables?
+        author.haikus << haiku
+        redirect_to :controller => 'journal'
+      else
         redirect_to referring_uri
       end
-      f.js do
-         head(session[:username] ? :ok : :bad_request)
-       end
+    else
+      flash[:notice] = "Invalid username/password combination"
+      redirect_to referring_uri
     end
   end
 
   def destroy
     session[:username] = nil
-
-    respond_to do |f|
-      f.html do
-        flash[:notice] = "You are signed out"
-        redirect_to referring_uri
-      end
-    end
+    flash[:notice] = "You are signed out"
   end
 end
