@@ -9,7 +9,7 @@
 .column.wide
   %h2= 'Create a haiku'
 
-  #preview
+  #preview{:class => 'empty'}
 
   - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
     #haiku_text_container

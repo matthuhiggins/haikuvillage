@@ -4,10 +4,14 @@
 !lightgrey= #999999
 
 #preview
+  :background-color white
   :margin-bottom 1em
+  :opacity 0.7
   :font-size 12pt
   :height 100px
   :color= !darkgrey
+  *
+    :opacity 1
   sup
     :font-size 8pt
     :color black
@@ -20,8 +24,6 @@
     :color= !green
   .invalid-line 
     :color= !red
-  &.empty
-    :background-image url(/images/haiku-bg.png)
 
 #haiku_form
   input[type='text']

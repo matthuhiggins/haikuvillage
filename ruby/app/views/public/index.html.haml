@@ -24,7 +24,7 @@
     = subject_cloud(@popular_subjects)
   - end
 .column.small
-  #preview
+  #preview{:class => 'empty'}
   %h2= 'Write a haiku'
   - form_for :haiku, :url => haikus_url do |haiku|
     = haiku.text_area(:text, :cols => 40, :rows => 3)
