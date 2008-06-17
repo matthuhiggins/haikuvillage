@@ -21,5 +21,6 @@ class SessionController < ApplicationController
   def destroy
     session[:username] = nil
     flash[:notice] = "You are signed out"
+    redirect_to referring_uri
   end
 end
