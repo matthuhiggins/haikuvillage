@@ -10,7 +10,7 @@ class HaikusController < ApplicationController
   class UnauthorizedUpdateRequest < HaikusControllerError
   end
   
-  login_filter :only => [:new, :destroy, :create, :update]
+  login_filter :only => [:new, :destroy, :update]
   
   def create
     if current_author
@@ -18,6 +18,8 @@ class HaikusController < ApplicationController
       flash[:new_haiku_id] = @haiku.id
       redirect_to :controller => 'journal'
     else
+      logger.debug('WE ARE HERE')
+      logger.debug(register_url)
       flash[:new_haiku_text] = params[:haiku][:text]
       redirect_to register_url
     end

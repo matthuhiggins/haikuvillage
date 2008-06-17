@@ -21,7 +21,7 @@
   
   - fields_for :haiku do |haiku|
     %h3= 'Write your first haiku'
-    = haiku.text_area(:text, :cols => 40, :rows => 3)
+    = haiku.text_area(:text, :cols => 40, :rows => 3, :value => flash[:new_haiku_text])
 
   %div
     = author.submit 'Register', :id => "create_account", :disabled => true
