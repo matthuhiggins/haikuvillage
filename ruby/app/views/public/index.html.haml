@@ -25,7 +25,7 @@
   - end
 .column.small
   #preview{:class => 'empty'}
-  %h2= 'Write a haiku'
+  %h2#write= 'Write a haiku'
   - form_for :haiku, :url => haikus_url do |haiku|
     = haiku.text_area(:text, :cols => 40, :rows => 3)
     = haiku.submit 'Create', :id => "create_haiku", :disabled => true
