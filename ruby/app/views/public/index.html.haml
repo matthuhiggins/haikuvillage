@@ -23,7 +23,7 @@
     %h2= 'Popular subjects'
     = subject_cloud(@popular_subjects)
   - end
-.column.small
+.column.small{:style => 'margin-top: 100px'}
   #preview{:class => 'empty'}
   %h2#write= 'Write a haiku'
   - form_for :haiku, :url => haikus_url do |haiku|
