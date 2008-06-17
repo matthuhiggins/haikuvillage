@@ -28,7 +28,8 @@
   %h2#write= 'Write a haiku'
   - form_for :haiku, :url => haikus_url, :html => {:id => 'create_haiku_form'} do |haiku|
     = haiku.text_area(:text, :cols => 37, :rows => 3)
-    = haiku.submit 'Create', :id => "create_haiku", :disabled => true
+    #create-submit
+      = haiku.submit 'Create', :id => "create_haiku", :disabled => true
 %script
   new Haiku.PeriodicalUpdater("haiku_text", "preview", "create_haiku");
   $('haiku_text').focus();
