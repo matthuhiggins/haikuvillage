@@ -2,6 +2,7 @@
 !green= #647a4a
 !darkgrey= #555555
 !lightgrey= #999999
+!medblue= #548A98
 !brown= #847640
 
 *
@@ -174,10 +175,13 @@ a.see_more_link
   :display block
 
 #haiku-summary
-  :margin-top 20px
+  :margin-top 10px
   :margin-bottom 30px
   
 #haiku-summary
+  a
+    :color= !medblue
+    :text-decoration underline
   .count_value
     :color= !brown
     :background-color white
@@ -185,8 +189,6 @@ a.see_more_link
     :color= !green
     :text-decoration none
     :background-color white
-    &:hover
-      :text-decoration underline
       
 .subject_cloud
   :width 100%
