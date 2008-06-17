@@ -10,7 +10,7 @@ class SessionController < ApplicationController
         author.haikus << haiku
         redirect_to :controller => 'journal'
       else
-        redirect_to referring_uri
+        redirect_to (referring_uri == root_url ? {:controller => 'journal'} : referring_uri)
       end
     else
       flash[:notice] = "Invalid username/password combination"
