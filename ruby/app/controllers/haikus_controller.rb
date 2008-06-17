@@ -13,13 +13,14 @@ class HaikusController < ApplicationController
   login_filter :only => [:new, :destroy, :create, :update]
   
   def create
-    @haiku = Haiku.create(:text => params[:haiku][:text], :subject_name => params[:haiku][:subject_name], :author => current_author)
-    if @haiku.errors.empty?
+    if current_author
+      @haiku = Haiku.create(:text => params[:haiku][:text], :subject_name => params[:haiku][:subject_name], :author => current_author)
       flash[:new_haiku_id] = @haiku.id
+      redirect_to :controller => 'journal'
     else
-      flash[:notice] = "You must enter a valid haiku"
+      flash[:new_haiku_text] = params[:haiku][:text]
+      redirect_to register_url
     end
-    redirect_to :controller => 'journal'
   end
   
   def index

@@ -21,8 +21,14 @@
     .summary-line
       %span.count_value= number_with_delimiter @total_subjects
       %span.count_text= link_to 'subjects', :controller => 'subjects'
-  %h2= 'Recent haikus'
-  = render(:partial => "shared/haiku", :collection => @recent_haikus)
-  = link_to 'Explore haikus...', {:controller => 'haikus'}, {:class => 'see_more_link'}
+  #preview
+    = image_tag "haiku-bg.png"
+  %h2= 'Write a haiku'
+  - form_for :haiku, :url => haikus_url do |haiku|
+    = haiku.text_area(:text, :cols => 40, :rows => 3)
+    = haiku.submit 'Create', :id => "create_haiku", :disabled => true
+%script
+  new Haiku.PeriodicalUpdater("haiku_text", "preview", "create_haiku");
+  $('haiku_text').focus();
   
 %br
