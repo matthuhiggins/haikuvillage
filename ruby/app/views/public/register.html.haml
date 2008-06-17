@@ -1,30 +1,42 @@
 - content_for :title, 'Register'
 
-- form_for :author, :url => register_url, :html => {:id => 'register_form'}  do |author|
-  %h2= 'Register'
-  
-  %div
-    %h3= 'Email'
-    = error_message_on :author, :email
-    = author.text_field :email
-  %div
-    %h3= 'Username'
-    = error_message_on :author, :username
-    = author.text_field :username
-  %div
-    %h3= 'Password'
-    = error_message_on :author, :password
-    = author.password_field :password
-  
-  #preview{:class => flash[:new_haiku_text].nil? ? 'empty' : ''}
-  
-  - fields_for :haiku do |haiku|
-    %h3= 'Write your first haiku'
-    = haiku.text_area(:text, :cols => 40, :rows => 3, :value => flash[:new_haiku_text])
+.column.small
+  %h2= "Already a user?"
+  - form_for :session, :url => login_url, :html => {:id => 'register_login_form'} do |form|
+    %div
+      %h3= 'Username'
+      = form.text_field :username
+    %div
+      %h3= 'Password'
+      = form.password_field :password
+    = form.submit "Sign in"
 
-  %div
-    = author.submit 'Register', :id => "create_account", :disabled => true
+.column.wide
+  - form_for :author, :url => register_url, :html => {:class => 'register_form'}  do |author|
+    %h2= 'Create a new account'
+  
+    %div
+      %h3= 'Email'
+      = error_message_on :author, :email
+      = author.text_field :email
+    %div
+      %h3= 'Username'
+      = error_message_on :author, :username
+      = author.text_field :username
+    %div
+      %h3= 'Password'
+      = error_message_on :author, :password
+      = author.password_field :password
+  
+    #preview{:class => flash[:new_haiku_text].nil? ? 'empty' : ''}
+  
+    - fields_for :haiku do |haiku|
+      %h3= 'Write your first haiku'
+      = haiku.text_area(:text, :cols => 40, :rows => 3, :value => flash[:new_haiku_text])
 
-%script
-  new Haiku.PeriodicalUpdater("haiku_text", "preview", "create_account");
-  $('author_email').focus();
+    %div
+      = author.submit 'Register', :id => "create_account", :disabled => true
+
+  %script
+    new Haiku.PeriodicalUpdater("haiku_text", "preview", "create_account");
+    $('author_email').focus();
