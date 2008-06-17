@@ -191,11 +191,12 @@ Haiku.PeriodicalUpdater.prototype = {
     }
 
     if (somethingChanged) {
+      this.previewElement.innerHTML = currentHaiku.toHTML();
+      $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
       if (currentHaiku.lines.length > 0) {
-        $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
-        this.previewElement.innerHTML = currentHaiku.toHTML();
+        this.previewElement.removeClassName('empty');
       } else {
-        this.previewElement.innerHTML = "<img src=\"/images/haiku-bg.png\" />"
+        this.previewElement.addClassName('empty');
       }
     }
     
