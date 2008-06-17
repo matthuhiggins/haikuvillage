@@ -10,7 +10,6 @@
   %h2= 'Create a haiku'
 
   #preview
-    = image_tag "haiku-bg.png"
 
   - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
     #haiku_text_container

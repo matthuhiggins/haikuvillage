@@ -16,8 +16,7 @@
     = error_message_on :author, :password
     = author.password_field :password
   
-  #preview
-    = image_tag "haiku-bg.png"
+  #preview{:class => flash[:new_haiku_text].nil? ? 'empty' : ''}
   
   - fields_for :haiku do |haiku|
     %h3= 'Write your first haiku'

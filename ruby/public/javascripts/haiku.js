@@ -70,7 +70,7 @@ Line.prototype = {
   },
     
   toHTML: function(){
-    return "<div><span class='syllables #{valid}'>#{syllables}<span class='divider'> | </span></span>#{text}</div>".interpolate({
+    return "<div><span class='syllables #{valid}'>#{syllables}</span>#{text}</div>".interpolate({
       valid: this.isValid() ? 'valid-line' : 'invalid-line',
       syllables: this.isCalculating() ? '?' : this.syllables(),
       text: this.words.invoke('toHTML').join(' ')
@@ -191,11 +191,12 @@ Haiku.PeriodicalUpdater.prototype = {
     }
 
     if (somethingChanged) {
-      if (currentHaiku.lines.length > 0){
-        this.previewElement.innerHTML = currentHaiku.toHTML();
-        $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
+      this.previewElement.innerHTML = currentHaiku.toHTML();
+      $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
+      if (currentHaiku.lines.length > 0) {
+        this.previewElement.removeClassName('empty');
       } else {
-        this.previewElement.innerHTML = '<img alt="haiku-bg" src="/images/haiku-bg.png" />'
+        this.previewElement.addClassName('empty');
       }
     }
     
