@@ -13,7 +13,7 @@ namespace :haiku do
     end
     
     def counter_caches
-      { Haiku   => ['view', 'favorited'], Author  => ['haikus'], Subject => ['haikus'] }
+      { Haiku   => ['view', 'favorited'], Author  => ['haikus', 'favorited'], Subject => ['haikus'] }
     end
   end
   

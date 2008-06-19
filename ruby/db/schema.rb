@@ -9,17 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080610125630) do
+ActiveRecord::Schema.define(:version => 20080619042302) do
 
   create_table "authors", :force => true do |t|
-    t.string   "username",                                         :null => false
-    t.string   "password",                                         :null => false
-    t.integer  "haikus_count_week",  :limit => 11, :default => 0,  :null => false
-    t.integer  "haikus_count_total", :limit => 11, :default => 0,  :null => false
-    t.integer  "favorites_count",    :limit => 11, :default => 0,  :null => false
+    t.string   "username",                                            :null => false
+    t.string   "password",                                            :null => false
+    t.integer  "haikus_count_week",     :limit => 11, :default => 0,  :null => false
+    t.integer  "haikus_count_total",    :limit => 11, :default => 0,  :null => false
+    t.integer  "favorites_count",       :limit => 11, :default => 0,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                            :default => "", :null => false
+    t.string   "email",                               :default => "", :null => false
+    t.integer  "favorited_count_total", :limit => 11, :default => 0,  :null => false
+    t.integer  "favorited_count_week",  :limit => 11, :default => 0,  :null => false
   end
 
   add_index "authors", ["username"], :name => "index_authors_on_username"
