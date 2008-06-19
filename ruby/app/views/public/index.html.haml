@@ -19,10 +19,9 @@
       %span.count_text= link_to 'subjects', :controller => 'subjects'
       
   - if current_author
-  .subject_cloud
-    %h2= 'Popular subjects'
-    = subject_cloud(@popular_subjects)
-  - end
+    .subject_cloud
+      %h2= 'Popular subjects'
+      = subject_cloud(@popular_subjects)
 .column.small{:style => 'margin-top: 100px'}
   #preview{:class => 'empty'}
   %h2#write= 'Write a haiku'

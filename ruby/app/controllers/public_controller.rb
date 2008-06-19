@@ -4,7 +4,7 @@ class PublicController < ApplicationController
     @total_subjects = Subject.count(:id)
     @total_authors = Author.count(:id)
     
-    @popular_subjects = Subject.popular.all(:limit => 12)
+    @popular_subjects = Subject.popular.all(:limit => 16)
   end
   
   def sitemap

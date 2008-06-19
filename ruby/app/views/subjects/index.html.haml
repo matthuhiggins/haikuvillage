@@ -3,19 +3,13 @@
 = render :partial => 'search_form'
 
 .column
-  %h3= 'Popular Subjects'
-  %ul.subject_list
-    - @popular_subjects.each do |subject|
-      %li
-        = link_to_subject subject
-        %span.subject_metric
-          = "(#{pluralize subject.haikus_count_total, 'haiku'})"
+  %h3= 'Last 24 hours'
+  .subject_list= subject_list(@popular_subjects)
 
 .column
-  %h3= 'New Subjects'
-  %ul.subject_list
-    - @new_subjects.each do |subject|
-      %li
-        = link_to_subject subject
-        %span.subject_metric
-          = subject.created_at.to_s(:haiku)
+  %h3= 'New subjects'
+  .subject_list= subject_list(@new_subjects)
+
+.subject_cloud
+  %h2='Most popular subjects'
+  = subject_cloud(@popular_subjects)
