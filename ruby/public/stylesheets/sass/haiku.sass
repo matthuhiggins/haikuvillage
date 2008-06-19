@@ -25,16 +25,17 @@
   .invalid-line 
     :color= !red
   &.empty
-    :background-image url(/images/haiku-bg.png)
-    :background-repeat no-repeat
-    :background-position -25px -0px
-
+    :font-size 120%
+    :color= !lightgrey
 #haiku_form
   input[type='text']
     :margin-bottom 6px
     :width 80%
   textarea
     :width 80%
+#create_haiku_form
+  textarea
+    :width 100%
 
 h2.listing_title
   :display inline

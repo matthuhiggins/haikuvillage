@@ -2,7 +2,6 @@
 
 .column.wide
   = render :partial => current_author ? 'intro_active_author' : 'intro_new_author'
-  %p= "Join the village:"
   #haiku-summary
     .summary-line
       %span.count_value= number_with_delimiter @total_authors
@@ -24,9 +23,12 @@
       = subject_cloud(@popular_subjects)
 .column.small{:style => 'margin-top: 100px'}
   #preview{:class => 'empty'}
+    %div= "five syllables"
+    %div= "seven syllables"
+    %div= "five syllables"
   %h2#write= 'Write a haiku'
   - form_for :haiku, :url => haikus_url, :html => {:id => 'create_haiku_form'} do |haiku|
-    = haiku.text_area(:text, :cols => 37, :rows => 3)
+    = haiku.text_area(:text, :rows => 3)
     #create-submit
       = haiku.submit 'Create', :id => "create_haiku", :disabled => true
 %script

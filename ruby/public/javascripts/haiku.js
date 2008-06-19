@@ -197,6 +197,7 @@ Haiku.PeriodicalUpdater.prototype = {
         this.previewElement.removeClassName('empty');
       } else {
         this.previewElement.addClassName('empty');
+        this.previewElement.innerHTML = "<div>five syllables</div><div>seven syllables</div><div>five syllables</div>";
       }
     }
     
