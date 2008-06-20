@@ -3,8 +3,8 @@ class SubjectsController < ApplicationController
     if params[:q]
       render_search(params[:q])
     else
-      @hot_subjects = Subject.hot.all(:limit => 15)
-      @new_subjects = Subject.recent.all(:limit => 15)
+      @hot_subjects = Subject.hot.all(:limit => 12)
+      @new_subjects = Subject.recent.all(:limit => 12)
       @popular_subjects = Subject.popular.all(:limit => 40)
     end
   end

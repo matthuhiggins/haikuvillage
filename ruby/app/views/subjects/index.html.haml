@@ -4,12 +4,12 @@
 
 .column
   %h3= 'Last week'
-  .subject_list= subject_list(@hot_subjects)
+  .href_list= subject_list(@hot_subjects)
 
 .column
   %h3= 'New subjects'
-  .subject_list= subject_list(@new_subjects)
+  .href_list= subject_list(@new_subjects)
 
-.subject_cloud
+.cloud
   %h3='Most popular subjects'
   = subject_cloud(@popular_subjects)

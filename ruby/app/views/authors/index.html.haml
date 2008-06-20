@@ -1,19 +1,13 @@
 - content_for :title, "Authors"
 
 .column
-  %h3= 'Active Authors'
-  %ul.subject_list
-    - @active_authors.each do |author|
-      %li
-        = link_to author.username, :action => :show, :id => author.username
-        %span.subject_metric
-          = "(#{author.haikus_count_total} haikus)"
+  %h3= 'Active authors'
+  .href_list= author_list(@active_authors)
 
 .column
-  %h3= 'New Authors'
-  %ul.subject_list
-    - @brand_new_authors.each do |author|
-      %li
-        = link_to author.username, :action => :show, :id => author.username
-        %span.subject_metric
-          = author.created_at.to_s(:haiku)
+  %h3= 'New authors'
+  .href_list= author_list(@new_authors)
+
+.cloud
+  %h3='Most popular authors'
+  = author_cloud(@popular_authors)
