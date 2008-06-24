@@ -8,7 +8,7 @@ module SubjectsHelper
     sorted_by_name = subjects.sort { |subject1, subject2| subject1.name <=> subject2.name }
     
     sorted_by_name.map do |subject|
-      link_to subject.name, {:controller => 'subjects', :action => 'show', :id => subject.name}, {:style => "font-size: #{font_sizes[subject.name]}"}
+      link_to_subject subject, {:style => "font-size: #{font_sizes[subject.name]}"}
     end.join(' ')
   end
   
@@ -16,7 +16,7 @@ module SubjectsHelper
     subjects.map { |subject| link_to_subject subject }.join(', ')
   end
   
-  def link_to_subject(subject)
-    link_to truncate(subject.name, 24), :action => :show, :id => subject.name
+  def link_to_subject(subject, html_options = {})
+    link_to truncate(subject.name, 24), {:action => :show, :id => subject.name}, html_options
   end
 end
