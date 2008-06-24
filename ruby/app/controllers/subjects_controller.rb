@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   def index
+    @meta_description = "Haiku organized by subject"
     if params[:q]
       render_search(params[:q])
     else
@@ -11,6 +12,7 @@ class SubjectsController < ApplicationController
   
   def show
     subject = Subject.find_by_name(params[:id])
+    @meta_description = "A collection of #{subject.haikus_count_total} haikus about the subject of #{params[:id]}"
     list_haikus(subject.haikus, :title => "#{params[:id]} Haikus", :cached_total => subject.haikus_count_total)
   end
   

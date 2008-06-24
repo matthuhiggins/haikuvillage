@@ -24,6 +24,7 @@ class HaikusController < ApplicationController
   end
   
   def index
+    @meta_description = "A listing of assorted haikus"
     list_haikus(Haiku)
   end
   
@@ -31,6 +32,7 @@ class HaikusController < ApplicationController
     @haiku = Haiku.find(params[:id])
     @haikus_by_same_author = @haiku.author.haikus.all(:limit => 4, :order => "favorited_count_total desc", :conditions => ['id <> ?', @haiku])
     @favorite_authors = @haiku.happy_authors
+    @meta_description = @haiku.text.gsub(/\r\n|\r|\n/, ' / ')
     Haiku.update_counters(params[:id], :view_count_week => 1, :view_count_total => 1)
   end
   

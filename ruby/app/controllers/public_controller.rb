@@ -5,6 +5,7 @@ class PublicController < ApplicationController
     @total_authors = Author.count(:id)
     
     @popular_subjects = Subject.popular.all(:limit => 16)
+    @meta_description = "Making haikus has never been easier. Welcome to a haiku community where counting syllables is done for you."
   end
   
   def sitemap

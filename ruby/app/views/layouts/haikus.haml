@@ -9,7 +9,7 @@
       /[if lte IE 6]
         = stylesheet_link_tag 'ie6'
       = yield :head
-      %meta{:name => "description", :description => @meta_description || ""}
+      %meta{:name => "description", :content => h(@meta_description) || ""}
   %body
     #top
     #body
