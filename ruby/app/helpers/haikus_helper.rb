@@ -4,7 +4,10 @@ module HaikusHelper
   end
   
   def subject_auto_complete
-    text_field_with_auto_complete :haiku, :subject_name, {:size => 10}, {:url => suggest_subjects_path, :method => :get, :param_name => 'q'}
+    text_field_with_auto_complete :haiku, :subject_name, {:maxlength => 24, :size => 10}, {
+      :url => suggest_subjects_path, 
+      :method => :get, 
+      :param_name => 'q'}
   end
   
   def haiku_sort_link(order)

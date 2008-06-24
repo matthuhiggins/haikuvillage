@@ -17,6 +17,6 @@ module SubjectsHelper
   end
   
   def link_to_subject(subject)
-    link_to subject.name, :action => :show, :id => subject.name
+    link_to truncate(subject.name, 24), :action => :show, :id => subject.name
   end
 end
