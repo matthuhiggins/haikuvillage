@@ -1,0 +1,18 @@
+#preview{:class => 'empty'}
+  %div= "five syllables"
+  %div= "seven syllables"
+  %div= "five syllables"
+
+- form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
+  #haiku_text_container
+    %h3= 'Write a Haiku'
+    = form.text_area(:text, :rows => 3)
+  #subject_form_container
+    %h3= 'Subject (optional)'
+    = subject_auto_complete
+  %div
+    = form.submit "Create", :id => "commit_haiku", :disabled => true
+
+%script
+  new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
+  $('haiku_text').focus();

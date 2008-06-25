@@ -9,9 +9,14 @@
     This haiku is in response to a
     = link_to "haiku by #{@haiku.responding_to.author.username}", @haiku.responding_to
 
-- unless @haiku.responses.empty?
-  .responses
-    %h2 Responses to this haiku
+.responses
+  %h2 Responses to this haiku
+  = link_to_response "Post a response."
+  
+  #response_form{:style => 'display: none'}
+    = render :partial => 'shared/create'
+  
+  - if @haiku.responses.empty?
     = render(:partial => "shared/haiku", :collection => @haiku.responses)
 
 - unless @haiku.happy_authors.empty?

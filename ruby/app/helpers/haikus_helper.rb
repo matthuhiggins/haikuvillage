@@ -13,4 +13,11 @@ module HaikusHelper
   def haiku_sort_link(order)
     link_to_unless(haiku_sort_param == order, order.to_s.humanize, :order => order)
   end
+  
+  def link_to_response(name)
+    link_to_function name, nil, :class => 'response_link' do |page|
+      # page['response_link'].hide
+      page[:response_form].visual_effect(:blind_down, :duration => 0.3)
+    end
+  end
 end
