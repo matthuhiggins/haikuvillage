@@ -4,6 +4,16 @@
   .haiku-big
     = render :partial => 'shared/haiku', :object => @haiku
 
+- if @haiku.responding_to
+  .responding_to
+    This haiku is in response to a
+    = link_to "haiku by #{@haiku.responding_to.author.username}", @haiku.responding_to
+
+- unless @haiku.responses.empty?
+  .responses
+    %h2 Responses to this haiku
+    = render(:partial => "shared/haiku", :collection => @haiku.responses)
+
 - unless @haiku.happy_authors.empty?
   %h2 Users who favorited this haiku:
   %p{:style => "padding-left: 10px"}
@@ -15,3 +25,4 @@
   %h2= "#{h(@haiku.author.username)} has #{pluralize(@haiku.author.haikus_count_total - 1, 'other haiku', 'more haikus')}:"
   = render(:partial => "shared/haiku", :collection => @haikus_by_same_author)
   %br
+  = link_to "See all #{@haiku.author.haikus_count_total} haikus", :controller => 'authors', :action => 'show', :id => @haiku.author.username
