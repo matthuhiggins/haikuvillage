@@ -16,6 +16,9 @@ class Haiku < ActiveRecord::Base
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :haiku_favorites, :source => :author
   
+  belongs_to :responding_to, :foreign_key => :responding_to_id, :class_name => 'Haiku'
+  has_many :responses, :foreign_key => :responding_to_id, :dependent => :nullify, :class_name => 'Haiku'
+  
   named_scope :recent, :order => 'haikus.id desc'
   named_scope :top_favorites, :order => 'favorited_count_week desc, favorited_count_total desc', :conditions => 'favorited_count_total > 0'
   named_scope :most_viewed, :order => 'view_count_week desc, view_count_total desc', :conditions => 'view_count_week > 0'
@@ -23,11 +26,13 @@ class Haiku < ActiveRecord::Base
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
     Subject.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.subject_id
+    Haiku.update_counters(haiku.responding_to_id, :response_count_week => 1, :response_count_total => 1) if haiku.responding_to_id
   end
   
   before_destroy do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_total => -1)
     Subject.update_counters(haiku.subject_id, :haikus_count_total => -1) if haiku.subject_id
+    Haiku.update_counters(haiku.responding_to_id, :response_count_total => -1) if haiku.responding_to_id
   end
   
   validates_presence_of :author_id
