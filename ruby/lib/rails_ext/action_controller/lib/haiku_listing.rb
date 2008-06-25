@@ -32,7 +32,7 @@ module HaikuController
       render :template => "templates/listing"
     end
         
-    VALID_SORT_SCOPES = [:recent, :most_viewed, :top_favorites].to_set
+    VALID_SORT_SCOPES = [:recent, :most_viewed, :top_favorites, :most_responses].to_set
     
     def haiku_sort_param
       if params[:order].nil?

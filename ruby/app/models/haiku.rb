@@ -21,7 +21,8 @@ class Haiku < ActiveRecord::Base
   
   named_scope :recent, :order => 'haikus.id desc'
   named_scope :top_favorites, :order => 'favorited_count_week desc, favorited_count_total desc', :conditions => 'favorited_count_total > 0'
-  named_scope :most_viewed, :order => 'view_count_week desc, view_count_total desc', :conditions => 'view_count_week > 0'
+  named_scope :most_viewed, :order => 'view_count_week desc, view_count_total desc', :conditions => 'view_count_total > 0'
+  named_scope :most_responses, :order => 'responses_count_week desc, responses_count_total desc', :conditions => 'responses_count_total > 0'
   
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
