@@ -1,6 +1,6 @@
 - content_for :title, 'Welcome to HaikuVillage'
 
-.column.wide
+.column
   = render :partial => current_author ? 'intro_active_author' : 'intro_new_author'
   #haiku-summary
     .summary-line
@@ -21,7 +21,7 @@
     .cloud
       %h2= 'Popular subjects'
       = subject_cloud(@popular_subjects)
-.column.small{:style => 'margin-top: 100px'}
+.column{:style => 'margin-top: 100px'}
   = render :partial => 'shared/create'
   
 %br
