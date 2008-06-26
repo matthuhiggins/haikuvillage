@@ -17,6 +17,6 @@ module SubjectsHelper
   end
   
   def link_to_subject(subject, html_options = {})
-    link_to truncate(subject.name, 24), {:action => :show, :id => subject.name}, html_options
+    link_to truncate(subject.name, 24), {:controller => 'subjects', :action => :show, :id => subject.name}, html_options
   end
 end
