@@ -16,7 +16,7 @@ class HaikusController < ApplicationController
     if current_author
       @haiku = Haiku.create(params[:haiku].update(:author => current_author))
       flash[:new_haiku_id] = @haiku.id
-      if params[:haiku][:conversing_with].empty?
+      if params[:haiku][:conversing_with].nil?
         redirect_to :controller => 'journal'
       else
         redirect_to :controller => 'haikus', :action => 'show', :id => params[:haiku][:conversing_with]
