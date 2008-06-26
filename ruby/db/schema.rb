@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080625044826) do
+ActiveRecord::Schema.define(:version => 20080626013316) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                            :null => false
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(:version => 20080625044826) do
   add_index "authors", ["username"], :name => "index_authors_on_username"
   add_index "authors", ["haikus_count_week"], :name => "index_authors_on_haikus_count_week"
   add_index "authors", ["haikus_count_total"], :name => "index_authors_on_haikus_count_total"
+
+  create_table "conversations", :force => true do |t|
+    t.integer  "haikus_count_week",  :limit => 11, :default => 0, :null => false
+    t.integer  "haikus_count_total", :limit => 11, :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "conversations", ["haikus_count_week"], :name => "index_conversations_on_haikus_count_week"
+  add_index "conversations", ["haikus_count_total"], :name => "index_conversations_on_haikus_count_total"
 
   create_table "haiku_favorites", :force => true do |t|
     t.integer  "author_id",  :limit => 11, :null => false
@@ -50,9 +60,7 @@ ActiveRecord::Schema.define(:version => 20080625044826) do
     t.datetime "updated_at"
     t.string   "subject_name"
     t.integer  "subject_id",            :limit => 11
-    t.integer  "responding_to_id",      :limit => 11
-    t.integer  "responses_count_week",  :limit => 11, :default => 0, :null => false
-    t.integer  "responses_count_total", :limit => 11, :default => 0, :null => false
+    t.integer  "conversation_id",       :limit => 11
   end
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
@@ -61,8 +69,7 @@ ActiveRecord::Schema.define(:version => 20080625044826) do
   add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
   add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
-  add_index "haikus", ["responses_count_week"], :name => "index_haikus_on_responses_count_week"
-  add_index "haikus", ["responses_count_total"], :name => "index_haikus_on_responses_count_total"
+  add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_foreign_key"
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"

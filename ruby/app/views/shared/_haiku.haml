@@ -1,13 +1,10 @@
 - div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
-  - cache("haiku_#{haiku.id}") do
-    = link_to haiku, :class => 'text' do
-      - haiku.text.each_line do |line|
-        .haiku-line= h(line)
-    .haiku_detail
-      = "Created on #{haiku.created_at.to_s(:haiku)} by"
-      = link_to h(haiku.author.username), {:controller => "authors", :action => 'show', :id => haiku.author.username}
+  = link_to haiku, :class => 'text' do
+    - haiku.text.each_line do |line|
+      .haiku-line= h(line)
   .haiku_detail
-    = "Favorited: #{haiku.favorited_count_total}, Viewed: #{haiku.view_count_total}"
+    = "Created on #{haiku.created_at.to_s(:haiku)} by"
+    = link_to h(haiku.author.username), {:controller => "authors", :action => 'show', :id => haiku.author.username}
   - if current_author
     .haiku_detail
       = favorite_span(haiku)

@@ -21,7 +21,7 @@ brilliant:
 subpar:
   author: joe
   text: "Dirty Sanchezes\nParty's and mexican chicks\nI will sleep instead"
-  responding_to: recursive
+  conversation: flowers
 
 jazz:
   author: joe
@@ -30,7 +30,7 @@ jazz:
 poo:
   author: fredrick
   text: "I need to go soon.\nA lot of pressure builds. How\n I wish there were stalls."
-  responding_to: recursive
+  conversation: flowers
   
 iraq:
   author: fredrick
