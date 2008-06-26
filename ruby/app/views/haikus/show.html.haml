@@ -25,14 +25,15 @@
     #first_statement
       = link_to_function "Post a haiku", nil  do |page|
         - page[:first_statement].hide
-        - page[:statement_form].visual_effect(:blind_down, :duration => 0.2)
+        - page[:statement_form].show
       to start a conversation
       
     #statement_form{:style => 'display: none'}
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
   - else
     %h2 This haiku is in a conversation
-    = link_to_add_statement "Add a haiku to this conversation.", 'add_statement_link'
+    = link_to_function "Add a haiku to this conversation", nil, {:id => "add_statement_link"}  do |page|
+      - page[:statement_form].show
     #statement_form{:style => 'display: none'}
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
     %br
@@ -43,7 +44,8 @@
         - floating = floating == 'left' ? 'right' : 'left'
     
       - div_for haiku, :class => floating do
-        %h4= link_to_author haiku.author
+        - if haiku.author != previous.author
+          %h4= link_to_author haiku.author
         = link_to haiku, :class => 'text' do
           - haiku.text.each_line do |line|
             .haiku-line= h(line)

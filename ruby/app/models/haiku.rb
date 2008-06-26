@@ -60,7 +60,10 @@ class Haiku < ActiveRecord::Base
   def conversing_with=(haiku_id)
     transaction do
       other_haiku = Haiku.find(haiku_id)
-      other_haiku.create_conversation if other_haiku.conversation.nil?
+      if other_haiku.conversation.nil?
+        other_haiku.create_conversation
+        other_haiku.save
+      end
       self.conversation = other_haiku.conversation
     end
   end
