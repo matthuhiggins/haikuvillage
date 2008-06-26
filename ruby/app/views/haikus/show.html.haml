@@ -5,7 +5,7 @@
 .center
   .haiku-big
     - div_for @single_haiku do
-      = link_to @single_haiku, :class => 'text' do
+      .text
         - @single_haiku.text.each_line do |line|
           .haiku-line= h(line)
       .haiku_detail
@@ -29,11 +29,29 @@
       to start a conversation
       
     #statement_form{:style => 'display: none'}
-      = render :partial => 'shared/create'
+      = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
   - else
     %h2 This haiku is in a conversation
     = link_to_add_statement "Add a haiku to this conversation.", 'add_statement_link'
     #statement_form{:style => 'display: none'}
-      = render :partial => 'shared/create'
+      = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
     %br
-    = render(:partial => "shared/haiku", :collection => @single_haiku.conversation.haikus.recent)
+    - floating = 'left'
+    - previous = Haiku.new
+    - @single_haiku.conversation.haikus.each do |haiku|
+      - if haiku.author != previous.author
+        - floating = floating == 'left' ? 'right' : 'left'
+    
+      - div_for haiku, :class => floating do
+        %h4= link_to_author haiku.author
+        = link_to haiku, :class => 'text' do
+          - haiku.text.each_line do |line|
+            .haiku-line= h(line)
+        - if current_author
+          .haiku_detail
+            = favorite_span(haiku)
+            - if haiku.author == current_author
+              = link_to haiku, :method => :delete do
+                = image_tag("trash.png", :alt => "Delete")
+
+      - previous = haiku

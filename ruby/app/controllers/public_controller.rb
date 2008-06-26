@@ -31,7 +31,7 @@ class PublicController < ApplicationController
         redirect_to :controller => 'journal'
       end
     else
-      @haiku = Haiku.new(:text => session[:new_haiku_text])
+      @haiku = Haiku.new(session[:new_haiku])
     end
   end
 end

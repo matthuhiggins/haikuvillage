@@ -14,11 +14,11 @@ class HaikusController < ApplicationController
   
   def create
     if current_author
-      @haiku = Haiku.create(:text => params[:haiku][:text], :subject_name => params[:haiku][:subject_name], :author => current_author)
+      @haiku = Haiku.create(params[:haiku].update(:author => current_author))
       flash[:new_haiku_id] = @haiku.id
       redirect_to :controller => 'journal'
     else
-      session[:new_haiku_text] = params[:haiku][:text]
+      session[:new_haiku] = params[:haiku]
       redirect_to register_url
     end
   end

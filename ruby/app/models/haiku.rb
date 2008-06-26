@@ -20,7 +20,6 @@ class Haiku < ActiveRecord::Base
   named_scope :recent, :order => 'haikus.id desc'
   named_scope :top_favorites, :order => 'favorited_count_week desc, favorited_count_total desc', :conditions => 'favorited_count_total > 0'
   named_scope :most_viewed, :order => 'view_count_week desc, view_count_total desc', :conditions => 'view_count_total > 0'
-  named_scope :most_responses, :order => 'responses_count_week desc, responses_count_total desc', :conditions => 'responses_count_total > 0'
   
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
@@ -56,5 +55,13 @@ class Haiku < ActiveRecord::Base
     name = name.gsub(/[^\w| ]/, '').chomp
     self.subject = Subject.find_or_create_by_name(name) unless name.blank?
     self[:subject_name] = name
+  end
+  
+  def conversing_with=(haiku_id)
+    transaction do
+      other_haiku = Haiku.find(haiku_id)
+      other_haiku.create_conversation if other_haiku.conversation.nil?
+      self.conversation = other_haiku.conversation
+    end
   end
 end

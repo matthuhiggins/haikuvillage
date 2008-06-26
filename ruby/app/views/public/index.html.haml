@@ -22,17 +22,6 @@
       %h2= 'Popular subjects'
       = subject_cloud(@popular_subjects)
 .column.small{:style => 'margin-top: 100px'}
-  #preview{:class => 'empty'}
-    %div= "five syllables"
-    %div= "seven syllables"
-    %div= "five syllables"
-  %h2#write= 'Write a haiku'
-  - form_for :haiku, :url => haikus_url, :html => {:id => 'create_haiku_form'} do |haiku|
-    = haiku.text_area(:text, :rows => 3)
-    #create-submit
-      = haiku.submit 'Create', :id => "create_haiku", :disabled => true
-%script
-  new Haiku.PeriodicalUpdater("haiku_text", "preview", "create_haiku");
-  $('haiku_text').focus();
+  = render :partial => 'shared/create'
   
 %br

@@ -57,7 +57,7 @@ ul.sort_options
   :float left
   :min-width 50%
   :margin-bottom 20px
-  a.text
+  .text
     :color black
     :display block
     :float left
@@ -65,13 +65,13 @@ ul.sort_options
     :margin 0
     :padding 10px 0
     :text-decoration none
-    &:hover
-      :color= !lightgrey
-    .haiku-line
-      :clear left
-      :float left
-      :background-color white
-      :padding 2px 2px 0 2px
+  .haiku-line
+    :clear left
+    :float left
+    :background-color white
+    :padding 2px 2px 0 2px
+  a.text:hover
+    :color= !lightgrey
   .haiku_detail
     :clear left
     :color gray
@@ -110,5 +110,18 @@ ul.sort_options
     :float right
   #statement_form
     :clear both
-    :margin-left 15%
+    :margin-left 20%
     :width 60%
+  .haiku
+    :clear both
+    .haiku-line
+      :font-size 120%
+  .haiku.right
+    h4
+    :text-align right
+    :float right
+    .haiku_detail
+      :clear right
+      :float right
+    .text
+      :float right

@@ -4,6 +4,9 @@
   %div= "five syllables"
 
 - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
+  / - if defined? conversing_with
+  / = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
+    
   #haiku_text_container
     %h3= 'Write a Haiku'
     = form.text_area(:text, :rows => 3)
