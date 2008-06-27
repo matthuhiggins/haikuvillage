@@ -10,9 +10,7 @@
 
 .column.small
   %h3= "Already a user?"
-  - form_for :session, :url => login_url, :html => {:id => 'register_login_form'} do |form|
-    - fields_for :haiku do |haiku|
-      = haiku.hidden_field :text
+  - deferred_haiku_form :session, :url => login_url, :html => {:id => 'register_login_form'} do |form|
     %div
       %h3= 'Username'
       = form.text_field :username
@@ -23,9 +21,7 @@
 
 .column.wide
   %h3= 'Create a new account'
-  - form_for :author, :url => register_url, :html => {:class => 'register_form'}  do |author|
-    - fields_for :haiku do |haiku|
-      = haiku.hidden_field :text
+  - deferred_haiku_form :author, :url => register_url, :html => {:class => 'register_form'}  do |author|
     %div
       %h3= 'Email'
       = error_message_on :author, :email

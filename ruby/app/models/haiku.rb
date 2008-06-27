@@ -10,7 +10,7 @@ class Haiku < ActiveRecord::Base
       words.sum &:syllables
     end
   end
-    
+
   belongs_to :author
   belongs_to :subject
   belongs_to :conversation
@@ -25,6 +25,9 @@ class Haiku < ActiveRecord::Base
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
     Subject.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.subject_id
   end
+  
+  attr_accessor :conversing_with
+  before_create :construct_conversation
   
   before_destroy do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_total => -1)
@@ -57,14 +60,16 @@ class Haiku < ActiveRecord::Base
     self[:subject_name] = name
   end
   
-  def conversing_with=(haiku_id)
-    transaction do
-      other_haiku = Haiku.find(haiku_id)
-      if other_haiku.conversation.nil?
-        other_haiku.create_conversation
-        other_haiku.save
+  def construct_conversation
+    unless conversing_with.nil? || conversing_with.empty?
+      transaction do
+        other_haiku = Haiku.find(conversing_with)
+        if other_haiku.conversation.nil?
+          other_haiku.create_conversation
+          other_haiku.save
+        end
+        self.conversation = other_haiku.conversation
       end
-      self.conversation = other_haiku.conversation
     end
   end
 end

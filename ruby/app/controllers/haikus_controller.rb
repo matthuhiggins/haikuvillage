@@ -19,6 +19,7 @@ class HaikusController < ApplicationController
       if params[:haiku][:conversing_with].nil?
         redirect_to :controller => 'journal'
       else
+        flash[:notice] = 'Your haiku has been added to the conversation'
         redirect_to :controller => 'haikus', :action => 'show', :id => params[:haiku][:conversing_with]
       end
     else
