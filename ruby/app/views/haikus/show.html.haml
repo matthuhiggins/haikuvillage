@@ -34,6 +34,7 @@
     %h2 This haiku is in a conversation
     = link_to_function "Add a haiku to this conversation", nil, {:id => "add_statement_link"}  do |page|
       - page[:statement_form].show
+      - page[:haiku_text].focus
     #statement_form{:style => 'display: none'}
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
     %br

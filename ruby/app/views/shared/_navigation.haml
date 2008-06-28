@@ -23,7 +23,7 @@
             %div
               %label{:for => 'session_password'}='Password:'
               = form.password_field :password
-              %button{:type => 'submit'}=">"
+              %button{:type => 'submit'}= h(">")
       - else
         %li= link_to 'Sign out', logout_url
     %ul.bottom-menu
