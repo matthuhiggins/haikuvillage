@@ -1,5 +1,7 @@
 - content_for :title, "Authors"
 
+= render :partial => 'search_form'
+
 .column
   %h3= 'Active authors'
   .href_list= author_list(@active_authors)
