@@ -12,7 +12,10 @@
         = "Created on #{@single_haiku.created_at.to_s(:haiku)} by"
         = link_to_author @single_haiku.author
       .haiku_detail
-        = "Favorited: #{@single_haiku.favorited_count_total}, Viewed: #{@single_haiku.view_count_total}"
+        = "Favorited: #{@single_haiku.favorited_count_total}, "
+        = "Viewed: #{@single_haiku.view_count_total}, "
+        - unless @single_haiku.subject_name.nil?
+          = "Subject: #{link_to_subject @single_haiku.subject_name}"
       - if current_author
         .haiku_detail
           = favorite_span(@single_haiku)
