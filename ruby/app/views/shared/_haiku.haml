@@ -1,5 +1,5 @@
 - div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
-  = link_to haiku, :class => 'text' do
+  = link_to haiku, :class => 'text' + (haiku.conversation.nil? ? '' : ' conversation') do
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
   .haiku_detail

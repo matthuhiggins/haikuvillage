@@ -60,9 +60,6 @@ ActiveRecord::Schema.define(:version => 20080626013316) do
     t.datetime "updated_at"
     t.string   "subject_name"
     t.integer  "subject_id",            :limit => 11
-    t.integer  "responding_to_id",      :limit => 11
-    t.integer  "responses_count_week",  :limit => 11, :default => 0, :null => false
-    t.integer  "responses_count_total", :limit => 11, :default => 0, :null => false
     t.integer  "conversation_id",       :limit => 11
   end
 
@@ -72,8 +69,6 @@ ActiveRecord::Schema.define(:version => 20080626013316) do
   add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
   add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
-  add_index "haikus", ["responses_count_week"], :name => "index_haikus_on_responses_count_week"
-  add_index "haikus", ["responses_count_total"], :name => "index_haikus_on_responses_count_total"
   add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_foreign_key"
 
   create_table "logged_exceptions", :force => true do |t|
