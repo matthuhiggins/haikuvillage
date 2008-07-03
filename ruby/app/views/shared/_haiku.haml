@@ -3,7 +3,7 @@
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
   .haiku_detail
-    = "Created on #{haiku.created_at.to_s(:haiku)} by"
+    = "#{haiku.created_at.to_s(:haiku)} - "
     = link_to h(haiku.author.username), {:controller => "authors", :action => 'show', :id => haiku.author.username}
   - if current_author
     .haiku_detail
