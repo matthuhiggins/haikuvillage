@@ -21,7 +21,7 @@
           = favorite_span(@single_haiku)
           - if @single_haiku.author == current_author
             = link_to @single_haiku, :method => :delete do
-              = image_tag("trash.png", :alt => "Delete")
+              = image_tag("icons/trash.png", :alt => "Delete")
 
 .conversation
   - if @single_haiku.conversation.nil?
@@ -58,6 +58,6 @@
             = favorite_span(haiku)
             - if haiku.author == current_author
               = link_to haiku, :method => :delete do
-                = image_tag("trash.png", :alt => "Delete")
+                = image_tag("icons/trash.png", :alt => "Delete")
 
       - previous = haiku

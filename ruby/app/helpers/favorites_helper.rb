@@ -1,7 +1,7 @@
 module FavoritesHelper
   METHOD_TEXT = {
-    :put    => {:image_url => "no_favorite.png",  :name => "Add favorite"},
-    :delete => {:image_url => "favorite.png",     :name => "Remove favorite"}
+    :put    => {:image_url => "icons/no_favorite.png",  :name => "Add favorite"},
+    :delete => {:image_url => "icons/favorite.png",     :name => "Remove favorite"}
   }
   
   def favorite_span(haiku)

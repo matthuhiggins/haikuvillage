@@ -9,7 +9,7 @@
       = favorite_span(haiku)
       - if haiku.author == current_author
         = link_to haiku, :method => :delete do
-          = image_tag("trash.png", :alt => "Delete")
+          = image_tag("icons/trash.png", :alt => "Delete")
 - if new_haiku? haiku
   = update_page_tag do |page|
     - page[haiku].appear
