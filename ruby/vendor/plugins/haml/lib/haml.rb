@@ -309,7 +309,7 @@ $LOAD_PATH << dir unless $LOAD_PATH.include?(dir)
 #
 #   <div id="content">
 #     <div class="articles">
-#       <div class="article title ">Doogie Howser Comes Out</div>
+#       <div class="article title">Doogie Howser Comes Out</div>
 #       <div class="article date">2006-11-05</div>
 #       <div class="article entry">
 #         Neil Patrick Harris would like to dispel any rumors that he is straight
