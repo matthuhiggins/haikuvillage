@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080626013316) do
+ActiveRecord::Schema.define(:version => 20080704162741) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                            :null => false
@@ -33,10 +33,22 @@ ActiveRecord::Schema.define(:version => 20080626013316) do
     t.integer  "haikus_count_total", :limit => 11, :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "inspiration_type"
   end
 
   add_index "conversations", ["haikus_count_week"], :name => "index_conversations_on_haikus_count_week"
   add_index "conversations", ["haikus_count_total"], :name => "index_conversations_on_haikus_count_total"
+  add_index "conversations", ["inspiration_type"], :name => "index_conversations_on_inspiration_type"
+
+  create_table "flickr_inspirations", :force => true do |t|
+    t.integer  "conversation_id", :limit => 11, :null => false
+    t.integer  "farm_id",         :limit => 11, :null => false
+    t.integer  "server_id",       :limit => 11, :null => false
+    t.integer  "photo_id",        :limit => 11, :null => false
+    t.string   "secret",                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "haiku_favorites", :force => true do |t|
     t.integer  "author_id",  :limit => 11, :null => false
@@ -50,12 +62,12 @@ ActiveRecord::Schema.define(:version => 20080626013316) do
   add_index "haiku_favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
 
   create_table "haikus", :force => true do |t|
-    t.integer  "author_id",             :limit => 11,                 :null => false
-    t.integer  "favorited_count_week",  :limit => 11,  :default => 0, :null => false
-    t.integer  "favorited_count_total", :limit => 11,  :default => 0, :null => false
-    t.integer  "view_count_week",       :limit => 11,  :default => 0, :null => false
-    t.integer  "view_count_total",      :limit => 11,  :default => 0, :null => false
-    t.text     "text",                  :limit => 255,                :null => false
+    t.integer  "author_id",             :limit => 11,                :null => false
+    t.integer  "favorited_count_week",  :limit => 11, :default => 0, :null => false
+    t.integer  "favorited_count_total", :limit => 11, :default => 0, :null => false
+    t.integer  "view_count_week",       :limit => 11, :default => 0, :null => false
+    t.integer  "view_count_total",      :limit => 11, :default => 0, :null => false
+    t.text     "text",                                               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject_name"
@@ -94,5 +106,9 @@ ActiveRecord::Schema.define(:version => 20080626013316) do
   add_index "subjects", ["haikus_count_week"], :name => "index_subjects_on_haikus_count_week"
   add_index "subjects", ["haikus_count_total"], :name => "index_subjects_on_haikus_count_total"
   add_index "subjects", ["created_at"], :name => "index_subjects_on_created_at"
+
+  create_table "youtube_inspiration", :force => true do |t|
+    t.string "video_id", :null => false
+  end
 
 end

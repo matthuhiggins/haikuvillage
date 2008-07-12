@@ -1,2 +1,10 @@
 flowers:
   haikus_count_total: 2
+
+flickr_crowd_surf:
+  haikus_count_total: 1
+  inspiration_type: flickr
+
+flickr_strange_boy:
+  haikus_count_total: 1
+  inspiration_type: flickr

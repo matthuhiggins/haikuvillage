@@ -1,6 +1,7 @@
 from_wikipedia:
   author: billy
   text: "the first cold shower\neven the monkey seems to want\na little coat of straw"
+  subject: politics
 
 recursive:
   author: billy

@@ -21,8 +21,8 @@ ActiveRecord::Schema.define do
 
   create_table "topics", :force => true do |t|
     t.column "project_id", :integer
-    t.column "title",      :string
-    t.column "subtitle",   :string
+    t.column "title ",      :string
+    t.column "subtitle ",   :string
     t.column "content",    :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
