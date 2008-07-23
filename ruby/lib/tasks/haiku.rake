@@ -27,6 +27,20 @@ namespace :haiku do
     end
   end
   
+  namespace :inspirations do
+    desc 'Delete inspirations that have no haikus, and create new ones'
+    task :update => :environment do
+      klasses.each do |klass|
+        klass.clense
+        klass.collect
+      end
+    end
+    
+    def klasses
+      [FlickrInspiration]
+    end
+  end
+  
   namespace :cache do
     desc 'Clear eveything that has been cached'
     task :clear => :environment do
