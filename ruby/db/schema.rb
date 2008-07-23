@@ -41,10 +41,11 @@ ActiveRecord::Schema.define(:version => 20080704162741) do
   add_index "conversations", ["inspiration_type"], :name => "index_conversations_on_inspiration_type"
 
   create_table "flickr_inspirations", :force => true do |t|
-    t.integer  "conversation_id", :limit => 11, :null => false
+    t.string   "title",                         :null => false
+    t.integer  "conversation_id", :limit => 11
+    t.integer  "photo_id",        :limit => 21, :null => false
     t.integer  "farm_id",         :limit => 11, :null => false
     t.integer  "server_id",       :limit => 11, :null => false
-    t.integer  "photo_id",        :limit => 11, :null => false
     t.string   "secret",                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20080704162741) do
   add_index "subjects", ["haikus_count_total"], :name => "index_subjects_on_haikus_count_total"
   add_index "subjects", ["created_at"], :name => "index_subjects_on_created_at"
 
-  create_table "youtube_inspiration", :force => true do |t|
+  create_table "youtube_inspirations", :force => true do |t|
     t.string "video_id", :null => false
   end
 

@@ -7,13 +7,15 @@ class AddInspirations < ActiveRecord::Migration
     add_index :conversations, :inspiration_type
     
     create_table :flickr_inspirations do |t|
+      t.string :title, :null => false
       t.integer :conversation_id, :null => true
-      t.integer :farm_id, :server_id, :photo_id, :null => false
+      t.column :photo_id, :big_integer, :null => false
+      t.integer :farm_id, :server_id, :null => false
       t.string :secret, :null => false
       t.timestamps
     end
     
-    create_table :youtube_inspiration do |t|
+    create_table :youtube_inspirations do |t|
       t.string :video_id, :null => false
     end
   end
