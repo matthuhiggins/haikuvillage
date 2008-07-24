@@ -2,6 +2,7 @@
   .inspiration
     = link_to :id => inspiration do
       = image_tag inspiration.thumbnail
+    = link_to :id => inspiration do
       - if inspiration.conversation_id.nil?
         Write a haiku
       - else
