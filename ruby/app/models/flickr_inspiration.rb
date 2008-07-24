@@ -11,7 +11,7 @@ class FlickrInspiration < ActiveRecord::Base
       def interestingness_path
         now = 2.days.ago.utc
         date = now.strftime('%Y-%m-%d')
-        "/services/rest/?method=flickr.interestingness.getList&api_key=ffbf4583598612813dcebd9be84813e2&per_page=20&date=#{date}"
+        "/services/rest/?method=flickr.interestingness.getList&api_key=#{api_key}&per_page=20&date=#{date}"
       end
       
       def flickr_host
@@ -38,6 +38,7 @@ class FlickrInspiration < ActiveRecord::Base
   end
   
   def thumbnail
+    # to_url
     to_url('_m')
   end
 end
