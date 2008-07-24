@@ -1,0 +1,19 @@
+- title 'Flickr Inspirations'
+
+%h2 Flickr Inspirations
+
+%p Click on an image to write a haiku about it.
+
+.inspirations
+  %table{:width => '100%'}
+    - @inspirations.in_groups_of(2).each do |(first, second)|
+      %tr{:valign => 'bottom'}
+        %td
+          %h4= first ? first.title : ''
+        %td
+          %h4= second ? second.title : ''
+      %tr{:valign => 'top'}
+        %td
+          = render :partial => 'flickr_inspiration', :locals => {:inspiration => first}
+        %td
+          = render :partial => 'flickr_inspiration', :locals => {:inspiration => second}

@@ -1,5 +1,11 @@
 class InspirationsController < ApplicationController
   def flickr
-    @inspirations = FlickrInspiration.all
+    if params[:id]
+      @inspiration = FlickrInspiration.find(params[:id])
+      render :action => 'flickr_single'
+    else
+      @inspirations = FlickrInspiration.all
+      render :action => 'flickr_list'
+    end
   end
 end

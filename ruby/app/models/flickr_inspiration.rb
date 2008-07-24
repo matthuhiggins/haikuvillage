@@ -11,7 +11,7 @@ class FlickrInspiration < ActiveRecord::Base
       def interestingness_path
         now = 2.days.ago.utc
         date = now.strftime('%Y-%m-%d')
-        "/services/rest/?method=flickr.interestingness.getList&api_key=#{api_key}&per_page=20&date=#{date}"
+        "/services/rest/?method=flickr.interestingness.getList&api_key=#{api_key}&per_page=10&date=#{date}"
       end
       
       def flickr_host
