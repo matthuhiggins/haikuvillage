@@ -1,1 +1,4 @@
-= yield
+.column
+  = yield
+.column
+  = render :partial => 'shared/create', :locals => {:inspired_by => @inspiration}

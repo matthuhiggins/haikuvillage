@@ -4,6 +4,6 @@
       = image_tag inspiration.thumbnail
     = link_to :id => inspiration do
       - if inspiration.conversation_id.nil?
-        Write a haiku
+        Write the first haiku
       - else
         = "#{inspiration.conversation.haikus_count_total} haikus"
