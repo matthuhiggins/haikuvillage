@@ -1,4 +1,7 @@
 - div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
+  /- tooltip_text = ""
+  /- tooltip_text += "Subject: " + haiku.subject if haiku.subject 
+  /- tooltip_text += "This haiku is in a conversation" if haiku.conversation
   = link_to haiku, :class => 'text' + (haiku.conversation.nil? ? '' : ' conversation') do
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
@@ -7,6 +10,12 @@
   - if current_author
     .haiku_detail
       = favorite_span(haiku)
+      - if haiku.conversation
+        = link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
+          = image_tag("icons/reply.png", :alt => "Reply")
+      - else
+        = link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
+          = image_tag("icons/conversation.png", :alt => "Start Conversation")
       - if haiku.author == current_author
         = link_to haiku, :method => :delete do
           = image_tag("icons/trash.png", :alt => "Delete")
