@@ -8,6 +8,10 @@ module HaikuRecord
       def inspired_by(name)
         extend ClassMethods
         include InstanceMethods
+
+        cattr_accessor :inspiration_type
+        self.inspiration_type = name.to_s
+
         belongs_to :conversation
         before_create :generate_conversation
       end
@@ -16,9 +20,9 @@ module HaikuRecord
     module ClassMethods
     end
     
-    module InstanceMethods
+    module InstanceMethods      
       def generate_conversation
-        self.conversation = Conversation.create
+        self.conversation = Conversation.create(:inspiration_type => self.class.inspiration_type)
       end
     end
   end
