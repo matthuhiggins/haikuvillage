@@ -2,6 +2,15 @@
 
 %h2= "Explore"
 
+%h3= "Random haiku"
+.haiku-big
+  - div_for @random_haiku do
+    .text-featured
+      - @random_haiku.text.each_line do |line|
+        .haiku-line= h(line)
+%br
+%br
+
 .column
   %h3= 'New authors'
   .href_list= author_list(@new_authors)
