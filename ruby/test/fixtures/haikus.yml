@@ -36,10 +36,12 @@ poo:
 iraq:
   author: fredrick
   text: "We went to Iraq.\nNever came back to The States\nThanks a lot George Bush."
+  conversation: flickr_crowd_surf
 
 beer:
   author: fredrick
   text: "I love heineken.\nBut 40's are good also.\nQuality ain't cheap."
+  conversation: flickr_crowd_surf
 
 trees:
   author: jane

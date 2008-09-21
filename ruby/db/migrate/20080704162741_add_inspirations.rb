@@ -8,15 +8,13 @@ class AddInspirations < ActiveRecord::Migration
     
     create_table :flickr_inspirations do |t|
       t.string :title, :null => false
-      t.integer :conversation_id, :null => true
+      t.integer :conversation_id, :null => false
       t.column :photo_id, :big_integer, :null => false
       t.integer :farm_id, :server_id, :null => false
       t.string :secret, :null => false
       t.timestamps
     end
     
-    create_table :youtube_inspirations do |t|
-      t.string :video_id, :null => false
-    end
+    add_foreign_key :flickr_inspirations, :conversation_id, :conversations, :dependent => :delete    
   end
 end

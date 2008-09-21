@@ -6,20 +6,20 @@ module HaikuRecord
     
     module InspirationalMethods
       def inspired_by(name)
-        belongs_to :conversation
         extend ClassMethods
         include InstanceMethods
+        belongs_to :conversation
+        before_create :generate_conversation
       end
     end
   
     module ClassMethods
-      def clense
-        delete_all :conversation_id => nil
-      end
     end
     
     module InstanceMethods
-      
+      def generate_conversation
+        self.conversation = Conversation.create
+      end
     end
   end
 end

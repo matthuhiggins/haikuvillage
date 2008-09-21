@@ -30,10 +30,8 @@ namespace :haiku do
   namespace :inspirations do
     desc 'Delete inspirations that have no haikus, and create new ones'
     task :update => :environment do
-      klasses.each do |klass|
-        klass.clense
-        klass.collect
-      end
+      klasses.each &:collect
+      Conversation.delete_all :haikus_count_total => 0
     end
     
     def klasses

@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
     haikus.resource :favorites
   end
   
+  map.resources :inspirations, :collection => {:flickr => :get}
+  
   map.root :controller => 'public'
   map.about 'about',    :controller => 'public',  :action => "about"
   map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"
