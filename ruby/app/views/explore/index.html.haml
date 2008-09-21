@@ -1,0 +1,16 @@
+- title "Explore"
+
+%h2= "Explore"
+
+.column
+  %h3= 'New authors'
+  .href_list= author_list(@new_authors)
+
+
+.column
+  %h3= 'New subjects'
+  .href_list= subject_list(@new_subjects)
+
+.cloud
+  %h3='Most popular subjects'
+  = subject_cloud(@popular_subjects)
