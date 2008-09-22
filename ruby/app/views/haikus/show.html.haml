@@ -2,12 +2,12 @@
 
 %h2
   = "A haiku by #{@single_haiku.author.username}"
-  - if @single_haiku.conversation.inspiration_type == 'flickr'
+  - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
     = ", inspired by #{link_to 'Flickr', inspiration_url(@single_haiku.conversation)}"
 
 .center
   .haiku-big
-    - if @single_haiku.conversation.inspiration_type == 'flickr'
+    - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
       = link_to inspiration_url(@single_haiku.conversation) do
         = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
     - div_for @single_haiku do
