@@ -67,7 +67,7 @@ class Haiku < ActiveRecord::Base
       transaction do
         other_haiku = Haiku.find(conversing_with)
         if other_haiku.conversation.nil?
-          other_haiku.create_conversation
+          other_haiku.create_conversation(:haikus_count_total => 1)
           other_haiku.save
         end
         self.conversation = other_haiku.conversation
