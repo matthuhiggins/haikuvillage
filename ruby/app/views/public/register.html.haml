@@ -3,6 +3,9 @@
 %h2= "Share your haiku with the village"
 .center
   .haiku-big
+    - if @haiku.conversation.inspiration_type == 'flickr'
+      = image_tag @haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
+
     .haiku
       .text
         - @haiku.text.each_line do |line|

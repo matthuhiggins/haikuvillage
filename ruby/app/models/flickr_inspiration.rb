@@ -23,11 +23,12 @@ class FlickrInspiration < ActiveRecord::Base
       end
       
       def create_from_xml(xml)
-        create(:title        => xml['title'],
-              :farm_id      => xml['farm'],
-              :server_id    => xml['server'],
-              :photo_id     => xml['id'],
-              :secret       => xml['secret'])
+        create(
+          :title        => xml['title'],
+          :farm_id      => xml['farm'],
+          :server_id    => xml['server'],
+          :photo_id     => xml['id'],
+          :secret       => xml['secret']) unless exists?(:photo_id => xml['id'])
       end
   end
 

@@ -14,6 +14,6 @@
           %h4= second ? second.title : ''
       %tr{:valign => 'top'}
         %td
-          = render :partial => 'flickr_inspiration', :locals => {:inspiration => first}
+          = first ? (render :partial => 'flickr_inspiration', :locals => {:inspiration => first}) : "&nbsp;"
         %td
-          = render :partial => 'flickr_inspiration', :locals => {:inspiration => second}
+          = second ? (render :partial => 'flickr_inspiration', :locals => {:inspiration => second}) : "&nbsp;"

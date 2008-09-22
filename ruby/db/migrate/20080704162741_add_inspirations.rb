@@ -15,6 +15,7 @@ class AddInspirations < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :flickr_inspirations, :photo_id, :unique => true
     add_foreign_key :flickr_inspirations, :conversation_id, :conversations, :dependent => :delete
 
     Conversation.all.each do |conversation|
