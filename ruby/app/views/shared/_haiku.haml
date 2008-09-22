@@ -10,11 +10,13 @@
   - if current_author
     .haiku_detail
       = favorite_span(haiku)
-      - if haiku.conversation
-        = link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
-          = image_tag("icons/reply.png", :alt => "Reply")
-      - else
-        = link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
+      = link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
+        - if haiku.conversation
+          - if haiku.conversation.inspiration.nil?
+            = image_tag("icons/reply.png", :alt => "Reply")
+          - else
+            = image_tag("icons/camera.png", :alt => "Reply")
+        - else
           = image_tag("icons/conversation.png", :alt => "Start Conversation")
       - if haiku.author == current_author
         = link_to haiku, :method => :delete do
