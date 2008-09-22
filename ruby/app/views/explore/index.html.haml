@@ -10,8 +10,9 @@
 .haiku-big
   - div_for @random_haiku do
     .text-featured
-      - @random_haiku.text.each_line do |line|
-        .haiku-line= h(line)
+      = link_to @random_haiku, :class => 'text' + (@random_haiku.conversation.nil? ? '' : ' conversation') do
+        - @random_haiku.text.each_line do |line|
+          .haiku-line= h(line)
 %br
 %br
 
