@@ -41,23 +41,4 @@
     #statement_form{:style => 'display: none'}
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
     %br
-    - floating = 'left'
-    - previous = Haiku.new
-    - @single_haiku.conversation.haikus.each do |haiku|
-      - if haiku.author != previous.author
-        - floating = floating == 'left' ? 'right' : 'left'
-    
-      - div_for haiku, :class => floating do
-        - if haiku.author != previous.author
-          %h4= link_to_author haiku.author
-        = link_to haiku, :class => 'text' do
-          - haiku.text.each_line do |line|
-            .haiku-line= h(line)
-        - if current_author
-          .haiku_detail
-            = favorite_span(haiku)
-            - if haiku.author == current_author
-              = link_to haiku, :method => :delete do
-                = image_tag("icons/trash.png", :alt => "Delete")
-
-      - previous = haiku
+    = render :partial => 'shared/conversation', :object => @single_haiku.conversation.haikus

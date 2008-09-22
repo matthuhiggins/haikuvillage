@@ -30,7 +30,7 @@ class PublicController < ApplicationController
         redirect_to :controller => 'journal'
       end
     else
-      @haiku = Haiku.new(session[:new_haiku])
+      @haiku = Haiku.new(flash[:new_haiku])
     end
   end
 end

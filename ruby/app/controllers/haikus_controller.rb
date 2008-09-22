@@ -20,14 +20,14 @@ class HaikusController < ApplicationController
       if params[:haiku][:conversing_with]
         flash[:notice] = 'Your haiku has been added to the conversation'
         redirect_to :controller => 'haikus', :action => 'show', :id => params[:haiku][:conversing_with]
-      elsif params[:haiku][:inspired_by]
+      elsif params[:haiku][:conversation_id]
         flash[:notice] = 'Your haiku has been added to the inspiration'
-        redirect_to :controller => 'inpirations', :id => params[:haiku][:inspired_by]
+        redirect_to :controller => 'inpirations', :id => params[:haiku][:conversation_id]
       else
         redirect_to :controller => 'journal'
       end
     else
-      session[:new_haiku] = params[:haiku]
+      flash[:new_haiku] = params[:haiku]
       redirect_to register_url
     end
   end

@@ -1,4 +1,8 @@
 .column
   = yield
 .column
-  = render :partial => 'shared/create', :locals => {:inspired_by => @inspiration}
+  = render :partial => 'shared/create', :locals => {:conversation => @conversation}
+%br
+%h3="Haikus inspired by this inspiration"
+.conversation
+  = render :partial => 'shared/conversation', :object => @conversation.haikus
