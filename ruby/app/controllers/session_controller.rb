@@ -4,10 +4,14 @@ class SessionController < ApplicationController
     session[:username] = author ? author.username : nil
     
     if session[:username]
-      create_haiku_and_redirect
+      if params[:haiku]
+        create_haiku_and_redirect
+      else
+        redirect_to :back
+      end
     else
       flash[:notice] = "Invalid username/password combination"
-      redirect_to referring_uri
+      redirect_to :back
     end
   end
 
