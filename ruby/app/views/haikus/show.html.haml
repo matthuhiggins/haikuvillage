@@ -1,11 +1,15 @@
 - title "A haiku by #{@single_haiku.author.username}"
 
-%h2= "A haiku by #{@single_haiku.author.username}"
+%h2
+  = "A haiku by #{@single_haiku.author.username}"
+  - if @single_haiku.conversation.inspiration_type == 'flickr'
+    = ", inspired by #{link_to 'Flickr', inspiration_url(@single_haiku.conversation)}"
 
 .center
   .haiku-big
     - if @single_haiku.conversation.inspiration_type == 'flickr'
-      = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
+      = link_to inspiration_url(@single_haiku.conversation) do
+        = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
     - div_for @single_haiku do
       .text
         - @single_haiku.text.each_line do |line|
@@ -26,7 +30,7 @@
               = image_tag("icons/trash.png", :alt => "Delete")
 
 .conversation
-  - if @single_haiku.conversation.nil?
+  - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
     #first_statement
       = link_to_function "Post a haiku", nil  do |page|
         - page[:first_statement].hide
