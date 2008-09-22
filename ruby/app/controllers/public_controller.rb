@@ -19,18 +19,14 @@ class PublicController < ApplicationController
   
   def register
     if request.post?
-      @haiku = Haiku.new(params[:haiku])
-      raise InvalidHaikuException unless @haiku.valid_syllables?
       @author = Author.new(params[:author])
     
       if @author.save
-        @author.haikus = [@haiku]
         session[:username] = @author.username
-        flash[:new_haiku_id] = @haiku.id
-        redirect_to :controller => 'journal'
+        create_haiku_and_redirect
       end
     else
-      @haiku = Haiku.new(flash[:new_haiku])
+      @haiku = Haiku.new(session[:new_haiku])
     end
   end
 end

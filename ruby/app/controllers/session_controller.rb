@@ -4,14 +4,7 @@ class SessionController < ApplicationController
     session[:username] = author ? author.username : nil
     
     if session[:username]
-      if params[:haiku]
-        haiku = Haiku.new(params[:haiku])
-        raise InvalidHaikuException unless haiku.valid_syllables?
-        author.haikus << haiku
-        redirect_to :controller => 'journal'
-      else
-        redirect_to (referring_uri == root_url ? {:controller => 'journal'} : referring_uri)
-      end
+      create_haiku_and_redirect
     else
       flash[:notice] = "Invalid username/password combination"
       redirect_to referring_uri

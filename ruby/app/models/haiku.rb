@@ -24,7 +24,7 @@ class Haiku < ActiveRecord::Base
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
     Subject.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.subject_id
-    Conversation.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.conversation_id
+    Conversation.update_counters(haiku.conversation_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.conversation_id
   end
   
   attr_accessor :conversing_with
@@ -33,7 +33,7 @@ class Haiku < ActiveRecord::Base
   before_destroy do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_total => -1)
     Subject.update_counters(haiku.subject_id, :haikus_count_total => -1) if haiku.subject_id
-    Conversation.update_counters(haiku.subject_id, :haikus_count_total => -1) if haiku.conversation_id
+    Conversation.update_counters(haiku.conversation_id, :haikus_count_total => -1) if haiku.conversation_id
   end
   
   validates_presence_of :author_id

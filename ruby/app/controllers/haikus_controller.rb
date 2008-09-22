@@ -14,20 +14,9 @@ class HaikusController < ApplicationController
   
   def create
     if current_author
-      @haiku = Haiku.create(params[:haiku].update(:author => current_author))
-      flash[:new_haiku_id] = @haiku.id
-
-      if params[:haiku][:conversing_with]
-        flash[:notice] = 'Your haiku has been added to the conversation'
-        redirect_to :controller => 'haikus', :action => 'show', :id => params[:haiku][:conversing_with]
-      elsif params[:haiku][:conversation_id]
-        flash[:notice] = 'Your haiku has been added to the inspiration'
-        redirect_to :controller => 'inpirations', :id => params[:haiku][:conversation_id]
-      else
-        redirect_to :controller => 'journal'
-      end
+      create_haiku_and_redirect
     else
-      flash[:new_haiku] = params[:haiku]
+      session[:new_haiku] = params[:haiku]
       redirect_to register_url
     end
   end
