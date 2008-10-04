@@ -1,3 +1,5 @@
+- title 'Flickr Inspiration'
+
 - render :layout => 'show' do
   %h2= "Title: #{@inspiration.title == '' ? 'Untitled' : @inspiration.title}"
   = image_tag @inspiration.thumbnail
