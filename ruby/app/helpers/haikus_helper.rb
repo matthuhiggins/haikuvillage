@@ -1,4 +1,4 @@
-module HaikusHelper  
+module HaikusHelper
   def new_haiku?(haiku)
     haiku.id == flash[:new_haiku_id]
   end
@@ -8,6 +8,14 @@ module HaikusHelper
       :url => suggest_subjects_path, 
       :method => :get, 
       :param_name => 'q'}
+  end
+  
+  def haiku_title(haiku)
+    text = "A haiku by #{haiku.author.username}"
+    if !@single_haiku.conversation.nil? && haiku.conversation.inspiration_type == 'flickr'
+      text <<  ", inspired by #{link_to 'Flickr', inspiration_url(haiku.conversation)}"
+    end
+    text
   end
   
   def haiku_sort_link(order)

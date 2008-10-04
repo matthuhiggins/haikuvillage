@@ -1,9 +1,6 @@
 - title "A haiku by #{@single_haiku.author.username}"
 
-%h2
-  = "A haiku by #{@single_haiku.author.username}"
-  - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
-    = ", inspired by #{link_to 'Flickr', inspiration_url(@single_haiku.conversation)}"
+%h2=haiku_title(@single_haiku)
 
 .center
   .haiku-big
