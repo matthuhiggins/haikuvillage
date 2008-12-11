@@ -5,21 +5,50 @@ ul.submenu {
 }
 
 ul.submenu li {
+  background-color: #E6E6E6;
+  border-color: #CECECE #CECECE #FFFFFF;
+  border-style: solid;
+  border-width: 1px;
   display: inline;
+  margin-left: -6px;
+  padding: 3px 15px 1px;
+}
+
+ul.submenu li.selected {
+  background-color: white;
 }
 
 ul.submenu li a {
-  border-left: 1px solid #CECECE;
-  border-right: 1px solid #CECECE;
-  border-top: 1px solid #CECECE;
-  padding: 3px 15px 1px;
+}
+
+.submenu-border {
+  border-top: 1px solid #D2DADA;
+}
+
+.submenu-content {
+  margin: 10px 5px 10px 5px;
+}
+
+.submenu-content td {
+  padding: 4px;
+}
+
+.submenu-content td label {
+  display: block;
+  text-align: right;
 }
 </style>
 
+<% title 'Profile' %>
+
 <ul class="submenu">
-  <li><%= link_to_unless_current "Account", :action => 'index' %></li>
-  <li><%= link_to_unless_current "Password", :action => 'password' %></li>
-  <li><%= link_to_unless_current "Avatar", :action => 'avatar' %></li>
+  <%= sub_menu_link("Account", :action => 'index') %>
+  <%= sub_menu_link("Password", :action => 'password') %>
+  <%= sub_menu_link("Avatar", :action => 'avatar') %>
 </ul>
 
-<%= yield %>
+<div class="submenu-border"></div>
+
+<div class="submenu-content">
+  <%= yield %>
+</div>

@@ -1,16 +1,19 @@
 <% render :layout => 'layout' do %>
   <% form_for :author, :url => {:action => 'update_info'} do |form| %>
-    <p>
-      <%= form.label :username, 'Username:' %>
-      <%= form.text_field :username %>
-    </p>
-    <p>
-      <%= form.label :email, 'E-mail:' %>
-      <%= form.text_field :email %>
-    </p>
-    <p>
-      <%= form.submit "Save" %>
-    </p>
+    <table>
+      <tr>
+        <td><%= form.label :username, 'Username:' %></td>
+        <td><%= form.text_field :username %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :email, 'E-mail:' %></td>
+        <td><%= form.text_field :email %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= form.submit "Save" %></td>
+      </tr>
+    </table>
   <% end %>
 <% end %>
 

@@ -2,13 +2,13 @@
   #global-navigation
     %ul.top-menu
       %li#logo= link_to(image_tag("haikuvillage.png"), :controller => "public", :action => "index")
-    %ul.bottom-menu#nav-menu
+    %ul.bottom-menu.nav-menu
       - if current_author
         %li= link_to_controller 'Journal', 'journal'
       %li= link_to_controller 'Explore', 'explore'
       %li= link_to_controller 'Inspirations', 'inspirations'
   #author-navigation
-    %ul.top-menu
+    %ul.top-menu.nav-menu
       - unless current_author
         %li#sign-in
           = link_to_function 'Sign in' do |page|
@@ -26,5 +26,5 @@
       - else
         %li= link_to 'Sign out', logout_url
         %li= link_to 'Profile', :controller => 'profile', :action => 'index'
-    %ul.bottom-menu
+    %ul.bottom-menu.nav-menu
       %li= link_to 'About', about_url
