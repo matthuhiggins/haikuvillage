@@ -39,7 +39,10 @@ class FlickrInspiration < ActiveRecord::Base
   end
   
   def thumbnail
-    # to_url
     to_url('_m')
+  end
+  
+  def small
+    to_url('_s')
   end
 end
