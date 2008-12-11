@@ -17,6 +17,8 @@ module AuthorsHelper
   end
   
   def link_to_author(author, html_options = {})
-    link_to author.username, {:controller => 'authors', :action => :show, :id => author.username}, html_options
+    html_options[:class] = "author_link"
+    link_to(image_tag(author.avatar.url(:thumb)) + author.username, 
+      {:controller => 'authors', :action => :show, :id => author.username}, html_options)
   end
 end
