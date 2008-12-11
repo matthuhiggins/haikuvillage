@@ -20,7 +20,7 @@ class PublicController < ApplicationController
   def register
     if request.post?
       @author = Author.new(params[:author])
-    
+
       if @author.save
         session[:username] = @author.username
         create_haiku_and_redirect

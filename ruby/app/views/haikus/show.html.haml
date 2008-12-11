@@ -25,6 +25,8 @@
           - if @single_haiku.author == current_author
             = link_to @single_haiku, :method => :delete do
               = image_tag("icons/trash.png", :alt => "Delete")
+      .haiku_detail
+        %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}
 
 .conversation
   - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1

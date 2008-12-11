@@ -3,6 +3,8 @@ class Author < ActiveRecord::Base
   has_many :haiku_favorites
   has_many :haikus
 
+  has_attached_file :avatar, :styles => { :medium => "48x48>", :thumb => "24x24>" }
+
   named_scope :brand_new, :order => 'created_at desc'
   named_scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
   named_scope :popular, :order => 'favorited_count_total desc', :conditions => 'favorited_count_total > 0'

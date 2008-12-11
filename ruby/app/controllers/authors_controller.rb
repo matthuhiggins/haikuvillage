@@ -1,4 +1,4 @@
-class AuthorsController < ApplicationController  
+class AuthorsController < ApplicationController
   def index
     @meta_description = "Haiku organized by author"
     if params[:q]
@@ -19,7 +19,7 @@ class AuthorsController < ApplicationController
   def suggest
     @authors = Author.search(params[:q]).popular.all(:limit => 12)
   end
-  
+
   private
     def render_search(query)
       if Author.find_by_username(query)
