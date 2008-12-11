@@ -1,0 +1,19 @@
+<% render :layout => 'layout' do %>
+  <% form_for :author, :url => {:action => 'update_info'} do |form| %>
+    <p>
+      <%= form.label :username, 'Username:' %>
+      <%= form.text_field :username %>
+    </p>
+    <p>
+      <%= form.label :email, 'E-mail:' %>
+      <%= form.text_field :email %>
+    </p>
+    <p>
+      <%= form.submit "Save" %>
+    </p>
+  <% end %>
+<% end %>
+
+<script>
+document.getElementById('author_username').focus();
+</script>
