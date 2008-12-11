@@ -1,6 +1,6 @@
 <% form_for :author, :url => {:action => 'update'}, :html => { :multipart => true } do |form| %>
   <p>
-    <%= image_tag current_author.avatar.url(:medium) %>
+    <%= image_tag current_author.avatar.url(:thumb) %>
   </p>
   <p>
     <%= form.file_field :avatar %>
