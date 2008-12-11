@@ -7,7 +7,7 @@
 <% render :layout => 'layout' do %>
   <% form_for :author, :url => {:action => 'update_avatar'}, :html => { :multipart => true } do |form| %>
     <div class="avatar">
-      <%= image_tag current_author.avatar.url(:medium) %>
+      <%= image_tag current_author.avatar.url(:large) %>
     </div>
     <p>
       <%= form.file_field :avatar %>
