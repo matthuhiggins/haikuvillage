@@ -6,8 +6,6 @@
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
   .haiku_detail
-    = haiku.created_at.to_s(:haiku)
-    = " - "
     = link_to_author(haiku.author)
   - if current_author
     .haiku_detail
