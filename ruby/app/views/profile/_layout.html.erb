@@ -1,0 +1,25 @@
+<style>
+ul.submenu {
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+ul.submenu li {
+  display: inline;
+}
+
+ul.submenu li a {
+  border-left: 1px solid #CECECE;
+  border-right: 1px solid #CECECE;
+  border-top: 1px solid #CECECE;
+  padding: 3px 15px 1px;
+}
+</style>
+
+<ul class="submenu">
+  <li><%= link_to_unless_current "Account", :action => 'index' %></li>
+  <li><%= link_to_unless_current "Password", :action => 'password' %></li>
+  <li><%= link_to_unless_current "Avatar", :action => 'avatar' %></li>
+</ul>
+
+<%= yield %>

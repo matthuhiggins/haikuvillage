@@ -1,0 +1,19 @@
+<style>
+.avatar {
+  float: left;
+  margin-right: 9px;
+}
+</style>
+<% render :layout => 'layout' do %>
+  <% form_for :author, :url => {:action => 'update_avatar'}, :html => { :multipart => true } do |form| %>
+    <div class="avatar">
+      <%= image_tag current_author.avatar.url(:medium) %>
+    </div>
+    <p>
+      <%= form.file_field :avatar %>
+    </p>
+    <p>
+      <%= form.submit "Save" %>
+    </p>
+  <% end %>
+<% end %>
