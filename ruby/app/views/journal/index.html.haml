@@ -1,21 +1,12 @@
-- title'Haiku Journal'
+- title 'Haiku Journal'
 
-#user-summary
-  You have written
-  = link_to "#{current_author.haikus_count_total} haikus", :action => 'haikus'
-  and have
-  = link_to "#{current_author.favorites_count} favorites.", :action => 'favorites'
+- render :layout => 'layout' do
+  %div{:style => "width: 60%; margin: 0 0 15px 30px;"}
+    = render :partial => 'shared/create'
 
-.column.wide
-  %h2= 'Create a haiku'
-
-  = render :partial => 'shared/create'
-
-.column.small
-  - unless @recent_haikus.empty?
-    %h2= 'Your recent haikus'
-    = render(:partial => "shared/haiku", :collection => @recent_haikus[0..1])
-    - if @recent_haikus.size > 2
+  %div{:style => "margin-left: 30px; border-top: 1px dotted #ccc"}
+    = render(:partial => "shared/haiku", :collection => @recent_haikus[0..3])
+    - if @recent_haikus.size > 3
       = link_to 'View your haikus...', {:action => 'haikus'}, {:class => 'see_more_link'}
         
-%br
+  %br

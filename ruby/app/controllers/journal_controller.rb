@@ -2,7 +2,7 @@ class JournalController < ApplicationController
   login_filter
   
   def index
-    @recent_haikus = current_author.haikus.recent.all(:limit => 3, :include => :author)
+    @recent_haikus = current_author.haikus.recent.all(:limit => 5, :include => :author)
   end
   
   def favorites
