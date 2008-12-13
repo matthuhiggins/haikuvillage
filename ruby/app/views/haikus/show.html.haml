@@ -5,7 +5,7 @@
 .center
   .haiku-big
     - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
-      = link_to inspiration_url(@single_haiku.conversation) do
+      - link_to inspiration_url(@single_haiku.conversation) do
         = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
     - div_for @single_haiku do
       .text
@@ -23,7 +23,7 @@
         .haiku_detail
           = favorite_span(@single_haiku)
           - if @single_haiku.author == current_author
-            = link_to @single_haiku, :method => :delete do
+            - link_to @single_haiku, :method => :delete do
               = image_tag("icons/trash.png", :alt => "Delete")
       .haiku_detail
         %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}

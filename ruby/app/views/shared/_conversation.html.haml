@@ -7,7 +7,7 @@
   - div_for haiku, :class => floating do
     - if haiku.author != previous.author
       %h4= link_to_author haiku.author
-    = link_to haiku, :class => 'text', :id => dom_id(haiku) do
+    - link_to haiku, :class => 'text', :id => dom_id(haiku) do
       - haiku.text.each_line do |line|
         .haiku-line= h(line)
     - if current_author

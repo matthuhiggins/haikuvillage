@@ -1,7 +1,7 @@
 .inspiration
-  = link_to inspiration_path(inspiration.conversation_id) do
+  - link_to inspiration_path(inspiration.conversation_id) do
     = image_tag inspiration.thumbnail
-  = link_to inspiration_path(inspiration.conversation_id) do
+  - link_to inspiration_path(inspiration.conversation_id) do
     - if inspiration.conversation_id.nil?
       Write the first haiku
     - else
