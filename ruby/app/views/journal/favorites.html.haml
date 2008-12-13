@@ -1,9 +1,6 @@
 - title 'Haiku Journal'
 
 - render :layout => 'layout' do
-  %div{:style => "width: 60%; margin: 0 0 15px 30px;"}
-    = render :partial => 'shared/create'
-
   %div{:style => "margin-left: 30px; border-top: 1px dotted #ccc"}
     = render(:partial => "shared/haiku", :collection => @haikus)
         

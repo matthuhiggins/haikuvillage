@@ -2,16 +2,22 @@ class JournalController < ApplicationController
   login_filter
   
   def index
-    @recent_haikus = current_author.haikus.recent.all(:limit => 5, :include => :author)
+    @haikus = current_author.haikus.paginate({
+      :order     => "haikus.id desc",
+      :include   => :author,
+      :page      => params[:page],
+      :per_page  => 10,
+      :total_entries => current_author.haikus_count_total
+    })
   end
   
   def favorites
-    @meta_description = "A listing of your favorite haikus"
-    list_haikus(current_author.favorites, :title => "Your favorite haikus", :cached_total => current_author.favorites_count)
-  end
-  
-  def haikus
-    @meta_description = "A listing of haikus that you created"
-    list_haikus(current_author.haikus, :title => "Haikus you created", :cached_total => current_author.haikus_count_total)
+    @haikus = current_author.favorites.paginate({
+      :order     => "haikus.id desc",
+      :include   => :author,
+      :page      => params[:page],
+      :per_page  => 10,
+      :total_entries => current_author.favorited_count_total
+    })
   end
 end
