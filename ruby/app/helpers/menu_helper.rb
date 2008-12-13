@@ -7,12 +7,12 @@ module MenuHelper
   #   <% end %>
   #
   def sub_menu(&block)
-    concat(tag(:ul, {:class => "submenu"}, true), block.binding)
+    concat(tag(:ul, {:class => "submenu"}, true))
     linker = SubMenuLinker.new(self)
     yield(linker)
-    concat(linker.generate, block.binding)
-    concat("</ul>", block.binding)
-    concat(content_tag(:div, '', :class => "submenu-border"), block.binding)
+    concat(linker.generate)
+    concat("</ul>")
+    concat(content_tag(:div, '', :class => "submenu-border"))
   end
   
   class SubMenuLinker
