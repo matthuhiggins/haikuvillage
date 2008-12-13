@@ -65,6 +65,7 @@ class Word
     
   def initialize(word_text)
     @text = word_text.gsub(/^[^\w]+|[^\w]+$|"+/, '').chomp
-    @syllables = get_cache("word_count:#{@text}") { self.class.count_syllables(@text) }
+    @syllables = self.class.count_syllables(@text)
+    # @syllables = get_cache("word_count:#{@text}") { self.class.count_syllables(@text) }
   end
 end

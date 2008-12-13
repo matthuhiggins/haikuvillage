@@ -18,7 +18,7 @@
         #content
           - if flash[:notice]
             #notice= flash[:notice]
-          = yield :layout
+          = yield
     #bottom
     - if Rails.env == 'production'
       = render :partial => "shared/analytics"

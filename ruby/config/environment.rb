@@ -14,7 +14,7 @@ Rails::Initializer.run do |config|
     :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
   }
 
-  config.gem "haml"
+  # config.plugins = [:haml, :exception_logger, :will_paginate, :auto_complete]
 
   config.action_controller.cache_store = :mem_cache_store, "localhost"
   config.time_zone = "UTC"

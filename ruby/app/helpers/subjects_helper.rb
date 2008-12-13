@@ -18,6 +18,6 @@ module SubjectsHelper
   
   def link_to_subject(subject, html_options = {})
     subject_name = subject.is_a?(String) ? subject : subject.name
-    link_to truncate(subject_name, 24), {:controller => 'subjects', :action => :show, :id => subject_name}, html_options
+    link_to truncate(subject_name, :length => 24), {:controller => 'subjects', :action => :show, :id => subject_name}, html_options
   end
 end

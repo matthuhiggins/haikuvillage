@@ -1,7 +1,4 @@
 - div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
-  /- tooltip_text = ""
-  /- tooltip_text += "Subject: " + haiku.subject if haiku.subject 
-  /- tooltip_text += "This haiku is in a conversation" if haiku.conversation
   = link_to haiku, :class => 'text' + (haiku.conversation.nil? ? '' : ' conversation') do
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
