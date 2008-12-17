@@ -2,22 +2,23 @@
   - link_to haiku, :class => 'text' + (haiku.conversation.nil? ? '' : ' conversation') do
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
-  .haiku_detail
-    = link_to_author(haiku.author)
-  - if current_author
-    .haiku_detail
-      = favorite_span(haiku)
-      - link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
-        - if haiku.conversation
-          - if haiku.conversation.inspiration.nil?
-            = image_tag("icons/reply.png", :alt => "Reply")
+  .haiku_footer
+    .author
+      = link_to_author(haiku.author)
+    - if current_author
+      .actions
+        = favorite_span(haiku)
+        - link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
+          - if haiku.conversation
+            - if haiku.conversation.inspiration.nil?
+              = image_tag("icons/reply.png", :alt => "Reply")
+            - else
+              = image_tag("icons/camera.png", :alt => "Reply")
           - else
-            = image_tag("icons/camera.png", :alt => "Reply")
-        - else
-          = image_tag("icons/conversation.png", :alt => "Start Conversation")
-      - if haiku.author == current_author
-        - link_to haiku, :method => :delete do
-          = image_tag("icons/trash.png", :alt => "Delete")
+            = image_tag("icons/conversation.png", :alt => "Start Conversation")
+        - if haiku.author == current_author
+          - link_to haiku, :method => :delete do
+            = image_tag("icons/trash.png", :alt => "Delete")
 - if new_haiku? haiku
   = update_page_tag do |page|
     - page[haiku].appear

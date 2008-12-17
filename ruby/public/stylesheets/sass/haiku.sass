@@ -48,6 +48,10 @@ ul.sort_options
     :margin-right 7px
     :padding 2px 1px
 
+.haiku:hover
+  :background-color #eeeeee
+.haiku:hover > a.conversation
+  :background-color #ffffcc
 .haiku
   &.new
     :border 1px solid green
@@ -62,23 +66,29 @@ ul.sort_options
     :margin 0
     :padding 10px 0
     :text-decoration none
-    :background-color white
   .haiku-line
     :clear left
     :float left
     :padding 2px 2px 0 2px
-  .text:hover
-    :background-color #fffdec
-  .conversation:hover
-    :background-color #ffe3b2 !important
   .haiku_detail
     :clear left
-    :color gray
-    :float left
     :font-size 9pt
+    :color gray
     :padding 2px 2px 0 2px
     :white-space nowrap
-    :background-color white
+  .haiku_footer
+    :visibility hidden
+    :clear left
+    .author
+      :color gray
+      :float left
+      :font-size 9pt
+      :padding 2px 2px 0 2px
+      :white-space nowrap
+    .actions
+      :float right
+.haiku:hover .haiku_footer
+  :visibility visible
       
 .center
   :display table
