@@ -59,13 +59,11 @@ class Word
   end
   
   attr_reader :text, :syllables
-  acts_as_cached
   
   LONGEST_SYLLABLE = 'strengths'.length.to_f
     
   def initialize(word_text)
     @text = word_text.gsub(/^[^\w]+|[^\w]+$|"+/, '').chomp
     @syllables = self.class.count_syllables(@text)
-    # @syllables = get_cache("word_count:#{@text}") { self.class.count_syllables(@text) }
   end
 end

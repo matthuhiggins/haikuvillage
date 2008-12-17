@@ -16,8 +16,6 @@ Rails::Initializer.run do |config|
     :session_key => "_haiku_village",
     :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
   }
-
-  config.action_controller.cache_store = :mem_cache_store, "localhost"
 end
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
