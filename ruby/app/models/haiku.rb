@@ -3,11 +3,11 @@ class Haiku < ActiveRecord::Base
     attr_reader :words
 
     def initialize(text)
-      @words = text.split.map{ |word| Word.new(word) }
+      @words = text.split
     end
 
     def syllables
-      words.sum &:syllables
+      words.sum(&:syllables)
     end
   end
 
