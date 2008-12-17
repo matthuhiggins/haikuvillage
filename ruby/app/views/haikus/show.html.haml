@@ -31,7 +31,7 @@
 .conversation
   - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
     #first_statement
-      = link_to_function "Post a haiku", nil  do |page|
+      - link_to_function "Post a haiku", nil do |page|
         - page[:first_statement].hide
         - page[:statement_form].show
       to start a conversation
