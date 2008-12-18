@@ -17,7 +17,7 @@ class AuthorsController < ApplicationController
       :include   => :author,
       :page      => params[:page],
       :per_page  => 10,
-      :total_entries => current_author.haikus_count_total
+      :total_entries => @author.haikus_count_total
     })
   end
   
