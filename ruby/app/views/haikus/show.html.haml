@@ -28,7 +28,7 @@
       .haiku_detail
         %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}
 
-.conversation
+.conversation-section
   - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
     #first_statement
       = link_to_function "Post a haiku", nil do |page|

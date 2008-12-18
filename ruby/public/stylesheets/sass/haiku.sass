@@ -50,7 +50,7 @@ ul.sort_options
 
 .haiku:hover
   :background-color #eeeeee
-.haiku:hover > a.conversation
+.haiku.conversation:hover
   :background-color #ffffcc
 .haiku
   &.new
@@ -87,6 +87,9 @@ ul.sort_options
       :white-space nowrap
     .actions
       :float right
+  .inspiration
+    :float left
+    :margin-left 50%
 .haiku:hover .haiku_footer
   :visibility visible
       
@@ -112,7 +115,7 @@ img.haiku-inspiration
   :float left
   :margin-right 10px
 
-.conversation
+.conversation-section
   :margin-bottom 2em
   :overflow hidden
   h2

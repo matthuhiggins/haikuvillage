@@ -1,7 +1,11 @@
-- div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
-  - link_to haiku, :class => 'text' + (haiku.conversation.nil? ? '' : ' conversation') do
+- div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '', :class => (haiku.conversation.nil? ? '' : ' conversation')) do
+  - link_to haiku, :class => 'text' do
     - haiku.text.each_line do |line|
       .haiku-line= h(line)
+  - if haiku.conversation && haiku.conversation.inspiration
+    .inspiration
+      - link_to inspiration_url(haiku.conversation) do
+        = image_tag haiku.conversation.inspiration.small, :class => 'haiku-inspiration'
   .haiku_footer
     .author
       = link_to_author(haiku.author)
