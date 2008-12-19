@@ -15,7 +15,7 @@ test:
 
 production:
   adapter: mysql
-  database: trunk_production
+  database: haiku_production
   username: root
-  password:
+  password: sa
   host: localhost

@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(:version => 20081211015209) do
     t.datetime "avatar_updated_at"
   end
 
-  add_index "authors", ["username"], :name => "index_authors_on_username"
-  add_index "authors", ["haikus_count_week"], :name => "index_authors_on_haikus_count_week"
   add_index "authors", ["haikus_count_total"], :name => "index_authors_on_haikus_count_total"
+  add_index "authors", ["haikus_count_week"], :name => "index_authors_on_haikus_count_week"
+  add_index "authors", ["username"], :name => "index_authors_on_username"
 
   create_table "conversations", :force => true do |t|
     t.integer  "haikus_count_week",  :default => 0, :null => false
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20081211015209) do
     t.string   "inspiration_type"
   end
 
-  add_index "conversations", ["haikus_count_week"], :name => "index_conversations_on_haikus_count_week"
   add_index "conversations", ["haikus_count_total"], :name => "index_conversations_on_haikus_count_total"
+  add_index "conversations", ["haikus_count_week"], :name => "index_conversations_on_haikus_count_week"
   add_index "conversations", ["inspiration_type"], :name => "index_conversations_on_inspiration_type"
 
   create_table "flickr_inspirations", :force => true do |t|
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20081211015209) do
   end
 
   add_index "flickr_inspirations", ["conversation_id"], :name => "flickr_inspirations_conversation_id_fk"
+  add_index "flickr_inspirations", ["created_at"], :name => "index_flickr_inspirations_on_created_at"
+  add_index "flickr_inspirations", ["photo_id"], :name => "index_flickr_inspirations_on_photo_id", :unique => true
 
   create_table "haiku_favorites", :force => true do |t|
     t.integer  "author_id",  :null => false
@@ -64,9 +66,9 @@ ActiveRecord::Schema.define(:version => 20081211015209) do
     t.datetime "updated_at"
   end
 
-  add_index "haiku_favorites", ["haiku_id", "author_id"], :name => "index_haiku_favorites_on_haiku_id_and_author_id", :unique => true
   add_index "haiku_favorites", ["author_id", "haiku_id", "created_at"], :name => "index_haiku_favorites_on_author_id_and_haiku_id_and_created_at"
   add_index "haiku_favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
+  add_index "haiku_favorites", ["haiku_id", "author_id"], :name => "index_haiku_favorites_on_haiku_id_and_author_id", :unique => true
 
   create_table "haikus", :force => true do |t|
     t.integer  "author_id",                            :null => false
@@ -83,12 +85,12 @@ ActiveRecord::Schema.define(:version => 20081211015209) do
   end
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
-  add_index "haikus", ["favorited_count_week"], :name => "index_haikus_on_favorited_count_week"
-  add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
-  add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
-  add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
-  add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
   add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
+  add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
+  add_index "haikus", ["favorited_count_week"], :name => "index_haikus_on_favorited_count_week"
+  add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
+  add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
+  add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"
@@ -109,9 +111,9 @@ ActiveRecord::Schema.define(:version => 20081211015209) do
     t.datetime "updated_at"
   end
 
-  add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
-  add_index "subjects", ["haikus_count_week"], :name => "index_subjects_on_haikus_count_week"
-  add_index "subjects", ["haikus_count_total"], :name => "index_subjects_on_haikus_count_total"
   add_index "subjects", ["created_at"], :name => "index_subjects_on_created_at"
+  add_index "subjects", ["haikus_count_total"], :name => "index_subjects_on_haikus_count_total"
+  add_index "subjects", ["haikus_count_week"], :name => "index_subjects_on_haikus_count_week"
+  add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
 
 end
