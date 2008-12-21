@@ -4,9 +4,6 @@
 
 .center
   .haiku-big
-    - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
-      - link_to inspiration_url(@single_haiku.conversation) do
-        = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
     - div_for @single_haiku do
       .text
         - @single_haiku.text.each_line do |line|
@@ -27,6 +24,9 @@
               = image_tag("icons/trash.png", :alt => "Delete")
       .haiku_detail
         %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}
+    - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
+      - link_to inspiration_url(@single_haiku.conversation) do
+        = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
 
 .conversation-section
   - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
