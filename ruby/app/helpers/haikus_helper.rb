@@ -28,4 +28,8 @@ module HaikusHelper
       page[:statement_form].visual_effect(:blind_down, :duration => 0.2)
     end
   end
+  
+  def haiku_text_tag
+    text_area_tag(:text, "five syllables\nseven syllables\nfive syllables", :rows => 3, :id => "haiku_text", :name => "haiku[text]", :class => "empty")
+  end
 end

@@ -1,27 +1,7 @@
-- title'Welcome to HaikuVillage'
+- title 'Welcome to HaikuVillage'
 
-.column
-  = render :partial => current_author ? 'intro_active_author' : 'intro_new_author'
-  #haiku-summary
-    .summary-line
-      %span.count_value= number_with_delimiter @total_authors
-      %span.count_text
-        = link_to 'authors', :controller => 'authors'
-        ='have written'
-    .summary-line
-      %span.count_value= number_with_delimiter @total_haikus
-      %span.count_text
-        =link_to 'haikus', :controller => 'haikus'
-        ='about'
-    .summary-line
-      %span.count_value= number_with_delimiter @total_subjects
-      %span.count_text= link_to 'subjects', :controller => 'subjects'
-      
-  - if current_author
-    .cloud
-      %h2= 'Popular subjects'
-      = subject_cloud(@popular_subjects)
-.column
-  = render :partial => 'shared/create'
+= render :partial => 'shared/create'
+
+= render :partial => "shared/haiku", :collection => @haikus
   
 %br

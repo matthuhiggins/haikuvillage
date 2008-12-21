@@ -11,11 +11,10 @@
     
   #haiku_text_container
     %h3= 'Write a Haiku'
-    = form.text_area(:text, :rows => 3)
-  #subject_form_container
-    %h3= 'Subject (optional)'
+    = haiku_text_tag
+
+  .submit
     = subject_auto_complete
-  %div
     = form.submit "Create", :id => "commit_haiku", :disabled => true
 
 %script

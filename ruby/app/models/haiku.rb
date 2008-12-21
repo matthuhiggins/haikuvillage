@@ -10,6 +10,21 @@ class Haiku < ActiveRecord::Base
       words.sum(&:syllables)
     end
   end
+  
+  class << self
+    def global_feed
+      find_by_sql(%{
+        select *
+        from haikus h
+        join (select max(id) as id
+              from haikus
+              group by author_id) h_max
+          using (id)
+        order by created_at desc
+        limit 10;
+      })
+    end
+  end
 
   belongs_to :author
   belongs_to :subject

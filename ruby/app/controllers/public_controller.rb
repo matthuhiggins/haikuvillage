@@ -1,11 +1,13 @@
 class PublicController < ApplicationController    
   def index
-    @total_haikus = Haiku.count(:id)
-    @total_subjects = Subject.count(:id)
-    @total_authors = Author.count(:id)
-    
-    @popular_subjects = Subject.popular.all(:limit => 16)
-    @meta_description = "Making haikus has never been easier. Welcome to a haiku community where counting syllables is done for you."
+    if current_author
+      redirect_to :controller => "journal"
+    else
+      @haikus = Haiku.global_feed
+      @total_haikus = Haiku.count(:id)
+      @total_subjects = Subject.count(:id)
+      @total_authors = Author.count(:id)    
+    end
   end
   
   def sitemap

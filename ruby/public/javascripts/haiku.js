@@ -45,8 +45,7 @@ Word.prototype = {
   }
 };
 
-var Line = Class.create();
-Line.prototype = {
+var Line = Class.create({
   initialize: function(text, lineNumber) {
     this.words = Word.fromText(text);
     this.lineNumber = lineNumber;
@@ -76,10 +75,9 @@ Line.prototype = {
       text: this.words.invoke('toHTML').join(' ')
     });
   }
-};
+});
 
-var Haiku = Class.create();
-Haiku.prototype = {
+var Haiku = Class.create({
   initialize: function(text) {
     if (text.blank()) {
       this.lines = [];
@@ -103,25 +101,10 @@ Haiku.prototype = {
       lines: this.lines.invoke('toHTML').join('')
     });
   }
-};
+});
 
-Haiku.PeriodicalUpdater = Class.create();
-Haiku.PeriodicalUpdater.prototype = {
-  initialize: function(textArea, previewElement, submitButton) {
-    this.textArea = $(textArea);
-    this.limitTextArea(this.textArea);
-    
-    this.previewElement = $(previewElement);
-    this.submitButton = $(submitButton);
-    this.lastHaikuText = '';
-    this.start();
-  },
-  
-  start: function() {
-    this.timer = setInterval(this.updateHaiku.bind(this), 400);
-  },
-  
-  limitTextArea: function(textArea) {
+Haiku.FormEvents = {
+    limitTextArea: function(textArea) {
     Event.observe(textArea, 'keyup', function() {
       var lineText = $F(textArea).split(/\n/);
       if (lineText.length > 3) {
@@ -137,6 +120,31 @@ Haiku.PeriodicalUpdater.prototype = {
         return false;
       }
     }
+  },
+  clearEmptyOnFocus: function(field) {
+    $(field).observe('focus', function() {
+      this.removeClassName('empty');
+      field.value = '';
+      this.stopObserving('focus');
+    });
+  },
+}
+
+Haiku.PeriodicalUpdater = Class.create({
+  initialize: function(textArea, previewElement, submitButton) {
+    this.textArea = $(textArea);
+    this.previewElement = $(previewElement);
+    this.submitButton = $(submitButton);
+    this.lastHaikuText = '';
+
+    Haiku.FormEvents.limitTextArea(this.textArea);
+    Haiku.FormEvents.clearEmptyOnFocus(this.textArea);
+    Haiku.FormEvents.clearEmptyOnFocus(submitButton)
+    this.start();
+  },
+  
+  start: function() {
+    this.timer = setInterval(this.updateHaiku.bind(this), 400);
   },
   
   requestWords: function(words) {
@@ -211,4 +219,4 @@ Haiku.PeriodicalUpdater.prototype = {
     this.submitButton.disabled = !currentHaiku.isValid();
     this.lastHaikuText = currentText;
   }
-};
+});
