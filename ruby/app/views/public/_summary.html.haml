@@ -1,14 +1,6 @@
 #haiku-summary
-  .summary-line
-    %span.count_value= number_with_delimiter @total_authors
-    %span.count_text
-      = link_to 'authors', :controller => 'authors'
-      ='have written'
-  .summary-line
-    %span.count_value= number_with_delimiter @total_haikus
-    %span.count_text
-      =link_to 'haikus', :controller => 'haikus'
-      ='about'
-  .summary-line
-    %span.count_value= number_with_delimiter @total_subjects
-    %span.count_text= link_to 'subjects', :controller => 'subjects'
+  = link_to "#{number_with_delimiter @total_authors} authors", :controller => 'authors'
+  have written
+  = link_to "#{number_with_delimiter @total_haikus} haikus", :controller => 'haikus'
+  about
+  = link_to "#{number_with_delimiter @total_subjects} subjects", :controller => 'subjects'

@@ -1,7 +1,8 @@
 - title 'Welcome to HaikuVillage'
 
-= render :partial => 'shared/create'
+= render :partial => "shared/create"
 
+%h2="Recent haikus"
 = render :partial => "shared/haiku", :collection => @haikus
-  
-%br
+
+= render :partial => "summary"

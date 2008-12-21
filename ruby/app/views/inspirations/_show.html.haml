@@ -1,6 +1,6 @@
-.column
+.small.column
   = yield
-.column
+.wide.column
   = render :partial => 'shared/create', :locals => {:conversation => @conversation}
 %br
 - unless @conversation.haikus.empty?

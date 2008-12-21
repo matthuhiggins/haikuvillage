@@ -5,10 +5,11 @@
 
 #preview
   :background-color white
-  :margin-bottom 1em
+  :margin-bottom 0.5em
+  :margin-left 4.5em
   :opacity 0.7
   :font-size 12pt
-  :height 75px
+  :height 55px
   :color= !darkgrey
   *
     :opacity 1
@@ -17,27 +18,31 @@
     :color black
   .syllables 
     :float left
-    :margin-right 6px
-    :width 1.5em
-    :text-align right
+    :margin-left -1em
+    :width 1em
   .valid-line 
     :color= !green
   .invalid-line 
     :color= !red
-  &.empty
-    :color= !lightgrey
-    div
-      :margin-left 1.5em
+
 #haiku_form
-  .submit
+  :width 28em
+  .input_row
     :margin-top 10px
-    input[type='text']
-      :margin-right 1em
-      :width 14em
-  textarea
-    :width 20em
-  textarea.empty
-    :color #999999
+    :overflow hidden
+    label
+      :float left
+      :margin 3px 0.5em 0 0
+      :text-align right
+      :width 4em
+    textarea, input[type="text"]
+      :float left
+      :width 23em
+    textarea.empty
+      :color= !lightgrey
+  .submit_row
+    :margin-top 10px
+    :text-align right
 
 h2.listing_title
   :display inline

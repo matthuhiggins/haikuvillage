@@ -173,6 +173,10 @@ Haiku.PeriodicalUpdater = Class.create({
   },
      
   updateHaiku: function() {
+    if (this.textArea.hasClassName('empty')) {
+      return;
+    }
+
     var currentText = $F(this.textArea),
         currentWordArray = Word.fromText(currentText),
         currentHaiku = new Haiku(currentText);
@@ -201,12 +205,7 @@ Haiku.PeriodicalUpdater = Class.create({
     if (somethingChanged) {
       this.previewElement.innerHTML = currentHaiku.toHTML();
       $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
-      if (currentHaiku.lines.length > 0) {
-        this.previewElement.removeClassName('empty');
-      } else {
-        this.previewElement.addClassName('empty');
-        this.previewElement.innerHTML = "<div>five syllables</div><div>seven syllables</div><div>five syllables</div>";
-      }
+      this.previewElement.removeClassName('empty');
     }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {

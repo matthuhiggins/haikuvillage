@@ -3,13 +3,6 @@ module HaikusHelper
     haiku.id == flash[:new_haiku_id]
   end
   
-  def subject_auto_complete
-    text_field_with_auto_complete :haiku, :subject_name, {:maxlength => 24, :size => 10}, {
-      :url => suggest_subjects_path, 
-      :method => :get, 
-      :param_name => 'q'}
-  end
-  
   def haiku_title(haiku)
     text = "A haiku by #{haiku.author.username}"
     if !@single_haiku.conversation.nil? && haiku.conversation.inspiration_type == 'flickr'
@@ -17,11 +10,11 @@ module HaikusHelper
     end
     text
   end
-  
+
   def haiku_sort_link(order)
     link_to_unless(haiku_sort_param == order, order.to_s.humanize, :order => order)
   end
-  
+
   def link_to_add_statement(name, html_id)
     link_to_function name, nil, :id => html_id do |page|
       page[html_id].hide
@@ -29,7 +22,19 @@ module HaikusHelper
     end
   end
   
+  def subject_auto_complete
+    text_field_with_auto_complete :haiku, :subject_name, {:maxlength => 24, :size => 10}, {
+      :url => suggest_subjects_path, 
+      :method => :get, 
+      :param_name => 'q'}
+  end
+  
   def haiku_text_tag
-    text_area_tag(:text, "five syllables\nseven syllables\nfive syllables", :rows => 3, :id => "haiku_text", :name => "haiku[text]", :class => "empty")
+    text_area_tag(:text, "five syllables\nseven syllables\nfive syllables",
+      :autocomplete => 'off',
+      :rows => 3,
+      :id => "haiku_text",
+      :name => "haiku[text]",
+      :class => "empty")
   end
 end
