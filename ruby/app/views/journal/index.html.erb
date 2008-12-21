@@ -7,7 +7,7 @@
 
   <div style="margin-left: 30px; border-top: 1px dotted #ccc">
     <%= render :partial => "shared/haiku", :collection => @haikus %>
-        
+  </div>
   <br />
   <%= will_paginate @haikus, :id => 'pagination', :prev_label => '< Newer', :next_label => 'Older >', :page_links => false %>
 <% end %>
