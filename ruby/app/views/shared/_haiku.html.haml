@@ -1,22 +1,24 @@
 - div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
-  - link_to haiku, :class => 'text' do
-    - haiku.text.each_line do |line|
-      .haiku-line= h(line)
+  .avatar
+    - link_to :controller => 'authors', :action => :show, :id => haiku.author.username do
+      = image_tag(haiku.author.avatar.url(:medium))
+  .text_and_author
+    - link_to haiku, :class => 'text' do
+      - haiku.text.each_line do |line|
+        .haiku-line= h(line)
+    = link_to haiku.author.username, {:controller => 'authors', :action => :show, :id => haiku.author.username}, {:class => 'author'}
   - if haiku.conversation && haiku.conversation.inspiration
     .inspiration
       - link_to inspiration_url(haiku.conversation) do
         = image_tag haiku.conversation.inspiration.small, :class => 'haiku-inspiration'
-  .haiku_footer
-    .author
-      = link_to_author(haiku.author)
-    - if current_author
-      .actions
-        = favorite_span(haiku)
-        - link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
-          = image_tag("icons/conversation.png", :alt => "Start Conversation")
-        - if haiku.author == current_author
-          - link_to haiku, :method => :delete do
-            = image_tag("icons/trash.png", :alt => "Delete")
+  - if current_author
+    .actions
+      = favorite_span(haiku)
+      - link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
+        = image_tag("icons/conversation.png", :alt => "Start Conversation")
+      - if haiku.author == current_author
+        - link_to haiku, :method => :delete do
+          = image_tag("icons/trash.png", :alt => "Delete")
 - if new_haiku? haiku
   = update_page_tag do |page|
     - page[haiku].appear
