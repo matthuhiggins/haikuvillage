@@ -1,23 +1,24 @@
-#preview{:class => 'empty'}
-  %div= "Start typing a haiku below and your"
-  %div= "syllables will be counted here."
-  %div= ""
+#haiku_form
+  #preview{:class => 'empty'}
+    %div= "Start typing a haiku below and your"
+    %div= "syllables will be counted here."
+    %div= ""
 
-- form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
-  - unless local_assigns[:conversing_with].nil?
-    = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
-  - unless local_assigns[:conversation].nil?
-    = hidden_field_tag('haiku[conversation_id]', conversation.id)
+  - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'} do |form|
+    - unless local_assigns[:conversing_with].nil?
+      = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
+    - unless local_assigns[:conversation].nil?
+      = hidden_field_tag('haiku[conversation_id]', conversation.id)
   
-  .input_row
-    %label="Haiku:"
-    = haiku_text_tag
+    .input_row
+      %label="Haiku:"
+      = haiku_text_tag
 
-  .input_row
-    %label="Subject:"
-    = subject_auto_complete
-  .submit_row
-    = form.submit "Create", :id => "commit_haiku", :disabled => true
+    .input_row
+      %label="Subject:"
+      = subject_auto_complete
+    .submit_row
+      = form.submit "Create", :id => "commit_haiku", :disabled => true
 
 %script
   new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
