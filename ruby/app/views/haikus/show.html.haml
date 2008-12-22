@@ -4,26 +4,25 @@
 
 .center
   .haiku-big
-    - div_for @single_haiku do
-      .text
-        - @single_haiku.text.each_line do |line|
-          .haiku-line= h(line)
+    .text
+      - @single_haiku.text.each_line do |line|
+        .haiku-line= h(line)
+    %div
+      = "Created on #{@single_haiku.created_at.to_s(:haiku)} by"
+      = link_to_author @single_haiku.author
+    %div
+      = "Favorited: #{@single_haiku.favorited_count_total}, "
+      = "Viewed: #{@single_haiku.view_count_total}, "
+      - unless @single_haiku.subject_name.nil?
+        = "Subject: #{link_to_subject @single_haiku.subject_name}"
+    - if current_author
       .haiku_detail
-        = "Created on #{@single_haiku.created_at.to_s(:haiku)} by"
-        = link_to_author @single_haiku.author
-      .haiku_detail
-        = "Favorited: #{@single_haiku.favorited_count_total}, "
-        = "Viewed: #{@single_haiku.view_count_total}, "
-        - unless @single_haiku.subject_name.nil?
-          = "Subject: #{link_to_subject @single_haiku.subject_name}"
-      - if current_author
-        .haiku_detail
-          = favorite_span(@single_haiku)
-          - if @single_haiku.author == current_author
-            - link_to @single_haiku, :method => :delete do
-              = image_tag("icons/trash.png", :alt => "Delete")
-      .haiku_detail
-        %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}
+        = favorite_span(@single_haiku)
+        - if @single_haiku.author == current_author
+          - link_to @single_haiku, :method => :delete do
+            = image_tag("icons/trash.png", :alt => "Delete")
+    .haiku_detail
+      %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}
     - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
       - link_to inspiration_url(@single_haiku.conversation) do
         = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
