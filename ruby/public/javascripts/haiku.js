@@ -127,8 +127,8 @@ Haiku.FormEvents = {
       field.value = '';
       this.stopObserving('focus');
     });
-  },
-}
+  }
+};
 
 Haiku.PeriodicalUpdater = Class.create({
   initialize: function(textArea, previewElement, submitButton) {
