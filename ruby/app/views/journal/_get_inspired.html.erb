@@ -1,0 +1,9 @@
+<div id="rand-inspiration">
+  <p>
+    Experiencing writer's block?
+    Get inspired by interesting images from flickr.
+  </p>
+  <p>
+    <%= link_to_remote("Inspire me!", :url => {:controller => 'inspirations', :action => 'random', :offset => rand(10).to_i}, :update => "rand-inspiration") %>
+  </p>
+</div>

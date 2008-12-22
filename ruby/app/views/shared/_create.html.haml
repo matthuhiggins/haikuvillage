@@ -1,10 +1,10 @@
-#haiku_form
-  #preview{:class => 'empty'}
-    %div= "Start typing a haiku below and your"
-    %div= "syllables will be counted here."
-    %div= ""
+- form_for :haiku, :url => {:controller => 'haikus', :action => 'create'} do |form|
+  #haiku_form_internals
+    #preview{:class => 'empty'}
+      %div= "Start typing a haiku below and your"
+      %div= "syllables will be counted here."
+      %div= ""
 
-  - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'} do |form|
     - unless local_assigns[:conversing_with].nil?
       = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
     - unless local_assigns[:conversation].nil?
@@ -19,6 +19,10 @@
       = subject_auto_complete
     .submit_row
       = form.submit "Create", :id => "commit_haiku", :disabled => true
+
+  - unless local_assigns[:extra_partial].nil?
+    = render :partial => extra_partial
+  
 
 %script
   new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");

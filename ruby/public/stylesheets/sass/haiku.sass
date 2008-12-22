@@ -3,27 +3,7 @@
 !darkgrey= #555555
 !lightgrey= #999999
 
-#haiku_form #preview
-  :background-color white
-  :margin-bottom 0.5em
-  :margin-left 4.5em
-  :opacity 0.7
-  :font-size 12pt
-  :height 55px
-  :color= !darkgrey
-  sup
-    :font-size 8pt
-    :color black
-  .syllables 
-    :float left
-    :margin-left -1em
-    :width 1em
-  .valid-line 
-    :color= !green
-  .invalid-line 
-    :color= !red
-
-#haiku_form form
+#haiku_form_internals
   :width 28em
   .input_row
     :margin-top 10px
@@ -41,6 +21,25 @@
   .submit_row
     :margin-top 10px
     :text-align right
+  #preview
+    :background-color white
+    :margin-bottom 0.5em
+    :margin-left 4.5em
+    :opacity 0.7
+    :font-size 12pt
+    :height 55px
+    :color= !darkgrey
+    sup
+      :font-size 8pt
+      :color black
+    .syllables 
+      :float left
+      :margin-left -1em
+      :width 1em
+    .valid-line 
+      :color= !green
+    .invalid-line 
+      :color= !red
 
 h2.listing_title
   :display inline
