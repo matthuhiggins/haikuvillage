@@ -1,26 +1,21 @@
 #navigation
-  #global-navigation
-    %ul.top-menu
-      %li#logo= link_to(image_tag("haikuvillage.png"), :controller => "public", :action => "index")
-  #author-navigation
-    %ul.top-menu.nav-menu
-      - unless current_author
-        %li#sign-in
-          = link_to_function 'Sign in' do |page|
-            - page["sign-in"].hide
-            - page[:login_form].visual_effect(:appear, :duration => 0.3)
-        %li
-          - form_for :session, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
-            %div
-              %label{:for => 'session_username'}='Username:'
-              = form.text_field :username
-            %div
-              %label{:for => 'session_password'}='Password:'
-              = form.password_field :password
-              %button{:type => 'submit'}= h(">")
-      - else
-        %li= link_to 'Sign out', logout_url
-        %li= link_to_controller 'Profile', 'profile'
-        %li= link_to_controller 'Journal', 'journal'
-    %ul.bottom-menu.nav-menu
-      %li= link_to 'About', about_url
+  = link_to(image_tag("haikuvillage.png"), {:controller => "public", :action => "index"}, :id => "logo-link")
+  %ul#author-navigation
+    - unless current_author
+      %li#sign-in
+        = link_to_function 'Sign in' do |page|
+          - page["sign-in"].hide
+          - page[:login_form].visual_effect(:appear, :duration => 0.3)
+      %li
+        - form_for :session, :url => login_url, :html => {:id => 'login_form', :style => "display: none"} do |form|
+          %div
+            %label{:for => 'session_username'}='Username:'
+            = form.text_field :username
+          %div
+            %label{:for => 'session_password'}='Password:'
+            = form.password_field :password
+            %button{:type => 'submit'}= h(">")
+    - else
+      %li= link_to 'Sign out', logout_url
+      %li= link_to_controller 'Profile', 'profile'
+      %li= link_to_controller 'Journal', 'journal'

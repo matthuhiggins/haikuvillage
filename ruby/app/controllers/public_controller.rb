@@ -6,7 +6,7 @@ class PublicController < ApplicationController
       @haikus = Haiku.global_feed
       @total_haikus = Haiku.count(:id)
       @total_subjects = Subject.count(:id)
-      @total_authors = Author.count(:id)    
+      @total_authors = Author.count(:id)
     end
   end
   
