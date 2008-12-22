@@ -3,6 +3,9 @@
 %h2=haiku_title(@single_haiku)
 
 .center
+  - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
+    - link_to inspiration_url(@single_haiku.conversation), :class => 'haiku-inspiration' do
+      = image_tag @single_haiku.conversation.inspiration.thumbnail
   .haiku-big
     .text
       - @single_haiku.text.each_line do |line|
@@ -16,16 +19,13 @@
       - unless @single_haiku.subject_name.nil?
         = ", Subject: #{link_to_subject @single_haiku.subject_name}"
     - if current_author
-      .haiku_detail
+      %div
         = favorite_span(@single_haiku)
         - if @single_haiku.author == current_author
           - link_to @single_haiku, :method => :delete do
             = image_tag("icons/trash.png", :alt => "Delete")
-    .haiku_detail
+    %div
       %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}
-    - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
-      - link_to inspiration_url(@single_haiku.conversation) do
-        = image_tag @single_haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
 
 .conversation-section
   - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
@@ -45,4 +45,4 @@
     #statement_form{:style => 'display: none'}
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
     %br
-    = render :partial => 'shared/conversation', :object => @single_haiku.conversation.haikus
+    = render :partial => 'shared/haiku', :collection => @single_haiku.conversation.haikus

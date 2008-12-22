@@ -3,7 +3,8 @@
 .wide.column
   = render :partial => 'shared/create', :locals => {:conversation => @conversation}
 %br
-- unless @conversation.haikus.empty?
-  %h3="Haikus inspired by this inspiration"
-  .conversation
-    = render :partial => 'shared/conversation', :object => @conversation.haikus
+- if @conversation.haikus.any?
+  .conversation-section
+    %h2= "Haikus inspired by this inspiration"
+    %br
+    = render :partial => 'shared/haiku', :collection => @conversation.haikus

@@ -1,6 +1,17 @@
 - title 'Welcome to HaikuVillage'
 
-%h2="Recent haikus"
+.welcome
+  .column.small
+    %p
+      Haiku Village is community built on haiku.
+      To join the village, type your first haiku in the field to the right.
+      As you type, the syllables of each word will be automatically counted.
+  .column.large
+    = render :partial => "shared/create"
+
+%br
+
+%h2{:style => "margin-top: 12px; padding-top: 12px; border-top: 1px dotted #ccc"}="Recent haikus"
 = render :partial => "shared/haiku", :collection => @haikus
 
 = render :partial => "summary"
