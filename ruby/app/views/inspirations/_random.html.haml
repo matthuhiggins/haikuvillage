@@ -1,2 +1,3 @@
-= image_tag @inspiration.thumbnail
 = link_to_remote("Inspire me again!", :url => {:controller => 'inspirations', :action => 'random', :offset => @next_offset}, :update => "rand-inspiration")
+%br
+= image_tag @inspiration.thumbnail

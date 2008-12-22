@@ -11,13 +11,9 @@ class InspirationsController < ApplicationController
   end
   
   def random
-    inspirations = FlickrInspiration.all(:limit => 10, :order => "created_at desc")
-    max_offset = [10, inspirations.size].min
-    offset = [(params[:offset] || 1).to_i, inspirations.size - 1].min
+    offset = (params[:offset] || 1).to_i
+    @inspiration = FlickrInspiration.first(:offset => offset, :order => "created_at desc")
     @next_offset = (offset + 1) % 10
-    logger.debug("new offset = #{@next_offset}")
-    logger.debug("size = #{inspirations.size}")
-    @inspiration = inspirations[offset]
     render :partial => "random"
   end
 end
