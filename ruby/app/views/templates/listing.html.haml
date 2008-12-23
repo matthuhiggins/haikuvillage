@@ -1,4 +1,4 @@
-- content_for :head, auto_discovery_link_tag(:atom, :format =>"atom")
+- content_for :head, auto_discovery_link_tag(:atom, {:format =>"atom"}, {:title => "Everyone"})
 
 %h2.listing_title= @title
 %ul.sort_options
