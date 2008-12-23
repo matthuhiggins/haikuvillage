@@ -20,6 +20,6 @@
       = render :partial => "shared/side"
     #bottom
     #footer
-      = link_to "About HaikuVillage", :controller => "about"
+      = link_to "About HaikuVillage", about_url
     - if Rails.env == 'production'
       = render :partial => "shared/analytics"
