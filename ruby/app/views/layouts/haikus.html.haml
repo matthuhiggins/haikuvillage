@@ -19,5 +19,7 @@
         = yield
       = render :partial => "shared/side"
     #bottom
+    #footer
+      = link_to "About HaikuVillage", :controller => "about"
     - if Rails.env == 'production'
       = render :partial => "shared/analytics"
