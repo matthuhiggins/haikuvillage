@@ -11,6 +11,8 @@ Rails::Initializer.run do |config|
 
   config.gem "haml"
   config.gem "libxml-ruby", :lib => "libxml"
+  config.gem 'mislav-will_paginate', :version => '~> 2.3.6', :lib => 'will_paginate', 
+      :source => 'http://gems.github.com'
 
   config.action_controller.session = {
     :session_key => "_haiku_village",
