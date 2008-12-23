@@ -1,6 +1,7 @@
+<% content_for :head, auto_discovery_link_tag(:atom, :format =>"atom")	%>
 <% render :layout => 'layout' do %>
-  <%= render :partial => "shared/haiku", :collection => @haikus %>
-        
-  <br />
-  <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
+	<%= render :partial => "shared/haiku", :collection => @haikus %>
+				
+	<br />
+	<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
 <% end %>

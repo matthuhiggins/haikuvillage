@@ -1,5 +1,5 @@
 atom_feed() do |feed|
-  feed.title(@title)
+  feed.title("Haikus by " + @haikus.first.author.username)
   feed.updated((@haikus.first.created_at))
 
   for haiku in @haikus
