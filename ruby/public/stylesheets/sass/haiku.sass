@@ -60,19 +60,26 @@ ul.sort_options
 .haiku
   &.new
     :border 1px solid green
+  :font-size 10pt
   :margin 4px
   :overflow hidden
   :padding 10px 6px
-  .avatar
+  .avatar_and_time
+    :float left
+    :padding-right 12px
+    :text-align right
+    :white-space nowrap
+    :width 60px
+    .time
+      :color #999
+      :font-size 9pt
+      :padding
+        :top 1px
+        :bottom 2px
     a
       :display block
-    :float left
-    :padding 2px 6px 0 2px
-    :white-space nowrap
-    :width 34px
   .text_and_author
     :float left
-    :font-size 10pt
     :width 20em
   .text
     :color black

@@ -11,7 +11,7 @@
       - @single_haiku.text.each_line do |line|
         .haiku-line= h(line)
     %div
-      = "Created on #{@single_haiku.created_at.to_s(:haiku)} by"
+      = "Created on #{@single_haiku.created_at.strftime("%b %d, %Y")} by"
       = link_to_author @single_haiku.author
     %div
       = "Favorited: #{@single_haiku.favorited_count_total}, "

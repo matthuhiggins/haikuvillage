@@ -1,5 +1,6 @@
 - div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
-  .avatar
+  .avatar_and_time
+    .time= haiku.created_at.strftime("%d %b %y")
     - link_to :controller => 'authors', :action => :show, :id => haiku.author.username do
       = image_tag(haiku.author.avatar.url(:medium))
   .text_and_author

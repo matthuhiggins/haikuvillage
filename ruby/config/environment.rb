@@ -17,7 +17,3 @@ Rails::Initializer.run do |config|
     :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
   }
 end
-
-ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
-  :haiku => "%b %d, %Y"
-)
