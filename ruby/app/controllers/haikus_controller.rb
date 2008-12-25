@@ -22,13 +22,11 @@ class HaikusController < ApplicationController
   end
   
   def index
-    @meta_description = "A listing of assorted haikus"
     list_haikus(Haiku)
   end
   
   def show
     @single_haiku = Haiku.find(params[:id])
-    @meta_description = @single_haiku.text.gsub(/\r\n|\r|\n/, ' / ')
     Haiku.update_counters(params[:id], :view_count_week => 1, :view_count_total => 1)
   end
   

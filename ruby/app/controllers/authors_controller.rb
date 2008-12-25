@@ -1,6 +1,5 @@
 class AuthorsController < ApplicationController
   def index
-    @meta_description = "Haiku organized by author"
     if params[:q]
       render_search(params[:q])
     else
