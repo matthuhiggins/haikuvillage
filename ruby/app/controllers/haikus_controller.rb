@@ -22,7 +22,7 @@ class HaikusController < ApplicationController
   end
   
   def index
-    list_haikus(Haiku)
+    @haikus = Haiku.search(params[:q], :field_weights => {:subject_name => 2, :text => 1})
   end
   
   def show

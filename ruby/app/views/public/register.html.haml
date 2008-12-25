@@ -11,7 +11,7 @@
 
 .column.small
   %h3= "Already a user?"
-  - deferred_haiku_form :session, :url => login_url, :html => {:id => 'register_login_form'} do |form|
+  - deferred_haiku_form :session, :url => session_url, :html => {:id => 'register_login_form'} do |form|
     %div
       %h3= 'Username'
       = form.text_field :username

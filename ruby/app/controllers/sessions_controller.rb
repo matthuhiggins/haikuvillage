@@ -1,4 +1,4 @@
-class SessionController < ApplicationController  
+class SessionsController < ApplicationController  
   def create
     author = Author.authenticate(params[:session][:username], params[:session][:password])
     session[:username] = author ? author.username : nil
@@ -7,7 +7,7 @@ class SessionController < ApplicationController
       if params[:haiku]
         create_haiku_and_redirect
       else
-        redirect_to :back
+        redirect_to :controller => 'journal'
       end
     else
       flash[:notice] = "Invalid username/password combination"

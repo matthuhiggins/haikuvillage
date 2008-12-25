@@ -1,0 +1,14 @@
+%h3= 'Sign in'
+
+- form_for :session, :url => session_url do |form|
+  %div
+    %h3= 'Username'
+    = form.text_field :username
+  %div
+    %h3= 'Password'
+    = form.password_field :password
+  %div
+    = form.submit 'Sign in'
+  
+%script
+  document.getElementById('session_username').focus();

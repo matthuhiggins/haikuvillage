@@ -9,6 +9,16 @@ class AuthorsController < ApplicationController
     end
   end
   
+  def create
+    @author = Author.new(params[:author])
+    if @author.save
+      session[:username] = @author.username
+      redirect_to :controller => "journal"
+    else
+      render :action => "new"
+    end
+  end
+  
   def show
     @author = Author.find_by_username(params[:id])
     @haikus = @author.haikus.paginate({
