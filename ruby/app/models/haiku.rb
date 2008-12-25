@@ -31,6 +31,11 @@ class Haiku < ActiveRecord::Base
   belongs_to :conversation
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :haiku_favorites, :source => :author
+  
+  define_index do
+    indexes :text
+    indexes :subject_name
+  end
     
   named_scope :recent, :order => 'haikus.id desc'
   named_scope :top_favorites, :order => 'favorited_count_week desc, favorited_count_total desc', :conditions => 'favorited_count_total > 0'
