@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   map.resources :authors, :member => { :favorites => :get }, :collection => {:suggest => :get}
   map.resources :subjects, :collection => {:suggest => :get}
-  map.resources :haikus do |haikus|
+  map.resources :haikus, :collection => {:search => :get} do |haikus|
     haikus.resource :favorites
   end
   map.resources :inspirations, :collection => {:random => :get}

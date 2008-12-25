@@ -1,0 +1,6 @@
+- form_tag({:controller => 'haikus', :action => 'search'}, {:method => :get}) do
+  %input{:type => "text", :name => "q", :value => params[:q]}
+  %input{:type => "submit", :value => "Search"}
+
+= render :partial => "shared/haiku", :collection => @haikus
+= will_paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false

@@ -4,5 +4,5 @@
 	<%= render :partial => "shared/haiku", :collection => @haikus %>
 				
 	<br />
-	<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
+	<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
 <% end %>

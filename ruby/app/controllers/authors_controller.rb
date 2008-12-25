@@ -20,7 +20,7 @@ class AuthorsController < ApplicationController
   end
   
   def show
-    @author = Author.find_by_username(params[:id])
+    @author = Author.find_by_username!(params[:id])
     @haikus = @author.haikus.paginate({
       :order     => "haikus.id desc",
       :include   => :author,

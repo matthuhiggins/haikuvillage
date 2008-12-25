@@ -22,7 +22,13 @@ class HaikusController < ApplicationController
   end
   
   def index
-    @haikus = Haiku.search(params[:q], :field_weights => {:subject_name => 2, :text => 1})
+    @haikus = Haiku.recent.paginate(:page => params[:page], :per_page  => 10)
+  end
+  
+  def search
+    @haikus = Haiku.search(params[:q],
+      :page      => params[:page],
+      :per_page  => 10)
   end
   
   def show

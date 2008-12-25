@@ -1,12 +1,12 @@
 #header.navigation
   = link_to(image_tag("haikuvillage.png"), {:controller => "public", :action => "index"}, :id => "logo-link")
-  %ul#author-navigation
-    - unless current_author
-      %li= link_to 'Sign in', login_url
-      %li= link_to 'Register', signup_url
-    - else
-      %li= link_to 'Sign out', logout_url
-      %li= link_to_controller 'Profile', 'profile'
-  %div
-    - form_tag({:controller => 'haikus'}, {:method => :get}) do
-      %input{:type => "text", :name => "q", :value => 'Search for haikus'}
+  .right
+    %ul
+      - unless current_author
+        %li= link_to 'Sign in', login_url
+        %li= link_to 'Register', signup_url
+      - else
+        %li= link_to 'Sign out', logout_url
+        %li= link_to_controller 'Profile', 'profile'
+    - form_tag({:controller => 'haikus', :action => 'search'}, {:method => :get}) do
+      %input{:type => "text", :name => "q", :value => 'Search for haikus', :autocomplete => 'off', :id => 'haiku_search'}
