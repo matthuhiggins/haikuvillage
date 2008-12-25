@@ -1,3 +1,5 @@
+- title "Search"
+
 - form_tag({:controller => 'haikus', :action => 'search'}, {:method => :get}) do
   %input{:type => "text", :name => "q", :value => params[:q]}
   %input{:type => "submit", :value => "Search"}

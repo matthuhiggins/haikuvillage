@@ -4,8 +4,12 @@ module ApplicationHelper
     link_to(name, {:controller => controller_name}, html_options)
   end
   
-  def title(title)
-    content_for :title, title
+  def title(title, prefix = true)
+    if prefix
+      title = "HaikuVillage: #{title}"
+    end
+
+    content_for :title, h(title)
   end
   
   def description(description)

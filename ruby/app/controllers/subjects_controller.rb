@@ -11,7 +11,13 @@ class SubjectsController < ApplicationController
   
   def show
     @subject = Subject.find_by_name!(params[:id])
-    @subject.haikus, :cached_total => subject.haikus_count_total)
+    @haikus = @subject.haikus.paginate(
+      :order     => "haikus.id desc",
+      :include   => :author,
+      :page      => params[:page],
+      :per_page  => 10,
+      :total_entries => @subject.haikus_count_total
+    )
   end
   
   def suggest
