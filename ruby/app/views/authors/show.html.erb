@@ -1,10 +1,5 @@
 <% content_for :head, auto_discovery_link_tag(:atom, {:format =>"atom"}, {:title => @author.username})	%>
 
-<% title "Haikus by #{@author.username}" %>
-<% description "Haikus by #{@author.username}" %>
-
-<h2><%= "Haikus by #{@author.username}" %></h2>
-
 <% render :layout => 'layout' do %>
 	<%= render :partial => "shared/haiku", :collection => @haikus %>
 				
