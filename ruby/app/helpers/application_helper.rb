@@ -13,6 +13,7 @@ module ApplicationHelper
   end
   
   def description(description)
-    content_for(:description, tag(:meta, {:name => "description", :content => h(description)}))
+    full_description = "#{h(description)} on Haiku Village}"
+    content_for(:description, tag(:meta, {:name => "description", :content => full_description}))
   end
 end

@@ -1,5 +1,7 @@
 - title "#{@subject.name} haikus"
+- description "#{@subject.name} haikus"
+
+%h2= "#{h @subject.name} haikus"
 = render :partial => "shared/haiku", :collection => @haikus
 			
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true
-
