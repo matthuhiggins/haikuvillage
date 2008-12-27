@@ -47,6 +47,8 @@ class Haiku < ActiveRecord::Base
     Conversation.update_counters(haiku.conversation_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.conversation_id
   end
   
+  after_create :tweet
+  
   attr_accessor :conversing_with
   before_create :construct_conversation
   
@@ -92,6 +94,12 @@ class Haiku < ActiveRecord::Base
         end
         self.conversation = other_haiku.conversation
       end
+    end
+  end
+  
+  def tweet
+    if author.twitter_enabled
+      Twitter.tweet(self)
     end
   end
 end

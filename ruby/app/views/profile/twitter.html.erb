@@ -1,0 +1,26 @@
+<% render :layout => 'layout' do %>
+  <% form_for current_author, :author, :url => {:action => "twitter"} do |form| %>
+    <p>
+      <%= form.check_box :twitter_enabled %>
+      <%= form.label :twitter_enabled, "Post my haikus to Twitter" %>
+    </p>
+    <table> 
+      <tr>
+        <td><%= form.label :twitter_username, 'Twitter username:' %></td>
+        <td><%= form.text_field :twitter_username %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :twitter_password, 'Twitter password:' %></td>
+        <td><%= form.password_field :twitter_password %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= submit_tag "Save" %></td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>
+
+<script>
+document.getElementById('author_twitter_username').focus();
+</script>

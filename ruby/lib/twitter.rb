@@ -2,17 +2,19 @@ class Twitter
   STATUS_UPDATE = "http://twitter.com/statuses/update.xml"
   AUTHENTICATE = "http://twitter.com/account/verify_credentials.xml"
   
+  class AuthenticationError < StandardError
+  end
+  
   class << self
     def authenticate(username, password)
       twitter_head(AUTHENTICATE, username, password) { |code, data| code == 200 }
     end
     
-    def create_haiku(haiku)
+    def tweet(haiku)
       author = haiku.author
-      formatted_text = haiku.text.gsub(/\n/, '/ ')
-      twitter_post(STATUS_UPDATE, author.username, author.password, {'status' => "@haikuvillage #{formatted_text}"}) do |code, data|
-        raise StandardError unless code == 200
-        haiku.update_attribute(:twitter_status_id, data['id'])
+      formatted_text = ERB::Util.h(haiku.text.gsub(/\n/, '/ '))
+      twitter_post(STATUS_UPDATE, author.twitter_username, author.twitter_password, {'status' => "@haikuvillage #{formatted_text}"}) do |code, data|
+        raise AuthenticationError if code == 401
       end
     end
     

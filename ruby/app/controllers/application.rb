@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   exempt_from_layout 'builder'
+  rescue_from Twitter::AuthenticationError, :with => :invalid_twitter_credentials
   
   helper :all
         
@@ -18,6 +19,11 @@ class ApplicationController < ActionController::Base
       else
         redirect_to :controller => 'journal'
       end
+    end
+    
+    def invalid_twitter_credentials
+      flash[:notice] = "Your Twitter credentials are out of date"
+      redirect_to :controller => "profile", :action => "twitter"
     end
   
     def referring_uri

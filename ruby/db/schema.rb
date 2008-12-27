@@ -9,23 +9,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081211015209) do
+ActiveRecord::Schema.define(:version => 20081227191755) do
 
   create_table "authors", :force => true do |t|
-    t.string   "username",                              :null => false
-    t.string   "password",                              :null => false
-    t.integer  "haikus_count_week",     :default => 0,  :null => false
-    t.integer  "haikus_count_total",    :default => 0,  :null => false
-    t.integer  "favorites_count",       :default => 0,  :null => false
+    t.string   "username",                                 :null => false
+    t.string   "password",                                 :null => false
+    t.integer  "haikus_count_week",     :default => 0,     :null => false
+    t.integer  "haikus_count_total",    :default => 0,     :null => false
+    t.integer  "favorites_count",       :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                 :default => "", :null => false
-    t.integer  "favorited_count_total", :default => 0,  :null => false
-    t.integer  "favorited_count_week",  :default => 0,  :null => false
+    t.string   "email",                 :default => "",    :null => false
+    t.integer  "favorited_count_total", :default => 0,     :null => false
+    t.integer  "favorited_count_week",  :default => 0,     :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "twitter_username"
+    t.string   "twitter_password"
+    t.boolean  "twitter_enabled",       :default => false, :null => false
   end
 
   add_index "authors", ["haikus_count_total"], :name => "index_authors_on_haikus_count_total"
