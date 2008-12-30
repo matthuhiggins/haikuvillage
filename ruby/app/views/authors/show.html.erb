@@ -1,4 +1,4 @@
-<% content_for :head, auto_discovery_link_tag(:atom, {:format =>"atom"}, {:title => @author.username})	%>
+<% rss @author.username	%>
 
 <% render :layout => 'layout' do %>
 	<%= render :partial => "shared/haiku", :collection => @haikus %>

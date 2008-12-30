@@ -16,4 +16,9 @@ module ApplicationHelper
     full_description = "#{h(description)} on Haiku Village}"
     content_for(:description, tag(:meta, {:name => "description", :content => full_description}))
   end
+  
+  def rss(title)
+    content_for :head, auto_discovery_link_tag(:atom, {:format =>"atom"}, {:title => title})	%>
+  end
+
 end
