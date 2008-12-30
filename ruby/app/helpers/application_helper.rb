@@ -18,7 +18,7 @@ module ApplicationHelper
   end
   
   def rss(title)
-    content_for :head, auto_discovery_link_tag(:atom, {:format =>"atom"}, {:title => title})	%>
+    content_for :head, auto_discovery_link_tag(:atom, {:format =>"atom"}, {:title => title})
   end
 
 end
