@@ -11,10 +11,6 @@ module HaikusHelper
     text
   end
 
-  def haiku_sort_link(order)
-    link_to_unless(haiku_sort_param == order, order.to_s.humanize, :order => order)
-  end
-
   def link_to_add_statement(name, html_id)
     link_to_function name, nil, :id => html_id do |page|
       page[html_id].hide

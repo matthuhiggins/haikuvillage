@@ -84,22 +84,27 @@ class Haiku < ActiveRecord::Base
     self[:subject_name] = name
   end
   
-  def construct_conversation
-    unless conversing_with.nil? || conversing_with.empty?
-      transaction do
-        other_haiku = Haiku.find(conversing_with)
-        if other_haiku.conversation.nil?
-          other_haiku.create_conversation(:haikus_count_total => 1)
-          other_haiku.save
-        end
-        self.conversation = other_haiku.conversation
-      end
-    end
+  def terse
+    text.gsub(/\n/, '/ ')
   end
   
-  def tweet
-    if author.twitter_enabled
-      Twitter.tweet(self)
+  private
+    def construct_conversation
+      unless conversing_with.nil? || conversing_with.empty?
+        transaction do
+          other_haiku = Haiku.find(conversing_with)
+          if other_haiku.conversation.nil?
+            other_haiku.create_conversation(:haikus_count_total => 1)
+            other_haiku.save
+          end
+          self.conversation = other_haiku.conversation
+        end
+      end
     end
-  end
+
+    def tweet
+      if author.twitter_enabled
+        Twitter.tweet(self)
+      end
+    end
 end

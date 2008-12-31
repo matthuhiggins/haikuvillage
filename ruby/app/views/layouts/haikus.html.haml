@@ -5,7 +5,7 @@
     %title= @title || yield(:title)
     = javascript_include_tag 'prototype', 'effects', 'controls'
     = javascript_include_tag 'application', 'syllables', :cache => 'cache'
-    = stylesheet_link_tag 'reset-min', 'common', 'layout', 'menu', 'landing', 'haiku', 'subjects', 'journal', 'register', :cache => 'cache'
+    = stylesheet_link_tag :haiku, :cache => 'cache'
     /[if lte IE 6]
       = stylesheet_link_tag 'ie6'
     = yield :head
@@ -13,12 +13,12 @@
   %body
     #top
     #body
-      = render :partial => "shared/header"
+      = render :partial => "layouts/header"
       #content
         - if flash[:notice]
           #notice= flash[:notice]
         = yield
-      = render :partial => "shared/side"
+      = render :partial => "layouts/side"
     #bottom
     #footer
       = link_to "About HaikuVillage", about_url

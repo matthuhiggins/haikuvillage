@@ -20,6 +20,7 @@ class PublicController < ApplicationController
   end
   
   def register
+    @haiku = Haiku.new(session[:new_haiku])
     if request.post?
       @author = Author.new(params[:author])
 
@@ -27,8 +28,6 @@ class PublicController < ApplicationController
         session[:username] = @author.username
         create_haiku_and_redirect
       end
-    else
-      @haiku = Haiku.new(session[:new_haiku])
     end
   end
 end

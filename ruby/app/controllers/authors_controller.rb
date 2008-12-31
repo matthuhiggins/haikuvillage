@@ -18,7 +18,7 @@ class AuthorsController < ApplicationController
       render :action => "new"
     end
   end
-  
+
   def show
     @author = Author.find_by_username!(params[:id])
     @haikus = @author.haikus.paginate({

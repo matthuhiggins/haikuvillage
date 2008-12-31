@@ -12,7 +12,7 @@ class Twitter
     
     def tweet(haiku)
       author = haiku.author
-      formatted_text = ERB::Util.h(haiku.text.gsub(/\n/, '/ '))
+      formatted_text = ERB::Util.h(haiku.terse)
       twitter_post(STATUS_UPDATE, author.twitter_username, author.twitter_password, {'status' => "@haikuvillage #{formatted_text}"}) do |code, data|
         raise AuthenticationError if code == 401
       end

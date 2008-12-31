@@ -69,7 +69,7 @@ var Line = Class.create({
   },
     
   toHTML: function(){
-    return "<div><span class='syllables #{valid}'>#{syllables}</span>#{text}</div>".interpolate({
+    return "<div class='line'><span class='syllables #{valid}'>#{syllables}</span>#{text}</div>".interpolate({
       valid: this.isValid() ? 'valid-line' : 'invalid-line',
       syllables: this.isCalculating() ? '?' : this.syllables(),
       text: this.words.invoke('toHTML').join(' ')
@@ -97,9 +97,7 @@ var Haiku = Class.create({
   },
 
   toHTML: function() {
-    return "<div>#{lines}</div>".interpolate({
-      lines: this.lines.invoke('toHTML').join('')
-    });
+    return this.lines.invoke('toHTML').join('')
   }
 });
 
