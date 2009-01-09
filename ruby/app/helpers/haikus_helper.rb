@@ -11,18 +11,31 @@ module HaikusHelper
     text
   end
 
-  def link_to_add_statement(name, html_id)
-    link_to_function name, nil, :id => html_id do |page|
-      page[html_id].hide
-      page[:statement_form].visual_effect(:blind_down, :duration => 0.2)
-    end
-  end
-  
   def subject_auto_complete
     text_field_with_auto_complete :haiku, :subject_name, {:maxlength => 24, :size => 10}, {
       :url => suggest_subjects_path, 
       :method => :get, 
       :param_name => 'q'}
+  end
+  
+  def enter_conversation_link(haiku)
+    # image_tag("icons/conversation.png", :alt => "Start Conversation")
+    if haiku.conversing?
+      content = "Join the conversation of #{pluralize(haiku.conversation.haikus_count_total, 'haiku')}"
+      params = haiku.conversation
+    else
+      content = "Respond to this haiku"
+      params = haiku
+    end
+
+    content_tag(:div, link_to(content, params), :class => "action")
+  end
+  
+  def destroy_haiku_link(haiku)
+    if haiku.author == current_author
+      image = image_tag("icons/trash.png", :alt => "Delete")
+      content_tag(:div, link_to(image, haiku, :method => :delete), :class => "action")
+    end
   end
   
   def haiku_text_tag

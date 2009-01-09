@@ -1,16 +1,8 @@
+require 'haiku/conversational'
+require 'haiku/line'
+require 'haiku/tweet'
+
 class Haiku < ActiveRecord::Base
-  class Line
-    attr_reader :words
-
-    def initialize(text)
-      @words = text.split
-    end
-
-    def syllables
-      words.sum(&:syllables)
-    end
-  end
-  
   class << self
     def global_feed
       find_by_sql(%{
@@ -25,10 +17,11 @@ class Haiku < ActiveRecord::Base
       })
     end
   end
+  
+  include Tweet, Conversational
 
   belongs_to :author
   belongs_to :subject
-  belongs_to :conversation
   has_many :haiku_favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :haiku_favorites, :source => :author
   
@@ -38,24 +31,18 @@ class Haiku < ActiveRecord::Base
   end
     
   named_scope :recent, :order => 'haikus.id desc'
+  named_scope :oldest, :order => 'haikus.id asc'
   named_scope :top_favorites, :order => 'favorited_count_week desc, favorited_count_total desc', :conditions => 'favorited_count_total > 0'
   named_scope :most_viewed, :order => 'view_count_week desc, view_count_total desc', :conditions => 'view_count_total > 0'
   
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
     Subject.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.subject_id
-    Conversation.update_counters(haiku.conversation_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.conversation_id
   end
-  
-  after_create :tweet
-  
-  attr_accessor :conversing_with
-  before_create :construct_conversation
   
   before_destroy do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_total => -1)
     Subject.update_counters(haiku.subject_id, :haikus_count_total => -1) if haiku.subject_id
-    Conversation.update_counters(haiku.conversation_id, :haikus_count_total => -1) if haiku.conversation_id
   end
   
   validates_presence_of :author_id
@@ -87,24 +74,4 @@ class Haiku < ActiveRecord::Base
   def terse
     text.gsub(/\n/, '/ ')
   end
-  
-  private
-    def construct_conversation
-      unless conversing_with.nil? || conversing_with.empty?
-        transaction do
-          other_haiku = Haiku.find(conversing_with)
-          if other_haiku.conversation.nil?
-            other_haiku.create_conversation(:haikus_count_total => 1)
-            other_haiku.save
-          end
-          self.conversation = other_haiku.conversation
-        end
-      end
-    end
-
-    def tweet
-      if author.twitter_enabled
-        Twitter.tweet(self)
-      end
-    end
 end

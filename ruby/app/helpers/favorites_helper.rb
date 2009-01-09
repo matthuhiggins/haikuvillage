@@ -4,8 +4,8 @@ module FavoritesHelper
     :delete => {:image_url => "icons/favorite.png",     :name => "Remove favorite"}
   }
   
-  def favorite_span(haiku)
-    content_tag(:span, change_favorite_link(haiku), :id => dom_id(haiku, 'change_fav'))
+  def favorite_star(haiku)
+    content_tag(:div, change_favorite_link(haiku), :id => dom_id(haiku, 'change_fav'), :class => "action")
   end
     
   def add_favorite_link(haiku)

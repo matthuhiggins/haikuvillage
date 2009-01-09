@@ -2,6 +2,4 @@
   %p{:style => 'float: left;'}
     = conversation.updated_at.strftime("%d %b %y")
   %p{:style => 'float: left;'}
-    conversation.recent_haikus.each do |haiku|
-      .terse-haiku= haiku.terse
-      
+    = render :partial => 'terse_haiku', :collection => conversation.recent_haikus

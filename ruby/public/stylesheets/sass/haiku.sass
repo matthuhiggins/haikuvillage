@@ -4,33 +4,34 @@
 !lightgrey= #999999
 
 #haiku_form_internals
-  :width 25.5em
+  :width 406px
   .input_row
     :margin-top 10px
     :overflow hidden
     label
       :color= !red
       :float left
-      :margin 3px 0.5em 0 0
+      :margin 3px 7px 0 0
       :text-align right
-      :width 4em
-    textarea, input[type="text"]
+      :width 63px
+    textarea
       :float left
-      :width 20.5em
+      :height 40px
+      :width 329px
+    input[type="text"]
+      :float left
+      :width 329px
     textarea.empty
       :color= !lightgrey
   .submit_row
     :text-align right
   #preview
     :background-color white
-    :margin-bottom 0.5em
-    :margin-left 4.5em
-    :opacity 0.7
-    :font-size 12pt
-    :height 55px
+    :margin-left 71px
+    :height 40px
     :color= !darkgrey
     sup
-      :font-size 8pt
+      :font-size 9px
       :color black
     .syllables 
       :float left
@@ -41,25 +42,11 @@
     .invalid-line 
       :color= !red
 
-h2.listing_title
-  :display inline
-  :padding-right 15px
-  
-ul.sort_options
-  :display inline
-  li
-    :color #C71217
-    :display inline
-    :font-size 85%
-    :margin-right 7px
-    :padding 2px 1px
-
 .haiku:hover
   :background-color #eeeeee
 .haiku
   &.new
     :border 1px solid green
-  :font-size 10pt
   :margin 4px
   :overflow hidden
   :padding 10px 6px
@@ -71,7 +58,6 @@ ul.sort_options
     :width 60px
     .time
       :color #999
-      :font-size 9pt
       :padding
         :top 1px
         :bottom 2px
@@ -79,6 +65,7 @@ ul.sort_options
       :display block
   .text_and_author
     :float left
+    :font-size 13px
     :width 20em
   .text
     :color black
@@ -96,8 +83,10 @@ ul.sort_options
     :float right
     :margin-right 10px
     :visibility hidden
-    a
+    div.action
       :display block
+      :margin-bottom 2px
+      :text-align right
 
 .haiku:hover .actions
   :visibility visible
@@ -122,6 +111,11 @@ ul.sort_options
   .haiku-line
     :font-size 20px
     :padding-bottom 4px
+  .actions
+    :overflow hidden
+    div.action
+      :float left
+      :margin-right 3px
 
 .author_link
   :text-decoration none

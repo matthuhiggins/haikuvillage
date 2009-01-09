@@ -14,12 +14,9 @@
         = image_tag haiku.conversation.inspiration.small, :class => 'haiku-inspiration'
   - if current_author
     .actions
-      = favorite_span(haiku)
-      - link_to :controller => "haikus", :action => "show", :id => haiku, :conversation => "true" do 
-        = image_tag("icons/conversation.png", :alt => "Start Conversation")
-      - if haiku.author == current_author
-        - link_to haiku, :method => :delete do
-          = image_tag("icons/trash.png", :alt => "Delete")
+      = enter_conversation_link(haiku)
+      = favorite_star(haiku)
+      = destroy_haiku_link(haiku)
 - if new_haiku? haiku
   = update_page_tag do |page|
     - page[haiku].appear

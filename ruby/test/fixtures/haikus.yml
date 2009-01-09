@@ -1,6 +1,6 @@
 from_wikipedia:
   author: billy
-  text: "the first cold shower\neven the monkey seems to want\na little coat of straw"
+  text: "the first cold shower\neven monkeys seem to want\na little coat of straw"
   subject: politics
 
 recursive:
@@ -55,6 +55,25 @@ dog:
   author: jane
   text: "I was walking fast.\nI came across a small dog;\nHe said bark bark bark."
   
+ocd:
+  author: jane
+  text: "I think I have OCD\nI have many strengths strengths strengths\nstrengths strengths strengths strengths strengths..."
+
+the_boy1:
+  author: jane
+  text: "Excellent glasses\nDid you get them for free? No.\nCheaper than oakleys."
+  conversation: flickr_strange_boy
+
+the_boy2:
+  author: jane
+  text: "Smiling in summer\nExcellent exposure eh?\nUpload to flicker."
+  conversation: flickr_strange_boy
+
+the_boy3:
+  author: jane
+  text: "Waterslide, ice cream,\nlaugh, drink soda, play. Summer.\nWhat more does he need?"
+  conversation: flickr_strange_boy
+
 haiku:
   author: joe
   text: "haikus contain three\nlines with a syllable count\nof five seven five"
@@ -62,7 +81,3 @@ haiku:
 mother:
   author: joe
   text: "Mother's day today\nI sent the bitch some flowers\nand I called it good"
-  
-ocd:
-  author: jane
-  text: "I think I have OCD\nI have many strengths strengths strengths\nstrengths strengths strengths strengths strengths..."
