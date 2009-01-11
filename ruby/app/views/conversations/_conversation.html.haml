@@ -1,5 +1,6 @@
 = div_for(conversation) do
-  %p{:style => 'float: left;'}
+  %div{:style => 'float: left;'}
     = conversation.updated_at.strftime("%d %b %y")
-  %p{:style => 'float: left;'}
-    = render :partial => 'terse_haiku', :collection => conversation.recent_haikus
+  %div{:style => 'float: left; margin-left: 10px'}
+    - conversation.recent_haikus.each do |haiku|
+      .terse-haiku= haiku.terse

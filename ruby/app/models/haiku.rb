@@ -72,6 +72,6 @@ class Haiku < ActiveRecord::Base
   end
   
   def terse
-    text.gsub(/\n/, '/ ')
+    text.gsub(/\n/, ' / ')
   end
 end
