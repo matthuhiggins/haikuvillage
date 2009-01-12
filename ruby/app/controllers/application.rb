@@ -1,7 +1,11 @@
+require 'concerns/twitter'
+
 class ApplicationController < ActionController::Base
+  extend ActiveSupport::Memoizable
+  include TwitterController
+
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   exempt_from_layout 'builder'
-  rescue_from Twitter::AuthenticationError, :with => :invalid_twitter_credentials
   
   helper :all
         
@@ -11,18 +15,9 @@ class ApplicationController < ActionController::Base
       # flash[:new_haiku_id] = @haiku.id
     end
     
-    def invalid_twitter_credentials
-      flash[:notice] = "Your Twitter credentials are out of date"
-      redirect_to :controller => "profile", :action => "twitter"
-    end
-  
-    def referring_uri
-      request.env["HTTP_REFERER"] || root_url
-    end
-
     def current_author
-      @current_author ||= Author.first(:conditions => {:username => session[:username]}, :include => :favorites) unless session[:username].nil?
+      Author.find_by_username!(session[:username]) unless session[:username].nil?
     end
-  
-  helper_method :current_author
+    memoize :current_author
+    helper_method :current_author
 end
