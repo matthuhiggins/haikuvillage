@@ -7,18 +7,8 @@ class ApplicationController < ActionController::Base
         
   private
     def create_haiku_and_redirect
-      @haiku = Haiku.create(params[:haiku].update(:author => current_author))
-      flash[:new_haiku_id] = @haiku.id
-
-      if params[:haiku][:conversing_with] && !params[:haiku][:conversing_with].empty?
-        flash[:notice] = 'Your haiku has been added to the conversation'
-        redirect_to :controller => 'haikus', :action => 'show', :id => params[:haiku][:conversing_with], :anchor => dom_id(@haiku)
-      elsif params[:haiku][:conversation_id] && !params[:haiku][:conversation_id].empty?
-        flash[:notice] = 'Your haiku has been added to the inspiration'
-        redirect_to :controller => 'inspirations', :action => 'show', :id => params[:haiku][:conversation_id], :anchor => dom_id(@haiku)
-      else
-        redirect_to :controller => 'journal'
-      end
+      # :anchor => dom_id(@haiku)
+      # flash[:new_haiku_id] = @haiku.id
     end
     
     def invalid_twitter_credentials

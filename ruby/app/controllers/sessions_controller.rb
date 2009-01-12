@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     
     if session[:username]
       if params[:haiku]
-        create_haiku_and_redirect
+        redirect_to(original_login_referrer)
       else
         redirect_to :controller => 'journal'
       end

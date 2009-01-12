@@ -26,7 +26,8 @@ class PublicController < ApplicationController
 
       if @author.save
         session[:username] = @author.username
-        create_haiku_and_redirect
+        @author.haikus.create(params[:haiku])
+        redirect_to(original_login_referrer)
       end
     end
   end
