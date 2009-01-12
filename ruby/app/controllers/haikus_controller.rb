@@ -6,7 +6,7 @@ class HaikusController < ApplicationController
       create_haiku_and_redirect
     else
       session[:new_haiku] = params[:haiku]
-      redirect_to register_url
+      redirect_to(register_url)
     end
   end
   

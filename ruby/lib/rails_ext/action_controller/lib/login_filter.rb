@@ -27,8 +27,16 @@ module HaikuController
   
     module InstanceMethods
       def check_login
-        redirect_to root_url unless session[:username]
+        unless session[:username]
+          session[:original_login_referrer] = request.referrer
+          redirect_to(root_url)
+        end
       end
+
+      private
+        def original_login_referrer
+          session[:original_login_referrer]
+        end
     end
   end
 end
