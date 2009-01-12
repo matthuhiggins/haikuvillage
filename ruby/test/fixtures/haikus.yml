@@ -57,7 +57,8 @@ dog:
   
 ocd:
   author: jane
-  text: "I think I have OCD\nI have many strengths strengths strengths\nstrengths strengths strengths strengths strengths..."
+  text: "I think I have OCD\nstrengths strengths strengths strengths strengths strengths\nstrengths strengths strengths strengths strengths..."
+  conversation: flickr_crowd_surf
 
 the_boy1:
   author: jane

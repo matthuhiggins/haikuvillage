@@ -1,6 +1,14 @@
-= div_for(conversation) do
-  %div{:style => 'float: left;'}
+- link_to conversation, :class => 'conversation' do
+  .time
     = conversation.updated_at.strftime("%d %b %y")
-  %div{:style => 'float: left; margin-left: 10px'}
+  .inspiration_or_summary
+    - if conversation.inspiration
+      = image_tag conversation.inspiration.small
+    - else
+      .summary= conversation.haikus_count_total
+      haikus
+  .haikus
     - conversation.recent_haikus.each do |haiku|
-      .terse-haiku= haiku.terse
+      .terse-haiku= truncate(haiku.terse, :length => 90)
+    - if conversation.recent_haikus.size < conversation.haikus_count_total
+      = "#{conversation.haikus_count_total - conversation.recent_haikus.size} more haikus ..."

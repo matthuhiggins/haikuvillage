@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   def index
-    @conversations = Conversation.paginate(:page => params[:page], :per_page => 15)
+    @conversations = Conversation.active.paginate(:page => params[:page], :per_page => 15)
   end
 
   def show
