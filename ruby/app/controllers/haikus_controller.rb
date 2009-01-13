@@ -10,9 +10,9 @@ class HaikusController < ApplicationController
       redirect_to(register_url)
     end
   end
-  
+
   def index
-    @haikus = Haiku.recent.paginate(:page => params[:page], :per_page  => 10)
+    @haikus = Haiku.recent.paginate(:page => params[:page], :per_page => 10)
   end
   
   def search
@@ -30,7 +30,7 @@ class HaikusController < ApplicationController
     haiku = current_author.haikus.destroy(params[:id])
     
     respond_to do |f|
-      f.html { redirect_to(haiku_url(haiku) == referring_uri ? {:controller => 'journal'} : referring_uri) }
+      f.html { redirect_to(haiku_url(haiku) == request.referrer ? {:controller => 'journal'} : request.referrer) }
       f.js   { head :ok }
     end
   end
