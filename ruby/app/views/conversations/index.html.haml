@@ -1,3 +1,5 @@
 - title "Recent Conversations"
 %h2 Recent Conversations
 = render :partial => 'conversation', :collection => @conversations
+
+= will_paginate @conversations, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false

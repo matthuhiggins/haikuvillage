@@ -78,6 +78,11 @@ the_boy3:
 haiku:
   author: joe
   text: "haikus contain three\nlines with a syllable count\nof five seven five"
+
+house:
+  author: joe
+  text: "Bought for one million,\nWill be worth double very\nsoon. Shit, bail me out."
+  conversation: flickr_strange_boy
   
 mother:
   author: joe

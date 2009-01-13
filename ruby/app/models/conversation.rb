@@ -4,7 +4,7 @@ class Conversation < ActiveRecord::Base
   has_many :haikus
   has_one :flickr_inspiration
 
-  named_scope :active, :order => :updated_at # last_haiku_added
+  named_scope :active, :order => :updated_at, :conditions => "haikus_count_total > 0"  # last_haiku_added
 
   def recent_haikus
     haikus.recent.all(:limit => 3)

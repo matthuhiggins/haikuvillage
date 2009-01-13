@@ -5,5 +5,6 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
+    @haikus = @conversation.haikus.paginate(:page => params[:page], :per_page => 10)
   end
 end
