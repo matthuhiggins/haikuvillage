@@ -20,23 +20,20 @@ module HaikuController
       #   end
       #
       def login_filter(options = {})
-        include InstanceMethods
         before_filter :check_login, options
       end
     end
   
-    module InstanceMethods
-      def check_login
-        unless session[:username]
-          session[:original_login_referrer] = request.referrer
-          redirect_to(root_url)
-        end
+    def check_login
+      unless session[:username]
+        session[:original_login_referrer] = request.referrer
+        redirect_to(root_url)
       end
-
-      private
-        def original_login_referrer
-          session[:original_login_referrer]
-        end
     end
+
+    private
+      def original_login_referrer
+        session[:original_login_referrer]
+      end
   end
 end

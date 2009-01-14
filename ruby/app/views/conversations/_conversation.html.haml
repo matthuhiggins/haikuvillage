@@ -10,6 +10,8 @@
   .haikus
     - conversation.recent_haikus.each do |haiku|
       .terse-haiku= truncate(haiku.terse, :length => 90)
-    - if conversation.recent_haikus.size < conversation.haikus_count_total
-      .read_more
+    .more
+      - if conversation.recent_haikus.size < conversation.haikus_count_total
         = "#{pluralize(conversation.haikus_count_total - conversation.recent_haikus.size, 'more haiku')} ..."
+      - else
+        Join the conversation

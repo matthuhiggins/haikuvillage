@@ -2,8 +2,9 @@
 
 %h2= "A conversation with #{pluralize(@conversation.haikus_count_total, 'haiku')}"
 
-= render :partial => 'shared/create', :locals => {:conversation => @conversation}
-
 = render :partial => "shared/haiku", :collection => @haikus
+
+
+= render :partial => 'shared/create', :locals => {:conversation => @conversation}
 
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false
