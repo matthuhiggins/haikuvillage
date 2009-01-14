@@ -1,0 +1,12 @@
+- title "Email haiku by #{@haiku.author.username}"
+- description @haiku.text.gsub(/\r\n|\r|\n/, ' / ')
+
+%h2=haiku_title(@haiku)
+
+%h3= 'Email Haiku'
+- form_for :haikus, :url => {:action => :email} do |form|
+  %div
+    %h3= 'Email'
+    = form.text_field :email
+  %div
+    = form.submit 'Send'

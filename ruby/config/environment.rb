@@ -19,3 +19,12 @@ Rails::Initializer.run do |config|
     :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
   }
 end
+
+ActionMailer::Base.smtp_settings = {
+  :address  => "mail.spiz.us",
+  :port  => 587, 
+  :domain  => "haikuvillage.com",
+  :user_name  => "village",
+  :password  => "haiku575",
+  :authentication  => :login
+}

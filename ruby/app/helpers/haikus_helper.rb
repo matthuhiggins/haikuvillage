@@ -5,7 +5,7 @@ module HaikusHelper
   
   def haiku_title(haiku)
     text = "A haiku by #{haiku.author.username}"
-    if !@single_haiku.conversation.nil? && haiku.conversation.inspiration_type == 'flickr'
+    if !haiku.conversation.nil? && haiku.conversation.inspiration_type == 'flickr'
       text <<  ", inspired by #{link_to 'Flickr', inspiration_url(haiku.conversation)}"
     end
     text
@@ -36,6 +36,10 @@ module HaikusHelper
       image = image_tag("icons/trash.png", :alt => "Delete")
       content_tag(:div, link_to(image, haiku, :method => :delete), :class => "action")
     end
+  end
+  
+  def email_haiku_link(haiku)
+      content_tag(:div, link_to("Email this haiku", haiku, :method => :email), :class => "action")
   end
   
   def haiku_text_tag

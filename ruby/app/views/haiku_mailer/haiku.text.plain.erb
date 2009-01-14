@@ -1,0 +1,6 @@
+<%= @author.username %> sent you a haiku.
+
+<%= @haiku.text %>
+
+Click here to respond to this haiku:
+<%= haiku_url(@haiku, :host => "www.haikuvillage.com") %>
