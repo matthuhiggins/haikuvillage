@@ -5,7 +5,8 @@ class HaikusController < ApplicationController
     if current_author
       @haiku = current_author.haikus.create(params[:haiku])
       flash[:new_haiku_id] = @haiku.id
-      redirect_to(:back, :anchor => 'fooz')
+      flash[:notice] = "Your haiku has been created"
+      redirect_to(:back)
     else
       session[:new_haiku] = params[:haiku]
       session[:original_login_referrer] = request.referrer

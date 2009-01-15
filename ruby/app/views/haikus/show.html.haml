@@ -28,20 +28,12 @@
 
 .conversation-section
   - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
-    #first_statement
-      = link_to_function "Post a haiku", nil do |page|
-        - page[:first_statement].hide
-        - page[:statement_form].show
-      to start a conversation
-      
-    #statement_form{:style => 'display: none'}
+    %h3 Start a conversation with this haiku:
+    #statement_form
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
   - else
-    %h2 This haiku is in a conversation
-    = link_to_function "Add a haiku to this conversation", nil, {:id => "add_statement_link"}  do |page|
-      - page[:statement_form].show
-      - page[:haiku_text].focus
-    #statement_form{:style => 'display: none'}
+    %h3 This haiku is in a conversation. Post your own haiku below.
+    #statement_form
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
     %br
     = render :partial => 'shared/haiku', :collection => @single_haiku.conversation.haikus
