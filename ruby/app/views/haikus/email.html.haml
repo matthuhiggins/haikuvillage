@@ -8,6 +8,6 @@
       .haiku-line= h(line)
 
 %h3= 'Email Haiku!!!'
-= form_tag({:controller => 'haikus', :action => 'deliver'}, {:method => :post}) do 
+- form_tag(deliver_haiku_url(@haiku), {:method => :post}) do 
   = text_field_tag "email"
   = submit_tag "Send"
