@@ -1,6 +1,6 @@
 class HaikuMailer < ActionMailer::Base
-  def haiku(haiku, author)
-    @recipients   = "mike@spiz.us"
+  def haiku(haiku, email, author)
+    @recipients   = email
     @from         = "575@haikuvillage.com"
     headers         "Reply-to" => "noreply@haikuvillage.com"
     @subject      = "#{author.username} sent you a haiku from HaikuVillage"

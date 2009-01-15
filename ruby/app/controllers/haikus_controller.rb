@@ -1,5 +1,5 @@
 class HaikusController < ApplicationController
-  login_filter :only => [:new, :destroy, :update, :email, :deliver_haiku]
+  login_filter :only => [:new, :destroy, :update, :email, :deliver]
   
   def create
     if current_author
@@ -37,12 +37,11 @@ class HaikusController < ApplicationController
   
   def email
     @haiku = Haiku.find(params[:id])
-        HaikuMailer.deliver_haiku(@haiku, current_author)
   end
   
-  def deliver_haiku
+  def deliver
     haiku = Haiku.find(params[:id])
-    HaikuMailer.deliver_haiku(haiku, @email)
+    HaikuMailer.deliver_haiku(haiku, params[:email], current_author)
     redirect_to(haiku_url(haiku) == request.referrer ? {:controller => 'journal'} : request.referrer)
   end
 end

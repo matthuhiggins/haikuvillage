@@ -2,11 +2,12 @@
 - description @haiku.text.gsub(/\r\n|\r|\n/, ' / ')
 
 %h2=haiku_title(@haiku)
+.haiku-big
+  .text
+    - @haiku.text.each_line do |line|
+      .haiku-line= h(line)
 
-%h3= 'Email Haiku'
-- form_for :haikus, :url => {:action => :email} do |form|
-  %div
-    %h3= 'Email'
-    = form.text_field :email
-  %div
-    = form.submit 'Send'
+%h3= 'Email Haiku!!!'
+= form_tag({:controller => 'haikus', :action => 'deliver'}, {:method => :post}) do 
+  = text_field_tag "email"
+  = submit_tag "Send"
