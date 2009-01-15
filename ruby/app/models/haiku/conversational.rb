@@ -18,7 +18,7 @@ module Conversational
   end
   
   def conversing?
-    !conversation.nil? && conversation.haikus_count_total > 1
+    !conversation.nil? && conversation.haikus_count_total > 0
   end
   
   private
