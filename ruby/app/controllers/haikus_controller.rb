@@ -42,6 +42,6 @@ class HaikusController < ApplicationController
   def deliver
     haiku = Haiku.find(params[:id])
     HaikuMailer.deliver_haiku(haiku, params[:email], current_author)
-    redirect_to(haiku_url(haiku) == request.referrer ? {:controller => 'journal'} : request.referrer)
+    redirect_to params[:referrer]
   end
 end
