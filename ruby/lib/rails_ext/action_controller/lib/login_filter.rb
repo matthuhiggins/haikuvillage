@@ -32,7 +32,8 @@ module HaikuController
     def check_login
       unless session[:username]
         session[:original_login_referrer] = request.referrer
-        redirect_to(root_url)
+        flash[:notice] = "You must sign in first"
+        redirect_to(register_url)
       end
     end
   end

@@ -7,6 +7,7 @@ class HaikusController < ApplicationController
       redirect_to(:back, :anchor => 'fooz')
     else
       session[:new_haiku] = params[:haiku]
+      session[:original_login_referrer] = request.referrer
       redirect_to(register_url)
     end
   end
