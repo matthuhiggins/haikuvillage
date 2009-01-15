@@ -1,7 +1,0 @@
-= div_for(conversation) do
-  %p{:style => 'float: left;'}
-    = conversation.updated_at.strftime("%d %b %y")
-  %p{:style => 'float: left;'}
-    conversation.recent_haikus.each do |haiku|
-      .terse-haiku= haiku.terse
-      
