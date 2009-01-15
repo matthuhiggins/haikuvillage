@@ -4,7 +4,7 @@ class HaikusController < ApplicationController
   def create
     if current_author
       @haiku = current_author.haikus.create(params[:haiku])
-      redirect_to(:back)
+      redirect_to(:back, :anchor => 'fooz')
     else
       session[:new_haiku] = params[:haiku]
       redirect_to(register_url)
