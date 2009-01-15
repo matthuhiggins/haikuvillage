@@ -19,16 +19,11 @@ module HaikusHelper
   end
   
   def enter_conversation_link(haiku)
-    # image_tag("icons/conversation.png", :alt => "Start Conversation")
-    if haiku.conversing?
-      content = "Join the conversation of #{pluralize(haiku.conversation.haikus_count_total, 'haiku')}"
-      params = haiku.conversation
+    unless haiku.conversing?
+      content_tag(:div, link_to("Respond to this haiku", haiku), :class => "action")
     else
-      content = "Respond to this haiku"
-      params = haiku
+      ""
     end
-
-    content_tag(:div, link_to(content, params), :class => "action")
   end
   
   def destroy_haiku_link(haiku)

@@ -1,10 +1,17 @@
 - title "A conversation with #{pluralize(@conversation.haikus_count_total, 'haikus')}"
 
-%h2= "A conversation with #{pluralize(@conversation.haikus_count_total, 'haiku')}"
+.small.column
+  .conversation_header
+    Join the conversation with
+    .summary= @conversation.haikus_count_total
+    other haikus
+.wide.column
+  = render :partial => 'shared/create', :locals => {:conversation => @conversation}
+%br
 
-= render :partial => "shared/haiku", :collection => @haikus
-
-
-= render :partial => 'shared/create', :locals => {:conversation => @conversation}
+.conversation-section
+  %h3= "Haikus in this conversation"
+  %br
+  = render :partial => 'shared/haiku', :collection => @haikus
 
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false

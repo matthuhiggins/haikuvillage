@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
     session[:username] = author ? author.username : nil
     
     if session[:username]
-      if params[:haiku]
+      if session[:new_haiku]
+        author.haikus.create(session[:new_haiku])
         redirect_to(original_login_referrer)
       else
         redirect_to :controller => 'journal'
