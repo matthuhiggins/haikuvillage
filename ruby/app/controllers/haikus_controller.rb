@@ -4,6 +4,7 @@ class HaikusController < ApplicationController
   def create
     if current_author
       @haiku = current_author.haikus.create(params[:haiku])
+      flash[:new_haiku_id] = @haiku.id
       redirect_to(:back, :anchor => 'fooz')
     else
       session[:new_haiku] = params[:haiku]
@@ -43,6 +44,7 @@ class HaikusController < ApplicationController
   def deliver
     haiku = Haiku.find(params[:id])
     HaikuMailer.deliver_haiku(haiku, params[:email], current_author)
+    flash[:notice] = "The haiku has been sent"
     redirect_to params[:referrer]
   end
 end

@@ -22,9 +22,9 @@
   - if current_author
     .actions
       = enter_conversation_link(haiku)
+      = email_haiku_link(haiku)
       = favorite_star(haiku)
       = destroy_haiku_link(haiku)
-      = email_haiku_link(haiku)
 - if new_haiku? haiku
   = update_page_tag do |page|
     - page[haiku].appear
