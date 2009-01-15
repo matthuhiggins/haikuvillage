@@ -16,9 +16,9 @@
         - if haiku.conversation.inspiration
           = image_tag haiku.conversation.inspiration.small, :class => 'haiku-inspiration'
         - else 
-          Chatting with
+          Conversing with
           .summary= (haiku.conversation.haikus_count_total - 1)
-          haikus
+          ="other #{haiku.conversation.haikus_count_total > 2 ? 'haikus' : 'haiku' }"
   - if current_author
     .actions
       = enter_conversation_link(haiku)
