@@ -3,7 +3,12 @@ module HaikuController
     def self.included(base)
       base.extend(ClassMethods)
     end
-  
+
+    private
+      def original_login_referrer
+        session[:original_login_referrer]
+      end
+
     module ClassMethods
       # Checks if a user is logged in before performing an action
       # To prevent any action from being run:
@@ -30,10 +35,5 @@ module HaikuController
         redirect_to(root_url)
       end
     end
-
-    private
-      def original_login_referrer
-        session[:original_login_referrer]
-      end
   end
 end
