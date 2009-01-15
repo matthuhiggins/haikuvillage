@@ -66,7 +66,7 @@ class Haiku < ActiveRecord::Base
   
   def subject_name=(name)
     return if name.blank?
-    name = name.gsub(/[^\w| ]/, '').chomp
+    name = name.gsub(/[^\w| ]/, '').chomp.downcase
     self.subject = Subject.find_or_create_by_name(name) unless name.blank?
     self[:subject_name] = name
   end
