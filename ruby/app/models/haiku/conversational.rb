@@ -31,5 +31,7 @@ module Conversational
         end
         self.conversation = other_haiku.conversation
       end
+    rescue ActiveRecord::RecordNotFound
+      # In case the other haiku was deleted while someone was responding to it
     end
 end
