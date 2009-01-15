@@ -1,0 +1,12 @@
+- title 'Flickr Inspiration'
+
+.small.column
+  = image_tag @inspiration.thumbnail
+.wide.column
+  = render :partial => 'shared/create', :locals => {:conversation => @conversation}
+%br
+- if @conversation.haikus.any?
+  .conversation-section
+    %h2= "Haikus inspired by this image"
+    %br
+    = render :partial => 'shared/haiku', :collection => @conversation.haikus

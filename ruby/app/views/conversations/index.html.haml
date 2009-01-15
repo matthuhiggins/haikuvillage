@@ -1,5 +1,10 @@
 - title "Recent Conversations"
-%h2 Recent Conversations
+.conversation-header
+  %h2 Recent Conversations
+  .conversation-tip
+    %strong Tip:
+    Conversations are started when you write about an image or reply to a haiku.
+
 = render :partial => 'conversation', :collection => @conversations, :spacer_template => "divider"
 
 = will_paginate @conversations, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false
