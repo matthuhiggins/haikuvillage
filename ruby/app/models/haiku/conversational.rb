@@ -7,7 +7,7 @@ module Conversational
       before_create :construct_conversation
       
       after_create do |haiku|
-        haiku.conversation.update_attributes(:latest_haiku_update => Time.now)
+        haiku.conversation.update_attributes(:latest_haiku_update => Time.now) unless haiku.conversation_id.nil?
         Conversation.update_counters(haiku.conversation_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.conversation_id
       end
       
