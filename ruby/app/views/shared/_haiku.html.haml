@@ -9,7 +9,7 @@
         .haiku-line= h(line)
     = link_to haiku.author.username, {:controller => 'authors', :action => :show, :id => haiku.author.username}, {:class => 'author'}
     - unless haiku.subject_name.nil?
-      = " about #{h(haiku.subject_name)}"
+      = " about #{link_to_subject(haiku.subject_name)}"
   - if haiku.conversation
     .inspiration_or_summary
       - link_to haiku.conversation do

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081227191755) do
+ActiveRecord::Schema.define(:version => 20090115035138) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                 :null => false
@@ -36,16 +36,18 @@ ActiveRecord::Schema.define(:version => 20081227191755) do
   add_index "authors", ["username"], :name => "index_authors_on_username"
 
   create_table "conversations", :force => true do |t|
-    t.integer  "haikus_count_week",  :default => 0, :null => false
-    t.integer  "haikus_count_total", :default => 0, :null => false
+    t.integer  "haikus_count_week",   :default => 0, :null => false
+    t.integer  "haikus_count_total",  :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "inspiration_type"
+    t.datetime "latest_haiku_update"
   end
 
   add_index "conversations", ["haikus_count_total"], :name => "index_conversations_on_haikus_count_total"
   add_index "conversations", ["haikus_count_week"], :name => "index_conversations_on_haikus_count_week"
   add_index "conversations", ["inspiration_type"], :name => "index_conversations_on_inspiration_type"
+  add_index "conversations", ["latest_haiku_update"], :name => "index_conversations_on_latest_haiku_update"
 
   create_table "flickr_inspirations", :force => true do |t|
     t.string   "title",                        :null => false

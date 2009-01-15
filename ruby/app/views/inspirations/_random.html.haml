@@ -1,4 +1,4 @@
+= link_to_remote("Inspire me again!", :url => {:controller => 'inspirations', :action => 'random', :offset => @next_offset}, :update => "rand-inspiration")
+%br
 = hidden_field_tag('haiku[conversation_id]', @inspiration.conversation.id)
 = image_tag @inspiration.thumbnail
-%br
-= link_to_remote("Inspire me again!", :url => {:controller => 'inspirations', :action => 'random', :offset => @next_offset}, :update => "rand-inspiration")
