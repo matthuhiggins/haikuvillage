@@ -16,8 +16,7 @@ class ApplicationController < ActionController::Base
     end
     
     def current_author
-      Author.find_by_username!(session[:username]) unless session[:username].nil?
+      @current_author ||= Author.find_by_username!(session[:username]) unless session[:username].nil?
     end
-    memoize :current_author
     helper_method :current_author
 end
