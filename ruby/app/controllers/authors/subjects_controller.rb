@@ -1,9 +1,11 @@
 class Authors::SubjectsController < ApplicationController
   def index
-    @subjects = Author.find_by_username(params[:author_id]).haikus
+    @author = Author.find_by_username(params[:author_id])
+    @subjects = @author.haikus.count(:group => :subject_name, :conditions => 'subject_name is not null')
   end
 
   def show
-    @subject = Author.find_by_username(params[:author_id]).haikus.find_by_subject_name(params[:id])
+    @author = Author.find_by_username(params[:author_id])
+    @haikus = @author.haikus.find_by_subject_name(params[:id])
   end
 end

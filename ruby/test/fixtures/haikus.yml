@@ -2,10 +2,13 @@ from_wikipedia:
   author: billy
   text: "the first cold shower\neven monkeys seem to want\na little coat of straw"
   subject: politics
+  subject_name: politics
 
 recursive:
   author: billy
   text: "Seven syllables\nAre required on line two\nI counted just right"
+  subject: politics
+  subject_name: politics
 
 ruby:
   author: billy
