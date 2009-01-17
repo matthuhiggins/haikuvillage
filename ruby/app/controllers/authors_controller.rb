@@ -30,6 +30,10 @@ class AuthorsController < ApplicationController
     })
   end
   
+  def subjects
+    Author.find_by_username!(params[:author_id]).haikus.find_by_subject_name
+  end
+  
   def suggest
     @authors = Author.search(params[:q]).popular.all(:limit => 12)
   end

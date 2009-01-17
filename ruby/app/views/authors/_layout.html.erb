@@ -21,6 +21,11 @@
 <% description "Haikus by #{@author.username}" %>
 
 <h2><%= "#{@author.username}'s Journal" %></h2>
+<% sub_menu do |m| %>
+  <% m.link "Haikus", author_url(:id => @author.username) %>
+  <% m.link "Subjects", author_subjects_url(:author_id => @author.username)  %>
+  <% m.link "Friends", author_friends_url(:author_id => @author.username)  %>
+<% end %>
 
 <div class="author-content">
   <div class="avatar">

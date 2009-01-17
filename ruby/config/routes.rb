@@ -1,6 +1,10 @@
 ActionController::Routing::Routes.draw do |map|  
   map.resource :session
-  map.resources :authors, :collection => {:suggest => :get}
+  map.resources :authors, :collection => {:suggest => :get} do |author|
+    author.resources :subjects, :controller => "authors/subjects"
+    author.resources :friends, :controller => "authors/friends"
+  end
+
   map.resources :subjects, :collection => {:suggest => :get}
   map.resources :haikus, :collection => {:search => :get}, :member => {:email => :get, :deliver => :post } do |haikus|
     haikus.resource :favorites
