@@ -2,7 +2,7 @@ class CreateFriends < ActiveRecord::Migration
   def self.up
     create_table :friendships, :id => false do |t|
       t.integer :author_id, :friend_id, :null => false
-      t.integer :status, :null => false, :default => 0
+      t.boolean :mutual, :null => false
       t.timestamps
     end
     
