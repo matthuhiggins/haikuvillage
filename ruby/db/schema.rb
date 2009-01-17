@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090115035138) do
+ActiveRecord::Schema.define(:version => 20090117033127) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                 :null => false
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(:version => 20090115035138) do
   add_index "flickr_inspirations", ["conversation_id"], :name => "flickr_inspirations_conversation_id_fk"
   add_index "flickr_inspirations", ["created_at"], :name => "index_flickr_inspirations_on_created_at"
   add_index "flickr_inspirations", ["photo_id"], :name => "index_flickr_inspirations_on_photo_id", :unique => true
+
+  create_table "friendships", :id => false, :force => true do |t|
+    t.integer  "author_id",                 :null => false
+    t.integer  "friend_id",                 :null => false
+    t.integer  "status",     :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendships", ["author_id", "friend_id"], :name => "friendships_index", :unique => true
+  add_index "friendships", ["friend_id", "author_id"], :name => "index_friendships_on_friend_id_and_author_id"
 
   create_table "haiku_favorites", :force => true do |t|
     t.integer  "author_id",  :null => false
