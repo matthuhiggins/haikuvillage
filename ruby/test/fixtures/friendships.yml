@@ -7,6 +7,6 @@ joe_and_billy:
   friend: billy
   mutual: true
 jane_requested_fredrick:
-  author: joe
-  friend: billy
+  author: jane
+  friend: fredrick
   mutual: false

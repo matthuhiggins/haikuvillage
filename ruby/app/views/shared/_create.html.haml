@@ -21,7 +21,8 @@
       = form.submit "Create", :id => "commit_haiku", :disabled => true
 
   - unless local_assigns[:extra_partial].nil?
-    = render :partial => extra_partial
+    - content_tag(:div, :id => extra_partial) do
+      = render :partial => extra_partial
   
 
 %script

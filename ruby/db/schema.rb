@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(:version => 20090117033127) do
   add_index "flickr_inspirations", ["photo_id"], :name => "index_flickr_inspirations_on_photo_id", :unique => true
 
   create_table "friendships", :id => false, :force => true do |t|
-    t.integer  "author_id",                 :null => false
-    t.integer  "friend_id",                 :null => false
-    t.integer  "status",     :default => 0, :null => false
+    t.integer  "author_id",  :null => false
+    t.integer  "friend_id",  :null => false
+    t.boolean  "mutual",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
