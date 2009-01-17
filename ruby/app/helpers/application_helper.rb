@@ -1,7 +1,9 @@
 module ApplicationHelper
-  def link_to_controller(name, controller_name)
-    url = send("#{controller_name}_url")
-    html_options = controller.controller_name == controller_name ? {:class => 'selected'} : {}
+  extend ActiveSupport::Memoizable
+
+  def link_to_controller(name, category)
+    url = send("#{category}_url")
+    html_options = current_category == category ? {:class => 'selected'} : {}
     link_to(name, url, html_options)
   end
   
@@ -22,4 +24,9 @@ module ApplicationHelper
     content_for :head, auto_discovery_link_tag(:atom, {:format =>"atom"}, {:title => title})
   end
 
+  def current_category
+    /^\/(\w+)/ =~ request.request_uri
+    $1
+  end
+  memoize :current_category
 end
