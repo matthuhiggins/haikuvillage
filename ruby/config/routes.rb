@@ -20,6 +20,9 @@ ActionController::Routing::Routes.draw do |map|
   map.login     'login',    :controller => 'sessions',  :action => 'new'
   map.logout    'logout',   :controller => 'sessions',  :action => 'destroy'
 
+  map.profile   'profile',  :controller => 'profile',   :action => 'index'
+  map.journal   'journal',  :controller => 'journal',   :action => 'index'
+
   map.google_gadget 'google_gadget', :controller => "public", :action => "google_gadget", :format => "xml"
   map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"
   map.connect 'google08da94d9e67eee9b.html', :controller => 'public', :action => "about"

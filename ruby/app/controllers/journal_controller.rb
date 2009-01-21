@@ -22,6 +22,11 @@ class JournalController < ApplicationController
     })
   end
   
+  def friends
+    @mentors = current_author.mentors# .mutual
+    @disciples = current_author.disciples# .fans
+  end
+  
   def get_inspired
     set_inspiration_variables
     render :partial => "get_inspired"
