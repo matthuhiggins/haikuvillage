@@ -46,9 +46,8 @@ class Haiku < ActiveRecord::Base
     Subject.update_counters(haiku.subject_id, :haikus_count_total => -1) if haiku.subject_id
   end
   
-  validates_presence_of :author_id
-  validates_presence_of :text
-  validate :valid_syllables?
+  validates_presence_of :text, :on => :create
+  validate :valid_syllables?, :on => :create
   
   VALID_SYLLABLES = [5, 7, 5]
   
