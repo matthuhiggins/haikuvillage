@@ -1,4 +1,8 @@
 module HaikusHelper
+  def render_haikus(haikus)
+    render :partial => "haikus/haiku", :collection => haikus
+  end
+
   def new_haiku?(haiku)
     haiku.id == flash[:new_haiku_id]
   end

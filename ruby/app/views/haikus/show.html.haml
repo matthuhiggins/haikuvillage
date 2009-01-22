@@ -36,4 +36,4 @@
     #statement_form
       = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
     %br
-    = render :partial => 'shared/haiku', :collection => @single_haiku.conversation.haikus
+    = render_haikus(@single_haiku.conversation.haikus)

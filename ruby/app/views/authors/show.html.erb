@@ -1,7 +1,7 @@
 <% rss @author.username	%>
 
 <% render :layout => 'layout' do %>
-	<%= render :partial => "shared/haiku", :collection => @haikus %>
+	<%= render_haikus(@haikus) %>
 				
 	<br />
 	<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>

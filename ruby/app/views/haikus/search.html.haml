@@ -4,5 +4,5 @@
   %input{:type => "text", :name => "q", :value => params[:q]}
   %input{:type => "submit", :value => "Search"}
 
-= render :partial => "shared/haiku", :collection => @haikus
+= render_haikus(@haikus)
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false

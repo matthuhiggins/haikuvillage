@@ -9,6 +9,6 @@
 .conversation-section
   %h3= "Haikus inspired by this image"
   %br
-  = render :partial => 'shared/haiku', :collection => @haikus
+  = render_haikus(@haikus)
 
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false

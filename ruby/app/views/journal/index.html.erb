@@ -6,7 +6,7 @@
   </div>
 
   <div style="border-top: 1px dotted #ccc">
-    <%= render :partial => "shared/haiku", :collection => @haikus %>
+    <%= render_haikus(@haikus) %>
   </div>
   <br />
   <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
