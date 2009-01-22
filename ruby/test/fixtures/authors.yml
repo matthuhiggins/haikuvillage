@@ -1,12 +1,16 @@
 billy:
   username: billy
   password: billy
+  latest_haiku: twitter
 joe:
   username: joe
   password: joe
+  latest_haiku: mother
 fredrick:
   username: fredrick
   password: fredrick
+  latest_haiku: beer
 jane:
   username: jane
   password: jane
+  latest_haiku: the_boy3
