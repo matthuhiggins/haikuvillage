@@ -23,8 +23,8 @@ class JournalController < ApplicationController
   end
   
   def friends
-    @mentors = current_author.mentors# .mutual
-    @disciples = current_author.disciples# .fans
+    @mentors = current_author.mentors
+    @disciples = current_author.disciples
   end
   
   def get_inspired
