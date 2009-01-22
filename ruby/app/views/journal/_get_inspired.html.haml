@@ -1,8 +1,15 @@
-= check_box_tag('use_inspiration')
-= label_tag('use_inspiration', 'Use inspiration')
-= link_to("< Prev", "#", :id => "prev_inspiration")
-= link_to("Next >", "#", :id => "next_inspiration")
+#inspiration_check_box
+  = check_box_tag('use_inspiration')
+  = label_tag('use_inspiration', 'Use inspiration')
 
-#inspiration_preview
+#inspiration_preview{:style => "display: none;"}
+  = link_to("< Prev", "#", :id => "prev_inspiration")
+  = link_to("Next >", "#", :id => "next_inspiration")
+  #inspiration_image
+
+#inspiration_what
+  Inspirations give you something to write about.
+  Click the checkbox to begin.
+  
 
 %script= "inspirations(#{@inspirations.to_json});"

@@ -27,17 +27,4 @@ class JournalController < ApplicationController
     @mentors = current_author.mentors
     @disciples = current_author.disciples
   end
-  
-  def get_inspired
-    set_inspiration_variables
-    render :partial => "get_inspired"
-  end
-  
-  private
-    def set_inspiration_variables
-      offset = (params[:offset] || rand(10)).to_i
-      @inspiration = FlickrInspiration.first(:offset => offset, :order => "created_at desc")
-      @prev_offset = (offset - 1) % 10
-      @next_offset = (offset + 1) % 10
-    end
 end
