@@ -16,7 +16,7 @@ class Author < ActiveRecord::Base
   named_scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
   named_scope :popular, :order => 'favorited_count_total desc', :conditions => 'favorited_count_total > 0'
   named_scope :search, lambda { |query| {:conditions => ['username like ?', "#{query}%"]} }
-  named_scope :recently_updated, :order => 'latest_haiku_id desc', :limit => 10, :include => :latest_haiku
+  named_scope :recently_updated, :order => 'latest_haiku_id desc', :include => :latest_haiku
   
   validates_presence_of :email, :username, :password, :on => :create
   validates_uniqueness_of :username, :on => :create

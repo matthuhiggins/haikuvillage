@@ -1,9 +1,11 @@
 <% title "Your friends" %>
 
 <% render :layout => 'layout' do %>
-  <h2>Your mentors</h2>
-  <%= debug @mentors %>
+  <h2>Your friends</h2>
+  <%= author_list(@mentors) %>
 
-  <h2>Disciples</h2>
-  <%= debug @disciples %>
+  <h2>Your fans</h2>
+  <%= author_list(@disciples) %>
+  
+  <%= render :partial => "shared/haiku", :collection => @haikus %>
 <% end %>
