@@ -3,31 +3,36 @@
   overflow: hidden;
 }
 
-.header .avatar,
-.header .nav {
+.header .avatar {
   float: left;
+  width: 64px;
 }
 
-.header h2 {
+.header .nav {
   float: left;
   padding: 6px 0 0 10px;
+  width: 600px;
+}
+
+.header .title {
+  margin-bottom: 12px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.header .title h2 {
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
 
 .author-content {
+  margin-left: 74px;
   overflow: hidden;
-}
-
-.avatar {
-  float: left;
 }
 
 .author-content .haiku .avatar_and_time {
   display: none;
-}
-
-.author-main {
-  float: right;
-  width: 83%;
 }
 </style>
 
@@ -39,9 +44,12 @@
     <%= image_tag @author.avatar.url(:large) %>
   </div>
   <div class="nav">
-    <h2>
-      <%= "#{@author.username}'s Journal" %>
-    </h2>
+    <div class="title">
+      <h2>
+        <%= "#{@author.username}'s Journal" %>
+      </h2>
+      - <%= become_friends(@author) %>
+    </div>
     <% sub_menu(:class => "tab_nav") do |m| %>
       <% m.link "Haikus", author_url(:id => @author.username) %>
       <% m.link "Subjects", author_subjects_url(:author_id => @author.username)  %>
@@ -51,7 +59,5 @@
 </div>
 
 <div class="author-content">
-  <div class="author-main">
-    <%= yield %>
-  </div>
+  <%= yield %>
 </div>

@@ -14,6 +14,7 @@ module Friendly
 
   def create_mutual_friendship(friendship)
     if Friendship.exists?(friendship.reverse_friendship_attributes)
+      friendship.update(:mutual, true)
       friendship.reverse_friendship.update(:mutual, true)
     end
   end

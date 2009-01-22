@@ -21,4 +21,13 @@ module AuthorsHelper
     link_to(image_tag(author.avatar.url(:small)) + author.username, 
       {:controller => 'authors', :action => :show, :id => author.username}, html_options)
   end
+  
+  def become_friends(friend)
+    return unless current_author
+     link_to_remote("Become friends",
+      :url      => author_friends_url(:author_id => @author.username),
+      :method   => :post,
+      :update   => "become_friends",
+      :html     => {:id => "become_friends"})
+  end
 end
