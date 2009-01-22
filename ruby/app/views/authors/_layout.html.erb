@@ -3,7 +3,8 @@
   overflow: hidden;
 }
 
-.header .avatar {
+.header .avatar,
+.header .nav {
   float: left;
 }
 
@@ -37,14 +38,16 @@
   <div class="avatar">
     <%= image_tag @author.avatar.url(:large) %>
   </div>
-  <h2>
-    <%= "#{@author.username}'s Journal" %>
-  </h2>
-  <% sub_menu(:class => "header_nav") do |m| %>
-    <% m.link "Haikus", author_url(:id => @author.username) %>
-    <% m.link "Subjects", author_subjects_url(:author_id => @author.username)  %>
-    <% m.link "Friends", author_friends_url(:author_id => @author.username)  %>
-  <% end %>
+  <div class="nav">
+    <h2>
+      <%= "#{@author.username}'s Journal" %>
+    </h2>
+    <% sub_menu(:class => "tab_nav") do |m| %>
+      <% m.link "Haikus", author_url(:id => @author.username) %>
+      <% m.link "Subjects", author_subjects_url(:author_id => @author.username)  %>
+      <% m.link "Friends", author_friends_url(:author_id => @author.username)  %>
+    <% end %>
+  </div>
 </div>
 
 <div class="author-content">
