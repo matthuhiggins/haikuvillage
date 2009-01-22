@@ -3,21 +3,6 @@ require 'haiku/line'
 require 'haiku/tweet'
 
 class Haiku < ActiveRecord::Base
-  class << self
-    def global_feed
-      find_by_sql(%{
-        select *
-        from haikus h
-        join (select max(id) as id
-              from haikus
-              group by author_id) h_max
-          using (id)
-        order by created_at desc
-        limit 10;
-      })
-    end
-  end
-  
   include Tweet, Conversational
 
   belongs_to :author

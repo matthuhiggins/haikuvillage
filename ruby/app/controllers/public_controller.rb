@@ -3,7 +3,7 @@ class PublicController < ApplicationController
     if current_author
       redirect_to :controller => "journal"
     else
-      @haikus = Haiku.global_feed
+      @haikus = Author.recently_updated.map { |a| a.latest_haiku }
       @total_haikus = Haiku.count(:id)
       @total_subjects = Subject.count(:id)
       @total_authors = Author.count(:id)
