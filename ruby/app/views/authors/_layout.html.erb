@@ -1,13 +1,26 @@
 <style>
+.header {
+  overflow: hidden;
+}
+
+.header .avatar {
+  float: left;
+}
+
+.header h2 {
+  float: left;
+  padding: 6px 0 0 10px;
+}
+
 .author-content {
   overflow: hidden;
 }
-.author-content .avatar {
+
+.avatar {
   float: left;
-  width: 15%;
 }
 
-.author-content .haiku .avatar {
+.author-content .haiku .avatar_and_time {
   display: none;
 }
 
@@ -20,17 +33,21 @@
 <%- title "#{@author.username}'s Journal" %>
 <% description "Haikus by #{@author.username}" %>
 
-<h2><%= "#{@author.username}'s Journal" %></h2>
-<% sub_menu do |m| %>
-  <% m.link "Haikus", author_url(:id => @author.username) %>
-  <% m.link "Subjects", author_subjects_url(:author_id => @author.username)  %>
-  <% m.link "Friends", author_friends_url(:author_id => @author.username)  %>
-<% end %>
-
-<div class="author-content">
+<div class="header">
   <div class="avatar">
     <%= image_tag @author.avatar.url(:large) %>
   </div>
+  <h2>
+    <%= "#{@author.username}'s Journal" %>
+  </h2>
+  <% sub_menu(:class => "header_nav") do |m| %>
+    <% m.link "Haikus", author_url(:id => @author.username) %>
+    <% m.link "Subjects", author_subjects_url(:author_id => @author.username)  %>
+    <% m.link "Friends", author_friends_url(:author_id => @author.username)  %>
+  <% end %>
+</div>
+
+<div class="author-content">
   <div class="author-main">
     <%= yield %>
   </div>

@@ -6,7 +6,11 @@ joe_and_billy:
   author: joe
   friend: billy
   mutual: true
-jane_requested_fredrick:
+jane_follows_fredrick:
   author: jane
   friend: fredrick
+  mutual: false
+joe_follows_jane:
+  author: joe
+  friend: jane
   mutual: false

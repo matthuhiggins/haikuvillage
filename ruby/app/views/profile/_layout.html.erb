@@ -11,7 +11,7 @@
 }
 </style>
 
-<% sub_menu do |m| %>
+<% sub_menu(:class => "tab_nav") do |m| %>
   <% m.link "Account", :action => 'index' %>
   <% m.link "Password", :action => 'password' %>
   <% m.link "Avatar", :action => 'avatar' %>

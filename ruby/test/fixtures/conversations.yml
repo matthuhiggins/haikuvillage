@@ -11,4 +11,3 @@ flickr_strange_boy:
   haikus_count_total: 4
   inspiration_type: flickr
   latest_haiku_update: <%= 1.second.ago.to_s(:db) %>
-

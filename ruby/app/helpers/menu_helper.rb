@@ -6,8 +6,8 @@ module MenuHelper
   #     <% m.link "Avatar", :action => 'avatar' %>
   #   <% end %>
   #
-  def sub_menu(&block)
-    concat(tag(:ul, {:class => "submenu"}, true))
+  def sub_menu(options, &block)
+    concat(tag(:ul, {:class => options[:class]}, true))
     linker = SubMenuLinker.new(self)
     yield(linker)
     concat(linker.generate)

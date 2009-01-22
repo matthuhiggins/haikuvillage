@@ -3,8 +3,8 @@ module Friendly
     def included(author)
       # The authors this author is following
       author.has_many :following, :class_name => "Friendship", :after_add => :create_mutual_friendship, :after_remove => :destroy_mutual_friendship
-      author.has_many :friends, :through => :friendships, :class_name => "Author", :source => :friend
-      author.has_many :mentors, :through => :friendships, :class_name => "Author", :source => :friend, :conditions => {'friendships.mutual' => false}
+      author.has_many :friends, :through => :following, :class_name => "Author", :source => :friend
+      author.has_many :mentors, :through => :following, :class_name => "Author", :source => :friend, :conditions => {'friendships.mutual' => false}
 
       # The authors following this author
       author.has_many :followers, :foreign_key => :friend_id, :class_name => "Friendship"
