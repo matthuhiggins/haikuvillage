@@ -9,7 +9,7 @@ class JournalController < ApplicationController
       :per_page  => 10,
       :total_entries => current_author.haikus_count_total
     })
-    set_inspiration_variables
+    @inspirations = FlickrInspiration.all(:limit => 10, :order => "id desc").map { |f| {:thumbnail => f.thumbnail, :id => f.conversation_id} }
   end
 
   def favorites

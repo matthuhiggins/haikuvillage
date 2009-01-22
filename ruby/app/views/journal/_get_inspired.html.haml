@@ -1,7 +1,8 @@
-= link_to_remote("< Prev", :url => {:action => 'get_inspired', :offset => @prev_offset}, :update => "get_inspired")
-= check_box_tag('user_inspiration')
-= label_tag('user_inspiration', 'Use inspiration')
-= link_to_remote("Next >", :url => {:action => 'get_inspired', :offset => @next_offset}, :update => "get_inspired")
-%br
-= hidden_field_tag('haiku[conversation_id]', @inspiration.conversation.id)
-= image_tag @inspiration.thumbnail, :id => "inspiration_image", :style => "opacity: 0.25;"
+= check_box_tag('use_inspiration')
+= label_tag('use_inspiration', 'Use inspiration')
+= link_to("< Prev", "#", :id => "prev_inspiration")
+= link_to("Next >", "#", :id => "next_inspiration")
+
+#inspiration_preview
+
+%script= "inspirations(#{@inspirations.to_json});"

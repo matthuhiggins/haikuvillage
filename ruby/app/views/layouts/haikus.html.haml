@@ -4,7 +4,7 @@
   %head
     %title= @title || yield(:title)
     = javascript_include_tag 'prototype', 'effects', 'controls'
-    = javascript_include_tag 'application', 'syllables', :cache => 'cache'
+    = javascript_include_tag 'application', 'syllables', 'inspirations', :cache => 'cache'
     = stylesheet_link_tag :haiku, :cache => 'cache'
     /[if lte IE 6]
       = stylesheet_link_tag 'ie6'
