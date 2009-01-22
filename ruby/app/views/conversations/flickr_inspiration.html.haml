@@ -3,7 +3,7 @@
 .small.column
   = image_tag @inspiration.thumbnail
 .wide.column
-  = render :partial => 'shared/create', :locals => {:conversation => @conversation}
+  = render_create(:conversation => @conversation)
 %br
 
 .conversation-section

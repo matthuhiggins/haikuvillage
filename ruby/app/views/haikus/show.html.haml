@@ -30,10 +30,10 @@
   - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
     %h3 Start a conversation with this haiku:
     #statement_form
-      = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
+      = render_create(:conversing_with => @single_haiku)
   - else
     %h3 This haiku is in a conversation. Post your own haiku below.
     #statement_form
-      = render :partial => 'shared/create', :locals => {:conversing_with => @single_haiku}
+      = render_create(:conversing_with => @single_haiku)
     %br
     = render_haikus(@single_haiku.conversation.haikus)

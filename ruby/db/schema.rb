@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090117033127) do
+ActiveRecord::Schema.define(:version => 20090122012817) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                 :null => false
@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(:version => 20090117033127) do
     t.string   "twitter_username"
     t.string   "twitter_password"
     t.boolean  "twitter_enabled",       :default => false, :null => false
+    t.integer  "latest_haiku_id"
   end
 
   add_index "authors", ["haikus_count_total"], :name => "index_authors_on_haikus_count_total"
   add_index "authors", ["haikus_count_week"], :name => "index_authors_on_haikus_count_week"
+  add_index "authors", ["latest_haiku_id"], :name => "authors_latest_haiku_id_fk"
   add_index "authors", ["username"], :name => "index_authors_on_username"
 
   create_table "conversations", :force => true do |t|

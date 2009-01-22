@@ -6,12 +6,12 @@
     .summary= @conversation.haikus_count_total
     other haikus
 .wide.column
-  = render :partial => 'shared/create', :locals => {:conversation => @conversation}
+  = render_create(:conversation => @conversation)
 %br
 
 .conversation-section
   %h3= "Haikus in this conversation"
   %br
-  = render :partial => 'shared/haiku', :collection => @haikus
+  = render_haikus(@haikus)
 
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false
