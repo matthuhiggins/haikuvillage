@@ -1,0 +1,20 @@
+<% title "Authors" %>
+
+<% render :layout => 'index_layout' do %>
+  <%= render :partial => 'search_form' %>
+
+  <div class="column">
+    <h3>Active authors</h3>
+    <div class="href_list"><%= author_list(@active_authors) %></div>
+  </div>
+
+  <div class="column">
+    <h3>New authors</h3>
+    <div class="href_list"><%= author_list(@new_authors) %></div>
+  </div>
+
+  <div class="cloud">
+    <h3>Most popular authors</h3>
+    <%= author_cloud(@popular_authors) %>
+  </div>
+<% end %>
