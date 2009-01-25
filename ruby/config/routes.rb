@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|  
   map.resource :session
-  map.resources :authors, :collection => {:suggest => :get, :invite => :any} do |author|
+  map.resources :authors, :collection => {:invite => :any} do |author|
     author.resources :subjects, :controller => "authors/subjects"
     author.resources :friends, :controller => "authors/friends"
   end

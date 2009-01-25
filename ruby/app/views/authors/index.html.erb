@@ -1,7 +1,10 @@
 <% title "Authors" %>
 
 <% render :layout => 'index_layout' do %>
-  <%= render :partial => 'search_form' %>
+  <% form_tag authors_url, :method => :get, :id => 'search_form' do %>
+    <%= text_field_tag :author, :username, {:name => 'q', :value => params[:q], :size => 10} %>
+    <%= submit_tag 'Search', :name => nil %>
+  <% end %>
 
   <div class="column">
     <h3>Active authors</h3>
