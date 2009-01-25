@@ -6,3 +6,7 @@ spring:
   name: spring
 politics:
   name: politics
+nature:
+  name: nature
+animals:
+  name: animals

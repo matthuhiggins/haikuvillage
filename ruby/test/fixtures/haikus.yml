@@ -49,19 +49,27 @@ beer:
 trees:
   author: jane
   text: "A large tree stands tall\nIt's bark is gristled and old\nI will rest below."
+  subject: nature
+  subject_name: nature
 
 river:
   author: jane
   text: "The nature is calm\nThe river flows forever\nand ever for me."
+  subject: nature
+  subject_name: nature
 
 dog:
   author: jane
   text: "I was walking fast.\nI came across a small dog;\nHe said bark bark bark."
+  subject: nature
+  subject_name: nature
   
 ocd:
   author: jane
   text: "I think I have OCD\nstrengths strengths strengths strengths strengths strengths\nstrengths strengths strengths strengths strengths..."
   conversation: flickr_crowd_surf
+  subject: animals
+  subject_name: animals
 
 the_boy1:
   author: jane
