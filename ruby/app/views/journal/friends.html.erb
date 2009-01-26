@@ -1,11 +1,5 @@
 <% title "Your friends" %>
 
 <% render :layout => 'layout' do %>
-  <h2>Your friends</h2>
-  <%= author_list(@mentors) %>
-
-  <h2>Your fans</h2>
-  <%= author_list(@disciples) %>
-  
-  <%= render :partial => "shared/haiku", :collection => @haikus %>
+  <%= render_haikus(@haikus) %>
 <% end %>

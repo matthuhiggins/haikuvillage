@@ -1,0 +1,10 @@
+<% render :layout => 'layout' do %>
+  <ul class="subject-list">
+    <% @subjects.each do |subject| %>
+    <li>
+      <%= link_to subject.name, :id => subject.name %>
+      <%= " (#{subject.count})" %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

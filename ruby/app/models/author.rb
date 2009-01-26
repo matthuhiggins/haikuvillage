@@ -29,4 +29,10 @@ class Author < ActiveRecord::Base
   def authenticate(password)
     self if self.password == password
   end
+  
+  SubjectSummary = Struct.new(:name, :count)
+  def subjects
+    records = haikus.count(:group => :subject_name, :conditions => 'subject_name is not null', :order => 'count_all desc')
+    records.map { |record| SubjectSummary.new(*record) }
+  end
 end

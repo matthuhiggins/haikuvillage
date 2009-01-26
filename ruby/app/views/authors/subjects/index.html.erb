@@ -1,9 +1,9 @@
 <% render :layout => 'authors/show_layout' do %>
-  <ul>
-    <% @subjects.each do |(subject_name, count)| %>
+  <ul class="subject-list">
+    <% @subjects.each do |subject| %>
     <li>
-      <%= link_to subject_name, author_subject_url(:author_id => @author.username, :id => subject_name) %>
-      <%= " (#{count})" %>
+      <%= link_to subject.name, author_subject_url(:author_id => @author.username, :id => subject.name) %>
+      <%= " (#{subject.count})" %>
     </li>
     <% end %>
   </ul>

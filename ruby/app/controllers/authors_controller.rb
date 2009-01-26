@@ -29,10 +29,6 @@ class AuthorsController < ApplicationController
       :total_entries => @author.haikus_count_total
     })
   end
-  
-  def subjects
-    Author.find_by_username!(params[:author_id]).haikus.find_by_subject_name
-  end
 
   private
     def render_search(query)
