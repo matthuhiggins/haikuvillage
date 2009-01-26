@@ -11,14 +11,4 @@ module Friendly
       author.has_many :disciples, :through => :followers, :class_name => "Author", :source => :author, :conditions => {'friendships.mutual' => false}
     end
   end
-
-  def create_mutual_friendship(friendship)
-
-  end
-
-  def destroy_mutual_friendship(friendship)
-    if Friendship.exists?(friendship.reverse_friendship_attributes)
-      friendship.reverse_friendship.update(:mutual, false)
-    end
-  end
 end

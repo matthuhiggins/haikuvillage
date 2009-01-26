@@ -3,15 +3,16 @@ class Friendship < ActiveRecord::Base
   belongs_to :friend, :class_name => "Author"
   
   before_create :set_mutual
+  after_destroy :destroy_mutual
   
   private
     def set_mutual
-      self.mutual = !reverse_friendship.nil?
-      reverse_friendship.update(:mutual, true) if self.mutual
+      self.mutual = !self.class.first(:conditions => reverse_friendship_attributes).nil?
+      self.class.update_all({:mutual => true}, reverse_friendship_attributes)
     end
     
-    def reverse_friendship
-      Friendship.first(:conditions => reverse_friendship_attributes)
+    def destroy_mutual
+      self.class.update_all({:mutual => false}, reverse_friendship_attributes)
     end
 
     def reverse_friendship_attributes

@@ -22,12 +22,25 @@ module AuthorsHelper
       {:controller => 'authors', :action => :show, :id => author.username}, html_options)
   end
   
-  def become_friends(friend)
+  def update_friendship(friend)
     return unless current_author
-     link_to_remote("Become friends",
-      :url      => author_friends_url(:author_id => @author.username),
+    
+    link = current_author.friends.include?(friend) ? remove_friend(friend) : add_friend(friend)
+    content_tag(:div, link, :id => "update_friend")
+  end
+  
+  def add_friend(friend)
+    link_to_remote("Add to friends",
+      :url      => author_friends_url(:author_id => friend.username),
       :method   => :post,
-      :update   => "become_friends",
-      :html     => {:id => "become_friends"})
+      :update   => "update_friend")
+  end
+  
+  
+  def remove_friend(friend)
+    link_to_remote("Remove from friends",
+      :url      => {:controller => 'authors/friends', :author_id => friend.username, :action => "destroy"},
+      :method   => :delete,
+      :update   => "update_friend")
   end
 end

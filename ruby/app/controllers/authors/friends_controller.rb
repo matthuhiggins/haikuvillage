@@ -5,7 +5,12 @@ class Authors::FriendsController < ApplicationController
   end
   
   def create
-    current_author.friends << Author.find_by_username(params[:author_id])
-    head :ok
+    @author = Author.find_by_username(params[:author_id])
+    current_author.friends << @author
+  end
+  
+  def destroy
+    @author = Author.find_by_username(params[:author_id])
+    Friendship.destroy_all(:author_id => current_author, :friend_id => @author)
   end
 end

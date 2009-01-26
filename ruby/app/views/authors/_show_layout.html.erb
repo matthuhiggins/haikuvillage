@@ -21,9 +21,12 @@
 }
 
 .header .title h2 {
-  display: inline;
-  margin: 0;
+  margin: 0 0 8px 0;
   padding: 0;
+}
+
+.header .title a {
+  text-decoration: underline;
 }
 
 .author-content {
@@ -49,7 +52,7 @@
       <h2>
         <%= "#{@author.username}'s Journal" %>
       </h2>
-      - <%= become_friends(@author) %>
+      <%= update_friendship(@author) %>
     </div>
     <% sub_menu(:class => "tab_nav") do |m| %>
       <% m.link "Haikus", author_url(:id => @author.username) %>
