@@ -7,6 +7,7 @@ class Authors::FriendsController < ApplicationController
   def create
     @author = Author.find_by_username(params[:author_id])
     current_author.friends << @author
+    HaikuMailer.deliver_new_friend(current_author, @author.email)
   end
   
   def destroy
