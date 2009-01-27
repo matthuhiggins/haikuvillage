@@ -1,16 +1,20 @@
 billy:
   username: billy
   password: billy
+  email: matthewhiggins.com@gmail.com
   latest_haiku: twitter
 joe:
   username: joe
   password: joe
+  email: matthewhiggins.com@gmail.com
   latest_haiku: mother
 fredrick:
   username: fredrick
   password: fredrick
+  email: matthewhiggins.com@gmail.com
   latest_haiku: beer
 jane:
   username: jane
   password: jane
+  email: matthewhiggins.com@gmail.com
   latest_haiku: the_boy3

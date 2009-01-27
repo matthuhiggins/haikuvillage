@@ -1,12 +1,14 @@
 .friend
   .avatar
-    - link_to :controller => 'authors', :action => :show, :id => friend.username do
+    - link_to author_url(friend.username) do
       = image_tag(friend.avatar.url(:large))
   .author_and_haiku
-    = link_to friend.username, :controller => 'authors', :action => :show, :id => friend.username
-    wrote
-    %span.latest_haiku_text
-      = "\"#{friend.latest_haiku.terse}\""
-    .latest_haiku_time
-      = "#{distance_of_time_in_words(friend.latest_haiku.created_at, Time.now)} ago"
+    = link_to friend.username, author_url(friend.username)
+    has written
+    = pluralize(friend.haikus_count_total, 'haiku')
+    - unless friend.latest_haiku_id.nil?
+      .latest_haiku_text
+        = "\"#{friend.latest_haiku.terse}\""
+      .latest_haiku_time
+        = "#{distance_of_time_in_words(friend.latest_haiku.created_at, Time.now)} ago"
     

@@ -28,7 +28,7 @@ module HaikusHelper
   
   def enter_conversation_link(haiku)
     unless haiku.conversing?
-      content_tag(:div, link_to("Respond to this haiku", haiku), :class => "action")
+      content_tag(:div, link_to("Respond", haiku), :class => "action")
     else
       ""
     end
@@ -42,7 +42,7 @@ module HaikusHelper
   end
   
   def email_haiku_link(haiku)
-    content_tag(:div, link_to("Email this haiku", email_haiku_url(haiku)), :class => "action")
+    content_tag(:div, link_to("Share", email_haiku_url(haiku)), :class => "action")
   end
   
   def haiku_text_tag
