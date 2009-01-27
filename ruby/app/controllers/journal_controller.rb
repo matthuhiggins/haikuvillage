@@ -27,6 +27,6 @@ class JournalController < ApplicationController
   end
   
   def friends
-    @haikus = current_author.friends.map {|f| f.latest_haiku }
+    @friends = current_author.friends
   end
 end

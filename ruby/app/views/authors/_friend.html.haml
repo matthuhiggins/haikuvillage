@@ -1,0 +1,12 @@
+.friend
+  .avatar
+    - link_to :controller => 'authors', :action => :show, :id => friend.username do
+      = image_tag(friend.avatar.url(:large))
+  .author_and_haiku
+    = link_to friend.username, :controller => 'authors', :action => :show, :id => friend.username
+    wrote
+    %span.latest_haiku_text
+      = "\"#{friend.latest_haiku.terse}\""
+    .latest_haiku_time
+      = "#{distance_of_time_in_words(friend.latest_haiku.created_at, Time.now)} ago"
+    

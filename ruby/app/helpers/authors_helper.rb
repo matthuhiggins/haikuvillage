@@ -12,6 +12,10 @@ module AuthorsHelper
     end.join(' ')
   end
   
+  def render_friends(friends)
+    render :partial => "authors/friend", :collection => friends, :spacer_template => "conversations/divider"
+  end
+  
   def author_list(authors)
     authors.map { |author| link_to_author author }.join(', ')
   end
@@ -35,8 +39,7 @@ module AuthorsHelper
       :method   => :post,
       :update   => "update_friend")
   end
-  
-  
+
   def remove_friend(friend)
     link_to_remote("Remove from friends",
       :url      => {:controller => 'authors/friends', :author_id => friend.username, :action => "destroy"},
