@@ -23,7 +23,12 @@ class JournalController < ApplicationController
   end
   
   def subjects
-    @subjects = current_author.subjects
+    if params[:id]
+      @subject = current_author.subjects.find_by_name!(params[:id])
+      @haikus = @subject.haikus
+    else
+      @subjects = current_author.subjects
+    end
   end
   
   def friends
