@@ -31,6 +31,7 @@ module Conversational
     end
   
     def connect_with(other_haiku)
+      HaikuMailer.deliver_conversation_notice(self)
       if other_haiku.conversation.nil?
         other_haiku.create_conversation(:haikus_count_total => 1)
         other_haiku.save
