@@ -20,8 +20,11 @@ class JournalController < ApplicationController
   
   def subjects
     if params[:id]
-      @subject = current_author.subjects.find_by_name!(params[:id])
-      @haikus = @subject.haikus
+      @haikus = current_author.haikus.recent.find_all_by_subject_name(params[:id]).paginate(
+        :page      => params[:page],
+        :per_page  => 10
+      )
+      render :action => "haikus_by_subject"
     else
       @subjects = current_author.subjects
     end
