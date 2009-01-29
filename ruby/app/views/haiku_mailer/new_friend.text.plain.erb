@@ -1,4 +1,4 @@
 <%= @author.username %> added you as a friend.
 
 Click here to see <%= @author.username %>'s Journal.
-<%= author_url(@author, :host => "www.haikuvillage.com") %>
+<%= author_url(@author.username, :host => "www.haikuvillage.com") %>
