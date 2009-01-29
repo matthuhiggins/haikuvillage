@@ -40,7 +40,7 @@ class AuthorsController < ApplicationController
       if Author.find_by_username(query)
         redirect_to :action => 'show', :id => query
       else
-        @authors = Author.all(:limit => 20, :conditions => ["username like ?", "'#{params[:id]}'"])
+        @authors = Author.all(:limit => 20, :conditions => ["username like ?", "%#{params[:id]}%"])
         render :action => 'search'
       end
     end
