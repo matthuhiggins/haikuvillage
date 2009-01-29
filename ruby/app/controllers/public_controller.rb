@@ -3,7 +3,7 @@ class PublicController < ApplicationController
     if current_author
       redirect_to :controller => "journal"
     else
-      @haikus = Author.recently_updated(:limit => 10).map { |a| a.latest_haiku }
+      @haikus = Author.recently_updated.all(:limit => 10, :conditions => 'latest_haiku_id is not null').map { |a| a.latest_haiku }
       @total_haikus = Haiku.count(:id)
       @total_subjects = Subject.count(:id)
       @total_authors = Author.count(:id)
