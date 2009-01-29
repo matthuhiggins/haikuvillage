@@ -21,9 +21,7 @@ module AuthorsHelper
   end
   
   def link_to_author(author, html_options = {})
-    html_options[:class] = "author"
-    link_to(image_tag(author.avatar.url(:small)) + author.username, 
-      {:controller => 'authors', :action => :show, :id => author.username}, html_options)
+    link_to(author.username, author_url(author.username), html_options)
   end
   
   def update_friendship(friend)
