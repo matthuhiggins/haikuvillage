@@ -1,6 +1,6 @@
 module HaikusHelper
   def render_haikus(haikus)
-    render :partial => "haikus/haiku", :collection => haikus
+    render :partial => "haikus/haiku", :collection => haikus, :spacer_template => "conversations/divider"
   end
 
   def render_create(options = {})
