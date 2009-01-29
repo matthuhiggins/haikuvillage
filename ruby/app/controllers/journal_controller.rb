@@ -31,6 +31,6 @@ class JournalController < ApplicationController
   end
   
   def friends
-    @friends = current_author.friends
+    @friends = current_author.friends.recently_updated
   end
 end

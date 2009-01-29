@@ -10,7 +10,11 @@ jane_follows_fredrick:
   author: jane
   friend: fredrick
   mutual: false
-joe_follows_jane:
+jane_and_joe:
+  author: jane
+  friend: joe
+  mutual: true
+joe_and_jane:
   author: joe
   friend: jane
-  mutual: false
+  mutual: true

@@ -1,7 +1,7 @@
 class Authors::FriendsController < ApplicationController
   def index
     @author = Author.find_by_username(params[:author_id])
-    @friends = @author.friends
+    @friends = @author.friends.recently_updated
   end
   
   def create

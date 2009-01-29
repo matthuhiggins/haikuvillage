@@ -37,12 +37,14 @@ module AuthorsHelper
     link_to_remote("Add to friends",
       :url      => author_friends_url(:author_id => friend.username),
       :method   => :post,
+      :before   => "$('update_friend').innerHTML = 'updating...'",
       :update   => "update_friend")
   end
 
   def remove_friend(friend)
     link_to_remote("Remove from friends",
       :url      => {:controller => 'authors/friends', :author_id => friend.username, :action => "destroy"},
+      :before   => "$('update_friend').innerHTML = 'updating...'",
       :method   => :delete,
       :update   => "update_friend")
   end
