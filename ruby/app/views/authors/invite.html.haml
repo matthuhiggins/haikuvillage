@@ -1,7 +1,0 @@
-- title "Invite new authors"
-- description "Use this page to invite people to use HaikuVillage"
-%h2="Invite others to HaikuVillage"
-- form_tag(invite_authors_url, {:method => :post}) do
-  = hidden_field_tag :referrer, request.referrer
-  = text_area_tag "email"
-  = submit_tag "Send"
