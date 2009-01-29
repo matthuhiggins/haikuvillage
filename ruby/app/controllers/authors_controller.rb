@@ -27,7 +27,14 @@ class AuthorsController < ApplicationController
       :total_entries => @author.haikus_count_total
     })
   end
-
+  
+  def invite
+    return if request.get?
+    HaikuMailer.deliver_invite(params[:email], current_author)
+    flash[:notice] = "The invite has been sent"
+    redirect_to journal_url
+  end
+  
   private
     def render_search(query)
       if Author.find_by_username(query)

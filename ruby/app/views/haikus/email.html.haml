@@ -7,8 +7,9 @@
     - @haiku.text.each_line do |line|
       .haiku-line= h(line)
 
-%h3#email_header= 'Email Haiku'
-- form_tag(deliver_haiku_url(@haiku), {:method => :post}) do
-  = hidden_field_tag :referrer, request.referrer
-  = text_field_tag "email"
-  = submit_tag "Send"
+#haiku_email_form
+  %h3#email_header= 'Email Haiku'
+  - form_tag(deliver_haiku_url(@haiku), {:method => :post}) do
+    = hidden_field_tag :referrer, request.referrer
+    = text_area_tag "email"
+    = submit_tag "Send"
