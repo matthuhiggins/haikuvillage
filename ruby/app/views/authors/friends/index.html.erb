@@ -1,3 +1,7 @@
 <% render :layout => 'authors/show_layout' do %>
-  <%= render_friends(@friends) %>
+  <% if @friends.any? %>
+    <%= render_friends(@friends) %>
+  <% else %>
+    <h2><%= h(@author.username) %> has no friends</h2>
+  <% end %>
 <% end %>
