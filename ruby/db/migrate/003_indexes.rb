@@ -6,7 +6,7 @@ class Indexes < ActiveRecord::Migration
     add_index :haikus, :view_count_week
     add_index :haikus, :view_count_total
     
-    add_index :authors, :username
+    add_index :authors, :username, :unique => true
     add_index :authors, :haikus_count_week
     add_index :authors, :haikus_count_total
 
