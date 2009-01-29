@@ -3,7 +3,7 @@
 
 %h2=haiku_title(@haiku)
 
-- content_tag(:div, @haiku.conversing? && @haiku.conversation.inspiration ? ({:style => "overflow: hidden"}) : ({:class => "center"})) do
+.center
   - if @haiku.conversing? && @haiku.conversation.inspiration
     .haiku-inspiration
       - link_to @haiku.conversation, :class => "" do
