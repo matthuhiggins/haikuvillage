@@ -24,14 +24,17 @@ module Conversational
   private
     def construct_conversation
       unless conversing_with.nil? || conversing_with.empty?
-        other_haiku = Haiku.find(conversing_with)
-        if other_haiku.conversation.nil?
-          other_haiku.create_conversation(:haikus_count_total => 1)
-          other_haiku.save
-        end
-        self.conversation = other_haiku.conversation
+        connect_with(Haiku.find(conversing_with))
       end
     rescue ActiveRecord::RecordNotFound
       # In case the other haiku was deleted while someone was responding to it
+    end
+  
+    def connect_with(other_haiku)
+      if other_haiku.conversation.nil?
+        other_haiku.create_conversation(:haikus_count_total => 1)
+        other_haiku.save
+      end
+      self.conversation = other_haiku.conversation
     end
 end
