@@ -9,5 +9,5 @@
         %li= link_to 'Sign out', logout_url
         %li= link_to_controller 'Find authors', 'authors'
         %li= link_to_controller 'Profile', 'profile'
-    - form_tag({:controller => 'haikus', :action => 'search'}, {:method => :get}) do
+    - form_tag({:controller => '/haikus', :action => 'search'}, {:method => :get}) do
       %input{:type => "text", :name => "q", :value => 'Search for haikus', :autocomplete => 'off', :id => 'haiku_search'}
