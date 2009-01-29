@@ -46,7 +46,7 @@ class HaikusController < ApplicationController
   
   def deliver
     haiku = Haiku.find(params[:id])
-    HaikuMailer.deliver_haiku(haiku, params[:email], current_author)
+    Mailer.deliver_haiku(haiku, params[:email], current_author)
     flash[:notice] = "The haiku has been sent"
     redirect_to params[:referrer]
   end

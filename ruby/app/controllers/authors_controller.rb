@@ -30,7 +30,7 @@ class AuthorsController < ApplicationController
   
   def invite
     return if request.get?
-    HaikuMailer.deliver_invite(params[:email], current_author)
+    Mailer.deliver_invite(params[:email], current_author)
     flash[:notice] = "The invite has been sent"
     redirect_to journal_url
   end

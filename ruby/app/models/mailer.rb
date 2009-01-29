@@ -1,4 +1,4 @@
-class HaikuMailer < ActionMailer::Base
+class Mailer < ActionMailer::Base
   def haiku(haiku, email, author)
     configure_defaults  
     recipients    parse_emails(email)
