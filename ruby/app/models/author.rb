@@ -7,7 +7,7 @@ class Author < ActiveRecord::Base
   has_many :haiku_favorites
   has_many :haikus
   
-  belongs_to :latest_haiku, :class_name => "Haiku"
+  belongs_to :latest_haiku, :class_name => "Haiku", :dependent => :delete
 
   has_attached_file :avatar, :default_url => "/images/default_avatars/:style.png",
                              :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>",  }

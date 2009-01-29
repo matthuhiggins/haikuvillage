@@ -20,13 +20,13 @@ class Haiku < ActiveRecord::Base
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
     Subject.update_counters(haiku.subject_id, :haikus_count_week => 1, :haikus_count_total => 1) if haiku.subject_id
-    haiku.author.latest_haiku = haiku
+    haiku.author.update_attribute(:latest_haiku_id, haiku.id)
   end
   
   before_destroy do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_total => -1)
     Subject.update_counters(haiku.subject_id, :haikus_count_total => -1) if haiku.subject_id
-    haiku.author.latest_haiku = haiku.author.haikus.recent.second
+    haiku.author.update_attribute(:latest_haiku_id, nil)
   end
   
   validates_presence_of :text, :on => :create
