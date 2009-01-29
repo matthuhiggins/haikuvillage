@@ -12,11 +12,7 @@ module HaikusHelper
   end
   
   def haiku_title(haiku)
-    text = "A haiku by #{haiku.author.username}"
-    if !haiku.conversation.nil? && haiku.conversation.inspiration_type == 'flickr'
-      text <<  ", inspired by #{link_to 'Flickr', inspiration_url(haiku.conversation)}"
-    end
-    text
+    "A haiku by #{link_to haiku.author.username, author_url(haiku.author.username)}"
   end
 
   def subject_auto_complete

@@ -9,7 +9,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :haikus, :collection => {:search => :get}, :member => {:email => :get, :deliver => :post } do |haikus|
     haikus.resource :favorites
   end
-  map.resources :inspirations, :collection => {:random => :get}
   map.resources :conversations
 
   map.root :controller => 'public'

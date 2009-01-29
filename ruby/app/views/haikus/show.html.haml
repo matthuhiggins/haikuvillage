@@ -1,39 +1,40 @@
-- title "A haiku by #{@single_haiku.author.username}"
-- description @single_haiku.text.gsub(/\r\n|\r|\n/, ' / ')
+- title "A haiku by #{@haiku.author.username}"
+- description @haiku.text.gsub(/\r\n|\r|\n/, ' / ')
 
-%h2=haiku_title(@single_haiku)
+%h2=haiku_title(@haiku)
 
-.center
-  - if !@single_haiku.conversation.nil? && @single_haiku.conversation.inspiration_type == 'flickr'
-    - link_to inspiration_url(@single_haiku.conversation), :class => 'haiku-inspiration' do
-      = image_tag @single_haiku.conversation.inspiration.thumbnail
+- content_tag(:div, @haiku.conversing? && @haiku.conversation.inspiration ? ({:style => "overflow: hidden"}) : ({:class => "center"})) do
+  - if @haiku.conversing? && @haiku.conversation.inspiration
+    .haiku-inspiration
+      - link_to @haiku.conversation, :class => "" do
+        = image_tag @haiku.conversation.inspiration.thumbnail
+      %br
+      - link_to @haiku.conversation do
+        = pluralize(@haiku.conversation.haikus_count_total, 'haiku')
+        were inspired by this image
   .haiku-big
     .text
-      - @single_haiku.text.each_line do |line|
+      - @haiku.text.each_line do |line|
         .haiku-line= h(line)
     %div
-      = "Created on #{@single_haiku.created_at.strftime("%b %d, %Y")} by"
-      = link_to_author @single_haiku.author
+      = "Created on #{@haiku.created_at.strftime("%b %d, %Y")} by"
+      = link_to_author @haiku.author
     %div
-      = "Favorited: #{@single_haiku.favorited_count_total}, "
-      = "Viewed: #{@single_haiku.view_count_total}"
-      - unless @single_haiku.subject_name.nil?
-        = ", Subject: #{link_to_subject @single_haiku.subject_name}"
+      = "Favorited: #{@haiku.favorited_count_total}, "
+      = "Viewed: #{@haiku.view_count_total}"
+      - unless @haiku.subject_name.nil?
+        = ", Subject: #{link_to_subject @haiku.subject_name}"
     - if current_author
       .actions
-        = favorite_star(@single_haiku)
-        = destroy_haiku_link(@single_haiku)
-    %div
-      %script{:src => "http://digg.com/tools/diggthis.js", :type => "text/javascript"}
+        = favorite_star(@haiku)
+        = destroy_haiku_link(@haiku)
 
 .conversation-section
-  - if @single_haiku.conversation.nil? || @single_haiku.conversation.haikus_count_total == 1
+  - if @haiku.conversing? && !@haiku.conversation.inspiration
+    - link_to @haiku.conversation do
+      This haiku is in a conversation with
+      = pluralize(@haiku.conversation.haikus_count_total, 'haiku')
+  - elsif !@haiku.conversing?
     %h3 Start a conversation with this haiku:
     #statement_form
-      = render_create(:conversing_with => @single_haiku)
-  - else
-    %h3 This haiku is in a conversation. Post your own haiku below.
-    #statement_form
-      = render_create(:conversing_with => @single_haiku)
-    %br
-    = render_haikus(@single_haiku.conversation.haikus)
+      = render_create(:conversing_with => @haiku)
