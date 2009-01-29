@@ -1,9 +1,21 @@
-<% sub_menu(:class => "tab_nav") do |m| %>
-  <% m.link "Create", :action => 'index' %>
-  <% m.link "Favorites", :action => 'favorites' %>
-  <% m.link "Subjects", :action => 'subjects' %>
-  <% m.link "Friends", :action => 'friends' %>
-<% end %>
+<%- title 'Haiku Journal' %>
+
+<div class="author-header">
+  <div class="avatar">
+    <%= image_tag current_author.avatar.url(:large) %>
+  </div>
+  <div class="nav">
+    <div class="title">
+      <h2>Your Journal</h2>
+    </div>
+    <% sub_menu(:class => "tab_nav") do |m| %>
+      <% m.link "Create", :action => 'index' %>
+      <% m.link "Favorites", :action => 'favorites' %>
+      <% m.link "Subjects", :action => 'subjects' %>
+      <% m.link "Friends", :action => 'friends' %>
+    <% end %>
+  </div>
+</div>
 
 <div class="submenu-content">
   <%= yield %>

@@ -1,41 +1,41 @@
-- title "A haiku by #{@haiku.author.username}"
-- description @haiku.text.gsub(/\r\n|\r|\n/, ' / ')
+- title "A haiku by #{@single_haiku.author.username}"
+- description @single_haiku.text.gsub(/\r\n|\r|\n/, ' / ')
 
-%h2=haiku_title(@haiku)
+%h2=haiku_title(@single_haiku)
 
 .center
-  - if @haiku.conversing? && @haiku.conversation.inspiration
+  - if @single_haiku.conversing? && @single_haiku.conversation.inspiration
     .haiku-inspiration
-      - link_to @haiku.conversation, :class => "" do
-        = image_tag @haiku.conversation.inspiration.thumbnail
+      - link_to @single_haiku.conversation, :class => "" do
+        = image_tag @single_haiku.conversation.inspiration.thumbnail
       %br
-      - link_to @haiku.conversation do
-        = pluralize(@haiku.conversation.haikus_count_total, 'haiku')
+      - link_to @single_haiku.conversation do
+        = pluralize(@single_haiku.conversation.haikus_count_total, 'haiku')
         were inspired by this image
   .haiku-big
     .text
-      - @haiku.text.each_line do |line|
+      - @single_haiku.text.each_line do |line|
         .haiku-line= h(line)
     %div
-      = "Created on #{@haiku.created_at.strftime("%b %d, %Y")} by"
-      = link_to_author @haiku.author
+      = "Created on #{@single_haiku.created_at.strftime("%b %d, %Y")} by"
+      = link_to_author @single_haiku.author
     %div
-      = "Favorited: #{@haiku.favorited_count_total}, "
-      = "Viewed: #{@haiku.view_count_total}"
-      - unless @haiku.subject_name.nil?
-        = ", Subject: #{link_to_subject @haiku.subject_name}"
+      = "Favorited: #{@single_haiku.favorited_count_total}, "
+      = "Viewed: #{@single_haiku.view_count_total}"
+      - unless @single_haiku.subject_name.nil?
+        = ", Subject: #{link_to_subject @single_haiku.subject_name}"
     - if current_author
       .actions
-        = favorite_star(@haiku)
-        = destroy_haiku_link(@haiku)
+        = favorite_star(@single_haiku)
+        = destroy_haiku_link(@single_haiku)
 
 .conversation-section
-  - if @haiku.conversing? && !@haiku.conversation.inspiration
+  - if @single_haiku.conversing? && !@single_haiku.conversation.inspiration
     This haiku is in a conversation with
-    = pluralize(@haiku.conversation.haikus_count_total, 'haiku') + "."
-    = link_to "Post your own haiku »", @haiku.conversation, {:style => "font-weight: bold;"}
-    = render_haikus(@haiku.conversation.haikus)
-  - elsif !@haiku.conversing?
+    = pluralize(@single_haiku.conversation.haikus_count_total, 'haiku') + "."
+    = link_to "Post your own haiku »", @single_haiku.conversation, {:style => "font-weight: bold;"}
+    = render_haikus(@single_haiku.conversation.haikus)
+  - elsif !@single_haiku.conversing?
     %h3 Start a conversation with this haiku:
     #statement_form
-      = render_create(:conversing_with => @haiku)
+      = render_create(:conversing_with => @single_haiku)

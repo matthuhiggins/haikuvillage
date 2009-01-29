@@ -30,7 +30,7 @@ class Haiku < ActiveRecord::Base
   end
   
   validates_presence_of :text, :on => :create
-  validate :valid_syllables?, :on => :create
+  validate_on_create :valid_syllables?
   
   VALID_SYLLABLES = [5, 7, 5]
   

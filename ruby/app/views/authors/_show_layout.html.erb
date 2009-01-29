@@ -1,48 +1,8 @@
-<style>
-.header {
-  overflow: hidden;
-}
-
-.header .avatar {
-  float: left;
-  width: 64px;
-}
-
-.header .nav {
-  float: left;
-  padding: 6px 0 0 10px;
-  width: 600px;
-}
-
-.header .title {
-  overflow: hidden;
-  padding: 0;
-}
-
-.header .title h2 {
-  margin: 0 0 8px 0;
-  padding: 0;
-}
-
-.header ul.tab_nav {
-  margin: 0;
-}
-
-.author-content {
-  margin-left: 74px;
-  overflow: hidden;
-}
-
-.author-content .haiku .avatar_and_time {
-  display: none;
-}
-</style>
-
 <%- rss @author.username	%>
 <%- title "#{@author.username}'s Journal" %>
 <% description "Haikus by #{@author.username}" %>
 
-<div class="header">
+<div class="author-header">
   <div class="avatar">
     <%= image_tag @author.avatar.url(:large) %>
   </div>

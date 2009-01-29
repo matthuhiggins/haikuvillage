@@ -20,10 +20,10 @@ class HaikuMailer < ActionMailer::Base
     body          :author => author
   end
   
-  def conversation_notice(haiku)
+  def conversation_notice(haiku, responder)
     configure_defaults
     recipients    haiku.author.email
-    subject       "Somebody created a conversation from one of your haikus"
+    subject       "#{responder.username} started a conversation with one of your haikus"
     body          :haiku => haiku
   end
   
