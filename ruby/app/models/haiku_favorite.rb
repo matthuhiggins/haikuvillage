@@ -3,7 +3,7 @@ class HaikuFavorite < ActiveRecord::Base
   belongs_to :author, :counter_cache => :favorites_count
   
   after_create do |fave|
-    Haiku.update_counters(fave.haiku, :favorited_count_week => 1, :favorited_count_total => 1)
+    Haiku.update_counters(:favorited_count_total => 1)
     Author.update_counters(fave.haiku.author, :favorited_count_week => 1, :favorited_count_total => 1)
   end
   

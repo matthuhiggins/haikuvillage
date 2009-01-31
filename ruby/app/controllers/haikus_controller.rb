@@ -26,7 +26,6 @@ class HaikusController < ApplicationController
   
   def show
     @single_haiku = Haiku.find(params[:id])
-    Haiku.update_counters(params[:id], :view_count_week => 1, :view_count_total => 1)
   rescue ActiveRecord::RecordNotFound
     redirect_to(root_url)
   end

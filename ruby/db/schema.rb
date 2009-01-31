@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090129175715) do
+ActiveRecord::Schema.define(:version => 20090131015418) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                 :null => false
@@ -32,13 +32,12 @@ ActiveRecord::Schema.define(:version => 20090129175715) do
     t.integer  "latest_haiku_id"
   end
 
-  add_index "authors", ["haikus_count_total"], :name => "index_authors_on_haikus_count_total"
+  add_index "authors", ["email"], :name => "index_authors_on_email", :unique => true
   add_index "authors", ["haikus_count_week"], :name => "index_authors_on_haikus_count_week"
   add_index "authors", ["latest_haiku_id"], :name => "authors_latest_haiku_id_fk"
-  add_index "authors", ["username"], :name => "index_authors_on_username"
+  add_index "authors", ["username"], :name => "index_authors_on_username", :unique => true
 
   create_table "conversations", :force => true do |t|
-    t.integer  "haikus_count_week",   :default => 0, :null => false
     t.integer  "haikus_count_total",  :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,7 +46,6 @@ ActiveRecord::Schema.define(:version => 20090129175715) do
   end
 
   add_index "conversations", ["haikus_count_total"], :name => "index_conversations_on_haikus_count_total"
-  add_index "conversations", ["haikus_count_week"], :name => "index_conversations_on_haikus_count_week"
   add_index "conversations", ["inspiration_type"], :name => "index_conversations_on_inspiration_type"
   add_index "conversations", ["latest_haiku_update"], :name => "index_conversations_on_latest_haiku_update"
 
@@ -90,10 +88,7 @@ ActiveRecord::Schema.define(:version => 20090129175715) do
 
   create_table "haikus", :force => true do |t|
     t.integer  "author_id",                            :null => false
-    t.integer  "favorited_count_week",  :default => 0, :null => false
     t.integer  "favorited_count_total", :default => 0, :null => false
-    t.integer  "view_count_week",       :default => 0, :null => false
-    t.integer  "view_count_total",      :default => 0, :null => false
     t.text     "text",                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -105,10 +100,7 @@ ActiveRecord::Schema.define(:version => 20090129175715) do
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
   add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
   add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
-  add_index "haikus", ["favorited_count_week"], :name => "index_haikus_on_favorited_count_week"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
-  add_index "haikus", ["view_count_total"], :name => "index_haikus_on_view_count_total"
-  add_index "haikus", ["view_count_week"], :name => "index_haikus_on_view_count_week"
 
   create_table "logged_exceptions", :force => true do |t|
     t.string   "exception_class"

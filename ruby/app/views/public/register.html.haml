@@ -13,7 +13,7 @@
   %h3= "Already a user?"
   - deferred_haiku_form :session, :url => session_url, :html => {:id => 'register_login_form'} do |form|
     %div
-      %h3= 'Username'
+      %h3= 'Username or Email'
       = form.text_field :username
     %div
       %h3= 'Password'

@@ -1,17 +1,17 @@
 billy:
   username: billy
   password: billy
-  email: matthewhiggins.com@gmail.com
+  email: mike@spiz.us
   latest_haiku_id: <%= Fixtures.identify(:twitter) %>  
 joe:
   username: joe
   password: joe
-  email: matthewhiggins.com@gmail.com
+  email: matthuhiggins@yahoo.com
   latest_haiku_id: <%= Fixtures.identify(:mother) %>  
 fredrick:
   username: fredrick
   password: fredrick
-  email: matthewhiggins.com@gmail.com
+  email: mike.spiz@gmail.com
   latest_haiku_id: <%= Fixtures.identify(:beer) %>
 jane:
   username: jane

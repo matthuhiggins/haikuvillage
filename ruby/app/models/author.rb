@@ -1,6 +1,18 @@
 require 'author/friendly'
 
 class Author < ActiveRecord::Base
+  class << self
+    def self.authenticate(username, password)
+      author = send(authentication_method, username)
+      author.nil? ? nil : author.authenticate(password)
+    end
+
+    private
+      def authentication_method(username)
+        username ~= /@/ ? :find_by_email : :find_by_username
+      end
+  end
+  
   include Friendly
 
   has_many :favorites, :through => :haiku_favorites, :source => :haiku
@@ -19,12 +31,8 @@ class Author < ActiveRecord::Base
   named_scope :recently_updated, :order => 'latest_haiku_id desc', :include => :latest_haiku
   
   validates_presence_of :email, :username, :password, :on => :create
-  validates_uniqueness_of :username, :on => :create
+  validates_uniqueness_of :username, :email
   validates_format_of :username, :with => /\A[a-z0-9]+\Z/i, :message => 'can only contain numbers and letters', :on => :create
-  
-  def self.authenticate(username, password)
-    find_or_initialize_by_username(username).authenticate(password)
-  end
   
   def authenticate(password)
     self if self.password == password
