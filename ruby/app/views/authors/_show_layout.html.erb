@@ -1,4 +1,4 @@
-<%- rss @author.username	%>
+<%- rss @author.username, author_url(@author.username) %>
 <%- title "#{@author.username}'s Journal" %>
 <% description "Haikus by #{@author.username}" %>
 
