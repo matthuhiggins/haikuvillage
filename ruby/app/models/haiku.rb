@@ -7,8 +7,8 @@ class Haiku < ActiveRecord::Base
 
   belongs_to :author
   belongs_to :subject
-  has_many :haiku_favorites, :dependent => :delete_all
-  has_many :happy_authors, :through => :haiku_favorites, :source => :author
+  has_many :favorites, :dependent => :delete_all
+  has_many :happy_authors, :through => :favorites, :source => :author
   
   define_index do
     indexes :text

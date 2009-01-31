@@ -1,5 +1,6 @@
 class SchemaClense < ActiveRecord::Migration
   def self.up
+    execute "update authors set email = username where email = ''"
     add_index :authors, :email, :unique => true
 
     remove_index :authors, :haikus_count_total

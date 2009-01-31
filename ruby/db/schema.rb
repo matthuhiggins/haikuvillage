@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20090131015418) do
   end
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
-  add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
+  add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_foreign_key"
   add_index "haikus", ["favorited_count"], :name => "index_haikus_on_favorited_count_total"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(:version => 20090131015418) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "friendship_id", :null => false
-    t.text     "text",          :null => false
+    t.integer  "friendship_id",                :null => false
+    t.text     "text",          :limit => 255, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
