@@ -18,9 +18,8 @@ Object.extend(Word, {
   
   fromText: function (text) {
     text = text.squish();
-    return $A(text.split(/ |\n|\r|\r\n/)).map(function(value) {
-      var word = Word.info[value.hash()];
-      return word === undefined ? new Word(value, -1, Word.NEW) : new Word(value, word.syllables, word.state);
+    return text.split(/ |\n|\r|\r\n/).map(function(value) {
+      return Word.info[value.hash()] || new Word(value, -1, Word.NEW);
     });
   }
 });
@@ -113,7 +112,7 @@ Haiku.FormEvents = {
     
     textArea.onkeypress = function(event) {
       var lineText = $F(textArea).split(/\n/);
-      if ( !event ) event = window.event; //IE fix
+      if (!event) event = window.event; //IE fix
       if (event.keyCode === Event.KEY_RETURN && lineText.length >= 3) {
         return false;
       }
@@ -142,7 +141,7 @@ Haiku.PeriodicalUpdater = Class.create({
   },
   
   start: function() {
-    this.timer = setInterval(this.updateHaiku.bind(this), 400);
+    this.timer = setInterval(this.updateHaiku.bind(this), 50);
   },
   
   requestWords: function(words) {
