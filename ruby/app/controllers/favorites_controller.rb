@@ -1,6 +1,4 @@
 class FavoritesController < ApplicationController
-  # include FavoritesHelper
-  
   login_filter
   
   def update
