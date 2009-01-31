@@ -15,6 +15,10 @@ class String
       # ie boy/girl or re-factor
       elsif self =~ /\/|-/
         self.split(/\/|-/).sum(&:syllables)
+      
+      # version or decimal such as v1.0 or 10.5
+      elsif self =~ /\d+\.\d+/
+        self.split(".").sum(&:syllables) + 1
 
       # single letter
       elsif self =~ /^[a-zA-Z]$/

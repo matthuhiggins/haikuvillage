@@ -51,6 +51,11 @@ class SyllableTest < Test::Unit::TestCase
       "100th"         => 3,
       "112th"         => 5,
       "122nd"         => 8
+    },
+    :decimal => {
+      "1.0"           => 4,
+      "1.1"           => 3,
+      "v1.1"          => 4
     }
   }
   
