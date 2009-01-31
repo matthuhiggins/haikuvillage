@@ -2,21 +2,21 @@ require 'author/friendly'
 
 class Author < ActiveRecord::Base
   class << self
-    def self.authenticate(username, password)
-      author = send(authentication_method, username)
+    def authenticate(username, password)
+      author = send(authentication_method(username), username)
       author.nil? ? nil : author.authenticate(password)
     end
 
     private
       def authentication_method(username)
-        username ~= /@/ ? :find_by_email : :find_by_username
+        username =~ /@/ ? :find_by_email : :find_by_username
       end
   end
   
   include Friendly
 
-  has_many :favorites, :through => :haiku_favorites, :source => :haiku
-  has_many :haiku_favorites
+  has_many :favorites
+  has_many :favorite_haikus, :through => :favorites, :source => :haiku
   has_many :haikus
   
   belongs_to :latest_haiku, :class_name => "Haiku", :dependent => :delete

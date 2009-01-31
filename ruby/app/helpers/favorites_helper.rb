@@ -19,7 +19,7 @@ module FavoritesHelper
   private
   
   def change_favorite_link(haiku)
-    favorite_link(haiku, current_author.haiku_favorites.exists?(haiku) ? :delete : :put)
+    favorite_link(haiku, current_author.favorites.exists?(:haiku_id => haiku) ? :delete : :put)
   end
   
   def favorite_link(haiku, method)

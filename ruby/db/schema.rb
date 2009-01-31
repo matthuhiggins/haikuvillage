@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(:version => 20090131015418) do
   add_index "conversations", ["inspiration_type"], :name => "index_conversations_on_inspiration_type"
   add_index "conversations", ["latest_haiku_update"], :name => "index_conversations_on_latest_haiku_update"
 
+  create_table "favorites", :force => true do |t|
+    t.integer  "author_id",  :null => false
+    t.integer  "haiku_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["author_id", "haiku_id", "created_at"], :name => "index_haiku_favorites_on_author_id_and_haiku_id_and_created_at"
+  add_index "favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
+  add_index "favorites", ["haiku_id", "author_id"], :name => "index_haiku_favorites_on_haiku_id_and_author_id", :unique => true
+
   create_table "flickr_inspirations", :force => true do |t|
     t.string   "title",                        :null => false
     t.integer  "conversation_id",              :null => false
@@ -75,21 +86,10 @@ ActiveRecord::Schema.define(:version => 20090131015418) do
   add_index "friendships", ["author_id", "friend_id"], :name => "friendships_index", :unique => true
   add_index "friendships", ["friend_id", "author_id"], :name => "index_friendships_on_friend_id_and_author_id"
 
-  create_table "haiku_favorites", :force => true do |t|
-    t.integer  "author_id",  :null => false
-    t.integer  "haiku_id",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "haiku_favorites", ["author_id", "haiku_id", "created_at"], :name => "index_haiku_favorites_on_author_id_and_haiku_id_and_created_at"
-  add_index "haiku_favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
-  add_index "haiku_favorites", ["haiku_id", "author_id"], :name => "index_haiku_favorites_on_haiku_id_and_author_id", :unique => true
-
   create_table "haikus", :force => true do |t|
-    t.integer  "author_id",                            :null => false
-    t.integer  "favorited_count_total", :default => 0, :null => false
-    t.text     "text",                                 :null => false
+    t.integer  "author_id",                      :null => false
+    t.integer  "favorited_count", :default => 0, :null => false
+    t.text     "text",                           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject_name"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20090131015418) do
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
   add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
-  add_index "haikus", ["favorited_count_total"], :name => "index_haikus_on_favorited_count_total"
+  add_index "haikus", ["favorited_count"], :name => "index_haikus_on_favorited_count_total"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
   create_table "logged_exceptions", :force => true do |t|

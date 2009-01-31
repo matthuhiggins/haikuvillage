@@ -1,14 +1,14 @@
 class FavoritesController < ApplicationController
-  include FavoritesHelper
+  # include FavoritesHelper
   
   login_filter
   
   def update
-    change_favorite { |haiku| current_author.favorites << haiku }
+    change_favorite { |haiku| current_author.favorite_haikus << haiku }
   end
   
   def destroy
-    change_favorite { |haiku| HaikuFavorite.destroy_all(:author_id => current_author, :haiku_id => haiku) }
+    change_favorite { |haiku| Favorite.destroy_all(:author_id => current_author, :haiku_id => haiku) }
   end
   
   private

@@ -11,10 +11,10 @@ class JournalController < ApplicationController
   end
 
   def favorites
-    @haikus = current_author.favorites.recent.paginate({
+    @haikus = current_author.favorite_haikus.recent.paginate({
       :page      => params[:page],
       :per_page  => 10,
-      :total_entries => current_author.favorited_count_total
+      :total_entries => current_author.favorites_count
     })
   end
   
