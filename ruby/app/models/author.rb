@@ -18,8 +18,9 @@ class Author < ActiveRecord::Base
   has_many :favorites
   has_many :favorite_haikus, :through => :favorites, :source => :haiku
   has_many :haikus
-  
   belongs_to :latest_haiku, :class_name => "Haiku", :dependent => :delete
+  
+  before_validation :downcase_username
 
   has_attached_file :avatar, :default_url => "/images/default_avatars/:style.png",
                              :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>",  }
@@ -43,4 +44,9 @@ class Author < ActiveRecord::Base
     records = haikus.count(:group => :subject_name, :conditions => 'subject_name is not null', :order => 'count_all desc')
     records.map { |record| SubjectSummary.new(*record) }
   end
+  
+  private
+    def downcase_username
+      self.username = self.username.downcase unless self.username.nil?
+    end
 end

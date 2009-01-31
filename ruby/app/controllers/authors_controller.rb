@@ -15,7 +15,7 @@ class AuthorsController < ApplicationController
       session[:username] = @author.username
       redirect_to :controller => "journal"
     else
-      redirect_to(:back)
+      render :action => "new"
     end
   end
 

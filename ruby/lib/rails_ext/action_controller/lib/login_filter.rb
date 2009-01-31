@@ -6,7 +6,7 @@ module HaikuController
 
     private
       def original_login_referrer
-        session[:original_login_referrer]
+        session[:original_login_referrer] || journal_url
       end
 
     module ClassMethods
