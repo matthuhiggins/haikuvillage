@@ -19,7 +19,8 @@ Object.extend(Word, {
   fromText: function (text) {
     text = text.squish();
     return text.split(/ |\n|\r|\r\n/).map(function(value) {
-      return Word.info[value.hash()] || new Word(value, -1, Word.NEW);
+      var word = Word.info[value.hash()];
+      return word === undefined ? new Word(value, -1, Word.NEW) : new Word(value, word.syllables, word.state);
     });
   }
 });
