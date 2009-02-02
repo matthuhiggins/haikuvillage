@@ -1,5 +1,5 @@
 #header.navigation
-  = link_to(image_tag("haikuvillage.png"), {:controller => "public", :action => "index"}, :id => "logo-link")
+  = link_to(image_tag("haikuvillage.png"), root_url, :id => "logo-link")
   .right
     %ul
       - unless current_author
