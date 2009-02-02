@@ -33,7 +33,7 @@ Word.prototype = {
   },
   
   encoded: function(){
-    return encodeURIComponent(this.text.replace(/\./g, '%2e').replace(/\-/g, '%2d'));
+    return encodeURIComponent(this.text).replace(/\-/g, '%2d');
   },  
 
   toHTML: function(){
