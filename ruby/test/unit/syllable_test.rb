@@ -25,7 +25,8 @@ class SyllableTest < Test::Unit::TestCase
     :punctuated => {
       "boy/girl"      => 2,
       "foo-bar"       => 2,
-      "loser/g.w.b."  => 7
+      "loser/g.w.b."  => 7,
+      "red,blue"      => 2
     },
     :possessive => {
       "matt's"        => 1,

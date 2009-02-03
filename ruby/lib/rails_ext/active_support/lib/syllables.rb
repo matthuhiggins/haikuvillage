@@ -12,9 +12,9 @@ class String
         value = self.gsub( /'s$/, '')
         (value =~ /^6$|[0|2-9]6$|[x|z]$/ ? 1 : 0) + value.syllables
 
-      # ie boy/girl or re-factor
-      elsif self =~ /\/|-/
-        self.split(/\/|-/).sum(&:syllables)
+      # ie boy/girl or re-factor or accidental red,blue
+      elsif self =~ /\/|-|,/
+        self.split(/\/|-|,/).sum(&:syllables)
       
       # version or decimal such as v1.0 or 10.5
       elsif self =~ /\d+\.\d+/

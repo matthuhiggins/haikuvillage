@@ -37,5 +37,4 @@ class Mailer < ActionMailer::Base
     def parse_emails(email_string)
       email_string.split(/,| |\n/).delete_if { |email| email.blank? }
     end
-    
 end
