@@ -9,23 +9,22 @@ module FriendsHelper
   def update_friendship(friend)
     return unless current_author
     
-    link = current_author.friends.include?(friend) ? remove_friend(friend) : add_friend(friend)
-    content_tag(:div, link, :id => "update_friend")
+    current_author.friends.include?(friend) ? remove_friend(friend) : add_friend(friend)
   end
   
   def add_friend(friend)
     link_to_remote("Add to friends",
       :url      => author_friends_url(:author_id => friend.username),
       :method   => :post,
-      :before   => "$('update_friend').innerHTML = 'updating...'",
-      :update   => "update_friend")
+      :before   => "$('#{dom_id(friend)}').innerHTML = 'updating...'",
+      :html     => {:id => dom_id(friend)})
   end
 
   def remove_friend(friend)
     link_to_remote("Remove from friends",
       :url      => {:controller => 'authors/friends', :author_id => friend.username, :action => "destroy"},
-      :before   => "$('update_friend').innerHTML = 'updating...'",
+      :before   => "$('#{dom_id(friend)}').innerHTML = 'updating...'",
       :method   => :delete,
-      :update   => "update_friend")
+      :html     => {:id => dom_id(friend)})
   end
 end

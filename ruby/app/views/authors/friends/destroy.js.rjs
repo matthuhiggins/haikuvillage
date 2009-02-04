@@ -1,0 +1,1 @@
+page.replace dom_id(@author), add_friend(@author)
