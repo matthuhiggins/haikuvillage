@@ -2,13 +2,20 @@
   .avatar
     - link_to author_url(friend.username) do
       = image_tag(friend.avatar.url(:large))
-  .author_and_haiku
-    = link_to friend.username, author_url(friend.username)
-    has written
-    = pluralize(friend.haikus_count_total, 'haiku')
+  .details
+    .username_and_actions
+      .username
+        = link_to friend.username, author_url(friend.username)
+        has written
+        = pluralize(friend.haikus_count_total, 'haiku')
+      - if show_actions
+        .actions
+          = remove_friend(friend)
+          |
+          = "<a href=\"#\">Send message</a>"
     - unless friend.latest_haiku_id.nil?
-      .latest_haiku_text
-        = "\"#{friend.latest_haiku.terse}\""
-      .latest_haiku_time
-        = "#{distance_of_time_in_words(friend.latest_haiku.created_at, Time.now)} ago"
-    
+      .latest_haiku
+        .latest_haiku_text
+          = "\"#{friend.latest_haiku.terse}\""
+        .latest_haiku_time
+          = "#{distance_of_time_in_words(friend.latest_haiku.created_at, Time.now)} ago"
