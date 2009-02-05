@@ -21,7 +21,7 @@ module ApplicationHelper
   end
   
   def rss(title, url)
-    content_for :head, auto_discovery_link_tag(:atom, url, {:title => title})
+    content_for :head, auto_discovery_link_tag(:atom, "#{url}.atom", {:title => title})
   end
 
   def current_category
