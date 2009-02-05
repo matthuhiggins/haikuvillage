@@ -18,6 +18,7 @@ class Author < ActiveRecord::Base
   has_many :favorites
   has_many :favorite_haikus, :through => :favorites, :source => :haiku
   has_many :haikus
+  has_many :messages
   belongs_to :latest_haiku, :class_name => "Haiku", :dependent => :delete
   
   before_validation :downcase_username

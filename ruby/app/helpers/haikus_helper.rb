@@ -42,7 +42,7 @@ module HaikusHelper
   end
   
   def haiku_text_tag
-    text_area_tag(:text, "five syllables\nseven syllables\nfive syllables",
+    text_area_tag(:text, "",
       :autocomplete => 'off',
       :rows => 3,
       :id => "haiku_text",

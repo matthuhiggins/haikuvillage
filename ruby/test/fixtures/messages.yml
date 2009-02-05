@@ -1,0 +1,18 @@
+hello_joe_sent:
+  sender: jane
+  recipient: joe
+  author: jane
+  unread: false
+  text: "I see you right now\nIn this coffee shop. Hotter\nthan a hot coffee"
+hello_joe_inbox:
+  sender: jane
+  recipient: joe
+  author: joe
+  unread: true
+  text: "I see you right now\nIn this coffee shop. Hotter\nthan a hot coffee"
+leave_me_alone_jane_inbox:
+  sender: joe
+  recipient: jane
+  author: jane
+  unread: true
+  text: "Please leave me alone\nI do not know who you are\nLet me be at rest"

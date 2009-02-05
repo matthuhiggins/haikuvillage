@@ -1,0 +1,23 @@
+<% render :layout => 'layout' do %>
+  <% form_for :message, :url => {:controller => 'haikus', :action => 'create'} do |form| %>
+    <div id="haiku_form_internals">
+      <div id="preview", class="empty">
+        <div>Start typing a haiku below and your</div>
+        <div>syllables will be counted here.</div>
+        <div></div>
+      </div>
+      <div class="input_row">
+        <label>Message:</label>
+        <%= haiku_text_tag %>
+      </div>
+      <div class="submit_row">
+        <%= form.submit "Send", :id => "commit_haiku", :disabled => true %>
+      </div>
+    </div>
+  <% end %>
+  <%= debug @messages %>
+<% end %>
+
+<script>
+  new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
+</script>

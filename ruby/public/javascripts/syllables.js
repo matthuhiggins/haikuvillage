@@ -131,6 +131,7 @@ Haiku.FormEvents = {
 Haiku.PeriodicalUpdater = Class.create({
   initialize: function(textArea, previewElement, submitButton) {
     this.textArea = $(textArea);
+    this.textArea.innerHTML = "five syllables\nseven syllables\nfive syllables";
     this.previewElement = $(previewElement);
     this.submitButton = $(submitButton);
     this.lastHaikuText = '';

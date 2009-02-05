@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090131015418) do
+ActiveRecord::Schema.define(:version => 20090205022646) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                 :null => false
@@ -114,13 +114,18 @@ ActiveRecord::Schema.define(:version => 20090131015418) do
   end
 
   create_table "messages", :force => true do |t|
-    t.integer  "friendship_id", :null => false
-    t.text     "text",          :null => false
+    t.integer  "author_id",    :null => false
+    t.integer  "sender_id",    :null => false
+    t.integer  "recipient_id", :null => false
+    t.text     "text",         :null => false
+    t.boolean  "unread",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "messages", ["friendship_id"], :name => "messages_friendship_id_fk"
+  add_index "messages", ["author_id"], :name => "messages_author_id_fk"
+  add_index "messages", ["recipient_id"], :name => "messages_recipient_id_fk"
+  add_index "messages", ["sender_id"], :name => "messages_sender_id_fk"
 
   create_table "subjects", :force => true do |t|
     t.string   "name",                              :null => false
