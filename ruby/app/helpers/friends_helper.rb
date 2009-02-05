@@ -8,7 +8,6 @@ module FriendsHelper
   
   def update_friendship(friend)
     return unless current_author
-    
     current_author.friends.include?(friend) ? remove_friend(friend) : add_friend(friend)
   end
   
@@ -26,5 +25,11 @@ module FriendsHelper
       :before   => "$('#{dom_id(friend)}').innerHTML = 'updating...'",
       :method   => :delete,
       :html     => {:id => dom_id(friend)})
+  end
+  
+  def remove_friend_thumbnail(friend)
+    link_to("Remove",
+      {:controller => 'authors/friends', :author_id => friend.username, :action => "destroy"},
+      {:method   => :delete, :confirm  => "Are you sure?"})
   end
 end

@@ -1,4 +1,4 @@
-.friend
+.friend{:id => dom_id(friend)}
   .avatar
     - link_to author_url(friend.username) do
       = image_tag(friend.avatar.url(:large))
@@ -10,9 +10,9 @@
         = pluralize(friend.haikus_count_total, 'haiku')
       - if show_actions
         .actions
-          = remove_friend(friend)
-          |
           = "<a href=\"#\">Send message</a>"
+          |
+          = remove_friend_thumbnail(friend)
     - unless friend.latest_haiku_id.nil?
       .latest_haiku
         .latest_haiku_text
