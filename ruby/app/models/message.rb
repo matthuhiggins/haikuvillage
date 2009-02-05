@@ -1,8 +1,8 @@
 class Message < ActiveRecord::Base
   class << self
     def transmit(sender, recipient, text)
-      sender.create_message(:text => text, :unread => false, :sender => sender, :recipient => recipient)
-      recipient.create_message(:text => text, :unread => true, :sender => sender, :recipient => recipient)
+      sender.messages.create(:text => text, :unread => false, :sender => sender, :recipient => recipient)
+      recipient.messages.create(:text => text, :unread => true, :sender => sender, :recipient => recipient)
     end
   end
   

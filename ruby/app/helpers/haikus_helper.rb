@@ -41,12 +41,14 @@ module HaikusHelper
     content_tag(:div, link_to("Share", email_haiku_url(haiku)), :class => "action")
   end
   
-  def haiku_text_tag
-    text_area_tag(:text, "",
+  def haiku_text_tag(options = {})
+    options.reverse_merge!(
       :autocomplete => 'off',
       :rows => 3,
       :id => "haiku_text",
       :name => "haiku[text]",
       :class => "empty")
+
+    text_area_tag(:text, "", options)
   end
 end

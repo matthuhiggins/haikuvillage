@@ -35,9 +35,12 @@ class JournalController < ApplicationController
   end
   
   def messages
+    current_author.messages.unread.update_all(:unread => false)
     @messages = current_author.messages
     if request.post?
-      Message.transmit(current_author, Author.find_by_username())
+      recipient = Author.find(params[:message][:recipient_id])
+      Message.transmit(current_author, recipient, params[:message][:text])
+      flash[:notice] = "Message sent to #{recipient.username}"
     end
   end
 end

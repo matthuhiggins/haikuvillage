@@ -1,5 +1,5 @@
 <% render :layout => 'layout' do %>
-  <% form_for :message, :url => {:controller => 'haikus', :action => 'create'} do |form| %>
+  <% form_for :message, :html => {:style => "overflow: hidden"} do |form| %>
     <div id="haiku_form_internals">
       <div id="preview", class="empty">
         <div>Start typing a haiku below and your</div>
@@ -8,10 +8,14 @@
       </div>
       <div class="input_row">
         <label>Message:</label>
-        <%= haiku_text_tag %>
+        <%= haiku_text_tag(:name => "message[text]", :id => "message_text") %>
+      </div>
+      <div class="input_row">
+        <label>Send to:</label>
+        <%= collection_select(:message, :recipient_id, current_author.friends, :id, :username, {:prompt => true}) %>
       </div>
       <div class="submit_row">
-        <%= form.submit "Send", :id => "commit_haiku", :disabled => true %>
+        <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
       </div>
     </div>
   <% end %>
@@ -19,5 +23,5 @@
 <% end %>
 
 <script>
-  new Haiku.PeriodicalUpdater("haiku_text", "preview", "commit_haiku");
+  new Haiku.PeriodicalUpdater("message_text", "preview", "send_haiku");
 </script>

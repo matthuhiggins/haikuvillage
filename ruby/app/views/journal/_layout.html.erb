@@ -13,7 +13,8 @@
       <% m.link "Favorites", :action => 'favorites' %>
       <% m.link "Subjects", :action => 'subjects' %>
       <% m.link "Friends", :action => 'friends' %>
-      <% m.link "Messages", :action => 'messages' %>
+      <% message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages" %>
+      <% m.link message_text, :action => 'messages' %>
     <% end %>
   </div>
 </div>
