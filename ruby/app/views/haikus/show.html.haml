@@ -27,6 +27,7 @@
       .actions
         = favorite_star(@single_haiku)
         = destroy_haiku_link(@single_haiku)
+        = email_haiku_link(@single_haiku)
 
 .conversation-section
   - if @single_haiku.conversing? && !@single_haiku.conversation.inspiration
