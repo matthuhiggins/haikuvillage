@@ -26,6 +26,13 @@ class Mailer < ActionMailer::Base
     subject       "#{responder.username} started a conversation with one of your haikus"
     body          :haiku => haiku
   end
+
+  def message_notification(message)
+    configure_defaults
+    recipients  message.recipient.email
+    subject     "#{message.sender.username} sent you a haiku message"
+    body        :message => message
+  end
   
   private
     def configure_defaults

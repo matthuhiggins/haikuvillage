@@ -1,0 +1,6 @@
+<%= @message.sender.username %> sent you a haiku message.
+
+<%= @message.text %>
+
+Click here to go to your inbox:
+<%= url_for(:controller => :journal, :action => :messages, :host => "www.haikuvillage.com") %>
