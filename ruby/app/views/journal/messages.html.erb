@@ -1,27 +1,33 @@
 <% render :layout => 'layout' do %>
-  <% form_for :message, :html => {:style => "overflow: hidden"} do |form| %>
-    <div id="haiku_form_internals">
-      <div id="preview", class="empty">
-        <div>Start typing a haiku below and your</div>
-        <div>syllables will be counted here.</div>
-        <div></div>
+  <div class="messages">
+    <% form_for :message, :html => {:style => "margin-bottom: 10px; overflow: hidden"} do |form| %>
+      <div id="haiku_form_internals">
+        <div id="preview", class="empty">
+          <div>Start typing a haiku below and your</div>
+          <div>syllables will be counted here.</div>
+          <div></div>
+        </div>
+        <div class="input_row">
+          <label>Message:</label>
+          <%= haiku_text_tag(:name => "message[text]", :id => "message_text") %>
+        </div>
+        <div class="input_row">
+          <label>Send to:</label>
+          <%= collection_select(:message, :recipient_id, @friends, :id, :username, {}, {:style => "width: 180px"}) %>
+        </div>
+        <div class="submit_row">
+          <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
+        </div>
       </div>
-      <div class="input_row">
-        <label>Message:</label>
-        <%= haiku_text_tag(:name => "message[text]", :id => "message_text") %>
-      </div>
-      <div class="input_row">
-        <label>Send to:</label>
-        <%= collection_select(:message, :recipient_id, current_author.friends, :id, :username, {:prompt => true}) %>
-      </div>
-      <div class="submit_row">
-        <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
-      </div>
-    </div>
-  <% end %>
-  <%= debug @messages %>
+    <% end %>
+
+    <%= render :partial => "messages/message", :collection => @messages %>
+    <% @messages.each do |message| %>
+
+    <% end %>
+  </div>
 <% end %>
 
 <script>
-  new Haiku.PeriodicalUpdater("message_text", "preview", "send_haiku");
+new Haiku.PeriodicalUpdater("message_text", "preview", "send_haiku");
 </script>

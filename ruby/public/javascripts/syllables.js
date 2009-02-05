@@ -213,7 +213,7 @@ Haiku.PeriodicalUpdater = Class.create({
         word.state = Word.COMPLETE;
       }
     }
-    
+
     this.submitButton.disabled = !currentHaiku.isValid();
     this.lastHaikuText = currentText;
   }

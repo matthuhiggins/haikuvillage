@@ -1,0 +1,21 @@
+<div class="message">
+  <div class="avatar">
+    <% link_to author_url(message.other_author.username) do %>
+      <%= image_tag(message.other_author.avatar.url(:medium)) %>
+    <% end %>
+  </div>
+  <div class="author_and_time">
+    <div class="author">
+      <%= current_author == message.sender ? " to " : " from " %>
+      <%= link_to message.other_author.username, author_url(message.other_author.username) %>
+    </div>
+    <div class="time">
+      <%= message.created_at.strftime("%d %b %y") %>
+    </div>
+  </div>
+  <div class="text">
+    <% message.text.each_line do |line| %>
+      <div class="line"><%= h(line) %></div>
+    <% end %>
+  </div>
+</div>

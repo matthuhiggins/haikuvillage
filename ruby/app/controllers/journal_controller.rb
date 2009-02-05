@@ -37,6 +37,7 @@ class JournalController < ApplicationController
   def messages
     current_author.messages.unread.update_all(:unread => false)
     @messages = current_author.messages
+    @friends = current_author.mutual_friends.all(:order => 'username')
     if request.post?
       recipient = Author.find(params[:message][:recipient_id])
       Message.transmit(current_author, recipient, params[:message][:text])

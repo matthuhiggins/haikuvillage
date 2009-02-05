@@ -11,6 +11,14 @@ class Message < ActiveRecord::Base
   belongs_to :sender, :class_name => "Author"
   belongs_to :recipient, :class_name => "Author"
   
-  default_scope :order => 'created_at'
+  default_scope :order => 'id desc'
   named_scope :unread, :conditions => {:unread => true}
+
+  def terse
+    text.gsub(/\n/, ' / ')
+  end
+  
+  def other_author
+    author_id == sender_id ? recipient : sender
+  end
 end
