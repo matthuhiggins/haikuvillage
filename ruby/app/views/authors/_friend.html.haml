@@ -10,8 +10,6 @@
         = pluralize(friend.haikus_count_total, 'haiku')
       - if show_actions
         .actions
-          = "<a href=\"#\">Send message</a>"
-          |
           = remove_friend_thumbnail(friend)
     - unless friend.latest_haiku_id.nil?
       .latest_haiku
