@@ -36,7 +36,7 @@ class JournalController < ApplicationController
   
   def messages
     current_author.messages.unread.update_all(:unread => false)
-    @messages = current_author.messages
+    @messages = current_author.messages.paginate(:page => params[:page], :per_page  => 20)
     @friends = current_author.mutual_friends.all(:order => 'username')
     if request.post?
       recipient = Author.find(params[:message][:recipient_id])

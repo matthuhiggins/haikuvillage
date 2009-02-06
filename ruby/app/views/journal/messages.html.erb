@@ -22,9 +22,7 @@
     <% end %>
 
     <%= render :partial => "messages/message", :collection => @messages %>
-    <% @messages.each do |message| %>
-
-    <% end %>
+    <%= will_paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
   </div>
 <% end %>
 
