@@ -4,9 +4,9 @@
     - if current_author
       %ul
         %li= link_to 'Create', journal_url
-        %li= link_to "Favorites", :controller => 'journal', :action => 'favorites'
-        %li= link_to "Subjects", :controller => 'journal', :action => 'subjects'
-        %li= link_to "Friends", :controller => 'journal', :action => 'friends'
+        %li= link_to "Favorites", :controller => '/journal', :action => 'favorites'
+        %li= link_to "Subjects", :controller => '/journal', :action => 'subjects'
+        %li= link_to "Friends", :controller => '/journal', :action => 'friends'
   .right
     - form_tag({:controller => '/haikus', :action => 'search'}, {:method => :get}) do
       %input{:type => "text", :name => "q", :value => 'Search for haikus', :autocomplete => 'off', :id => 'haiku_search'}
@@ -18,4 +18,4 @@
         %li= link_to 'Sign out', logout_url
         %li= link_to 'Profile', profile_url
         - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
-        %li= link_to message_text, :controller => 'journal', :action => 'messages'
+        %li= link_to message_text, :controller => '/journal', :action => 'messages'
