@@ -1,9 +1,8 @@
-<% title 'Haiku Journal' %>
+<% title "Your haikus about #{@params[:id]}" %>
+<h2>Your haikus about <%= h @params[:id] %></h2>
 
-<% render :layout => 'layout' do %>
-  <div style="margin-left: 30px">
-    <%= render_haikus(@haikus) %>
-  </div>
-  <br />
-  <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>
-<% end %>
+<div style="margin-left: 30px">
+  <%= render_haikus(@haikus) %>
+</div>
+<br />
+<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>
