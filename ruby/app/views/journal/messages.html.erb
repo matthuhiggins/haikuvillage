@@ -1,5 +1,8 @@
-<% render :layout => 'layout' do %>
-  <div class="messages">
+<% title 'Messages' %>
+<h2>Messages</h2>
+
+<div class="messages">
+  <% if @friends.any? %>
     <% form_for :message, :html => {:style => "margin-bottom: 10px; overflow: hidden"} do |form| %>
       <div id="haiku_form_internals">
         <div id="preview", class="empty">
@@ -20,12 +23,26 @@
         </div>
       </div>
     <% end %>
+  <% else %>
+    <p>You do not have any mutual friends to send a message to</p>
+  <% end %>
 
-    <%= render :partial => "messages/message", :collection => @messages %>
-    <%= will_paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
-  </div>
-<% end %>
+  <%= render :partial => "messages/message", :collection => @messages %>
+  <%= will_paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
+</div>
 
 <script>
-new Haiku.PeriodicalUpdater("message_text", "preview", "send_haiku");
+(function() {
+  new Haiku.PeriodicalUpdater("message_text", "preview", "send_haiku");
+  
+  var selectedFriend = <%= params[:friend].to_json %>,
+      selectList = $('message_recipient_id');
+
+  for (i = 0; i < selectList.options.length; i++) {
+    if (selectList.options[i].value == selectedFriend) {
+      selectList.options.selectedIndex = i;
+      break;
+    }
+  }
+})();
 </script>

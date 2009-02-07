@@ -1,6 +1,5 @@
 #side.navigation
-  - if current_author
-    %li= link_to_controller 'Journal', 'journal'
-  %li= link_to_controller 'Haikus', 'haikus'
-  %li= link_to_controller 'Conversations', 'conversations'
-  %li= link_to_controller 'Subjects', 'subjects'
+  %li= link_to 'Haikus', haikus_url
+  %li= link_to 'Conversations', conversations_url
+  %li= link_to 'Subjects', subjects_url
+  %li= link_to 'Authors', authors_url

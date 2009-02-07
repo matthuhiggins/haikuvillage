@@ -1,11 +1,11 @@
-<% render :layout => 'layout' do %>
-  <div style="margin: 0 0 15px; overflow: hidden;">
-    <%= render_create(:extra_partial => "get_inspired") %>
-  </div>
+<% title 'Create' %>
 
-  <div class="self">
-    <%= render_haikus(@haikus) %>
-  </div>
-  <br />
-  <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
-<% end %>
+<div style="margin: 0 0 15px; overflow: hidden;">
+  <%= render_create(:extra_partial => "get_inspired") %>
+</div>
+
+<div class="self">
+  <%= render_haikus(@haikus) %>
+</div>
+<br />
+<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>

@@ -1,11 +1,5 @@
 module ApplicationHelper
   extend ActiveSupport::Memoizable
-
-  def link_to_controller(name, category)
-    url = send("#{category}_url")
-    html_options = current_category == category ? {:class => 'selected'} : {}
-    link_to(name, url, html_options)
-  end
   
   def title(title, prefix = true)
     if prefix

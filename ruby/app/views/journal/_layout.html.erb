@@ -6,16 +6,8 @@
   </div>
   <div class="nav">
     <div class="title">
-      <h2>Your Journal</h2>
+      <h2><%= journal_title %></h2>
     </div>
-    <% sub_menu(:class => "tab_nav") do |m| %>
-      <% m.link "Create", :action => 'index' %>
-      <% m.link "Favorites", :action => 'favorites' %>
-      <% m.link "Subjects", :action => 'subjects' %>
-      <% m.link "Friends", :action => 'friends' %>
-      <% message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages" %>
-      <% m.link message_text, :action => 'messages' %>
-    <% end %>
   </div>
 </div>
 

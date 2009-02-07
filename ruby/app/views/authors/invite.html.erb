@@ -2,10 +2,14 @@
 <% description "Use this page to invite people to use HaikuVillage" %>
 
 <% render :layout => 'index_layout' do %>
-  <h2>Invite authors by their e-mail</h2>
+  <% if current_author %>
+    <h2>Invite authors by their e-mail</h2>
 
-  <% form_tag(invite_authors_url, {:method => :post}) do %>
-    <%= text_area_tag "email" %>
-    <%= submit_tag "Send" %>
+    <% form_tag(invite_authors_url, {:method => :post}) do %>
+      <%= text_area_tag "email" %>
+      <%= submit_tag "Send" %>
+    <% end %>
+  <% else %>
+    <h2>You must be sign in to invite authors</h2>
   <% end %>
 <% end %>
