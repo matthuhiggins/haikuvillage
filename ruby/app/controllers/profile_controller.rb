@@ -2,11 +2,11 @@ class ProfileController < ApplicationController
   login_filter
   
   def index
-    if request.put?
-      if current_author.update_attributes(params[:author])
-        session[:username] = current_author.username
-        flash[:notice] = 'Account saved'
-      end
+    return if request.get?
+
+    if current_author.update_attributes(params[:author])
+      session[:username] = current_author.username
+      flash[:notice] = 'Account saved'
     end
   end
 
@@ -18,25 +18,25 @@ class ProfileController < ApplicationController
   end
 
   def twitter
-    if request.put?
-      if !params[:author][:twitter_enabled] || Twitter.authenticate(params[:author][:twitter_username], params[:author][:twitter_password])
-        current_author.update_attributes(params[:author])
-        flash[:notice] = "Twitter settings saved"
-      else
-        flash[:notice] = "Wrong Twitter username and password"
-      end
+    return if request.get?
+
+    if !params[:author][:twitter_enabled] || Twitter.authenticate(params[:author][:twitter_username], params[:author][:twitter_password])
+      current_author.update_attributes(params[:author])
+      flash[:notice] = "Twitter settings saved"
+    else
+      flash[:notice] = "Wrong Twitter username and password"
     end
   end
 
   def password
-    if request.put?
-      if current_author.authenticate(params[:current_password])
-        if current_author.update_attributes(:password => params[:password])
-          flash[:notice] = "Password successfully changed"
-        end
-      else
-        flash[:notice] = 'Wrong current password'
+    return if request.get?
+    
+    if current_author.authenticate(params[:current_password])
+      if current_author.update_attributes!(:password => params[:password])
+        flash[:notice] = "Password successfully changed"
       end
+    else
+      flash[:notice] = 'Wrong current password'
     end
   end
 end
