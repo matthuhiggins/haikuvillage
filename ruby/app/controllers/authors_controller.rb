@@ -51,6 +51,7 @@ class AuthorsController < ApplicationController
       session[:username] = @password_reset.author.username
       @password_reset.destroy
       @password_reset.author.update_attributes(:password => params[:password])
+      flash[:notice] = "Your new password has been saved"
       redirect_to(journal_url)
     end
   end
