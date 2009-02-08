@@ -1,0 +1,21 @@
+<% title 'Forget your password?' %>
+
+<h2>Oh no! Forget your password?</h2>
+<% form_tag do %>
+  <table>
+    <tr>
+      <td><%= label_tag :login, "Email address or username:" %></td>
+      <td><%= text_field_tag :login %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= submit_tag "Reset my password" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+<script>
+$('login').focus();
+</script>

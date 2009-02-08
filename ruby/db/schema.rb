@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090205022646) do
+ActiveRecord::Schema.define(:version => 20090208003232) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                 :null => false
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(:version => 20090205022646) do
   add_index "messages", ["author_id"], :name => "messages_author_id_fk"
   add_index "messages", ["recipient_id"], :name => "messages_recipient_id_fk"
   add_index "messages", ["sender_id"], :name => "messages_sender_id_fk"
+
+  create_table "password_resets", :force => true do |t|
+    t.string   "token",      :null => false
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "password_resets", ["author_id"], :name => "password_resets_author_id_fk"
+  add_index "password_resets", ["token"], :name => "index_password_resets_on_token", :unique => true
 
   create_table "subjects", :force => true do |t|
     t.string   "name",                              :null => false

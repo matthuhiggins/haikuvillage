@@ -2,14 +2,14 @@ class Mailer < ActionMailer::Base
   def haiku(haiku, email, author)
     configure_defaults  
     recipients    parse_emails(email)
-    subject       "#{author.username} sent you a haiku from HaikuVillage"
+    subject       "#{author.username} shared you a haiku from HaikuVillage"
     body          :haiku => haiku, :author => author
   end
   
   def new_friend(email, author)
     configure_defaults  
     recipients    parse_emails(email)
-    subject       "#{author.username} added you to their friends"
+    subject       "#{author.username} added you to their HaikuVillage friends"
     body          :author => author
   end
   
@@ -30,8 +30,15 @@ class Mailer < ActionMailer::Base
   def message_notification(message)
     configure_defaults
     recipients  message.recipient.email
-    subject     "#{message.sender.username} sent you a haiku message"
+    subject     "#{message.sender.username} sent you a message from HaikuVillage"
     body        :message => message
+  end
+  
+  def password_reset(password_reset)
+    configure_defaults
+    recipients  password_reset.author.email
+    subject     "Reset your HaikuVillage password"
+    body        :password_reset => password_reset
   end
   
   private

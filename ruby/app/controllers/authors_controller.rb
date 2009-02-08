@@ -35,6 +35,26 @@ class AuthorsController < ApplicationController
     redirect_to journal_url
   end
   
+  def forgot
+    return if request.get?
+
+    PasswordReset.create(:login => params[:login])
+    flash[:notice] = "You will receive an email with instructions."
+    redirect_to(login_url)
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "We could not find an author with #{params[:login]}."
+  end
+
+  def reset_password
+    @password_reset = PasswordReset.find_by_token!(params[:token])
+    if request.post?
+      session[:username] = @password_reset.author.username
+      @password_reset.destroy
+      @password_reset.author.update_attributes(:password => params[:password])
+      redirect_to(journal_url)
+    end
+  end
+  
   private
     def render_search(query)
       if Author.find_by_username(query)

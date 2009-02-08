@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|  
   map.resource :session
-  map.resources :authors, :collection => {:invite => :any} do |author|
+  map.resources :authors, :collection => {:invite => :any, :forgot => :any, :reset_password => :any} do |author|
     author.resources :subjects, :controller => "authors/subjects"
     author.resources :friends, :controller => "authors/friends"
   end
@@ -21,6 +21,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.profile   'profile',  :controller => 'profile',   :action => 'index'
   map.journal   'journal',  :controller => 'journal',   :action => 'index'
+  map.forgot    'forgot',   :controller => 'authors',   :action => 'forgot'
+  map.reset_password 'reset_password',   :controller => 'authors',   :action => 'reset_password'
 
   map.google_gadget 'google_gadget', :controller => "public", :action => "google_gadget", :format => "xml"
   map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"

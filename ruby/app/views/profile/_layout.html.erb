@@ -1,16 +1,5 @@
 <% title 'Profile' %>
 
-<style>
-.submenu-content td {
-  padding: 4px;
-}
-
-.submenu-content td label {
-  display: block;
-  text-align: right;
-}
-</style>
-
 <% sub_menu(:class => "tab_nav") do |m| %>
   <% m.link "Account", :action => 'index' %>
   <% m.link "Password", :action => 'password' %>

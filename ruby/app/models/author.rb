@@ -2,15 +2,17 @@ require 'author/friendly'
 
 class Author < ActiveRecord::Base
   class << self
-    def authenticate(username, password)
-      author = send(authentication_method(username), username)
-      author.nil? ? nil : author.authenticate(password)
+    def authenticate(login, password)
+      find_by_login(login).try(:authenticate, password)
     end
-
-    private
-      def authentication_method(username)
-        username =~ /@/ ? :find_by_email : :find_by_username
-      end
+    
+    def find_by_login!(login)
+      find_by_login(login) || (raise ActiveRecord::RecordNotFound)
+    end
+    
+    def find_by_login(login)
+      send(login =~ /@/ ? :find_by_email : :find_by_username, login)
+    end
   end
   
   include Friendly
