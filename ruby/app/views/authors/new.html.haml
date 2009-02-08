@@ -1,22 +1,34 @@
 - title "New account"
 
-%h3= 'Create a new account'
+%h2 Create a new account
 - form_for :author, :url => authors_url do |form|
-  %div
-    %h3= 'Email'
-    = error_message_on :author, :email
-    = form.text_field :email
-  %div
-    %h3= 'Username'
-    = error_message_on :author, :username
-    = form.text_field :username
-  %div
-    %h3= 'Password'
-    = error_message_on :author, :password
-    = form.password_field :password  
+  %table
+    %tr
+      %td
+        = form.label :email, 'Email:'
+      %td
+        = error_message_on :author, :email
+        = form.text_field :email
+    %tr
+      %td
+        = form.label :username, 'Username:'
+      %td
+        = error_message_on :author, :username
+        = form.text_field :username
+    %tr
+      %td
+        = form.label :password, 'Password:'
+      %td
+        = error_message_on :author, :password
+        = form.password_field :password  
+    %tr
+      %td
+      %td
+        = form.submit 'Register'
 
-  %div
-    = form.submit 'Register'
-
+    %tr
+      %td
+      %td{:style => 'padding-top: 10px'}
+        = link_to "Are you already an author?", login_url
 %script
   document.getElementById('author_email').focus();

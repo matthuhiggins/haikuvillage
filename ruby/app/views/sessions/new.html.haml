@@ -1,16 +1,27 @@
 - title "Sign in"
 
-%h3= 'Sign in'
+%h2= 'Sign in'
 
 - form_for :session, :url => session_url do |form|
-  %div
-    %h3= 'Username or Email'
-    = form.text_field :username
-  %div
-    %h3= 'Password'
-    = form.password_field :password
-  %div
-    = form.submit 'Sign in'
+  %table
+    %tr
+      %td
+        = form.label :usernam, 'Username or Email:'
+      %td
+        = form.text_field :username
+    %tr
+      %td
+        = form.label :password, 'Password:'
+      %td
+        = form.password_field :password
+    %tr
+      %td
+      %td
+        = form.submit 'Sign in'
+    %tr
+      %td
+      %td{:style => 'padding-top: 10px'}
+        = link_to "Forget your password?", forgot_url
   
 %script
   document.getElementById('session_username').focus();

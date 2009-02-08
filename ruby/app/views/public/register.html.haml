@@ -1,7 +1,7 @@
-- title'Register'
+- title 'Register'
 
-%h2= "Share your haiku with the village"
-.center
+%h2 Share your haiku with the village
+.center{:style => 'margin-bottom: 14px'}
   - if @haiku.conversation && @haiku.conversation.inspiration_type == 'flickr'
     = image_tag @haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
   .haiku-big
@@ -9,32 +9,53 @@
       - @haiku.text.each_line do |line|
         .haiku-line= h(line)
 
-.column.small
+.column
   %h3= "Already a user?"
   - deferred_haiku_form :session, :url => session_url, :html => {:id => 'register_login_form'} do |form|
-    %div
-      %h3= 'Username or Email'
-      = form.text_field :username
-    %div
-      %h3= 'Password'
-      = form.password_field :password
-    = form.submit "Sign in"
+    %table
+      %tr
+        %td
+          = form.label :username, 'Username or Email:'
+        %td
+          = form.text_field :username
+      %tr
+        %td
+          = form.label :password, 'Password:'
+        %td
+          = form.password_field :password
+      %tr
+        %td
+        %td
+          = form.submit "Sign in"
+      %tr
+        %td
+        %td{:style => 'padding-top: 10px'}
+          = link_to "Forget your password?", forgot_url
+  
 
-.column.wide
+.column
   %h3= 'Create a new account'
-  - deferred_haiku_form :author, :url => register_url, :html => {:class => 'register_form'}  do |author|
-    %div
-      %h3= 'Email'
-      = error_message_on :author, :email
-      = author.text_field :email
-    %div
-      %h3= 'Username'
-      = error_message_on :author, :username
-      = author.text_field :username
-    %div
-      %h3= 'Password'
-      = error_message_on :author, :password
-      = author.password_field :password  
-
-    %div
-      = author.submit 'Register', :id => "create_account"
+  - deferred_haiku_form :author, :url => register_url, :html => {:class => 'register_form'}  do |form|
+    %table{:style => 'margin-left: 15px;'}
+      %tr
+        %td
+          = form.label :email, 'Email:'
+        %td
+          = error_message_on :author, :email
+          = form.text_field :email
+      %tr
+        %td
+          = form.label :username, 'Username:'
+        %td
+          = error_message_on :author, :username
+          = form.text_field :username
+      %tr
+        %td
+          = form.label :password, 'Password:'
+        %td
+          = error_message_on :author, :password
+          = form.password_field :password  
+      %tr
+        %td
+        %td
+          = form.submit 'Register', :id => "create_account"
