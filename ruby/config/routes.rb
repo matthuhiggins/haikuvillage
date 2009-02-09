@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|  
-  map.resource :session
-  map.resources :authors, :collection => {:invite => :any, :forgot => :any, :reset_password => :any} do |author|
+  map.resources :authors,
+                :member => {:friends => :get},
+                :collection => {:invite => :any, :forgot => :any, :reset_password => :any} do |author|
     author.resources :subjects, :controller => "authors/subjects"
-    author.resources :friends, :controller => "authors/friends"
   end
 
   map.resources :subjects, :collection => {:suggest => :get}
@@ -11,19 +11,20 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :conversations
   map.resources :messages
+  map.resources :friends
+  map.resource :session
 
   map.root :controller => 'public'
 
   map.about     'about',    :controller => 'public',    :action => "about"
   map.register  'register', :controller => "public",    :action => "register"
-  map.signup    'signup',   :controller => "authors",   :action => 'new'
   map.login     'login',    :controller => 'sessions',  :action => 'new'
   map.logout    'logout',   :controller => 'sessions',  :action => 'destroy'
-
-  map.profile   'profile',  :controller => 'profile',   :action => 'index'
-  map.journal   'journal',  :controller => 'journal',   :action => 'index'
+  map.signup    'signup',   :controller => "authors",   :action => 'new'
   map.forgot    'forgot',   :controller => 'authors',   :action => 'forgot'
   map.reset_password 'reset_password',   :controller => 'authors',   :action => 'reset_password'
+  map.profile   'profile',  :controller => 'profile',   :action => 'index'
+  map.journal   'journal',  :controller => 'journal',   :action => 'index'
 
   map.google_gadget 'google_gadget', :controller => "public", :action => "google_gadget", :format => "xml"
   map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"

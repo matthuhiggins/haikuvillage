@@ -56,6 +56,11 @@ class AuthorsController < ApplicationController
     end
   end
   
+  def friends
+    @author = Author.find_by_username!(params[:id])
+    @friends = @author.friends.recently_updated
+  end
+  
   private
     def render_search(query)
       if Author.find_by_username(query)

@@ -1,17 +1,18 @@
-class Authors::FriendsController < ApplicationController
+class FriendsController < ApplicationController
+  login_filter
+
   def index
-    @author = Author.find_by_username!(params[:author_id])
-    @friends = @author.friends.recently_updated
+    @friends = current_author.friends.recently_updated
   end
-  
-  def create
-    @author = Author.find_by_username!(params[:author_id])
+
+  def update
+    @author = Author.find_by_username!(params[:id])
     current_author.friends << @author
     Mailer.deliver_new_friend(@author.email, current_author)
   end
   
   def destroy
-    @author = Author.find_by_username!(params[:author_id])
+    @author = Author.find_by_username!(params[:id])
     Friendship.destroy_all(:author_id => current_author, :friend_id => @author)
     respond_to do |f|
       f.js
