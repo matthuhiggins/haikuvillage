@@ -10,9 +10,12 @@
         = pluralize(friend.haikus_count_total, 'haiku')
       - if show_actions
         .actions
+          - if current_author.mutual?(friend)
+            = link_to "Send message", :controller => "journal", :action => "messages", :friend => friend.id
+            |
+          - else
+            %font{:color => '#666'} (Not mutual)
           = remove_friend_thumbnail(friend)
-          |
-          = link_to "Send message", :controller => "journal", :action => "messages", :friend => friend.id
     - unless friend.latest_haiku_id.nil?
       .latest_haiku
         .latest_haiku_text

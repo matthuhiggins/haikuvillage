@@ -12,4 +12,8 @@ module Friendly
       author.has_many :disciples, :through => :followers, :class_name => "Author", :source => :author, :conditions => {'friendships.mutual' => false}
     end
   end
+  
+  def mutual?(other_author)
+    mutual_friends.include?(other_author)
+  end
 end
