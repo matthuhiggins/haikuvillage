@@ -11,7 +11,7 @@
       - if show_actions
         .actions
           - if current_author.mutual?(friend)
-            = link_to "Send message", :controller => "journal", :action => "messages", :friend => friend.id
+            = link_to "Send message", messages_url(:friend => friend.id)
             |
           - else
             %font{:color => '#666'} (Not mutual)
