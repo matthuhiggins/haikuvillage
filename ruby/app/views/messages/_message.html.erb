@@ -18,4 +18,9 @@
       <div class="line"><%= h(line) %></div>
     <% end %>
   </div>
+  <div class="actions">
+    <% link_to(message, :method => :delete) do %>
+      <%= image_tag("icons/trash.png", :alt => "Delete") %>
+    <% end %>
+  </div>
 </div>
