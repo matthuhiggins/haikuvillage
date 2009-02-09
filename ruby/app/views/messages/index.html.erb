@@ -27,7 +27,7 @@
     <p>You do not have any mutual friends to send a message to</p>
   <% end %>
 
-  <%= render :partial => "messages/message", :collection => @messages %>
+  <%= render :partial => "message", :collection => @messages %>
   <%= will_paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
 </div>
 

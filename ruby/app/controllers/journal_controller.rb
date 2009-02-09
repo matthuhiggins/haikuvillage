@@ -33,16 +33,4 @@ class JournalController < ApplicationController
   def friends
     @friends = current_author.friends.recently_updated
   end
-  
-  def messages
-    if request.post?
-      recipient = Author.find(params[:message][:recipient_id])
-      Message.transmit(current_author, recipient, params[:message][:text])
-      flash[:notice] = "Message sent to #{recipient.username}"
-    end
-
-    current_author.messages.unread.update_all(:unread => false)
-    @messages = current_author.messages.paginate(:page => params[:page], :per_page  => 20)
-    @friends = current_author.mutual_friends.all(:order => 'username')
-  end
 end

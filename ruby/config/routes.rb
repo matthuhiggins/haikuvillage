@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
     haikus.resource :favorites
   end
   map.resources :conversations
+  map.resources :messages
 
   map.root :controller => 'public'
 
