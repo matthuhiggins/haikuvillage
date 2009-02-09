@@ -4,7 +4,7 @@
     - if current_author
       %ul
         %li= link_to 'Create', journal_url
-        %li= link_to "Favorites", :controller => '/journal', :action => 'favorites'
+        %li= link_to "Favorites", favorites_url
         %li= link_to "Subjects", :controller => '/journal', :action => 'subjects'
         %li= link_to "Friends", friends_url
   .right

@@ -10,14 +10,6 @@ class JournalController < ApplicationController
     @inspirations = FlickrInspiration.all(:limit => 10, :order => "id desc").map { |f| {:thumbnail => f.thumbnail, :id => f.conversation_id} }
   end
 
-  def favorites
-    @haikus = current_author.favorite_haikus.recent.paginate({
-      :page      => params[:page],
-      :per_page  => 10,
-      :total_entries => current_author.favorites_count
-    })
-  end
-
   def subjects
     if params[:id]
       @haikus = current_author.haikus.recent.find_all_by_subject_name(params[:id]).paginate(

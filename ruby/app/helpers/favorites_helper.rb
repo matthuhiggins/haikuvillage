@@ -17,19 +17,18 @@ module FavoritesHelper
   end
   
   private
+    def change_favorite_link(haiku)
+      favorite_link(haiku, current_author.favorites.exists?(:haiku_id => haiku) ? :delete : :put)
+    end
   
-  def change_favorite_link(haiku)
-    favorite_link(haiku, current_author.favorites.exists?(:haiku_id => haiku) ? :delete : :put)
-  end
+    def favorite_link(haiku, method)
+      link_to_remote(favorite_image_tag(method),
+          :url => favorite_url(haiku),
+          :method => method,
+          :update => dom_id(haiku, 'change_fav'))
+    end
   
-  def favorite_link(haiku, method)
-    link_to_remote(favorite_image_tag(method),
-        :url => haiku_favorites_url(haiku),
-        :method => method,
-        :update => dom_id(haiku, 'change_fav'))
-  end
-  
-  def favorite_image_tag(method)
-    image_tag(METHOD_TEXT[method][:image_url], :alt => METHOD_TEXT[method][:name])
-  end
+    def favorite_image_tag(method)
+      image_tag(METHOD_TEXT[method][:image_url], :alt => METHOD_TEXT[method][:name])
+    end
 end

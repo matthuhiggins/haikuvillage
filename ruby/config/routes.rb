@@ -6,12 +6,11 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :subjects, :collection => {:suggest => :get}
-  map.resources :haikus, :collection => {:search => :get}, :member => {:email => :get, :deliver => :post } do |haikus|
-    haikus.resource :favorites
-  end
+  map.resources :haikus, :collection => {:search => :get}, :member => {:email => :get, :deliver => :post }
   map.resources :conversations
   map.resources :messages
   map.resources :friends
+  map.resources :favorites
   map.resource :session
 
   map.root :controller => 'public'
