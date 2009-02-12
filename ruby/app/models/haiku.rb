@@ -7,6 +7,7 @@ class Haiku < ActiveRecord::Base
 
   belongs_to :author
   belongs_to :subject
+  belongs_to :group
   has_many :favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :favorites, :source => :author
   

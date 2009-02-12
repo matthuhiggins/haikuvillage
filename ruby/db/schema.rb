@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090208003232) do
+ActiveRecord::Schema.define(:version => 20090212013842) do
 
   create_table "authors", :force => true do |t|
     t.string   "username",                                 :null => false
@@ -86,6 +86,14 @@ ActiveRecord::Schema.define(:version => 20090208003232) do
   add_index "friendships", ["author_id", "friend_id"], :name => "friendships_index", :unique => true
   add_index "friendships", ["friend_id", "author_id"], :name => "index_friendships_on_friend_id_and_author_id"
 
+  create_table "groups", :force => true do |t|
+    t.string   "title",       :null => false
+    t.text     "description"
+    t.boolean  "invite_only", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "haikus", :force => true do |t|
     t.integer  "author_id",                      :null => false
     t.integer  "favorited_count", :default => 0, :null => false
@@ -95,11 +103,13 @@ ActiveRecord::Schema.define(:version => 20090208003232) do
     t.string   "subject_name"
     t.integer  "subject_id"
     t.integer  "conversation_id"
+    t.integer  "group_id"
   end
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
   add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
   add_index "haikus", ["favorited_count"], :name => "index_haikus_on_favorited_count_total"
+  add_index "haikus", ["group_id"], :name => "haikus_group_id_fk"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
   create_table "logged_exceptions", :force => true do |t|
@@ -112,6 +122,18 @@ ActiveRecord::Schema.define(:version => 20090208003232) do
     t.text     "request"
     t.datetime "created_at"
   end
+
+  create_table "members", :force => true do |t|
+    t.integer  "author_id",  :null => false
+    t.integer  "group_id",   :null => false
+    t.boolean  "admin",      :null => false
+    t.integer  "status",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "members", ["author_id"], :name => "members_author_id_fk"
+  add_index "members", ["group_id"], :name => "members_group_id_fk"
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id",    :null => false

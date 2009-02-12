@@ -7,17 +7,17 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :members do |t|
+    create_table :memberships do |t|
       t.references :author, :group, :null => false
       t.boolean :admin, :null => false
       t.integer :status, :null => false
       t.timestamps
     end
-    add_foreign_key :members, :author_id, :authors
-    add_foreign_key :members, :group_id, :groups
+    add_foreign_key :memberships, :author_id, :authors
+    add_foreign_key :memberships, :group_id, :groups
     
     change_table :haikus do |t|
-      t.references :group
+      t.references :group, :null => true
     end
     add_foreign_key :haikus, :group_id, :groups
   end
