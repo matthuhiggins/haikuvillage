@@ -1,7 +1,7 @@
 class CreateGroupsAndMembers < ActiveRecord::Migration
   def self.up
     create_table :groups do |t|
-      t.string :title, :null => false
+      t.string :name, :null => false
       t.text :description
       t.boolean :invite_only, :null => false
       t.timestamps

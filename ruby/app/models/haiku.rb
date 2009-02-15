@@ -4,6 +4,8 @@ require 'haiku/tweet'
 
 class Haiku < ActiveRecord::Base
   include Tweet, Conversational
+  
+  # default_scope :conditions => {:private => false}
 
   belongs_to :author
   belongs_to :subject

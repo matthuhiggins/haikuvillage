@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
   add_index "friendships", ["friend_id", "author_id"], :name => "index_friendships_on_friend_id_and_author_id"
 
   create_table "groups", :force => true do |t|
-    t.string   "title",       :null => false
+    t.string   "name",        :null => false
     t.text     "description"
     t.boolean  "invite_only", :null => false
     t.datetime "created_at"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.datetime "created_at"
   end
 
-  create_table "members", :force => true do |t|
+  create_table "memberships", :force => true do |t|
     t.integer  "author_id",  :null => false
     t.integer  "group_id",   :null => false
     t.boolean  "admin",      :null => false
@@ -132,8 +132,8 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.datetime "updated_at"
   end
 
-  add_index "members", ["author_id"], :name => "members_author_id_fk"
-  add_index "members", ["group_id"], :name => "members_group_id_fk"
+  add_index "memberships", ["author_id"], :name => "memberships_author_id_fk"
+  add_index "memberships", ["group_id"], :name => "memberships_group_id_fk"
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id",    :null => false
