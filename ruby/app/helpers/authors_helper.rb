@@ -17,6 +17,6 @@ module AuthorsHelper
   end
   
   def link_to_author(author, html_options = {})
-    link_to(author.username, author_url(author.username), html_options)
+    link_to(author.username, author_path(author.username), html_options)
   end  
 end

@@ -10,7 +10,7 @@ class HaikusController < ApplicationController
     else
       session[:new_haiku] = params[:haiku]
       session[:original_login_referrer] = request.referrer
-      redirect_to(register_url)
+      redirect_to(register_path)
     end
   end
 
@@ -27,14 +27,14 @@ class HaikusController < ApplicationController
   def show
     @single_haiku = Haiku.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to(root_url)
+    redirect_to(root_path)
   end
   
   def destroy
     haiku = current_author.haikus.destroy(params[:id])
     flash[:notice] = "Your haiku was deleted"
     respond_to do |f|
-      f.html { redirect_to(haiku_url(haiku) == request.referrer ? {:controller => 'journal'} : request.referrer) }
+      f.html { redirect_to(haiku_path(haiku) == request.referrer ? {:controller => 'journal'} : request.referrer) }
       f.js   { head :ok }
     end
   end

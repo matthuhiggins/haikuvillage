@@ -1,21 +1,21 @@
 #header.navigation
   .left
-    = link_to(image_tag("haikuvillage.png"), root_url, :id => "logo-link")
+    = link_to(image_tag("haikuvillage.png"), root_path, :id => "logo-link")
     - if current_author
       %ul
-        %li= link_to 'Create', journal_url
-        %li= link_to "Favorites", favorites_url
+        %li= link_to 'Create', journal_path
+        %li= link_to "Favorites", favorites_path
         %li= link_to "Subjects", :controller => '/journal', :action => 'subjects'
-        %li= link_to "Friends", friends_url
+        %li= link_to "Friends", friends_path
   .right
     - form_tag({:controller => '/haikus', :action => 'search'}, {:method => :get}) do
       %input{:type => "text", :name => "q", :value => 'Search for haikus', :autocomplete => 'off', :id => 'haiku_search'}
     %ul
       - unless current_author
-        %li= link_to 'Sign in', login_url
-        %li= link_to 'Register', signup_url
+        %li= link_to 'Sign in', login_path
+        %li= link_to 'Register', signup_path
       - else
-        %li= link_to 'Sign out', logout_url
-        %li= link_to 'Profile', profile_url
+        %li= link_to 'Sign out', logout_path
+        %li= link_to 'Profile', profile_path
         - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
-        %li= link_to message_text, messages_url
+        %li= link_to message_text, messages_path

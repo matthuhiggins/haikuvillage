@@ -13,7 +13,7 @@ module FriendsHelper
   
   def add_friend(friend)
     link_to_remote("Add to friends",
-      :url      => friend_url(friend.username),
+      :url      => friend_path(friend.username),
       :method   => :put,
       :before   => "$('#{dom_id(friend)}').innerHTML = 'updating...'",
       :html     => {:id => dom_id(friend)})
@@ -21,7 +21,7 @@ module FriendsHelper
 
   def remove_friend(friend)
     link_to_remote("Remove from friends",
-      :url      => friend_url(friend.username),
+      :url      => friend_path(friend.username),
       :before   => "$('#{dom_id(friend)}').innerHTML = 'updating...'",
       :method   => :delete,
       :html     => {:id => dom_id(friend)})
@@ -29,7 +29,7 @@ module FriendsHelper
   
   def remove_friend_thumbnail(friend)
     link_to("Remove",
-      friend_url(friend.username),
+      friend_path(friend.username),
       {:method   => :delete, :confirm  => "Are you sure?"})
   end
 end

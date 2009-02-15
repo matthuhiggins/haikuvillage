@@ -11,12 +11,12 @@ class MessagesController < ApplicationController
     recipient = Author.find(params[:message][:recipient_id])
     Message.transmit(current_author, recipient, params[:message][:text])
     flash[:notice] = "Message sent to #{recipient.username}"
-    redirect_to(messages_url)
+    redirect_to(messages_path)
   end
   
   def destroy
     current_author.messages.destroy(params[:id])
     flash[:notice] = "Message deleted"
-    redirect_to(messages_url)
+    redirect_to(messages_path)
   end
 end

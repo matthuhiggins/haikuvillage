@@ -32,7 +32,7 @@ class AuthorsController < ApplicationController
     return if request.get?
     Mailer.deliver_invite(params[:email], current_author)
     flash[:notice] = "The invite has been sent"
-    redirect_to journal_url
+    redirect_to journal_path
   end
   
   def forgot
@@ -40,7 +40,7 @@ class AuthorsController < ApplicationController
 
     PasswordReset.create(:login => params[:login])
     flash[:notice] = "You will receive an email with instructions."
-    redirect_to(login_url)
+    redirect_to(login_path)
   rescue ActiveRecord::RecordNotFound
     flash[:notice] = "We could not find an author with #{params[:login]}."
   end
@@ -52,7 +52,7 @@ class AuthorsController < ApplicationController
       @password_reset.destroy
       @password_reset.author.update_attributes(:password => params[:password])
       flash[:notice] = "Your new password has been saved"
-      redirect_to(journal_url)
+      redirect_to(journal_path)
     end
   end
   

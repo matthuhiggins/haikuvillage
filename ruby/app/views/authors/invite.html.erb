@@ -5,7 +5,7 @@
   <% if current_author %>
     <h2>Invite authors by their e-mail</h2>
 
-    <% form_tag(invite_authors_url, {:method => :post}) do %>
+    <% form_tag(invite_authors_path, {:method => :post}) do %>
       <%= text_area_tag "email" %>
       <%= submit_tag "Send" %>
     <% end %>

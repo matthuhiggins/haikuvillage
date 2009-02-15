@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:username] = nil
     flash[:notice] = "You are signed out"
-    redirect_to(root_url)
+    redirect_to(root_path)
   end
 end

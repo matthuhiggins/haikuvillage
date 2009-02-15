@@ -11,7 +11,7 @@
 
 .column
   %h3= "Already a user?"
-  - deferred_haiku_form :session, :url => session_url, :html => {:id => 'register_login_form'} do |form|
+  - deferred_haiku_form :session, :url => session_path, :html => {:id => 'register_login_form'} do |form|
     %table
       %tr
         %td
@@ -30,12 +30,12 @@
       %tr
         %td
         %td{:style => 'padding-top: 10px'}
-          = link_to "Forget your password?", forgot_url
+          = link_to "Forget your password?", forgot_path
   
 
 .column
   %h3= 'Create a new account'
-  - deferred_haiku_form :author, :url => register_url, :html => {:class => 'register_form'}  do |form|
+  - deferred_haiku_form :author, :url => register_path, :html => {:class => 'register_form'}  do |form|
     %table{:style => 'margin-left: 15px;'}
       %tr
         %td

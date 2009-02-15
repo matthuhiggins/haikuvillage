@@ -6,7 +6,7 @@ module HaikuController
 
     private
       def original_login_referrer
-        session[:original_login_referrer] || journal_url
+        session[:original_login_referrer] || journal_path
       end
 
     module ClassMethods
@@ -33,7 +33,7 @@ module HaikuController
       unless session[:username]
         session[:original_login_referrer] = request.referrer
         flash[:notice] = "You must sign in first"
-        redirect_to(register_url)
+        redirect_to(register_path)
       end
     end
   end

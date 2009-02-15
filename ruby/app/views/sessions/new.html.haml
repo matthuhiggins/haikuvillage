@@ -2,7 +2,7 @@
 
 %h2= 'Sign in'
 
-- form_for :session, :url => session_url do |form|
+- form_for :session, :url => session_path do |form|
   %table
     %tr
       %td
@@ -21,7 +21,7 @@
     %tr
       %td
       %td{:style => 'padding-top: 10px'}
-        = link_to "Forget your password?", forgot_url
+        = link_to "Forget your password?", forgot_path
   
 %script
   document.getElementById('session_username').focus();

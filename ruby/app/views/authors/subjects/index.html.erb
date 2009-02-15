@@ -2,7 +2,7 @@
   <ul class="subject-list">
     <% @subjects.each do |subject| %>
     <li>
-      <%= link_to subject.name, author_subject_url(:author_id => @author.username, :id => subject.name) %>
+      <%= link_to subject.name, author_subject_path(:author_id => @author.username, :id => subject.name) %>
       <%= " (#{subject.count})" %>
     </li>
     <% end %>

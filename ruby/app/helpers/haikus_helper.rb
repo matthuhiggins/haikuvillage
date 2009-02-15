@@ -12,7 +12,7 @@ module HaikusHelper
   end
   
   def haiku_title(haiku)
-    "A haiku by #{link_to haiku.author.username, author_url(haiku.author.username)}"
+    "A haiku by #{link_to haiku.author.username, author_path(haiku.author.username)}"
   end
 
   def subject_auto_complete
@@ -38,7 +38,7 @@ module HaikusHelper
   end
   
   def email_haiku_link(haiku)
-    content_tag(:div, link_to("Share", email_haiku_url(haiku)), :class => "action")
+    content_tag(:div, link_to("Share", email_haiku_path(haiku)), :class => "action")
   end
   
   def haiku_text_tag(options = {})

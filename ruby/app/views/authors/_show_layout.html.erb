@@ -1,4 +1,4 @@
-<%- rss @author.username, author_url(@author.username) %>
+<%- rss @author.username, author_path(@author.username) %>
 <%- title "#{@author.username}'s Journal" %>
 <% description "Haikus by #{@author.username}" %>
 
@@ -14,9 +14,9 @@
       <%= update_friendship(@author) %>
     </div>
     <% sub_menu(:class => "tab_nav") do |m| %>
-      <% m.link "Haikus", author_url(:id => @author.username) %>
-      <% m.link "Subjects", author_subjects_url(:author_id => @author.username)  %>
-      <% m.link "Friends", friends_author_url(@author.username)  %>
+      <% m.link "Haikus", author_path(:id => @author.username) %>
+      <% m.link "Subjects", author_subjects_path(:author_id => @author.username)  %>
+      <% m.link "Friends", friends_author_path(@author.username)  %>
     <% end %>
   </div>
 </div>

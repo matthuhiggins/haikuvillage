@@ -1,4 +1,4 @@
-<% form_tag authors_url, :method => :get, :id => 'search_form' do %>
+<% form_tag authors_path, :method => :get, :id => 'search_form' do %>
   <%= text_field :author, :username, {:name => 'q', :value => params[:q], :size => 10} %>
   <%= submit_tag 'Search', :name => nil %>
 <% end %>
