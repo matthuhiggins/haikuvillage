@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages
   map.resources :friends
   map.resources :favorites
-  map.resources :groups
+  map.resources :groups, :has_many => :memberships
   map.resource :session
 
   map.root :controller => 'public'
