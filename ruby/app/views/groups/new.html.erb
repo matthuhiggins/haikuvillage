@@ -1,0 +1,30 @@
+<style>
+form td.description {
+  margin-top: 4px;
+  vertical-align: top;
+}
+</style>
+
+<% title 'Create a new group' %>
+
+<h2>Create a new group</h2>
+<% form_for :group do |f| %>
+  <table>
+    <tr>
+      <td><%= f.label :name, 'Name:' %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td class="description"><%= f.label :description, 'Description:' %></td>
+      <td><%= f.text_area :description, :cols => 40, :rows => 6 %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit 'Create' %></td>
+    </tr>
+  </table>
+<% end %>
+
+<script>
+$('group_name').focus();
+</script>
