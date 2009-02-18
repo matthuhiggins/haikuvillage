@@ -3,6 +3,10 @@ module HaikusHelper
     render :partial => "haikus/haiku", :collection => haikus, :spacer_template => "conversations/divider"
   end
 
+  # options include:
+  #   conversing_with - The haiku that this creation is in reference too
+  #   conversation_id - An existing conversation that this haiku is being added to
+  #   group_id - The group that this haiku is being contributed to
   def render_create(options = {})
     render :partial => "haikus/create", :locals => options
   end

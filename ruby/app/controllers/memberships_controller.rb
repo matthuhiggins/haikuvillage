@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
   def index
-    @authors = current_group.membershipss
+    @group = current_group
+    @authors = @group.memberships
   end
 
   def create
@@ -17,6 +18,6 @@ class MembershipsController < ApplicationController
   
   private
     def current_group
-      @current_group ||= Group.find(param[:group_id])
+      @current_group ||= Group.find(params[:group_id])
     end
 end

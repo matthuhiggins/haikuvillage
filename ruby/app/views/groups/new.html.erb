@@ -8,7 +8,7 @@ form td.description {
 <% title 'Create a new group' %>
 
 <h2>Create a new group</h2>
-<% form_for :group do |f| %>
+<% form_for @group do |f| %>
   <table>
     <tr>
       <td><%= f.label :name, 'Name:' %></td>
@@ -17,6 +17,10 @@ form td.description {
     <tr>
       <td class="description"><%= f.label :description, 'Description:' %></td>
       <td><%= f.text_area :description, :cols => 40, :rows => 6 %></td>
+    </tr>
+    <tr>
+      <td><%= f.check_box :members_only %></td>
+      <td><%= f.label :members_only, 'Only invited members can contribute to this group', :class => 'checkbox' %>
     </tr>
     <tr>
       <td></td>

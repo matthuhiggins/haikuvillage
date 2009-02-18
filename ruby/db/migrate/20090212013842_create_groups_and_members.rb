@@ -3,7 +3,8 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
     create_table :groups do |t|
       t.string :name, :null => false
       t.text :description
-      t.boolean :invite_only, :null => false
+      t.boolean :members_only, :null => false
+      t.integer :haikus_count, :memberships_count, :null => false, :default => 0
       t.timestamps
     end
 

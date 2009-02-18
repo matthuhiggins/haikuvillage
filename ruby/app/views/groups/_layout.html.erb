@@ -1,0 +1,7 @@
+<% title "#{@group.name} group" %>
+<h2><%= "#{@group.name} group" %></h2>
+
+<% sub_menu(:class => "tab_nav") do |m| %>
+  <% m.link "Contributions", group_path(@group) %>
+  <% m.link "Members", group_memberships_path(@group) %>
+<% end %>

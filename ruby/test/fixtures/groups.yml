@@ -1,6 +1,9 @@
 haiku_poets_club:
   name: Haiku Poets
   description: Only the best poets can join our cool group
+  memberships_count: 1
+  haikus_count: 1
 seattle_singles:
   name: Seattle Singles
   description: A place to meet other single haiku authors
+  memberships_count: 1

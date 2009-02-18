@@ -57,6 +57,7 @@ river:
   text: "The nature is calm\nThe river flows forever\nand ever for me."
   subject: nature
   subject_name: nature
+  group: haiku_poets_club
 
 dog:
   author: jane

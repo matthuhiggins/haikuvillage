@@ -1,0 +1,28 @@
+<div class="group">
+  <% link_to group do %>
+    <div class="avatar">
+    </div>
+  <% end %>
+  <div class="meta">
+    <%= link_to group.name, group, :class => 'group_name' %>
+    <div class="summaries">
+      <span class="summary">
+        12
+        <%= link_to 'members', group_memberships_path(group) %>
+      </span>
+      |
+      <span class="summary">
+        10
+        <%= link_to 'haikus', group %>
+      </span>
+      |
+      <span class="summary">
+        Created <%= time_ago_in_words(group.created_at) %> ago
+      </span>
+    </div>
+    <p class="description">
+      <%= h group.description %>
+    </p>
+  </div>
+  
+</div>

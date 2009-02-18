@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
+    @haikus = @group.haikus.paginate(:page => params[:page], :per_page => 10)
   end
   
   def update
