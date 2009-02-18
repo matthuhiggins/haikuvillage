@@ -1,6 +1,7 @@
 <div class="group">
   <% link_to group do %>
     <div class="avatar">
+      <%= image_tag(group.avatar.url(:large)) %>
     </div>
   <% end %>
   <div class="meta">
@@ -13,7 +14,7 @@
       |
       <span class="summary">
         10
-        <%= link_to 'haikus', group %>
+        <%= link_to 'haikus', haikus_group_path(group) %>
       </span>
       |
       <span class="summary">
@@ -21,8 +22,8 @@
       </span>
     </div>
     <p class="description">
-      <%= h group.description %>
+      <%= h truncate(group.description, :length => 180) %>
+      (<%= link_to 'more', group %>)
     </p>
   </div>
-  
 </div>

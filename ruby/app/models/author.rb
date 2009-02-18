@@ -28,7 +28,7 @@ class Author < ActiveRecord::Base
   before_validation :downcase_username
 
   has_attached_file :avatar, :default_url => "/images/default_avatars/:style.png",
-                             :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>",  }
+                             :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>" }
 
   named_scope :brand_new, :order => 'created_at desc'
   named_scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'

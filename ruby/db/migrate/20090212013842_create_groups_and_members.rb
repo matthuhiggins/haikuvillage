@@ -5,6 +5,9 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
       t.text :description
       t.boolean :members_only, :null => false
       t.integer :haikus_count, :memberships_count, :null => false, :default => 0
+      t.string :avatar_file_name, :avatar_content_type
+      t.integer :avatar_file_size
+      t.datetime :avatar_updated_at
       t.timestamps
     end
 

@@ -3,3 +3,5 @@
 <%= link_to 'Create a new group', new_group_path %>
 
 <%= render :partial => "group", :collection => @groups %>
+
+<%= will_paginate @groups, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>

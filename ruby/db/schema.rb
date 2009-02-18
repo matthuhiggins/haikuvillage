@@ -87,11 +87,15 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
   add_index "friendships", ["friend_id", "author_id"], :name => "index_friendships_on_friend_id_and_author_id"
 
   create_table "groups", :force => true do |t|
-    t.string   "name",                             :null => false
+    t.string   "name",                               :null => false
     t.text     "description"
-    t.boolean  "members_only",                     :null => false
-    t.integer  "haikus_count",      :default => 0, :null => false
-    t.integer  "memberships_count", :default => 0, :null => false
+    t.boolean  "members_only",                       :null => false
+    t.integer  "haikus_count",        :default => 0, :null => false
+    t.integer  "memberships_count",   :default => 0, :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
