@@ -7,6 +7,11 @@ class Group < ActiveRecord::Base
                              :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>" }
 
   validates_presence_of :name
+  
+  define_index do
+    indexes :name
+    indexes :description
+  end
 
   def can_contribute(author)
     !members_only || memberships.include?(:author_id => author)

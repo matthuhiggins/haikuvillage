@@ -9,6 +9,8 @@
       = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
     - unless local_assigns[:conversation].nil?
       = hidden_field_tag('haiku[conversation_id]', conversation.id)
+    - unless local_assigns[:group].nil?
+      = hidden_field_tag('haiku[group_id]', group.id)
   
     .input_row
       %label="Haiku:"

@@ -1,3 +1,8 @@
 <% render :layout => 'layout' do %>
-  <%= debug @group.haikus %>
+  <h3>Description</h3>
+  <%= h @group.description %>
+  
+  <h3 class="following">Recent Haikus</h3>
+  <%= render_haikus @group.haikus %>
+  <%= link_to 'See more haikus', haikus_group_path(@group) %>
 <% end %>

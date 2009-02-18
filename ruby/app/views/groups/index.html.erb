@@ -1,6 +1,9 @@
 <% title "Groups" %>
-<h2>Groups</h2>
-<%= link_to 'Create a new group', new_group_path %>
+
+<div class="groups-header">
+  <h2>Groups</h2>
+  <%= link_to 'Create a new group', new_group_path %>
+</div>
 
 <%= render :partial => "group", :collection => @groups %>
 
