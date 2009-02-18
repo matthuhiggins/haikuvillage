@@ -30,7 +30,7 @@ class SubjectsController < ApplicationController
         redirect_to :action => 'show', :id => query
       else
         @subjects = Subject.search(query).popular.all(:limit => 10)
-        render :action => 'search'
+        render 'search'
       end
     end
 end

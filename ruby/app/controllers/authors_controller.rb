@@ -15,7 +15,7 @@ class AuthorsController < ApplicationController
       session[:username] = @author.username
       redirect_to :controller => "journal"
     else
-      render :action => "new"
+      render "new"
     end
   end
 
@@ -67,7 +67,7 @@ class AuthorsController < ApplicationController
         redirect_to :action => 'show', :id => query
       else
         @authors = Author.all(:limit => 20, :conditions => ["username like ?", "%#{query}%"])
-        render :action => 'search'
+        render 'search'
       end
     end
 end

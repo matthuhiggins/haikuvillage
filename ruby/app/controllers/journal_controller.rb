@@ -16,7 +16,7 @@ class JournalController < ApplicationController
         :page      => params[:page],
         :per_page  => 10
       )
-      render :action => "haikus_by_subject"
+      render "haikus_by_subject"
     else
       @subjects = current_author.subjects
     end

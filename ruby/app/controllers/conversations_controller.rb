@@ -8,7 +8,7 @@ class ConversationsController < ApplicationController
     @haikus = @conversation.haikus.paginate(:page => params[:page], :per_page => 20)
     unless @conversation.inspiration.nil?
       @inspiration = @conversation.inspiration
-      render :action => "flickr_inspiration"
+      render "flickr_inspiration"
     end
   end
 end

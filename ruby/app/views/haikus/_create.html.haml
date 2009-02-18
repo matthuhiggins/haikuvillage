@@ -24,7 +24,7 @@
 
   - unless local_assigns[:extra_partial].nil?
     - content_tag(:div, :id => extra_partial) do
-      = render :partial => extra_partial
+      = render extra_partial
   
 
 %script
