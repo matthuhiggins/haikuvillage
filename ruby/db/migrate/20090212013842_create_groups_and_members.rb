@@ -10,6 +10,7 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
       t.datetime :avatar_updated_at
       t.timestamps
     end
+    add_index :groups, :name, :unique => true
 
     create_table :memberships do |t|
       t.references :author, :group, :null => false

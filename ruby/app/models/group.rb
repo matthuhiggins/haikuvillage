@@ -7,6 +7,7 @@ class Group < ActiveRecord::Base
                              :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>" }
 
   validates_presence_of :name
+  validates_uniqueness_of :name
   
   define_index do
     indexes :name

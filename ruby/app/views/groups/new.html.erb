@@ -13,6 +13,7 @@ form td.description {
     <tr>
       <td><%= f.label :name, 'Name:' %></td>
       <td><%= f.text_field :name %></td>
+      <td><%= f.error_message_on :name, :prepend_text => 'Group ' %></td>
     </tr>
     <tr>
       <td class="description"><%= f.label :description, 'Description:' %></td>
