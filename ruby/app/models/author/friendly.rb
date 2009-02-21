@@ -1,4 +1,4 @@
-module Friendly
+module Author::Friendly
   class << self
     def included(author)
       # The authors this author is following

@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.datetime "updated_at"
   end
 
+  add_index "groups", ["name"], :name => "index_groups_on_name", :unique => true
+
   create_table "haikus", :force => true do |t|
     t.integer  "author_id",                      :null => false
     t.integer  "favorited_count", :default => 0, :null => false

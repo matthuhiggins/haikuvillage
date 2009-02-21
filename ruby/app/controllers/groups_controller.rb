@@ -27,11 +27,9 @@ class GroupsController < ApplicationController
     @haikus = @group.haikus.recent.paginate(:page => params[:page], :per_page => 10)
   end
   
-  def update
-    
-  end
-  
-  def manage
-    
-  end
+  private
+    def current_group
+      @current_group ||= Group.find(params[:id])
+    end
+    helper_method :current_group
 end

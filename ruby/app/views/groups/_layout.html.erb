@@ -4,6 +4,9 @@
 <% sub_menu(:class => "tab_nav") do |m| %>
   <% m.link "Contributions", haikus_group_path(@group) %>
   <% m.link "Members", group_memberships_path(@group) %>
+  <% if current_author.try(:can_administer?, current_group) %>
+    <% m.link "Manage" %>
+  <% end %>
 <% end %>
 
 <div class="group-content">
