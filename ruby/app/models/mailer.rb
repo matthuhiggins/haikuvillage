@@ -41,6 +41,20 @@ class Mailer < ActionMailer::Base
     body        :password_reset => password_reset
   end
   
+  def group_invitation(author, group)
+    configure_defaults
+    recipients  author.email
+    subject     "You are invited to join the HaikuVillage group #{h group.name}"
+    body        :author => author, :group => group
+  end
+  
+  def group_application(author, group)
+    configure_defaults
+    recipients  group.memberships.admins.map(&:email)
+    subject     "#{author.username} wants to join your HaikuVillage group"
+    body        :author => author, :group => group
+  end
+  
   private
     def configure_defaults
       from          "575@haikuvillage.com"

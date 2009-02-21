@@ -17,4 +17,25 @@ class Group < ActiveRecord::Base
   def can_contribute(author)
     !members_only || memberships.include?(:author_id => author)
   end
+  
+  def add_author(author)
+    add_membership author, Membership::MEMBER
+  end
+  
+  def invite_author(author)
+    add_membership author, Membership::INVITED
+    Mailer.deliver_group_invitation(author, self)
+  end
+  
+  def apply_for_membership(author)
+    add_membership author, Membership::APPLIED
+    Mailer.deliver_group_application(author, self)
+  end
+  
+  private 
+    def add_membership(author, status)
+      unless memberships.exists?(:author => author)
+        memberships << Membership.new(:group => self, :author => author, :status => Membership::MEMBER)
+      end
+    end
 end

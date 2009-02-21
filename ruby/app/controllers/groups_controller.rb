@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   
   def create
     @group = Group.new(params[:group])
+    @group.
     if @group.save
       flash[:notice] = "Welcome to your new group"
       redirect_to(@group)
