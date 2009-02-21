@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  has_many :haikus
+  has_many :haikus, :dependent => :nullify
   has_many :memberships
   has_many :authors, :through => :memberships
   

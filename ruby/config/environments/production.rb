@@ -13,3 +13,7 @@ config.action_mailer.smtp_settings = {
   :password  => "haiku575",
   :authentication  => :login
 }
+config.action_mailer.default_url_options = {
+  :host => "www.mynapera.com",
+  :only_path => false
+}

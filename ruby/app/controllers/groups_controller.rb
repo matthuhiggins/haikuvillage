@@ -30,4 +30,8 @@ class GroupsController < ApplicationController
   def update
     
   end
+  
+  def manage
+    
+  end
 end
