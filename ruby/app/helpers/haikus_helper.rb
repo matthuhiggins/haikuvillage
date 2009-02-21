@@ -8,7 +8,7 @@ module HaikusHelper
   #   conversation - An existing conversation that this haiku is being added to
   #   group - The group that this haiku is being contributed to
   def render_create(options = {})
-    render "haikus/create", :locals => options
+    render :partial => "haikus/create", :locals => options
   end
 
   def new_haiku?(haiku)

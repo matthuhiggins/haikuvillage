@@ -10,6 +10,7 @@ class Membership < ActiveRecord::Base
   default_scope :conditions => {:status => [MEMBER, ADMIN]}
   named_scope :applied, :conditions => {:status => APPLIED}
   named_scope :invited, :conditions => {:status => INVITED}
+  named_scope :admins, :conditions => {:status => ADMIN}
   
   def admin?
     self.status == ADMIN

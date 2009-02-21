@@ -20,4 +20,5 @@ class MembershipsController < ApplicationController
     def current_group
       @current_group ||= Group.find(params[:group_id])
     end
+    helper_method :current_group
 end

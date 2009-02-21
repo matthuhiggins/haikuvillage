@@ -1,11 +1,14 @@
-<% title @group.name %>
-<h2><%= link_to @group.name, @group %></h2>
+<% title current_group.name %>
+<h2><%= link_to current_group.name, current_group %></h2>
 
 <% sub_menu(:class => "tab_nav") do |m| %>
-  <% m.link "Contributions", haikus_group_path(@group) %>
-  <% m.link "Members", group_memberships_path(@group) %>
+  <% m.link "Haikus", haikus_group_path(current_group) %>
+  <% m.link "Members", group_memberships_path(current_group) %>
   <% if current_author.try(:can_administer?, current_group) %>
-    <% m.link "Manage" %>
+    <% m.link "Manage", :controller => "/groups/manage" %>
+  <% end %>
+  <% if current_author.try(:can_contribute?, current_group) %>
+    <% m.link "Contribute", contribute_group_path(current_group) %>
   <% end %>
 <% end %>
 

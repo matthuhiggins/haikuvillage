@@ -18,13 +18,11 @@ class GroupsController < ApplicationController
   end
   
   def show
-    @group = Group.find(params[:id])
-    @haikus = @group.haikus.recent(:limit => 6)
+    @haikus = current_group.haikus.recent(:limit => 6)
   end
   
   def haikus
-    @group = Group.find(params[:id])
-    @haikus = @group.haikus.recent.paginate(:page => params[:page], :per_page => 10)
+    @haikus = current_group.haikus.recent.paginate(:page => params[:page], :per_page => 10)
   end
   
   private

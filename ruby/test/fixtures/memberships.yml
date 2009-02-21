@@ -7,6 +7,14 @@ joes_seattle_singles_memberships:
   author: joe
   status: <%= Membership::MEMBER %>
 joe_applied_for_poet_club:
-  status: <%= Membership::APPLIED %>
   group: haiku_poets_club
   author: joe
+  status: <%= Membership::APPLIED %>
+fredrick_invited_to_poet_club:
+  group: haiku_poets_club
+  author: fredrick
+  status: <%= Membership::INVITED %>
+billy_member_of_poet_club:
+  group: haiku_poets_club
+  author: billy
+  status: <%= Membership::MEMBER %>

@@ -1,5 +1,3 @@
-require 'author/friendly'
-
 class Author < ActiveRecord::Base
   class << self
     def authenticate(login, password)
