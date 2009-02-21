@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    current_group.create_membership(:author_id => params[:id])
+    current_group.memberships.create(:author_id => params[:id])
   end
   
   def update

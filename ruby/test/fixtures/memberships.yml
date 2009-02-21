@@ -1,6 +1,12 @@
-janes_poet_club_membership:
+jane_admins_poet_club_membership:
   group: haiku_poets_club
   author: jane
+  status: <%= Membership::ADMIN %>
 joes_seattle_singles_memberships:
   group: seattle_singles
+  author: joe
+  status: <%= Membership::MEMBER %>
+joe_applied_for_poet_club:
+  status: <%= Membership::APPLIED %>
+  group: haiku_poets_club
   author: joe

@@ -11,7 +11,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages
   map.resources :friends
   map.resources :favorites
-  map.resources :groups, :has_many => :memberships, :member => {:haikus => :get}
+  map.resources :groups, :member => {:haikus => :get} do |group|
+    group.resources :memberships
+    group.connect 'manage', :controller => "groups/manage"
+  end
+
   map.resource :session
 
   map.root :controller => 'public'
