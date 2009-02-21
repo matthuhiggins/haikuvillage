@@ -1,8 +1,7 @@
-- title "Search"
+- title "Search haikus"
+%h2 Search haikus
+= search_form(:controller => 'haikus', :action => 'search')
 
-- form_tag({:controller => 'haikus', :action => 'search'}, {:method => :get}) do
-  %input{:type => "text", :name => "q", :value => params[:q]}
-  %input{:type => "submit", :value => "Search"}
-
-= render_haikus(@haikus)
-= will_paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false
+- if @haikus
+  = render_haikus(@haikus)
+  = will_paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false

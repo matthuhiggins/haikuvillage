@@ -19,9 +19,8 @@ class HaikusController < ApplicationController
   end
   
   def search
-    @haikus = Haiku.search(params[:q],
-      :page      => params[:page],
-      :per_page  => 10)
+    @haikus = params[:q] &&
+      Haiku.search(params[:q], :page => params[:page], :per_page => 10)
   end
   
   def show
