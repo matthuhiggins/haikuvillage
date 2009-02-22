@@ -1,16 +1,19 @@
 - title 'Register'
 
-%h2 Share your haiku with the village
-.center{:style => 'margin-bottom: 14px'}
-  - if @haiku.conversation && @haiku.conversation.inspiration_type == 'flickr'
-    = image_tag @haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
-  .haiku-big
-    .text
-      - @haiku.text.each_line do |line|
-        .haiku-line= h(line)
+- if @haiku
+  %h2 Share your haiku with the village
+  .center{:style => 'margin-bottom: 14px'}
+    - if @haiku.conversation && @haiku.conversation.inspiration_type == 'flickr'
+      = image_tag @haiku.conversation.inspiration.thumbnail, :class => 'haiku-inspiration'
+    .haiku-big
+      .text
+        - @haiku.text.each_line do |line|
+          .haiku-line= h(line)
+- else
+  %h2 You need to sign in or register
 
 .column
-  %h3= "Already a user?"
+  %h3= "Already an author?"
   - deferred_haiku_form :session, :url => session_path, :html => {:id => 'register_login_form'} do |form|
     %table
       %tr

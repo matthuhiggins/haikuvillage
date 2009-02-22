@@ -1,4 +1,4 @@
-class MembershipsController < ApplicationController
+class Groups::MembershipsController < ApplicationController
   def index
     @group = current_group
     @authors = @group.memberships

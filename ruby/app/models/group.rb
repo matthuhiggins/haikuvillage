@@ -22,6 +22,10 @@ class Group < ActiveRecord::Base
     add_membership author, Membership::MEMBER
   end
   
+  def add_admin(author)
+    add_membership author, Membership::ADMIN
+  end
+  
   def invite_author(author)
     add_membership author, Membership::INVITED
     Mailer.deliver_group_invitation(author, self)
@@ -34,8 +38,8 @@ class Group < ActiveRecord::Base
   
   private 
     def add_membership(author, status)
-      unless memberships.exists?(:author => author)
-        memberships << Membership.new(:group => self, :author => author, :status => Membership::MEMBER)
+      unless memberships.exists?(:author_id => author)
+        memberships << Membership.new(:group => self, :author => author, :status => status)
       end
     end
 end

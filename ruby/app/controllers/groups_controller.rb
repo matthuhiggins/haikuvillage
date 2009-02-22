@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  login_filter :only => [:create, :new]
   def index
     @groups = Group.paginate(:page => params[:page], :per_page => 20)
   end
@@ -9,7 +10,7 @@ class GroupsController < ApplicationController
   
   def create
     @group = Group.new(params[:group])
-    @group.
+    @group.add_admin(current_author)
     if @group.save
       flash[:notice] = "Welcome to your new group"
       redirect_to(@group)

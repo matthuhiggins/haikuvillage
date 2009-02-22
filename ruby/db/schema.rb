@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
   create_table "memberships", :force => true do |t|
     t.integer  "author_id",  :null => false
     t.integer  "group_id",   :null => false
-    t.boolean  "admin",      :null => false
     t.integer  "status",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"

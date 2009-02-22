@@ -20,13 +20,16 @@ class PublicController < ApplicationController
   end
   
   def register
-    @haiku = Haiku.new(session[:new_haiku])
+    unless session[:new_haiku].nil?
+      @haiku = Haiku.new(session[:new_haiku])
+    end
+
     if request.post?
       @author = Author.new(params[:author])
+      @author.haikus << @haiku unless @session[:new_haiku].nil?
 
       if @author.save
         session[:username] = @author.username
-        @author.haikus << @haiku
         redirect_to(original_login_referrer)
       end
     end

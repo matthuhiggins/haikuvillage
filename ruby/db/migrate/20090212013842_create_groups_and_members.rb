@@ -14,7 +14,6 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
 
     create_table :memberships do |t|
       t.references :author, :group, :null => false
-      t.boolean :admin, :null => false
       t.integer :status, :null => false
       t.timestamps
     end
