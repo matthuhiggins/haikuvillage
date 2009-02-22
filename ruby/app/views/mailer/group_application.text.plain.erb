@@ -1,0 +1,8 @@
+<%= @author.username %> wants to join your group, <%= @group.name %>.
+
+Follow this link to accept or reject <%= @author.username %>'s application:
+
+<%= url_for group_url(@group) %>
+ 
+Sincerely,
+HaikuVillage
