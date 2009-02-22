@@ -1,20 +1,20 @@
 jane_admins_poet_club_membership:
   group: haiku_poets_club
   author: jane
-  status: <%= Membership::ADMIN %>
+  standing: <%= Membership::ADMIN %>
 joes_seattle_singles_memberships:
   group: seattle_singles
   author: joe
-  status: <%= Membership::MEMBER %>
+  standing: <%= Membership::MEMBER %>
 joe_applied_for_poet_club:
   group: haiku_poets_club
   author: joe
-  status: <%= Membership::APPLIED %>
+  standing: <%= Membership::APPLIED %>
 fredrick_invited_to_poet_club:
   group: haiku_poets_club
   author: fredrick
-  status: <%= Membership::INVITED %>
+  standing: <%= Membership::INVITED %>
 billy_member_of_poet_club:
   group: haiku_poets_club
   author: billy
-  status: <%= Membership::MEMBER %>
+  standing: <%= Membership::MEMBER %>

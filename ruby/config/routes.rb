@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
                 :collection => {:search => :get},
                 :member => {:haikus => :get, :contribute => :get} do |group|
     group.resources :memberships, :controller => "groups/memberships"
-    group.connect 'manage', :controller => "groups/manage"
+    group.connect 'manage/:action', :controller => "groups/manage"
   end
 
   map.resource :session
@@ -37,6 +37,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'google08da94d9e67eee9b.html', :controller => 'public', :action => "about"
   map.connect 'logged_exceptions/:action/:id', :controller => 'logged_exceptions'
 
-  map.connect ':controller/:action/:id'  
+  map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

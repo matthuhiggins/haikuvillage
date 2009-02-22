@@ -1,0 +1,19 @@
+<style>
+.manage-group li {
+  margin-bottom: 10px;
+}
+</style>
+
+<% title "Manage #{h(current_group.name)}" %>
+
+<h2>Manage <%= h current_group.name %></h2>
+<ul class="manage-group">
+  <li>
+    <%= link_to "Name & description", edit_group_url(current_group) %>
+    <p>Describe your group.</p>
+  </li>
+  <li>
+    <%= link_to "Group icon", :action => "logo", :group_id => current_group %>
+    <p>Give your group some style</p>
+  </li>
+</ul>

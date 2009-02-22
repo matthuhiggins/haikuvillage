@@ -2,14 +2,13 @@ class Groups::ManageController < ApplicationController
   before_filter :check_admin
 
   def index
-    render :text => params.inspect
   end
   
-  def update_avatar
+  def update_logo
     if current_group.update_attributes(params[:group])
-      flash[:notice] = 'Avatar saved'
+      flash[:notice] = 'Logo saved'
     end
-    redirect_to :action => 'avatar'
+    redirect_to :action => 'index'
   end
   
   private

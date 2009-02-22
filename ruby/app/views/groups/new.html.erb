@@ -13,15 +13,16 @@ form td.description {
     <tr>
       <td><%= f.label :name, 'Name:' %></td>
       <td><%= f.text_field :name %></td>
-      <td><%= f.error_message_on :name, :prepend_text => 'Group ' %></td>
+      <td><%= f.error_message_on :name, :prepend_text => 'Name ' %></td>
     </tr>
     <tr>
       <td class="description"><%= f.label :description, 'Description:' %></td>
       <td><%= f.text_area :description, :cols => 40, :rows => 6 %></td>
+      <td><%= f.error_message_on :description, :prepend_text => 'Description ' %></td>
     </tr>
     <tr>
       <td><%= f.check_box :members_only %></td>
-      <td><%= f.label :members_only, 'Only invited members can contribute to this group', :class => 'checkbox' %>
+      <td><%= f.label :members_only, 'Only members can contribute to this group', :class => 'checkbox' %>
     </tr>
     <tr>
       <td></td>

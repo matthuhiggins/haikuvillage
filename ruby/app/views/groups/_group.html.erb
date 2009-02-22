@@ -1,20 +1,20 @@
 <div class="group">
   <% link_to group do %>
-    <div class="avatar">
-      <%= image_tag(group.avatar.url(:large)) %>
+    <div class="logo">
+      <%= image_tag(group.logo.url(:large)) %>
     </div>
   <% end %>
   <div class="meta">
     <%= link_to group.name, group, :class => 'group_name' %>
     <div class="summaries">
       <span class="summary">
-        12
-        <%= link_to 'members', group_memberships_path(group) %>
+        <%= group.memberships_count %>
+        <%= link_to group.memberships_count == 1 ? 'member' : 'members', group_memberships_path(group) %>
       </span>
       |
       <span class="summary">
-        10
-        <%= link_to 'haikus', haikus_group_path(group) %>
+        <%= group.haikus_count %>
+        <%= link_to group.haikus_count == 1 ? 'haiku' : 'haikus', haikus_group_path(group) %>
       </span>
       |
       <span class="summary">

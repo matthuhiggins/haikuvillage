@@ -10,8 +10,8 @@ class GroupsController < ApplicationController
   
   def create
     @group = Group.new(params[:group])
-    @group.add_admin(current_author)
     if @group.save
+      @group.add_admin(current_author)
       flash[:notice] = "Welcome to your new group"
       redirect_to(@group)
     else

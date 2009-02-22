@@ -3,10 +3,10 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :authors, :through => :memberships
   
-  has_attached_file :avatar, :default_url => "/images/default_avatars/:style.png",
-                             :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>" }
+  has_attached_file :logo, :default_url => "/images/default_avatars/:style.png",
+                           :styles => { :large => "64x64>", :medium => "32x32>", :small => "16x16>" }
 
-  validates_presence_of :name
+  validates_presence_of :name, :description
   validates_uniqueness_of :name
   
   define_index do
@@ -37,9 +37,11 @@ class Group < ActiveRecord::Base
   end
   
   private 
-    def add_membership(author, status)
+    def add_membership(author, standing)
       unless memberships.exists?(:author_id => author)
-        memberships << Membership.new(:group => self, :author => author, :status => status)
+        membership = Membership.new(:group => self, :author => author)
+        membership.standing = standing
+        memberships << membership
       end
     end
 end

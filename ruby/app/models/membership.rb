@@ -7,12 +7,12 @@ class Membership < ActiveRecord::Base
   belongs_to :group, :counter_cache => true
   belongs_to :author
   
-  default_scope :conditions => {:status => [MEMBER, ADMIN]}
-  named_scope :applied, :conditions => {:status => APPLIED}
-  named_scope :invited, :conditions => {:status => INVITED}
-  named_scope :admins, :conditions => {:status => ADMIN}
+  default_scope :conditions => {:standing => [MEMBER, ADMIN]}
+  named_scope :applied, :conditions => {:standing => APPLIED}
+  named_scope :invited, :conditions => {:standing => INVITED}
+  named_scope :admins, :conditions => {:standing => ADMIN}
   
   def admin?
-    self.status == ADMIN
+    self.standing == ADMIN
   end
 end

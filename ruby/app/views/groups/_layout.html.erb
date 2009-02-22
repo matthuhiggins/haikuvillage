@@ -1,11 +1,12 @@
 <% title current_group.name %>
+<%= image_tag current_group.logo.url(:large) %>
 <h2><%= link_to current_group.name, current_group %></h2>
 
 <% sub_menu(:class => "tab_nav") do |m| %>
   <% m.link "Haikus", haikus_group_path(current_group) %>
   <% m.link "Members", group_memberships_path(current_group) %>
   <% if current_author.try(:can_administer?, current_group) %>
-    <% m.link "Manage", :controller => "/groups/manage" %>
+    <% m.link "Manage", :controller => "/groups/manage", :group_id => current_group %>
   <% end %>
   <% if current_author.try(:can_contribute?, current_group) %>
     <% m.link "Contribute", contribute_group_path(current_group) %>
