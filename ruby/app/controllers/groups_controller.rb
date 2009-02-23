@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  login_filter :only => [:create, :new]
+  login_filter :except => [:show, :index]
   def index
     @groups = Group.paginate(:page => params[:page], :per_page => 20)
   end
@@ -25,6 +25,15 @@ class GroupsController < ApplicationController
   
   def haikus
     @haikus = current_group.haikus.recent.paginate(:page => params[:page], :per_page => 10)
+  end
+  
+  def update
+    if current_group.update_attributes(params[:group])
+      flash[:notice] = "Name & description saved"
+      redirect_to :controller => "/groups/manage", :group_id => current_group
+    else
+      render 'edit'
+    end
   end
   
   private
