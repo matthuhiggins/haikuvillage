@@ -15,7 +15,7 @@ class PublicController < ApplicationController
   end
   
   def google_gadget
-    @random_haiku = Haiku.all(:limit => 10, :order => 'created_at desc').rand
+    @random_haiku = Haiku.recent.all(:limit => 10).rand
     render :layout => false
   end
   

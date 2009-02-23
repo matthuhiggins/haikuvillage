@@ -5,8 +5,7 @@ class HaikusController < ApplicationController
     if current_author
       @haiku = current_author.haikus.create(params[:haiku])
       flash[:new_haiku_id] = @haiku.id
-      flash[:notice] = "Your haiku has been created"
-      redirect_to(:back)
+      redirect_and_flash(@haiku)
     else
       session[:new_haiku] = params[:haiku]
       session[:original_login_referrer] = request.referrer
@@ -48,4 +47,23 @@ class HaikusController < ApplicationController
     flash[:notice] = "The haiku has been sent"
     redirect_to params[:referrer]
   end
+  
+  private
+    def redirect_and_flash(haiku)
+      if !haiku.conversing_with.nil?
+        flash[:notice] = "Your haiku started a conversation."
+        redirect_to(haiku.conversation)
+      elsif !haiku.conversation.nil?
+        flash[:notice] = "Your haiku has been added to the conversation."
+        redirect_to(haiku.conversation)
+      elsif !haiku.group_id.nil?
+        flash[:notice] =
+          "Your haiku was has been added to the group. " +
+          "<a href=\"#{url_for(contribute_group_path(haiku.group))}\">Contribute another haiku</a>"
+        redirect_to(haikus_group_path(haiku.group))
+      else
+        flash[:notice] = "Your haiku has been created"
+        redirect_to(:back)
+      end
+    end
 end

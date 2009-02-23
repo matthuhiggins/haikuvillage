@@ -1,19 +1,31 @@
 <style>
 .manage-group li {
-  margin-bottom: 10px;
+  margin-bottom: 13px;
+}
+
+.manage-group li a {
+  font-weight: bold;
 }
 </style>
 
-<% title "Manage #{h(current_group.name)}" %>
-
-<h2>Manage <%= h current_group.name %></h2>
-<ul class="manage-group">
-  <li>
-    <%= link_to "Name & description", edit_group_url(current_group) %>
-    <p>Describe your group.</p>
-  </li>
-  <li>
-    <%= link_to "Group icon", :action => "logo", :group_id => current_group %>
-    <p>Give your group some style</p>
-  </li>
-</ul>
+<% render :layout => 'groups/layout' do %>
+  <ul class="manage-group">
+    <li>
+      <%= link_to "Name & description", edit_group_url(current_group) %>
+      <p>Describe your group.</p>
+    </li>
+    <li>
+      <%= link_to "Group icon", :action => "logo", :group_id => current_group %>
+      <p>Upload an icon for your group.</p>
+    </li>
+    <li>
+      <% if current_group.members_only %>
+        <%= link_to "Manage members", group_memberships_path(current_group) %>
+        <p>Change who can contribute and administrate this group.</p>
+      <% else %>
+        <%= link_to "Manage admins", group_memberships_path(current_group) %>
+        <p>Change who can administrate this group</p>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
