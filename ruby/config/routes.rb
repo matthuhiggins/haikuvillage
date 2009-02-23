@@ -14,7 +14,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups, 
                 :collection => {:search => :get},
                 :member => {:haikus => :get, :contribute => :get} do |group|
-    group.resources :memberships, :controller => "groups/memberships"
+    group.resources :memberships,
+                    :controller   => "groups/memberships",
+                    :name_prefix  => nil,
+                    :collection   => {:apply => :any}
     group.connect 'manage/:action', :controller => "groups/manage"
   end
 

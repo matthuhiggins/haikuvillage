@@ -1,3 +1,8 @@
 <% render :layout => 'layout' do %>
-  <%= render_haikus(@haikus) %>
+  <% if @haikus.any? %>
+    <%= render_haikus(@haikus) %>
+    <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
+  <% else %>
+    <h3>This group has no haikus.</h3>
+  <% end %>
 <% end %>

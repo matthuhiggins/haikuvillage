@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-  login_filter :except => [:show, :index]
+  login_filter :only => [:create, :new, :edit, :update]
+
   def index
     @groups = Group.paginate(:page => params[:page], :per_page => 20)
   end

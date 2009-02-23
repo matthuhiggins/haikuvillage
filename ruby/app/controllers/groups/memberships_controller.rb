@@ -15,7 +15,14 @@ class Groups::MembershipsController < ApplicationController
   def destroy
     current_group.memberships.destroy(:author_id => params[:id])
   end
-  
+
+  def apply
+    return if request.post?
+    current_group.apply_for_membership(current_author)
+    flash[:notice] = "We sent your request to the group admins"
+    redirect_to group_url(current_group)
+  end
+
   private
     def current_group
       @current_group ||= Group.find(params[:group_id])

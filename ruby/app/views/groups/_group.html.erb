@@ -9,7 +9,7 @@
     <div class="summaries">
       <span class="summary">
         <%= group.memberships_count %>
-        <%= link_to group.memberships_count == 1 ? 'member' : 'members', group_memberships_path(group) %>
+        <%= link_to group.memberships_count == 1 ? 'member' : 'members', memberships_path(group) %>
       </span>
       |
       <span class="summary">

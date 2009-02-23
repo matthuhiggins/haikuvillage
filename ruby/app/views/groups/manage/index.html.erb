@@ -20,10 +20,10 @@
     </li>
     <li>
       <% if current_group.members_only %>
-        <%= link_to "Manage members", group_memberships_path(current_group) %>
+        <%= link_to "Manage members", memberships_path(current_group) %>
         <p>Change who can contribute and administrate this group.</p>
       <% else %>
-        <%= link_to "Manage admins", group_memberships_path(current_group) %>
+        <%= link_to "Manage admins", memberships_path(current_group) %>
         <p>Change who can administrate this group</p>
       <% end %>
     </li>
