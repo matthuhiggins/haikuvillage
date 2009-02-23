@@ -17,7 +17,7 @@ class Groups::MembershipsController < ApplicationController
   end
 
   def apply
-    return if request.post?
+    return unless request.post?
     current_group.apply_for_membership(current_author)
     flash[:notice] = "We sent your request to the group admins"
     redirect_to group_url(current_group)
