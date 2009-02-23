@@ -25,7 +25,11 @@ class GroupsController < ApplicationController
   end
   
   def haikus
-    @haikus = current_group.haikus.recent.paginate(:page => params[:page], :per_page => 10)
+    @haikus = current_group.haikus.recent.paginate(
+      :page           => params[:page],
+      :per_page       => 20,
+      :total_entries  => current_group.haikus_count
+    )
   end
   
   def update
