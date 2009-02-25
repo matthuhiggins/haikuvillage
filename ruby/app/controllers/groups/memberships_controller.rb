@@ -1,4 +1,5 @@
 class Groups::MembershipsController < ApplicationController
+  login_filter :only => [:apply, :accept]
   def index
     memberships = current_group.memberships
     @admins = memberships.admins
@@ -19,9 +20,15 @@ class Groups::MembershipsController < ApplicationController
 
   def apply
     return unless request.post?
-    logger.info "************** #{current_author.inspect}"
     current_group.apply_for_membership(current_author)
     flash[:notice] = "We sent your request to the group admins"
+    redirect_to group_url(current_group)
+  end
+  
+  def accept
+    return unless request.post?
+    current_group.accept_membership(current_author)
+    flash[:notice] = "You are now a member of #{current_group.name}"
     redirect_to group_url(current_group)
   end
 

@@ -7,7 +7,7 @@ module Author::Social
   end
 
   def can_contribute?(group)
-    !group.members_only || memberships.exists?(:group_id => group)
+    !group.members_only || memberships.contributors.exists?(:group_id => group)
   end
   
   def can_administer?(group)

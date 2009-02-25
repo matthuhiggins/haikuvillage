@@ -36,6 +36,11 @@ class Group < ActiveRecord::Base
     Mailer.deliver_group_application(author, self)
   end
   
+  def accept_membership(author)
+    membership = memberships.find_by_author_id(author)
+    membership.update_attribute(:standing, Membership::MEMBER)
+  end
+  
   private 
     def add_membership(author, standing)
       unless memberships.exists?(:author_id => author)
