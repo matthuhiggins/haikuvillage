@@ -18,4 +18,9 @@ Rails::Initializer.run do |config|
     :session_key => "_haiku_village",
     :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
   }
+
+  config.action_mailer.default_url_options = {
+    :host => "www.mynapera.com",
+    :only_path => false
+  }
 end

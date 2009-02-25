@@ -1,3 +1,13 @@
-<% render :layout => "groups/layout" %>
-  <%=  %>
+<style>
+#join_group input {
+  margin-right: 8px;
+  padding: 1px;
+}
+
+<% render :layout => "groups/layout" do %>
+  <h3>Would you like to apply for membership?</h3>
+  <% form_tag({}, {:id => 'join_group'}) do %>
+    <%= submit_tag 'Join' %>
+    <%= link_to 'Cancel', group_url(current_group) %>
+  <% end %>
 <% end %>

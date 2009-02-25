@@ -50,7 +50,7 @@ class Mailer < ActionMailer::Base
   
   def group_application(author, group)
     configure_defaults
-    recipients  group.memberships.admins.map(&:email)
+    recipients  group.memberships.admins.map { |admin| admin.author.email }
     subject     "#{author.username} wants to join your HaikuVillage group"
     body        :author => author, :group => group
   end

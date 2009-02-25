@@ -19,6 +19,7 @@ class Groups::MembershipsController < ApplicationController
 
   def apply
     return unless request.post?
+    logger.info "************** #{current_author.inspect}"
     current_group.apply_for_membership(current_author)
     flash[:notice] = "We sent your request to the group admins"
     redirect_to group_url(current_group)
