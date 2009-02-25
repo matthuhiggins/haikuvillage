@@ -12,7 +12,7 @@
       - unless haiku.subject_name.nil?
         = " about #{link_to_subject(haiku.subject_name)}"
     - unless haiku.group.nil?
-      .info
+      .info.group-text
         contributed to
         = link_to haiku.group.name, haiku.group
   - if haiku.conversation

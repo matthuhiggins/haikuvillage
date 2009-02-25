@@ -1,5 +1,11 @@
 <% title current_group.name %>
 
+<style>
+.text_author_group .group-text {
+  display: none;
+}
+</style>
+
 <div class="group-header">
   <div class="logo">
     <%= image_tag current_group.logo.url(:large) %>

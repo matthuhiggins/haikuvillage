@@ -1,2 +1,5 @@
 .membership
-  
+  .avatar
+    - link_to author_path(membership.author.username) do
+      = image_tag(membership.author.avatar.url(:medium))
+  = link_to_author membership.author

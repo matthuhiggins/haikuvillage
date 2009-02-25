@@ -1,3 +1,10 @@
 <% render :layout => "groups/layout" do %>
-  <%= debug @authors %>
+  <div class="memberships">
+    <h3>Admins (<%= @admins.count %>)</h3>
+    <%= render :partial => 'membership', :collection => @admins %>
+  </div>
+  <div class="memberships">
+    <h3>Members (<%= @members.count %>)</h3>
+    <%= render :partial => 'membership', :collection => @members %>
+  </div>
 <% end %>

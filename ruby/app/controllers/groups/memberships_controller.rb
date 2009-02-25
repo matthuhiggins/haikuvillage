@@ -1,7 +1,8 @@
 class Groups::MembershipsController < ApplicationController
   def index
-    @group = current_group
-    @authors = @group.memberships
+    memberships = current_group.memberships
+    @admins = memberships.admins
+    @members = memberships.members
   end
 
   def create
