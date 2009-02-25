@@ -15,14 +15,11 @@
   .haiku-big
     .text
       - @single_haiku.text.each_line do |line|
-        .haiku-line= h(line)
-    %div
+        .line= h(line)
+    .info
       = "Created on #{@single_haiku.created_at.strftime("%b %d, %Y")} by"
       = link_to_author @single_haiku.author
-    %div
-      = "Favorited: #{@single_haiku.favorited_count}"
-      - unless @single_haiku.subject_name.nil?
-        = ", Subject: #{link_to_subject @single_haiku.subject_name}"
+    .info= haiku_summary_sentence(@single_haiku)
     - if current_author
       .actions
         = favorite_star(@single_haiku)

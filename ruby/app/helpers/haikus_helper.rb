@@ -55,4 +55,11 @@ module HaikusHelper
 
     text_area_tag(:text, "", options)
   end
+  
+  def haiku_summary_sentence(haiku)
+    summary = ["Favorited: #{haiku.favorited_count}"]
+    summary << "Subject: #{link_to_subject haiku.subject_name}" unless haiku.subject_name.nil?
+    summary << "Group: #{link_to haiku.group.name, haiku.group}" unless haiku.group_id.nil?
+    summary.join(', ')
+  end
 end
