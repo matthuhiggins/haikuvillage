@@ -62,19 +62,25 @@
         :bottom 2px
     a
       :display block
-  .text_and_author
+  .text_author_group
     :float left
-    :font-size 13px
-    :width 20em
-  .text
-    :color black
-    :display block
-    :line-height 120%
-    :margin 0
-    :padding-bottom 10px
-    :text-decoration none
-  .text:hover
-    :text-decoration underline
+    :width 280px
+    .text
+      :color black
+      :display block
+      :line-height 120%
+      :margin 0
+      :padding-bottom 10px
+      :text-decoration none
+      &:hover
+        :text-decoration underline
+      .line
+        :font-size 13px
+    .info
+      :color #555
+      :font-size 95%
+      :padding-bottom 2px
+      
   .actions
     :float right
     :margin-right 10px
@@ -114,7 +120,6 @@
       :margin-right 3px
 
 .author
-  :text-decoration none
   img
     :padding 1px
     :margin-right 4px

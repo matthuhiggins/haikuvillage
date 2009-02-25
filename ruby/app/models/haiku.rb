@@ -5,8 +5,6 @@ require 'haiku/tweet'
 class Haiku < ActiveRecord::Base
   include Tweet, Conversational
   
-  # default_scope :conditions => {:private => false}
-
   belongs_to :author
   belongs_to :subject
   belongs_to :group, :counter_cache => true
@@ -18,7 +16,7 @@ class Haiku < ActiveRecord::Base
     indexes :subject_name
   end
     
-  named_scope :recent, :order => 'haikus.id desc', :include => [:conversation, :author]
+  named_scope :recent, :order => 'haikus.id desc', :include => [:conversation, :author, :group]
   
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)
