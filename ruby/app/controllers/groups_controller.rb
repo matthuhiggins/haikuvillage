@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
   end
   
   def show
-    @haikus = current_group.haikus.recent(:limit => 6)
+    @haikus = current_group.haikus.recent(:limit => 4)
   end
   
   def haikus
@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
   
   def update
     if current_group.update_attributes(params[:group])
-      flash[:notice] = "Name & description saved"
+      flash[:notice] = "Group changes saved"
       redirect_to :controller => "/groups/manage", :group_id => current_group
     else
       render 'edit'

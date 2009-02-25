@@ -1,0 +1,15 @@
+<% render :layout => "groups/layout" do %>
+  <h3>Rules</h3>
+  <% form_for :group, current_group, :url => current_group, :html => {:method => :put} do |f| %>
+    <table>
+      <tr>
+        <td><%= f.check_box :members_only %></td>
+        <td><%= f.label :members_only, 'Only members can contribute to this group', :class => 'checkbox' %>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit 'Save' %></td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>

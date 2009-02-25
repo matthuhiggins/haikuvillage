@@ -1,6 +1,15 @@
 <% render :layout => 'layout' do %>
   <div class="summary">
-    <h3>Haikus</h3>
+    <em>
+      <% if current_group.members_only %>
+      Only members can contribute haikus to this group.
+      <% else %>
+      Anyone can contribute haikus to this group.
+      <% end %>
+    </em>
+  </div>
+  <div class="summary">
+    <h3>Recent haikus</h3>
     <% if @haikus.any? %>
       <%= render_haikus @haikus %>
       <%= link_to 'See more haikus', haikus_group_path(current_group) %>
@@ -15,12 +24,5 @@
   <div class="summary">
     <h3>Group description</h3>
     <p><%= h current_group.description %></p>
-    <p><em>
-      <% if current_group.members_only %>
-      Only members can contribute haikus to this group.
-      <% else %>
-      Anyone can contribute haikus to this group.
-      <% end %>
-    </em></p>
   </div>
 <% end %>
