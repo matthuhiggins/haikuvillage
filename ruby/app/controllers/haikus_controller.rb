@@ -7,9 +7,9 @@ class HaikusController < ApplicationController
       flash[:new_haiku_id] = @haiku.id
       redirect_and_flash(@haiku)
     else
-      session[:new_haiku] = params[:haiku]
-      session[:original_login_referrer] = request.referrer
-      redirect_to(register_path)
+      redirect_with_login_context do
+        session[:new_haiku] = params[:haiku]
+      end
     end
   end
 

@@ -10,9 +10,15 @@ class ApplicationController < ActionController::Base
   helper :all
         
   private
-    def create_haiku_and_redirect
-      # :anchor => dom_id(@haiku)
-      # flash[:new_haiku_id] = @haiku.id
+    def login_and_redirect(author)
+      session[:username] = author.username
+      if session[:new_haiku]
+        author.haikus.create(session[:new_haiku]) 
+        session[:new_haiku] = nil
+        redirect_to(original_login_referrer)
+      else
+        redirect_to(original_login_request)
+      end
     end
     
     def current_author

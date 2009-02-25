@@ -8,6 +8,17 @@ module HaikuController
       def original_login_referrer
         session[:original_login_referrer] || journal_path
       end
+      
+      def original_login_request
+        session[:original_login_request] || journal_path
+      end
+      
+      def redirect_with_login_context
+        session[:original_login_referrer] = request.referrer
+        session[:original_login_request] = request.request_uri
+        yield if block_given?
+        redirect_to(register_path)
+      end
 
     module ClassMethods
       # Checks if a user is logged in before performing an action
@@ -31,9 +42,9 @@ module HaikuController
   
     def check_login
       unless session[:username]
-        session[:original_login_referrer] = request.referrer
-        flash[:notice] = "You must sign in first"
-        redirect_to(register_path)
+        redirect_with_login_context do
+          flash[:notice] = "You must sign in first"
+        end
       end
     end
   end

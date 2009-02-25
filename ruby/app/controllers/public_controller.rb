@@ -26,11 +26,9 @@ class PublicController < ApplicationController
 
     if request.post?
       @author = Author.new(params[:author])
-      @author.haikus << @haiku unless @session[:new_haiku].nil?
 
       if @author.save
-        session[:username] = @author.username
-        redirect_to(original_login_referrer)
+        login_and_redirect(@author)
       end
     end
   end
