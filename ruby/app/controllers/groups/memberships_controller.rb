@@ -31,6 +31,10 @@ class Groups::MembershipsController < ApplicationController
     flash[:notice] = "You are now a member of #{current_group.name}"
     redirect_to group_url(current_group)
   end
+  
+  def members
+    
+  end
 
   private
     def current_group

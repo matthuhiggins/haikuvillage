@@ -19,9 +19,13 @@ class Groups::ManageController < ApplicationController
   def invitations
     @invitations = current_group.memberships.invitations
     if request.delete?
-      
+      invitation = current_group.memberships.invitations.find(params[:id])
+      flash[:notice] = "You rejected the group invitation"
+      redirect_to :todo
     elsif request.post?
-      
+      invitation = current_group.memberships.invitations.find(params[:id])
+      flash[:notice] = "You rejected the group invitation"
+      redirect_to :todo
     end
   end
   
