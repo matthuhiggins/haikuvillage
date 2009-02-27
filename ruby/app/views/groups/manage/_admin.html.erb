@@ -1,1 +1,5 @@
-<%= debug admin %>
+<div>
+  <%= image_tag admin.author.avatar.url(:small) %>
+  <%= link_to admin.author.username, author_url(admin.author.username) %>
+  <%= link_to 'Demote to member' %>
+</div>

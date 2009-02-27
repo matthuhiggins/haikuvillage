@@ -1,1 +1,6 @@
-<%= debug member %>
+<div>
+  <%= image_tag member.author.avatar.url(:small) %>
+  <%= link_to member.author.username, author_url(member.author.username) %>
+  <%= link_to 'Promote to admin' %>
+  <%= link_to 'Remove' %>
+</div>

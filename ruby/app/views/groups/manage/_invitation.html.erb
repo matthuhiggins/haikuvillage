@@ -1,1 +1,5 @@
-<%= debug invitation %>
+<div>
+  <%= image_tag invitation.author.avatar.url(:small) %>
+  <%= link_to invitation.author.username, author_url(invitation.author.username) %>
+  <%= link_to 'Cancel invitation' %>
+</div>

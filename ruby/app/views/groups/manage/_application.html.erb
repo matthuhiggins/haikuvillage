@@ -1,1 +1,5 @@
-<%= debug application %>
+<div>
+  <%= image_tag application.author.avatar.url(:small) %>
+  <%= link_to application.author.username, author_url(application.author.username) %>
+  <%= link_to 'Accept application' %>
+</div>
