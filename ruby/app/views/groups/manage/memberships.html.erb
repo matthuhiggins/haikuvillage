@@ -1,0 +1,13 @@
+<% render :layout => "groups/layout" do %>
+  <h3>Admins</h3>
+  <%= render :partial => 'admin', :collection => @admins %>
+
+  <h3>Members</h3>
+  <%= render :partial => 'member', :collection => @members %>
+
+  <h3>Invitations</h3>
+  <%= render :partial => 'invitation', :collection => @invitations %>
+
+  <h3>Applications</h3>
+  <%= render :partial => 'application', :collection => @applications %>
+<% end %>

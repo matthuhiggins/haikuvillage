@@ -8,6 +8,14 @@ class Groups::ManageController < ApplicationController
     redirect_to :action => 'index'
   end
   
+  def memberships
+    memberships = current_group.memberships
+    @admins = memberships.admins
+    @members = memberships.members
+    @invitations = memberships.invitations
+    @applications = memberships.applications
+  end
+  
   def admins
     @admins = current_group.memberships.admins
   end
