@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
   end
   
   def show
-    @haikus = current_group.haikus.recent(:limit => 4)
+    @haikus = current_group.haikus.recent.all(:limit => 4)
   end
   
   def haikus

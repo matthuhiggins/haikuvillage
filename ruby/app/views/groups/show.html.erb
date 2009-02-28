@@ -9,6 +9,10 @@
     </em>
   </div>
   <div class="summary">
+    <h3>Group description</h3>
+    <p><%= h current_group.description %></p>
+  </div>
+  <div class="summary">
     <h3>Recent haikus</h3>
     <% if @haikus.any? %>
       <%= render_haikus @haikus %>
@@ -19,10 +23,5 @@
         Be the first to <%= link_to "contribute", contribute_group_path(current_group) %>.
       </p>
     <% end %>
-  </div>
-  
-  <div class="summary">
-    <h3>Group description</h3>
-    <p><%= h current_group.description %></p>
   </div>
 <% end %>

@@ -1,5 +1,4 @@
-<div>
-  <%= image_tag invitation.author.avatar.url(:small) %>
-  <%= link_to invitation.author.username, author_url(invitation.author.username) %>
+<div class="membership">
+  <%= render :partial => "authors/tiny", :object => invitation.author %>
   <%= link_to 'Cancel invitation' %>
 </div>

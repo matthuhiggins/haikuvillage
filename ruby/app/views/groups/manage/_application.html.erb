@@ -1,5 +1,4 @@
-<div>
-  <%= image_tag application.author.avatar.url(:small) %>
-  <%= link_to application.author.username, author_url(application.author.username) %>
+<div class="membership">
+  <%= render :partial => "authors/tiny", :object => application.author %>
   <%= link_to 'Accept application' %>
 </div>

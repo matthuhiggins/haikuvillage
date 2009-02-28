@@ -1,6 +1,5 @@
-<div>
-  <%= image_tag member.author.avatar.url(:small) %>
-  <%= link_to member.author.username, author_url(member.author.username) %>
-  <%= link_to 'Promote to admin' %>
+<div class="membership">
+  <%= render :partial => "authors/tiny", :object => member.author %>
+  <%= link_to 'Make admin' %>
   <%= link_to 'Remove' %>
 </div>
