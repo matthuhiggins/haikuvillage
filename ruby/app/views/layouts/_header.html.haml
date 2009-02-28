@@ -7,6 +7,7 @@
         %li= link_to "Favorites", favorites_path
         %li= link_to "Subjects", :controller => '/journal', :action => 'subjects'
         %li= link_to "Friends", friends_path
+        %li= link_to "Groups", :controller => '/journal', :action => 'groups'
   .right
     - form_tag({:controller => '/haikus', :action => 'search'}, {:method => :get}) do
       %input{:type => "text", :name => "q", :value => 'Search for haikus', :autocomplete => 'off', :id => 'haiku_search'}
