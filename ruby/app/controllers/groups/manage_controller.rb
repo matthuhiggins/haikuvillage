@@ -14,6 +14,7 @@ class Groups::ManageController < ApplicationController
     @members = memberships.members
     @invitations = memberships.invitations
     @applications = memberships.applications
+    @friends = Author.all# current_author.friends.all(:order => :username)
   end
   
   def admins
@@ -35,6 +36,11 @@ class Groups::ManageController < ApplicationController
       flash[:notice] = "You rejected the group invitation"
       redirect_to :todo
     end
+  end
+  
+  def invite_members
+    flash[:notice] = "Your selected friends were asked to join the group"
+    redirect_to :action => 'memberships'
   end
   
   private

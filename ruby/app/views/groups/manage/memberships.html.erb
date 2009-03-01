@@ -1,13 +1,27 @@
 <% render :layout => "groups/layout" do %>
-  <h3>Admins</h3>
-  <%= render :partial => 'admin', :collection => @admins %>
+  <div class="admin-memberships">
+    <div class="memberships-list">
+      <% if @admins.any? %>
+        <h3>Admins</h3>
+        <%= render :partial => 'admin', :collection => @admins %>
+      <% end %>
 
-  <h3>Members</h3>
-  <%= render :partial => 'member', :collection => @members %>
+      <% if @members.any? %>
+        <h3>Members</h3>
+        <%= render :partial => 'member', :collection => @members %>
+      <% end %>
+      
+      <% if @invitations.any? %>
+        <h3>Invitations</h3>
+        <%= render :partial => 'invitation', :collection => @invitations %>
+      <% end %>
+      
+      <% if @applications.any? %>
+        <h3>Applications</h3>
+        <%= render :partial => 'application', :collection => @applications %>
+      <% end %>
+    </div>
 
-  <h3>Invitations</h3>
-  <%= render :partial => 'invitation', :collection => @invitations %>
-
-  <h3>Applications</h3>
-  <%= render :partial => 'application', :collection => @applications %>
+    <%= render :partial => 'friends', :object => @friends %>
+  </div>
 <% end %>

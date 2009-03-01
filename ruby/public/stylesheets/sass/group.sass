@@ -50,11 +50,6 @@
     :border-top 1px solid #D2DADA
     :margin-top 10px
     :padding-top 10px
-  .membership
-    :overflow hidden
-    :text-align right
-    .author
-      :float left
 
 .memberships
   :overflow hidden
@@ -62,3 +57,26 @@
   .membership
     :float left
     :text-align center
+
+.admin-memberships
+  :overflow hidden
+  .memberships-list
+    :float left
+    :width 50%
+    h3
+      :border-bottom 1px solid #ccc
+    .membership
+      :border-bottom 1px solid #ccc
+      :overflow hidden
+      :padding 2px 0
+      :text-align right
+    .author
+      :float left
+  .invite-friends
+    :float right
+    :width 33%
+    .friend-list
+      :border 1px solid #ccc
+      :max-height 180px
+      :overflow-y scroll
+      :padding 2px

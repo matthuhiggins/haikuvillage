@@ -1,0 +1,22 @@
+<div class="invite-friends">
+  <h3>Invite friends</h3>
+  <% if friends.any? %>
+    <% form_tag :action => 'invite_members' do %>
+      <div class="friend-list">
+        <ul>
+          <% friends.each do |friend| %>
+          <li>
+            <%= check_box_tag 'invitation', friend.id, false, :id => dom_id(friend) %>
+            <%= label_tag dom_id(friend), friend.username %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <%= submit_tag 'Send invitations' %>
+    <% end %>
+  <% else %>
+    <p>
+      You do not have any friends to invite.
+    </p>
+  <% end %>
+</div>
