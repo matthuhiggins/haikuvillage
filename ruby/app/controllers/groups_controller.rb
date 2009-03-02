@@ -21,7 +21,10 @@ class GroupsController < ApplicationController
   end
   
   def show
-    @haikus = current_group.haikus.recent.all(:limit => 4)
+    respnd_to do |f|
+      f.html { @haikus = current_group.haikus.recent.all(:limit => 4) }
+      f.atom { render_atom(current_group.haikus.recent.all(:limit => 10)) }
+    end
   end
   
   def haikus

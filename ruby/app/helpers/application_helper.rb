@@ -14,10 +14,6 @@ module ApplicationHelper
     content_for(:description, tag(:meta, {:name => "description", :content => full_description}))
   end
   
-  def rss(title, url)
-    content_for :head, auto_discovery_link_tag(:atom, "#{url}.atom", {:title => title})
-  end
-
   def current_category
     /^\/(\w+)/ =~ request.request_uri
     $1

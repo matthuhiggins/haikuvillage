@@ -20,12 +20,17 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @author = Author.find_by_username!(params[:id])
-    @haikus = @author.haikus.recent.paginate({
-      :page      => params[:page],
-      :per_page  => 10,
-      :total_entries => @author.haikus_count_total
-    })
+    respond_to do |f|
+      f.html do
+        @author = Author.find_by_username!(params[:id])
+        @haikus = @author.haikus.recent.paginate({
+          :page      => params[:page],
+          :per_page  => 10,
+          :total_entries => @author.haikus_count_total
+        })
+      end
+      f.atom { render_atom(Author.find_by_username!(params[:id]).recent.all(:limit => 10)) }
+    end
   end
   
   def invite

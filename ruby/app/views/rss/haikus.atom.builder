@@ -15,7 +15,7 @@ atom_feed do |feed|
         end
         
         byline = haiku.author.username
-        byline += " about #{haiku.subject_name}" unless haiku.subject_name.nil?
+        byline += " about #{h haiku.subject_name}" unless haiku.subject_name.nil?
         xhtml.i byline
       end
       entry.author do |author|

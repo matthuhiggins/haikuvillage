@@ -14,7 +14,11 @@ class HaikusController < ApplicationController
   end
 
   def index
-    @haikus = Haiku.recent.paginate(:page => params[:page], :per_page => 10)
+    
+    respond_to do |f|
+      f.html { @haikus = Haiku.recent.paginate(:page => params[:page], :per_page => 10) }
+      f.atom { render_atom(Haiku.recent.all(:limit => 10)) }
+    end
   end
   
   def search
