@@ -3,9 +3,9 @@ haiku_poets_club:
   description: "Only the best poets can join our cool group. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   memberships_count: 1
   haikus_count: 1
-  members_only: true
+  invite_only: true
 seattle_singles:
   name: Seattle Singles
   description: A place to meet other single haiku authors
   memberships_count: 1
-  members_only: false
+  invite_only: false

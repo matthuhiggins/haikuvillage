@@ -13,10 +13,6 @@ class Group < ActiveRecord::Base
     indexes :name
     indexes :description
   end
-
-  def can_contribute(author)
-    !members_only || memberships.include?(:author_id => author)
-  end
   
   def add_author(author)
     add_membership author, Membership::MEMBER

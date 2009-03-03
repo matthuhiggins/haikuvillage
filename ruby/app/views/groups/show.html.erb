@@ -1,14 +1,5 @@
 <% render :layout => 'layout' do %>
   <div class="summary">
-    <em>
-      <% if current_group.members_only %>
-      Only members can contribute haikus to this group.
-      <% else %>
-      Anyone can contribute haikus to this group.
-      <% end %>
-    </em>
-  </div>
-  <div class="summary">
     <h3>Group description</h3>
     <p><%= h current_group.description %></p>
   </div>

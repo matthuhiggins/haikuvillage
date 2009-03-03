@@ -14,8 +14,8 @@
       <td><%= f.error_message_on :description, :prepend_text => 'Description ' %></td>
     </tr>
     <tr>
-      <td><%= f.check_box :members_only %></td>
-      <td><%= f.label :members_only, 'Only members can contribute to this group', :class => 'checkbox' %>
+      <td><%= f.check_box :invite_only %></td>
+      <td><%= f.label :invite_only, 'Only invited authors can join this group', :class => 'checkbox' %>
     </tr>
     <tr>
       <td></td>

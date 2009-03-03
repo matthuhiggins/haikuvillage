@@ -3,8 +3,8 @@
   <% form_for :group, current_group, :url => current_group, :html => {:method => :put} do |f| %>
     <table>
       <tr>
-        <td><%= f.check_box :members_only %></td>
-        <td><%= f.label :members_only, 'Only members can contribute to this group', :class => 'checkbox' %>
+        <td><%= f.check_box :invite_only %></td>
+        <td><%= f.label :invite_only, 'Only invited authors can join this group', :class => 'checkbox' %>
       </tr>
       <tr>
         <td></td>

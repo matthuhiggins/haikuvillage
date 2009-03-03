@@ -22,13 +22,8 @@
       <p>Upload an icon for your group.</p>
     </li>
     <li>
-      <% if current_group.members_only %>
-        <%= link_to "Manage members", {:action => 'memberships'} %>
-        <p>Change who can contribute and administrate this group.</p>
-      <% else %>
-        <%= link_to "Manage admins", {:action => 'memberships'} %>
-        <p>Change who can administrate this group</p>
-      <% end %>
+      <%= link_to "Manage members", {:action => 'memberships'} %>
+      <p>Change who can contribute and administrate this group.</p>
     </li>
   </ul>
 <% end %>
