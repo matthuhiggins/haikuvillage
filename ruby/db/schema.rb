@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
   create_table "groups", :force => true do |t|
     t.string   "name",                             :null => false
     t.text     "description",                      :null => false
-    t.boolean  "members_only",                     :null => false
+    t.boolean  "invite_only",                      :null => false
     t.integer  "haikus_count",      :default => 0, :null => false
     t.integer  "memberships_count", :default => 0, :null => false
     t.string   "logo_file_name"

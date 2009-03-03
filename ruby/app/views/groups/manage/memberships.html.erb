@@ -3,22 +3,30 @@
     <div class="memberships-list">
       <% if @admins.any? %>
         <h3>Admins</h3>
-        <%= render :partial => 'admin', :collection => @admins %>
+        <div class="membership-list">
+          <%= render :partial => 'admin', :collection => @admins %>
+        </div>
       <% end %>
 
       <% if @members.any? %>
         <h3>Members</h3>
-        <%= render :partial => 'member', :collection => @members %>
+        <div class="membership-list">
+          <%= render :partial => 'member', :collection => @members %>
+        </div>
       <% end %>
       
       <% if @invitations.any? %>
         <h3>Invitations</h3>
-        <%= render :partial => 'invitation', :collection => @invitations %>
+        <div class="membership-list">
+          <%= render :partial => 'invitation', :collection => @invitations %>
+        </div>
       <% end %>
       
       <% if @applications.any? %>
         <h3>Applications</h3>
-        <%= render :partial => 'application', :collection => @applications %>
+        <div class="membership-list">
+          <%= render :partial => 'application', :collection => @applications %>
+        </div>
       <% end %>
     </div>
 
