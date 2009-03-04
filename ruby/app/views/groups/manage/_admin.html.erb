@@ -1,6 +1,7 @@
 <div class="membership">
   <%= render :partial => "authors/tiny", :object => admin.author %>
-  <%= link_to 'Remove admin',
+  <%= link_to_unless admin.author == current_author,
+    'Remove admin',
     {:group_id => current_group, :action => 'admin', :id => admin},
     {:method => :delete} %>
 </div>

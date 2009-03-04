@@ -16,20 +16,20 @@ class Groups::ManageController < ApplicationController
     @applications = memberships.applications
     @friends = current_author.friends.all(:order => :username)
   end
-  
+
   def cancel
     membership = current_group.memberships.destroy(params[:id])
     flash[:notice] = "Cancelled invitation for #{membership.author.username}"
     redirect_to :action => 'memberships'
   end
-  
+
   def accept
     membership = current_group.memberships.find(params[:id])
     current_group.accept_application(membership)
     flash[:notice] = "Accepted application from #{membership.author.username}"
     redirect_to :action => 'memberships'
   end
-  
+
   def admin
     membership = current_group.memberships.find(params[:id])
     if request.post?
@@ -39,6 +39,12 @@ class Groups::ManageController < ApplicationController
       membership.update_attribute(:standing, Membership::MEMBER)
       flash[:notice] = "Removed #{membership.author.username} from admins"
     end
+    redirect_to :action => 'memberships'
+  end
+  
+  def remove
+    membership = current_group.memberships.destroy(params[:id])
+    flash[:notice] = "Removed #{membership.author.username}"
     redirect_to :action => 'memberships'
   end
     
@@ -53,12 +59,6 @@ class Groups::ManageController < ApplicationController
       flash[:notice] = "You rejected the group invitation"
       redirect_to :todo
     end
-  end
-  
-  def remove
-    membership = current_group.memberships.destroy(params[:id])
-    flash[:notice] = "Removed #{membership.author.username}"
-    redirect_to :action => 'memberships'
   end
   
   def invite_members

@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
                     :controller   => "groups/memberships",
                     :name_prefix  => nil,
                     :collection   => {:apply => :any, :accept => :any, :join => :any}
-    group.connect 'manage/:action', :controller => "groups/manage"
+    group.connect 'manage/:action/:id', :controller => "groups/manage"
   end
 
   map.resource :session
