@@ -2,10 +2,6 @@ jane_admins_poet_club_membership:
   group: haiku_poets_club
   author: jane
   standing: <%= Membership::ADMIN %>
-joes_seattle_singles_memberships:
-  group: seattle_singles
-  author: joe
-  standing: <%= Membership::MEMBER %>
 joe_applied_for_poet_club:
   group: haiku_poets_club
   author: joe
@@ -18,3 +14,7 @@ billy_member_of_poet_club:
   group: haiku_poets_club
   author: billy
   standing: <%= Membership::MEMBER %>
+joes_seattle_singles_memberships:
+  group: seattle_singles
+  author: joe
+  standing: <%= Membership::ADMIN %>

@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
     indexes :description
   end
   
-  def add_author(author)
+  def add_member(author)
     add_membership author, Membership::MEMBER
   end
   
@@ -39,7 +39,9 @@ class Group < ActiveRecord::Base
   
   private 
     def add_membership(author, standing)
-      unless memberships.exists?(:author_id => author)
+      if membership = memberships.find_by_author_id(author)
+        membership.update_attribute(:standing, standing)
+      else
         membership = Membership.new(:group => self, :author => author)
         membership.standing = standing
         memberships << membership

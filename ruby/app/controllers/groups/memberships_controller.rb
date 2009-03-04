@@ -19,6 +19,7 @@ class Groups::MembershipsController < ApplicationController
   end
 
   def apply
+    raise StandardError unless current_group.invite_only
     return unless request.post?
     current_group.apply_for_membership(current_author)
     flash[:notice] = "We sent your request to the group admins"
@@ -32,8 +33,12 @@ class Groups::MembershipsController < ApplicationController
     redirect_to group_url(current_group)
   end
   
-  def members
-    
+  def join
+    raise StandardError if current_group.invite_only
+    return unless request.post?
+    current_group.add_member(current_author)
+    flash[:notice] = "You are now a member of #{current_group.name}"
+    redirect_to group_url(current_group)
   end
 
   private
