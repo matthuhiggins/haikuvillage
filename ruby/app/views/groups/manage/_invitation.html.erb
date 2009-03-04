@@ -1,4 +1,6 @@
 <div class="membership">
   <%= render :partial => "authors/tiny", :object => invitation.author %>
-  <%= link_to 'Cancel invitation' %>
+  <%= link_to 'Cancel',
+    {:group_id => current_group, :action => 'cancel', :id => invitation},
+    {:method => :delete} %>
 </div>

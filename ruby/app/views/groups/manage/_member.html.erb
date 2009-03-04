@@ -1,5 +1,10 @@
 <div class="membership">
   <%= render :partial => "authors/tiny", :object => member.author %>
-  <%= link_to 'Make admin' %>
-  <%= link_to 'Remove' %>
+  <%= link_to 'Make admin',
+    {:group_id => current_group, :action => 'admin', :id => member},
+    {:method => :post} %>
+  |
+  <%= link_to 'Remove',
+    {:group_id => current_group, :action => 'remove', :id => member},
+    {:method => :delete} %>
 </div>

@@ -22,14 +22,14 @@ class Membership < ActiveRecord::Base
   private
     def update_counter_cache
       if author_lost_contribution_standing?
-        group.decrement(:memberships_count)
+        group.decrement!(:memberships_count)
       elsif author_gained_contribution_standing?
-        group.increment(:memberships_count)
+        group.increment!(:memberships_count)
       end
     end
     
     def decrement_counter_cache
-      group.decrement(:memberships_count) if CONTRIBUTORS.include?(standing)
+      group.decrement!(:memberships_count) if CONTRIBUTORS.include?(standing)
     end
     
     def author_lost_contribution_standing?

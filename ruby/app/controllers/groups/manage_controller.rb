@@ -14,17 +14,34 @@ class Groups::ManageController < ApplicationController
     @members = memberships.members
     @invitations = memberships.invitations
     @applications = memberships.applications
-    @friends = Author.all# current_author.friends.all(:order => :username)
+    @friends = current_author.friends.all(:order => :username)
   end
   
-  def admins
-    @admins = current_group.memberships.admins
+  def cancel
+    membership = current_group.memberships.destroy(params[:id])
+    flash[:notice] = "Cancelled invitation for #{membership.author.username}"
+    redirect_to :action => 'memberships'
   end
   
-  def applications
-    @applications = current_group.memberships.applications
+  def accept
+    membership = current_group.memberships.find(params[:id])
+    current_group.accept_application(membership)
+    flash[:notice] = "Accepted application from #{membership.author.username}"
+    redirect_to :action => 'memberships'
   end
   
+  def admin
+    membership = current_group.memberships.find(params[:id])
+    if request.post?
+      membership.update_attribute(:standing, Membership::ADMIN)
+      flash[:notice] = "Made #{membership.author.username} an admin"
+    elsif request.delete?
+      membership.update_attribute(:standing, Membership::MEMBER)
+      flash[:notice] = "Removed #{membership.author.username} from admins"
+    end
+    redirect_to :action => 'memberships'
+  end
+    
   def invitations
     @invitations = current_group.memberships.invitations
     if request.delete?
@@ -36,6 +53,12 @@ class Groups::ManageController < ApplicationController
       flash[:notice] = "You rejected the group invitation"
       redirect_to :todo
     end
+  end
+  
+  def remove
+    membership = current_group.memberships.destroy(params[:id])
+    flash[:notice] = "Removed #{membership.author.username}"
+    redirect_to :action => 'memberships'
   end
   
   def invite_members

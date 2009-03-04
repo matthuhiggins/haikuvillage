@@ -1,4 +1,6 @@
 <div class="membership">
   <%= render :partial => "authors/tiny", :object => application.author %>
-  <%= link_to 'Accept application' %>
+  <%= link_to 'Accept',
+    {:group_id => current_group, :action => 'accept', :id => application},
+    {:method => :post} %>
 </div>

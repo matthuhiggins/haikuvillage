@@ -32,9 +32,13 @@ class Group < ActiveRecord::Base
     Mailer.deliver_group_application(author, self)
   end
   
-  def accept_membership(author)
+  def accept_invitation(author)
     membership = memberships.find_by_author_id(author)
     membership.update_attribute(:standing, Membership::MEMBER)
+  end
+  
+  def accept_application(application)
+    application.update_attribute(:standing, Membership::MEMBER)
   end
   
   private 

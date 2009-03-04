@@ -28,7 +28,7 @@ class Groups::MembershipsController < ApplicationController
   
   def accept
     return unless request.post?
-    current_group.accept_membership(current_author)
+    current_group.accept_invitation(current_author)
     flash[:notice] = "You are now a member of #{current_group.name}"
     redirect_to group_url(current_group)
   end
