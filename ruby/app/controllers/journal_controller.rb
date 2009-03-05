@@ -21,8 +21,4 @@ class JournalController < ApplicationController
       @subjects = current_author.subjects
     end
   end
-  
-  def groups
-    @memberships = current_author.memberships.all(:include => :group)
-  end
 end

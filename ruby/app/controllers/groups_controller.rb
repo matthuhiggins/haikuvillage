@@ -1,8 +1,9 @@
 class GroupsController < ApplicationController
-  login_filter :only => [:create, :new, :edit, :update]
+  login_filter :only => [:index, :create, :new, :edit, :update]
 
   def index
-    @groups = Group.paginate(:page => params[:page], :per_page => 20)
+    @memberships = current_author.memberships.paginate(
+      :include => :group, :page => params[:page], :per_page => 20)
   end
 
   def new
@@ -42,6 +43,10 @@ class GroupsController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def search
+    @groups = Group.search(params[:q], :page => params[:page], :per_page => 10)
   end
   
   private
