@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
     group.resources :memberships,
                     :controller   => "groups/memberships",
                     :name_prefix  => nil,
-                    :collection   => {:apply => :any, :accept => :any, :join => :any}
+                    :collection   => {:apply => :any, :accept => :any, :join => :any, :reject => :any}
     group.connect 'manage/:action/:id', :controller => "groups/manage"
   end
 

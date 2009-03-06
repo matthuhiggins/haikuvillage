@@ -25,9 +25,15 @@ class Groups::MembershipsController < ApplicationController
   
   def accept
     redirect_to(group_path(current_group)) unless current_author.invited?(current_group)
-    return unless request.post?
     current_group.add_member(current_author)
     flash[:notice] = "You are now a member of #{current_group.name}"
+    redirect_to group_url(current_group)
+  end
+  
+  def reject
+    redirect_to(group_path(current_group)) unless current_author.invited?(current_group)
+    current_group.reject_invitation(current_author)
+    flash[:notice] = "You rejected the invitation from #{current_group.name}"
     redirect_to group_url(current_group)
   end
   

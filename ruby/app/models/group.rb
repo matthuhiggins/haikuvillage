@@ -27,6 +27,10 @@ class Group < ActiveRecord::Base
     Mailer.deliver_group_invitation(author, self)
   end
   
+  def reject_invitation(author)
+    memberships.find_by_author_id(author).destroy
+  end
+  
   def apply_for_membership(author)
     if add_membership(author, Membership::APPLIED)
       Mailer.deliver_group_application(author, self)
@@ -36,7 +40,7 @@ class Group < ActiveRecord::Base
   def accept_application(application)
     application.update_attribute(:standing, Membership::MEMBER)
   end
-  
+    
   private
     # Returns true if anything changed
     def add_membership(author, standing)

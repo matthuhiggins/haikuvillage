@@ -1,13 +1,15 @@
-<style>
-#apply_group input {
-  margin-right: 8px;
-  padding: 1px;
-}
-
 <% render :layout => "groups/layout" do %>
-  <h3>Would you like to apply for membership?</h3>
-  <% form_tag({}, {:id => 'apply_group'}) do %>
-    <%= submit_tag 'Apply' %>
-    <%= link_to 'Cancel', group_url(current_group) %>
+  <% if current_author.invited?(current_group) %>
+    <h3>Accept the invitation for this group?</h3>
+    <% form_tag({:action => 'accept'}, {:id => 'apply_group'}) do %>
+      <%= submit_tag 'Accept' %>
+      <%= link_to 'Reject', reject_memberships_path(current_group), {:method => :delete} %>
+    <% end %>
+  <% else %>
+    <h3>Would you like to apply for membership?</h3>
+    <% form_tag({}, {:id => 'apply_group'}) do %>
+      <%= submit_tag 'Apply' %>
+      <%= link_to 'Cancel', group_url(current_group) %>
+    <% end %>
   <% end %>
 <% end %>
