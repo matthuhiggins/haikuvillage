@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   }
 
   config.action_mailer.default_url_options = {
-    :host => "www.mynapera.com",
+    :host => "www.haikuvillage.com",
     :only_path => false
   }
 end
