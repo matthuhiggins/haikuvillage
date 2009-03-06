@@ -14,7 +14,38 @@ billy_member_of_poet_club:
   group: haiku_poets_club
   author: billy
   standing: <%= Membership::MEMBER %>
-joes_seattle_singles_memberships:
+
+jane_invited_to_seattle_singles:
   group: seattle_singles
+  author: jane
+  standing: <%= Membership::INVITED %>
+joe_admins_seattle_singles:
+  group: seattle_singles
+  author: joe
+  standing: <%= Membership::ADMIN %>
+  
+jane_applied_for_locats:
+  group: lolcat_haikus
+  author: jane
+  standing: <%= Membership::APPLIED %>
+fredrick_admins_lolcats:
+  group: lolcat_haikus
+  author: fredrick
+  standing: <%= Membership::ADMIN %>
+  
+jane_member_of_haiku_for_nerds:
+  group: haiku_for_nerds
+  author: jane
+  standing: <%= Membership::MEMBER %>
+billy_member_of_haiku_for_nerds:
+  group: haiku_for_nerds
+  author: billy
+  standing: <%= Membership::MEMBER %>
+fredrick_member_of_haiku_for_nerds:
+  group: haiku_for_nerds
+  author: fredrick
+  standing: <%= Membership::MEMBER %>
+joe_admins_haiku_for_nerds:
+  group: haiku_for_nerds
   author: joe
   standing: <%= Membership::ADMIN %>

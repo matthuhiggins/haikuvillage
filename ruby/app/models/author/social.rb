@@ -21,7 +21,11 @@ module Author::Social
   def outsiders(group)
     friends.all(
       :order => :username,
-      :conditions => ['authors.id not in (select author_id from memberships where group_id = ?)', group]
+      :conditions => ['authors''.id not in (select author_id from memberships where group_id = ?)', group]
     )
+  end
+  
+  def accept_invitation(invitation)
+    invitation.update_attribute(:standing, Membership::MEMBER)
   end
 end

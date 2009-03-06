@@ -7,15 +7,53 @@
   <%= link_to 'Search groups', search_groups_path %>
 </div>
 
-<h3>Groups you administrate</h3>
+<div class="your-groups">
+  <% if @administrates.any? %>
+    <h3>Groups you administer (<%= @administrates.size %>)</h3>
+    <ul>
+      <% @administrates.each do |admin| %>
+        <li><%= link_to admin.group.name, admin.group %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%= debug @administrates %>
+  <% if @memberships.any? %>
+    <h3>Memberships (<%= @memberships.size %>)</h3>
+    <ul>
+      <% @memberships.each do |member| %>
+        <li>
+          <%= link_to member.group.name, member.group %>
+          (<%= link_to 'Leave group', {:controller => 'journal', :action => 'leave_group', :id => member}, {:method => :delete} %>)
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<h3>Memberships</h3>
-<%= debug @memberships %>
+  <% if @invitations.any? %>
+    <h3>Invitations (<%= @invitations.size %>)</h3>
+    <ul>
+      <% @invitations.each do |invitation| %>
+        <li>
+          <%= link_to invitation.group.name, invitation.group %>
+          (
+          <%= link_to 'Accept', {:controller => 'journal', :action => 'accept_invitation', :id => invitation}, {:method => :post} %>
+          |
+          <%= link_to 'Reject', {:controller => 'journal', :action => 'reject_invitation', :id => invitation}, {:method => :delete} %>
+          )
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<h3>Invitations</h3>
-<%= debug @invitations %>
-
-<h3>Applications</h3>
-<%= debug @applications %>
+  <% if @applications.any? %>
+    <h3>Applications (<%= @applications.size %>)</h3>
+        <ul>
+      <% @applications.each do |applications| %>
+        <li>
+          <%= link_to applications.group.name, applications.group %>
+          (<%= link_to 'Cancel', {:controller => 'journal', :action => 'cancel_application', :id => applications}, {:method => :delete} %>)
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
