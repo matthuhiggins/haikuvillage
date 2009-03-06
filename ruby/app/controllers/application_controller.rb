@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   extend ActiveSupport::Memoizable
   include Concerns::TwitterError, Concerns::Rss
-  # include HoptoadNotifier::Catcher
+  include HoptoadNotifier::Catcher
 
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   exempt_from_layout 'builder'

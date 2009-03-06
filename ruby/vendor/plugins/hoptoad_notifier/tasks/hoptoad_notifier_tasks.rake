@@ -4,11 +4,11 @@ namespace :hoptoad do
     require 'action_controller/test_process'
     # require 'application'
 
-    request = ActionController::TestRequest.new({
-      'action'     => 'verify',
-      'controller' => 'hoptoad_verification',
-      '_method'    => 'GET'
-    })
+    request = ActionController::TestRequest.new#( {
+    #       'action'     => 'verify',
+    #       'controller' => 'hoptoad_verification',
+    #       '_method'    => 'GET'
+    #     })
 
     response = ActionController::TestResponse.new
 
