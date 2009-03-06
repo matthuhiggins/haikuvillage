@@ -3,4 +3,8 @@
   <%= link_to 'Accept',
     {:group_id => current_group, :action => 'accept', :id => application},
     {:method => :post} %>
+  |
+  <%= link_to 'Reject',
+    {:group_id => current_group, :action => 'reject', :id => application},
+    {:method => :delete} %>
 </div>

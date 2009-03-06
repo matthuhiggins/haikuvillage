@@ -22,6 +22,12 @@ class Groups::ManageController < ApplicationController
     flash[:notice] = "Cancelled invitation for #{membership.author.username}"
     redirect_to :action => 'memberships'
   end
+  
+  def reject
+    membership = current_group.memberships.destroy(params[:id])
+    flash[:notice] = "Rejected application by #{membership.author.username}"
+    redirect_to :action => 'memberships'
+  end
 
   def accept
     membership = current_group.memberships.find(params[:id])
