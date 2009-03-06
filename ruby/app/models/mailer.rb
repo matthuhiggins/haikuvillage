@@ -44,7 +44,7 @@ class Mailer < ActionMailer::Base
   def group_invitation(author, group)
     configure_defaults
     recipients  author.email
-    subject     "You are invited to join the HaikuVillage group #{h group.name}"
+    subject     "You are invited to join the HaikuVillage group #{group.name}"
     body        :author => author, :group => group
   end
   

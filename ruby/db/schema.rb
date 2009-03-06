@@ -139,8 +139,8 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.datetime "updated_at"
   end
 
-  add_index "memberships", ["author_id"], :name => "memberships_author_id_fk"
-  add_index "memberships", ["group_id"], :name => "memberships_group_id_fk"
+  add_index "memberships", ["author_id", "group_id", "standing"], :name => "index_memberships_on_author_id_and_group_id_and_standing"
+  add_index "memberships", ["group_id", "author_id"], :name => "index_memberships_on_group_id_and_author_id", :unique => true
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id",    :null => false

@@ -17,6 +17,8 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
       t.integer :standing, :null => false
       t.timestamps
     end
+    add_index :memberships, [:author_id, :group_id, :standing]
+    add_index :memberships, [:group_id, :author_id], :unique => true
     add_foreign_key :memberships, :author_id, :authors
     add_foreign_key :memberships, :group_id, :groups
     

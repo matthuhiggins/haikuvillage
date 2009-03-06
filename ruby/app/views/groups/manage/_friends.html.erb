@@ -6,7 +6,7 @@
         <ul>
           <% friends.each do |friend| %>
           <li>
-            <%= check_box_tag 'invitation', friend.id, false, :id => dom_id(friend) %>
+            <%= check_box_tag 'invitations[]', friend.id, false, :id => dom_id(friend) %>
             <%= label_tag dom_id(friend), friend.username %>
           </li>
           <% end %>

@@ -17,4 +17,11 @@ module Author::Social
   def administrator?(group)
     memberships.admins.exists?(:group_id => group)
   end
+  
+  def outsiders(group)
+    friends.all(
+      :order => :username,
+      :conditions => ['authors.id not in (select author_id from memberships where group_id = ?)', group]
+    )
+  end
 end

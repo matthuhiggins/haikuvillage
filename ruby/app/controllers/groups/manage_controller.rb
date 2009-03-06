@@ -14,7 +14,7 @@ class Groups::ManageController < ApplicationController
     @members = memberships.members
     @invitations = memberships.invitations
     @applications = memberships.applications
-    @friends = current_author.friends.all(:order => :username)
+    @friends = current_author.outsiders(current_group)
   end
 
   def cancel
@@ -47,7 +47,7 @@ class Groups::ManageController < ApplicationController
     flash[:notice] = "Removed #{membership.author.username}"
     redirect_to :action => 'memberships'
   end
-    
+
   def invitations
     @invitations = current_group.memberships.invitations
     if request.delete?
@@ -62,6 +62,9 @@ class Groups::ManageController < ApplicationController
   end
   
   def invite_members
+    (params[:invitations] || []).each do |invitation_id|
+      current_group.invite_author(current_author.friends.find(invitation_id))
+    end
     flash[:notice] = "Your selected friends were asked to join the group"
     redirect_to :action => 'memberships'
   end

@@ -18,3 +18,11 @@ joe_and_jane:
   author: joe
   friend: jane
   mutual: true
+jane_and_billy:
+  author: jane
+  friend: billy
+  mutual: true
+billy_and_jane:
+  author: billy
+  friend: jane
+  mutual: true
