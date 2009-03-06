@@ -1,6 +1,6 @@
-<%- rss_discovery @author.username, author_path(@author.username) %>
+<%- rss_discovery "#{@author.username}'s haiku", author_path(@author.username) %>
 <%- title "#{@author.username}'s Journal" %>
-<% description "Haikus by #{@author.username}" %>
+<% description "Haiku by #{@author.username}" %>
 
 <div class="author-header">
   <div class="avatar">
