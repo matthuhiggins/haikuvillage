@@ -6,11 +6,15 @@ module Author::Social
     end
   end
 
-  def can_contribute?(group)
+  def contributor?(group)
     memberships.contributors.exists?(:group_id => group)
   end
   
-  def can_administer?(group)
+  def invited?(group)
+    memberships.invitations.exists?(:group_id => group)
+  end
+  
+  def administrator?(group)
     memberships.admins.exists?(:group_id => group)
   end
 end

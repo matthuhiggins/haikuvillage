@@ -7,6 +7,14 @@
   <%= link_to 'Search groups', search_groups_path %>
 </div>
 
-<%= render :partial => "group", :collection => @groups %>
+<h3>Groups you administrate</h3>
+<%= debug @administrates %>
 
-<%= will_paginate @groups, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
+<h3>Memberships</h3>
+<%= debug @memberships %>
+
+<h3>Invitations</h3>
+<%= debug @invitations %>
+
+<h3>Applications</h3>
+<%= debug @applications %>

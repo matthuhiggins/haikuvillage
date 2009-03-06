@@ -68,7 +68,7 @@ class Groups::ManageController < ApplicationController
   
   private
     def check_admin
-      unless current_author.try(:can_administer?, current_group)
+      unless current_author.try(:administrator?, current_group)
         flash[:notice] = "You cannot administer this group"
         redirect_to group_path(current_group)
       end

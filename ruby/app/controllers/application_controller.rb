@@ -1,8 +1,6 @@
-require 'concerns/twitter'
-
 class ApplicationController < ActionController::Base
   extend ActiveSupport::Memoizable
-  include TwitterController
+  include Concerns::TwitterError, Concerns::Rss
 
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
   exempt_from_layout 'builder'

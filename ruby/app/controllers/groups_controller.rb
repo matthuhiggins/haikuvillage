@@ -2,8 +2,11 @@ class GroupsController < ApplicationController
   login_filter :only => [:index, :create, :new, :edit, :update]
 
   def index
-    @memberships = current_author.memberships.paginate(
-      :include => :group, :page => params[:page], :per_page => 20)
+    memberships = current_author.memberships
+    @administrates = memberships.admins.all(:include => :group)
+    @memberships = memberships.members.all(:include => :group)
+    @invitations = memberships.invitations.all(:include => :group)
+    @applications = memberships.applications.all(:include => :group)
   end
 
   def new

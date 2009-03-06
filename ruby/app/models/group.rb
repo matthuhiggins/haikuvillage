@@ -28,27 +28,26 @@ class Group < ActiveRecord::Base
   end
   
   def apply_for_membership(author)
-    add_membership author, Membership::APPLIED
-    Mailer.deliver_group_application(author, self)
-  end
-  
-  def accept_invitation(author)
-    membership = memberships.find_by_author_id(author)
-    membership.update_attribute(:standing, Membership::MEMBER)
+    if add_membership(author, Membership::APPLIED)
+      Mailer.deliver_group_application(author, self)
+    end
   end
   
   def accept_application(application)
     application.update_attribute(:standing, Membership::MEMBER)
   end
   
-  private 
+  private
+    # Returns true if anything changed
     def add_membership(author, standing)
       if membership = memberships.find_by_author_id(author)
         membership.update_attribute(:standing, standing)
+        membership.changed?
       else
         membership = Membership.new(:group => self, :author => author)
         membership.standing = standing
         memberships << membership
+        true
       end
     end
 end
