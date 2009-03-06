@@ -38,7 +38,6 @@ ActionController::Routing::Routes.draw do |map|
   map.google_gadget 'google_gadget', :controller => "public", :action => "google_gadget", :format => "xml"
   map.sitemap 'sitemap', :controller => 'public', :action => "sitemap", :format => "xml"
   map.connect 'google08da94d9e67eee9b.html', :controller => 'public', :action => "about"
-  map.connect 'logged_exceptions/:action/:id', :controller => 'logged_exceptions'
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
