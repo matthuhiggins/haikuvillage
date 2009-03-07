@@ -11,7 +11,7 @@ atom_feed do |feed|
         end
         
         haiku.text.each_line do |line|
-          xhtml.p(line, :style => "font-size: 16pt")
+          xhtml.p(line, :style => "font-size: 15px; margin: 0; padding: 4px")
         end
         
         byline = haiku.author.username
