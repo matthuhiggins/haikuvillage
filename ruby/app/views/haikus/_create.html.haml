@@ -1,5 +1,5 @@
-- form_for :haiku, :url => {:controller => 'haikus', :action => 'create'} do |form|
-  #haiku_form_internals
+- form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
+  .internals
     #preview{:class => 'empty'}
       %div= "Start typing a haiku below and your"
       %div= "syllables will be counted here."

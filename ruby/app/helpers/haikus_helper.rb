@@ -28,7 +28,8 @@ module HaikusHelper
   
   def enter_conversation_link(haiku)
     unless haiku.conversing?
-      content_tag(:div, link_to("Respond", haiku), :class => "action")
+      link_tag = link_to("Respond", haiku, :class => "icon reply")
+      content_tag(:div, link_tag, :class => "action")
     else
       ""
     end
@@ -36,13 +37,14 @@ module HaikusHelper
   
   def destroy_haiku_link(haiku)
     if haiku.author == current_author
-      image = image_tag("icons/trash.png", :alt => "Delete")
-      content_tag(:div, link_to(image, haiku, :method => :delete), :class => "action")
+      link_tag = link_to('Delete', haiku, :method => :delete, :class => 'icon trash')
+      content_tag(:div, link_tag, :class => "action")
     end
   end
   
   def email_haiku_link(haiku)
-    content_tag(:div, link_to("Share", email_haiku_path(haiku)), :class => "action")
+    link_tag = link_to("Email", email_haiku_path(haiku), :class => "icon email")
+    content_tag(:div, link_tag, :class => "action")
   end
   
   def haiku_text_tag(options = {})

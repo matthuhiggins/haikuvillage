@@ -1,7 +1,7 @@
 - link_to conversation, :class => 'conversation' do
   .time
     = conversation.latest_haiku_update.strftime("%d %b %y")
-  .inspiration_or_summary
+  .context
     - if conversation.inspiration
       = image_tag conversation.inspiration.small
     - else

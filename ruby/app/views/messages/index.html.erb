@@ -4,7 +4,7 @@
 <div class="messages">
   <% if @friends.any? %>
     <% form_for :message, :html => {:style => "margin-bottom: 10px; overflow: hidden"} do |form| %>
-      <div id="haiku_form_internals">
+      <div class="internal">
         <div id="preview", class="empty">
           <div>Start typing a haiku below and your</div>
           <div>syllables will be counted here.</div>

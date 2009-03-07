@@ -3,8 +3,12 @@
 !darkgrey= #555555
 !lightgrey= #999999
 
-#haiku_form_internals
-  :width 406px
+#haiku_form
+  :background-color #F2F2F2
+  :overflow hidden
+  :padding 10px
+  .internals
+    :width 390px
   .input_row
     :margin-top 10px
     :overflow hidden
@@ -15,16 +19,15 @@
       :width 63px
     textarea
       :float left
-      :width 329px
+      :width 309px
     input[type="text"]
       :float left
-      :width 329px
+      :width 309px
     textarea.empty
       :color= !lightgrey
   .submit_row
     :text-align right
   #preview
-    :background-color white
     :margin-left 71px
     :height 40px
     :color= !darkgrey
@@ -86,8 +89,7 @@
     :visibility hidden
     div.action
       :display block
-      :margin-bottom 2px
-      :text-align right
+      :margin-bottom 5px
 
 .haiku:hover .actions
   :visibility visible
