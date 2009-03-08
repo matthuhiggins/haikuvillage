@@ -3,7 +3,7 @@
 
 <div class="messages">
   <% if @friends.any? %>
-    <% form_for :message, :html => {:style => "margin-bottom: 10px; overflow: hidden"} do |form| %>
+    <% form_for :message, :html => {:style => "margin-bottom: 10px;", :id => 'haiku_form'} do |form| %>
       <div class="internal">
         <div id="preview", class="empty">
           <div>Start typing a haiku below and your</div>
