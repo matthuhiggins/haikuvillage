@@ -12,7 +12,6 @@ module MenuHelper
     yield(linker)
     concat(linker.generate)
     concat("</ul>")
-    concat(content_tag(:div, '', :class => "submenu-border"))
   end
   
   class SubMenuLinker
