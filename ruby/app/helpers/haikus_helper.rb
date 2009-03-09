@@ -7,6 +7,7 @@ module HaikusHelper
   #   conversing_with - The haiku that this creation is in reference too
   #   conversation - An existing conversation that this haiku is being added to
   #   group - The group that this haiku is being contributed to
+  #   inspire - Show the inspiration upload/image options
   def render_create(options = {})
     render :partial => "haikus/create", :locals => options
   end

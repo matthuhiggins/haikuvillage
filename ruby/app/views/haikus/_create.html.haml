@@ -29,9 +29,9 @@
       %td
         = form.submit "Create", :id => "commit_haiku", :disabled => true
 
-  - unless local_assigns[:extra_partial].nil?
-    - content_tag(:div, :id => extra_partial) do
-      = render extra_partial
+  - if local_assigns[:inspire]
+    #inspire
+      = render 'haikus/inspire'
   
 
 %script
