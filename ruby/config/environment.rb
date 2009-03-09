@@ -1,4 +1,4 @@
-RAILS_GEM_VERSION = '2.3.0'
+RAILS_GEM_VERSION = '2.3.1'
 
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -9,10 +9,11 @@ Rails::Initializer.run do |config|
 
   config.time_zone = "UTC"
 
-  config.gem "haml",                  :version => "2.0.7"
-  config.gem "libxml-ruby",           :version => '0.9.7',  :lib => "libxml"
-  config.gem 'mislav-will_paginate',  :version => '2.3.6',  :lib => 'will_paginate',  :source => 'http://gems.github.com'
-  config.gem 'paperclip',             :version => '2.1.2'
+  config.gem "haml",                  :version => "2.0.9"
+  config.gem "libxml-ruby",           :version => '1.0.0',  :lib => 'libxml'
+  config.gem 'mislav-will_paginate',  :version => '2.3.7',  :lib => 'will_paginate',  :source => 'http://gems.github.com'
+  config.gem 'right_aws'
+  config.gem 'thoughtbot-paperclip',  :version => '2.2.6',  :lib => 'paperclip',      :source => 'http://gems.github.com'
 
   config.action_controller.session = {
     :session_key => "_haiku_village",
