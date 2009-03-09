@@ -1,32 +1,17 @@
 !red= #a20000
 !green= #647a4a
 !darkgrey= #555555
-!lightgrey= #999999
 
 #haiku_form
-  :background-color #F2F2F2
   :overflow hidden
   :padding 10px
-  .internals
-    :width 390px
-  .input_row
-    :margin-top 10px
-    :overflow hidden
-    label
-      :float left
-      :margin 3px 7px 0 0
-      :text-align right
-      :width 63px
-    textarea
-      :float left
-      :width 309px
-    input[type="text"]
-      :float left
-      :width 309px
-    textarea.empty
-      :color= !lightgrey
-  .submit_row
-    :text-align right
+  table.internals
+    :float left
+  textarea, input[type="text"]
+    :color #776B1B
+    :background-color #FFFADB
+    :border 1px solid #CBB945
+    :width 309px
   #preview
     :margin-left 71px
     :height 40px

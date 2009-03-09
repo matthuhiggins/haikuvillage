@@ -1,26 +1,33 @@
 - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'}, :html => {:id => 'haiku_form'} do |form|
-  .internals
-    #preview{:class => 'empty'}
-      %div= "Start typing a haiku below and your"
-      %div= "syllables will be counted here."
-      %div= ""
+  - unless local_assigns[:conversing_with].nil?
+    = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
+  - unless local_assigns[:conversation].nil?
+    = hidden_field_tag('haiku[conversation_id]', conversation.id)
+  - unless local_assigns[:group].nil?
+    = hidden_field_tag('haiku[group_id]', group.id)
 
-    - unless local_assigns[:conversing_with].nil?
-      = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
-    - unless local_assigns[:conversation].nil?
-      = hidden_field_tag('haiku[conversation_id]', conversation.id)
-    - unless local_assigns[:group].nil?
-      = hidden_field_tag('haiku[group_id]', group.id)
-  
-    .input_row
-      %label="Haiku:"
-      = haiku_text_tag
+  %table.internals
+    %tr
+      %td
+      %td#preview{:class => 'empty'}
+        %div= "Start typing a haiku below and your"
+        %div= "syllables will be counted here."
+        %div= ""
+    %tr
+      %td
+        %label="Haiku:"
+      %td
+        = haiku_text_tag
 
-    .input_row
-      %label="Subject:"
-      = subject_auto_complete
-    .submit_row
-      = form.submit "Create", :id => "commit_haiku", :disabled => true
+    %tr
+      %td
+        %label="Subject:"
+      %td
+        = subject_auto_complete
+    %tr
+      %td
+      %td
+        = form.submit "Create", :id => "commit_haiku", :disabled => true
 
   - unless local_assigns[:extra_partial].nil?
     - content_tag(:div, :id => extra_partial) do
