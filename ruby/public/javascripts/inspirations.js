@@ -8,7 +8,7 @@ window.inspirations = function(inspirations) {
   function displayCurrent() {
     var inspiration = inspirations[index];
     $('inspiration_image').innerHTML = "<img src=\"" + inspiration.thumbnail + "\" />";
-    $('inspiration_image').innerHTML += "<input type=\"hidden\" name=\"haiku[conversation_id]\" value=\"" + inspiration.id + "\" />";
+    $('conversation_id_wrapper').innerHTML = "<input type=\"hidden\" name=\"haiku[conversation_id]\" value=\"" + inspiration.id + "\" />";
   }
   
   function setupCheckBox() {
