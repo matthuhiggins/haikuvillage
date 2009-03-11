@@ -4,24 +4,30 @@
 <div class="messages">
   <% if @friends.any? %>
     <% form_for :message, :html => {:style => "margin-bottom: 10px;", :id => 'haiku_form'} do |form| %>
-      <div class="internal">
-        <div id="preview", class="empty">
-          <div>Start typing a haiku below and your</div>
-          <div>syllables will be counted here.</div>
-          <div></div>
-        </div>
-        <div class="input_row">
-          <label>Message:</label>
-          <%= haiku_text_tag(:name => "message[text]", :id => "message_text") %>
-        </div>
-        <div class="input_row">
-          <label>Send to:</label>
-          <%= collection_select(:message, :recipient_id, @friends, :id, :username, {}, {:style => "width: 180px"}) %>
-        </div>
-        <div class="submit_row">
-          <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
-        </div>
-      </div>
+      <table class="internals">
+        <tr>
+          <td />
+          <td id="preview", class="empty">
+            <div>Start typing a haiku below and your</div>
+            <div>syllables will be counted here.</div>
+            <div></div>
+          </td>
+        </tr>
+        <tr>
+          <td><label>Message:</label></td>
+          <td><%= haiku_text_tag(:name => "message[text]", :id => "message_text") %></td>
+        </tr>
+        <tr>
+          <td><label>Send to:</label></td>
+          <td><%= collection_select(:message, :recipient_id, @friends, :id, :username, {}, {:style => "width: 180px"}) %></td>
+        </tr>
+        <tr>
+          <td />
+          <td>
+            <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
+          </td>
+        </tr>
+      </table>
     <% end %>
   <% else %>
     <p>You do not have any mutual friends to send a message to</p>

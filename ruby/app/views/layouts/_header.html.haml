@@ -6,6 +6,8 @@
         %li= link_to 'Journal', journal_path
         %li= link_to "Friends", friends_path
         %li= link_to "Groups", groups_path
+        - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
+        %li= link_to message_text, messages_path
   .right
     - form_tag({:controller => '/haikus', :action => 'search'}, {:method => :get}) do
       %input{:type => "text", :name => "q", :value => 'Search for haikus', :autocomplete => 'off', :id => 'haiku_search'}
@@ -16,5 +18,3 @@
       - else
         %li= link_to 'Sign out', logout_path
         %li= link_to 'Profile', profile_path
-        - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
-        %li= link_to message_text, messages_path

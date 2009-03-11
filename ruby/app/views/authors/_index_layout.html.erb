@@ -1,14 +1,13 @@
-<style>
-.author-index {
-  margin-top: 10px;
-}
-</style>
+<% description "Find haiku authors on HaikuVillage" %>
+
+<% title 'Authors' %>
+<h2>Authors</h2>
 
 <% sub_menu(:class => "tab_nav") do |m| %>
   <% m.link "Find authors", authors_path %>
   <% m.link "Invite by e-mail", invite_authors_path  %>
 <% end %>
 
-<div class="author-index">
+<div class="submenu-content">
   <%= yield %>
 </div>

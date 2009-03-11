@@ -1,10 +1,5 @@
-<% title "Invite new authors" %>
-<% description "Use this page to invite people to use HaikuVillage" %>
-
 <% render :layout => 'index_layout' do %>
   <% if current_author %>
-    <h2>Invite authors by their e-mail</h2>
-
     <% form_tag(invite_authors_path, {:method => :post}) do %>
       <%= text_area_tag "email" %>
       <%= submit_tag "Send" %>
