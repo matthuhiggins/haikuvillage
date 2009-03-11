@@ -1,11 +1,10 @@
-<% title 'Your subjects' %>
-<h2>Your subjects</h2>
-
-<ul class="subject-list">
-  <% @subjects.each do |subject| %>
-  <li>
-    <%= link_to subject.name, :id => subject.name %>
-    <%= " (#{subject.count})" %>
-  </li>
-  <% end %>
-</ul>
+<% render :layout => 'layout' do %>
+  <ul class="subject-list">
+    <% @subjects.each do |subject| %>
+    <li>
+      <%= link_to subject.name, :id => subject.name %>
+      <%= " (#{subject.count})" %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

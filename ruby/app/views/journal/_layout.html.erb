@@ -1,0 +1,11 @@
+<% title 'Your journal' %>
+
+<h2>Your journal</h2>
+
+<% sub_menu(:class => "tab_nav") do |m| %>
+  <% m.link "Create", journal_path %>
+  <% m.link "Favorites", favorites_path %>
+  <% m.link "Subjects", :controller => '/journal', :action => 'subjects' %>
+<% end %>
+
+<%= yield %>

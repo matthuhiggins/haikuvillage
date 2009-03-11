@@ -3,9 +3,7 @@
     = link_to(image_tag("haikuvillage.png"), root_path, :id => "logo-link")
     - if current_author
       %ul
-        %li= link_to 'Create', journal_path
-        %li= link_to "Favorites", favorites_path
-        %li= link_to "Subjects", :controller => '/journal', :action => 'subjects'
+        %li= link_to 'Journal', journal_path
         %li= link_to "Friends", friends_path
         %li= link_to "Groups", groups_path
   .right

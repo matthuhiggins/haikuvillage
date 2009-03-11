@@ -1,11 +1,11 @@
-<% title 'Create' %>
+<% render :layout => 'layout' do %>
+  <div style="margin: 0 0 15px;">
+    <%= render_create(:inspire => true) %>
+  </div>
 
-<div style="margin: 0 0 15px;">
-  <%= render_create(:inspire => true) %>
-</div>
-
-<div class="self">
-  <%= render_haikus(@haikus) %>
-</div>
-<br />
-<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
+  <div class="self">
+    <%= render_haikus(@haikus) %>
+  </div>
+  <br />
+  <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
+<% end %>

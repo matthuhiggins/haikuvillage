@@ -1,27 +1,26 @@
-<% title 'Create a new group' %>
-
-<h2>Create a new group</h2>
-<% form_for @group do |f| %>
-  <table>
-    <tr>
-      <td><%= f.label :name, 'Name:' %></td>
-      <td><%= f.text_field :name %></td>
-      <td><%= f.error_message_on :name, :prepend_text => 'Name ' %></td>
-    </tr>
-    <tr>
-      <td class="description"><%= f.label :description, 'Description:' %></td>
-      <td><%= f.text_area :description, :cols => 40, :rows => 6 %></td>
-      <td><%= f.error_message_on :description, :prepend_text => 'Description ' %></td>
-    </tr>
-    <tr>
-      <td><%= f.check_box :invite_only %></td>
-      <td><%= f.label :invite_only, 'Authors require an invitation to join', :class => 'checkbox' %>
-    </tr>
-    <tr>
-      <td></td>
-      <td><%= f.submit 'Create' %></td>
-    </tr>
-  </table>
+<% render :layout => "index_layout" do %>
+  <% form_for @group do |f| %>
+    <table>
+      <tr>
+        <td><%= f.label :name, 'Name:' %></td>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.error_message_on :name, :prepend_text => 'Name ' %></td>
+      </tr>
+      <tr>
+        <td class="description"><%= f.label :description, 'Description:' %></td>
+        <td><%= f.text_area :description, :cols => 40, :rows => 6 %></td>
+        <td><%= f.error_message_on :description, :prepend_text => 'Description ' %></td>
+      </tr>
+      <tr>
+        <td><%= f.check_box :invite_only %></td>
+        <td><%= f.label :invite_only, 'Authors require an invitation to join', :class => 'checkbox' %>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit 'Create' %></td>
+      </tr>
+    </table>
+  <% end %>
 <% end %>
 
 <script>

@@ -1,8 +1,5 @@
-<% title 'Your favorites' %>
-
-<h2>Your favorites</h2>
-<div style="margin-left: 30px">
+<% render :layout => 'journal/layout' do %>
   <%= render_haikus(@haikus) %>
-</div>
-<br />
-<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>
+  <br />
+  <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>
+<% end %>
