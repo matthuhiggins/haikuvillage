@@ -1,15 +1,24 @@
+#inspiration_what
+  Inspirations give you something to write about.
+  Click the checkbox to begin.
+
 #inspiration_check_box
   = check_box_tag('use_inspiration')
-  = label_tag('use_inspiration', 'Use inspiration')
+  = label_tag('use_inspiration', 'Use inspiration from Flickr')
 
 #inspiration_preview{:style => "display: none;"}
   = link_to("< Prev", "#", :id => "prev_inspiration")
   = link_to("Next >", "#", :id => "next_inspiration")
   #inspiration_image
-
-#inspiration_what
-  Inspirations give you something to write about.
-  Click the checkbox to begin.
   
 
 %script= "inspirations(#{inspirations_json});"
+
+#upload_inspiration_image
+#inspiration_upload
+  %p Upload your own inspiration:
+  - form_for :upload_inspiration, :url => {:controller => 'haikus', :action => 'upload'}, :html => { :multipart => true, :target => "upload_frame" }  do |form|
+    = form.file_field :inspiration
+    = form.submit "Upload"
+  
+%iframe#upload_frame{ :name=>"upload_frame", :style=> "display:none", :src=>"about:blank"}

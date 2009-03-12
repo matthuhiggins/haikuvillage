@@ -51,6 +51,13 @@ class HaikusController < ApplicationController
     redirect_to params[:referrer]
   end
   
+  def upload
+    @convo = Conversation.new 
+    @convo.upload_inspiration = UploadInspiration.new(params[:upload_inspiration])
+    @convo.save
+    render :partial => "upload", :object => @convo
+  end
+  
   private
     def redirect_and_flash(haiku)
       if !haiku.conversing_with.nil?

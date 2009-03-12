@@ -41,3 +41,8 @@ window.inspirations = function(inspirations) {
     displayCurrent();
   });
 };
+
+function showUpload(conversation_id, url){
+  $("upload_inspiration_image").innerHTML = "<img id='inspiration' src='" + url + "' />";
+  $('conversation_id_wrapper').innerHTML = "<input type=\"hidden\" name=\"haiku[conversation_id]\" value=\"" + conversation_id + "\" />";
+}

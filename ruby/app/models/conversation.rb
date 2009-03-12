@@ -3,6 +3,7 @@ class Conversation < ActiveRecord::Base
 
   has_many :haikus
   has_one :flickr_inspiration
+  has_one :upload_inspiration
 
   named_scope :active, :order => "latest_haiku_update desc", :conditions => "haikus_count_total > 0"
 
