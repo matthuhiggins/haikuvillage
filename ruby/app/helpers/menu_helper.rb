@@ -10,26 +10,19 @@ module MenuHelper
     concat(tag(:ul, {:class => options[:class]}, true))
     linker = SubMenuLinker.new(self)
     yield(linker)
-    concat(linker.generate)
     concat("</ul>")
   end
   
   class SubMenuLinker
     def initialize(template)
       @template = template
-      @links = []
     end
 
     def link(name, options)
       current = current_page?(options)
+      link_tag = link_to_unless(current, name, options)
       list_options = current ? {:class => "selected"} : {}
-      @links << content_tag(:li, list_options) do
-        link_to_unless(current, name, options)
-      end
-    end
-    
-    def generate
-      @links.join("\n")
+      concat(content_tag(:li, link_tag, list_options))
     end
     
     def method_missing(method, *args, &block)
