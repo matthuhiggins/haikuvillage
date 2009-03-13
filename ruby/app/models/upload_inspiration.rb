@@ -8,6 +8,6 @@ class UploadInspiration < ActiveRecord::Base
   end
   
   def thumbnail
-    inspiration.url(:small)
+    inspiration.url(:large)
   end
 end
