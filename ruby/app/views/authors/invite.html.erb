@@ -1,4 +1,4 @@
-<% render :layout => 'index_layout' do %>
+<% render :layout => 'friends/layout' do %>
   <% if current_author %>
     <% form_tag(invite_authors_path, {:method => :post}) do %>
       <%= text_area_tag "email" %>

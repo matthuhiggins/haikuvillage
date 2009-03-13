@@ -9,12 +9,17 @@
         - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
         %li= link_to message_text, messages_path
   .right
-    - form_tag({:controller => '/haikus', :action => 'search'}, {:method => :get}) do
-      %input{:type => "text", :name => "q", :value => 'Search for haikus', :autocomplete => 'off', :id => 'haiku_search'}
-    %ul
-      - unless current_author
-        %li= link_to 'Sign in', login_path
-        %li= link_to 'Register', signup_path
-      - else
-        %li= link_to 'Sign out', logout_path
-        %li= link_to 'Profile', profile_path
+    %table.the-very-top
+      %tr
+        - unless current_author
+          %td= link_to 'Register', signup_path
+          %td= link_to 'Sign in', login_path
+        - else
+          %td= link_to 'Profile', profile_path
+          %td= link_to 'Sign out', logout_path
+        %td
+          - header_search_form
+    %ul.global
+      %li= link_to 'Subjects', subjects_path
+      %li= link_to 'Conversations', conversations_path
+      %li= link_to "All haiku", haikus_path

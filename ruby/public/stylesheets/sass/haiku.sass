@@ -8,14 +8,13 @@
   form
     :float left
   textarea, input[type="text"]
-    :color #776B1B
-    :background-color #FFFADB
-    :border 1px solid #CBB945
     :width 309px
+    &.empty
+      :color= !darkgrey
   #preview
-    :margin-left 71px
-    :height 40px
     :color= !darkgrey
+    :display block
+    :height 40px
     sup
       :font-size 9px
       :color black

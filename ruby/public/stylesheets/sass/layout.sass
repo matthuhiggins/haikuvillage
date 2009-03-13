@@ -12,60 +12,62 @@
   :text-align center
 
 #body
-  :margin 10px auto
+  :margin 0 auto 10px auto
   :overflow hidden
-  :width 900px
+  :width 760px
 
 #header
-  :background-color #BED3A0
-  :-moz-border-radius-topleft 6px
-  :-moz-border-radius-topright 6px
-  :-webkit-border-top-left-radius 6px
-  :-webkit-border-top-right-radius 6px
+  :font-size 13px
   :height 70px
-  :padding 8px 17px 8px 17px
   :position relative
-  :width 866px
-  a
-    :color #3B5D14
   .left
-    :bottom 13px
-    :font-weight bold
-    :left 15px
+    :left 10px
     :position absolute
+    :top 3px
+    a
+      :color #545454
+      :font-weight bold
     ul
       :clear left
       :overflow hidden
     li
       :float left
       :padding-right 15px
-  .right    
-    :bottom 13px
+  .right
+    :background-color white
+    :-moz-border-radius-bottomleft 6px
+    :-moz-border-radius-bottomright 6px
+    :-webkit-border-top-bottom-radius 6px
+    :-webkit-border-top-bottom-radius 6px
+    :padding 6px 12px 6px 0
     :position absolute
-    :right 15px
-    ul
-      :clear right
+    :right 0
+    table.the-very-top
+      :float right
+      :margin-bottom 10px
+      a
+        :font-size 11px
+      td
+        :padding-left 10px
+    ul.global
+      :clear both
       :overflow hidden
-    li
-      :float right
-      :padding-left 15px
+      li
+        :float right
+      li + li
+        :padding-right 15px
     form
-      :float right
-      :font-size 12px
-      :margin-bottom 18px
       input
         :color #666
-        :width 180px
+        :width 160px
 
 #logo-link
   :float left
   
 #content
   :background-color white
-  :-moz-border-radius-bottomleft 6px
-  :-moz-border-radius-bottomright 6px
-  :-webkit-border-bottom-left-radius 6px
-  :-webkit-border-bottom-right-radius 6px
+  :-moz-border-radius 8px
+  :-webkit-border-radius 8px
   :float left
   :overflow hidden
   :padding 20px
@@ -78,15 +80,6 @@
     :width 54%
   .small
     :width 44%
-
-#side
-  :background-color white
-  :border-left 1px dotted #ccc
-  :float left
-  :font-weight bold
-  :width 126px
-  li
-    :margin 9px 0 0 12px
 
 #footer
   :font-size 10px

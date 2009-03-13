@@ -1,9 +1,10 @@
-<% description "Find haiku authors on HaikuVillage" %>
-
-<% title 'Authors' %>
-<h2>Authors</h2>
+<% title 'Your friends' %>
+<h2>Friends</h2>
 
 <% sub_menu(:class => "tab_nav") do |m| %>
+  <% if current_author %>
+    <% m.link "Your friends", friends_path %>
+  <% end %>
   <% m.link "Find authors", authors_path %>
   <% m.link "Invite by e-mail", invite_authors_path  %>
 <% end %>

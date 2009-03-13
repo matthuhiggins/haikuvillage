@@ -1,13 +1,11 @@
 <% title "Groups" %>
 
-<div class="groups-header">
-  <h2>Groups</h2>
-  <% sub_menu(:class => "tab_nav") do |m| %>
-    <% m.link "Your groups", groups_path %>
-    <% m.link "Create a new group", new_group_path %>
-    <% m.link "Search groups", search_groups_path %>
-  <% end %>
-</div>
+<h2>Groups</h2>
+<% sub_menu(:class => "tab_nav") do |m| %>
+  <% m.link "Your groups", groups_path %>
+  <% m.link "Create a new group", new_group_path %>
+  <% m.link "Search groups", search_groups_path %>
+<% end %>
 
 <div class="submenu-content your-groups">
   <%= yield %>

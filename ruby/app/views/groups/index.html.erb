@@ -26,11 +26,9 @@
       <% @invitations.each do |invitation| %>
         <li>
           <%= link_to invitation.group.name, invitation.group %>
-          (
-          <%= link_to 'Accept', {:controller => 'journal', :action => 'accept_invitation', :id => invitation}, {:method => :post} %>
+          (<%= link_to 'Accept', {:controller => 'journal', :action => 'accept_invitation', :id => invitation}, {:method => :post} %>
           |
-          <%= link_to 'Reject', {:controller => 'journal', :action => 'reject_invitation', :id => invitation}, {:method => :delete} %>
-          )
+          <%= link_to 'Reject', {:controller => 'journal', :action => 'reject_invitation', :id => invitation}, {:method => :delete} %>)
         </li>
       <% end %>
     </ul>
