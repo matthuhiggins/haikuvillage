@@ -1,3 +1,5 @@
+%p#cancel_line{:style => "display:none"}= link_to("cancel", nil, :id => "cancel_link")
+
 #inspiration_what
   Inspirations give you something to write about.
   Select the type of inspiration you'd like to use below.
@@ -17,8 +19,6 @@
   - form_for :upload_inspiration, :url => {:controller => 'haikus', :action => 'upload'}, :html => { :multipart => true, :target => "upload_frame" }  do |form|
     = form.file_field :inspiration
     = form.submit "Upload"
-
-%p#cancel_line{:style => "display:none"}= link_to("cancel", nil, :id => "cancel_link")
 
 %iframe#upload_frame{ :name=>"upload_frame", :style=> "display:none", :src=>"about:blank"}
 %script= "inspirations(#{inspirations_json});"
