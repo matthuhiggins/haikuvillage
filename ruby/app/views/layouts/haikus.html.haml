@@ -14,11 +14,10 @@
   %body
     #body
       = render "layouts/header"
+      - if flash[:notice]
+        #notice= flash[:notice]
       #content
-        - if flash[:notice]
-          #notice= flash[:notice]
         = yield
-      /= render "layouts/side"
     #footer
       = link_to "About HaikuVillage", about_path
     - if Rails.env.production?
