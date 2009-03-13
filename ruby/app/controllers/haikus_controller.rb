@@ -52,10 +52,9 @@ class HaikusController < ApplicationController
   end
   
   def upload
-    @convo = Conversation.new 
-    @convo.upload_inspiration = UploadInspiration.new(params[:upload_inspiration])
-    @convo.save
-    render :partial => "upload", :object => @convo
+    @inspiration = UploadInspiration.create(params[:upload_inspiration])    
+    
+    render :partial => "upload", :object => @inspiration
   end
   
   private

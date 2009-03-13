@@ -20,7 +20,7 @@
       - link_to haiku.conversation do
         - if haiku.conversation.inspiration
           = image_tag haiku.conversation.inspiration.small, :class => 'haiku-inspiration'
-        - else 
+        - else
           Conversing with
           .summary= (haiku.conversation.haikus_count_total - 1)
           ="other #{haiku.conversation.haikus_count_total > 2 ? 'haikus' : 'haiku' }"
