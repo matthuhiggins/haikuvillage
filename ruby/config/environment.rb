@@ -10,7 +10,7 @@ Rails::Initializer.run do |config|
   config.time_zone = "UTC"
 
   config.gem "haml",                  :version => "2.0.9"
-  config.gem "libxml-ruby",           :version => '1.0.0',  :lib => 'libxml'
+  config.gem "libxml-ruby",           :version => '1.1.1',  :lib => 'libxml'
   config.gem 'mislav-will_paginate',  :version => '2.3.7',  :lib => 'will_paginate',  :source => 'http://gems.github.com'
   config.gem 'right_aws'
   config.gem 'thoughtbot-shoulda',    :version => '2.10.1', :lib => 'shoulda',        :source => 'http://gems.github.com'
