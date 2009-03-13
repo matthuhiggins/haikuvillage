@@ -1,12 +1,12 @@
 %p#cancel_line{:style => "display:none"}= link_to("cancel", nil, :id => "cancel_link")
 
 #inspiration_what
-  Inspirations give you something to write about.
-  Select the type of inspiration you'd like to use below.
+  You can add an image to your haiku.
+  Select an option below.
 
 #inspiration_selection
-  %p= link_to("Use inspiration from Flickr", nil, :id => "use_flickr")
-  %p= link_to("Upload an inspiration image", nil, :id => "use_upload")
+  %p= link_to("Upload an image", nil, :id => "use_upload")
+  %p= link_to("Use a preselected image", nil, :id => "use_flickr")
 
 #inspiration_preview{:style => "display: none;"}
   = link_to("< Prev", "#", :id => "prev_inspiration")
@@ -15,7 +15,7 @@
 
 #upload_inspiration_image
 #inspiration_upload{:style => "display: none;"}
-  %p Upload your own inspiration:
+  %p Upload an image:
   - form_for :upload_inspiration, :url => {:controller => 'haikus', :action => 'upload'}, :html => { :multipart => true, :target => "upload_frame" }  do |form|
     = form.file_field :inspiration
     = form.submit "Upload"
