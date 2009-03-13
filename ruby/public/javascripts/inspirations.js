@@ -11,24 +11,29 @@ window.inspirations = function(inspirations) {
     $('conversation_id_wrapper').innerHTML = "<input type=\"hidden\" name=\"haiku[conversation_id]\" value=\"" + inspiration.id + "\" />";
   }
   
-  function setupCheckBox() {
-    var checkbox = $('use_inspiration');
-    if (checkbox.checked) {
-      $('inspiration_preview').setStyle({'display': 'block'});
-      $('inspiration_what').setStyle({'display': 'none'});
-      displayCurrent();
-    } else {
-      $('inspiration_preview').setStyle({'display': 'none'});
-      $('inspiration_image').innerHTML = "";
-      $('inspiration_what').setStyle({'display': 'block'});
-    }
+  function setupFlickr() {
+    $('inspiration_preview').show();
+    $('cancel_line').show();
+    $('inspiration_what').hide();
+    $('inspiration_selection').hide();
+    displayCurrent();
+  }
+  
+  function setupUpload(){
+    $('cancel_line').show();
+    $('inspiration_upload').show();
+    $('inspiration_what').hide();
+    $('inspiration_selection').hide();
   }
   
   preCacheImages();
-  setupCheckBox();
 
-  $('use_inspiration').observe('click', function() {
-    setupCheckBox();
+  $('use_flickr').observe('click', function() {
+    setupFlickr();
+  });
+  
+  $('use_upload').observe('click', function() {
+    setupUpload();
   })
 
   $('prev_inspiration').observe('click', function() {
@@ -40,9 +45,21 @@ window.inspirations = function(inspirations) {
     index = (index + 1) % inspirations.length;
     displayCurrent();
   });
+  
+  $('cancel_link').observe('click', function(){
+    $("upload_inspiration_image").innerHTML = "";
+    $('conversation_id_wrapper').innerHTML = "";
+    $('inspiration_image').innerHTML = "";
+    $('inspiration_upload').hide();
+    $('inspiration_preview').hide();
+    $('cancel_line').hide();
+    $('inspiration_what').show();
+    $('inspiration_selection').show();
+  });
 };
 
 function showUpload(conversation_id, url){
   $("upload_inspiration_image").innerHTML = "<img id='inspiration' src='" + url + "' />";
   $('conversation_id_wrapper').innerHTML = "<input type=\"hidden\" name=\"haiku[conversation_id]\" value=\"" + conversation_id + "\" />";
+  $("inspiration_upload").hide();
 }
