@@ -1,4 +1,5 @@
-<% render :layout => "index_layout" %>
+<% render :layout => "index_layout" do %>
+  <h3>Search results</h3>
   <%= search_form(:controller => 'groups', :action => 'search') %>
 
   <%= render :partial => "group", :collection => @groups %>
