@@ -28,25 +28,30 @@ window.inspirations = function(inspirations) {
   
   preCacheImages();
 
-  $('use_flickr').observe('click', function() {
+  $('use_flickr').observe('click', function(event) {
+    Event.stop(event);
     setupFlickr();
   });
   
-  $('use_upload').observe('click', function() {
+  $('use_upload').observe('click', function(event) {
+    Event.stop(event);
     setupUpload();
   })
 
-  $('prev_inspiration').observe('click', function() {
+  $('prev_inspiration').observe('click', function(event) {
+    Event.stop(event);
     index = index-- < 0 ? (inspirations.length - 1) : index;
     displayCurrent();
   });
   
-  $('next_inspiration').observe('click', function() {
+  $('next_inspiration').observe('click', function(event) {
+    Event.stop(event);
     index = (index + 1) % inspirations.length;
     displayCurrent();
   });
   
-  $('cancel_link').observe('click', function(){
+  $('cancel_link').observe('click', function(event) {
+    Event.stop(event);
     $("upload_inspiration_image").innerHTML = "";
     $('conversation_id_wrapper').innerHTML = "";
     $('inspiration_image').innerHTML = "";

@@ -3,8 +3,8 @@
   Select the type of inspiration you'd like to use below.
 
 #inspiration_selection
-  %p= link_to("Use inspiration from Flickr", "#", :id => "use_flickr")
-  %p= link_to("Upload an inspiration image", "#", :id => "use_upload")
+  %p= link_to("Use inspiration from Flickr", nil, :id => "use_flickr")
+  %p= link_to("Upload an inspiration image", nil, :id => "use_upload")
 
 #inspiration_preview{:style => "display: none;"}
   = link_to("< Prev", "#", :id => "prev_inspiration")
@@ -18,7 +18,7 @@
     = form.file_field :inspiration
     = form.submit "Upload"
 
-%p#cancel_line{:style => "display:none"}= link_to("cancel", "#", :id => "cancel_link")
+%p#cancel_line{:style => "display:none"}= link_to("cancel", nil, :id => "cancel_link")
 
 %iframe#upload_frame{ :name=>"upload_frame", :style=> "display:none", :src=>"about:blank"}
 %script= "inspirations(#{inspirations_json});"
