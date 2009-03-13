@@ -14,7 +14,7 @@
   <div class="nav">
     <h2><%= link_to_unless_current current_group.name, current_group %></h2>
     <% sub_menu(:class => "tab_nav") do |m| %>
-      <% m.link "Haikus", haikus_group_path(current_group) %>
+      <% m.link "Haiku", haikus_group_path(current_group) %>
       <% m.link "Members", memberships_path(current_group) %>
       <% if current_author.try(:administrator?, current_group) %>
         <% m.link "Manage", :controller => "/groups/manage", :group_id => current_group %>
