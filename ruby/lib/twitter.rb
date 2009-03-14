@@ -1,5 +1,5 @@
 class Twitter
-  STATUS_UPDATE = "http://twitter.com/statuses/update.xml"
+  STATUS_UPDATE = "http://twitter.com/statuses/update.xml?source=haikuvillage"
   AUTHENTICATE = "http://twitter.com/account/verify_credentials.xml"
   
   class AuthenticationError < StandardError
@@ -13,7 +13,7 @@ class Twitter
     def tweet(haiku)
       author = haiku.author
       formatted_text = ERB::Util.h(haiku.terse)
-      twitter_post(STATUS_UPDATE, author.twitter_username, author.twitter_password, {'status' => "@haikuvillage #{formatted_text}"}) do |code, data|
+      twitter_post(STATUS_UPDATE, author.twitter_username, author.twitter_password, {'status' => "#haiku #{formatted_text}"}) do |code, data|
         raise AuthenticationError if code == 401
       end
     end
