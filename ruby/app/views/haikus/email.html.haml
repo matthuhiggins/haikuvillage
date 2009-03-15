@@ -1,14 +1,13 @@
 - title "Email haiku by #{@haiku.author.username}"
-- description @haiku.text.gsub(/\r\n|\r|\n/, ' / ')
+- description @haiku.terse
 
-%h2="Share this haiku by #{@haiku.author.username}"
 .haiku-big
   .text
     - @haiku.text.each_line do |line|
-      .haiku-line= h(line)
+      .line= h(line)
 
 #haiku_email_form
-  %h3#email_header= 'Email Haiku'
+  %h3#email_header= 'Enter e-mail address(es)'
   - form_tag(deliver_haiku_path(@haiku), {:method => :post}) do
     = hidden_field_tag :referrer, request.referrer
     = text_area_tag "email"
