@@ -36,7 +36,7 @@ class Twitter
           def twitter_#{verb}(path, username, password, data = nil, &block)
             request = new_request(:#{verb}, path)
             request.basic_auth username, password
-            request.set_form_data(data, ';') if data
+            request.set_form_data(data) if data
             make_request(request, URI.parse(path), &block)
           end
         EVAL
