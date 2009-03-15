@@ -1,17 +1,17 @@
-- rss_discovery "Everyone's haikus", haikus_path
+- rss_discovery "Everyone's haiku", haikus_path
 - title 'Welcome to HaikuVillage', false
-- description "Haiku Village is a place to create, share and discover haikus."
+- description "Haiku Village is a place to create, share and discover haiku."
 .welcome
   .column.small
     %p
-      Haiku Village is a place to create, share and discover haikus.
+      Haiku Village is a place to create, share and discover haiku.
       To join the village, type your first haiku in the field to the right.
   .column.wide
     = render_create
 
 %br
 
-%h2{:style => "margin-top: 12px; padding-top: 12px; border-top: 1px dotted #ccc"}="Recent haikus"
+%h2{:style => "margin-top: 12px; padding-top: 12px; border-top: 1px dotted #ccc"}="Recent haiku"
 = render_haikus(@haikus)
 
 = render "summary"
