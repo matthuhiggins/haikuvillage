@@ -29,7 +29,7 @@ class AuthorsController < ApplicationController
           :total_entries => @author.haikus_count_total
         })
       end
-      f.atom { render_atom(Author.find_by_username!(params[:id]).recent.all(:limit => 10)) }
+      f.atom { render_atom(Author.find_by_username!(params[:id]).haikus.recent.all(:limit => 10)) }
     end
   end
   
