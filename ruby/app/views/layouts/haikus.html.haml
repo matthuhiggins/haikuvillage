@@ -3,6 +3,7 @@
 %html{html_attrs}
   %head
     %title= @title || yield(:title)
+    %link{:rel => "icon", :href => "/images/favicon.ico"}
     %link{:rel => "icon", :href => "/images/favicon.png", :type => "image/png"}
     = javascript_include_tag 'prototype', 'effects', 'controls'
     = javascript_include_tag 'application', 'syllables', 'inspirations', :cache => 'cache'
