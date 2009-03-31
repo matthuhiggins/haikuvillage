@@ -15,8 +15,10 @@
       = render "layouts/header"
       - if flash[:notice]
         #notice= flash[:notice]
-      #content
-        = yield
+      #content-wrap
+        #content
+          = yield
+        = render "layouts/corners"
     #footer
       = link_to "About HaikuVillage", about_path
     - if Rails.env.production?

@@ -67,15 +67,36 @@
 #logo-link
   :float left
   
+#content-wrap
+  :position relative
+  .corner
+    :background transparent url(/images/corners.png) no-repeat scroll 0 0
+    :height 8px
+    :position absolute
+    :width 8px
+    &.nw
+      :left 0
+      :top 0
+      :background-position 0 0
+    &.ne
+      :right 0
+      :top 0
+      :background-position 0 -8px
+    &.sw
+      :left 0
+      :bottom 0
+      :background-position 0 -16px
+    &.se
+      :right 0
+      :bottom 0
+      :background-position 0 -24px
+  
 #content
   :background-color white
-  :-moz-border-radius 8px
-  :-webkit-border-radius 8px
-  :float left
+  :border 1px solid #443828
   :overflow hidden
-  :padding 20px 0 20px 20px
+  :padding 20px
   :text-align left
-  :width 740px
   .column
     :float left
     :width 49%
