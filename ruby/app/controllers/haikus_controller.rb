@@ -32,7 +32,8 @@ class HaikusController < ApplicationController
   end
   
   def destroy
-    haiku = current_author.haikus.destroy(params[:id])
+    haiku = current_author.haikus.find(params[:id])
+    haiku.destroy
     flash[:notice] = "Your haiku was deleted"
     respond_to do |f|
       f.html { redirect_to(haiku_path(haiku) == request.referrer ? {:controller => 'journal'} : request.referrer) }
