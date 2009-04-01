@@ -1,9 +1,24 @@
-!red= #a20000
-!green= #647a4a
-!darkgrey= #555555
-!lightgrey= #999999
-!medblue= #548A98
-!brown= #847640
+.corner
+  :background transparent url(/images/corners.png) no-repeat scroll 0 0
+  :height 8px
+  :position absolute
+  :width 8px
+  &.nw
+    :left 0
+    :top 0
+    :background-position 0 0
+  &.ne
+    :right 0
+    :top 0
+    :background-position 0 -8px
+  &.sw
+    :left 0
+    :bottom 0
+    :background-position 0 -16px
+  &.se
+    :right 0
+    :bottom 0
+    :background-position 0 -24px
 
 #notice
   :background-color white
@@ -26,7 +41,7 @@
     :position absolute
     :top 3px
     a
-      :color #545454
+      :color #535353
       :font-weight bold
     ul
       :clear left
@@ -69,27 +84,6 @@
   
 #content-wrap
   :position relative
-  .corner
-    :background transparent url(/images/corners.png) no-repeat scroll 0 0
-    :height 8px
-    :position absolute
-    :width 8px
-    &.nw
-      :left 0
-      :top 0
-      :background-position 0 0
-    &.ne
-      :right 0
-      :top 0
-      :background-position 0 -8px
-    &.sw
-      :left 0
-      :bottom 0
-      :background-position 0 -16px
-    &.se
-      :right 0
-      :bottom 0
-      :background-position 0 -24px
   
 #content
   :background-color white
