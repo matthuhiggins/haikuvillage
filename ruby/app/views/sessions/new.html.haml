@@ -2,26 +2,7 @@
 
 %h2= 'Sign in'
 
-- form_for :session, :url => session_path do |form|
-  %table
-    %tr
-      %td
-        = form.label :usernam, 'Username or Email:'
-      %td
-        = form.text_field :username
-    %tr
-      %td
-        = form.label :password, 'Password:'
-      %td
-        = form.password_field :password
-    %tr
-      %td
-      %td
-        = form.submit 'Sign in'
-    %tr
-      %td
-      %td{:style => 'padding-top: 10px'}
-        = link_to "Forget your password?", forgot_path
+= render :partial => 'form'
   
 %script
-  document.getElementById('session_username').focus();
+  $($('session_username').value === '' ? 'session_username' : 'session_password').activate();

@@ -14,31 +14,13 @@
 
 .column
   %h3= "Already an author?"
-  - deferred_haiku_form :session, :url => session_path, :html => {:id => 'register_login_form'} do |form|
-    %table
-      %tr
-        %td
-          = form.label :username, 'Username or Email:'
-        %td
-          = form.text_field :username
-      %tr
-        %td
-          = form.label :password, 'Password:'
-        %td
-          = form.password_field :password
-      %tr
-        %td
-        %td
-          = form.submit "Sign in"
-      %tr
-        %td
-        %td{:style => 'padding-top: 10px'}
-          = link_to "Forget your password?", forgot_path
+  = render :partial => 'sessions/form'
   
 
 .column
   %h3= 'Create a new account'
-  - deferred_haiku_form :author, :url => register_path, :html => {:class => 'register_form'}  do |form|
+  - form_for :author, :url => register_path, :html => {:class => 'register_form'}  do |form|
+    - fields_for_haiku
     %table{:style => 'margin-left: 15px;'}
       %tr
         %td

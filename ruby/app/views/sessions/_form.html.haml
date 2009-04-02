@@ -1,0 +1,20 @@
+- form_tag session_path do
+  %table
+    %tr
+      %td
+        = label_tag :username, 'Username or Email:'
+      %td
+        = text_field_tag :username, cookies[:username], :id => 'session_username'
+    %tr
+      %td
+        = label_tag :password, 'Password'
+      %td
+        = password_field_tag :password, "", :id => 'session_password'
+    %tr
+      %td
+      %td
+        = submit_tag 'Sign in'
+    %tr
+      %td
+      %td{:style => 'padding-top: 10px'}
+        = link_to "Forget your password?", forgot_path
