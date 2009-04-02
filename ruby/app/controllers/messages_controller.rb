@@ -15,7 +15,8 @@ class MessagesController < ApplicationController
   end
   
   def destroy
-    current_author.messages.destroy(params[:id])
+    message = current_author.messages.find(params[:id])
+    message.destroy
     flash[:notice] = "Message deleted"
     redirect_to(messages_path)
   end
