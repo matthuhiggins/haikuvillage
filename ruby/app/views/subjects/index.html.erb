@@ -1,0 +1,26 @@
+<% title "Haiku subjects" %>
+<% description "Haiku subjects" %>
+
+<div class="subjects-header">
+  <h2>Subjects</h2>
+  <%= render 'search_form' %>
+</div>
+
+<div class="column">
+  <h3>Last week</h3>
+  <div class="href_list">
+    <%= subject_list(@hot_subjects) %>
+  </div>
+</div>
+
+<div class="column">
+  <h3>New subjects</h3>
+  <div class="href_list">
+    <%= subject_list(@new_subjects) %>
+  </div>
+</div>
+
+<div class="cloud">
+  <h3>Most popular subjects</h3>
+  <%= subject_cloud(@popular_subjects) %>
+</div>
