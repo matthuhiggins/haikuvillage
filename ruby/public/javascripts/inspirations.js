@@ -65,8 +65,8 @@ window.inspirations = function(inspirations) {
   new Form.Element.Observer(
     'upload_inspiration_inspiration', 0.2,
     function(el, value) {
-      $('inspiration_upload').innerHTML += "<p>uploading image ...</p>"
       $('upload_inspiration_form').submit();
+      $('upload_inspiration_status').style.visibility = 'visible';
     }
   );
 };
