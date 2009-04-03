@@ -10,5 +10,8 @@
   %h3#email_header= 'Enter e-mail address(es)'
   - form_tag(deliver_haiku_path(@haiku), {:method => :post}) do
     = hidden_field_tag :referrer, request.referrer
-    = text_area_tag "email"
-    = submit_tag "Send"
+    %table
+      %tr
+        %td= text_area_tag "email"
+      %tr
+        %td= submit_tag "Send"
