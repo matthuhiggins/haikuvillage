@@ -16,9 +16,8 @@
 #upload_inspiration_image
 #inspiration_upload{:style => "display: none;"}
   %p Upload an image:
-  - form_for :upload_inspiration, :url => {:controller => 'haikus', :action => 'upload'}, :html => { :multipart => true, :target => "upload_frame" }  do |form|
+  - form_for :upload_inspiration, :url => {:controller => 'haikus', :action => 'upload'}, :html => { :multipart => true, :target => "upload_frame", :id => 'upload_inspiration_form', :autocomplete => 'off' }  do |form|
     = form.file_field :inspiration
-    = form.submit "Upload"
 
 %iframe#upload_frame{ :name=>"upload_frame", :style=> "display:none", :src=>"about:blank"}
 %script= "inspirations(#{inspirations_json});"

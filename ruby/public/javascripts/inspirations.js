@@ -61,6 +61,14 @@ window.inspirations = function(inspirations) {
     $('inspiration_what').show();
     $('inspiration_selection').show();
   });
+  
+  new Form.Element.Observer(
+    'upload_inspiration_inspiration', 0.2,
+    function(el, value) {
+      $('inspiration_upload').innerHTML += "<p>uploading image ...</p>"
+      $('upload_inspiration_form').submit();
+    }
+  );
 };
 
 function showUpload(conversation_id, url){
