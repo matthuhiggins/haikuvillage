@@ -10,7 +10,7 @@
         = image_tag @single_haiku.conversation.inspiration.thumbnail
       %br
       - link_to @single_haiku.conversation do
-        = pluralize(@single_haiku.conversation.haikus_count_total, 'haiku')
+        = "#{@single_haiku.conversation.haikus_count_total} haiku"
         are inspired by this image
   .haiku-big
     .text
@@ -29,7 +29,7 @@
 .conversation-section
   - if @single_haiku.conversing? && !@single_haiku.conversation.inspiration
     This haiku is in a conversation with
-    = pluralize(@single_haiku.conversation.haikus_count_total, 'haiku') + "."
+    = "#{@single_haiku.conversation.haikus_count_total} haiku."
     = link_to "Post your own haiku »", @single_haiku.conversation, {:style => "font-weight: bold;"}
     = render_haikus(@single_haiku.conversation.haikus)
   - elsif !@single_haiku.conversing?

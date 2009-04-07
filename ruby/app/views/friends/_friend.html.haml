@@ -7,7 +7,7 @@
       .username
         = link_to friend.username, author_path(friend.username)
         has written
-        = pluralize(friend.haikus_count_total, 'haiku')
+        = "#{friend.haikus_count_total} haiku"
       - if show_actions
         .actions
           - if current_author.mutual?(friend)

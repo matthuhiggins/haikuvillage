@@ -1,10 +1,10 @@
-- title "A conversation with #{pluralize(@conversation.haikus_count_total, 'haikus')}"
+- title "A conversation with #{@conversation.haikus_count_total} haiku"
 
 .small.column
   .conversation_header
     Join the conversation with
     .summary= @conversation.haikus_count_total
-    other haikus
+    other haiku
 .wide.column
   = render_create(:conversation => @conversation)
 %br

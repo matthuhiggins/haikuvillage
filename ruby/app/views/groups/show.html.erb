@@ -7,10 +7,10 @@
     <h3>Recent haikus</h3>
     <% if @haikus.any? %>
       <%= render_haikus @haikus %>
-      <%= link_to 'See more haikus', haikus_group_path(current_group) %>
+      <%= link_to 'See more haiku', haikus_group_path(current_group) %>
     <% else %>
       <p>
-        This group has no haikus.
+        This group has no haiku.
         Be the first to <%= link_to "contribute", contribute_group_path(current_group) %>.
       </p>
     <% end %>
