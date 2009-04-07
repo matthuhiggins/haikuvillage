@@ -1,11 +1,8 @@
 module ApplicationHelper
   extend ActiveSupport::Memoizable
   
-  def title(title, prefix = true)
-    if prefix
-      title = "HaikuVillage: #{title}"
-    end
-
+  def title(title)
+    title = "HaikuVillage: #{title}"
     content_for :title, h(title)
   end
   
