@@ -9,8 +9,4 @@ class CreatePasswordResets < ActiveRecord::Migration
     add_index :password_resets, :token, :unique => true
     add_foreign_key :password_resets, :author_id, :authors
   end
-
-  def self.down
-    drop_table :password_resets
-  end
 end

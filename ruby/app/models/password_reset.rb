@@ -1,6 +1,6 @@
 class PasswordReset < ActiveRecord::Base
   belongs_to :author
-  before_create :generate_token
+  before_validation :generate_token
   after_create :send_email
 
   def login=(login)
@@ -9,7 +9,7 @@ class PasswordReset < ActiveRecord::Base
 
   private
     def generate_token
-      self.token = ActiveSupport::SecureRandom.base64(16)
+      self.token = ActiveSupport::SecureRandom.hex(16)
     end
     
     def send_email
