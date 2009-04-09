@@ -1,15 +1,15 @@
 class Author < ActiveRecord::Base
-  class << self
-    def authenticate(login, password)
-      find_by_login(login).try(:authenticate, password)
-    end
-    
+  class << self  
     def find_by_login!(login)
       find_by_login(login) || (raise ActiveRecord::RecordNotFound)
     end
-    
+
     def find_by_login(login)
       send(login =~ /@/ ? :find_by_email : :find_by_username, login)
+    end
+
+    def authenticate(login, password)
+      find_by_login(login).try(:authenticate, password)
     end
   end
   
