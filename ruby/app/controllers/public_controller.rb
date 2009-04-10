@@ -13,6 +13,14 @@ class PublicController < ApplicationController
   def sitemap
     @last_haiku = Haiku.recent.first
   end
+
+  def feedback
+    if request.post?
+      flash[:notice] = "Thanks for your feedback!"
+      Mailer.deliver_feedback(params[:feedback])
+      redirect_to root_path
+    end
+  end
   
   def google_gadget
     @random_haiku = Haiku.recent.all(:limit => 10).rand

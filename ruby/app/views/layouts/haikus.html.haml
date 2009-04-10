@@ -20,6 +20,8 @@
           = yield
         = render "layouts/corners"
     #footer
-      = link_to "About HaikuVillage", about_path
+      = link_to "About", about_path
+      |
+      = link_to "Feedback", feedback_path
     - if Rails.env.production?
       = render "layouts/analytics"

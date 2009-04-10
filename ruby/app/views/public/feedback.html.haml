@@ -1,0 +1,17 @@
+- title "Feedback"
+
+%style
+  :sass
+    form td > input[type="submit"]
+      :margin 0
+
+%h2 Give us your feedback
+- form_tag do
+  %table
+    %tr
+      %td= text_area_tag :feedback, nil, :rows => 6, :cols => 40
+    %tr
+      %td= submit_tag "Share"
+
+%script
+  $('feedback').activate();
