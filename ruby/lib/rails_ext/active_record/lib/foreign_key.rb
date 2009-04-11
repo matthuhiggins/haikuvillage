@@ -35,6 +35,17 @@ module ActiveRecord
       #   If set to <tt>:nullify</tt>, the from_table column is set to +NULL+.
       def add_foreign_key(from_table, to_table, options = {})
       end
+      
+      # Remove the given foreign key from the table.
+      #
+      # Remove the suppliers_company_id_fk in the suppliers table.
+      #   remove_foreign_key :suppliers, :companies
+      # Remove the foreign key named accounts_branch_id_fk in the accounts table.
+      #   remove_foreign_key :accounts, :column => :branch_id
+      # Remove the foreign key named party_foreign_key in the accounts table.
+      #   remove_index :accounts, :name => :party_foreign_key
+      def remove_foreign_key(from_table, options)
+      end
     end
   end
 end
@@ -47,35 +58,33 @@ module ActiveRecord
       end
       
       def add_foreign_key(from_table, to_table, options = {})
-        from_column  = options[:column] || "#{to_table.to_s.singularize}_id"
+        column  = options[:column] || "#{to_table.to_s.singularize}_id"
         dependency = dependency_sql(options[:dependent])
 
         execute %{
-            alter table #{from_table}
-            add constraint #{foreign_key_name(from_table, from_column, options)}
-            foreign key (#{from_column}) references #{to_table}(id)
-            #{dependency}
-        }
-      end
-      
-      def remove_foreign_key(from_table, to_table, options = {})
-        execute %{
           alter table #{from_table}
-          drop foreign key #{foreign_key_name(from_table, from_column, options)}"
+          add constraint #{foreign_key_name(from_table, column, options)}
+          foreign key (#{column}) references #{to_table}(id)
+          #{dependency}
         }
       end
-      
-      def change_foreign_key(*args)
-        remove_foreign_key(*args)
-        add_foreign_key(*args)
+
+      def remove_foreign_key(table, options)        
+        if Hash === options
+          foreign_key_name = foreign_key_name(table, options[:column], options)
+        else
+          foreign_key_name = foreign_key_name(table, "#{options.to_s.singularize}_id")
+        end
+
+        execute "alter table #{table} drop foreign key #{foreign_key_name}"
       end
-      
+
       private
-        def foreign_key_name(table_name, column, options)
+        def foreign_key_name(table, column, options = {})
           if options[:name]
             options[:name]
           else
-            "#{table_name}_#{column}_fk"
+            "#{table}_#{column}_fk"
           end
         end
 
@@ -91,9 +100,34 @@ module ActiveRecord
 end
 
 module ActiveRecord
+  module ConnectionAdapters #:nodoc:
+    class Column
+    end
+  end
+end
+
+module ActiveRecord
   module ConnectionAdapters
     class TableDefinition
       Table.class_eval do
+        # Adds a new foreign key to the table. +column_name+ can be a single Symbol, or
+        # an Array of Symbols. See SchemaStatements#add_foreign_key
+        #
+        # ===== Examples
+        # ====== Creating a simple foreign key
+        #  t.foreign_key(:people)
+        # ====== Defining the column
+        #  t.foreign_key(:people, :column => :sender_id)
+        # ====== Creating a named foreign key
+        #  t.foreign_key(:people, :column => :sender_id, :name => 'sender_foreign_key')
+        def foreign_key(table, options = {})
+          @base.add_foreign_key(@table_name, table, options)
+        end
+        
+        def remove_foreign_key(options = {})
+          @base.remove_foreign_key(@table_name, options)
+        end
+
         # In addition to the default behavior of 'references, adds a
         # foreign key to the table. See SchemaStatements#add_foreign_key
         def references_with_foreign_key(*args)
@@ -104,13 +138,6 @@ module ActiveRecord
           end
         end
         alias_method_chain :references, :foreign_key
-        
-        def foreign_key(*args)
-          options = args.extract_options!
-          args.each do |table|
-            @base.add_foreign_key(@table_name, table, options)
-          end
-        end
         
         # In addition to the default behavior of 'remove_references', removes the
         # foreign key from the table. See SchemaStatements#add_foreign_key
