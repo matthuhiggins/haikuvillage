@@ -9,7 +9,3 @@ end
 
 require 'lib/foreign_key'
 require 'lib/data_types'
-
-ActiveRecord::Migration.class_eval do
-  extend HaikuRecord::ForeignKey
-end

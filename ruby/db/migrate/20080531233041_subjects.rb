@@ -17,6 +17,6 @@ class Subjects < ActiveRecord::Migration
     end
     
     add_index :haikus, [:subject_id, :created_at]
-    add_foreign_key :haikus, :subject_id, :subjects
+    add_foreign_key :haikus, :subjects
   end
 end

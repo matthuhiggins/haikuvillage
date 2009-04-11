@@ -9,11 +9,7 @@ class CreateFriends < ActiveRecord::Migration
     add_index :friendships, [:author_id, :friend_id], :unique => true, :name => "friendships_index"
     add_index :friendships, [:friend_id, :author_id]
 
-    add_foreign_key :friendships, :author_id, :authors
-    add_foreign_key :friendships, :friend_id, :authors
-  end
-
-  def self.down
-    drop_table :friendships
+    add_foreign_key :friendships, :authors
+    add_foreign_key :friendships, :authors, :column => :friend_id
   end
 end

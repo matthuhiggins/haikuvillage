@@ -7,9 +7,9 @@ class CreateMessages < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_foreign_key :messages, :author_id, :authors
-    add_foreign_key :messages, :sender_id, :authors
-    add_foreign_key :messages, :recipient_id, :authors
+    add_foreign_key :messages, :authors
+    add_foreign_key :messages, :authors, :column => :sender_id 
+    add_foreign_key :messages, :authors, :column => :recipient_id
   end
 
 # 20090129175715  

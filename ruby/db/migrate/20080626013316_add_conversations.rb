@@ -12,6 +12,6 @@ class AddConversations < ActiveRecord::Migration
       t.integer :conversation_id, :null => true
     end
     
-    add_foreign_key :haikus, :conversation_id, :conversations
+    add_foreign_key :haikus, :conversations
   end
 end

@@ -8,7 +8,7 @@ class CreateUploadInspiration < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_foreign_key :upload_inspirations, :conversation_id, :conversations, :dependent => :delete
+    add_foreign_key :upload_inspirations, :conversations, :dependent => :delete
   end
 
   def self.down

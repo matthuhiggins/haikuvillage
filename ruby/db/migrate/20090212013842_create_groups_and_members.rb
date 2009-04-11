@@ -19,12 +19,12 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
     end
     add_index :memberships, [:author_id, :group_id, :standing]
     add_index :memberships, [:group_id, :author_id], :unique => true
-    add_foreign_key :memberships, :author_id, :authors
-    add_foreign_key :memberships, :group_id, :groups
+    add_foreign_key :memberships, :authors
+    add_foreign_key :memberships, :groups
     
     change_table :haikus do |t|
       t.references :group, :null => true
     end
-    add_foreign_key :haikus, :group_id, :groups
+    add_foreign_key :haikus, :groups
   end
 end
