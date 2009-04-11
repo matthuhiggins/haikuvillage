@@ -7,6 +7,5 @@ class CreatePasswordResets < ActiveRecord::Migration
     end
     
     add_index :password_resets, :token, :unique => true
-    add_foreign_key :password_resets, :authors
   end
 end

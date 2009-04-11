@@ -9,9 +9,7 @@ class AddConversations < ActiveRecord::Migration
     add_index :conversations, :haikus_count_total
     
     change_table :haikus do |t|
-      t.integer :conversation_id, :null => true
-    end
-    
-    add_foreign_key :haikus, :conversations
+      t.references :conversation, :null => true
+    end    
   end
 end

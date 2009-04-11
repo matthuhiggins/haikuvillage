@@ -13,10 +13,9 @@ class Subjects < ActiveRecord::Migration
     
     change_table :haikus do |t|
       t.string :subject_name, :null => true
-      t.integer :subject_id, :null => true
+      t.references :subject, :null => true
     end
     
     add_index :haikus, [:subject_id, :created_at]
-    add_foreign_key :haikus, :subjects
   end
 end

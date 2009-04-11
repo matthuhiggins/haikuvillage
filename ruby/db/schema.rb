@@ -71,13 +71,12 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "updated_at"
   end
 
-  add_index "flickr_inspirations", ["conversation_id"], :name => "flickr_inspirations_conversation_id_fk"
   add_index "flickr_inspirations", ["created_at"], :name => "index_flickr_inspirations_on_created_at"
   add_index "flickr_inspirations", ["photo_id"], :name => "index_flickr_inspirations_on_photo_id", :unique => true
 
   create_table "friendships", :force => true do |t|
-    t.integer  "author_id",  :null => false
     t.integer  "friend_id",  :null => false
+    t.integer  "author_id",  :null => false
     t.boolean  "mutual",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -152,7 +151,6 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "updated_at"
   end
 
-  add_index "messages", ["author_id"], :name => "messages_author_id_fk"
   add_index "messages", ["recipient_id"], :name => "messages_recipient_id_fk"
   add_index "messages", ["sender_id"], :name => "messages_sender_id_fk"
 
@@ -163,7 +161,6 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "updated_at"
   end
 
-  add_index "password_resets", ["author_id"], :name => "password_resets_author_id_fk"
   add_index "password_resets", ["token"], :name => "index_password_resets_on_token", :unique => true
 
   create_table "subjects", :force => true do |t|
@@ -180,7 +177,7 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
   add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
 
   create_table "upload_inspirations", :force => true do |t|
-    t.integer  "conversation_id",          :null => false
+    t.integer  "conversation",             :null => false
     t.string   "inspiration_file_name"
     t.string   "inspiration_content_type"
     t.integer  "inspiration_file_size"
@@ -188,7 +185,5 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "upload_inspirations", ["conversation_id"], :name => "upload_inspirations_conversation_id_fk"
 
 end

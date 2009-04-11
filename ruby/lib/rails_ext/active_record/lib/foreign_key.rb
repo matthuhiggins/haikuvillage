@@ -11,11 +11,17 @@ module ActiveRecord
       # <tt>:name</tt> as an option.
       #
       # ===== Examples
-      # ====== Creating a simple index
+      # ====== Creating a foreign key
       #  add_foreign_key(:comments, :posts)
       # generates
       #  ALTER TABLE `comments` ADD CONSTRAINT
       #     `comments_post_id_fk` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`)
+      # 
+      # ====== Removing a foreign key
+      #  remove_foreign_key(:comments, :posts)
+      # generates
+      #  ALTER TABLE `comments` DROP FOREIGN KEY `comments_post_id_fk`
+      # 
       # 
       # === Supported options
       # [:column]
@@ -42,18 +48,37 @@ module ActiveRecord
       
       def add_foreign_key(from_table, to_table, options = {})
         from_column  = options[:column] || "#{to_table.to_s.singularize}_id"
-        foreign_key_name = options[:name] || "#{from_table}_#{from_column}_fk"
         dependency = dependency_sql(options[:dependent])
 
-        execute %{alter table #{from_table}
-            add constraint #{foreign_key_name}
-            foreign key (#{from_column})
-            references #{to_table}(id)
+        execute %{
+            alter table #{from_table}
+            add constraint #{foreign_key_name(from_table, from_column, options)}
+            foreign key (#{from_column}) references #{to_table}(id)
             #{dependency}
         }
       end
       
+      def remove_foreign_key(from_table, to_table, options = {})
+        execute %{
+          alter table #{from_table}
+          drop foreign key #{foreign_key_name(from_table, from_column, options)}"
+        }
+      end
+      
+      def change_foreign_key(*args)
+        remove_foreign_key(*args)
+        add_foreign_key(*args)
+      end
+      
       private
+        def foreign_key_name(table_name, column, options)
+          if options[:name]
+            options[:name]
+          else
+            "#{table_name}_#{column}_fk"
+          end
+        end
+
         def dependency_sql(dependency)
           case dependency
             when :nullify then "on delete set null"
@@ -61,6 +86,43 @@ module ActiveRecord
             else ""
           end
         end
+    end
+  end
+end
+
+module ActiveRecord
+  module ConnectionAdapters
+    class TableDefinition
+      Table.class_eval do
+        # In addition to the default behavior of 'references, adds a
+        # foreign key to the table. See SchemaStatements#add_foreign_key
+        def references_with_foreign_key(*args)
+          options = args.extract_options!
+          references_without_foreign_key(*(args.dup << options))
+          args.each do |column|
+            foreign_key(column.to_s.pluralize, options)
+          end
+        end
+        alias_method_chain :references, :foreign_key
+        
+        def foreign_key(*args)
+          options = args.extract_options!
+          args.each do |table|
+            @base.add_foreign_key(@table_name, table, options)
+          end
+        end
+        
+        # In addition to the default behavior of 'remove_references', removes the
+        # foreign key from the table. See SchemaStatements#add_foreign_key
+        def remove_references_with_foreign_key(*args)
+          options = args.extract_options!
+          remove_references_without_foreign_key(*(args.dup << options))
+          args.each do |column|
+            @base.remove_foreign_key(@table_name, column.to_s.pluralize, options)
+          end
+        end
+        alias_method_chain :remove_references, :foreign_key
+      end
     end
   end
 end
