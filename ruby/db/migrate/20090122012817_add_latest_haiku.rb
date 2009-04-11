@@ -4,7 +4,7 @@ class AddLatestHaiku < ActiveRecord::Migration
       t.integer :latest_haiku_id
     end
     
-    add_foreign_key :authors, :haikus, :column => :latest_haiku_id
+    add_foreign_key :authors, :haikus, :column => :latest_haiku_id, :dependent => :nullify
   end
 
   def self.down
