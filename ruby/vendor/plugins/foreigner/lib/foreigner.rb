@@ -38,12 +38,13 @@ module ActiveRecord
       
       # Remove the given foreign key from the table.
       #
-      # Remove the suppliers_company_id_fk in the suppliers table.
+      # ===== Examples
+      # ====== Remove the suppliers_company_id_fk in the suppliers table.
       #   remove_foreign_key :suppliers, :companies
-      # Remove the foreign key named accounts_branch_id_fk in the accounts table.
+      # ====== Remove the foreign key named accounts_branch_id_fk in the accounts table.
       #   remove_foreign_key :accounts, :column => :branch_id
-      # Remove the foreign key named party_foreign_key in the accounts table.
-      #   remove_index :accounts, :name => :party_foreign_key
+      # ====== Remove the foreign key named party_foreign_key in the accounts table.
+      #   remove_foreign_key :accounts, :name => :party_foreign_key
       def remove_foreign_key(from_table, options)
       end
     end
@@ -60,7 +61,7 @@ module ActiveRecord
       def add_foreign_key(from_table, to_table, options = {})
         column  = options[:column] || "#{to_table.to_s.singularize}_id"
         dependency = dependency_sql(options[:dependent])
-
+        
         execute %{
           alter table #{from_table}
           add constraint #{foreign_key_name(from_table, column, options)}
@@ -100,13 +101,6 @@ module ActiveRecord
 end
 
 module ActiveRecord
-  module ConnectionAdapters #:nodoc:
-    class Column
-    end
-  end
-end
-
-module ActiveRecord
   module ConnectionAdapters
     class TableDefinition
       Table.class_eval do
@@ -124,31 +118,18 @@ module ActiveRecord
           @base.add_foreign_key(@table_name, table, options)
         end
         
+        # Remove the given foreign key from the table.
+        #
+        # ===== Examples
+        # ====== Remove the suppliers_company_id_fk in the suppliers table.
+        #   t.remove_foreign_key :companies
+        # ====== Remove the foreign key named accounts_branch_id_fk in the accounts table.
+        #   remove_foreign_key :column => :branch_id
+        # ====== Remove the foreign key named party_foreign_key in the accounts table.
+        #   remove_index :name => :party_foreign_key
         def remove_foreign_key(options = {})
           @base.remove_foreign_key(@table_name, options)
         end
-
-        # In addition to the default behavior of 'references, adds a
-        # foreign key to the table. See SchemaStatements#add_foreign_key
-        def references_with_foreign_key(*args)
-          options = args.extract_options!
-          references_without_foreign_key(*(args.dup << options))
-          args.each do |column|
-            foreign_key(column.to_s.pluralize, options)
-          end
-        end
-        alias_method_chain :references, :foreign_key
-        
-        # In addition to the default behavior of 'remove_references', removes the
-        # foreign key from the table. See SchemaStatements#add_foreign_key
-        def remove_references_with_foreign_key(*args)
-          options = args.extract_options!
-          remove_references_without_foreign_key(*(args.dup << options))
-          args.each do |column|
-            @base.remove_foreign_key(@table_name, column.to_s.pluralize, options)
-          end
-        end
-        alias_method_chain :remove_references, :foreign_key
       end
     end
   end

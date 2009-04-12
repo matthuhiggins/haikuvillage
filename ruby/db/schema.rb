@@ -114,9 +114,7 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
   end
 
   add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
-  add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
   add_index "haikus", ["favorited_count"], :name => "index_haikus_on_favorited_count_total"
-  add_index "haikus", ["group_id"], :name => "haikus_group_id_fk"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
   create_table "logged_exceptions", :force => true do |t|

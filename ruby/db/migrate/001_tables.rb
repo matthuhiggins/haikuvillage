@@ -31,6 +31,5 @@ class Tables < ActiveRecord::Migration
     add_index :haiku_favorites, [:author_id, :haiku_id, :created_at]
     add_index :haiku_favorites, [:haiku_id, :author_id], :unique => true
     add_index :haiku_favorites, [:created_at, :haiku_id]
-    # remove_foreign_key :haikus, :authors
   end
 end
