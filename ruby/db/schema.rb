@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "updated_at"
   end
 
+  add_index "flickr_inspirations", ["conversation_id"], :name => "flickr_inspirations_conversation_id_fk"
   add_index "flickr_inspirations", ["created_at"], :name => "index_flickr_inspirations_on_created_at"
   add_index "flickr_inspirations", ["photo_id"], :name => "index_flickr_inspirations_on_photo_id", :unique => true
 
@@ -113,8 +114,10 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.integer  "group_id"
   end
 
-  add_index "haikus", ["author_id"], :name => "index_haikus_on_author_id"
+  add_index "haikus", ["author_id"], :name => "haikus_author_id_fk"
+  add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
   add_index "haikus", ["favorited_count"], :name => "index_haikus_on_favorited_count_total"
+  add_index "haikus", ["group_id"], :name => "haikus_group_id_fk"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
   create_table "logged_exceptions", :force => true do |t|
@@ -149,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "updated_at"
   end
 
+  add_index "messages", ["author_id"], :name => "messages_author_id_fk"
   add_index "messages", ["recipient_id"], :name => "messages_recipient_id_fk"
   add_index "messages", ["sender_id"], :name => "messages_sender_id_fk"
 
@@ -159,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "updated_at"
   end
 
+  add_index "password_resets", ["author_id"], :name => "password_resets_author_id_fk"
   add_index "password_resets", ["token"], :name => "index_password_resets_on_token", :unique => true
 
   create_table "subjects", :force => true do |t|

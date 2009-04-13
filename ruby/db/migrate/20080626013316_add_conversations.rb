@@ -4,12 +4,12 @@ class AddConversations < ActiveRecord::Migration
       t.integer :haikus_count_week, :haikus_count_total, :null => false, :default => 0
       t.timestamps
     end
-
     add_index :conversations, :haikus_count_week
     add_index :conversations, :haikus_count_total
     
     change_table :haikus do |t|
       t.references :conversation, :null => true
+      t.foreign_key :conversations
     end    
   end
 end

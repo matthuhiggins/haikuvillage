@@ -7,7 +7,7 @@ class CreateMessages < ActiveRecord::Migration
       t.boolean :unread, :null => false
       t.timestamps
     end
-    
+    add_foreign_key :messages, :authors
     add_foreign_key :messages, :authors, :column => :sender_id 
     add_foreign_key :messages, :authors, :column => :recipient_id
   end

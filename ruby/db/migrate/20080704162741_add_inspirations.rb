@@ -14,9 +14,9 @@ class AddInspirations < ActiveRecord::Migration
       t.string :secret, :null => false
       t.timestamps
     end
-
     add_index :flickr_inspirations, :photo_id, :unique => true
     add_index :flickr_inspirations, :created_at
+    add_foreign_key :flickr_inspirations, :conversations
 
     Conversation.all.each do |conversation|
       conversation.update_attribute(:haikus_count_total, conversation.haikus.count)

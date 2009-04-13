@@ -5,7 +5,6 @@ class Subjects < ActiveRecord::Migration
       t.integer :haikus_count_week, :haikus_count_total, :null => false, :default => 0
       t.timestamps
     end
-    
     add_index :subjects, :name, :unique => true 
     add_index :subjects, :haikus_count_week
     add_index :subjects, :haikus_count_total
@@ -15,7 +14,7 @@ class Subjects < ActiveRecord::Migration
       t.string :subject_name, :null => true
       t.references :subject, :null => true
     end
-    
     add_index :haikus, [:subject_id, :created_at]
+    add_foreign_key :haikus, :subjects
   end
 end
