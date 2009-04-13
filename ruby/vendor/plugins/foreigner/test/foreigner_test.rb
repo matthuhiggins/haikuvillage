@@ -1,8 +1,17 @@
-require 'test_helper'
+require "cases/helper"
 
-class ForeignerTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+class ForeignerTest < ActiveRecord::TestCase
+  def setup
+    ActiveRecord::ConnectionAdapters::MysqlAdapter.class_eval do
+      alias_method :execute_without_stub, :execute
+      def execute(sql, name = nil) return sql end
+    end
+  end
+
+  def teardown
+    ActiveRecord::ConnectionAdapters::MysqlAdapter.class_eval do
+      remove_method :execute
+      alias_method :execute, :execute_without_stub
+    end
   end
 end
