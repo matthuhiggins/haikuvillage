@@ -1,4 +1,4 @@
-require "cases/helper"
+require File.dirname(__FILE__) + '/test_helper'
 
 class ForeignerTest < ActiveRecord::TestCase
   def setup
