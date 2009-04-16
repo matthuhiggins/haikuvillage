@@ -14,4 +14,6 @@ class ForeignerTest < ActiveRecord::TestCase
       alias_method :execute, :execute_without_stub
     end
   end
+  
+  
 end

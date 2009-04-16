@@ -180,13 +180,14 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
   add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
 
   create_table "upload_inspirations", :force => true do |t|
-    t.integer  "conversation",             :null => false
+    t.integer  "conversation_id",          :null => false
     t.string   "inspiration_file_name"
     t.string   "inspiration_content_type"
     t.integer  "inspiration_file_size"
-    t.datetime "inspiration_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "upload_inspirations", ["conversation_id"], :name => "upload_inspirations_conversation_id_fk"
 
 end
