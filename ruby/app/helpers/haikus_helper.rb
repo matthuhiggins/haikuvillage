@@ -28,12 +28,9 @@ module HaikusHelper
   end
   
   def enter_conversation_link(haiku)
-    unless haiku.conversing?
-      link_tag = link_to("Respond", haiku, :class => "icon reply")
-      content_tag(:div, link_tag, :class => "action")
-    else
-      ""
-    end
+    polymorphic_path = haiku.conversing? ? haiku.conversation : haiku
+    link_tag = link_to("Respond", polymorphic_path, :class => "icon reply")
+    content_tag(:div, link_tag, :class => "action")
   end
   
   def destroy_haiku_link(haiku)
