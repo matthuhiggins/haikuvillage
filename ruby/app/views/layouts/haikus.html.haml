@@ -22,6 +22,7 @@
     #footer
       = link_to "About", about_path
       |
-      = link_to "Feedback", feedback_path
+      = link_to "Feedback", "http://haikuvillage.uservoice.com"
     - if Rails.env.production?
       = render "layouts/analytics"
+      = render "layouts/feedback"
