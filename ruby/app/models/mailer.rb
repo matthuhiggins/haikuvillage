@@ -55,13 +55,6 @@ class Mailer < ActionMailer::Base
     body        :author => author, :group => group
   end
   
-  def feedback(feedback)
-    configure_defaults
-    recipients "feedback@haikuvillage.com"
-    subject    "Some asshole sent feedback"
-    body       :feedback => feedback
-  end
-  
   private
     def configure_defaults
       from          "575@haikuvillage.com"
