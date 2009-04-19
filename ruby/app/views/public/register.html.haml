@@ -44,3 +44,6 @@
         %td
         %td
           = form.submit 'Register', :id => "create_account"
+
+- if Rails.env.production?
+  = render 'signup_tracker'
