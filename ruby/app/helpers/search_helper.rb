@@ -16,7 +16,7 @@ module SearchHelper
       concat(tag(:input, {
         :type => "text", 
         :name => "q",
-        :value => 'Search for haikus', 
+        :value => 'Search for haiku', 
         :autocomplete => 'off', 
         :id => 'haiku_search'
       }))
