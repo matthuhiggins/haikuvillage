@@ -14,7 +14,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate',  :version => '2.3.7',  :lib => 'will_paginate',  :source => 'http://gems.github.com'
   config.gem 'right_aws'
   config.gem 'thoughtbot-shoulda',    :version => '2.10.1', :lib => 'shoulda',        :source => 'http://gems.github.com'
-  config.gem 'thoughtbot-paperclip',  :version => '2.2.6',  :lib => 'paperclip',      :source => 'http://gems.github.com'
+  config.gem 'thoughtbot-paperclip',  :version => '2.2.8',  :lib => 'paperclip',      :source => 'http://gems.github.com'
 
   config.action_controller.session = {
     :session_key => "_haiku_village",
