@@ -32,7 +32,8 @@ class Author < ActiveRecord::Base
   named_scope :search, lambda { |query| {:conditions => ['username like ?', "#{query}%"]} }
   named_scope :recently_updated, :order => 'latest_haiku_id desc', :include => {:latest_haiku => :conversation}
   
-  validates_presence_of :email, :username, :password, :on => :create
+  validates_presence_of :email, :username
+  validates_presence_of :password, :on => :create
   validates_uniqueness_of :username, :email
   validates_format_of :username, :with => /\A[a-z0-9]+\Z/i, :message => 'can only contain numbers and letters', :on => :create
   
