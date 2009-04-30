@@ -6,7 +6,7 @@
       = image_tag conversation.inspiration.small
     - else
       .summary= conversation.haikus_count_total
-      haikus
+      haiku
   .haikus
     - conversation.recent_haikus.each do |haiku|
       .terse-haiku= truncate(haiku.terse, :length => 90)
