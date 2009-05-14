@@ -1,88 +1,72 @@
 module Lingua
-module EN
-module Syllable
+  module EN
+    module Syllable
 	
-	module Dictionary
-		class LookUpError < IndexError
-		end
+    	module Dictionary
+    		class LookUpError < IndexError
+    		end
 		
-		@@dictionary = nil
-		@@dbmclass   = nil
-		@@dbmext     = nil
+    		@@dictionary = nil
+    		@@dbmclass   = nil
+    		@@dbmext     = nil
 		
-		require 'sdbm'
-		@@dbmclass = Module.const_get('SDBM')
+    		require 'sdbm'
+    		@@dbmclass = Module.const_get('SDBM')
 		
-		# Look up word in the dbm dictionary.
-		def Dictionary.syllables(word)
-			if @@dictionary.nil?
-				load_dictionary
-			end
-			word = word.upcase
-			begin
-				pronounce = @@dictionary.fetch(word)
-			rescue IndexError
-				if word =~ /'/
-					word = word.delete "'"
-					retry
-				end
-				raise LookUpError, "word #{word} not in dictionary"
-			end
+		    class << self
+      		# Look up word in the dbm dictionary.
+      		def syllables(word)
+      			if @@dictionary.nil?
+      				load_dictionary
+      			end
+      			word = word.upcase
+      			begin
+      				pronounce = @@dictionary.fetch(word)
+      			rescue IndexError
+      				if word =~ /'/
+      					word = word.delete "'"
+      					retry
+      				end
+      				raise LookUpError, "word #{word} not in dictionary"
+      			end
 			
-			pronounce.split(/-/).grep(/^[AEIUO]/).length
-		end
+      			pronounce.split(/-/).grep(/^[AEIUO]/).length
+      		end
 		
-		def Dictionary.dictionary
-			if @@dictionary.nil?
-				load_dictionary
-			end
-			@@dictionary
-		end
+      		def dictionary
+      			if @@dictionary.nil?
+      				load_dictionary
+      			end
+      			@@dictionary
+      		end
 		
-		# convert a text file dictionary into dbm files. Returns the file names
-		# of the created dbms.
-		def Dictionary.make_dictionary(source_file, output_dir)
-			begin
-				Dir.mkdir(output_dir)
-			rescue
-			end
+      		# convert a text file dictionary into dbm files. Returns the file names
+      		# of the created dbms.
+      		def make_dictionary(source_file, output_dir)
+    				Dir.mkdir(output_dir)
+
+      			dbm = @@dbmclass.new(File.join(output_dir, 'dict'))
 			
-			dbm = @@dbmclass.new(File.join(output_dir, 'dict'))
+    				IO.foreach(source_file) do | line |
+    					next if line !~ /^[A-Z]/
+    					line.chomp!
+    					(word, *phonemes) = line.split(/  ?/)
+    					next if word =~ /\(\d\) ?$/ # ignore alternative pronunciations
+    					dbm.store(word, phonemes.join("-"))
+    				end
 			
-			begin
-				IO.foreach(source_file) do | line |
-					next if line !~ /^[A-Z]/
-					line.chomp!
-					(word, *phonemes) = line.split(/  ?/)
-					next if word =~ /\(\d\) ?$/ # ignore alternative pronunciations
-					dbm.store(word, phonemes.join("-"))
-				end
-			rescue
-				# close and clean up
-				dbm.close
-				Dir.foreach(output_dir) do | x | 
-					next if x =~ /^\.\.?$/
-					File.unlink(File.join('dict', x))
-				end
-				# delete files
-				raise
-			end
-			
-			dbm.close
-			
-			Dir.entries(output_dir).collect { | x |  
-				x =~ /^\.\.?$/ ? nil : File.join("dict", x)
-			}.compact
-		end
+      			dbm.close
+      		end
 		
-		private
-		def Dictionary.load_dictionary
-      @@dictionary = @@dbmclass.new(__FILE__[0..-14] + 'dict')
-			if @@dictionary.keys.length.zero?
-				raise LoadError, "dictionary file not found"
-			end
-		end
-	end
-end
-end
+      		private
+        		def load_dictionary
+              @@dictionary = @@dbmclass.new(__FILE__[0..-14] + 'dict')
+        			if @@dictionary.keys.length.zero?
+        				raise LoadError, "dictionary file not found"
+        			end
+        		end
+    		end
+    	end
+    end
+  end
 end
