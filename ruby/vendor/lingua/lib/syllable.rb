@@ -14,18 +14,9 @@ module Lingua
       require 'syllable/dictionary.rb'
       require 'syllable/guess.rb'
 		
-  		def Syllable.syllables(word)
-        begin
-  				return Dictionary::syllables(word)
-        rescue Dictionary::LookUpError
-          return Guess::syllables(word)
-        end
+  		def self.syllables(word)
+  			Dictionary::syllables(word) || Guess::syllables(word)
   		end
     end
   end
-end
-
-if __FILE__ == $0
-	ARGV.each { | word |  puts "'#{word}' : " + 
-		Lingua::EN::Syllable::syllables(word).to_s }
 end

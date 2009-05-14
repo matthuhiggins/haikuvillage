@@ -15,22 +15,18 @@ module Lingua
             word = word.upcase
             begin
               pronounce = dictionary.fetch(word)
+              pronounce.split(/-/).grep(/^[AEIUO]/).length
             rescue IndexError
               if word =~ /'/
                 word = word.delete "'"
                 retry
               end
-              raise LookUpError, "word #{word} not in dictionary"
+              nil
             end
-
-            pronounce.split(/-/).grep(/^[AEIUO]/).length
           end
 
           def dictionary
-            if @@dictionary.nil?
-              load_dictionary
-            end
-            @@dictionary
+            @@dictionary ||= load_dictionary
           end
     
           # convert a text file dictionary into dbm files. Returns the file names
@@ -53,10 +49,9 @@ module Lingua
     
           private
             def load_dictionary
-              @@dictionary = SDBM.new(__FILE__[0..-14] + 'dict')
-              if @@dictionary.keys.length.zero?
-                raise LoadError, "dictionary file not found"
-              end
+              dictionary = SDBM.new(__FILE__[0..-14] + 'dict')
+              (raise LoadError, "dictionary file not found") if dictionary.keys.length.zero?
+              dictionary
             end
         end
       end
