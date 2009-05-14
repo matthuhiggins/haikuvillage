@@ -47,12 +47,6 @@ module Syllable
 			rescue
 			end
 			
-			# clean old dictionary dbms
-			Dir.foreach(output_dir) do | x | 
-				next if x =~ /^\.\.?$/
-				File.unlink(File.join(output_dir, x))
-			end
-			
 			dbm = @@dbmclass.new(File.join(output_dir, 'dict'))
 			
 			begin

@@ -14,7 +14,7 @@ options.set_options(
 options.each do | opt, arg |
 	if opt == '-d'
 		if arg.empty?
-			$dictfile = 'redist/cmulex_pronunciation_dictionary.0.6'
+			$dictfile = 'redist/cmulex_pronunciation_dictionary.0.7a'
 		else	
 			$dictfile = arg
 		end
@@ -24,12 +24,14 @@ options.each do | opt, arg |
 	end
 end
 
+puts "here with #{$dictfile}"
+
 def install_libraries(files)
-  files.each do |aFile, dest|
-    aFile = File.expand_path(aFile)
-    File::makedirs(dest)
-    File::install(aFile, File.join(dest, File.basename(aFile)), 0644, true)
-  end
+  # files.each do |aFile, dest|
+  #   aFile = File.expand_path(aFile)
+  #   File::makedirs(dest)
+  #   File::install(aFile, File.join(dest, File.basename(aFile)), 0644, true)
+  # end
 end
 
 if $0 == __FILE__
