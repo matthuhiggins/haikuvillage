@@ -1,4 +1,5 @@
 require 'ftools'
+require 'fileutils'
 
 PRONUNCIATION_DICTIONARY = 'redist/cmulex_pronunciation_dictionary.0.7a'
 puts "preparing dictionary files; this may take some time"
