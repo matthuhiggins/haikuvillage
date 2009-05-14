@@ -4,29 +4,17 @@ module Lingua
       module Dictionary
         require 'sdbm'
 
-        class LookUpError < IndexError
-        end
-    
         @@dictionary = nil
     
         class << self
-          # Look up word in the dbm dictionary.
           def syllables(word)
             word = word.upcase
-            begin
-              pronounce = dictionary.fetch(word)
-              pronounce.split(/-/).grep(/^[AEIUO]/).length
-            rescue IndexError
-              if word =~ /'/
-                word = word.delete "'"
-                retry
-              end
+            pronounce = dictionary[word]
+            if pronounce.nil?
               nil
+            else
+              pronounce.split(/-/).grep(/^[AEIUO]/).length
             end
-          end
-
-          def dictionary
-            @@dictionary ||= load_dictionary
           end
     
           # convert a text file dictionary into dbm files. Returns the file names
@@ -43,13 +31,17 @@ module Lingua
               next if word =~ /\(\d\) ?$/ # ignore alternative pronunciations
               dbm.store(word, phonemes.join("-"))
             end
-      
+
             dbm.close
           end
     
           private
+            def dictionary
+              @@dictionary ||= load_dictionary
+            end
+
             def load_dictionary
-              dictionary = SDBM.new(__FILE__[0..-14] + 'dict')
+              dictionary = SDBM.new(File.dirname(__FILE__) + '/dict')
               (raise LoadError, "dictionary file not found") if dictionary.keys.length.zero?
               dictionary
             end
