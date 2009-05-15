@@ -3,7 +3,7 @@ RAILS_GEM_VERSION = '2.3.2'
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  %w(linguistics lingua faster_xml_simple).each do |lib|
+  %w(linguistics lingua).each do |lib|
     config.load_paths.push("#{RAILS_ROOT}/vendor/#{lib}/lib")
   end
 
