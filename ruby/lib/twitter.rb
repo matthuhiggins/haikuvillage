@@ -7,14 +7,14 @@ class Twitter
   
   class << self
     def authenticate(username, password)
-      twitter_head(AUTHENTICATE, username, password) { |code, data| code == 200 }
+      twitter_head(AUTHENTICATE, username, password) { |code| code == 200 }
     end
     
     def tweet(haiku)
       author = haiku.author
       formatted_text = ERB::Util.h(haiku.terse)
       parameters = {'source' => 'haikuvillage', 'status' => "#haiku #{formatted_text}"}
-      twitter_post(STATUS_UPDATE, author.twitter_username, author.twitter_password, parameters) do |code, data|
+      twitter_post(STATUS_UPDATE, author.twitter_username, author.twitter_password, parameters) do |code|
         raise AuthenticationError if code == 401
       end
     end
@@ -26,9 +26,7 @@ class Twitter
       
       def make_request(request, url, &block)
         response = Net::HTTP.new(url.host, url.port).start { |http| http.request(request) }
-        response_data = XmlSimple.xml_in(response.body, 'keeproot' => false) if response.body
-        
-        yield(*[response.code[0..2].to_i, response_data].slice(0, block.arity))
+        yield(response.code[0..2].to_i)
       end
     
       [:get, :post, :put, :delete, :head].each do |verb|
