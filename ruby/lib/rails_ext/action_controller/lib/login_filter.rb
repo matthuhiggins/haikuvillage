@@ -41,7 +41,7 @@ module HaikuController
     end
   
     def check_login
-      unless session[:username]
+      unless session[:author_id]
         redirect_with_login_context do
           flash[:notice] = "You must sign in first"
         end

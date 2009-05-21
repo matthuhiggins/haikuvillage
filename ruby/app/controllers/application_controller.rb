@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
         
   private
     def login_and_redirect(author)
-      session[:username] = author.username
+      session[:author_id] = author.id
       if session[:new_haiku]
         author.haikus.create(session[:new_haiku]) 
         session[:new_haiku] = nil
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     end
     
     def current_author
-      @current_author ||= Author.find_by_username!(session[:username]) unless session[:username].nil?
+      @current_author ||= Author.find(session[:author_id]) unless session[:author_id].nil?
     end
     helper_method :current_author
 end

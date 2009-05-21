@@ -12,7 +12,7 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(params[:author])
     if @author.save
-      session[:username] = @author.username
+      session[:author_id] = @author.id
       redirect_to :controller => "journal"
     else
       render "new"
@@ -53,7 +53,7 @@ class AuthorsController < ApplicationController
   def reset_password
     @password_reset = PasswordReset.find_by_token!(params[:token])
     if request.post?
-      session[:username] = @password_reset.author.username
+      session[:author_id] = @password_reset.author.id
       @password_reset.destroy
       @password_reset.author.update_attributes(:password => params[:password])
       flash[:notice] = "Your new password has been saved"
