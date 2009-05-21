@@ -12,38 +12,39 @@
 - else
   %h2 You need to sign in or register
 
-.column
-  %h3= "Already an author?"
-  = render :partial => 'sessions/form'
+.register
+  .column
+    %h3= "Already an author?"
+    = render :partial => 'sessions/form'
   
 
-.column
-  %h3= 'Create a new account'
-  - form_for :author, :url => register_path, :html => {:class => 'register_form'}  do |form|
-    - fields_for_haiku
-    %table{:style => 'margin-left: 15px;'}
-      %tr
-        %td
-          = form.label :email, 'Email:'
-        %td
-          = error_message_on :author, :email
-          = form.text_field :email
-      %tr
-        %td
-          = form.label :username, 'Username:'
-        %td
-          = error_message_on :author, :username
-          = form.text_field :username
-      %tr
-        %td
-          = form.label :password, 'Password:'
-        %td
-          = error_message_on :author, :password
-          = form.password_field :password  
-      %tr
-        %td
-        %td
-          = form.submit 'Register', :id => "create_account"
+  .column
+    %h3= 'Create a new account'
+    - form_for :author, :url => register_path do |form|
+      - fields_for_haiku
+      %table{:style => 'margin-left: 15px;'}
+        %tr
+          %td
+            = form.label :email, 'Email:'
+          %td
+            = error_message_on :author, :email
+            = form.text_field :email
+        %tr
+          %td
+            = form.label :username, 'Username:'
+          %td
+            = error_message_on :author, :username
+            = form.text_field :username
+        %tr
+          %td
+            = form.label :password, 'Password:'
+          %td
+            = error_message_on :author, :password
+            = form.password_field :password  
+        %tr
+          %td
+          %td
+            = form.submit 'Register', :id => "create_account"
 
 - if Rails.env.production?
   = render 'signup_tracker'

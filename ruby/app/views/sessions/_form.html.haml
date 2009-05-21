@@ -12,6 +12,11 @@
         = password_field_tag :password, "", :id => 'session_password'
     %tr
       %td
+        = check_box_tag :remember_me, "1"
+      %td
+        = label_tag :remember_me, 'Remember me', :class => 'checkbox'
+    %tr
+      %td
       %td
         = submit_tag 'Sign in'
     %tr
