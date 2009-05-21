@@ -5,7 +5,6 @@ class ProfileController < ApplicationController
     return if request.get?
 
     if current_author.update_attributes(params[:author])
-      session[:author_id] = current_author.id
       flash[:notice] = 'Account saved'
     end
   end

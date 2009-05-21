@@ -21,7 +21,15 @@ class ApplicationController < ActionController::Base
     end
     
     def current_author
-      @current_author ||= Author.find(session[:author_id]) unless session[:author_id].nil?
+      @current_author ||= (author_from_cookie || author_from_session)
     end
     helper_method :current_author
+
+    def author_from_cookie
+      Author.find(cookies[:author_id]) unless cookies[:author_id].nil?
+    end
+
+    def author_from_session
+      Author.find(session[:author_id]) unless session[:author_id].nil?
+    end
 end
