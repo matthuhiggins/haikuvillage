@@ -2,11 +2,16 @@ class JournalController < ApplicationController
   login_filter
 
   def index
-    @haikus = current_author.haikus.recent.paginate({
-      :page      => params[:page],
-      :per_page  => 10,
-      :total_entries => current_author.haikus_count_total
-    })
+    respond_to do |f|
+      f.html do
+        @haikus = current_author.haikus.recent.paginate({
+          :page      => params[:page],
+          :per_page  => 10,
+          :total_entries => current_author.haikus_count_total
+        })
+      end
+      f.text { render :text => current_author.haikus.map{|haiku| haiku.text}.join("\n\n") }
+    end
   end
 
   def subjects
