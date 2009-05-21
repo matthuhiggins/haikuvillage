@@ -25,18 +25,20 @@ class GroupsController < ApplicationController
   end
   
   def show
-    respond_to do |f|
-      f.html { @haikus = current_group.haikus.recent.all(:limit => 4) }
-      f.atom { render_atom(current_group.haikus.recent.all(:limit => 10)) }
-    end
+    @haikus = current_group.haikus.recent.all(:limit => 4)
   end
   
   def haikus
-    @haikus = current_group.haikus.recent.paginate(
-      :page           => params[:page],
-      :per_page       => 20,
-      :total_entries  => current_group.haikus_count
-    )
+    respond_to do |f|
+      f.html do
+        @haikus = current_group.haikus.recent.paginate(
+          :page           => params[:page],
+          :per_page       => 20,
+          :total_entries  => current_group.haikus_count
+        )
+      end
+      f.atom { render_atom(current_group.haikus.recent.all(:limit => 10)) }
+    end
   end
   
   def update
