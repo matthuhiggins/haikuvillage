@@ -2,16 +2,16 @@ class FlickrInspiration < ActiveRecord::Base
   class << self
     def collect
       response = Net::HTTP.get(flickr_host, interestingness_path)
-      xml = XmlSimple.xml_in(response, 'keeproot' => false)
-      photos_xml = xml['photos']['photo']
-      photos_xml.each { |photo_xml| create_from_xml(photo_xml) }
+      json = ActiveSupport::JSON.decode(response)
+      photos = json['photos']['photo']
+      photos.each { |photo_json| create_from_json(photo_json) }
     end
     
     private
       def interestingness_path
         now = 2.days.ago.utc
         date = now.strftime('%Y-%m-%d')
-        "/services/rest/?method=flickr.interestingness.getList&api_key=#{api_key}&per_page=10&date=#{date}"
+        "/services/rest/?method=flickr.interestingness.getList&api_key=#{api_key}&per_page=10&date=#{date}&format=json&nojsoncallback=1"
       end
       
       def flickr_host
@@ -22,13 +22,16 @@ class FlickrInspiration < ActiveRecord::Base
         '3caa3374c4ee9c68a0873e5bd3d0cfac'
       end
       
-      def create_from_xml(xml)
-        create(
-          :title        => xml['title'],
-          :farm_id      => xml['farm'],
-          :server_id    => xml['server'],
-          :photo_id     => xml['id'],
-          :secret       => xml['secret']) unless exists?(:photo_id => xml['id'])
+      def create_from_json(json)
+        unless exists?(:photo_id => json['id'])
+          create!(
+            :title        => json['title'],
+            :farm_id      => json['farm'],
+            :server_id    => json['server'],
+            :photo_id     => json['id'],
+            :secret       => json['secret']
+          )
+        end
       end
   end
 

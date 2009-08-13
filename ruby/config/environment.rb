@@ -1,4 +1,4 @@
-RAILS_GEM_VERSION = '2.3.2'
+RAILS_GEM_VERSION = '2.3.3'
 
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -14,6 +14,7 @@ Rails::Initializer.run do |config|
   config.gem 'right_aws'
   config.gem 'thoughtbot-shoulda',    :version => '2.10.1', :lib => 'shoulda',        :source => 'http://gems.github.com'
   config.gem 'thoughtbot-paperclip',  :version => '2.2.8',  :lib => 'paperclip',      :source => 'http://gems.github.com'
+  config.gem 'json',                  :version => '1.1.7'
 
   config.action_controller.session = {
     :session_key => "_haiku_village",
@@ -24,4 +25,8 @@ Rails::Initializer.run do |config|
     :host => "www.haikuvillage.com",
     :only_path => false
   }
+  
+  config.after_initialize do
+    ActiveSupport::JSON.backend = 'JSONGem'
+  end
 end
