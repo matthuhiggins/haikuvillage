@@ -1,4 +1,4 @@
-module Tweet
+module Haiku::Tweet
   def self.included(base)
     base.after_create(:tweet)
   end

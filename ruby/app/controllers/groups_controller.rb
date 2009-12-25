@@ -51,7 +51,7 @@ class GroupsController < ApplicationController
   end
   
   def search
-    @groups = Group.search(params[:q], :page => params[:page], :per_page => 10)
+    @groups = Group.search(params[:q]).paginated :page => params[:page], :per_page => 10
   end
   
   private

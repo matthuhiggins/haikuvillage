@@ -8,10 +8,11 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name, :description
   validates_uniqueness_of :name
-  
-  define_index do
-    indexes :name
-    indexes :description
+
+  def self.search(text)
+    text.split.inject(scoped({})) do |scope, word|
+      scope.scoped :conditions => ["groups.name like :word or groups.description like :word", {:word => "%#{word}%"}] 
+    end
   end
   
   def add_member(author)

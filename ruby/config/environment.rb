@@ -1,28 +1,29 @@
-RAILS_GEM_VERSION = '2.3.3'
+RAILS_GEM_VERSION = '2.3.5'
 
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   %w(linguistics lingua).each do |lib|
-    config.load_paths.push("#{RAILS_ROOT}/vendor/#{lib}/lib")
+    config.load_paths.push("#{Rails.root}/vendor/#{lib}/lib")
   end
 
-  config.time_zone = "UTC"
+  config.time_zone = 'UTC'
 
-  config.gem "haml",                  :version => "2.0.9"
-  config.gem 'mislav-will_paginate',  :version => '2.3.7',  :lib => 'will_paginate',  :source => 'http://gems.github.com'
+  config.gem 'haml',                    :version => '2.2.16'
+  config.gem 'will_paginate',           :version => '2.3.11',   :lib => 'will_paginate'
   config.gem 'right_aws'
-  config.gem 'thoughtbot-shoulda',    :version => '2.10.1', :lib => 'shoulda',        :source => 'http://gems.github.com'
-  config.gem 'thoughtbot-paperclip',  :version => '2.2.8',  :lib => 'paperclip',      :source => 'http://gems.github.com'
-  config.gem 'json',                  :version => '1.1.7'
+  config.gem 'shoulda',                 :version => '2.10.2',   :lib => 'shoulda'
+  config.gem 'paperclip',               :version => '2.3.1.1',  :lib => 'paperclip'
+  config.gem 'json',                    :version => '1.2.0'
+  config.gem 'matthuhiggins-foreigner', :version => '0.3.1',    :lib => 'foreigner'
 
   config.action_controller.session = {
-    :session_key => "_haiku_village",
-    :secret => "I bust the stupid dope moves Esteban. I got the stupid juice."
+    :session_key => '_haiku_village',
+    :secret => 'I bust the stupid dope moves Esteban. I got the stupid juice.'
   }
 
   config.action_mailer.default_url_options = {
-    :host => "www.haikuvillage.com",
+    :host => 'www.haikuvillage.com',
     :only_path => false
   }
   

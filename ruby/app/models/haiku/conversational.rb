@@ -1,4 +1,4 @@
-module Conversational
+module Haiku::Conversational
   def self.included(base)
     base.class_eval do
       belongs_to :conversation

@@ -1,20 +1,13 @@
-require 'haiku/conversational'
 require 'haiku/line'
-require 'haiku/tweet'
 
 class Haiku < ActiveRecord::Base
-  include Tweet, Conversational
+  include Haiku::Tweet, Haiku::Conversational
   
   belongs_to :author
   belongs_to :subject
   belongs_to :group, :counter_cache => true
   has_many :favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :favorites, :source => :author
-  
-  define_index do
-    indexes :text
-    indexes :subject_name
-  end
     
   named_scope :recent, :order => 'haikus.id desc', :include => [:conversation, :author, :group]
   
@@ -31,6 +24,12 @@ class Haiku < ActiveRecord::Base
   
   validates_presence_of :text, :on => :create
   validate_on_create :valid_syllables?
+  
+  def self.search(text)
+    text.split.inject(scoped({:include => [:conversation, :author, :group, :subject]})) do |scope, word|
+      scope.scoped :conditions => ["haikus.text like :word or subjects.name like :word", {:word => "%#{word}%"}] 
+    end
+  end
   
   VALID_SYLLABLES = [5, 7, 5]
   

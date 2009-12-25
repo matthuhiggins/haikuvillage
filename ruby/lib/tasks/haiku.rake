@@ -38,11 +38,4 @@ namespace :haiku do
       [FlickrInspiration]
     end
   end
-  
-  namespace :cache do
-    desc 'Clear eveything that has been cached'
-    task :clear => :environment do
-      ActionController::Base.cache_store.clear
-    end
-  end
 end

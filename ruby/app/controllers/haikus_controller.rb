@@ -21,8 +21,9 @@ class HaikusController < ApplicationController
   end
   
   def search
-    @haikus = params[:q] &&
-      Haiku.search(params[:q], :page => params[:page], :per_page => 10)
+    if params[:q].present?
+      @haikus = Haiku.search(params[:q]).paginate :page => params[:page], :per_page => 10)
+    end
   end
   
   def show

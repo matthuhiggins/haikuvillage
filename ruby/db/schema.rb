@@ -190,4 +190,30 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
 
   add_index "upload_inspirations", ["conversation_id"], :name => "upload_inspirations_conversation_id_fk"
 
+  add_foreign_key "authors", "haikus", :name => "authors_latest_haiku_id_fk", :column => "latest_haiku_id", :dependent => :nullify
+
+  add_foreign_key "favorites", "authors", :name => "haiku_favorites_author_id_fk"
+  add_foreign_key "favorites", "haikus", :name => "haiku_favorites_haiku_id_fk"
+
+  add_foreign_key "flickr_inspirations", "conversations", :name => "flickr_inspirations_conversation_id_fk"
+
+  add_foreign_key "friendships", "authors", :name => "friendships_author_id_fk"
+  add_foreign_key "friendships", "authors", :name => "friendships_friend_id_fk", :column => "friend_id"
+
+  add_foreign_key "haikus", "authors", :name => "haikus_author_id_fk"
+  add_foreign_key "haikus", "conversations", :name => "haikus_conversation_id_fk"
+  add_foreign_key "haikus", "groups", :name => "haikus_group_id_fk"
+  add_foreign_key "haikus", "subjects", :name => "haikus_subject_id_fk"
+
+  add_foreign_key "memberships", "authors", :name => "memberships_author_id_fk"
+  add_foreign_key "memberships", "groups", :name => "memberships_group_id_fk"
+
+  add_foreign_key "messages", "authors", :name => "messages_author_id_fk"
+  add_foreign_key "messages", "authors", :name => "messages_recipient_id_fk", :column => "recipient_id"
+  add_foreign_key "messages", "authors", :name => "messages_sender_id_fk", :column => "sender_id"
+
+  add_foreign_key "password_resets", "authors", :name => "password_resets_author_id_fk"
+
+  add_foreign_key "upload_inspirations", "conversations", :name => "upload_inspirations_conversation_id_fk"
+
 end
