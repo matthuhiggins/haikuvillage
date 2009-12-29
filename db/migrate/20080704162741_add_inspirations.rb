@@ -9,7 +9,7 @@ class AddInspirations < ActiveRecord::Migration
     create_table :flickr_inspirations do |t|
       t.string :title, :null => false
       t.references :conversation, :null => false
-      t.column :photo_id, :big_integer, :null => false
+      t.integer :photo_id, :null => false, :limit => 8
       t.integer :farm_id, :server_id, :null => false
       t.string :secret, :null => false
       t.timestamps
