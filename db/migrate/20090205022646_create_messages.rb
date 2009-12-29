@@ -3,7 +3,7 @@ class CreateMessages < ActiveRecord::Migration
     create_table :messages, :force => true do |t|
       t.references :author, :null => false
       t.integer :sender_id, :recipient_id, :null => false
-      t.text :text, :limit => 153, :null => false
+      t.text :text, :null => false
       t.boolean :unread, :null => false
       t.timestamps
     end
