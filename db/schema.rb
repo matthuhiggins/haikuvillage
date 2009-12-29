@@ -12,16 +12,16 @@
 ActiveRecord::Schema.define(:version => 20090225062432) do
 
   create_table "authors", :force => true do |t|
+    t.string   "email",                                    :null => false
     t.string   "username",                                 :null => false
     t.string   "password",                                 :null => false
     t.integer  "haikus_count_week",     :default => 0,     :null => false
     t.integer  "haikus_count_total",    :default => 0,     :null => false
+    t.integer  "favorited_count_total", :default => 0,     :null => false
+    t.integer  "favorited_count_week",  :default => 0,     :null => false
     t.integer  "favorites_count",       :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                 :default => "",    :null => false
-    t.integer  "favorited_count_total", :default => 0,     :null => false
-    t.integer  "favorited_count_week",  :default => 0,     :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.datetime "updated_at"
   end
 
-  add_index "favorites", ["author_id", "haiku_id", "created_at"], :name => "index_haiku_favorites_on_author_id_and_haiku_id_and_created_at"
-  add_index "favorites", ["created_at", "haiku_id"], :name => "index_haiku_favorites_on_created_at_and_haiku_id"
-  add_index "favorites", ["haiku_id", "author_id"], :name => "index_haiku_favorites_on_haiku_id_and_author_id", :unique => true
+  add_index "favorites", ["author_id", "haiku_id", "created_at"], :name => "index_favorites_on_author_id_and_haiku_id_and_created_at"
+  add_index "favorites", ["created_at", "haiku_id"], :name => "index_favorites_on_created_at_and_haiku_id"
+  add_index "favorites", ["haiku_id", "author_id"], :name => "index_favorites_on_haiku_id_and_author_id", :unique => true
 
   create_table "flickr_inspirations", :force => true do |t|
     t.string   "title",                        :null => false
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
 
   create_table "haikus", :force => true do |t|
     t.integer  "author_id",                      :null => false
-    t.integer  "favorited_count", :default => 0, :null => false
     t.text     "text",                           :null => false
+    t.integer  "favorited_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subject_name"
@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
 
   add_index "haikus", ["author_id"], :name => "haikus_author_id_fk"
   add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
-  add_index "haikus", ["favorited_count"], :name => "index_haikus_on_favorited_count_total"
   add_index "haikus", ["group_id"], :name => "haikus_group_id_fk"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
@@ -192,8 +191,8 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
 
   add_foreign_key "authors", "haikus", :name => "authors_latest_haiku_id_fk", :column => "latest_haiku_id", :dependent => :nullify
 
-  add_foreign_key "favorites", "authors", :name => "haiku_favorites_author_id_fk"
-  add_foreign_key "favorites", "haikus", :name => "haiku_favorites_haiku_id_fk"
+  add_foreign_key "favorites", "authors", :name => "favorites_author_id_fk"
+  add_foreign_key "favorites", "haikus", :name => "favorites_haiku_id_fk"
 
   add_foreign_key "flickr_inspirations", "conversations", :name => "flickr_inspirations_conversation_id_fk"
 
