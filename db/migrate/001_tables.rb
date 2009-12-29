@@ -15,7 +15,7 @@ class Tables < ActiveRecord::Migration
       t.references :author, :null => false
       t.integer :favorited_count_week, :favorited_count_total, :null => false, :default => 0
       t.integer :view_count_week, :view_count_total, :null => false, :default => 0
-      t.text :text, :limit => 153, :null => false
+      t.text :text, :null => false
       t.timestamps
     end
     add_index :haikus, :favorited_count_week
