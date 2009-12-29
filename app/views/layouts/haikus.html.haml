@@ -6,8 +6,8 @@
     %link{:rel => "icon", :href => "/images/favicon.ico"}
     %link{:rel => "icon", :href => "/images/favicon.png", :type => "image/png"}
     = javascript_include_tag 'prototype', 'effects', 'controls'
-    = javascript_include_tag 'application', 'syllables', 'inspirations', :cache => 'cache'
-    = stylesheet_link_tag :haiku, :cache => 'cache'
+    = javascript_include_tag 'application', 'syllables', 'inspirations'
+    = stylesheet_link_tag :haiku
     = yield :head
     = yield :description
   %body
