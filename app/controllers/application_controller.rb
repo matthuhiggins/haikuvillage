@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
     def login_and_redirect(author, remember_me = false)
       session[:author_id] = author.id
 
-      if remember_me
-        author.remember_me!
-        cookies[:remember_token] = {:value => author.remember_token, :expires => 2.weeks.from_now}
-      end
-
       if session[:new_haiku]
         author.haikus.create(session[:new_haiku]) 
         session[:new_haiku] = nil
@@ -32,7 +27,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_author
 
     def author_from_cookie
-      Author.find(cookies[:author_id]) unless cookies[:author_id].nil?
+      Author.find_by_remember_token(cookies[:remember_token]) unless cookies[:remember_token].nil?
     end
 
     def author_from_session
