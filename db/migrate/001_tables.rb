@@ -1,7 +1,9 @@
 class Tables < ActiveRecord::Migration
   def self.up  
     create_table :authors do |t|
-      t.string :email, :username, :password, :null => false
+      t.string :email, :username, :null => false
+      t.string :hashed_password, :salt, :null => false
+      t.string :remember_token
       t.integer :haikus_count_week, :haikus_count_total, :null => false, :default => 0
       t.integer :favorited_count_total, :favorited_count_week, :null => false, :default => 0
       t.integer :favorites_count, :null => false, :default => 0

@@ -9,8 +9,14 @@ class ApplicationController < ActionController::Base
   helper :all
         
   private
-    def login_and_redirect(author)
+    def login_and_redirect(author, remember_me = false)
       session[:author_id] = author.id
+
+      if remember_me
+        author.remember_me!
+        cookies[:remember_token] = {:value => author.remember_token, :expires => 2.weeks.from_now}
+      end
+
       if session[:new_haiku]
         author.haikus.create(session[:new_haiku]) 
         session[:new_haiku] = nil

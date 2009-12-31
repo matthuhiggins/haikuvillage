@@ -35,6 +35,7 @@ class Mailer < ActionMailer::Base
   end
   
   def password_reset(password_reset)
+    logger.info "*** password_reset.token = #{password_reset.token}"
     configure_defaults
     recipients  password_reset.author.email
     subject     "Reset your HaikuVillage password"

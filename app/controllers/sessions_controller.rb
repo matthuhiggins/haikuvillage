@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       if params[:remember_me].present?
         cookies[:author_id] = {:value => author.id, :expires => 2.weeks.from_now}
       end
-      login_and_redirect(author)
+      login_and_redirect(author, params[:remember_me].present?)
     else
       flash[:notice] = "Invalid username/password combination"
       redirect_to :back

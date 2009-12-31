@@ -14,7 +14,9 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
   create_table "authors", :force => true do |t|
     t.string   "email",                                    :null => false
     t.string   "username",                                 :null => false
-    t.string   "password",                                 :null => false
+    t.string   "hashed_password",                          :null => false
+    t.string   "salt",                                     :null => false
+    t.string   "remember_token"
     t.integer  "haikus_count_week",     :default => 0,     :null => false
     t.integer  "haikus_count_total",    :default => 0,     :null => false
     t.integer  "favorited_count_total", :default => 0,     :null => false

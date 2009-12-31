@@ -1,19 +1,8 @@
 class Author < ActiveRecord::Base
-  class << self  
-    def find_by_login!(login)
-      find_by_login(login) || (raise ActiveRecord::RecordNotFound)
-    end
-
-    def find_by_login(login)
-      send(login =~ /@/ ? :find_by_email : :find_by_username, login)
-    end
-
-    def authenticate(login, password)
-      find_by_login(login).try(:authenticate, password)
-    end
-  end
-  
-  include Author::Friendly, Author::Social
+  include Author::Authenticated
+  include Author::Friendly
+  include Author::Social
+  include Author::Remembered
 
   has_many :favorites
   has_many :favorite_haikus, :through => :favorites, :source => :haiku
@@ -33,13 +22,8 @@ class Author < ActiveRecord::Base
   named_scope :recently_updated, :order => 'latest_haiku_id desc', :include => {:latest_haiku => :conversation}
   
   validates_presence_of :email, :username
-  validates_presence_of :password, :on => :create
   validates_uniqueness_of :username, :email
   validates_format_of :username, :with => /\A[a-z0-9]+\Z/i, :message => 'can only contain numbers and letters', :on => :create
-  
-  def authenticate(password)
-    self if self.password == password
-  end
   
   SubjectSummary = Struct.new(:name, :count)
   def subjects
