@@ -24,10 +24,6 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.integer  "favorites_count",       :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "twitter_username"
     t.string   "twitter_password"
     t.boolean  "twitter_enabled",       :default => false, :null => false
@@ -94,10 +90,6 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
     t.boolean  "invite_only",                      :null => false
     t.integer  "haikus_count",      :default => 0, :null => false
     t.integer  "memberships_count", :default => 0, :null => false
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

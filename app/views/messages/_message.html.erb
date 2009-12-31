@@ -1,7 +1,7 @@
 <div class="message">
   <div class="avatar">
     <% link_to author_path(message.other_author.username) do %>
-      <%= image_tag(message.other_author.avatar.url(:medium)) %>
+      <%= image_tag(message.other_author.gravatar_url(:size => 32)) %>
     <% end %>
   </div>
   <div class="author_and_time">

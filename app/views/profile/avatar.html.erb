@@ -1,19 +1,31 @@
 <style>
 .avatar {
+  overflow: hidden;
+}
+
+.avatar img {
   float: left;
-  margin-right: 9px;
+  margin-right: 11px;
+}
+
+.avatar .change-avatar {
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 4px;
+  padding-top: 10px;
+}
+
+.avatar .avatar-note {
+  color: #444;
+  font-style: italic;
 }
 </style>
 <% render :layout => 'layout' do %>
-  <% form_for :author, :url => {:action => 'update_avatar'}, :html => { :multipart => true } do |form| %>
-    <div class="avatar">
-      <%= image_tag current_author.avatar.url(:large) %>
+  <div class="avatar">
+    <%= image_tag current_author.gravatar_url(:size => 48) %>
+    <div class="change-avatar">
+      Change your avatar at <%= link_to "gravatar.com", "http://gravatar.com" %>
     </div>
-    <p>
-      <%= form.file_field :avatar %>
-    </p>
-    <p>
-      <%= form.submit "Save" %>
-    </p>
-  <% end %>
+    <div class="avatar-note">We're using <%= current_author.email %></div>
+  </div>
 <% end %>

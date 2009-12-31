@@ -1,6 +1,6 @@
 <div class="author">
   <% link_to author_url(tiny.username) do %>
-    <%= image_tag tiny.avatar.url(:small) %>
+    <%= image_tag tiny.gravatar_url(:size => 16) %>
   <% end %>
   <%= link_to tiny.username, author_url(tiny.username) %>
 </div>

@@ -9,13 +9,6 @@ class ProfileController < ApplicationController
     end
   end
 
-  def update_avatar
-    if current_author.update_attributes(params[:author])
-      flash[:notice] = 'Avatar saved'
-    end
-    redirect_to :action => 'avatar'
-  end
-
   def twitter
     return if request.get?
 

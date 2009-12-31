@@ -5,9 +5,6 @@ class CreateGroupsAndMembers < ActiveRecord::Migration
       t.text :description, :null => false
       t.boolean :invite_only, :null => false
       t.integer :haikus_count, :memberships_count, :null => false, :default => 0
-      t.string :logo_file_name, :logo_content_type
-      t.integer :logo_file_size
-      t.datetime :logo_updated_at
       t.timestamps
     end
     add_index :groups, :name, :unique => true

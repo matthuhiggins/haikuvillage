@@ -11,10 +11,8 @@ Rails::Initializer.run do |config|
 
   config.gem 'haml',                    :version => '2.2.16'
   config.gem 'will_paginate',           :version => '2.3.11',   :lib => 'will_paginate'
-  config.gem 'right_aws'
-  config.gem 'shoulda',                 :version => '2.10.2',   :lib => 'shoulda'
-  config.gem 'paperclip',               :version => '2.3.1.1',  :lib => 'paperclip'
   config.gem 'json',                    :version => '1.2.0'
+  config.gem 'gravtastic',              :version => '2.1.3'
   config.gem 'matthuhiggins-foreigner', :version => '0.3.1',    :lib => 'foreigner'
 
   config.action_controller.session = {
