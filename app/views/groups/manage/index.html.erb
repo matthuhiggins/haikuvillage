@@ -17,9 +17,6 @@
     <li>
       <%= link_to "Group rules", :action => "rules", :group_id => current_group  %>
       <p>Decide whether members or anyone can contribute to this group</p>
-    <li>
-      <%= link_to "Group icon", :action => "logo", :group_id => current_group %>
-      <p>Upload an icon for your group.</p>
     </li>
     <li>
       <%= link_to "Manage members", {:action => 'memberships'} %>

@@ -1,13 +1,6 @@
 class Groups::ManageController < ApplicationController
   before_filter :check_admin
   
-  def update_logo
-    if current_group.update_attributes(params[:group])
-      flash[:notice] = 'Logo saved'
-    end
-    redirect_to :action => 'index'
-  end
-  
   def memberships
     memberships = current_group.memberships
     @admins = memberships.admins

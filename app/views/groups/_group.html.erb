@@ -1,9 +1,4 @@
 <div class="group">
-  <% link_to group do %>
-    <div class="logo">
-      <%= image_tag(group.logo.url(:large)) %>
-    </div>
-  <% end %>
   <div class="meta">
     <%= link_to group.name, group, :class => 'group_name' %>
     <div class="summaries">

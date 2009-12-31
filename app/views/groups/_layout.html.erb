@@ -8,9 +8,6 @@
 </style>
 
 <div class="group-header">
-  <div class="logo">
-    <%= image_tag current_group.logo.url(:large) %>
-  </div>
   <div class="nav">
     <h2><%= link_to_unless_current current_group.name, current_group %></h2>
     <% sub_menu(:class => "tab_nav") do |m| %>
