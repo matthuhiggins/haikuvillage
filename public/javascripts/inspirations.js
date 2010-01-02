@@ -33,14 +33,18 @@ window.inspirations = function(inspirations) {
     setupFlickr();
   });
   
-  $('use_upload').observe('click', function(event) {
-    Event.stop(event);
-    setupUpload();
-  })
+  // $('use_upload').observe('click', function(event) {
+  //   Event.stop(event);
+  //   setupUpload();
+  // });
 
   $('prev_inspiration').observe('click', function(event) {
     Event.stop(event);
-    index = index-- < 0 ? (inspirations.length - 1) : index;
+    if (index == 0) {
+      index = inspirations.length - 1;
+    } else {
+      index--;
+    }
     displayCurrent();
   });
   

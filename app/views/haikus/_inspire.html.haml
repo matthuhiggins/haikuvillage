@@ -2,11 +2,10 @@
 
 #inspiration_what
   You can add an image to your haiku.
-  Select an option below.
 
 #inspiration_selection
-  %p= link_to("Upload an image", nil, :id => "use_upload")
   %p= link_to("Use a preselected image", nil, :id => "use_flickr")
+  -# %p= link_to("Upload an image", nil, :id => "use_upload")
 
 #inspiration_preview{:style => "display: none;"}
   = link_to("< Prev", "#", :id => "prev_inspiration")
