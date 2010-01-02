@@ -7,14 +7,14 @@ namespace :haiku do
       end
     end
     
-    def roll_weekly(klass, metric)
-      column = "#{metric}_count_week"
-      klass.update_all("#{column} = floor(#{column} * (6/7))", "#{column} > 0")
-    end
-    
-    def counter_caches
-      { Author  => ['haikus', 'favorited'], Subject => ['haikus'] }
-    end
+    # def roll_weekly(klass, metric)
+    #   column = "#{metric}_count_week"
+    #   klass.update_all("#{column} = floor(#{column} * (6/7))", "#{column} > 0")
+    # end
+    # 
+    # def counter_caches
+    #   { Author  => ['haikus', 'favorited'], Subject => ['haikus'] }
+    # end
   end
   
   namespace :twitter do

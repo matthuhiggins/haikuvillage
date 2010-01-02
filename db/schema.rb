@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090225062432) do
+ActiveRecord::Schema.define(:version => 20090212013842) do
 
   create_table "authors", :force => true do |t|
     t.string   "email",                                    :null => false
@@ -172,23 +172,12 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
   add_index "subjects", ["haikus_count_week"], :name => "index_subjects_on_haikus_count_week"
   add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
 
-  create_table "upload_inspirations", :force => true do |t|
-    t.integer  "conversation_id",          :null => false
-    t.string   "inspiration_file_name"
-    t.string   "inspiration_content_type"
-    t.integer  "inspiration_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "upload_inspirations", ["conversation_id"], :name => "upload_inspirations_conversation_id_fk"
-
   add_foreign_key "authors", "haikus", :name => "authors_latest_haiku_id_fk", :column => "latest_haiku_id", :dependent => :nullify
 
   add_foreign_key "favorites", "authors", :name => "favorites_author_id_fk"
   add_foreign_key "favorites", "haikus", :name => "favorites_haiku_id_fk"
 
-  add_foreign_key "flickr_inspirations", "conversations", :name => "flickr_inspirations_conversation_id_fk"
+  add_foreign_key "flickr_inspirations", "conversations", :name => "flickr_inspirations_conversation_id_fk", :dependent => :delete
 
   add_foreign_key "friendships", "authors", :name => "friendships_author_id_fk"
   add_foreign_key "friendships", "authors", :name => "friendships_friend_id_fk", :column => "friend_id"
@@ -206,7 +195,5 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
   add_foreign_key "messages", "authors", :name => "messages_sender_id_fk", :column => "sender_id"
 
   add_foreign_key "password_resets", "authors", :name => "password_resets_author_id_fk"
-
-  add_foreign_key "upload_inspirations", "conversations", :name => "upload_inspirations_conversation_id_fk"
 
 end
