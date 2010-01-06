@@ -4,7 +4,7 @@
 
 <div class="author-header">
   <div class="avatar">
-    <%= image_tag @author.gravatar_url(:size => 64) %>
+    <%= image_tag large_avatar_url(@author) %>
   </div>
   <div class="nav">
     <h2><%= "#{@author.username}'s Journal" %></h2>

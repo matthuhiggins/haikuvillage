@@ -1,7 +1,7 @@
 .friend{:id => dom_id(friend)}
   .avatar
     - link_to author_path(friend.username) do
-      = image_tag(friend.gravatar_url(:size => 64))
+      = image_tag large_avatar_url(friend)
   .details
     .username_and_actions
       .username

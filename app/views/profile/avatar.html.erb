@@ -22,7 +22,7 @@
 </style>
 <% render :layout => 'layout' do %>
   <div class="avatar">
-    <%= image_tag current_author.gravatar_url(:size => 48) %>
+    <%= image_tag large_avatar_url(current_author) %>
     <div class="change-avatar">
       Change your avatar at <%= link_to "gravatar.com", "http://gravatar.com" %>
     </div>

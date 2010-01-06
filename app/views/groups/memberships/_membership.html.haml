@@ -1,5 +1,5 @@
 .membership
   .avatar
     - link_to author_path(membership.author.username) do
-      = image_tag(membership.author.gravatar_url(:size => 32))
+      = image_tag medium_avatar_url(membership.author)
   = link_to_author membership.author
