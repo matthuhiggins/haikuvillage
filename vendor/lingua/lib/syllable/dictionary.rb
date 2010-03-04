@@ -8,28 +8,29 @@ module Lingua
     
         class << self
           def syllables(word)
+            Rails.logger.debug("word = #{word}")
             word = word.upcase
-            pronounce = dictionary[word]
-            if pronounce.nil?
-              nil
-            else
-              pronounce.split(/-/).grep(/^[AEIUO]/).length
-            end
+            syllables = dictionary[word].try(:to_i)
+            Rails.logger.debug("syllables = #{syllables}")
+            syllables
           end
     
-          # convert a text file dictionary into dbm files. Returns the file names
-          # of the created dbms.
           def make_dictionary(source_file, output_dir)
             FileUtils.mkdir(output_dir) unless File.exist?(output_dir)
 
             dbm = SDBM.new(File.join(output_dir, 'dict'))
       
-            IO.foreach(source_file) do | line |
+            IO.foreach(source_file) do |line|
               next if line !~ /^[A-Z]/
               line.chomp!
               (word, *phonemes) = line.split(/  ?/)
               next if word =~ /\(\d\) ?$/ # ignore alternative pronunciations
-              dbm.store(word, phonemes.join("-"))
+
+              syllables = phonemes.grep(/^[AEIUO]/).size
+
+              if syllables != Syllable::Guess.syllables(word)
+                dbm.store(word, syllables.to_s)
+              end
             end
 
             dbm.close
