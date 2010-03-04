@@ -13,7 +13,7 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate',           :version => '2.3.11'
   config.gem 'json'
   config.gem 'gravtastic',              :version => '2.1.3'
-  config.gem 'matthuhiggins-foreigner', :version => '0.3.1',    :lib => 'foreigner'
+  config.gem 'matthuhiggins-foreigner', :version => '0.4.1',    :lib => 'foreigner'
 
   config.action_controller.session = {
     :session_key => '_haiku_village',
