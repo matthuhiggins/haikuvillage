@@ -9,9 +9,9 @@ Rails::Initializer.run do |config|
 
   config.time_zone = 'UTC'
 
-  config.gem 'haml'
+  config.gem 'haml',                    :version => '2.2.20'
   config.gem 'will_paginate',           :version => '2.3.11'
-  config.gem 'json'
+  config.gem 'json',                    :version => '1.2.2'
   config.gem 'gravtastic',              :version => '2.1.3'
   config.gem 'matthuhiggins-foreigner', :version => '0.4.1',    :lib => 'foreigner'
 
