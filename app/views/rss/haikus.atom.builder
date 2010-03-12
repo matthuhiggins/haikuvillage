@@ -1,9 +1,9 @@
 atom_feed do |feed|
   feed.title(@title)
-  feed.updated((@haikus.first.created_at))
+  feed.updated((@haikus.first.try(:created_at)))
 
   @haikus.each do |haiku|
-    feed.entry(haiku, :url => haiku_path(haiku, :format => nil) ) do |entry|
+    feed.entry(haiku, :url => haiku_path(haiku, :format => nil)) do |entry|
       entry.title(haiku.terse)
       entry.content :type => :xhtml do |xhtml|
         if haiku.conversation && haiku.conversation.inspiration
