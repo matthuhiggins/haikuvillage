@@ -7,6 +7,8 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def self.search(text)
+    return scoped({}) if text.blank?
+
     text.split.inject(scoped({})) do |scope, word|
       scope.scoped :conditions => ["groups.name like :word or groups.description like :word", {:word => "%#{word}%"}] 
     end
