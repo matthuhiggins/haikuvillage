@@ -24,7 +24,7 @@ module Concerns::Session
     end
     
     def logout
-      current_author.forget_me!
+      current_author.try(:forget_me!)
       session[:author_id] = nil
       cookies.delete :remember_token
     end
