@@ -10,8 +10,10 @@ class Author < ActiveRecord::Base
   has_many :messages
   belongs_to :latest_haiku, :class_name => "Haiku", :dependent => :delete
   
-  before_validation :downcase_username
-  
+  before_validation :if => :username do |author|
+    author.username.downcase!
+  end
+
   is_gravtastic!
 
   named_scope :brand_new, :order => 'created_at desc'
