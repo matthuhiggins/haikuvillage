@@ -2,7 +2,7 @@ module ApplicationHelper
   extend ActiveSupport::Memoizable
   
   def title(title)
-    title = "HaikuVillage: #{title}"
+    title = "Haiku Village: #{title}"
     content_for :title, h(title)
   end
   

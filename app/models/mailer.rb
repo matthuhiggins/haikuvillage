@@ -2,21 +2,21 @@ class Mailer < ActionMailer::Base
   def haiku(haiku, email, author)
     configure_defaults  
     recipients    parse_emails(email)
-    subject       "#{author.username} shared you a haiku from HaikuVillage"
+    subject       "#{author.username} shared you a haiku from Haiku Village"
     body          :haiku => haiku, :author => author
   end
   
   def new_friend(email, author)
     configure_defaults  
     recipients    parse_emails(email)
-    subject       "#{author.username} added you to their HaikuVillage friends"
+    subject       "#{author.username} added you to their Haiku Village friends"
     body          :author => author
   end
   
   def invite(email, author)
     configure_defaults
     recipients    parse_emails(email)
-    subject       "#{author.username} has invited you to join HaikuVillage!"
+    subject       "#{author.username} has invited you to join Haiku Village!"
     body          :author => author
   end
   
@@ -30,7 +30,7 @@ class Mailer < ActionMailer::Base
   def message_notification(message)
     configure_defaults
     recipients  message.recipient.email
-    subject     "#{message.sender.username} sent you a message from HaikuVillage"
+    subject     "#{message.sender.username} sent you a message from Haiku Village"
     body        :message => message
   end
   
@@ -38,21 +38,21 @@ class Mailer < ActionMailer::Base
     logger.info "*** password_reset.token = #{password_reset.token}"
     configure_defaults
     recipients  password_reset.author.email
-    subject     "Reset your HaikuVillage password"
+    subject     "Reset your Haiku Village password"
     body        :password_reset => password_reset
   end
   
   def group_invitation(author, group)
     configure_defaults
     recipients  author.email
-    subject     "You are invited to join the HaikuVillage group #{group.name}"
+    subject     "You are invited to join the Haiku Village group #{group.name}"
     body        :author => author, :group => group
   end
   
   def group_application(author, group)
     configure_defaults
     recipients  group.memberships.admins.map { |admin| admin.author.email }
-    subject     "#{author.username} wants to join your HaikuVillage group"
+    subject     "#{author.username} wants to join your Haiku Village group"
     body        :author => author, :group => group
   end
   
