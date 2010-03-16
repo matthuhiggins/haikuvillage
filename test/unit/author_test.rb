@@ -21,7 +21,7 @@ class AuthorTest < ActiveSupport::TestCase
     author = Factory :author, :password => 'foo'
     assert_equal author, Author.authenticate(author.username, 'foo')
     assert_equal author, Author.authenticate(author.email, 'foo')
-    assert_nil Author.authenticate(author.username, 'foo')
+    assert_nil Author.authenticate(author.username, 'bar')
     assert_nil Author.authenticate('noway', 'foo')
   end
   
@@ -32,7 +32,10 @@ class AuthorTest < ActiveSupport::TestCase
   end
   
   def test_username_downcased
-    assert_equal 'foo', Factory(:author, :username => 'FOO')
-    assert_equal 'foo', Factory(:author).update_attribute(:username => 'FOO')
+    author = Factory(:author, :username => 'FOO')
+    assert_equal 'foo', author.username
+    
+    author.update_attributes(:username => 'BAR')
+    assert_equal 'bar', author.username
   end
 end

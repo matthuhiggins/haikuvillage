@@ -9,7 +9,6 @@ class PasswordReset < ActiveRecord::Base
 
   private
     def generate_token
-      logger.info "**** WE ARE HERE!!!***"
       self.token = ActiveSupport::SecureRandom.hex(16)
     end
     

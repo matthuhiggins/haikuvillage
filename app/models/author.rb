@@ -11,7 +11,7 @@ class Author < ActiveRecord::Base
   belongs_to :latest_haiku, :class_name => "Haiku", :dependent => :delete
   
   before_validation :if => :username do |author|
-    author.username.downcase!
+    author.username = author.username.downcase
   end
 
   is_gravtastic!
