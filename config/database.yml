@@ -1,5 +1,5 @@
 development:
-  adapter: mysql
+  adapter: sqlite3
   database: haiku_development
   username: root
   password:

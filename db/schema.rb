@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
 
   add_index "authors", ["email"], :name => "index_authors_on_email", :unique => true
   add_index "authors", ["haikus_count_week"], :name => "index_authors_on_haikus_count_week"
-  add_index "authors", ["latest_haiku_id"], :name => "authors_latest_haiku_id_fk"
   add_index "authors", ["username"], :name => "index_authors_on_username", :unique => true
 
   create_table "conversations", :force => true do |t|
@@ -69,7 +68,6 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.datetime "updated_at"
   end
 
-  add_index "flickr_inspirations", ["conversation_id"], :name => "flickr_inspirations_conversation_id_fk"
   add_index "flickr_inspirations", ["created_at"], :name => "index_flickr_inspirations_on_created_at"
   add_index "flickr_inspirations", ["photo_id"], :name => "index_flickr_inspirations_on_photo_id", :unique => true
 
@@ -108,9 +106,6 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.integer  "group_id"
   end
 
-  add_index "haikus", ["author_id"], :name => "haikus_author_id_fk"
-  add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
-  add_index "haikus", ["group_id"], :name => "haikus_group_id_fk"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
 
   create_table "logged_exceptions", :force => true do |t|
@@ -145,10 +140,6 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.datetime "updated_at"
   end
 
-  add_index "messages", ["author_id"], :name => "messages_author_id_fk"
-  add_index "messages", ["recipient_id"], :name => "messages_recipient_id_fk"
-  add_index "messages", ["sender_id"], :name => "messages_sender_id_fk"
-
   create_table "password_resets", :force => true do |t|
     t.string   "token",      :null => false
     t.integer  "author_id"
@@ -156,7 +147,6 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
     t.datetime "updated_at"
   end
 
-  add_index "password_resets", ["author_id"], :name => "password_resets_author_id_fk"
   add_index "password_resets", ["token"], :name => "index_password_resets_on_token", :unique => true
 
   create_table "subjects", :force => true do |t|
@@ -172,28 +162,12 @@ ActiveRecord::Schema.define(:version => 20090212013842) do
   add_index "subjects", ["haikus_count_week"], :name => "index_subjects_on_haikus_count_week"
   add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
 
-  add_foreign_key "authors", "haikus", :name => "authors_latest_haiku_id_fk", :column => "latest_haiku_id", :dependent => :nullify
-
-  add_foreign_key "favorites", "authors", :name => "favorites_author_id_fk"
-  add_foreign_key "favorites", "haikus", :name => "favorites_haiku_id_fk"
-
-  add_foreign_key "flickr_inspirations", "conversations", :name => "flickr_inspirations_conversation_id_fk", :dependent => :delete
-
-  add_foreign_key "friendships", "authors", :name => "friendships_author_id_fk"
-  add_foreign_key "friendships", "authors", :name => "friendships_friend_id_fk", :column => "friend_id"
-
-  add_foreign_key "haikus", "authors", :name => "haikus_author_id_fk"
-  add_foreign_key "haikus", "conversations", :name => "haikus_conversation_id_fk"
-  add_foreign_key "haikus", "groups", :name => "haikus_group_id_fk"
-  add_foreign_key "haikus", "subjects", :name => "haikus_subject_id_fk"
-
-  add_foreign_key "memberships", "authors", :name => "memberships_author_id_fk"
-  add_foreign_key "memberships", "groups", :name => "memberships_group_id_fk"
-
-  add_foreign_key "messages", "authors", :name => "messages_author_id_fk"
-  add_foreign_key "messages", "authors", :name => "messages_recipient_id_fk", :column => "recipient_id"
-  add_foreign_key "messages", "authors", :name => "messages_sender_id_fk", :column => "sender_id"
-
-  add_foreign_key "password_resets", "authors", :name => "password_resets_author_id_fk"
-
+  create_table "upload_inspirations", :force => true do |t|
+    t.integer  "conversation_id",          :null => false
+    t.string   "inspiration_file_name"
+    t.string   "inspiration_content_type"
+    t.integer  "inspiration_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 end
