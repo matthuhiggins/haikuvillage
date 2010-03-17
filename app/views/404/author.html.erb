@@ -1,0 +1,8 @@
+<%- title 'Author does not exist' %>
+
+<h2>Author <%=h params[:id] %> does not exist</h2>
+
+<p>
+  This author may have changed usernames.
+  You can also try <%= link_to 'searching for authors', authors_path %>.
+</p>

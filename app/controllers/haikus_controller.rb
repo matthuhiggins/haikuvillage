@@ -28,8 +28,6 @@ class HaikusController < ApplicationController
   
   def show
     @single_haiku = Haiku.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_to(root_path)
   end
   
   def destroy

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Concerns::TwitterError
   include Concerns::Rss
   include Concerns::Session
+  include Concerns::RecordNotFound
 
   filter_parameter_logging :password, :password_confirmation
   layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
