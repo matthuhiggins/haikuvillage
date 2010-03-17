@@ -40,17 +40,6 @@ class HaikusController < ApplicationController
     end
   end
   
-  def email
-    @haiku = Haiku.find(params[:id])
-  end
-  
-  def deliver
-    haiku = Haiku.find(params[:id])
-    Mailer.deliver_haiku(haiku, params[:email], current_author)
-    flash[:notice] = "The haiku has been sent"
-    redirect_to params[:referrer]
-  end
-  
   def upload
     @inspiration = UploadInspiration.create(params[:upload_inspiration])    
     

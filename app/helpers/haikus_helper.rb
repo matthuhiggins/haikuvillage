@@ -40,11 +40,6 @@ module HaikusHelper
     end
   end
   
-  def email_haiku_link(haiku)
-    link_tag = link_to("Email", email_haiku_path(haiku), :class => "icon email")
-    content_tag(:div, link_tag, :class => "action")
-  end
-  
   def haiku_text_tag(options = {})
     options.reverse_merge!(
       :autocomplete => 'off',

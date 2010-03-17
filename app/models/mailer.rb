@@ -1,11 +1,4 @@
 class Mailer < ActionMailer::Base
-  def haiku(haiku, email, author)
-    configure_defaults  
-    recipients    parse_emails(email)
-    subject       "#{author.username} shared you a haiku from Haiku Village"
-    body          :haiku => haiku, :author => author
-  end
-  
   def new_friend(email, author)
     configure_defaults  
     recipients    parse_emails(email)
