@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090225062432) do
+ActiveRecord::Schema.define(:version => 20090212013842) do
 
   create_table "authors", :force => true do |t|
     t.string   "email",                                    :null => false
@@ -161,14 +161,5 @@ ActiveRecord::Schema.define(:version => 20090225062432) do
   add_index "subjects", ["haikus_count_total"], :name => "index_subjects_on_haikus_count_total"
   add_index "subjects", ["haikus_count_week"], :name => "index_subjects_on_haikus_count_week"
   add_index "subjects", ["name"], :name => "index_subjects_on_name", :unique => true
-
-  create_table "upload_inspirations", :force => true do |t|
-    t.integer  "conversation_id",          :null => false
-    t.string   "inspiration_file_name"
-    t.string   "inspiration_content_type"
-    t.integer  "inspiration_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
