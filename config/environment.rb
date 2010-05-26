@@ -1,4 +1,4 @@
-RAILS_GEM_VERSION = '2.3.5'
+RAILS_GEM_VERSION = '2.3.8'
 
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -9,11 +9,10 @@ Rails::Initializer.run do |config|
 
   config.time_zone = 'UTC'
 
-  config.gem 'haml',                    :version => '2.2.21'
-  config.gem 'will_paginate',           :version => '2.3.11'
-  config.gem 'json',                    :version => '1.2.2'
-  config.gem 'gravtastic',              :version => '2.1.3'
-  config.gem 'matthuhiggins-foreigner', :version => '0.4.1',    :lib => 'foreigner'
+  config.gem 'haml',                    :version => '3.0.6'
+  config.gem 'will_paginate',           :version => '2.3.12'
+  config.gem 'gravtastic',              :version => '2.2.0'
+  config.gem 'matthuhiggins-foreigner', :version => '0.6.1',    :lib => 'foreigner'
 
   config.action_controller.session = {
     :session_key => '_haiku_village',
@@ -24,8 +23,4 @@ Rails::Initializer.run do |config|
     :host => 'www.haikuvillage.com',
     :only_path => false
   }
-  
-  config.after_initialize do
-    ActiveSupport::JSON.backend = 'JSONGem'
-  end
 end

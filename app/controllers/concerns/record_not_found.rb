@@ -8,15 +8,9 @@ module Concerns
     
     private
       def record_not_found(exception)
-        # render :text => exception.message
         if exception.message =~ /^Couldn't find (.*) with/
           render :template => "/404/#{$1.downcase}"
         end
-          # 
-          
-        # else
-          # redirect_to '/404'
-        # end
       end
   end
 end

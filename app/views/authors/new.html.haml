@@ -33,5 +33,7 @@
 %script
   document.getElementById('author_email').focus();
 
+%fb:login-button
+
 - if Rails.env.production?
   = render 'public/signup_tracker'
