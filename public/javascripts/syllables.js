@@ -102,6 +102,7 @@ var Haiku = Class.create({
 });
 
 Haiku.FormEvents = {
+    BLANK_HAIKU_TEXT: "Write your haiku",
     limitTextArea: function(textArea) {
     Event.observe(textArea, 'keyup', function() {
       var lineText = $F(textArea).split(/\n/);
@@ -119,12 +120,24 @@ Haiku.FormEvents = {
       }
     }
   },
+  
+  haikuFieldFocus: function(field){
+    if ( !field.value || field.value === Haiku.FormEvents.BLANK_HAIKU_TEXT ){
+      field.removeClassName('empty');
+      field.value = '';      
+    }
+  },
+  
+  haikuFieldBlur: function(field){
+    if ( !field.value ){
+      field.value = Haiku.FormEvents.BLANK_HAIKU_TEXT;
+      field.addClassName('empty');
+    }
+  },
+  
   clearEmptyOnFocus: function(field) {
-    $(field).observe('focus', function() {
-      this.removeClassName('empty');
-      field.value = '';
-      this.stopObserving('focus');
-    });
+    $(field).observe('focus', Haiku.FormEvents.haikuFieldFocus.curry(field));
+    $(field).observe('blur', Haiku.FormEvents.haikuFieldBlur.curry(field));
   }
 };
 
