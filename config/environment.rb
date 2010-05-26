@@ -12,7 +12,7 @@ Rails::Initializer.run do |config|
   config.gem 'haml',                    :version => '3.0.6'
   config.gem 'will_paginate',           :version => '2.3.12'
   config.gem 'gravtastic',              :version => '2.2.0'
-  config.gem 'matthuhiggins-foreigner', :version => '0.6.0',    :lib => 'foreigner'
+  config.gem 'matthuhiggins-foreigner', :version => '0.6.1',    :lib => 'foreigner'
 
   config.action_controller.session = {
     :session_key => '_haiku_village',
