@@ -8,8 +8,7 @@ module Author::Authenticated
       attr_accessor :password
       attr_protected :hashed_password, :salt
 
-      # validates_confirmation_of :password, :on => :create
-      validates_presence_of     :password, :on => :create
+      validates_presence_of     :password, :on => :create, :unless => :fb_uid
       validates_presence_of     :password, :on => :update, :unless => Proc.new { |user| user.password.nil? }
 
       extend ClassMethods
