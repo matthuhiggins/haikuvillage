@@ -11,15 +11,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages
   map.resources :friends
   map.resources :favorites
-  map.resources :groups, 
-                :collection => {:search => :get},
-                :member => {:haikus => :get, :contribute => :get} do |group|
-    group.resources :memberships,
-                    :controller   => 'groups/memberships',
-                    :name_prefix  => nil,
-                    :collection   => {:apply => :any, :accept => :any, :join => :any, :reject => :any}
-    group.connect 'manage/:action/:id', :controller => 'groups/manage'
-  end
 
   map.resource :session
 

@@ -9,26 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100526005714) do
+ActiveRecord::Schema.define(:version => 20100929162652) do
 
   create_table "authors", :force => true do |t|
-    t.string   "email",                                                 :null => false
-    t.string   "username",                                              :null => false
+    t.string   "email",                                             :null => false
+    t.string   "username",                                          :null => false
     t.string   "hashed_password"
-    t.string   "salt",                                                  :null => false
+    t.string   "salt",                                              :null => false
     t.string   "remember_token"
-    t.integer  "haikus_count_week",                  :default => 0,     :null => false
-    t.integer  "haikus_count_total",                 :default => 0,     :null => false
-    t.integer  "favorited_count_total",              :default => 0,     :null => false
-    t.integer  "favorited_count_week",               :default => 0,     :null => false
-    t.integer  "favorites_count",                    :default => 0,     :null => false
+    t.integer  "haikus_count_week",                  :default => 0, :null => false
+    t.integer  "haikus_count_total",                 :default => 0, :null => false
+    t.integer  "favorited_count_total",              :default => 0, :null => false
+    t.integer  "favorited_count_week",               :default => 0, :null => false
+    t.integer  "favorites_count",                    :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "twitter_username"
-    t.string   "twitter_password"
-    t.boolean  "twitter_enabled",                    :default => false, :null => false
     t.integer  "latest_haiku_id"
-    t.integer  "fb_uid",                :limit => 8,                    :null => false
+    t.integer  "fb_uid",                :limit => 8,                :null => false
   end
 
   add_index "authors", ["email"], :name => "index_authors_on_email", :unique => true
@@ -86,18 +83,6 @@ ActiveRecord::Schema.define(:version => 20100526005714) do
   add_index "friendships", ["author_id", "friend_id"], :name => "friendships_index", :unique => true
   add_index "friendships", ["friend_id", "author_id"], :name => "index_friendships_on_friend_id_and_author_id"
 
-  create_table "groups", :force => true do |t|
-    t.string   "name",                             :null => false
-    t.text     "description",                      :null => false
-    t.boolean  "invite_only",                      :null => false
-    t.integer  "haikus_count",      :default => 0, :null => false
-    t.integer  "memberships_count", :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "groups", ["name"], :name => "index_groups_on_name", :unique => true
-
   create_table "haikus", :force => true do |t|
     t.integer  "author_id",                      :null => false
     t.text     "text",                           :null => false
@@ -107,35 +92,11 @@ ActiveRecord::Schema.define(:version => 20100526005714) do
     t.string   "subject_name"
     t.integer  "subject_id"
     t.integer  "conversation_id"
-    t.integer  "group_id"
   end
 
   add_index "haikus", ["author_id"], :name => "haikus_author_id_fk"
   add_index "haikus", ["conversation_id"], :name => "haikus_conversation_id_fk"
-  add_index "haikus", ["group_id"], :name => "haikus_group_id_fk"
   add_index "haikus", ["subject_id", "created_at"], :name => "index_haikus_on_subject_id_and_created_at"
-
-  create_table "logged_exceptions", :force => true do |t|
-    t.string   "exception_class"
-    t.string   "controller_name"
-    t.string   "action_name"
-    t.text     "message"
-    t.text     "backtrace"
-    t.text     "environment"
-    t.text     "request"
-    t.datetime "created_at"
-  end
-
-  create_table "memberships", :force => true do |t|
-    t.integer  "author_id",  :null => false
-    t.integer  "group_id",   :null => false
-    t.integer  "standing",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "memberships", ["author_id", "group_id", "standing"], :name => "index_memberships_on_author_id_and_group_id_and_standing"
-  add_index "memberships", ["group_id", "author_id"], :name => "index_memberships_on_group_id_and_author_id", :unique => true
 
   create_table "messages", :force => true do |t|
     t.integer  "author_id",    :null => false
@@ -186,11 +147,7 @@ ActiveRecord::Schema.define(:version => 20100526005714) do
 
   add_foreign_key "haikus", "authors", :name => "haikus_author_id_fk"
   add_foreign_key "haikus", "conversations", :name => "haikus_conversation_id_fk"
-  add_foreign_key "haikus", "groups", :name => "haikus_group_id_fk"
   add_foreign_key "haikus", "subjects", :name => "haikus_subject_id_fk"
-
-  add_foreign_key "memberships", "authors", :name => "memberships_author_id_fk"
-  add_foreign_key "memberships", "groups", :name => "memberships_group_id_fk"
 
   add_foreign_key "messages", "authors", :name => "messages_author_id_fk"
   add_foreign_key "messages", "authors", :name => "messages_recipient_id_fk", :column => "recipient_id"

@@ -51,11 +51,6 @@ class HaikusController < ApplicationController
       if !haiku.conversing_with.nil?
         flash[:notice] = "Your haiku started a conversation."
         redirect_to(haiku.conversation)
-      elsif !haiku.group_id.nil?
-        flash[:notice] =
-          "Your haiku was added to the group. " +
-          "<a href=\"#{url_for(contribute_group_path(haiku.group))}\">Contribute another haiku »</a>"
-        redirect_to(haikus_group_path(haiku.group))
       else
         flash[:notice] = "Your haiku has been created"
         redirect_to(:back)

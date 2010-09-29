@@ -6,7 +6,6 @@ module HaikusHelper
   # options include:
   #   conversing_with - The haiku that this creation is in reference too
   #   conversation - An existing conversation that this haiku is being added to
-  #   group - The group that this haiku is being contributed to
   #   inspire - Show the inspiration upload/image options
   def render_create(options = {})
     render :partial => "haikus/create", :locals => options
@@ -54,7 +53,6 @@ module HaikusHelper
   def haiku_summary_sentence(haiku)
     summary = []
     summary << "Subject: #{link_to_subject haiku.subject_name}" unless haiku.subject_name.nil?
-    summary << "Group: #{link_to haiku.group.name, haiku.group}" unless haiku.group_id.nil?
     summary.join(', ')
   end
 end

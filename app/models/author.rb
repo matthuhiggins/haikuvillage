@@ -1,7 +1,6 @@
 class Author < ActiveRecord::Base
   include Author::Authenticated
   include Author::Friendly
-  include Author::Social
   include Author::Remembered
 
   has_many :favorites

@@ -1,8 +1,0 @@
-<% render :layout => "index_layout" do %>
-  <h3>Search results</h3>
-  <%= search_form(:controller => 'groups', :action => 'search') %>
-
-  <%= render :partial => "group", :collection => @groups %>
-
-  <%= will_paginate @groups, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
-<% end %>

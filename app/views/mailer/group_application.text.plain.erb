@@ -1,8 +1,0 @@
-<%=h @author.username %> wants to join your group, <%=h @group.name %>.
-
-Follow this link to accept or reject <%=h @author.username %>'s application:
-
-<%= url_for({:group_id => @group, :controller => 'groups/manage', :action => 'memberships', :only_path => false}) %>
- 
-Sincerely,
-Haiku Village

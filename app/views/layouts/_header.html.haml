@@ -5,7 +5,6 @@
       %ul
         %li= link_to 'Journal', journal_path
         %li= link_to "Friends", friends_path
-        %li= link_to "Groups", groups_path
         - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
         %li= link_to message_text, messages_path
   .right
