@@ -9,13 +9,13 @@ HaikuVillage::Application.routes.draw do
   end
 
   resources :subjects do
-    collection do => {:suggest => :get}
+    collection do
       get :suggest
     end
   end
 
   resources :haikus, :path => 'haiku' do
-    collection do => {:search => :get}, :member => {:email => :get, :deliver => :post }
+    collection do
       get :search
     end
   end
@@ -28,7 +28,7 @@ HaikuVillage::Application.routes.draw do
 
   resource :session
 
-  root :to => 'public'
+  root :to => 'public#index'
 
   controller 'public' do
     match 'about' => :about, :as => :about

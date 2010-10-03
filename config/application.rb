@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module HaikuVillage
   class Application < Rails::Application
     %w(linguistics lingua).each do |lib|
-      config.load_paths.push("#{Rails.root}/vendor/#{lib}/lib")
+      config.autoload_paths << "#{Rails.root}/vendor/#{lib}/lib"
     end
 
     config.action_mailer.default_url_options = {
@@ -17,6 +17,7 @@ module HaikuVillage
       :only_path => false
     }
 
+    config.encoding = 'utf-8'
     config.filter_parameters += [:password]
   end
 end
