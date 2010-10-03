@@ -9,17 +9,6 @@ class ProfileController < ApplicationController
     end
   end
 
-  def twitter
-    return if request.get?
-
-    if !params[:author][:twitter_enabled] || Twitter.authenticate(params[:author][:twitter_username], params[:author][:twitter_password])
-      current_author.update_attributes(params[:author])
-      flash[:notice] = "Twitter settings saved"
-    else
-      flash[:notice] = "Wrong Twitter username and password"
-    end
-  end
-
   def password
     return if request.get?
     

@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include Concerns::TwitterError
   include Concerns::Rss
   include Concerns::Session
   include Concerns::RecordNotFound

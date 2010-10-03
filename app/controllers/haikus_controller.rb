@@ -40,12 +40,6 @@ class HaikusController < ApplicationController
     end
   end
   
-  def upload
-    @inspiration = UploadInspiration.create(params[:upload_inspiration])    
-    
-    render :partial => "upload", :object => @inspiration
-  end
-  
   private
     def redirect_and_flash(haiku)
       if !haiku.conversing_with.nil?

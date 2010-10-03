@@ -1,0 +1,1 @@
+HaikuVillage::Application.config.session_store :cookie_store, :key => '_haiku_village_session'

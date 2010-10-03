@@ -1,7 +1,7 @@
-source :gemcutter
-
-gem 'rails',                    '2.3.8'
-gem 'haml',                     '3.0.6'
-gem 'will_paginate',            '2.3.12'
+gem 'rails',                    '3.0.0'
+gem 'mysql2'
+gem 'haml',                     '3.0.21'
+gem 'will_paginate',            '2.3.15'
 gem 'gravtastic',               '2.2.0'
-gem 'matthuhiggins-foreigner',  '0.6.1'
+gem 'foreigner',                '0.9.0'
+gem 'hassle',                   '0.1.0'

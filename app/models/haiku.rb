@@ -1,7 +1,7 @@
 require 'haiku/line'
 
 class Haiku < ActiveRecord::Base
-  include Haiku::Tweet, Haiku::Conversational
+  include Haiku::Conversational
   
   belongs_to :author
   belongs_to :subject

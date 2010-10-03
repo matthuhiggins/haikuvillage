@@ -16,5 +16,5 @@ production:
   adapter: mysql
   database: haiku_production
   username: root
-  password: sa
+  password:
   host: localhost

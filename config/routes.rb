@@ -1,36 +1,53 @@
-ActionController::Routing::Routes.draw do |map|  
-  map.resources :authors,
-                :member => {:friends => :get},
-                :collection => {:invite => :any, :forgot => :any, :reset_password => :any} do |author|
-    author.resources :subjects, :controller => 'authors/subjects'
+HaikuVillage::Application.routes.draw do
+  # reset password!
+  resources :authors do
+    member do
+      get :friends
+    end
+
+    resources :subjects, :controller => 'authors/subjects'
   end
 
-  map.resources :subjects, :collection => {:suggest => :get}
-  map.resources :haikus, :collection => {:search => :get}, :member => {:email => :get, :deliver => :post }
-  map.resources :conversations
-  map.resources :messages
-  map.resources :friends
-  map.resources :favorites
+  resources :subjects do
+    collection do => {:suggest => :get}
+      get :suggest
+    end
+  end
 
-  map.resource :session
+  resources :haikus, :path => 'haiku' do
+    collection do => {:search => :get}, :member => {:email => :get, :deliver => :post }
+      get :search
+    end
+  end
 
-  map.root :controller => 'public'
+  resources :conversations
+  resources :messages
+  resources :friends
+  resources :favorites
+  resources :registrations, :as => 'signup'
 
-  map.about     'about',    :controller => 'public',    :action => 'about'
-  map.register  'register', :controller => 'public',    :action => 'register'
-  map.feedback  'feedback', :controller => 'public',    :action => 'feedback'
-  map.login     'login',    :controller => 'sessions',  :action => 'new'
-  map.logout    'logout',   :controller => 'sessions',  :action => 'destroy'
-  map.signup    'signup',   :controller => 'authors',   :action => 'new'
-  map.forgot    'forgot',   :controller => 'authors',   :action => 'forgot'
-  map.reset_password 'reset_password',   :controller => 'authors',   :action => 'reset_password'
-  map.profile   'profile',  :controller => 'profile',   :action => 'index'
-  map.journal   'journal',  :controller => 'journal',   :action => 'index'
+  resource :session
 
-  map.google_gadget 'google_gadget', :controller => 'public', :action => 'google_gadget', :format => 'xml'
-  map.sitemap 'sitemap', :controller => 'public', :action => 'sitemap', :format => 'xml'
-  map.connect 'google08da94d9e67eee9b.html', :controller => 'public', :action => 'about'
+  root :to => 'public'
 
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  controller 'public' do
+    match 'about' => :about, :as => :about
+    match 'register' => :register, :as => :register
+    match 'feedback' => :feedback, :as => :feedback
+  end
+
+  controller 'sessions' do
+    match 'login' => :new, :as => 'login'
+    match 'logout' => :destroy, :as => 'logout'
+  end
+
+  
+  match   'profile(/:action)' => 'profile', :as => :profile
+  match   'journal(/:action)' => 'journal', :as => :journal
+
+
+  match 'google_gadget' => 'public#google_gadget', :defaults => { :format => 'xml' }, :as => 'google_gadget'
+  match 'sitemap' => 'public#sitemap', :defaults => { :format => 'xml' }, :as => 'sitemap'
+
+  # match ''
 end

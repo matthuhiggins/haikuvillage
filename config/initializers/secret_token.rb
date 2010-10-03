@@ -1,0 +1,1 @@
+HaikuVillage::Application.config.secret_token = '0f980dd4cd4434a4ad842a23321b3e5fabed36bf764d18522959091b8b2d81ab3846404a235ca3bfa4546708a2ec3d082964ac59974da3d31c9460901c1ca5ff'

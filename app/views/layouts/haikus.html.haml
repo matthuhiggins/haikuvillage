@@ -1,10 +1,10 @@
-!!! XML
-!!! Strict
-%html{html_attrs}
+!!! 5
+%html
   %head
     %title= yield(:title)
-    %link{:rel => "icon", :href => "/images/favicon.ico"}
-    %link{:rel => "icon", :href => "/images/favicon.png", :type => "image/png"}
+    %link{:rel => 'icon', :href => '/images/favicon.ico'}
+    %link{:rel => 'icon', :href => '/images/favicon.png', :type => 'image/png'}
+    = csrf_meta_tag
     = javascript_include_tag 'prototype', 'effects', 'controls'
     = javascript_include_tag 'application', 'syllables', 'inspirations'
     = stylesheet_link_tag :haiku
@@ -12,16 +12,16 @@
     = yield :description
   %body
     #body
-      = render "layouts/header"
+      = render 'layouts/header'
       - if flash[:notice]
         #notice= flash[:notice]
       #content-wrap
         #content
           = yield
     #footer
-      = link_to "About", about_path
+      = link_to 'About', about_path
       |
-      = link_to "Feedback", "http://haikuvillage.uservoice.com"
+      = link_to 'Feedback', 'http://haikuvillage.uservoice.com'
     - if Rails.env.production?
-      = render "layouts/analytics"
-    = render "layouts/facebook"
+      = render 'layouts/analytics'
+    = render 'layouts/facebook'
