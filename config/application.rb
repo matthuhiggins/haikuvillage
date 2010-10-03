@@ -20,6 +20,6 @@ module HaikuVillage
     }
 
     config.encoding = 'utf-8'
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
   end
 end

@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "latest_haiku_id"
-    t.integer  "fb_uid",                :limit => 8,                :null => false
+    t.integer  "fb_uid",                :limit => 8
   end
 
   add_index "authors", ["email"], :name => "index_authors_on_email", :unique => true

@@ -6,13 +6,6 @@ class Mailer < ActionMailer::Base
     body          :author => author
   end
   
-  def invite(email, author)
-    configure_defaults
-    recipients    parse_emails(email)
-    subject       "#{author.username} has invited you to join Haiku Village!"
-    body          :author => author
-  end
-  
   def conversation_notice(haiku, responder)
     configure_defaults
     recipients    haiku.author.email

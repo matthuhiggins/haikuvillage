@@ -1,16 +1,16 @@
 module MenuHelper
   # Use like so:
-  #   <% sub_menu do |m| %>
-  #     <% m.link "Account", :action => 'index' %>
-  #     <% m.link "Password", :action => 'password' %>
-  #     <% m.link "Avatar", :action => 'avatar' %>
+  #   <%= sub_menu do |m| %>
+  #     <%= m.link "Account", :action => 'index' %>
+  #     <%= m.link "Password", :action => 'password' %>
+  #     <%= m.link "Avatar", :action => 'avatar' %>
   #   <% end %>
   #
   def sub_menu(options, &block)
     concat(tag(:ul, {:class => options[:class]}, true))
     linker = SubMenuLinker.new(self)
     yield(linker)
-    concat("</ul>")
+    concat("</ul>".html_safe)
   end
   
   class SubMenuLinker
@@ -22,7 +22,7 @@ module MenuHelper
       current = current_page?(options)
       link_tag = link_to_unless(current, name, options)
       list_options = current ? {:class => "selected"} : {}
-      concat(content_tag(:li, link_tag, list_options))
+      content_tag(:li, link_tag, list_options)
     end
     
     def method_missing(method, *args, &block)

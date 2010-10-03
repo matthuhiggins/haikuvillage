@@ -5,6 +5,10 @@ class AuthorsController < ApplicationController
     @popular_authors = Author.popular.all(:limit => 40)
   end
   
+  def new
+    @author = Author.new
+  end
+  
   def create
     @author = Author.new(params[:author])
     if @author.save

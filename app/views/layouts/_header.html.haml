@@ -11,7 +11,7 @@
     %table.the-very-top
       %tr
         - unless current_author
-          %td= link_to 'Register', new_registration_path
+          %td= link_to 'Register', signup_path
           %td= link_to 'Sign in', login_path
         - else
           %td= link_to 'Profile', profile_path

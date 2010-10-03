@@ -1,7 +1,12 @@
 - title "Search haiku"
+
 %h2 Search haiku
-= search_form(:controller => 'haikus', :action => 'search')
+= form_tag({:controller => 'haikus', :action => 'search'}, {:method => :get}) do
+  = text_field_tag("q", params[:q])
+  = submit_tag("Search")
 
 - if @haikus
   = render_haikus(@haikus)
   = will_paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false
+
+%script $('q').focus()

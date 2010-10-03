@@ -19,24 +19,12 @@ window.inspirations = function(inspirations) {
     displayCurrent();
   }
   
-  function setupUpload(){
-    $('cancel_line').show();
-    $('inspiration_upload').show();
-    $('inspiration_what').hide();
-    $('inspiration_selection').hide();
-  }
-  
   preCacheImages();
 
   $('use_flickr').observe('click', function(event) {
     Event.stop(event);
     setupFlickr();
   });
-  
-  // $('use_upload').observe('click', function(event) {
-  //   Event.stop(event);
-  //   setupUpload();
-  // });
 
   $('prev_inspiration').observe('click', function(event) {
     Event.stop(event);

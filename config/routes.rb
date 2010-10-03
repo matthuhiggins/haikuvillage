@@ -7,6 +7,7 @@ HaikuVillage::Application.routes.draw do
 
     resources :subjects, :controller => 'authors/subjects'
   end
+  match 'signup' => 'authors#new', :as => 'signup'
 
   resources :subjects do
     collection do
@@ -27,11 +28,7 @@ HaikuVillage::Application.routes.draw do
 
   resources :password_resets, :path => 'forgot'
 
-  resources :registrations
-
   resource :session
-
-  root :to => 'public#index'
 
   controller 'public' do
     match 'about' => :about, :as => :about
@@ -48,9 +45,9 @@ HaikuVillage::Application.routes.draw do
   match   'profile(/:action)' => 'profile', :as => :profile
   match   'journal(/:action)' => 'journal', :as => :journal
 
-
   match 'google_gadget' => 'public#google_gadget', :defaults => { :format => 'xml' }, :as => 'google_gadget'
   match 'sitemap' => 'public#sitemap', :defaults => { :format => 'xml' }, :as => 'sitemap'
+  match 'syllables' => 'syllables#index'
 
-  # match ''
+  root :to => 'public#index'
 end

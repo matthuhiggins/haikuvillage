@@ -6,7 +6,7 @@ module Concerns::Session
   private
     def login_and_redirect(author, remember_me = false)
       login(author)
-      create_delayed_haiku_and_redirect(author)
+      create_deferred_haiku_and_redirect(author)
     end
 
     def login(author, remember_me = false)
@@ -19,10 +19,10 @@ module Concerns::Session
       end
     end
 
-    def create_delayed_haiku_and_redirect(author)
-      if session[:new_haiku]
-        author.haikus.create(session[:new_haiku]) 
-        session[:new_haiku] = nil
+    def create_deferred_haiku_and_redirect(author)
+      if session[:deferred_haiku]
+        author.haikus.create(session[:deferred_haiku]) 
+        session[:deferred_haiku] = nil
         redirect_to(original_login_referrer)
       else
         redirect_to(original_login_request)

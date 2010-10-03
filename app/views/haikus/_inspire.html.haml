@@ -4,8 +4,7 @@
   You can add an image to your haiku.
 
 #inspiration_selection
-  %p= link_to("Use a preselected image", nil, :id => "use_flickr")
-  -# %p= link_to("Upload an image", nil, :id => "use_upload")
+  %p= link_to("Use an image", nil, :id => "use_flickr")
 
 #inspiration_preview{:style => "display: none;"}
   = link_to("< Prev", "#", :id => "prev_inspiration")
@@ -13,11 +12,6 @@
   #inspiration_image
 
 #upload_inspiration_image
-#inspiration_upload{:style => "display: none;"}
-  %p Upload an image:
-  - form_for :upload_inspiration, :url => {:controller => 'haikus', :action => 'upload'}, :html => { :multipart => true, :target => "upload_frame", :id => 'upload_inspiration_form', :autocomplete => 'off' }  do |form|
-    = form.file_field :inspiration
-  %p{:id => 'upload_inspiration_status', :style => 'visibility: hidden;'} Uploading image...
 
 %iframe#upload_frame{ :name=>"upload_frame", :style=> "display:none", :src=>"about:blank"}
 %script= "inspirations(#{inspirations_json});"

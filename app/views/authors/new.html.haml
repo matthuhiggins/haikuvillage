@@ -1,25 +1,25 @@
 - title "New account"
 
 %h2 Create a new account
-- form_for :author, :url => authors_path do |form|
+- form_for @author do |form|
   %table
     %tr
       %td
         = form.label :email, 'Email:'
       %td
-        = error_message_on :author, :email
+        = form.error_message_on :email
         = form.text_field :email
     %tr
       %td
         = form.label :username, 'Username:'
       %td
-        = error_message_on :author, :username
+        = form.error_message_on :username
         = form.text_field :username
     %tr
       %td
         = form.label :password, 'Password:'
       %td
-        = error_message_on :author, :password
+        = form.error_message_on :password
         = form.password_field :password  
     %tr
       %td
