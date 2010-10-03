@@ -12,7 +12,7 @@ class Message < ActiveRecord::Base
   belongs_to :recipient, :class_name => "Author"
   
   default_scope :order => 'id desc'
-  named_scope :unread, :conditions => {:unread => true}
+  scope :unread, :conditions => {:unread => true}
 
   def terse
     text.gsub(/\n/, ' / ')

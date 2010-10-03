@@ -8,7 +8,7 @@ class Haiku < ActiveRecord::Base
   has_many :favorites, :dependent => :delete_all
   has_many :happy_authors, :through => :favorites, :source => :author
     
-  named_scope :recent, :order => 'haikus.id desc', :include => [:conversation, :author]
+  scope :recent, :order => 'haikus.id desc', :include => [:conversation, :author]
   
   after_create do |haiku|
     Author.update_counters(haiku.author_id, :haikus_count_week => 1, :haikus_count_total => 1)

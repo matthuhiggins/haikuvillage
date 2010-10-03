@@ -15,11 +15,11 @@ class Author < ActiveRecord::Base
 
   is_gravtastic!
 
-  named_scope :brand_new, :order => 'created_at desc'
-  named_scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
-  named_scope :popular, :order => 'favorited_count_total desc', :conditions => 'favorited_count_total > 0'
-  named_scope :search, lambda { |query| {:conditions => ['username like ?', "#{query}%"]} }
-  named_scope :recently_updated, :order => 'latest_haiku_id desc', :include => {:latest_haiku => :conversation}
+  scope :brand_new, :order => 'created_at desc'
+  scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
+  scope :popular, :order => 'favorited_count_total desc', :conditions => 'favorited_count_total > 0'
+  scope :search, lambda { |query| {:conditions => ['username like ?', "#{query}%"]} }
+  scope :recently_updated, :order => 'latest_haiku_id desc', :include => {:latest_haiku => :conversation}
   
   validates_presence_of :email, :username
   validates_uniqueness_of :username, :email
