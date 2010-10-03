@@ -19,13 +19,6 @@ module HaikusHelper
     "A haiku by #{link_to haiku.author.username, author_path(haiku.author.username)}"
   end
 
-  def subject_auto_complete
-    text_field_with_auto_complete :haiku, :subject_name, {:maxlength => 24, :size => 10}, {
-      :url => suggest_subjects_path, 
-      :method => :get, 
-      :param_name => 'q'}
-  end
-  
   def enter_conversation_link(haiku)
     polymorphic_path = haiku.conversing? ? haiku.conversation : haiku
     link_tag = link_to("Respond", polymorphic_path, :class => "icon reply")

@@ -1,6 +1,6 @@
 <% render :layout => 'friends/layout' do %>
   <% if current_author %>
-    <% form_tag(invite_authors_path, {:method => :post}) do %>
+    <%= form_tag(invite_authors_path, {:method => :post}) do %>
       <h3>Email address(es)</h3>
       <table>
         <tr><td><%= text_area_tag "email" %></td></tr>

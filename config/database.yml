@@ -1,19 +1,19 @@
 development:
-  adapter: mysql
+  adapter: mysql2
   database: haiku_development
   username: root
   password:
   host: localhost
 
 test:
-  adapter: mysql
+  adapter: mysql2
   database: haiku_test
   username: root
   password:
   host: localhost
 
 production:
-  adapter: mysql
+  adapter: mysql2
   database: haiku_production
   username: root
   password:

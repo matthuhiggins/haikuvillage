@@ -12,6 +12,8 @@ module HaikuVillage
       config.autoload_paths << "#{Rails.root}/vendor/#{lib}/lib"
     end
 
+    config.active_support.deprecation = :log
+
     config.action_mailer.default_url_options = {
       :host => 'www.haikuvillage.com',
       :only_path => false

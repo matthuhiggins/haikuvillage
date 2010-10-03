@@ -3,7 +3,7 @@
 
 <div class="messages">
   <% if @friends.any? %>
-    <% form_for :message, :html => {:style => "margin-bottom: 10px;", :id => 'haiku_form'} do |form| %>
+    <%= form_for :message, :html => {:style => "margin-bottom: 10px;", :id => 'haiku_form'} do |form| %>
       <table class="internals">
         <tr>
           <td />

@@ -24,7 +24,10 @@ HaikuVillage::Application.routes.draw do
   resources :messages
   resources :friends
   resources :favorites
-  resources :registrations, :as => 'signup'
+
+  resources :password_resets, :path => 'forgot'
+
+  resources :registrations
 
   resource :session
 

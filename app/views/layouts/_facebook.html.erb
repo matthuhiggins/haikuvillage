@@ -3,7 +3,7 @@
 <%= javascript_include_tag 'http://connect.facebook.net/en_US/all.js' %>
 
 <script>
-  FB.init({appId: '<%= Facebook.app_id %>', status: true, cookie: true, xfbml: true});
+  FB.init({appId: '<%= 'foo' %>', status: true, cookie: true, xfbml: true});
   FB.Event.subscribe('auth.sessionChange', function(response) {
     location.reload();
   });
