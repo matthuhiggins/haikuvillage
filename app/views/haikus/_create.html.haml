@@ -1,5 +1,5 @@
 #haiku_form
-  - form_for :haiku, :url => {:controller => 'haikus', :action => 'create'} do |form|
+  = form_for :haiku, :url => {:controller => 'haikus', :action => 'create'} do |form|
     - unless local_assigns[:conversing_with].nil?
       = hidden_field_tag('haiku[conversing_with]', conversing_with.id)
     #conversation_id_wrapper

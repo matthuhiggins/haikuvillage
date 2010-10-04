@@ -2,10 +2,10 @@
 
 <h2>Profile</h2>
 
-<% sub_menu(:class => "tab_nav") do |m| %>
-  <% m.link "Account", :action => 'index' %>
-  <% m.link "Password", :action => 'password' %>
-  <% m.link "Avatar", :action => 'avatar' %>
+<%= sub_menu(:class => "tab_nav") do |m| %>
+  <%= m.link "Account", :action => 'index' %>
+  <%= m.link "Password", :action => 'password' %>
+  <%= m.link "Avatar", :action => 'avatar' %>
 <% end %>
 
 <div class="submenu-content">

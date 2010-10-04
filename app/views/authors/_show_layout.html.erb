@@ -8,10 +8,10 @@
   </div>
   <div class="nav">
     <h2><%= "#{@author.username}'s Journal" %></h2>
-    <% sub_menu(:class => "tab_nav") do |m| %>
-      <% m.link "Haiku", author_path(:id => @author.username) %>
-      <% m.link "Subjects", author_subjects_path(:author_id => @author.username)  %>
-      <% m.link "Friends", friends_author_path(@author.username)  %>
+    <%= sub_menu(:class => "tab_nav") do |m| %>
+      <%= m.link "Haiku", author_path(:id => @author.username) %>
+      <%= m.link "Subjects", author_subjects_path(:author_id => @author.username)  %>
+      <%= m.link "Friends", friends_author_path(@author.username)  %>
       <li><%= update_friendship(@author) %></li>
     <% end %>
   </div>

@@ -1,11 +1,11 @@
 <% title 'Your friends' %>
 <h2>Friends</h2>
 
-<% sub_menu(:class => "tab_nav") do |m| %>
+<%= sub_menu(:class => "tab_nav") do |m| %>
   <% if current_author %>
-    <% m.link "Your friends", friends_path %>
+    <%= m.link "Your friends", friends_path %>
   <% end %>
-  <% m.link "Find authors", authors_path %>
+  <%= m.link "Find authors", authors_path %>
 <% end %>
 
 <div class="submenu-content">

@@ -19,7 +19,7 @@
   
   .column
     %h3= 'Create a new account'
-    - form_for @author do |form|
+    = form_for @author do |form|
       - fields_for_haiku
       %table{:style => 'margin-left: 15px;'}
         %tr

@@ -7,10 +7,10 @@ module MenuHelper
   #   <% end %>
   #
   def sub_menu(options, &block)
-    concat(tag(:ul, {:class => options[:class]}, true))
+    output = tag(:ul, {:class => options[:class]}, true)
     linker = SubMenuLinker.new(self)
-    yield(linker)
-    concat("</ul>".html_safe)
+    output << capture(linker, &block)
+    output << '</ul>'.html_safe
   end
   
   class SubMenuLinker
