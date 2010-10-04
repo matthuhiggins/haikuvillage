@@ -1079,7 +1079,7 @@ module Linguistics::EN
 			# chunks of the found number of digits.
 			num.to_s.scan( re ) {|digits|
 				debug_msg "   digits = #{digits.inspect}"
-				fn = NumberToWordsFunctions[ digits.nitems ]
+				fn = NumberToWordsFunctions[ digits.size ]
 				numerals = digits.flatten.compact.collect {|i| i.to_i}
 				debug_msg "   numerals = #{numerals.inspect}"
 				chunks.push fn.call( config[:zero], *numerals ).strip
@@ -1332,7 +1332,7 @@ module Linguistics::EN
 		# post-decimal parts. If grouping is turned on, all sub-parts get joined
 		# with commas, otherwise just the whole-number part is.
 		if config[:group].zero?
-			if parts[0].nitems > 1
+			if parts[0].size > 1
 
 				# Join all but the last part together with commas
 				wholenum = parts[0][0...-1].join( config[:comma] )
