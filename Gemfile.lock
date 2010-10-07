@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/matthuhiggins/fb_rails.git
+  revision: 355453a4121f75d7b14cb0410f8050fc716a6032
+  specs:
+    fb_rails (0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -33,6 +39,10 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    factory_girl (1.3.2)
+    factory_girl_rails (1.0)
+      factory_girl (~> 1.3)
+      rails (>= 3.0.0.beta4)
     foreigner (0.9.0)
     gravtastic (2.2.0)
     haml (3.0.21)
@@ -73,6 +83,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  factory_girl_rails (= 1.0.0)
+  fb_rails!
   foreigner (= 0.9.0)
   gravtastic (= 2.2.0)
   haml (= 3.0.21)

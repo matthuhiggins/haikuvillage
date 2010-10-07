@@ -1,19 +1,16 @@
 require 'digest/sha1'
 
 module Author::Authenticated
-  def self.included(user)
-    user.class_eval do
-      before_save :encrypt_password
+  extend ActiveSupport::Concern
 
-      attr_accessor :password
-      attr_protected :hashed_password, :salt
+  included do
+    before_save :encrypt_password
 
-      validates_presence_of     :password, :on => :create, :unless => :fb_uid
-      validates_presence_of     :password, :on => :update, :unless => Proc.new { |user| user.password.nil? }
+    attr_accessor :password
+    attr_protected :hashed_password, :salt
 
-      extend ClassMethods
-      include InstanceMethods
-    end
+    validates_presence_of     :password, :on => :create, :unless => :fb_uid
+    validates_presence_of     :password, :on => :update, :unless => Proc.new { |user| user.password.nil? }
   end
   
   module ClassMethods
@@ -37,18 +34,16 @@ module Author::Authenticated
     end
   end
   
-  module InstanceMethods
-    def authenticate(pwd)
-      return false unless pwd.is_a?(String)
-      self.hashed_password == self.class.encrypted_password(pwd, self.salt)
-    end
-  
-    private
-      def encrypt_password
-        return if password.nil?
-        self.salt = ActiveSupport::SecureRandom.base64(16)
-        self.hashed_password = self.class.encrypted_password(self.password, self.salt)
-        self.password = nil
-      end
+  def authenticate(pwd)
+    return false unless pwd.is_a?(String)
+    self.hashed_password == self.class.encrypted_password(pwd, self.salt)
   end
+
+  private
+    def encrypt_password
+      return if password.nil?
+      self.salt = ActiveSupport::SecureRandom.base64(16)
+      self.hashed_password = self.class.encrypted_password(self.password, self.salt)
+      self.password = nil
+    end
 end

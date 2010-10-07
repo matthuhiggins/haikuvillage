@@ -2,6 +2,7 @@ class Author < ActiveRecord::Base
   include Author::Authenticated
   include Author::Friendly
   include Author::Remembered
+  include Author::UniqueUsername
 
   has_many :favorites
   has_many :favorite_haikus, :through => :favorites, :source => :haiku

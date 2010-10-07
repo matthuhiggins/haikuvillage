@@ -19,6 +19,12 @@ module HaikuVillage
       :only_path => false
     }
 
+    config.facebook = {
+      app_id: '69162949889',
+      secret: 'c7dd6aba784b68fafbcf1878a6d5122f',
+      user_class_name: 'Author'
+    }
+
     config.encoding = 'utf-8'
     config.filter_parameters += [:password, :password_confirmation]
   end

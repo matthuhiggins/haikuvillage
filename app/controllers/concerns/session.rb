@@ -1,11 +1,13 @@
 module Concerns::Session
-  def self.included(controller)
-    controller.helper_method :current_author
+  extend ActiveSupport::Concern
+
+  included do
+    helper_method :current_author
   end
   
   private
     def login_and_redirect(author, remember_me = false)
-      login(author)
+      login(author, remember_me)
       create_deferred_haiku_and_redirect(author)
     end
 
@@ -13,7 +15,7 @@ module Concerns::Session
       session[:author_id] = author.id
       cookies[:username] = {:value => author.username, :expires => 2.weeks.from_now}
       
-      if params[:remember_me].present?
+      if remember_me
         author.remember_me!
         cookies[:remember_token] = {:value => author.remember_token, :expires => 2.weeks.from_now}
       end
@@ -36,14 +38,27 @@ module Concerns::Session
     end
     
     def current_author
-      @current_author ||= (author_from_cookie || author_from_session)
+      @current_author ||= (author_from_facebook || author_from_cookie || author_from_session)
     end
 
     def author_from_cookie
-      Author.find_by_remember_token(cookies[:remember_token]) unless cookies[:remember_token].nil?
+      Author.find_by_remember_token(cookies[:remember_token]) if cookies[:remember_token]
     end
 
     def author_from_session
-      Author.find(session[:author_id]) unless session[:author_id].nil?
+      Author.find(session[:author_id]) if session[:author_id]
+    end
+
+    def author_from_facebook
+      if fb.connected?
+        if fb.user.new_record?
+          data = fb.graph.get('me')
+          fb.user.update_attributes(
+            username:   Author.find_unique_username(data['email']),
+            email:      data['email']
+          )
+        end
+        fb.user
+      end
     end
 end

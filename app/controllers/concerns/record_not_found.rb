@@ -1,9 +1,9 @@
 module Concerns
   module RecordNotFound
-    def self.included(controller)
-      controller.class_eval do
-        rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
-      end
+    extend ActiveSupport::Concern
+
+    included do
+      rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
     end
     
     private
