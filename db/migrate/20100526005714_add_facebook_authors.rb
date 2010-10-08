@@ -3,6 +3,7 @@ class AddFacebookAuthors < ActiveRecord::Migration
     change_table :authors do |t|
       t.integer :fb_uid, :null => true, :limit => 8
       t.change  :hashed_password, :string, :null => true
+      t.change  :salt, :string, :null => true
       t.index :fb_uid, :unique => true
     end
   end

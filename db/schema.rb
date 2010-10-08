@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.string   "email",                                             :null => false
     t.string   "username",                                          :null => false
     t.string   "hashed_password"
-    t.string   "salt",                                              :null => false
+    t.string   "salt"
     t.string   "remember_token"
     t.integer  "haikus_count_week",                  :default => 0, :null => false
     t.integer  "haikus_count_total",                 :default => 0, :null => false

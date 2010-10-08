@@ -1,6 +1,6 @@
-Object.extend(String.prototype, {
+$.extend(String.prototype, {
   squish: function() {
-    return this.escapeHTML().replace(/\s+/g, ' ').strip();
+    return $.strip(this.escapeHTML().replace(/\s+/g, ' '));
   },
   
   hash: function() {
@@ -8,8 +8,29 @@ Object.extend(String.prototype, {
   }
 });
 
-var Word = Class.create();
-Object.extend(Word, {
+function Word(text, syllables, state) {
+  this.text = text;
+  this.syllables = syllables;
+  this.state = state;
+}
+
+Word.prototype = {
+  encoded: function() {
+    return encodeURIComponent(this.text).replace(/\-/g, '%2d');
+  },  
+
+  toElement: function() {
+    var wordEl = document.createElement('span'),
+        supEl = document.createElement('sup');
+
+    $(supEl).text(this.syllables > -1 ? this.syllables : '?');
+    $(wordEl).text(text).append(supEl);
+
+    return wordEl;
+  }
+};
+
+$.extend(Word, {
   COMPLETE    : 'complete',
   NEW         : 'new',
   REQUESTING  : 'requesting',
@@ -18,93 +39,94 @@ Object.extend(Word, {
   
   fromText: function (text) {
     text = text.squish();
-    return text.split(/ |\n|\r|\r\n/).map(function(value) {
+    return $.map(text.split(/ |\n/), function(value) {
       var word = Word.info[value.hash()];
       return word === undefined ? new Word(value, -1, Word.NEW) : new Word(value, word.syllables, word.state);
     });
   }
 });
 
-Word.prototype = {
-  initialize: function(text, syllables, state) {
-    this.text = text;
-    this.syllables = syllables;
-    this.state = state;
-  },
-  
-  encoded: function(){
-    return encodeURIComponent(this.text).replace(/\-/g, '%2d');
-  },  
+function Line(text, lineNumber) {
+  this.words = Word.fromText(text);
+  this.lineNumber = lineNumber;  
+}
 
-  toHTML: function(){
-    return "<span class=#{state}>#{text}<sup>#{syllables}</sup></span>".interpolate({
-      state: this.state,
-      text: this.text,
-      syllables: this.syllables > -1 ? this.syllables : '?'
-    });
-  }
-};
-
-var Line = Class.create({
-  initialize: function(text, lineNumber) {
-    this.words = Word.fromText(text);
-    this.lineNumber = lineNumber;
-  },
-
-  isCalculating: function(){
+Line.prototype = {
+  isCalculating: function() {
     return this.words.any(function(word){
       return word.syllables < 0;
     });
   },
   
-  syllables: function(){
-    return eval(this.words.map(function(word){
-      return word.syllables;
-    }).join("+"));
+  syllables: function() {
+    var result = 0;
+    $.each(this.words, function(i, word) {
+      result += word.syllables;
+    })
+    return result;
   },
   
-  isValid: function(){
+  isValid: function() {
     return (this.syllables() === 5 && (this.lineNumber === 0 || this.lineNumber === 2)) ||
            (this.syllables() === 7 && this.lineNumber === 1);
   },
-    
-  toHTML: function(){
-    return "<div class='line'><span class='syllables #{valid}'>#{syllables}</span>#{text}</div>".interpolate({
-      valid: this.isValid() ? 'valid-line' : 'invalid-line',
-      syllables: this.isCalculating() ? '?' : this.syllables(),
-      text: this.words.invoke('toHTML').join(' ')
-    });
-  }
-});
-
-var Haiku = Class.create({
-  initialize: function(text) {
-    if (text.blank()) {
-      this.lines = [];
-      return;
-    }
-    
-    this.lines = text.split("\n").map(function(text, lineNumber){
-      return new Line(text, lineNumber);
-    });
-    
-    if (this.lines.length > 3)
-      this.lines.length = 3;
-  },
   
+  wordElements: function() {
+    return $.map(this.words, function(word) {
+      return word.toElement();
+    });
+  },
+
+  toElement: function() {
+    var div = document.createElement('div'),
+        syllableEl = document.createElement('span'),
+        textEl = document.createElement('span');
+
+    $(syllables).addClass('syllables')
+                .addClass(this.isValid() ? 'valid' : 'invalid')
+                .text(this.isCalculating() ? '?' : this.syllables());
+
+    
+    $(textEl).appendChild(this.wordElements());
+    
+    $(div).addClass('line').append([syllableEl, textEl]);
+
+    return div;
+  }
+};
+
+function Haiku(text) {
+  if ($.trim(text).length == '') {
+    this.lines = [];
+    return;
+  }
+  
+  this.lines = text.split("\n").map(function(text, lineNumber) {
+    return new Line(text, lineNumber);
+  });
+  
+  if (this.lines.length > 3) {
+    this.lines.length = 3;
+  }
+}
+
+Haiku.prototype = {
   isValid: function() {
     return this.lines.length === 3 && this.lines.invoke('isValid').every();
   },
 
-  toHTML: function() {
-    return this.lines.invoke('toHTML').join('')
+  toElements: function() {
+    return $.map(this.lines, function(line) {
+      return line.toElement();
+    });
   }
-});
+};
 
 Haiku.FormEvents = {
-    BLANK_HAIKU_TEXT: "Write your haiku",
-    limitTextArea: function(textArea) {
-    Event.observe(textArea, 'keyup', function() {
+  BLANK_HAIKU_TEXT: "Write your haiku",
+  
+  limitTextArea: function(textArea) {
+    $(textArea).keyup(function() {
       var lineText = $F(textArea).split(/\n/);
       if (lineText.length > 3) {
         lineText.length = 3;
@@ -112,11 +134,11 @@ Haiku.FormEvents = {
       }
     });
     
-    textArea.onkeypress = function(event) {
-      var lineText = $F(textArea).split(/\n/);
-      if (!event) event = window.event; //IE fix
-      if (event.keyCode === Event.KEY_RETURN && lineText.length >= 3) {
-        return false;
+    $(textArea).keypress(function(e) {
+      var lines = $(this).val().split(/\n/);
+
+      if (e.keyCode === 13 && lines.length >= 3) {
+        e.preventDefault();
       }
     }
   },

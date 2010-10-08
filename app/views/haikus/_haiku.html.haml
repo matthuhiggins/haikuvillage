@@ -1,10 +1,10 @@
-- div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
+= div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
   .avatar_and_time
     .time= haiku.created_at.strftime("%d %b %y")
-    - link_to author_path(haiku.author.username) do
+    = link_to author_path(haiku.author.username) do
       = image_tag medium_avatar_url(haiku.author)
   .text_author_group
-    - link_to haiku, :class => 'text' do
+    = link_to haiku, :class => 'text' do
       - haiku.lines.each do |line|
         .line= h(line)
     .info
@@ -13,7 +13,7 @@
         = " about #{link_to_subject(haiku.subject_name)}"
   - if haiku.conversation
     .context
-      - link_to haiku.conversation do
+      = link_to haiku.conversation do
         - if haiku.conversation.inspiration
           = image_tag haiku.conversation.inspiration.small, :class => 'haiku-inspiration'
         - else
@@ -24,6 +24,7 @@
     .actions
       = enter_conversation_link(haiku)
       = destroy_haiku_link(haiku)
+
 - if new_haiku? haiku
   = update_page_tag do |page|
     - page[haiku].appear

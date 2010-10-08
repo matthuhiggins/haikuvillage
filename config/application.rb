@@ -20,8 +20,8 @@ module HaikuVillage
     }
 
     config.facebook = {
-      app_id: '69162949889',
-      secret: 'c7dd6aba784b68fafbcf1878a6d5122f',
+      app_id: '147267751983310',
+      secret: 'e36a59a343c00bb05026e897e08bc8ac',
       user_class_name: 'Author'
     }
 
