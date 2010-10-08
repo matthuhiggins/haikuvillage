@@ -1,6 +1,10 @@
 $.extend(String.prototype, {
   squish: function() {
-    return $.strip(this.escapeHTML().replace(/\s+/g, ' '));
+    // if (this.length == 0) {
+    //   return '';
+    // }
+    // var escapedHtml = $(document.createElement('span')).text(this).html();
+    return $.trim(this.replace(/\s+/g, ' '));
   },
   
   hash: function() {
@@ -24,7 +28,7 @@ Word.prototype = {
         supEl = document.createElement('sup');
 
     $(supEl).text(this.syllables > -1 ? this.syllables : '?');
-    $(wordEl).text(text).append(supEl);
+    $(wordEl).text(this.text).append(supEl);
 
     return wordEl;
   }
@@ -53,9 +57,11 @@ function Line(text, lineNumber) {
 
 Line.prototype = {
   isCalculating: function() {
-    return this.words.any(function(word){
-      return word.syllables < 0;
+    var result = false;
+    $.each(this.words, function(word) {
+      result = result || word.syllables < 0;
     });
+    return result;
   },
   
   syllables: function() {
@@ -82,12 +88,12 @@ Line.prototype = {
         syllableEl = document.createElement('span'),
         textEl = document.createElement('span');
 
-    $(syllables).addClass('syllables')
-                .addClass(this.isValid() ? 'valid' : 'invalid')
-                .text(this.isCalculating() ? '?' : this.syllables());
+    $(syllableEl).addClass('syllables')
+                 .addClass(this.isValid() ? 'valid' : 'invalid')
+                 .text(this.isCalculating() ? '?' : this.syllables());
 
     
-    $(textEl).appendChild(this.wordElements());
+    $(textEl).append(this.wordElements());
     
     $(div).addClass('line').append([syllableEl, textEl]);
 
@@ -112,7 +118,13 @@ function Haiku(text) {
 
 Haiku.prototype = {
   isValid: function() {
-    return this.lines.length === 3 && this.lines.invoke('isValid').every();
+    var result = this.lines.length === 3;
+
+    $.each(this.lines, function(line) {
+      result = result && line.isValid();
+    });
+    
+    return result;
   },
 
   toElements: function() {
@@ -123,107 +135,88 @@ Haiku.prototype = {
 };
 
 Haiku.FormEvents = {
-  BLANK_HAIKU_TEXT: "Write your haiku",
-  
   limitTextArea: function(textArea) {
-    $(textArea).keyup(function() {
-      var lineText = $F(textArea).split(/\n/);
-      if (lineText.length > 3) {
-        lineText.length = 3;
-        textArea.value = lineText.join('\n');
+    textArea.keyup(function() {
+      var lines = textArea.val().split(/\n/);
+
+      if (lines.length > 3) {
+        lines.length = 3;
+        textArea.val(lines.join('\n'));
       }
     });
     
-    $(textArea).keypress(function(e) {
-      var lines = $(this).val().split(/\n/);
+    textArea.keypress(function(e) {
+      var lines = textArea.val().split(/\n/);
 
       if (e.keyCode === 13 && lines.length >= 3) {
         e.preventDefault();
       }
-    }
-  },
-  
-  haikuFieldFocus: function(field){
-    if ( !field.value || field.value === Haiku.FormEvents.BLANK_HAIKU_TEXT ){
-      field.removeClassName('empty');
-      field.value = '';      
-    }
-  },
-  
-  haikuFieldBlur: function(field){
-    if ( !field.value ){
-      field.value = Haiku.FormEvents.BLANK_HAIKU_TEXT;
-      field.addClassName('empty');
-    }
-  },
-  
-  clearEmptyOnFocus: function(field) {
-    $(field).observe('focus', Haiku.FormEvents.haikuFieldFocus.curry(field));
-    $(field).observe('blur', Haiku.FormEvents.haikuFieldBlur.curry(field));
+    });
   }
 };
 
-Haiku.PeriodicalUpdater = Class.create({
-  initialize: function(textArea, previewElement, submitButton) {
-    this.textArea = $(textArea);
-    this.textArea.innerHTML = "Write your haiku";
-    this.previewElement = $(previewElement);
-    this.submitButton = $(submitButton);
-    this.lastHaikuText = '';
+Haiku.PeriodicalUpdater = function(textArea, previewElement, submitButton) {
+  this.textArea = $(textArea).hintInput();
+  this.previewElement = $(previewElement);
+  this.submitButton = $(submitButton);
+  this.lastHaikuText = '';
 
-    Haiku.FormEvents.limitTextArea(this.textArea);
-    Haiku.FormEvents.clearEmptyOnFocus(this.textArea);
-    Haiku.FormEvents.clearEmptyOnFocus(submitButton)
-    this.start();
-  },
-  
+  Haiku.FormEvents.limitTextArea(this.textArea);
+  this.start();
+};
+
+Haiku.PeriodicalUpdater.prototype = {
   start: function() {
-    this.timer = setInterval(this.updateHaiku.bind(this), 50);
+    var self = this;
+    this.timer = setInterval(function() {
+      self.updateHaiku.call(self);
+    }, 50);
   },
   
   requestWords: function(words) {
-    var encodedWords = words.invoke('encoded').join('-');
+    var encodedWords = $.map(words, function(word) {
+      return word.encoded();
+    }).join('-');
     
     if (encodedWords.length === 0) {
       return;
     }
-    
-    var markRequesting = function(word) {
+
+    $.each(words, function(i, word) {
       Word.info[word.text.hash()].state = Word.REQUESTING;
-    };
-    
-    var markResponded = function(word) {
-      Word.info[word.text.hash()] = new Word(word.text, word.syllables, Word.RESPONDED);
-    };
-    
-    words.each(markRequesting);
-        
-    var request = new Ajax.Request("/syllables?words=" + encodedWords, {
-      method: 'get',
-      onComplete: function(request) {
-        request.responseText.evalJSON().each(markResponded);
-      }
+    });
+
+    var request = $.getJSON("/syllables?words=" + encodedWords, function(wordCounts) {
+      $.each(wordCounts, function(i, wordCount) {
+        Word.info[wordCount.text.hash()] = new Word(wordCount.text, wordCount.syllables, Word.RESPONDED);
+      });
     });
   },
      
   updateHaiku: function() {
-    if (this.textArea.hasClassName('empty')) {
+    if (this.textArea.hasClass('empty')) {
       return;
     }
 
-    var currentText = $F(this.textArea),
+    var currentText = this.textArea.val(),
         currentWordArray = Word.fromText(currentText),
         currentHaiku = new Haiku(currentText);
         
-    // Request words if they existed after two cycles
+    // Request words if they exist after two cycles
     var needsRequest = function(word) {
-      return Word.info[word.text.hash()] && Word.info[word.text.hash()].state === Word.NEW;
+      return 
     };
-    
-    this.requestWords(currentWordArray.findAll(needsRequest));
 
-    // Add new new words
-    Word.fromText(this.lastHaikuText).each(function(word) {
+    var wordsNeedingRequest = [];
+    $.each(currentWordArray, function(i, word) {
+      if (Word.info[word.text.hash()] && Word.info[word.text.hash()].state === Word.NEW) {
+        wordsNeedingRequest.push(word);
+      }
+    });
+    this.requestWords(wordsNeedingRequest);
+
+    // Add new words
+    $.each(Word.fromText(this.lastHaikuText), function(i, word) {
       Word.info[word.text.hash()] = Word.info[word.text.hash()] || word;
     });
     
@@ -237,9 +230,9 @@ Haiku.PeriodicalUpdater = Class.create({
     }
 
     if (somethingChanged) {
-      this.previewElement.innerHTML = currentHaiku.toHTML();
-      $A(this.previewElement.getElementsByClassName(Word.RESPONDED)).invoke('highlight');
-      this.previewElement.removeClassName('empty');
+      this.previewElement.empty().append(currentHaiku.toElements());
+      // previewElement.find(Word.RESPONDED).
+      this.previewElement.removeClass('empty');
     }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {
@@ -249,7 +242,7 @@ Haiku.PeriodicalUpdater = Class.create({
       }
     }
 
-    this.submitButton.disabled = !currentHaiku.isValid();
+    this.submitButton.attr('disabled', !currentHaiku.isValid());
     this.lastHaikuText = currentText;
   }
-});
+};

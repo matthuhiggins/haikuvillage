@@ -30,11 +30,11 @@ module HaikusHelper
   
   def haiku_text_tag(options = {})
     options.reverse_merge!(
-      :autocomplete => 'off',
-      :rows => 3,
-      :id => "haiku_text",
-      :name => "haiku[text]",
-      :class => "empty")
+      autocomplete: 'off',
+      rows: 3,
+      id: "haiku_text",
+      name: "haiku[text]",
+      class: "empty")
 
     text_area_tag(:text, "", options)
   end
