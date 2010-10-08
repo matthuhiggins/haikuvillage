@@ -9,11 +9,11 @@ module AuthorsHelper
     
     sorted_by_name.map do |author|
       link_to_author author, {:style => "font-size: #{font_sizes[author.username]}"}
-    end.join(' ')
+    end.join(' ').html_safe
   end
   
   def author_list(authors)
-    authors.map { |author| link_to_author author }.join(', ')
+    authors.map { |author| link_to_author author }.join(', ').html_safe
   end
   
   def link_to_author(author, html_options = {})

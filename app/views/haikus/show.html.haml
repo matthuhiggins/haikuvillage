@@ -1,20 +1,22 @@
 - title "A haiku by #{@single_haiku.author.username}"
-- description @single_haiku.text.gsub(/\r\n|\r|\n/, ' / ')
+- description @single_haiku.text.gsub(/\n/, ' / ')
 
-%h2=haiku_title(@single_haiku)
+%h2
+  A haiku by
+  = link_to @single_haiku.author.username, author_path(@single_haiku.author.username)
 
 .center
   - if @single_haiku.conversing? && @single_haiku.conversation.inspiration
     .haiku-inspiration
-      - link_to @single_haiku.conversation, :class => "" do
+      = link_to @single_haiku.conversation, :class => "" do
         = image_tag @single_haiku.conversation.inspiration.thumbnail
       %br
-      - link_to @single_haiku.conversation do
+      = link_to @single_haiku.conversation do
         = "#{@single_haiku.conversation.haikus_count_total} haiku"
         are inspired by this image
   .haiku-big
     .text
-      - @single_haiku.text.each_line do |line|
+      - @single_haiku.lines.each do |line|
         .line= h(line)
     .info
       = "Created on #{@single_haiku.created_at.strftime("%b %d, %Y")} by"
@@ -22,7 +24,6 @@
     .info= haiku_summary_sentence(@single_haiku)
     - if current_author
       .actions
-        = favorite_star(@single_haiku)
         = destroy_haiku_link(@single_haiku)
  
 .conversation-section

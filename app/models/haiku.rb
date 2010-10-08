@@ -23,24 +23,35 @@ class Haiku < ActiveRecord::Base
   
   validates_presence_of :text, :on => :create
   validate_on_create :valid_syllables?
+
+  class << self
+    def search(text)
+      text.split.inject(scoped({:include => [:conversation, :author, :subject]})) do |scope, word|
+        scope.scoped :conditions => ["haikus.text like :word or subjects.name like :word", {:word => "%#{word}%"}] 
+      end
+    end
   
-  def self.search(text)
-    text.split.inject(scoped({:include => [:conversation, :author, :subject]})) do |scope, word|
-      scope.scoped :conditions => ["haikus.text like :word or subjects.name like :word", {:word => "%#{word}%"}] 
+    def find_by_param(param)
+      if param =~ /^(\d+)/
+        find($1)
+      else
+        raise ActiveRecord::RecordNotFound
+      end
     end
   end
+  
   
   VALID_SYLLABLES = [5, 7, 5]
   
   def valid_syllables?
-    line_records = []
-    text.each_line { |line_text| line_records << Line.new(line_text) }
-    
-    if line_records.size != VALID_SYLLABLES.size
+    if lines.size != VALID_SYLLABLES.size
       errors.add("Need three lines")
     else
-      VALID_SYLLABLES.zip(line_records).each_with_index do |(expected, line_record), line_number|
-        errors.add("line #{line_number}") unless expected == line_record.syllables
+      VALID_SYLLABLES.zip(lines).each_with_index do |(expected, line), row|
+        syllable_count = line.split.sum(&:syllables)
+        if expected =! syllable_count
+          errors.add(:base, "line #{row} has #{syllable_count} syllables") 
+        end
       end
     end
   end
@@ -54,8 +65,16 @@ class Haiku < ActiveRecord::Base
       self.subject = Subject.find_or_create_by_name(name)
     end
   end
-  
+
+  def lines
+    text.split(/\n/)
+  end
+
   def terse
     text.gsub(/\n/, ' / ')
+  end
+
+  def to_param
+    "#{id}-#{lines.first.parameterize}"
   end
 end

@@ -27,7 +27,7 @@ class HaikusController < ApplicationController
   end
   
   def show
-    @single_haiku = Haiku.find(params[:id])
+    @single_haiku = Haiku.find_by_param(params[:id])
   end
   
   def destroy

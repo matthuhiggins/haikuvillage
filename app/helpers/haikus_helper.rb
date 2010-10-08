@@ -15,10 +15,6 @@ module HaikusHelper
     haiku.id == flash[:new_haiku_id]
   end
   
-  def haiku_title(haiku)
-    "A haiku by #{link_to haiku.author.username, author_path(haiku.author.username)}"
-  end
-
   def enter_conversation_link(haiku)
     polymorphic_path = haiku.conversing? ? haiku.conversation : haiku
     link_tag = link_to("Respond", polymorphic_path, :class => "icon reply")

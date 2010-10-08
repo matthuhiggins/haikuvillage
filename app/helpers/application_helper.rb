@@ -3,7 +3,7 @@ module ApplicationHelper
   
   def title(title)
     title = "Haiku Village: #{title}"
-    content_for :title, h(title)
+    content_for :title, title
   end
   
   def description(description)
