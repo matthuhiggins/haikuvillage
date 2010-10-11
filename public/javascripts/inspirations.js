@@ -2,32 +2,41 @@ window.inspirations = function(inspirations) {
   var index = Math.floor(inspirations.length * Math.random());
   
   function preCacheImages() {
-    inspirations.each(function(inspiration) { var i = new Image(); i.src = inspiration.thumbnail; });
+    $.each(inspirations, function(i, inspiration) {
+      var i = new Image();
+      i.src = inspiration.thumbnail;
+    });
   }
   
   function displayCurrent() {
-    var inspiration = inspirations[index];
-    $('inspiration_image').innerHTML = "<img src=\"" + inspiration.thumbnail + "\" />";
-    $('conversation_id_wrapper').innerHTML = "<input type=\"hidden\" name=\"haiku[conversation_id]\" value=\"" + inspiration.id + "\" />";
+    var inspiration = inspirations[index],  
+        image = document.createElement('img'),
+        input = document.createElement('input');
+    
+    $(image).attr('src', inspiration.thumbnail);
+    $(input).attr({'type': 'hidden', 'name': 'haiku[conversation_id]', 'value': inspiration.id});
+    
+    $('#inspiration_image').empty().append(image);
+    $('conversation_id_wrapper').empty().append(input);
   }
   
   function setupFlickr() {
-    $('inspiration_preview').show();
-    $('cancel_line').show();
-    $('inspiration_what').hide();
-    $('inspiration_selection').hide();
+    $('#inspiration_preview').show();
+    $('#cancel_line').show();
+    $('#inspiration_what').hide();
+    $('#inspiration_selection').hide();
     displayCurrent();
   }
   
   preCacheImages();
 
-  $('use_flickr').observe('click', function(event) {
-    Event.stop(event);
+  $('#use_flickr').click(function(e) {
+    e.preventDefault();
     setupFlickr();
   });
 
-  $('prev_inspiration').observe('click', function(event) {
-    Event.stop(event);
+  $('#prev_inspiration').click(function(e) {
+    e.preventDefault();
     if (index == 0) {
       index = inspirations.length - 1;
     } else {
@@ -36,35 +45,25 @@ window.inspirations = function(inspirations) {
     displayCurrent();
   });
   
-  $('next_inspiration').observe('click', function(event) {
-    Event.stop(event);
+  $('#next_inspiration').click(function(e) {
+    e.preventDefault();
     index = (index + 1) % inspirations.length;
     displayCurrent();
   });
   
-  $('cancel_link').observe('click', function(event) {
-    Event.stop(event);
-    $("upload_inspiration_image").innerHTML = "";
-    $('conversation_id_wrapper').innerHTML = "";
-    $('inspiration_image').innerHTML = "";
-    $('inspiration_upload').hide();
-    $('inspiration_preview').hide();
-    $('cancel_line').hide();
-    $('inspiration_what').show();
-    $('inspiration_selection').show();
+  $('#cancel_link').click(function(e) {
+    e.preventDefault();
+    $('#conversation_id_wrapper').empty();
+    $('#inspiration_image').empty();
+    $('#inspiration_upload').hide();
+    $('#inspiration_preview').hide();
+    $('#cancel_line').hide();
+    $('#inspiration_what').show();
+    $('#inspiration_selection').show();
   });
-  
-  new Form.Element.Observer(
-    'upload_inspiration_inspiration', 0.2,
-    function(el, value) {
-      $('upload_inspiration_form').submit();
-      $('upload_inspiration_status').style.visibility = 'visible';
-    }
-  );
 };
 
 function showUpload(conversation_id, url){
-  $("upload_inspiration_image").innerHTML = "<img id='inspiration' src='" + url + "' />";
   $('conversation_id_wrapper').innerHTML = "<input type=\"hidden\" name=\"haiku[conversation_id]\" value=\"" + conversation_id + "\" />";
   $("inspiration_upload").hide();
 }

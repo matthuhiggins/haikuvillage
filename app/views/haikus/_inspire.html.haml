@@ -13,5 +13,4 @@
 
 #upload_inspiration_image
 
-%iframe#upload_frame{ :name=>"upload_frame", :style=> "display:none", :src=>"about:blank"}
-%script= "inspirations(#{inspirations_json});"
+%script= raw("inspirations(#{inspirations_json});")
