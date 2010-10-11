@@ -28,7 +28,7 @@ Word.prototype = {
         supEl = document.createElement('sup');
 
     $(supEl).text(this.syllables > -1 ? this.syllables : '?');
-    $(wordEl).text(this.text).append(supEl);
+    $(wordEl).text(this.text).append(supEl).addClass(this.state).addClass('word');
 
     return wordEl;
   }
@@ -58,8 +58,8 @@ function Line(text, lineNumber) {
 Line.prototype = {
   isCalculating: function() {
     var result = false;
-    $.each(this.words, function(word) {
-      result = result || word.syllables < 0;
+    $.each(this.words, function(i, word) {
+      result = result || (word.syllables < 0);
     });
     return result;
   },
@@ -230,9 +230,10 @@ Haiku.PeriodicalUpdater.prototype = {
     }
 
     if (somethingChanged) {
-      this.previewElement.empty().append(currentHaiku.toElements());
-      // previewElement.find(Word.RESPONDED).
-      this.previewElement.removeClass('empty');
+      this.previewElement.empty()
+                         .removeClass('empty')
+                         .append(currentHaiku.toElements())
+                         .find('.responded').css('background-color', '#ffff99').animate({'background-color': '#ffffff'});
     }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {

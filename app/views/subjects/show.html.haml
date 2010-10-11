@@ -2,8 +2,8 @@
 - description "Haiku about #{@subject.name}"
 
 %h2
-  = link_to "Subjects", subjects_path
-  = "/ #{h @subject.name}"
+  Haiku about
+  = @subject.name
 
 = render_haikus(@haikus)
 			
