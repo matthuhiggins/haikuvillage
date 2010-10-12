@@ -11,7 +11,6 @@ module Lingua
             Rails.logger.debug("word = #{word}")
             word = word.upcase
             syllables = dictionary[word].try(:to_i)
-            Rails.logger.debug("syllables = #{syllables}")
             syllables
           end
     
