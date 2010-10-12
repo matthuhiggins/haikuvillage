@@ -2,6 +2,7 @@ module Concerns::Session
   extend ActiveSupport::Concern
 
   included do
+    before_filter :configure_facebook_author, if: lambda { fb.connected? && fb.user.new_record? }
     helper_method :current_author
   end
   
@@ -36,9 +37,18 @@ module Concerns::Session
       session[:author_id] = nil
       cookies.delete :remember_token
     end
-    
+
+    def configure_facebook_author
+      if author = (author_from_cookie || author_from_session)
+        Author.migrate(author, fb.user)
+      else
+        author = Author.find_or_create_from_graph(fb)
+        login(author)
+      end
+    end
+
     def current_author
-      @current_author ||= (author_from_facebook || author_from_cookie || author_from_session)
+      @current_author ||= (author_from_cookie || author_from_session || author_from_facebook)
     end
 
     def author_from_cookie
@@ -50,15 +60,6 @@ module Concerns::Session
     end
 
     def author_from_facebook
-      if fb.connected?
-        if fb.user.new_record?
-          data = fb.graph.get('me')
-          fb.user.update_attributes(
-            username:   Author.find_unique_username(data['email']),
-            email:      data['email']
-          )
-        end
-        fb.user
-      end
+      fb.user
     end
 end

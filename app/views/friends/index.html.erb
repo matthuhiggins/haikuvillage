@@ -1,4 +1,4 @@
-<% render :layout => 'layout' do %>
+<%= render :layout => 'layout' do %>
   <% if @friends.length > 0 then %>
     <%= render_friends(@friends, :show_actions => true) %>
   <% else %>

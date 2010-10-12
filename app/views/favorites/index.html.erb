@@ -1,4 +1,4 @@
-<% render :layout => 'journal/layout' do %>
+<%= render :layout => 'journal/layout' do %>
   <%= render_haikus(@haikus) %>
   <br />
   <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>

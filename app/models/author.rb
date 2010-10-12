@@ -2,7 +2,6 @@ class Author < ActiveRecord::Base
   include Author::Authenticated
   include Author::Friendly
   include Author::Remembered
-  include Author::UniqueUsername
   include Author::Bipolar
 
   has_many :favorites
