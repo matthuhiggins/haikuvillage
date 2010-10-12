@@ -5,4 +5,4 @@
 = render :partial => 'form'
   
 %script
-  $($('session_username').value === '' ? 'session_username' : 'session_password').activate();
+  $($('#session_username').val() === '' ? '#session_username' : '#session_password').focus();
