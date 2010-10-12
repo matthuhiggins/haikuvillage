@@ -3,6 +3,7 @@ class Author < ActiveRecord::Base
   include Author::Friendly
   include Author::Remembered
   include Author::UniqueUsername
+  include Author::Bipolar
 
   has_many :favorites
   has_many :favorite_haikus, :through => :favorites, :source => :haiku
@@ -19,8 +20,7 @@ class Author < ActiveRecord::Base
   scope :brand_new, :order => 'created_at desc'
   scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
   scope :popular, :order => 'favorited_count_total desc', :conditions => 'favorited_count_total > 0'
-  scope :search, lambda { |query| {:conditions => ['username like ?', "#{query}%"]} }
-  scope :recently_updated, :order => 'latest_haiku_id desc', :include => {:latest_haiku => :conversation}
+  scope :recently_updated, order('latest_haiku_id desc').includes(:latest_haiku => :conversation)
   
   validates_presence_of :email, :username
   validates_uniqueness_of :username, :email

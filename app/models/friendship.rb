@@ -7,7 +7,7 @@ class Friendship < ActiveRecord::Base
   
   private
     def set_mutual
-      self.mutual = !self.class.first(:conditions => reverse_friendship_attributes).nil?
+      self.mutual = self.class.exists?(reverse_friendship_attributes)
       self.class.update_all({:mutual => true}, reverse_friendship_attributes)
     end
     
