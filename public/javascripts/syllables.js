@@ -120,7 +120,7 @@ Haiku.prototype = {
   isValid: function() {
     var result = this.lines.length === 3;
 
-    $.each(this.lines, function(line) {
+    $.each(this.lines, function(i, line) {
       result = result && line.isValid();
     });
     
