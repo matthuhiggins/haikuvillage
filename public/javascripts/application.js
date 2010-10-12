@@ -3,6 +3,7 @@ if(navigator.userAgent.indexOf("MSIE 6") >= 0) {
 }
 
 $(function() {
+  $("input:submit").button();
   $('#haiku_search').hintInput();
 
   $('#logout-link').click(function(e) {
