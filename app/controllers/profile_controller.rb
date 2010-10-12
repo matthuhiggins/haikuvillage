@@ -12,12 +12,8 @@ class ProfileController < ApplicationController
   def password
     return if request.get?
     
-    if current_author.authenticate(params[:current_password])
-      if current_author.update_attributes!(:password => params[:password])
-        flash[:notice] = "Password successfully changed"
-      end
-    else
-      flash[:notice] = 'Wrong current password'
+    if current_author.update_attributes(:password => params[:password])
+      redirect_to profile_path, notice: 'Password updated'
     end
   end
 end

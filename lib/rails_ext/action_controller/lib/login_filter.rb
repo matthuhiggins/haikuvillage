@@ -1,8 +1,6 @@
 module HaikuController
   module LoginFilter
-    def self.included(base)
-      base.extend(ClassMethods)
-    end
+    extend ActiveSupport::Concern
 
     private
       def original_login_referrer
