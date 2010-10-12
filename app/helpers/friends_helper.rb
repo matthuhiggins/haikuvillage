@@ -6,25 +6,16 @@ module FriendsHelper
     render :partial => "friends/friend", :collection => friends, :spacer_template => "conversations/divider", :locals => options
   end
   
-  def update_friendship(friend)
-    return unless current_author
-    current_author.friends.include?(friend) ? remove_friend(friend) : add_friend(friend)
-  end
-  
   def add_friend(friend)
-    link_to_remote("Add to friends",
-      :url      => friend_path(friend.username),
-      :method   => :put,
-      :before   => "$('#{dom_id(friend)}').innerHTML = 'updating...'",
-      :html     => {:id => dom_id(friend)})
+    options = {method: :put, id: 'add-friend', remote: true}
+    options[:style] = 'display:none;' if current_author.friends.include?(friend)
+    link_to("Add to friends", friend_path(friend.username), options)
   end
 
   def remove_friend(friend)
-    link_to_remote("Remove from friends",
-      :url      => friend_path(friend.username),
-      :before   => "$('#{dom_id(friend)}').innerHTML = 'updating...'",
-      :method   => :delete,
-      :html     => {:id => dom_id(friend)})
+    options = {method: :delete, id: 'remove-friend', remote: true}
+    options[:style] = 'display:none;' unless current_author.friends.include?(friend)
+    link_to("Remove from friends", friend_path(friend.username), options)
   end
   
   def remove_friend_thumbnail(friend)
