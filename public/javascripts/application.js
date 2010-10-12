@@ -6,6 +6,10 @@ $(function() {
   $('#haiku_search').hintInput();
 
   $('#logout-link').click(function(e) {
-    FB.logout();
+    e.preventDefault();
+    var path = $(this).attr('href');
+    FB.logout(function() {
+      window.location = path;
+    });
   });
 });
