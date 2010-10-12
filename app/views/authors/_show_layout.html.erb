@@ -23,3 +23,16 @@
 <div class="submenu-content author-content">
   <%= yield %>
 </div>
+
+<script>
+$(function() {
+  $('#add-friend').click(function() {
+    $('#add-friend').hide();
+    $('#remove-friend').show();
+  });
+  $('#remove-friend').click(function() {
+    $('#remove-friend').hide();
+    $('#add-friend').show();
+  })
+});
+</script>
