@@ -4,20 +4,18 @@
       <tr>
         <td><%= form.label :username, 'Username:' %></td>
         <td><%= form.text_field :username %></td>
-        <td rowspan="2"><h2>or</h2></td>
-        <td rowspan="2"><fb:login-button>Connect with Facebook</fb:login-button></td>
+        <% unless fb.connected? %>
+          <td rowspan="2"><h2>or</h2></td>
+          <td rowspan="2"><fb:login-button>Connect with Facebook</fb:login-button></td>
+        <% end %>
       </tr>
       <tr>
         <td><%= form.label :email, 'E-mail:' %></td>
         <td><%= form.text_field :email %></td>
-        <td></td>
-        <td></td>
       </tr>
       <tr>
         <td></td>
         <td><%= form.submit "Save" %></td>
-        <td></td>
-        <td></td>
       </tr>
     </table>
   <% end %>

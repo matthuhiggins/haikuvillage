@@ -9,11 +9,11 @@ module SubjectsHelper
     
     sorted_by_name.map do |subject|
       link_to_subject subject, {:style => "font-size: #{font_sizes[subject.name]}"}
-    end.join(' ')
+    end.join(' ').html_safe
   end
   
   def subject_list(subjects)
-    subjects.map { |subject| link_to_subject subject }.join(', ')
+    subjects.map { |subject| link_to_subject subject }.join(', ').html_safe
   end
   
   def link_to_subject(subject, html_options = {})
