@@ -12,10 +12,12 @@
       <%= m.link "Haiku", author_path(:id => @author.username) %>
       <%= m.link "Subjects", author_subjects_path(:author_id => @author.username)  %>
       <%= m.link "Friends", friends_author_path(@author.username)  %>
-      <li>
-        <%= add_friend(@author) %>
-        <%= remove_friend(@author) %>
-      </li>
+      <% if current_author %>
+        <li>
+          <%= add_friend(@author) %>
+          <%= remove_friend(@author) %>
+        </li>
+      <% end %>
     <% end %>
   </div>
 </div>
