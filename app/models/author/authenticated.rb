@@ -35,7 +35,7 @@ module Author::Authenticated
   end
   
   def authenticate(pwd)
-    return false unless pwd.is_a?(String)
+    return false unless pwd.is_a?(String) && !hashed_password.nil?
     self.hashed_password == self.class.encrypted_password(pwd, self.salt)
   end
 

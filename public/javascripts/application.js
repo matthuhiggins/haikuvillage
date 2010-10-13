@@ -7,10 +7,12 @@ $(function() {
   $('#haiku_search').hintInput();
 
   $('#logout-link').click(function(e) {
-    e.preventDefault();
-    var path = $(this).attr('href');
-    FB.logout(function() {
-      window.location = path;
-    });
+    if (FB.getSession()) {
+      e.preventDefault();
+      var path = $(this).attr('href');
+      FB.logout(function() {
+        window.location = path;
+      });
+    }
   });
 });
