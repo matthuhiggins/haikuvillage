@@ -2,7 +2,7 @@ module Concerns::Session
   extend ActiveSupport::Concern
 
   included do
-    before_filter :configure_facebook_author, if: lambda { fb.connected? && fb.user.new_record? }
+    before_filter :configure_facebook_author, if: lambda { fb.connected? }
     helper_method :current_author
   end
   
@@ -41,7 +41,7 @@ module Concerns::Session
     def configure_facebook_author
       if author = (author_from_cookie || author_from_session)
         Author.migrate(author, fb.user)
-      else
+      elsif fb.user.new_record?
         author = Author.find_or_create_from_graph(fb)
         login(author)
       end
