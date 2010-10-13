@@ -10,7 +10,7 @@
   <div class="text_author_group">
     <%= link_to haiku, :class => 'text' do %>
       <% haiku.lines.each do |line| %>
-        <div class="line"><%# line %></div>
+        <div class="line"><%= line %></div>
       <% end %>
     <% end %>
     <div class="info">
