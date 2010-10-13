@@ -12,10 +12,6 @@ class PublicController < ApplicationController
     end
   end
   
-  def sitemap
-    @last_haiku = Haiku.recent.first
-  end
-  
   def google_gadget
     @random_haiku = Haiku.recent.limit(10).sample
     render :layout => false
