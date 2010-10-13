@@ -1,0 +1,33 @@
+.self {
+  border-top: 1px solid #cccccc; }
+  .self .avatar_and_time a {
+    display: none; }
+  .self .author {
+    display: none; }
+
+.messages {
+  margin-left: 60px; }
+
+.message {
+  border-top: 1px solid #cccccc;
+  margin: 4px 4px 4px 4px;
+  overflow: hidden;
+  padding: 10px 6px; }
+  .message .avatar {
+    float: left;
+    width: 46px; }
+  .message .author_and_time {
+    float: left;
+    margin-top: 3px;
+    width: 140px; }
+    .message .author_and_time .author {
+      margin-bottom: 2px; }
+      .message .author_and_time .author a {
+        font-weight: bold; }
+    .message .author_and_time .time {
+      color: #999999; }
+  .message .text {
+    float: left;
+    line-height: 120%; }
+  .message .actions {
+    float: right; }

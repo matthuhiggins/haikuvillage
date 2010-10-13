@@ -14,4 +14,12 @@ HaikuVillage::Application.configure do
     :password       => "haiku575",
     :authentication => :login
   }
+
+  config.facebook = {
+    app_id: '90926621564',
+    secret: '6045be51632c0658b3021c5653295ca1',
+    user_class_name: 'Author'
+  }
 end
+
+Sass::Plugin.options[:never_update] = true

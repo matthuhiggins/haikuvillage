@@ -1,0 +1,98 @@
+* {
+  outline: 0; }
+
+html {
+  background-color: transparent; }
+
+body {
+  background: #e6e4da url(/images/background.png) no-repeat fixed 0 40px;
+  color: black;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left; }
+
+body, textarea, td, input {
+  font: 12px Trebuchet, sans-serif; }
+
+a {
+  color: #8c2a1c;
+  cursor: pointer;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline !important; }
+
+br {
+  clear: both; }
+
+form textarea {
+  overflow: auto;
+  padding: 3px 1px; }
+form input[type="text"], form input[type="password"] {
+  padding: 3px 1px 2px; }
+form td > input[type="submit"] {
+  margin-top: 5px;
+  margin-right: 9px; }
+form td {
+  padding: 4px; }
+  form td label {
+    display: block;
+    text-align: right; }
+    form td label .checkbox {
+      text-align: left; }
+    form td label.checkbox {
+      margin-top: 1px;
+      text-align: left; }
+  form td input[type="checkbox"] {
+    float: right; }
+
+h2 {
+  color: black;
+  font-size: 18px; }
+
+h3 {
+  color: #444444;
+  font-size: 14px;
+  padding: 0 0 6px 0; }
+
+strong {
+  font-weight: bold; }
+
+em {
+  font-style: italic; }
+
+p {
+  padding: 0.3em 0; }
+
+hr {
+  border: none;
+  border-top: 1px solid #999999; }
+
+input[type='text'], input[type='password'], textarea {
+  border: 1px solid #999999; }
+
+textarea {
+  resize: none; }
+
+.formError {
+  color: red;
+  font-size: 11px;
+  font-weight: bold; }
+
+.fieldWithErrors input, .fieldWithErrors textarea {
+  border: 1px dotted red; }
+
+.href_list {
+  padding-right: 5px; }
+
+.cloud {
+  clear: both;
+  width: 100%;
+  padding-top: 30px; }
+  .cloud h2 {
+    padding: 15px 0 15px 0; }
+  .cloud a {
+    padding-right: 15px;
+    text-decoration: none; }
+    .cloud a:hover {
+      text-decoration: underline; }
