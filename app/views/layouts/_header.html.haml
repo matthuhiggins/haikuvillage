@@ -1,12 +1,10 @@
 #header.navigation
   .left
     = link_to(image_tag("haikuvillage.png"), root_path, :id => "logo-link")
-    - if current_author
-      %ul
-        %li= link_to 'Journal', journal_path
-        %li= link_to "Friends", friends_path
-        - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
-        %li= link_to message_text, messages_path
+    %ul.global
+      %li= link_to "All haiku", haikus_path
+      %li= link_to 'Conversations', conversations_path
+      %li= link_to 'Subjects', subjects_path
   .right
     %table.the-very-top
       %tr
@@ -18,7 +16,9 @@
           %td= link_to 'Logout', logout_path, id: 'logout-link'
         %td
           = header_search_form
-    %ul.global
-      %li= link_to 'Subjects', subjects_path
-      %li= link_to 'Conversations', conversations_path
-      %li= link_to "All haiku", haikus_path
+    - if current_author
+      %ul.global
+        %li= link_to "Friends", friends_path
+        - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
+        %li= link_to message_text, messages_path
+        %li= link_to 'Journal', journal_path
