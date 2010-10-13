@@ -1,0 +1,52 @@
+.author-header {
+  overflow: hidden;
+  overflow: hidden;
+  padding: 0; }
+  .author-header .avatar {
+    float: left;
+    width: 64px; }
+  .author-header .nav {
+    float: left;
+    padding: 6px 0 0 10px;
+    width: 600px; }
+
+.author-content .haiku .avatar_and_time a {
+  display: none; }
+
+.friend {
+  font-size: 13px;
+  height: 64px;
+  overflow: hidden;
+  padding: 10px; }
+  .friend .avatar {
+    float: left;
+    width: 64px; }
+  .friend .details {
+    float: left;
+    margin: 1px 0 0 6px;
+    overflow: hidden; }
+    .friend .details .username_and_actions {
+      overflow: hidden;
+      width: 550px; }
+      .friend .details .username_and_actions .username {
+        float: left; }
+        .friend .details .username_and_actions .username a {
+          font-weight: bold; }
+      .friend .details .username_and_actions .actions {
+        float: right;
+        font-size: 12px; }
+    .friend .details .latest_haiku {
+      float: left; }
+      .friend .details .latest_haiku .latest_haiku_text {
+        margin-top: 7px; }
+      .friend .details .latest_haiku .latest_haiku_time {
+        color: #666666;
+        margin-top: 3px; }
+
+#update_friend {
+  color: #666666; }
+
+#author_search {
+  padding: 0 0 12px 0; }
+  #author_search input[type='text'] {
+    width: 150px; }

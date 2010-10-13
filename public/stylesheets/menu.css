@@ -1,0 +1,54 @@
+ul.tab_nav {
+  overflow: hidden; }
+  ul.tab_nav li {
+    float: left;
+    margin-right: 7px;
+    padding: 3px 0 1px 0; }
+  ul.tab_nav li + li {
+    border-left: 1px dotted #dadada;
+    padding-left: 8px; }
+  ul.tab_nav li.selected {
+    font-weight: bold; }
+
+.submenu-content {
+  margin: 10px 5px 10px 5px; }
+
+.pagination {
+  /* self-clearing method: */ }
+  .pagination a, .pagination span {
+    border: 1px solid #bbbbbb;
+    display: block;
+    float: left;
+    margin-right: 1px;
+    padding: 2px 6px 0px 6px; }
+  .pagination span.disabled {
+    color: #999999;
+    border: 1px solid #999999; }
+  .pagination span.current {
+    background: #a20000;
+    color: white; }
+  .pagination a:hover, .pagination a:focus {
+    border-color: #a20000; }
+  .pagination .page_info {
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center; }
+    .pagination .page_info b {
+      color: #000033;
+      background: #6aa6ed;
+      padding: 0.1em 0.25em; }
+  .pagination .prev_page {
+    margin-left: 1em; }
+  .pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .pagination {
+    height: 1%; }
+  *:first-child + html .pagination {
+    overflow: hidden; }

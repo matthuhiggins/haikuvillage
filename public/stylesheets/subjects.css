@@ -1,0 +1,16 @@
+.subjects-header {
+  margin-bottom: 10px;
+  position: relative; }
+  .subjects-header form {
+    position: absolute;
+    right: 0;
+    top: 0; }
+    .subjects-header form input[type='text'] {
+      width: 150px; }
+    .subjects-header form input[type="submit"] {
+      margin: 0; }
+
+ul.subject-list {
+  margin: 10px 0 0 10px; }
+  ul.subject-list li {
+    margin-top: 4px; }

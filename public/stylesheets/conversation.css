@@ -1,0 +1,54 @@
+a.conversation {
+  display: block;
+  margin: 8px 0;
+  min-height: 80px;
+  overflow: hidden;
+  padding: 17px 0; }
+  a.conversation .time {
+    color: #999999;
+    float: left;
+    padding-top: 1px;
+    padding-bottom: 2px; }
+  a.conversation .haikus {
+    float: left;
+    width: 530px; }
+    a.conversation .haikus .terse-haiku {
+      color: black;
+      font-size: 13px;
+      padding-bottom: 6px; }
+    a.conversation .haikus .more {
+      margin-top: 10px; }
+
+.conversation_header {
+  font-size: 24px;
+  padding-top: 15px;
+  text-align: center; }
+  .conversation_header .summary {
+    font-size: 42px; }
+
+.context {
+  float: left;
+  font-size: 11px;
+  padding: 0 14px;
+  text-align: center;
+  width: 100px; }
+  .context .summary {
+    font-size: 36px; }
+
+.conversation-header {
+  overflow: hidden; }
+  .conversation-header h2 {
+    float: left; }
+  .conversation-header .conversation-tip {
+    background-color: #fff7cc;
+    float: right;
+    margin-right: 15px;
+    padding: 10px;
+    width: 160px; }
+
+.conversation-section .context {
+  display: none; }
+
+.divider {
+  height: 1px;
+  background-color: #cccccc; }
