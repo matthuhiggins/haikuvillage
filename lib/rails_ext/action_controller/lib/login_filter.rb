@@ -7,13 +7,8 @@ module HaikuController
         session[:original_login_referrer] || journal_path
       end
       
-      def original_login_request
-        session[:original_login_request] || journal_path
-      end
-      
       def redirect_with_login_context
         session[:original_login_referrer] = request.referrer
-        session[:original_login_request] = request.request_uri
         yield if block_given?
         redirect_to(register_path)
       end
