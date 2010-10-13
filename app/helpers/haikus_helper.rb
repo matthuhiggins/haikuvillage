@@ -11,10 +11,6 @@ module HaikusHelper
     render :partial => "haikus/create", :locals => options
   end
 
-  def new_haiku?(haiku)
-    haiku.id == flash[:new_haiku_id]
-  end
-  
   def enter_conversation_link(haiku)
     polymorphic_path = haiku.conversing? ? haiku.conversation : haiku
     link_tag = link_to("Respond", polymorphic_path, :class => "icon reply")

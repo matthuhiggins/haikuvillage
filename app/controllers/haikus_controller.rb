@@ -4,12 +4,9 @@ class HaikusController < ApplicationController
   def create
     if current_author
       @haiku = current_author.haikus.create(params[:haiku])
-      flash[:new_haiku_id] = @haiku.id
       redirect_and_flash(@haiku)
     else
-      redirect_with_login_context do
-        session[:new_haiku] = params[:haiku]
-      end
+      redirect_with_login_context
     end
   end
 
@@ -42,7 +39,7 @@ class HaikusController < ApplicationController
   
   private
     def redirect_and_flash(haiku)
-      if !haiku.conversing_with.nil?
+      if haiku.conversing_with
         flash[:notice] = "Your haiku started a conversation."
         redirect_to(haiku.conversation)
       else

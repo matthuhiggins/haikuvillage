@@ -1,4 +1,4 @@
-= div_for(haiku, :style => new_haiku?(haiku) ? 'display: none' : '') do
+= div_for(haiku) do
   .avatar_and_time
     .time= haiku.created_at.strftime("%d %b %y")
     = link_to author_path(haiku.author.username) do
@@ -24,7 +24,3 @@
     .actions
       = enter_conversation_link(haiku)
       = destroy_haiku_link(haiku)
-
-- if new_haiku? haiku
-  = update_page_tag do |page|
-    - page[haiku].appear
