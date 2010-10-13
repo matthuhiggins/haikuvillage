@@ -1,7 +1,6 @@
 module HaikusHelper
   def render_haikus(haikus)
-    ''
-    # render :partial => "haikus/haiku", :collection => haikus, :spacer_template => "conversations/divider"
+    render :partial => "haikus/haiku", :collection => haikus, :spacer_template => "conversations/divider"
   end
 
   # options include:
