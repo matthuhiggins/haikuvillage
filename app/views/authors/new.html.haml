@@ -9,6 +9,10 @@
       %td
         = form.error_message_on :email
         = form.text_field :email
+      %td{:rowspan=>"3"} 
+        %h2 or
+      %td{:rowspan=>"3"}
+        %fb:login-button{:size=>"large", :length=>"long"}
     %tr
       %td
         = form.label :username, 'Username:'
@@ -32,8 +36,6 @@
         = link_to "Are you already an author?", login_path
 %script
   document.getElementById('author_email').focus();
-
-%fb:login-button
 
 - if Rails.env.production?
   = render 'public/signup_tracker'

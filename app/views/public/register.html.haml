@@ -13,11 +13,11 @@
   %h2 You need to sign in or register
 
 .register
-  .column
+  .already
     %h3= "Already an author?"
     = render :partial => 'sessions/form'
   
-  .column
+  .create
     %h3= 'Create a new account'
     = form_for @author do |form|
       - fields_for_haiku
