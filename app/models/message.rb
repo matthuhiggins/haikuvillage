@@ -18,6 +18,10 @@ class Message < ActiveRecord::Base
     text.gsub(/\n/, ' / ')
   end
   
+  def lines
+    text.split(/\n/)
+  end
+  
   def other_author
     author_id == sender_id ? recipient : sender
   end

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController  
+  prevent_logged_in :only => [:new, :create]
+
   def create
     author = Author.authenticate(params[:username], params[:password])
     if author

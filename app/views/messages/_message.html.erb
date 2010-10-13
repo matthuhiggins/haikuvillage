@@ -1,6 +1,6 @@
 <div class="message">
   <div class="avatar">
-    <% link_to author_path(message.other_author.username) do %>
+    <%= link_to author_path(message.other_author.username) do %>
       <%= image_tag medium_avatar_url(message.other_author) %>
     <% end %>
   </div>
@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="text">
-    <% message.text.each_line do |line| %>
+    <% message.lines.each do |line| %>
       <div class="line"><%= h(line) %></div>
     <% end %>
   </div>

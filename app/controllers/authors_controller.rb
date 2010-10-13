@@ -1,4 +1,6 @@
 class AuthorsController < ApplicationController
+  prevent_logged_in :only => [:new, :create]
+
   def index
     @active_authors = Author.active.all(:limit => 12)
     @new_authors = Author.brand_new.all(:limit => 12)

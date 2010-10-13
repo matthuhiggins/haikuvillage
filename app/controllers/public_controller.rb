@@ -1,4 +1,6 @@
-class PublicController < ApplicationController    
+class PublicController < ApplicationController
+  prevent_logged_in only: [:index, :register]
+
   def index
     if current_author
       redirect_to :controller => "journal"

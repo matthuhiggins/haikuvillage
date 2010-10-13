@@ -36,13 +36,23 @@ module HaikuController
       def login_filter(options = {})
         before_filter :check_login, options
       end
+
+      def prevent_logged_in(options = {})
+        before_filter :check_no_login, options
+      end
     end
   
     def check_login
-      if current_author.nil?
+      if !current_author
         redirect_with_login_context do
-          flash[:notice] = "You must sign in first"
+          flash[:notice] = 'You must sign in first'
         end
+      end
+    end
+
+    def check_no_login
+      if current_author
+        redirect_to journal_path
       end
     end
   end

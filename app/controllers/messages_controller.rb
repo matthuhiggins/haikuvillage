@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
 
   def index
     current_author.messages.unread.update_all(:unread => false)
-    @messages = current_author.messages.paginate(:page => params[:page], :per_page  => 20)
-    @friends = current_author.mutual_friends.all(:order => 'username')
+    @messages = current_author.messages.includes([:sender, :recipient]).paginate(:page => params[:page], :per_page  => 20)
+    @friends = current_author.friends.order('username')
   end
   
   def create

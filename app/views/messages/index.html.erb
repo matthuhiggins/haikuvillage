@@ -33,16 +33,17 @@
     <p>You do not have any mutual friends to send a message to</p>
   <% end %>
 
+  
   <%= render :partial => "message", :collection => @messages %>
   <%= will_paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
 </div>
 
 <script>
 (function() {
-  new Haiku.PeriodicalUpdater("message_text", "preview", "send_haiku");
+  new Haiku.PeriodicalUpdater("#message_text", "#preview", "#send_haiku");
   
   var selectedFriend = <%= params[:friend].to_json %>,
-      selectList = $('message_recipient_id');
+      selectList = document.getElementById('message_recipient_id');
 
   for (i = 0; i < selectList.options.length; i++) {
     if (selectList.options[i].value == selectedFriend) {
