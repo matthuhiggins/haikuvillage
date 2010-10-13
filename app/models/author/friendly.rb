@@ -13,6 +13,6 @@ module Author::Friendly
   end
   
   def mutual?(other_author)
-    following.include?(other_author)
+    friends.include?(other_author)
   end
 end
