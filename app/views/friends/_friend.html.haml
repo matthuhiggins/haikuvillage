@@ -1,6 +1,6 @@
 .friend{:id => dom_id(friend)}
   .avatar
-    - link_to author_path(friend.username) do
+    = link_to author_path(friend.username) do
       = large_avatar_image(friend)
   .details
     .username_and_actions
