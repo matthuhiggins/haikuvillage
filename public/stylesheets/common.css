@@ -96,3 +96,7 @@ textarea {
     text-decoration: none; }
     .cloud a:hover {
       text-decoration: underline; }
+
+.ui-state-error {
+  padding: 0.5em;
+  margin: 0.5em; }

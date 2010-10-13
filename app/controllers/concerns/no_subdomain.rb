@@ -9,7 +9,7 @@ module Concerns
     private
       def redirect_if_any_subdomain
         if request.subdomains.any?
-          redirect_to 'http://haikuvillage.com'
+          redirect_to 'http://haikuvillage.com', status: 301
         end
       end
   end
