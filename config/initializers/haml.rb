@@ -1,1 +1,1 @@
-Haml::Template.options[:encoding] = 'ascii-8bit'
+Haml::Template.options[:encoding] = 'utf-8'
