@@ -15,7 +15,7 @@
     #body
       = render 'layouts/header'
       - if flash[:notice]
-        #notice= flash[:notice]
+        #notice.ui-state-highlight= flash[:notice]
       #content-wrap
         #content
           = yield

@@ -243,7 +243,7 @@ Haiku.PeriodicalUpdater.prototype = {
       }
     }
 
-    this.submitButton.attr('disabled', !currentHaiku.isValid());
+    this.submitButton.button(currentHaiku.isValid() ? 'enable' : 'disable');
     this.lastHaikuText = currentText;
   }
 };
