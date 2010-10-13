@@ -1,6 +1,6 @@
 <%= render :layout => 'layout' do %>
-  <% if @friends.length > 0 then %>
-    <%= render_friends(@friends, :show_actions => true) %>
+  <% if @following.length > 0 then %>
+    <%= render_friends(@following, :show_actions => true) %>
   <% else %>
     <h3>Make some new friends! Find an <%= link_to "author", authors_path %> that's interesting and add them to your friends list.</h3>
   <% end %>

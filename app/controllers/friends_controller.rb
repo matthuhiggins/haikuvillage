@@ -2,7 +2,7 @@ class FriendsController < ApplicationController
   login_filter
 
   def index
-    @friends = current_author.friends.recently_updated
+    @following = current_author.following.recently_updated
   end
 
   def update
