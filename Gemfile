@@ -8,6 +8,10 @@ gem 'foreigner',          '0.9.0'
 gem 'fb_rails',           git: 'git://github.com/matthuhiggins/fb_rails.git'
 # gem 'hassle',           '0.0.1'
 
+group :production do
+  'pg'
+end
+
 group :test, :development do
   gem 'mysql2'
   gem 'factory_girl_rails', '1.0.0'
