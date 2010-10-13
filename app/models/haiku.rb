@@ -22,7 +22,7 @@ class Haiku < ActiveRecord::Base
   end
   
   validates_presence_of :text, :on => :create
-  validate_on_create :valid_syllables?
+  validate :valid_syllables?, on: :create
 
   class << self
     def search(text)
