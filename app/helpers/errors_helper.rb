@@ -5,7 +5,7 @@ module ErrorsHelper
     if (errors = object.errors[method]).presence
       content_tag(:div,
         (options[:prepend].html_safe << errors.first).safe_concat(options[:append]),
-        class: 'error'
+        class: 'ui-state-error ui-corner-all'
       )
     else
       ''

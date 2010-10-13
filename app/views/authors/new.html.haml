@@ -7,7 +7,7 @@
       %td
         = form.label :email, 'Email:'
       %td
-        = form.error_message_on :email
+        = form.error_message_on :email, :prepend=>"Email "
         = form.text_field :email
       %td{:rowspan=>"3"} 
         %h2 or
@@ -17,13 +17,13 @@
       %td
         = form.label :username, 'Username:'
       %td
-        = form.error_message_on :username
+        = form.error_message_on :username, :prepend=>"User name "
         = form.text_field :username
     %tr
       %td
         = form.label :password, 'Password:'
       %td
-        = form.error_message_on :password
+        = form.error_message_on :password, :prepend=>"Password "
         = form.password_field :password  
     %tr
       %td
