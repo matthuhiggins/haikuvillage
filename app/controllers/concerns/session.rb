@@ -3,6 +3,9 @@ module Concerns::Session
 
   included do
     before_filter :configure_facebook_author, if: lambda { fb.connected? }
+
+    extend ActiveSupport::Memoizable
+    memoize :current_author
     helper_method :current_author
   end
   
@@ -48,7 +51,7 @@ module Concerns::Session
     end
 
     def current_author
-      @current_author ||= (author_from_cookie || author_from_session || author_from_facebook)
+      author_from_cookie || author_from_session || author_from_facebook
     end
 
     def author_from_cookie
