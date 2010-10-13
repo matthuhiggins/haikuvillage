@@ -17,7 +17,7 @@ window.inspirations = function(inspirations) {
     $(input).attr({'type': 'hidden', 'name': 'haiku[conversation_id]', 'value': inspiration.id});
     
     $('#inspiration_image').empty().append(image);
-    $('conversation_id_wrapper').empty().append(input);
+    $('#conversation_id_wrapper').empty().append(input);
   }
   
   function setupFlickr() {
