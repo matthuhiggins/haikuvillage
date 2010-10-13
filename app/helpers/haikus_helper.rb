@@ -33,11 +33,5 @@ module HaikusHelper
       class: "empty")
 
     text_area_tag(:text, "", options)
-  end
-  
-  def haiku_summary_sentence(haiku)
-    summary = []
-    summary << "Subject: #{link_to_subject haiku.subject_name}" unless haiku.subject_name.nil?
-    summary.join(', ')
-  end
+  end  
 end

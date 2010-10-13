@@ -21,6 +21,9 @@
     .info
       = "Created on #{@single_haiku.created_at.strftime("%b %d, %Y")} by"
       = link_to_author @single_haiku.author
+    - if haiku.subject_name
+      Subject:
+      = link_to_subject haiku.subject_name
     .info= haiku_summary_sentence(@single_haiku)
     - if current_author
       .actions
