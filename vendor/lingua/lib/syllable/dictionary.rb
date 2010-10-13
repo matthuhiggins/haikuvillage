@@ -8,7 +8,6 @@ module Lingua
     
         class << self
           def syllables(word)
-            Rails.logger.debug("word = #{word}")
             word = word.upcase
             syllables = dictionary[word].try(:to_i)
             syllables
