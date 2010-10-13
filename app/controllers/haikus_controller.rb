@@ -6,7 +6,9 @@ class HaikusController < ApplicationController
       @haiku = current_author.haikus.create(params[:haiku])
       redirect_and_flash(@haiku)
     else
-      redirect_with_login_context
+      redirect_with_login_context do
+        save_deferred_haiku(params[:haiku])
+      end
     end
   end
 

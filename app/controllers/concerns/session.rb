@@ -12,7 +12,7 @@ module Concerns::Session
   private
     def login_and_redirect(author, remember_me = false)
       login(author, remember_me)
-      create_deferred_haiku_and_redirect(author)
+      redirect_to(original_login_referrer)
     end
 
     def login(author, remember_me = false)
@@ -22,16 +22,6 @@ module Concerns::Session
       if remember_me
         author.remember_me!
         cookies[:remember_token] = {:value => author.remember_token, :expires => 2.weeks.from_now}
-      end
-    end
-
-    def create_deferred_haiku_and_redirect(author)
-      if session[:deferred_haiku]
-        author.haikus.create(session[:deferred_haiku]) 
-        session[:deferred_haiku] = nil
-        redirect_to(original_login_referrer)
-      else
-        redirect_to(original_login_request)
       end
     end
 
