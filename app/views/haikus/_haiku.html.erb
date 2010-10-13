@@ -1,0 +1,45 @@
+<%= div_for(haiku) do %>
+  <div class="avatar_and_time">
+    <div class="time">
+      <%= haiku.created_at.strftime("%d %b %y") %>
+    </div>
+    <%= link_to author_path(haiku.author.username) do %>
+      <%= medium_avatar_image(haiku.author) %>
+    <% end %>
+  </div>
+  <div class="text_author_group">
+    <%= link_to haiku, :class => 'text' do %>
+      <% haiku.lines.each do |line| %>
+        <div class="line"><%= line %></div>
+      <% end %>
+    <% end %>
+    <div class="info">
+      <%= link_to haiku.author.username, author_path(haiku.author.username), {:class => 'author'} %>
+      <% unless haiku.subject_name.nil? %>
+        about
+        <%= link_to_subject(haiku.subject_name) %>
+      <% end %>
+    </div>
+  </div>
+  <% if haiku.conversation %>
+    <div class="context">
+      <%= link_to haiku.conversation do %>
+        <% if haiku.conversation.inspiration %>
+          <%= image_tag haiku.conversation.inspiration.small, :class => 'haiku-inspiration' %>
+        <% else %>
+          Conversing with
+          <div class="summary">
+            <%= haiku.conversation.haikus_count_total - 1 %>
+          </div>
+          other haiku
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if current_author %>
+    <div class="actions">
+      <%= enter_conversation_link(haiku) %>
+      <%= destroy_haiku_link(haiku) %>
+    </div>
+  <% end %>
+<% end %>
