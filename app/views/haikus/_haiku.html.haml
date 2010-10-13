@@ -2,7 +2,7 @@
   .avatar_and_time
     .time= haiku.created_at.strftime("%d %b %y")
     = link_to author_path(haiku.author.username) do
-      = image_tag medium_avatar_url(haiku.author)
+      = medium_avatar_image(haiku.author)
   .text_author_group
     = link_to haiku, :class => 'text' do
       - haiku.lines.each do |line|

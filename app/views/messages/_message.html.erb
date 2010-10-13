@@ -1,7 +1,7 @@
 <div class="message">
   <div class="avatar">
     <%= link_to author_path(message.other_author.username) do %>
-      <%= image_tag medium_avatar_url(message.other_author) %>
+      <%= medium_avatar_image(message.other_author) %>
     <% end %>
   </div>
   <div class="author_and_time">
