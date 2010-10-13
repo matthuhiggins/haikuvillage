@@ -42,8 +42,8 @@ module Concerns::Session
     end
 
     def configure_facebook_author
-      if author = (author_from_cookie || author_from_session) && author.fb_uid.nil?
-        Author.migrate(author, fb.user)
+      if author = (author_from_cookie || author_from_session)
+        Author.migrate(author, fb.user) if author.fb_uid.nil?
       elsif fb.user.new_record?
         author = Author.find_or_create_from_graph(fb)
         login(author)
