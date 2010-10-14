@@ -17,7 +17,7 @@
   .haiku-big
     .text
       - @single_haiku.lines.each do |line|
-        .line= h(line)
+        .line= line
     .info
       = "Created on #{@single_haiku.created_at.strftime("%b %d, %Y")} by"
       = link_to_author @single_haiku.author

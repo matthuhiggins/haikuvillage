@@ -6,7 +6,7 @@
   .text_author_group
     = link_to haiku, :class => 'text' do
       - haiku.lines.each do |line|
-        .line= h(line)
+        .line= line
     .info
       = link_to haiku.author.username, author_path(haiku.author.username), {:class => 'author'}
       - unless haiku.subject_name.nil?
