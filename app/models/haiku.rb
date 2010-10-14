@@ -38,6 +38,11 @@ class Haiku < ActiveRecord::Base
         raise ActiveRecord::RecordNotFound
       end
     end
+
+    def global_feed
+      active_authors = Author.recently_updated.limit(10)
+      where(id: active_authors.map(&:latest_haiku_id)).includes([:conversation, :author]).order('id desc')
+    end
   end
   
   

@@ -5,8 +5,8 @@ class PublicController < ApplicationController
     if current_author
       redirect_to :controller => "journal"
     else
-      active_authors = Author.recently_updated.limit(10)
-      @haikus = Haiku.where(id: active_authors.map(&:latest_haiku_id)).includes([:conversation, :author])
+      
+      @haikus = Haiku.global_feed
       @total_haikus = Haiku.count(:id)
       @total_subjects = Subject.count(:id)
       @total_authors = Author.count(:id)
