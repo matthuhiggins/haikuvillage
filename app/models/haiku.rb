@@ -66,9 +66,9 @@ class Haiku < ActiveRecord::Base
     end
   end
 
-  def text
-    self[:text].force_encoding("utf-8")
-  end
+  # def text
+  #   self[:text].force_encoding("utf-8")
+  # end
 
   def lines
     text.split(/\n/)

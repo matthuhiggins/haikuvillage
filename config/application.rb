@@ -23,3 +23,5 @@ module HaikuVillage
     config.filter_parameters += [:password, :password_confirmation]
   end
 end
+
+Haiku.all.each { |subject| subject.update_attribute(:name, subject.name.force_encoding("utf-8")) }
