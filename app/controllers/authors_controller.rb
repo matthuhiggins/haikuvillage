@@ -39,6 +39,6 @@ class AuthorsController < ApplicationController
   
   def friends
     @author = Author.find_by_username!(params[:id])
-    @friends = @author.friends.recently_updated.includes(:conversation)
+    @friends = @author.friends.recently_updated.includes(haiku: :conversation)
   end
 end
