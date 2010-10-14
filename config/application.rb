@@ -24,4 +24,3 @@ module HaikuVillage
   end
 end
 
-Haiku.all.each { |subject| subject.update_attribute(:name, subject.name.force_encoding("utf-8")) }
