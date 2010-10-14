@@ -5,7 +5,6 @@ class PublicController < ApplicationController
     if current_author
       redirect_to :controller => "journal"
     else
-      
       @haikus = Haiku.global_feed
       @total_haikus = Haiku.count(:id)
       @total_subjects = Subject.count(:id)
