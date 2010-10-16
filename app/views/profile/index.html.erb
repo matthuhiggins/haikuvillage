@@ -6,7 +6,9 @@
         <td><%= form.text_field :username %></td>
         <% unless fb.connected? %>
           <td rowspan="2"><h2>or</h2></td>
-          <td rowspan="2"><fb:login-button>Connect with Facebook</fb:login-button></td>
+          <td rowspan="2">
+            <fb:login-button perms="email">Connect with Facebook</fb:login-button>
+          </td>
         <% end %>
       </tr>
       <tr>
