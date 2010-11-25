@@ -8,6 +8,9 @@
   form
     :float left
   textarea, input[type="text"]
+    :border-radius 5px
+    :-moz-border-radius 5px
+    :padding 5px
     :width 290px
     &.empty
       :color= !darkgrey
@@ -20,6 +23,7 @@
       :color black
     .syllables 
       :float left
+      :font-weight bold
       :width 1em
     .valid
       :color= !green

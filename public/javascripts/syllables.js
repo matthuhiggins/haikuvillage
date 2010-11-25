@@ -67,8 +67,10 @@ Line.prototype = {
   syllables: function() {
     var result = 0;
     $.each(this.words, function(i, word) {
-      result += word.syllables;
-    })
+      if (word.syllables > 0) {
+        result += word.syllables;
+      }      
+    });
     return result;
   },
   
@@ -90,7 +92,7 @@ Line.prototype = {
 
     $(syllableEl).addClass('syllables')
                  .addClass(this.isValid() ? 'valid' : 'invalid')
-                 .text(this.isCalculating() ? '?' : this.syllables());
+                 .text(this.syllables());
 
     
     $(textEl).append(this.wordElements());

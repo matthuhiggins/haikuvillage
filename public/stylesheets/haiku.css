@@ -4,6 +4,9 @@
   #haiku_form form {
     float: left; }
   #haiku_form textarea, #haiku_form input[type="text"] {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 5px;
     width: 290px; }
     #haiku_form textarea.empty, #haiku_form input[type="text"].empty {
       color: #535353; }
@@ -16,6 +19,7 @@
       color: black; }
     #haiku_form #preview .syllables {
       float: left;
+      font-weight: bold;
       width: 1em; }
     #haiku_form #preview .valid {
       color: #647a4a; }

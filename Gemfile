@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails',              '3.0.0'
+gem 'rails',              '3.0.3'
 gem 'haml',               '3.0.21'
 gem 'will_paginate',      '2.3.15'
 gem 'gravtastic',         '3.0.0'

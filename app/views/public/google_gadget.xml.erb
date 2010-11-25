@@ -46,7 +46,7 @@
 <%= link_to 'haikuvillage.com', "http://www.haikuvillage.com", :class => 'site-link', :popup => true %>
 
 <div class="haiku">
-<% @random_haiku.text.each_line do |line| %>
+<% @random_haiku.lines.each do |line| %>
   <p><%= line %></p>
 <% end %>
 </div>
