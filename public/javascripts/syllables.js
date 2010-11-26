@@ -232,10 +232,11 @@ Haiku.PeriodicalUpdater.prototype = {
     }
 
     if (somethingChanged) {
-      this.previewElement.empty()
-                         .removeClass('empty')
-                         .append(currentHaiku.toElements())
-                         .find('.responded').css('background-color', '#ffff99').animate({'background-color': '#ffffff'});
+      this.previewElement
+        .empty()
+        .removeClass('empty')
+        .append(currentHaiku.toElements())
+        .find('.responded').css('background-color', '#ffff99').animate({'background-color': '#ffffff'});
     }
     
     for (var key in Word.info) if (Word.info.hasOwnProperty(key)) {

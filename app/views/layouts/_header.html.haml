@@ -1,6 +1,7 @@
 #header.navigation
   .left
-    = link_to(image_tag("haikuvillage.png"), root_path, :id => "logo-link")
+    = link_to root_path, :id => "logo-link" do
+      = image_tag "haikuvillage.png", alt: 'Haiku Village'
     %ul.global
       %li= link_to "All haiku", haikus_path
       %li= link_to 'Conversations', conversations_path
