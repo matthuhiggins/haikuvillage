@@ -3,9 +3,13 @@
     = link_to root_path, :id => "logo-link" do
       = image_tag "haikuvillage.png", alt: 'Haiku Village'
     %ul.global
-      %li= link_to "All haiku", haikus_path
-      %li= link_to 'Conversations', conversations_path
-      %li= link_to 'Subjects', subjects_path
+      = menu_item(controller_name == 'haikus' && action_name == 'index') do
+        = link_to "All haiku", haikus_path
+      = menu_item(controller_name == 'conversations') do
+        = link_to 'Conversations', conversations_path
+      = menu_item(controller_name == 'subjects') do
+        = link_to 'Subjects', subjects_path
+          
   .right
     %table.the-very-top
       %tr
@@ -19,7 +23,10 @@
           = header_search_form
     - if current_author
       %ul.global
-        %li= link_to "Friends", friends_path
-        - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
-        %li= link_to message_text, messages_path
-        %li= link_to 'Journal', journal_path
+        = menu_item(controller_name == 'friends') do
+          = link_to "Friends", friends_path
+        = menu_item(controller_name == 'messages') do
+          - message_text = current_author.messages.unread.size > 0 ? "Messages (#{current_author.messages.unread.size})" : "Messages"
+          = link_to message_text, messages_path
+        = menu_item(controller_name == 'journal') do
+          = link_to 'Journal', journal_path

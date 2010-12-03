@@ -10,10 +10,9 @@ module ApplicationHelper
     full_description = "#{h(description)}"
     content_for(:description, tag(:meta, {:name => "description", :content => full_description}))
   end
-  
-  def current_category
-    /^\/(\w+)/ =~ request.request_uri
-    $1
+
+  def menu_item(selected, &block)
+    html_options = selected ? {class: 'selected'} : {}
+    content_tag :li, html_options, &block
   end
-  memoize :current_category
 end
