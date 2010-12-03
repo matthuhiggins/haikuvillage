@@ -51,6 +51,8 @@
         float: right; }
       #header .right ul.global li + li {
         padding-right: 15px; }
+      #header .right ul.global li.selected > a {
+        font-weight: bold; }
     #header .right form input {
       color: #666666;
       width: 160px; }
