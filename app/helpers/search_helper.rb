@@ -6,7 +6,8 @@ module SearchHelper
         :name => "q",
         :value => 'Search for haiku', 
         :autocomplete => 'off', 
-        :id => 'haiku_search'
+        :id => 'haiku_search',
+        class: 'empty'
       }))
     end
   end
