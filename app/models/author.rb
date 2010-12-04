@@ -14,6 +14,7 @@ class Author < ActiveRecord::Base
     author.username = author.username.downcase
   end
 
+  include Gravtastic
   is_gravtastic!
 
   scope :brand_new, :order => 'created_at desc'

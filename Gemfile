@@ -1,12 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails',              '3.0.3'
-gem 'haml',               '3.0.21'
+gem 'haml',               '3.0.24'
 gem 'will_paginate',      '2.3.15'
-gem 'gravtastic',         '3.0.0'
-gem 'foreigner',          '0.9.0'
+gem 'gravtastic',         '3.1.0'
+gem 'foreigner',          '0.9.1'
 gem 'fb_rails',           git: 'git://github.com/matthuhiggins/fb_rails.git'
-# gem 'hassle',           '0.0.1'
 
 group :production do
   'pg'
