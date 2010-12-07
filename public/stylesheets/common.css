@@ -64,6 +64,9 @@ em {
 p {
   padding: 0.3em 0; }
 
+button {
+  font-family: inherit; }
+
 hr {
   border: none;
   border-top: 1px solid #999999; }
@@ -100,3 +103,14 @@ textarea {
 .ui-state-error {
   padding: 0.5em;
   margin: 0.5em; }
+
+.ui-widget-content {
+  background: none;
+  background-color: white;
+  border: 3px solid #cccccc; }
+
+.ui-widget-header {
+  background: none;
+  background-color: #cccccc;
+  border: 2px solid #cccccc;
+  color: white; }

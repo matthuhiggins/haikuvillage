@@ -12,6 +12,9 @@
       <% if current_author %>
         <%= add_friend(@author) %>
         <%= remove_friend(@author) %>
+        <form>
+          <input type="submit" value="Message" id="new-message" />
+        </form>
       <% end %>
     </div>
 
@@ -27,15 +30,57 @@
   <%= yield %>
 </div>
 
+<div id="message-dialog">
+  <%= form_for :message, :url => messages_path, :html => {:style => "margin-bottom: 10px;", :id => 'haiku_form'} do |form| %>
+    <%= hidden_field_tag 'message[recipient_id]', @author.id %>
+    <table class="internals">
+      <tr>
+        <td />
+        <td id="preview", class="empty">
+          <div>Start typing a haiku below and your</div>
+          <div>syllables will be counted here.</div>
+          <div></div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Message:</label></td>
+        <td><%= haiku_text_tag(:name => "message[text]", :id => "message_text") %></td>
+      </tr>
+      <tr>
+        <td />
+        <td>
+          <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+
+<script>
+$(function() {
+  new Haiku.PeriodicalUpdater("#message_text", "#preview", "#send_haiku");
+
+  $('#new-message').click(function(e) {
+    $('#message-dialog').dialog({
+      title: 'Send a message',
+      resizable: false,
+      width: 460
+    });
+  	e.preventDefault();
+  })
+});
+</script>
+
 <script>
 $(function() {
   $('#add-friend').click(function() {
-    $('#add-friend').hide();
+    $(this).hide();
     $('#remove-friend').show();
   });
+
   $('#remove-friend')
     .click(function() {
-      $('#remove-friend').hide();
+      $(this).hide();
       $('#add-friend').show();
     })
     .hover(

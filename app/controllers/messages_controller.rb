@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     recipient = Author.find(params[:message][:recipient_id])
     Message.transmit(current_author, recipient, params[:message][:text])
     flash[:notice] = "Message sent to #{recipient.username}"
-    redirect_to(messages_path)
+    redirect_to :back
   end
   
   def destroy
