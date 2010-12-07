@@ -11,6 +11,6 @@
 
 .conversation-section
   %h3= "Haiku in this conversation"
-  = render_haikus(@haikus)
+  = render @haikus
 
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false

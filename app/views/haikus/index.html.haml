@@ -3,6 +3,6 @@
 - title "Everyone's haiku"
 %h2 Everyone's haiku
 
-= render_haikus(@haikus)
+= render @haikus
 
 = will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false

@@ -1,8 +1,4 @@
 module HaikusHelper
-  def render_haikus(haikus)
-    render :partial => "haikus/haiku", :collection => haikus, :spacer_template => "conversations/divider"
-  end
-
   # options include:
   #   conversing_with - The haiku that this creation is in reference too
   #   conversation - An existing conversation that this haiku is being added to

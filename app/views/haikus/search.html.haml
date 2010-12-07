@@ -6,7 +6,7 @@
   = submit_tag("Search")
 
 - if @haikus
-  = render_haikus(@haikus)
+  = render @haikus
   = will_paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false
 
 %script $('q').focus()

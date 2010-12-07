@@ -2,7 +2,7 @@
 <h2>Your haikus about <%= h params[:id] %></h2>
 
 <div style="margin-left: 30px">
-  <%= render_haikus(@haikus) %>
+  <%= render @haikus %>
 </div>
 <br />
 <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>

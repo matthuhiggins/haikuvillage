@@ -1,5 +1,5 @@
 <%= render :layout => 'show_layout' do %>
-	<%= render_haikus(@haikus) %>
+	<%= render @haikus %>
 				
 	<br />
 	<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>

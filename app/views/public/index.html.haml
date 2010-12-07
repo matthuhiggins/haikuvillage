@@ -14,6 +14,6 @@
 %br
 
 %h2{:style => "margin-top: 12px; padding-top: 12px; border-top: 1px dotted #ccc"}="Recent haiku"
-= render :partial => "haikus/haiku", :collection => @haikus, :spacer_template => "conversations/divider"
+= render @haikus
 
 = render "summary"
