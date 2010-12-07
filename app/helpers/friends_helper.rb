@@ -9,13 +9,13 @@ module FriendsHelper
   def add_friend(friend)
     options = {method: :put, id: 'add-friend', remote: true}
     options[:style] = 'display:none;' if current_author.following.include?(friend)
-    link_to("Add to friends", friend_path(friend.username), options)
+    button_to("+ Follow", friend_path(friend.username), options)
   end
 
   def remove_friend(friend)
     options = {method: :delete, id: 'remove-friend', remote: true}
     options[:style] = 'display:none;' unless current_author.following.include?(friend)
-    link_to("Remove from friends", friend_path(friend.username), options)
+    button_to("Following", friend_path(friend.username), options)
   end
   
   def remove_friend_thumbnail(friend)

@@ -15,4 +15,8 @@ module Author::Friendly
   def mutual?(other_author)
     friends.include?(other_author)
   end
+
+  def feed
+    Haiku.recent.where(author_id: [self.id] + following_ids)
+  end
 end

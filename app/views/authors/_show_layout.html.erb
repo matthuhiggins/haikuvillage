@@ -7,17 +7,18 @@
     <%= large_avatar_image(@author) %>
   </div>
   <div class="nav">
-    <h2><%= "#{@author.username}'s Journal" %></h2>
+    <div class="header">
+      <h2><%= "#{@author.username}'s Journal" %></h2>
+      <% if current_author %>
+        <%= add_friend(@author) %>
+        <%= remove_friend(@author) %>
+      <% end %>
+    </div>
+
     <%= sub_menu(:class => "tab_nav") do |m| %>
       <%= m.link "Haiku", author_path(:id => @author.username) %>
       <%= m.link "Subjects", author_subjects_path(:author_id => @author.username)  %>
       <%= m.link "Friends", friends_author_path(@author.username)  %>
-      <% if current_author %>
-        <li>
-          <%= add_friend(@author) %>
-          <%= remove_friend(@author) %>
-        </li>
-      <% end %>
     <% end %>
   </div>
 </div>
@@ -32,9 +33,18 @@ $(function() {
     $('#add-friend').hide();
     $('#remove-friend').show();
   });
-  $('#remove-friend').click(function() {
-    $('#remove-friend').hide();
-    $('#add-friend').show();
-  })
+  $('#remove-friend')
+    .click(function() {
+      $('#remove-friend').hide();
+      $('#add-friend').show();
+    })
+    .hover(
+      function() {
+        $(this).attr('value', 'X Unfollow')
+      },
+      function() {
+        $(this).attr('value', 'Following')
+      }
+    );
 });
 </script>
