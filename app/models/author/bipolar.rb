@@ -40,6 +40,8 @@ class Author
           message.update_attribute(:recipient, existing_author) if message.recipient == facebook_author
           existing_author.messages << message
         end
+        Message.where(sender_id: facebook_author).delete_all
+        Message.where(recipient_id: facebook_author).delete_all
 
         facebook_author.favorites.each do |favorite|
           unless existing_author.favorites.exists?(haiku_id: favorite.haiku_id)
