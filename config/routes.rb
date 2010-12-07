@@ -41,7 +41,7 @@ HaikuVillage::Application.routes.draw do
     match 'logout' => :destroy, :as => 'logout'
   end
 
-  match   'profile(/:action)' => 'profile', :as => :profile
+  match   'settings(/:action)' => 'profile', :as => :profile
   match   'journal(/:action)' => 'journal', :as => :journal
 
   match 'google_gadget' => 'public#google_gadget', :defaults => { :format => 'xml' }, :as => 'google_gadget'
