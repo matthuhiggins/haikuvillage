@@ -59,13 +59,15 @@
 <script>
 $(function() {
   new Haiku.PeriodicalUpdater("#message_text", "#preview", "#send_haiku");
+  $('#message-dialog').dialog({
+    autoOpen: false,
+    title: 'Send a message',
+    resizable: false,
+    width: 460
+  });
 
   $('#new-message').click(function(e) {
-    $('#message-dialog').dialog({
-      title: 'Send a message',
-      resizable: false,
-      width: 460
-    });
+    $('#message-dialog').dialog('open');
   	e.preventDefault();
   })
 });
