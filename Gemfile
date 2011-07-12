@@ -1,14 +1,16 @@
 source 'http://rubygems.org'
 
-gem 'rails',              '3.0.3'
+gem 'rails',              '3.1.0.rc4'
 gem 'haml',               '3.0.24'
 gem 'will_paginate',      '2.3.15'
 gem 'gravtastic',         '3.1.0'
-gem 'foreigner',          '0.9.1'
-gem 'fb_rails',           git: 'git://github.com/matthuhiggins/fb_rails.git'
+gem 'foreigner',          '1.0.3'
+gem 'fb_rails',           '1.1.0'
+gem 'thin'
 
 group :production do
-  'pg'
+  gem 'pg'
+  gem 'therubyracer-heroku', '0.8.1.pre3'
 end
 
 group :test, :development do
