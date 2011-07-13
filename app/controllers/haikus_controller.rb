@@ -14,14 +14,14 @@ class HaikusController < ApplicationController
 
   def index
     respond_to do |f|
-      f.html { @haikus = Haiku.recent.paginate(:page => params[:page], :per_page => 10) }
-      f.atom { render_atom(Haiku.recent.all(:limit => 10)) }
+      f.html { @haikus = Haiku.recent.page(params[:page]).per(10) }
+      f.atom { render_atom(Haiku.recent.limit(10)) }
     end
   end
   
   def search
     if params[:q].present?
-      @haikus = Haiku.search(params[:q]).paginate :page => params[:page], :per_page => 10
+      @haikus = Haiku.search(params[:q]).page(params[:page]).per(10)
     end
   end
   
@@ -34,7 +34,7 @@ class HaikusController < ApplicationController
     haiku.destroy
     flash[:notice] = "Your haiku was deleted"
     respond_to do |f|
-      f.html { redirect_to(haiku_path(haiku) == request.referrer ? {:controller => 'journal'} : request.referrer) }
+      f.html { redirect_to(haiku_path(haiku) == request.referrer ? {controller: 'journal'} : request.referrer) }
       f.js   { head :ok }
     end
   end

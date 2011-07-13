@@ -9,4 +9,4 @@
 
 = render :partial => 'conversation', :collection => @conversations, :spacer_template => "divider"
 
-= will_paginate @conversations, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false
+= paginate @conversations, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false

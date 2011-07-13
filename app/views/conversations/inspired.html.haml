@@ -10,4 +10,4 @@
   %h3= "Haiku inspired by this image"
   = render @haikus
 
-= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false
+= paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false

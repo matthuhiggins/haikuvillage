@@ -2,11 +2,8 @@ class FavoritesController < ApplicationController
   login_filter
   
   def index
-    @haikus = current_author.favorite_haikus.recent.paginate({
-      :page      => params[:page],
-      :per_page  => 10,
-      :total_entries => current_author.favorites_count
-    })
+    @haikus = current_author.favorite_haikus.recent.page(params[:page]).per(10)
+    # :total_entries => current_author.favorites_count
   end
   
   def update
@@ -14,7 +11,7 @@ class FavoritesController < ApplicationController
   end
   
   def destroy
-    change_favorite { |haiku| Favorite.destroy_all(:author_id => current_author, :haiku_id => haiku) }
+    change_favorite { |haiku| Favorite.destroy_all(author_id: current_author, haiku_id: haiku) }
   end
   
   private

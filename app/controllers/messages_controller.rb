@@ -2,8 +2,8 @@ class MessagesController < ApplicationController
   login_filter
 
   def index
-    current_author.messages.unread.update_all(:unread => false)
-    @messages = current_author.messages.includes([:sender, :recipient]).paginate(:page => params[:page], :per_page  => 20)
+    current_author.messages.unread.update_all(unread: false)
+    @messages = current_author.messages.includes(:sender, :recipient).per(params[:page]).per(20)
     @friends = current_author.friends.order('username')
   end
   

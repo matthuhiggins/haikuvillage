@@ -5,4 +5,4 @@
   <%= render @haikus %>
 </div>
 <br />
-<%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>
+<%= paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >' %>

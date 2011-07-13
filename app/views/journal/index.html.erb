@@ -7,7 +7,7 @@
     <%= render @haikus %>
   </div>
   <br />
-  <%= will_paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
+  <%= paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
   <p id="bottom-links">
 	  <%= link_to "download as text", :format => "txt" %>
   </p>

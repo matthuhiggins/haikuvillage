@@ -9,5 +9,5 @@
   <% end %>
 
   <%= render :partial => "message", :collection => @messages %>
-  <%= will_paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
+  <%= paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
 </div>

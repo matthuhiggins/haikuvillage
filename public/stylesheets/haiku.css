@@ -1,154 +1,92 @@
-#haiku_form {
-  overflow: hidden;
-  padding: 10px; }
-  #haiku_form form {
-    float: left; }
-  #haiku_form textarea, #haiku_form input[type="text"] {
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    padding: 5px;
-    width: 290px; }
-    #haiku_form textarea.empty, #haiku_form input[type="text"].empty {
-      color: #535353; }
-  #haiku_form #preview {
-    color: #535353;
-    display: block;
-    height: 40px; }
-    #haiku_form #preview sup {
-      font-size: 9px;
-      color: black; }
-    #haiku_form #preview .syllables {
-      float: left;
-      font-weight: bold;
-      width: 1em; }
-    #haiku_form #preview .valid {
-      color: #647a4a; }
-    #haiku_form #preview .invalid {
-      color: #a20000; }
-    #haiku_form #preview .word {
-      padding-right: 3px; }
+/*
+Syntax error: Invalid property: ":color= !darkgrey".
+        on line 31 of /Users/matthuhiggins/web/haiku/public/stylesheets/sass/haiku.sass
 
-.haiku {
-  clear: both;
-  height: 80px;
-  margin: 4px;
-  overflow: hidden;
-  padding: 10px 0px 4px 4px; }
-  .haiku:hover {
-    background-color: #eeeeee; }
-  .haiku.new {
-    border: 1px solid green; }
-  .haiku + .haiku {
-    border-top: 1px solid #cccccc; }
-  .haiku .avatar_and_time {
-    float: left;
-    padding-right: 12px;
-    text-align: right;
-    white-space: nowrap;
-    width: 60px; }
-    .haiku .avatar_and_time .time {
-      color: #999999;
-      padding-top: 1px;
-      padding-bottom: 2px; }
-    .haiku .avatar_and_time a {
-      display: block; }
-  .haiku .text_author_group {
-    float: left;
-    width: 280px; }
-    .haiku .text_author_group .text {
-      color: black;
-      display: block;
-      line-height: 120%;
-      margin: 0;
-      padding-bottom: 10px;
-      text-decoration: none; }
-      .haiku .text_author_group .text:hover {
-        text-decoration: underline; }
-      .haiku .text_author_group .text .line {
-        font-size: 13px; }
-    .haiku .text_author_group .info {
-      color: #555555;
-      font-size: 95%;
-      padding-bottom: 2px; }
-  .haiku .actions {
-    float: right;
-    margin-right: 10px;
-    visibility: hidden; }
-    .haiku .actions div.action {
-      display: block;
-      margin-bottom: 5px; }
+26:       :font-weight bold
+27:       :width 1em
+28:     .valid
+29:       :color= !green
+30:     .invalid
+31:       :color= !red
+32:     .word
+33:       :padding-right 3px
+34: 
+35: .haiku
+36:   &:hover
 
-.haiku:hover .actions {
-  visibility: visible; }
-
-.center {
-  display: table;
-  margin: 0 auto;
-  position: relative;
-  text-align: center; }
-  .center .haiku-inspiration {
-    float: left;
-    margin-right: 15px; }
-
-.haiku-big {
-  float: left;
-  text-align: left;
-  zoom: 1;
-  margin-right: 25px;
-  min-width: 0; }
-  .haiku-big .text {
-    margin-bottom: 8px; }
-  .haiku-big .line {
-    font-size: 20px;
-    padding-bottom: 4px; }
-  .haiku-big .info {
-    padding: 1px 0 2px 0; }
-  .haiku-big .actions {
-    overflow: hidden; }
-    .haiku-big .actions div.action {
-      float: left;
-      margin-right: 3px; }
-
-.author img {
-  padding: 1px;
-  margin-right: 4px;
-  vertical-align: middle; }
-
-.conversation-section {
-  margin-top: 2em;
-  overflow: hidden;
-  clear: both; }
-  .conversation-section #statement_form {
-    clear: both;
-    margin-left: 20%; }
-
-#email_header {
-  clear: both; }
-
-#email {
-  width: 20em; }
-
-#haiku_email_form {
-  float: left; }
-  #haiku_email_form input[type='submit'] {
-    float: left; }
-
-#inspire {
-  background-color: #f8eeb9;
-  border: 1px dotted #cccccc;
-  float: right;
-  margin-top: 10px;
-  padding: 10px;
-  width: 40%; }
-  #inspire #inspiration_selection {
-    padding-top: 1em; }
-  #inspire #cancel_link {
-    float: right; }
-  #inspire #inspiration_preview a {
-    margin-left: 12px; }
-  #inspire #inspiration_preview img {
-    margin-top: 6px; }
-
-#bottom-links {
-  text-align: right;
-  font-size: 0.9em; }
+Backtrace:
+/Users/matthuhiggins/web/haiku/public/stylesheets/sass/haiku.sass:31
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:534:in `parse_line'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:447:in `build_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:466:in `block in append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:456:in `block in build_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:449:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:449:in `build_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:466:in `block in append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:456:in `block in build_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:449:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:449:in `build_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:466:in `block in append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:456:in `block in build_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:449:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:449:in `build_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:466:in `block in append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:465:in `append_children'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:322:in `_to_tree'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:291:in `_render'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:239:in `block in render'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/util.rb:298:in `silence_sass_warnings'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/engine.rb:239:in `render'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin/compiler.rb:319:in `update_stylesheet'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin/compiler.rb:181:in `block (2 levels) in update_stylesheets'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin/compiler.rb:175:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin/compiler.rb:175:in `block in update_stylesheets'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin/compiler.rb:173:in `each'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin/compiler.rb:173:in `update_stylesheets'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin.rb:54:in `check_for_updates'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/haml-3.1.2/vendor/sass/lib/sass/plugin/rack.rb:51:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/etag.rb:23:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/conditionalget.rb:25:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/flash.rb:243:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/session/abstract/id.rb:195:in `context'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/session/abstract/id.rb:190:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/cookies.rb:321:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.1.0.rc4/lib/active_record/query_cache.rb:54:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.1.0.rc4/lib/active_record/connection_adapters/abstract/connection_pool.rb:448:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.1.0.rc4/lib/active_support/callbacks.rb:392:in `_run_call_callbacks'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.1.0.rc4/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/reloader.rb:68:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/sendfile.rb:102:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.1.0.rc4/lib/rails/rack/logger.rb:13:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/methodoverride.rb:24:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/runtime.rb:17:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.1.0.rc4/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/lock.rb:34:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.1.0.rc4/lib/action_dispatch/middleware/static.rb:53:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.1.0.rc4/lib/rails/engine.rb:438:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.1.0.rc4/lib/rails/rack/content_length.rb:16:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.1.0.rc4/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/matthuhiggins/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.3.0/lib/rack/handler/webrick.rb:59:in `service'
+/Users/matthuhiggins/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/Users/matthuhiggins/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/Users/matthuhiggins/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid property: \":color= !darkgrey\".\A         on line 31 of /Users/matthuhiggins/web/haiku/public/stylesheets/sass/haiku.sass\A \A 26:       :font-weight bold\A 27:       :width 1em\A 28:     .valid\A 29:       :color= !green\A 30:     .invalid\A 31:       :color= !red\A 32:     .word\A 33:       :padding-right 3px\A 34: \A 35: .haiku\A 36:   &:hover"; }

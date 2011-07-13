@@ -7,6 +7,6 @@
 
 - if @haikus
   = render @haikus
-  = will_paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false
+  = paginate @haikus, :id => 'pagination', :previous_label => '< Prev', :next_label => 'Next >', :page_links => false
 
 %script $('q').focus()

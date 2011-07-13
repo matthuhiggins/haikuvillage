@@ -6,9 +6,6 @@ class Authors::SubjectsController < ApplicationController
 
   def show
     @author = Author.find_by_username!(params[:author_id])
-    @haikus = @author.haikus.recent.find_all_by_subject_name(params[:id]).paginate(
-      :page      => params[:page],
-      :per_page  => 10
-    )
+    @haikus = @author.haikus.recent.find_all_by_subject_name(params[:id]).page(params[:page]).per(10)
   end
 end
