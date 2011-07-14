@@ -1,0 +1,56 @@
+ul.tab_nav
+  :overflow hidden
+  li
+    :float left
+    :margin-right 7px
+    :padding 3px 0 1px 0
+  li + li
+    :border-left 1px dotted #DADADA
+    :padding-left 8px
+  li.selected
+    :font-weight bold
+
+.submenu-content
+  :margin 10px 5px 10px 5px
+  
+.pagination
+  a, span
+    :border 1px solid #bbb
+    :display block
+    :float left
+    :margin-right 1px
+    :padding 2px 6px 0px 6px
+  span.disabled
+    :color #999
+    :border 1px solid #999
+  span.current
+    :background #a20000
+    :color white
+  a
+    &:hover, &:focus
+      :border-color #a20000
+  .page_info
+    :background #2E6AB1
+    :color white
+    :padding .4em .6em
+    :width 22em
+    :margin-bottom .3em
+    :text-align center
+    b
+      :color #003
+      :background = #2E6AB1 + 60
+      :padding .1em .25em
+  .prev_page
+    :margin-left 1em
+
+  /* self-clearing method:
+  &:after
+    :content "."
+    :display block
+    :height 0
+    :clear both
+    :visibility hidden
+  * html &
+    :height 1%
+  *:first-child+html &
+    :overflow hidden

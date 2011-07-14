@@ -1,0 +1,161 @@
+!red= #a20000
+!green= #647a4a
+!darkgrey= #535353
+
+#haiku_form
+  :overflow hidden
+  :padding 10px
+  form
+    :float left
+  textarea, input[type="text"]
+    :border-radius 5px
+    :-moz-border-radius 5px
+    :padding 5px
+    :width 290px
+    &.empty
+      :color= !darkgrey
+  #preview
+    :color= !darkgrey
+    :display block
+    :height 40px
+    sup
+      :font-size 9px
+      :color black
+    .syllables 
+      :float left
+      :font-weight bold
+      :width 1em
+    .valid
+      :color= !green
+    .invalid
+      :color= !red
+    .word
+      :padding-right 3px
+
+.haiku
+  &:hover
+    :background-color #eeeeee
+  &.new
+    :border 1px solid green
+  & + .haiku
+    :border-top 1px solid #ccc
+  :clear both
+  :height 80px
+  :margin 4px
+  :overflow hidden
+  :padding 10px 0px 4px 4px
+  .avatar_and_time
+    :float left
+    :padding-right 12px
+    :text-align right
+    :white-space nowrap
+    :width 60px
+    .time
+      :color #999
+      :padding
+        :top 1px
+        :bottom 2px
+    a
+      :display block
+  .text_author_group
+    :float left
+    :width 280px
+    .text
+      :color black
+      :display block
+      :line-height 120%
+      :margin 0
+      :padding-bottom 10px
+      :text-decoration none
+      &:hover
+        :text-decoration underline
+      .line
+        :font-size 13px
+    .info
+      :color #555
+      :font-size 95%
+      :padding-bottom 2px
+  .actions
+    :float right
+    :margin-right 10px
+    :visibility hidden
+    div.action
+      :display block
+      :margin-bottom 5px
+
+.haiku:hover .actions
+  :visibility visible
+
+.center
+  :display table
+  :margin 0 auto
+  :position relative
+  :text-align center
+  .haiku-inspiration
+    :float left
+    :margin-right 15px
+
+.haiku-big
+  :float left
+  :text-align left
+  :zoom 1
+  :margin-right 25px
+  :min-width 0
+  .text
+    :margin-bottom 8px
+  .line
+    :font-size 20px
+    :padding-bottom 4px
+  .info
+    :padding 1px 0 2px 0
+  .actions
+    :overflow hidden
+    div.action
+      :float left
+      :margin-right 3px
+
+.author
+  img
+    :padding 1px
+    :margin-right 4px
+    :vertical-align middle
+
+.conversation-section
+  :margin-top 2em
+  :overflow hidden
+  :clear both
+  #statement_form
+    :clear both
+    :margin-left 20%
+
+#email_header
+  :clear both
+  
+#email
+  :width 20em
+  
+#haiku_email_form
+  :float left
+  input[type='submit']
+    :float left
+
+#inspire
+  :background-color #f8eeb9
+  :border 1px dotted #ccc
+  :float right
+  :margin-top 10px
+  :padding 10px
+  :width 40%
+  #inspiration_selection
+    :padding-top 1em
+  #cancel_link
+    :float right
+  #inspiration_preview
+    a
+      :margin-left 12px
+    img
+      :margin-top 6px
+      
+#bottom-links
+  :text-align right
+  :font-size .9em
