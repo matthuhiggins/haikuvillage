@@ -2,18 +2,17 @@
 %html
   %head
     %title= yield(:title)
-    %link{:rel => 'icon', :href => '/images/favicon.ico'}
-    %link{:rel => 'icon', :href => '/images/favicon.png', :type => 'image/png'}
+    %link{rel: 'icon', href: '/images/favicon.ico'}
+    %link{rel: 'icon', href: '/images/favicon.png', type: 'image/png'}
     = csrf_meta_tag
-    = javascript_include_tag 'jquery', 'jquery-ui', 'ujs', 'plugins/hint-input'
-    = javascript_include_tag 'application', 'syllables', 'inspirations'
+    = javascript_include_tag 'application'
     = stylesheet_link_tag 'widgets/jquery-ui-1.8.5.custom'
-    = stylesheet_link_tag :haiku
+    = stylesheet_link_tag 'application'
     = yield :head
     = yield :description
   %body
     #body
-      = render 'layouts/header'
+      = render 'header'
       - if flash[:notice]
         #notice.ui-state-highlight= flash[:notice]
       #content-wrap
@@ -24,5 +23,5 @@
       |
       = link_to 'Feedback', 'http://haikuvillage.uservoice.com'
     - if Rails.env.production?
-      = render 'layouts/analytics'
-    = render 'layouts/facebook'
+      = render 'analytics'
+    = render 'facebook'
