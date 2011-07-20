@@ -11,5 +11,3 @@ HaikuVillage::Application.configure do
     user_class_name: 'Author'
   }
 end
-
-Sass::Plugin.options[:never_update] = true
