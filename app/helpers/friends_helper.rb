@@ -1,9 +1,9 @@
 module FriendsHelper
   # options:
   #  <tt>show_actions</tt> - Show add/remove friend and send message. Defaults to false
-  def render_friends(friends, options = {})
-    options.reverse_merge!(:show_actions => false)
-    render :partial => "friends/friend", :collection => friends, :spacer_template => "conversations/divider", :locals => options
+  def render_friends(friends, locals = {})
+    locals.reverse_merge!(:show_actions => false)
+    render partial: 'friends/friend', collection: friends, locals: locals
   end
   
   def add_friend(friend)
