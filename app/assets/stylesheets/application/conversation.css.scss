@@ -4,6 +4,9 @@ a.conversation {
   min-height: 80px;
   overflow: hidden;
   padding: 17px 0;
+  & + & {
+    
+  }
   .time {
     color: #999;
     float: left;
