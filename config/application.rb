@@ -11,12 +11,11 @@ module HaikuVillage
     end
 
     config.active_support.deprecation = :log
-
+    config.active_record.identity_map = true
     config.action_mailer.default_url_options = {
       :host => 'haikuvillage.com',
       :only_path => false
     }
-
     config.assets.enabled = true
     config.filter_parameters += [:password, :password_confirmation]
   end
