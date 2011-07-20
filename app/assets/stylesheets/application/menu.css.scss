@@ -19,16 +19,15 @@ ul.tab_nav {
 }
   
 .pagination {
-  a, span {
+  span {
+    float: left;    
+    margin-right: 1px;
+  }
+
+  span.current, a {
     border: 1px solid #bbb;
     display: block;
-    float: left;
-    margin-right: 1px;
-    padding: 2px 6px 0px 6px;
-  }
-  span.disabled {
-    color: #999;
-    border: 1px solid #999;
+    padding: 2px 6px 0px 6px;    
   }
   span.current {
     background: #a20000;
@@ -38,21 +37,5 @@ ul.tab_nav {
     &:hover, &:focus {
       border-color: #a20000;
     }
-  }
-  .page_info {
-    background: #2E6AB1;
-    color: white;
-    margin-bottom: .3em;
-    padding: .4em .6em;
-    text-align: center;
-    width: 22em;
-    b {
-      background: #2E6AB1 + 60;
-      color: #003;
-      padding: .1em .25em;
-    }
-  }
-  .prev_page {
-    margin-left: 1em;
   }
 }
