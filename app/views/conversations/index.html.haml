@@ -7,7 +7,7 @@
     %strong Tip:
     Conversations are started when you write about an image or reply to a haiku.
 
-- @conversation.each do |conversation|
+- @conversations.each do |conversation|
   = render conversation
 
 = paginate @conversations, id: 'pagination', previous_label: '< Newer', next_label: 'Older >', page_links: false
