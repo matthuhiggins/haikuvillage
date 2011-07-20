@@ -2,8 +2,8 @@
 %html
   %head
     %title= yield(:title)
-    %link{rel: 'icon', href: '/images/favicon.ico'}
-    %link{rel: 'icon', href: '/images/favicon.png', type: 'image/png'}
+    %link{rel: 'icon', href: image_path('favicon.icon')}
+    %link{rel: 'icon', href: image_path('favicon.png'), type: 'image/png'}
     = csrf_meta_tag
     = javascript_include_tag 'application'
     = stylesheet_link_tag 'widgets/jquery-ui-1.8.5.custom'

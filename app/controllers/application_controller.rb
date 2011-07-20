@@ -5,5 +5,5 @@ class ApplicationController < ActionController::Base
   include Concerns::RecordNotFound
   include Concerns::NoSubdomain
 
-  layout proc { |controller| controller.request.xhr? ? nil : 'haikus' }
+  layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 end

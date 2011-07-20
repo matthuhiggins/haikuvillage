@@ -4,7 +4,7 @@ class JournalController < ApplicationController
   def index
     respond_to do |f|
       f.html do
-        @haikus = current_author.feed.per(params[:page]).per(10)
+        @haikus = current_author.feed.page(params[:page]).per(10)
       end
       f.text { render :text => current_author.haikus.map { |haiku| haiku.text}.join("\n\n") }
     end
