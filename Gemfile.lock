@@ -50,7 +50,6 @@ GEM
     fb_rails (1.1.0)
     foreigner (1.0.3)
       activerecord (>= 3.0.0)
-    gravtastic (3.1.0)
     haml (3.1.2)
     hike (1.2.0)
     i18n (0.6.0)
@@ -126,7 +125,6 @@ DEPENDENCIES
   factory_girl_rails (= 1.1.rc1)
   fb_rails
   foreigner
-  gravtastic
   haml
   jquery-rails
   kaminari

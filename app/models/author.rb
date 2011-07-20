@@ -14,9 +14,6 @@ class Author < ActiveRecord::Base
     author.username = author.username.downcase
   end
 
-  include Gravtastic
-  is_gravtastic!
-
   scope :brand_new, :order => 'created_at desc'
   scope :active, :order => 'haikus_count_week desc, haikus_count_total desc', :conditions => 'haikus_count_total > 0'
   scope :popular, :order => 'favorited_count_total desc', :conditions => 'favorited_count_total > 0'

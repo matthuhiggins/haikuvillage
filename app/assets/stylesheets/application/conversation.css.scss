@@ -5,7 +5,7 @@ a.conversation {
   overflow: hidden;
   padding: 17px 0;
   & + & {
-    
+    border-top: 1px solid #CCC;
   }
   .time {
     color: #999;

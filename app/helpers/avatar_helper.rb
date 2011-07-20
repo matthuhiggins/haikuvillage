@@ -1,31 +1,35 @@
 module AvatarHelper
+  SIZE_TO_PIXELS = {
+    'small'   => 16,
+    'medium'  => 32,
+    'large'   => 64
+  }
+  
   def small_avatar_image(author)
-    avatar_image(author, 16, 'small')
+    avatar_image(author, 'small')
   end
   
   def medium_avatar_image(author)
-    avatar_image(author, 32, 'medium')
+    avatar_image(author, 'medium')
   end
   
   def large_avatar_image(author)
-    avatar_image(author, 64, 'large')
+    avatar_image(author, 'large')
   end
 
-  def avatar_image(author, size, default)
-    if author.fb_uid
-      facebook_image author.fb_uid, width: size
-    else
-      image_asset_path = image_path("default_avatars/#{default}.png")
-      gravatar_image author, size: size, default: "http://haikuvillage.com/#{image_asset_path}"
-    end
+  def avatar_image(author, size)
+    image_url = author.fb_uid ? facebook_image_url(author.fb_uid) : gravatar_image_url(author.email, size)
+    image_tag(image_url, width: SIZE_TO_PIXELS[size])
   end
 
-  def facebook_image(fb_uid, options)
-    image_tag("http://graph.facebook.com/#{fb_uid}/picture", options)
+  def facebook_image_url(fb_uid)
+    "http://graph.facebook.com/#{fb_uid}/picture"
   end
 
-  def gravatar_image(author, options)
-    image_tag(author.gravatar_url options)
+  def gravatar_image_url(email, size)
+    default_path = image_path("default_avatars/#{size}.png")
+    default_url = "http://haikuvillage.com/#{default_path}"
+    gravatar_id = Digest::MD5.hexdigest(email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{SIZE_TO_PIXELS[size]}&d=#{CGI.escape(default_url)}"
   end
-  
 end
