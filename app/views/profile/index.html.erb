@@ -1,5 +1,5 @@
 <%= render :layout => 'layout' do %>
-  <%= form_for current_author, :author, :url => {:controller => 'profile'} do |form| %>
+  <%= form_for current_author, url: {controller: 'profile'} do |form| %>
     <table>
       <tr>
         <td><%= form.label :username, 'Username:' %></td>
