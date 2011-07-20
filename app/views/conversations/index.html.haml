@@ -7,6 +7,6 @@
     %strong Tip:
     Conversations are started when you write about an image or reply to a haiku.
 
-= render collection: @conversations, spacer_template: "divider"
+= render 'conversations', collection: @conversations, spacer_template: "divider"
 
 = paginate @conversations, id: 'pagination', previous_label: '< Newer', next_label: 'Older >', page_links: false

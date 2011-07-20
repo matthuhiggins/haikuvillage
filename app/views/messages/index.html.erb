@@ -8,6 +8,6 @@
     <p>You do not have any mutual friends to send a message to</p>
   <% end %>
 
-  <%= render :partial => "message", :collection => @messages %>
+  <%= render "message", collection: @messages %>
   <%= paginate @messages, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => false %>
 </div>
