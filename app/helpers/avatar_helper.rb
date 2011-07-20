@@ -15,7 +15,8 @@ module AvatarHelper
     if author.fb_uid
       facebook_image author.fb_uid, width: size
     else
-      gravatar_image author, size: size, default: "http://haikuvillage.com/images/default_avatars/#{default}.png"
+      image_asset_path = image_path("default_avatars/#{default}.png")
+      gravatar_image author, size: size, default: "http://haikuvillage.com/#{image_asset_path}"
     end
   end
 

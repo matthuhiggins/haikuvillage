@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
   def index
     current_author.messages.unread.update_all(unread: false)
-    @messages = current_author.messages.includes(:sender, :recipient).per(params[:page]).per(20)
+    @messages = current_author.messages.includes(:sender, :recipient).page(params[:page]).per(20)
     @friends = current_author.friends.order('username')
   end
   
