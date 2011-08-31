@@ -1,5 +1,4 @@
 HaikuVillage::Application.routes.draw do
-  # reset password!
   resources :authors do
     member do
       get :friends

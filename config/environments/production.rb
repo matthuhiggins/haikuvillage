@@ -1,9 +1,12 @@
 HaikuVillage::Application.configure do
   config.cache_classes = true
-  config.consider_all_requests_local = false
-
-  config.action_controller.perform_caching   = true
-  config.action_mailer.raise_delivery_errors = false
+  config.consider_all_requests_local       = false
+  config.action_controller.perform_caching = true
+  config.serve_static_assets = false
+  config.assets.compress = true
+  config.assets.compile = false
+  config.assets.digest = true
+  config.action_dispatch.x_sendfile_header = nil
 
   config.facebook = {
     app_id: '110364292360364',
