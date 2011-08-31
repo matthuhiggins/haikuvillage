@@ -29,7 +29,7 @@ module AvatarHelper
   def gravatar_image_url(email, size)
     # default_path = image_path("default_avatars/#{size}.png")
     # default_url = "http://haikuvillage.com/#{default_path}"
-    default_path = ''
+    default_url = ''
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{SIZE_TO_PIXELS[size]}&d=#{CGI.escape(default_url)}"
   end
