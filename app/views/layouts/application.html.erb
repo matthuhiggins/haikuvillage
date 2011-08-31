@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %></title>
+  <%= tag :link, rel: 'icon', href: image_path('favicon.icon') %>
+  <%= tag :link, rel: 'icon', href: image_path('favicon.png'), type: 'image/png' %>
+  <%= csrf_meta_tag %>
+  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag 'widgets/jquery-ui-1.8.5.custom' %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= yield :head %>
+  <%= yield :description %>
+</head>
+<body>
+  <div id="body">
+    <%= render 'header' %>
+    <% if flash[:notice] %>
+      <div id="notice" class="ui-state-highlight"><%= flash[:notice] %></div>
+    <% end %>
+    <div id="content-wrap">
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <%= link_to 'About', about_path %>
+    |
+    <%= link_to 'Feedback', 'http://haikuvillage.uservoice.com' %>
+  </div>
+  <% if Rails.env.production? %>
+    <%= render 'analytics' %>
+  <% end %>
+  <%= render 'facebook' %>
+</body>
