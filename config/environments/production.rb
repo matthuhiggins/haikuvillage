@@ -4,7 +4,7 @@ HaikuVillage::Application.configure do
   config.action_controller.perform_caching = true
   config.serve_static_assets = false
   config.assets.compress = true
-  config.assets.compile = false
+  config.assets.compile = true
   config.assets.digest = true
   config.action_dispatch.x_sendfile_header = nil
 
