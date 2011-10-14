@@ -3,7 +3,7 @@ class Message < ActiveRecord::Base
     def transmit(sender, recipient, text)
       sender.messages.create(:text => text, :unread => false, :sender => sender, :recipient => recipient)
       sent_message = recipient.messages.create(:text => text, :unread => true, :sender => sender, :recipient => recipient)
-      Mailer.deliver_message_notification(sent_message)
+      Mailer.message_notification(sent_message).deliver
     end
   end
   

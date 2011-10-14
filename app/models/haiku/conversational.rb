@@ -26,7 +26,7 @@ module Haiku::Conversational
       unless conversing_with.nil? || conversing_with.empty?
         other_haiku = Haiku.find(conversing_with)
         connect_with(other_haiku)
-        Mailer.deliver_conversation_notice(other_haiku, self.author)
+        Mailer.conversation_notice(other_haiku, self.author).deliver
       end
     rescue ActiveRecord::RecordNotFound
       # In case the other haiku was deleted while someone was responding to it

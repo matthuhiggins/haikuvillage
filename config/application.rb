@@ -22,4 +22,3 @@ module HaikuVillage
     }
   end
 end
-

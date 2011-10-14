@@ -1,40 +1,43 @@
 class Mailer < ActionMailer::Base
+  default(
+    from: "575@haikuvillage.com",
+    headers: {"Reply-to" => "noreply@haikuvillage.com"},
+    content_type:  "text/plain"
+  )    
+  
   def new_friend(email, author)
-    configure_defaults  
-    recipients    parse_emails(email)
-    subject       "#{author.username} added you to their Haiku Village friends"
-    body          :author => author
+    @author = author
+    mail(
+      to: parse_emails(email), 
+      subject: "#{author.username} added you to their Haiku Village friends"
+    )
   end
   
   def conversation_notice(haiku, responder)
-    configure_defaults
-    recipients    haiku.author.email
-    subject       "#{responder.username} started a conversation with one of your haikus"
-    body          :haiku => haiku
+    @haiku = haiku
+    mail(
+      to: haiku.author.email,
+      subject: "#{responder.username} started a conversation with one of your haikus"
+    )
   end
 
   def message_notification(message)
-    configure_defaults
-    recipients  message.recipient.email
-    subject     "#{message.sender.username} sent you a message from Haiku Village"
-    body        :message => message
+    @message = message
+    mail(
+      to: message.recipient.email,
+      subject: "#{message.sender.username} sent you a message from Haiku Village"
+    )
   end
   
   def password_reset(password_reset)
-    logger.info "*** password_reset.token = #{password_reset.token}"
-    configure_defaults
-    recipients  password_reset.author.email
-    subject     "Reset your Haiku Village password"
-    body        :password_reset => password_reset
+    @password_reset = password_reset
+    mail(
+      to: password_reset.author.email,
+      subject: "Reset your Haiku Village password" 
+    )
   end
   
   private
-    def configure_defaults
-      from          "575@haikuvillage.com"
-      headers       "Reply-to" => "noreply@haikuvillage.com"
-      content_type  "text/plain"
-    end
-    
     def parse_emails(email_string)
       email_string.split(/,| |\n/).delete_if { |email| email.blank? }
     end

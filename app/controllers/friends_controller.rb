@@ -8,7 +8,7 @@ class FriendsController < ApplicationController
   def update
     @author = Author.find_by_username!(params[:id])
     current_author.friends << @author
-    Mailer.deliver_new_friend(@author.email, current_author)
+    Mailer.new_friend(@author.email, current_author).delive
   end
   
   def destroy

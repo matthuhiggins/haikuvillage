@@ -21,7 +21,7 @@ module Concerns::Session
       
       if remember_me
         author.remember_me!
-        cookies[:remember_token] = {:value => author.remember_token, :expires => 2.weeks.from_now}
+        cookies[:remember_token] = {value: author.remember_token, expires: 2.weeks.from_now}
       end
     end
 

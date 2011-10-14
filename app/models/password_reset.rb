@@ -13,6 +13,6 @@ class PasswordReset < ActiveRecord::Base
     end
     
     def send_email
-      Mailer.deliver_password_reset(self)
+      Mailer.password_reset(self).deliver
     end
 end
