@@ -1,7 +1,7 @@
 class Mailer < ActionMailer::Base
   default(
     from: "575@haikuvillage.com",
-    headers: {"Reply-to" => "noreply@haikuvillage.com"},
+    reply_to: "noreply@haikuvillage.com",
     content_type:  "text/plain"
   )    
   
