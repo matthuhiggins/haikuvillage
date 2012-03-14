@@ -8,7 +8,7 @@ $(function() {
   $('#haiku_search').hintInput();
 
   $('#logout-link').click(function(e) {
-    if (FB.getSession()) {
+    if (FB.getAuthResponse()) {
       e.preventDefault();
       var path = $(this).attr('href');
       FB.logout(function() {

@@ -7,7 +7,7 @@
         <% unless facebook_connected? %>
           <td rowspan="2"><h2>or</h2></td>
           <td rowspan="2">
-            <fb:login-button perms="email">Connect with Facebook</fb:login-button>
+            <%= facebook_login name: 'Connect with Facebook' %>
           </td>
         <% end %>
       </tr>

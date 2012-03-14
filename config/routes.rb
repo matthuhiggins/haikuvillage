@@ -27,13 +27,13 @@ HaikuVillage::Application.routes.draw do
 
   resources :password_resets, :path => 'forgot'
 
-  resource :session
-
   controller 'public' do
     match 'about' => :about, :as => :about
     match 'register' => :register, :as => :register
     match 'feedback' => :feedback, :as => :feedback
   end
+
+  resource :session
 
   controller 'sessions' do
     match 'login' => :new, :as => 'login'

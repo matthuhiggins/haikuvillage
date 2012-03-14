@@ -7,10 +7,4 @@ HaikuVillage::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   config.assets.compress = false
   config.assets.debug = true
-  
-  config.facebook = {
-    app_id: '147267751983310',
-    secret: 'e36a59a343c00bb05026e897e08bc8ac',
-    user_class_name: 'Author'
-  }
 end

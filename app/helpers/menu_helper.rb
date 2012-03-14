@@ -7,13 +7,13 @@ module MenuHelper
   #   <% end %>
   #
   def sub_menu(options, &block)
-    output = tag(:ul, {:class => options[:class]}, true)
-    linker = SubMenuLinker.new(self)
-    output << capture(linker, &block)
-    output << '</ul>'.html_safe
+    items = SubMenuItems.new(self)
+    item_html = capture(items, &block)
+
+    content_tag :ul, item_html.html_safe, class: options[:class]
   end
   
-  class SubMenuLinker
+  class SubMenuItems
     def initialize(template)
       @template = template
     end

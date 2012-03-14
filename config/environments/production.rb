@@ -16,10 +16,4 @@ HaikuVillage::Application.configure do
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => 'heroku.com'
   }
-
-  config.facebook = {
-    app_id: '110364292360364',
-    secret: '120742aa5354718c03b7f73209df36ed',
-    user_class_name: 'Author'
-  }
 end

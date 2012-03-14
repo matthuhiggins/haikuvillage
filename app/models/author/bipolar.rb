@@ -16,18 +16,25 @@ class Author
         username
       end
 
-      def find_or_create_from_graph(graph)
-        data = graph.get_object('me')
+      def find_or_create_by_facebook(fb_uid, graph)
+        facebook_author = find_or_initialize_by_fb_uid(fb_uid)
 
-        if author = find_by_email(data['email'])
-          author.update_attribute(:fb_uid, data['id'])
-          author
+        if facebook_author.persisted?
+          facebook_author
         else
-          fb.user.update_attributes(
-            username: find_unique_username(data['email']),
-            email: data['email']
-          )
-          fb.user
+          data = graph.get_object('me')
+
+          if existing_author = Author.find_by_email(data['email'])
+            existing_author.update_attribute(:fb_uid, fb_uid)
+            existing_author
+          else
+            facebook_author.update_attributes(
+              username: self.class.find_unique_username(data['email']),
+              email: data['email'],
+
+            )
+            facebook_author
+          end
         end
       end
 

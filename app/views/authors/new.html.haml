@@ -9,10 +9,10 @@
       %td
         = form.error_message_on :email, :prepend=>"Email "
         = form.text_field :email
-      %td{:rowspan=>"3"} 
+      %td{rowspan: "3"} 
         %h2 or
-      %td{:rowspan=>"3"}
-        %fb:login-button{size: 'large', length: 'long', perms: 'email'}
+      %td{rowspan: "3"}
+        = facebook_login size: 'large', length: 'long'
     %tr
       %td
         = form.label :username, 'Username:'

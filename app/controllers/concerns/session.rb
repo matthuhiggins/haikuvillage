@@ -16,7 +16,7 @@ module Concerns::Session
 
     def login(author, remember_me = false)
       session[:author_id] = author.id
-      cookies[:username] = {:value => author.username, :expires => 2.weeks.from_now}
+      cookies[:username] = {value: author.username, expires: 2.weeks.from_now}
       
       if remember_me
         author.remember_me!
@@ -29,15 +29,6 @@ module Concerns::Session
       session[:author_id] = nil
       # cookies.delete "fbsr_#{KoalaFacebook::APP_ID.to_s}"
       cookies.delete :remember_token
-    end
-
-    def configure_facebook_author
-      if author = (author_from_cookie || author_from_session)
-        Author.migrate(author, author_from_facebook) if author.fb_uid.nil?
-      elsif author_from_facebook.new_record?
-        author = Author.find_or_create_from_graph(graph)
-        login(author)
-      end
     end
 
     def current_author
@@ -56,9 +47,12 @@ module Concerns::Session
       Author.find(session[:author_id]) if session[:author_id]
     end
 
-    def author_from_facebook
-      if facebook_connected?
-        @author_from_facebook ||= User.find_or_initialize_by_fb_uid(facebook_cookie["user_id"])
+    def configure_facebook_author
+      if author = current_author
+        Author.migrate(author, author_from_facebook) if author.fb_uid.nil?
+      else
+        author = Author.find_or_create_by_facebook(facebook_uid, facebook_graph)
+        login(author)
       end
     end
 
@@ -70,12 +64,20 @@ module Concerns::Session
       end
     end
 
-    def facebook_cookie
-      return @facebook_cookie if instance_variable_defined?(:@facebook_cookie)
-      @facebook_cookie ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
+    def facebook_uid
+      facebook_cookie["user_id"]
     end
 
     def facebook_connected?
       facebook_cookie && facebook_cookie["access_token"]
+    end
+
+    def facebook_cookie
+      return @facebook_cookie if instance_variable_defined?(:@facebook_cookie)
+      @facebook_cookie ||= facebook_oauth.get_user_info_from_cookie(cookies)
+    end
+
+    def facebook_oauth
+      @facebook_oauth ||= Koala::Facebook::OAuth.new(FacebookConfig.app_id, FacebookConfig.secret)
     end
 end

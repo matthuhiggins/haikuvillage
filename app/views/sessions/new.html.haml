@@ -2,7 +2,7 @@
 
 %h2= 'Sign in'
 
-= render :partial => 'form'
+= render 'form'
   
 %script
   $($('#session_username').val() === '' ? '#session_username' : '#session_password').focus();

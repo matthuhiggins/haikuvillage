@@ -4,16 +4,17 @@
       %td
         = label_tag :username, 'Username or Email:'
       %td
-        = text_field_tag :username, cookies[:username], :id => 'session_username'
-      %td{:rowspan=>"2"}
+        = text_field_tag :username, cookies[:username], id: 'session_username'
+      %td{rowspan:"2"}
         %h2 or
-      %td{:rowspan =>"2"}= fbml 'login-button', perms: 'email', size: 'large', length: 'long'
+      %td{rowspan:"2"}
+        = facebook_login size: 'large', length: 'long'
       
     %tr
       %td
         = label_tag :password, 'Password:'
       %td
-        = password_field_tag :password, "", :id => 'session_password'
+        = password_field_tag :password, "", id: 'session_password'
       %td
     %tr
       %td
@@ -28,6 +29,6 @@
       %td
     %tr
       %td
-      %td{:style => 'padding-top: 10px'}
+      %td{style: 'padding-top: 10px'}
         = link_to "Forget your password?", password_resets_path
       %td
