@@ -16,8 +16,8 @@ class Author
         username
       end
 
-      def find_or_create_from_graph(fb)
-        data = fb.graph.get('me')
+      def find_or_create_from_graph(graph)
+        data = graph.get_object('me')
         if author = find_by_email(data['email'])
           author.update_attribute(:fb_uid, fb.uid)
           author
