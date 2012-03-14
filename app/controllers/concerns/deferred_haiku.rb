@@ -4,7 +4,7 @@ module Concerns
 
     included do
       helper_method :deferred_haiku
-      before_filter :create_deferred_haiku, if: :current_author
+      before_filter :create_deferred_haiku, if: [:deferred_haiku, :current_author]
     end
 
     def save_deferred_haiku(haiku_params)

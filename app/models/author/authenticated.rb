@@ -42,7 +42,7 @@ module Author::Authenticated
   private
     def encrypt_password
       return if password.nil?
-      self.salt = ActiveSupport::SecureRandom.base64(16)
+      self.salt = SecureRandom.base64(16)
       self.hashed_password = self.class.encrypted_password(self.password, self.salt)
       self.password = nil
     end

@@ -15,6 +15,7 @@ module Concerns::Session
     end
 
     def login(author, remember_me = false)
+      @current_author = author
       session[:author_id] = author.id
       cookies[:username] = {value: author.username, expires: 2.weeks.from_now}
       
