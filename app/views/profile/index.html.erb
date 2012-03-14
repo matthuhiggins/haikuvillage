@@ -1,10 +1,10 @@
-<%= render :layout => 'layout' do %>
+<%= render layout: 'layout' do %>
   <%= form_for current_author, url: {controller: 'profile'} do |form| %>
     <table>
       <tr>
         <td><%= form.label :username, 'Username:' %></td>
         <td><%= form.text_field :username %></td>
-        <% unless fb.connected? %>
+        <% unless facebook_connected? %>
           <td rowspan="2"><h2>or</h2></td>
           <td rowspan="2">
             <fb:login-button perms="email">Connect with Facebook</fb:login-button>

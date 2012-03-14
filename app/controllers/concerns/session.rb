@@ -4,9 +4,8 @@ module Concerns::Session
   included do
     before_filter :configure_facebook_author, if: :facebook_connected?
 
-    extend ActiveSupport::Memoizable
-    memoize :current_author
     helper_method :current_author
+    helper_method :facebook_connected?
   end
   
   private
@@ -28,12 +27,13 @@ module Concerns::Session
     def logout
       current_author.try(:forget_me!)
       session[:author_id] = nil
+      # cookies.delete "fbsr_#{KoalaFacebook::APP_ID.to_s}"
       cookies.delete :remember_token
     end
 
     def configure_facebook_author
       if author = (author_from_cookie || author_from_session)
-        Author.migrate(author, fb.user) if author.fb_uid.nil?
+        Author.migrate(author, author_from_facebook) if author.fb_uid.nil?
       elsif author_from_facebook.new_record?
         author = Author.find_or_create_from_graph(graph)
         login(author)
@@ -41,7 +41,11 @@ module Concerns::Session
     end
 
     def current_author
-      author_from_cookie || author_from_session
+      if instance_variable_defined?(:@current_author)
+        @current_author
+      else
+        @current_author ||= (author_from_cookie || author_from_session)
+      end
     end
 
     def author_from_cookie
@@ -53,7 +57,9 @@ module Concerns::Session
     end
 
     def author_from_facebook
-      fb.user
+      if facebook_connected?
+        @author_from_facebook ||= User.find_or_initialize_by_fb_uid(facebook_cookie["user_id"])
+      end
     end
 
     def facebook_graph

@@ -17,8 +17,8 @@ module HaikuVillage
     config.active_support.deprecation = :stderr
 
     config.action_mailer.default_url_options = {
-      :host => 'haikuvillage.com',
-      :only_path => false
+      host: 'haikuvillage.com',
+      only_path: false
     }
   end
 end

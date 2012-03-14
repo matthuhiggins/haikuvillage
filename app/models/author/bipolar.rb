@@ -18,8 +18,9 @@ class Author
 
       def find_or_create_from_graph(graph)
         data = graph.get_object('me')
+
         if author = find_by_email(data['email'])
-          author.update_attribute(:fb_uid, fb.uid)
+          author.update_attribute(:fb_uid, data['id'])
           author
         else
           fb.user.update_attributes(
@@ -30,20 +31,20 @@ class Author
         end
       end
 
-      def migrate(existing_author, facebook_author)
-        facebook_author.haikus.each do |haiku|
+      def migrate(existing_author, other_author)
+        other_author.haikus.each do |haiku|
           existing_author.haikus << haiku
         end
 
-        facebook_author.messages.each do |message|
-          message.update_attribute(:sender, existing_author) if message.sender == facebook_author
-          message.update_attribute(:recipient, existing_author) if message.recipient == facebook_author
+        other_author.messages.each do |message|
+          message.update_attribute(:sender, existing_author) if message.sender == other_author
+          message.update_attribute(:recipient, existing_author) if message.recipient == other_author
           existing_author.messages << message
         end
-        Message.where(sender_id: facebook_author).delete_all
-        Message.where(recipient_id: facebook_author).delete_all
+        Message.where(sender_id: other_author).delete_all
+        Message.where(recipient_id: other_author).delete_all
 
-        facebook_author.favorites.each do |favorite|
+        other_author.favorites.each do |favorite|
           unless existing_author.favorites.exists?(haiku_id: favorite.haiku_id)
             existing_author.favorites << favorite
           else
@@ -51,7 +52,7 @@ class Author
           end
         end
 
-        facebook_author.friendships.each do |friendship|
+        other_author.friendships.each do |friendship|
           unless existing_author.friendships.exists?(friend_id: friendship.friend_id)
             existing_author.friendships << friendship
           else
@@ -59,7 +60,7 @@ class Author
           end
         end
 
-        facebook_author.reverse_friendships.each do |friendship|
+        other_author.reverse_friendships.each do |friendship|
           unless existing_author.reverse_friendships.exists?(author_id: friendship.author_id)
             existing_author.reverse_friendships << friendship
           else
@@ -67,8 +68,8 @@ class Author
           end
         end
 
-        facebook_author.destroy
-        existing_author.update_attribute(:fb_uid, facebook_author.fb_uid)
+        other_author.destroy
+        existing_author.update_attribute(:fb_uid, other_author.fb_uid)
       end
     end
   end
