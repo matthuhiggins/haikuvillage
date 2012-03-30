@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.integer  "favorited_count_total",              :default => 0, :null => false
     t.integer  "favorited_count_week",               :default => 0, :null => false
     t.integer  "favorites_count",                    :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "latest_haiku_id"
     t.integer  "fb_uid",                :limit => 8
   end
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
 
   create_table "conversations", :force => true do |t|
     t.integer  "haikus_count_total",  :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "inspiration_type"
     t.datetime "latest_haiku_update"
   end
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
   create_table "favorites", :force => true do |t|
     t.integer  "author_id",  :null => false
     t.integer  "haiku_id",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "favorites", ["author_id", "haiku_id", "created_at"], :name => "index_favorites_on_author_id_and_haiku_id_and_created_at"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.integer  "farm_id",                      :null => false
     t.integer  "server_id",                    :null => false
     t.string   "secret",                       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "flickr_inspirations", ["conversation_id"], :name => "flickr_inspirations_conversation_id_fk"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.integer  "friend_id",  :null => false
     t.integer  "author_id",  :null => false
     t.boolean  "mutual",     :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "friendships", ["author_id", "friend_id"], :name => "friendships_index", :unique => true
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.integer  "author_id",                      :null => false
     t.text     "text",                           :null => false
     t.integer  "favorited_count", :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.string   "subject_name"
     t.integer  "subject_id"
     t.integer  "conversation_id"
@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.integer  "recipient_id", :null => false
     t.text     "text",         :null => false
     t.boolean  "unread",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "messages", ["author_id"], :name => "messages_author_id_fk"
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
   create_table "password_resets", :force => true do |t|
     t.string   "token",      :null => false
     t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "password_resets", ["author_id"], :name => "password_resets_author_id_fk"
@@ -128,8 +128,8 @@ ActiveRecord::Schema.define(:version => 20100929162652) do
     t.string   "name",                              :null => false
     t.integer  "haikus_count_week",  :default => 0, :null => false
     t.integer  "haikus_count_total", :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   add_index "subjects", ["created_at"], :name => "index_subjects_on_created_at"

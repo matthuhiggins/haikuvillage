@@ -1,10 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails'
-gem 'koala'
+gem 'foreigner'
 gem 'haml'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'koala'
+gem 'rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
