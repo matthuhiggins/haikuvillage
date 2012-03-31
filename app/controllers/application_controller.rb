@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
-  include Concerns::DeferredHaiku
-  include Concerns::Rss
-  include Concerns::Session
-  include Concerns::RecordNotFound
-  include Concerns::NoSubdomain
+  include Application::DeferredHaiku
+  include Application::LoginFilter
+  include Application::NoSubdomain
+  include Application::RecordNotFound
+  include Application::Rss
+  include Application::Session
 
   layout proc { |controller| controller.request.xhr? ? nil : 'application' }
 end

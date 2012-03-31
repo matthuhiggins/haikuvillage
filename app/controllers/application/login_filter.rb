@@ -1,4 +1,4 @@
-module HaikuController
+module Application
   module LoginFilter
     extend ActiveSupport::Concern
 
