@@ -86,18 +86,8 @@
 ### This module contains English-language linguistics functions accessible from
 ### the Linguistics module, or as a standalone function library.
 module Linguistics::EN
-
-	begin
-		require 'crosscase'
-	rescue LoadError
-	else
-		include CrossCase
-	end
-
 	# Load in the secondary modules and add them to Linguistics::EN.
 	require 'linguistics/en/infinitive'
-	require 'linguistics/en/wordnet'
-	require 'linguistics/en/linkparser'
 
 	# Subversion revision
 	SVNRev = %q$Rev$
