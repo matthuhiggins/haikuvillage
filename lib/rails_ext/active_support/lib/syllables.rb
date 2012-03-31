@@ -48,7 +48,7 @@ class String
 
       # ie 546
       when /^[0-9]+$/
-        self.dup.en.numwords.split.sum(&:syllables)
+        Linguistics::EN.numwords(self).split.sum(&:syllables)
 
       # ie 3:15
       when /^[0-9][1|2]?:[0-5][0-9]$/

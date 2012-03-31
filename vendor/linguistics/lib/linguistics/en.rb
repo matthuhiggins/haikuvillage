@@ -1,6 +1,4 @@
 module Linguistics::EN
-	Linguistics::DefaultLanguages.push( :en )
-	
 	# Numerical inflections
 	Nth = {
 		0 => 'th',
