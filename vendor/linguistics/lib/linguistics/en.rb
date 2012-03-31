@@ -400,32 +400,6 @@ module Linguistics::EN
 	end
 	def_lprintf_formatter :ORD, :ordinal
 
-
-	### Format the given +fmt+ string by replacing %-escaped sequences with the
-	### result of performing a specified operation on the corresponding
-	### argument, ala Kernel.sprintf.
-	### %PL::
-	###   Plural.
-	### %A, %AN::
-	###   Prepend indefinite article.
-	### %NO::
-	###   Zero-quantified phrase.
-	### %NUMWORDS::
-	###   Convert a number into the corresponding words.
-	### %CONJUNCT::
-	###   Conjunction.
-	def lprintf( fmt, *args )
-		fmt.to_s.gsub( /%([A-Z_]+)/ ) do |match|
-			op = $1.to_s.upcase.to_sym
-			if self.lprintf_formatters.key?( op )
-				arg = args.shift
-				self.lprintf_formatters[ op ].call( arg )
-			else
-				raise "no such formatter %p" % op
-			end
-		end
-	end
-
 end # module Linguistics::EN
 
 
