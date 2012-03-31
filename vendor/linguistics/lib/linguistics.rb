@@ -31,15 +31,6 @@ require 'linguistics/iso639'
 ### A language-independent framework for adding linguistics functions to Ruby
 ### classes.
 module Linguistics 
-
-	### Class constants
-
-	# Subversion revision
-	SVNRev = %q$Rev: 95 $
-
-	# Subversion ID
-	SVNid = %q$Id: linguistics.rb 95 2007-06-13 05:25:38Z deveiant $
-
 	# Language module implementors should do something like:
 	#   Linguistics::DefaultLanguages.push( :ja ) # or whatever
 	# so that direct requiring of a language module sets the default.
@@ -302,39 +293,6 @@ module Linguistics
 			end
 		}
 	end
-
-
-
-	### Support Lingua::EN::Inflect-style globals in a threadsafe way by using
-	### Thread-local variables.
-
-	### Set the default count for all unspecified plurals to +val+. Setting is
-	### local to calling thread.
-	def num=( val )
-		Thread.current[:persistent_count] = val
-	end
-	alias_method :NUM=, :num=
-
-	### Get the default count for all unspecified plurals. Setting is local to
-	### calling thread.
-	def num
-		Thread.current[:persistent_count]
-	end
-	alias_method :NUM, :num
-
-	
-	### Set the 'classical pluralizations' flag to +val+. Setting is local to
-	### calling thread.
-	def classical=( val )
-		Thread.current[:classical_plurals] = val
-	end
-
-	### Return the value of the 'classical pluralizations' flag. Setting is
-	### local to calling thread.
-	def classical?
-		Thread.current[:classical_plurals] ? true : false
-	end
-
 
 	#######
 	private

@@ -1,17 +1,5 @@
 module Linguistics::EN
 	Linguistics::DefaultLanguages.push( :en )
-
-	@lprintf_formatters = {}
-	class << self
-		attr_accessor :lprintf_formatters
-	end
-	
-	### Add the specified method (which can be either a Method object or a
-	### Symbol for looking up a method)
-	def self::def_lprintf_formatter( name, meth )
-		meth = self.method( meth ) unless meth.is_a?( Method )
-		self.lprintf_formatters[ name ] = meth
-	end
 	
 	# Numerical inflections
 	Nth = {
@@ -384,7 +372,6 @@ module Linguistics::EN
 				strip
 		end
 	end
-	def_lprintf_formatter :NUMWORDS, :numwords
 
 
 	### Transform the given +number+ into an ordinal word. The +number+ object
@@ -398,8 +385,6 @@ module Linguistics::EN
 			return number.to_s.sub( /(#{OrdinalSuffixes})\Z/ ) { Ordinals[$1] }
 		end
 	end
-	def_lprintf_formatter :ORD, :ordinal
-
 end # module Linguistics::EN
 
 
