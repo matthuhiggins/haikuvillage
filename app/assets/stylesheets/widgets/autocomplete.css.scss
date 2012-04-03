@@ -1,0 +1,33 @@
+.ui-autocomplete {
+  background-color: white;
+  border: 1px solid #0f3f6a;
+  display: block;
+  position: absolute;
+  
+  .ui-menu-item:first-child a {
+  	margin-top: 3px;
+  }
+
+  .ui-menu-item a {
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    line-height: 1.2;
+    overflow: hidden;
+    color: #0f3f6a;
+    padding: 0.4em 0.4em;
+    border-bottom: 1px solid #EEE;
+    text-decoration: none;
+    background-color: #FFF;
+  }
+
+  .ui-menu-item:last-child a {
+    border-bottom:  none;
+  }
+
+  a.ui-state-hover {
+    background-color: #7da8ce;
+    color: #0f3f6a;
+  }
+}
+
