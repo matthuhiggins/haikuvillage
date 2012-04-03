@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background: #e6e4da url(/assets/background.png) no-repeat fixed 0 40px;
+  background: #e6e4da image-url("background.png") no-repeat fixed 0 40px;
   color: black;
   height: 100%;
   margin: 0;
