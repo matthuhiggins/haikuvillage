@@ -1,4 +1,4 @@
-module Concerns::Session
+module Application::Session
   extend ActiveSupport::Concern
 
   included do

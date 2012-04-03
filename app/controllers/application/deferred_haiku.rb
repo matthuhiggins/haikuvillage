@@ -1,4 +1,4 @@
-module Concerns
+module Application
   module DeferredHaiku
     extend ActiveSupport::Concern
 

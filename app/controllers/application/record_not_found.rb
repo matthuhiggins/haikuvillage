@@ -1,4 +1,4 @@
-module Concerns
+module Application
   module RecordNotFound
     extend ActiveSupport::Concern
 

@@ -1,4 +1,4 @@
-module Concerns::Rss
+module Application::Rss
   # Options are
   #   :title
   #
