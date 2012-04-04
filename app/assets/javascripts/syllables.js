@@ -172,7 +172,7 @@ Haiku.PeriodicalUpdater.prototype = {
     var self = this;
     this.timer = setInterval(function() {
       self.updateHaiku.call(self);
-    }, 1000);
+    }, 50);
   },
   
   requestWords: function(words) {
