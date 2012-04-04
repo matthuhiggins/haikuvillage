@@ -27,7 +27,7 @@
 
 <script>
 (function() {
-  new Haiku.PeriodicalUpdater("#message_text", "#preview", "#send_haiku");
+  new Haiku.PeriodicalUpdater("#message_text", "#preview", "#commit_haiku");
   
   var selectedFriend = <%= params[:friend].to_json %>,
       selectList = document.getElementById('message_recipient_id');

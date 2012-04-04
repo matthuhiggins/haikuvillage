@@ -172,7 +172,7 @@ Haiku.PeriodicalUpdater.prototype = {
     var self = this;
     this.timer = setInterval(function() {
       self.updateHaiku.call(self);
-    }, 50);
+    }, 1000);
   },
   
   requestWords: function(words) {
@@ -246,7 +246,8 @@ Haiku.PeriodicalUpdater.prototype = {
       }
     }
 
-    this.submitButton.button(currentHaiku.isValid() ? 'enable' : 'disable');
+    console.log(!currentHaiku.isValid());
+    this.submitButton.attr("disabled", !currentHaiku.isValid());
     this.lastHaikuText = currentText;
   }
 };

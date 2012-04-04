@@ -20,4 +20,10 @@ button {
     background-color: #654b24;
     border-color: #654b24;
   }
+  &[disabled],
+  &[disabled]:hover {
+    background-color: #ddd;
+    border-color: #ccc;
+    color: #aaa;
+  }
 }
