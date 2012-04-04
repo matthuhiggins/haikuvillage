@@ -8,6 +8,7 @@ class Author < ActiveRecord::Base
   has_many :favorite_haikus, :through => :favorites, :source => :haiku
   has_many :haikus
   has_many :messages
+  has_many :subjects, through: :haikus
   belongs_to :latest_haiku, :class_name => "Haiku"
   
   before_validation :if => :username do |author|
