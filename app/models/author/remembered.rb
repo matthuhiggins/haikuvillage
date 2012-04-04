@@ -1,6 +1,6 @@
 module Author::Remembered
   def remember_me!
-    self.remember_token = ActiveSupport::SecureRandom.base64(32)
+    self.remember_token = SecureRandom.base64(32)
     save(validation: false)
   end
   
