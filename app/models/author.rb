@@ -24,8 +24,8 @@ class Author < ActiveRecord::Base
   validates_format_of :username, :with => /\A[a-z0-9]+\Z/i, :message => 'can only contain numbers and letters', :on => :create
   
   SubjectSummary = Struct.new(:name, :count)
-  def subjects
-    records = haikus.count(:group => :subject_name, :conditions => 'subject_name is not null', :order => 'count_all desc')
+  def subject_summary
+    records = haikus.count(group: :subject_name, conditions: 'subject_name is not null', order: 'count_all desc')
     records.map { |record| SubjectSummary.new(*record) }
   end
   
