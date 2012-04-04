@@ -8,6 +8,8 @@ HaikuVillage::Application.routes.draw do
   end
   match 'signup' => 'authors#new', as: 'signup'
 
+  match 'autocomplete/subject' => 'subjects#autocomplete'
+
   resources :subjects do
     collection do
       get :suggest

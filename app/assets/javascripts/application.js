@@ -16,4 +16,10 @@ $(function() {
       });
     }
   });
+  
+  $("#haiku_subject_name").autocomplete({
+    minLength: 2,
+    source: "autocomplete/subject.js",
+    dataType: "json"
+  });
 });

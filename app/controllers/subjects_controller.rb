@@ -19,6 +19,14 @@ class SubjectsController < ApplicationController
     @subjects = Subject.search(params[:q]).popular.all(:limit => 12)
   end
   
+  def autocomplete
+    @subjects = Subject.search(params[:term]).popular.all(limit: 10)
+    
+    respond_to do |format|
+      format.js { render json: @subjects.map {|subject| subject.name } }
+    end
+  end
+  
   private
     def render_search(query)
       if subject = Subject.find_by_name(query)
