@@ -14,14 +14,21 @@
   }
 
   a.conversation {
+    cursor: pointer;
     display: block;
-    margin: 8px 0;
+    margin: 13px 0;
     min-height: 80px;
     overflow: hidden;
-    padding: 17px 0;
+    padding: 12px 0 12px 5px;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+
     & + & {
       border-top: 1px solid #CCC;
     }
+
     .time {
       color: #999;
       float: left;
@@ -30,14 +37,17 @@
         bottom: 2px;
       }
     }
+
     .haikus {
       float: left;
       width: 530px;
+
       .terse-haiku {
         color: black;
         font-size: 13px;
         padding-bottom: 6px;
       }
+
       .more {
         margin-top: 10px;
       }
