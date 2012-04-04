@@ -2,9 +2,7 @@
 <h2>Messages</h2>
 
 <div class="messages">
-  <% if @friends.any? %>
-    <%= render 'form' %>
-  <% else %>
+  <% if @messages.empty? %>
     <p>You do not have any mutual friends to send a message to</p>
   <% end %>
 
