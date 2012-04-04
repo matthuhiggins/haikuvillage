@@ -4,12 +4,6 @@
       <tr>
         <td><%= form.label :username, 'Username:' %></td>
         <td><%= form.text_field :username %></td>
-        <% unless facebook_connected? %>
-          <td rowspan="2"><h2>or</h2></td>
-          <td rowspan="2">
-            <%= facebook_login name: 'Connect with Facebook' %>
-          </td>
-        <% end %>
       </tr>
       <tr>
         <td><%= form.label :email, 'E-mail:' %></td>
@@ -21,8 +15,29 @@
       </tr>
     </table>
   <% end %>
+  <div class="facebook">
+    <div class="header">Facebook</div>
+    <% if current_author.fb_uid %>
+        You are connected to facebook.
+        <%= button_to 'Disconnect', {action: 'disconnect'}, {id: 'disconnect', method: :delete} %>
+    <% else %>
+      <%= facebook_login name: 'Connect with Facebook' %>
+    <% end %>
+  </div>
 <% end %>
 
 <script>
-document.getElementById('author_username').focus();
+$(function() {
+  $('#author_username').focus();
+
+  $('#disconnect').click(function(e) {
+    if (FB.getAuthResponse()) {
+      var el = $(this);
+      FB.logout(function() {
+        el.click();
+      });
+      return false;
+    }
+  });
+});
 </script>

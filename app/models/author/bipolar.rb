@@ -29,9 +29,8 @@ class Author
             existing_author
           else
             facebook_author.update_attributes(
-              username: self.class.find_unique_username(data['email']),
+              username: find_unique_username(data['email']),
               email: data['email'],
-
             )
             facebook_author
           end

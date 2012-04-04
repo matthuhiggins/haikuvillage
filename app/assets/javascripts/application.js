@@ -4,7 +4,6 @@
 //= require_tree .
 
 $(function() {
-  $("input:submit, input:button").button();
   $('#haiku_search').hintInput();
 
   $('#logout-link').click(function(e) {
