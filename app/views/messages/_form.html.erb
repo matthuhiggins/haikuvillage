@@ -1,4 +1,4 @@
-<%= form_for :message, :html => {:style => "margin-bottom: 10px;", :id => 'haiku_form'} do |form| %>
+<%= form_for :message, html: {style: => "margin-bottom: 10px;", id: 'haiku_form'} do |form| %>
   <table class="internals">
     <tr>
       <td />
@@ -19,7 +19,7 @@
     <tr>
       <td />
       <td>
-        <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
+        <%= form.submit "Send", id: "send_haiku", disabled: true %>
       </td>
     </tr>
   </table>

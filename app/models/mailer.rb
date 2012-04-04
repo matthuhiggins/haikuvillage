@@ -4,7 +4,7 @@ class Mailer < ActionMailer::Base
     reply_to: "noreply@haikuvillage.com",
     content_type:  "text/plain"
   )    
-  
+
   def new_friend(email, author)
     @author = author
     mail(
@@ -12,7 +12,7 @@ class Mailer < ActionMailer::Base
       subject: "#{author.username} added you to their Haiku Village friends"
     )
   end
-  
+
   def conversation_notice(haiku, responder)
     @haiku = haiku
     mail(
@@ -28,7 +28,7 @@ class Mailer < ActionMailer::Base
       subject: "#{message.sender.username} sent you a message from Haiku Village"
     )
   end
-  
+
   def password_reset(password_reset)
     @password_reset = password_reset
     mail(
@@ -36,7 +36,7 @@ class Mailer < ActionMailer::Base
       subject: "Reset your Haiku Village password" 
     )
   end
-  
+
   private
     def parse_emails(email_string)
       email_string.split(/,| |\n/).delete_if { |email| email.blank? }

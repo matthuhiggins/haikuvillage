@@ -15,7 +15,7 @@ class JournalController < ApplicationController
       @haikus = current_author.haikus.recent.where(subject_name: params[:id]).page(params[:page]).per(10)
       render "haikus_by_subject"
     else
-      @subjects = current_author.subject_summary
+      @subject_summaries = current_author.subject_summaries
     end
   end
 end

@@ -11,7 +11,7 @@ class SubjectsController < ApplicationController
   
   def show
     @subject = Subject.find(params[:id])
-    @haikus = @subject.haikus.order("haikus.id desc").includes(:author).page(params[:page]).per(10)
+    @haikus = @subject.haikus.recent.page(params[:page]).per(10)
       # :total_entries => @subject.haikus_count_total
   end
   

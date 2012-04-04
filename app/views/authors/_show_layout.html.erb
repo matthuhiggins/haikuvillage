@@ -19,8 +19,8 @@
     </div>
 
     <%= sub_menu(:class => "submenu_items") do |m| %>
-      <%= m.link "Haiku", author_path(:id => @author.username) %>
-      <%= m.link "Subjects", author_subjects_path(:author_id => @author.username)  %>
+      <%= m.link "Haiku", author_path(id: @author.username) %>
+      <%= m.link "Subjects", author_subjects_path(author_id: @author.username)  %>
       <%= m.link "Friends", friends_author_path(@author.username)  %>
     <% end %>
   </div>
@@ -31,7 +31,7 @@
 </div>
 
 <div id="message-dialog">
-  <%= form_for :message, :url => messages_path, :html => {:style => "margin-bottom: 10px;", :id => 'haiku_form'} do |form| %>
+  <%= form_for :message, url: messages_path, html: {style: "margin-bottom: 10px;", id: 'haiku_form'} do |form| %>
     <%= hidden_field_tag 'message[recipient_id]', @author.id %>
     <table class="internals">
       <tr>
@@ -49,7 +49,7 @@
       <tr>
         <td />
         <td>
-          <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
+          <%= form.submit "Send", id: "send_haiku", disabled: true %>
         </td>
       </tr>
     </table>

@@ -1,18 +1,19 @@
 <h2>Type in your new password</h2>
-<%= form_tag do %>
-  <%= hidden_field_tag :token, @password_reset.token %>
+<%= form_for @password_reset do |f| %>
+  <%# hidden_field_tag :token, @password_reset.token %>
   <table>
     <tr>
-      <td><%= label_tag :password, "New password:" %></td>
-      <td><%= password_field_tag :password %></td>
+      <td><%= f.label :password, "New password:" %></td>
+      <td><%= f.password_field :password %></td>
+      <td><%= f.error_message_on :password %></td>
     </tr>
     <tr>
       <td></td>
-      <td><%= submit_tag "Change password" %></td>
+      <td><%= f.submit "Change password" %></td>
     </tr>
   </table>
 <% end %>
 
 <script>
-$('password').focus();
+$('#password_reset_password').focus();
 </script>
