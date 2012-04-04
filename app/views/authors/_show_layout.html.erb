@@ -49,7 +49,7 @@
       <tr>
         <td />
         <td>
-          <%= form.submit "Send", :id => "send_haiku", :disabled => true %>
+          <%= form.submit "Send", id: "send_haiku", disabled: true %>
         </td>
       </tr>
     </table>
@@ -58,7 +58,7 @@
 
 <script>
 $(function() {
-  new Haiku.PeriodicalUpdater("#message_text", "#preview", "#commit_haiku");
+  new Haiku.PeriodicalUpdater("#message_text", "#preview", "#send_haiku");
   $('#message-dialog').dialog({
     autoOpen: false,
     title: 'Send a message',
