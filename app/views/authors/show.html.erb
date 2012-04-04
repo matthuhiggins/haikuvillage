@@ -3,7 +3,6 @@
 				
 	<br />
 	<%= paginate @haikus, id: 'pagination' %>
-	<p id="bottom-links">
-	  <%= link_to "download as text", :action => "show", :format => "txt" %>
-  </p>
+
+  <%= render 'feed_links' %>
 <% end %>

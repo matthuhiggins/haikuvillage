@@ -12,6 +12,10 @@
 //= require application/register
 //= require application/haiku
 //= require application/subjects
-//= require application/journal
 //= require application/conversation
 //= require application/author
+
+//= require controllers/conversations
+//= require controllers/journal
+//= require controllers/messages
+//= require controllers/public

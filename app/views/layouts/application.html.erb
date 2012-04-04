@@ -10,7 +10,7 @@
   <%= yield :head %>
   <%= yield :description %>
 </head>
-<body>
+<%= body do %>
   <div id="body">
     <%= render 'header' %>
     <% if flash[:notice] %>
@@ -31,4 +31,5 @@
     <%= render 'analytics' %>
   <% end %>
   <%= render 'facebook' %>
-</body>
+<% end %>
+</html>

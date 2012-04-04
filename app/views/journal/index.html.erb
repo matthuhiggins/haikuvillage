@@ -1,4 +1,4 @@
-<%= render :layout => 'layout' do %>
+<%= render layout: 'layout' do %>
   <div style="margin: 0 0 15px;">
     <%= render_create(:inspire => true) %>
   </div>
@@ -7,8 +7,6 @@
     <%= render @haikus %>
   </div>
   <br />
-  <%= paginate @haikus, :id => 'pagination', :previous_label => '< Newer', :next_label => 'Older >', :page_links => true %>
-  <p id="bottom-links">
-	  <%= link_to "download as text", :format => "txt" %>
-  </p>
+  <%= paginate @haikus, id: 'pagination', previous_label: '< Newer', next_label: 'Older >', page_links: true %>
+  <%= render "feed_links" %>
 <% end %>

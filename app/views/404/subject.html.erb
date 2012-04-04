@@ -1,8 +1,8 @@
 <%- title 'Subject does not exist' %>
 
-<h2>There are no haiku about <%=h params[:id] %></h2>
+<h2>There are no haiku about <%= params[:id] %></h2>
 
 <p>
-  Be the first to write about <%=h params[:id] %> in
+  Be the first to write about <%= params[:id] %> in
   <%= link_to 'your journal', journal_path %>.
 </p>

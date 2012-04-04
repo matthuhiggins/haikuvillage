@@ -1,0 +1,57 @@
+#conversations.index {
+  .conversation_header {
+    overflow: hidden;
+    h2 {
+      float: left;
+    }
+    .conversation-tip {
+      background-color: #FFF7CC;
+      float: right;
+      margin-right: 15px;
+      padding: 10px;
+      width: 160px;
+    }
+  }
+
+  a.conversation {
+    display: block;
+    margin: 8px 0;
+    min-height: 80px;
+    overflow: hidden;
+    padding: 17px 0;
+    & + & {
+      border-top: 1px solid #CCC;
+    }
+    .time {
+      color: #999;
+      float: left;
+      :padding {
+        top: 1px;
+        bottom: 2px;
+      }
+    }
+    .haikus {
+      float: left;
+      width: 530px;
+      .terse-haiku {
+        color: black;
+        font-size: 13px;
+        padding-bottom: 6px;
+      }
+      .more {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+#conversations.show {
+  .conversation_header {
+    font-size: 24px;
+    padding-top: 15px;
+    text-align: center;
+    .summary {
+      font-size: 42px;
+    }
+  }
+}
