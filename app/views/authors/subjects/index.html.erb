@@ -3,7 +3,8 @@
     <% @subjects.each do |subject| %>
     <li>
       <%= link_to subject.name, author_subject_path(:author_id => @author.username, :id => subject.name) %>
-      <%= " (#{subject.count})" %>
+      <% author_clause = "author_id = #{@author.id}" %>
+      <%= " (#{subject.authors.count(conditions: author_clause)})" %>
     </li>
     <% end %>
   </ul>

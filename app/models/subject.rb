@@ -1,5 +1,6 @@
 class Subject < ActiveRecord::Base
   has_many :haikus
+  has_many :authors, through: :haikus
   
   scope :popular, :order => "haikus_count_total desc"
   scope :hot, :order => "haikus_count_week desc"
