@@ -2,12 +2,12 @@
 
 <h2>Your journal</h2>
 
-<%= sub_menu(:class => "tab_nav") do |m| %>
+<%= sub_menu(:class => "submenu_items") do |m| %>
   <%= m.link "Create", journal_path %>
   <%= m.link "Favorites", favorites_path %>
   <%= m.link "Subjects", :controller => '/journal', :action => 'subjects' %>
 <% end %>
 
-<div class="submenu-content">
+<div class="submenu_content">
   <%= yield %>
 </div>

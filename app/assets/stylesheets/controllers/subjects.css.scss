@@ -1,0 +1,28 @@
+#subjects.index,
+#subjects.search {
+  .subjects-header {
+    margin-bottom: 10px;
+    position: relative;
+    form {
+      position: absolute;
+      right: 0;
+      top: 0;
+      input[type='text'] {
+        width: 150px;
+      }
+      input[type="submit"] {
+        margin: 0;
+      }
+    }
+  }
+}
+
+#subjects.index {
+  .subject-list {
+    margin: 10px 0 0 10px;
+
+    li {
+      margin-top: 4px;
+    }
+  }
+}

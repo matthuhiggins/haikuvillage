@@ -1,6 +1,6 @@
-<%= form_tag authors_path, :method => :get, :id => 'author_search' do %>
-  <%= text_field :author, :username, {:name => 'q', :value => params[:q], :size => 10} %>
-  <%= submit_tag 'Search', :name => nil %>
+<%= form_tag authors_path, method: :get, id: 'author_search' do %>
+  <%= text_field :author, :username, name: 'q', value: params[:q], size: 10 %>
+  <%= submit_tag 'Search', name: nil %>
 <% end %>
 
-<script>document.getElementById('author_username').focus()</script>
+<script>$('#author_username').focus()</script>

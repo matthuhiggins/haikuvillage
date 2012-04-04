@@ -1,27 +1,5 @@
-<style>
-.avatar {
-  overflow: hidden;
-}
-
-.avatar img {
-  float: left;
-  margin-right: 11px;
-}
-
-.avatar .change-avatar {
-  font-size: 14px;
-  font-weight: bold;
-  padding-bottom: 4px;
-  padding-top: 10px;
-}
-
-.avatar .avatar-note {
-  color: #444;
-  font-style: italic;
-}
-</style>
-<%= render :layout => 'layout' do %>
-  <div class="avatar">
+<%= render layout: 'layout' do %>
+  <div class="gravatar">
     <%= large_avatar_image(current_author) %>
     <div class="change-avatar">
       Change your avatar at <%= link_to "gravatar.com", "http://gravatar.com" %>

@@ -3,18 +3,20 @@
 //= require widgets/autocomplete
 //= require widgets/button
 //= require widgets/dialog
+//= require widgets/pagination
+//= require widgets/submenu
 
 //= require application/common
 //= require application/layout
 //= require application/icon
-//= require application/menu
-//= require application/register
 //= require application/haiku
-//= require application/subjects
 //= require application/conversation
-//= require application/author
 
+//= require controllers/authors
 //= require controllers/conversations
+//= require controllers/friends
 //= require controllers/journal
 //= require controllers/messages
+//= require controllers/profile
 //= require controllers/public
+//= require controllers/subjects

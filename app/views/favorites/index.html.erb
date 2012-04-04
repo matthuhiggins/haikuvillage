@@ -1,5 +1,11 @@
 <%= render layout: 'journal/layout' do %>
-  <%= render @haikus %>
-  <br />
-  <%= paginate @haikus, id: 'pagination', previous_label: '< Newer', next_label: 'Older >' %>
+  <% if @haikus.any? %>
+    <%= render @haikus %>
+    <br />
+    <%= paginate @haikus, id: 'pagination', previous_label: '< Newer', next_label: 'Older >' %>
+  <% else %>
+    <div class="empty_list">
+      You have not favorited any haiku. 
+    </div>
+  <% end %>
 <% end %>

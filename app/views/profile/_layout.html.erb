@@ -2,7 +2,7 @@
 
 <h2>Profile</h2>
 
-<%= sub_menu(:class => "tab_nav") do |m| %>
+<%= sub_menu(:class => "submenu_items") do |m| %>
   <%= m.link "Account", :action => 'index' %>
   <%= m.link "Password", :action => 'password' %>
   <% unless current_author.fb_uid %>
@@ -10,6 +10,6 @@
   <% end %>
 <% end %>
 
-<div class="submenu-content">
+<div class="submenu_content">
   <%= yield %>
 </div>

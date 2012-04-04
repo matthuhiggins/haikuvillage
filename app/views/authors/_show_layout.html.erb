@@ -18,7 +18,7 @@
       <% end %>
     </div>
 
-    <%= sub_menu(:class => "tab_nav") do |m| %>
+    <%= sub_menu(:class => "submenu_items") do |m| %>
       <%= m.link "Haiku", author_path(:id => @author.username) %>
       <%= m.link "Subjects", author_subjects_path(:author_id => @author.username)  %>
       <%= m.link "Friends", friends_author_path(@author.username)  %>
@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div class="submenu-content author-content">
+<div class="submenu_content author_content">
   <%= yield %>
 </div>
 

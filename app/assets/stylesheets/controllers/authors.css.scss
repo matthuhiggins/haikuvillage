@@ -1,0 +1,42 @@
+#authors {
+  .author-header {
+    overflow: hidden;
+    padding: 0;
+    .avatar {
+      float: left;
+      width: 64px;
+    }
+    .nav {
+      float: left;
+      padding: 0 0 0 10px;
+      width: 600px;
+    }
+    .header {
+      overflow: hidden;
+      h2 {
+        float: left;
+        padding-top: 2px;
+      }
+      form {
+        float: left;
+        margin-left: 25px;
+        width: 100px;
+      }
+    }
+  }
+
+  .author_content {
+    .haiku .avatar_and_time a {
+      display: none;
+    }
+  }
+}
+
+#authors.index {
+  #author_search {
+    padding: 0 0 12px 0;
+    input[type='text'] {
+      width: 150px;
+    }
+  }  
+}

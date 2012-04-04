@@ -1,10 +1,16 @@
-<%= render :layout => 'layout' do %>
-  <ul class="subject-list">
-    <% @subjects.each do |subject| %>
-    <li>
-      <%= link_to subject.name, :id => subject.name %>
-      <%= " (#{subject.count})" %>
-    </li>
-    <% end %>
-  </ul>
+<%= render layout: 'layout' do %>
+  <% if @subjects.any? %>
+    <ul class="subject-list">
+      <% @subjects.each do |subject| %>
+      <li>
+        <%= link_to subject.name, subject %>
+        <%= " (#{subject.count})" %>
+      </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="empty_list">
+      You have not written about any subjects.
+    </div>
+  <% end %>
 <% end %>

@@ -1,0 +1,46 @@
+#friends.index {
+  .friend {
+    font-size: 13px;
+    height: 64px;
+    overflow: hidden;
+    padding: 10px;
+
+    .avatar {
+      float: left;
+      width: 64px;
+    }
+
+    .details {
+      float: left;
+      margin: 1px 0 0 6px;
+      overflow: hidden;
+
+      .username_and_actions {
+        overflow: hidden;
+        width: 550px;
+      }
+
+      .username {
+        float: left;
+        a {
+          font-weight: bold;
+        }
+      }
+      .actions {
+        float: right;
+        font-size: 12px;
+      }
+
+      .latest_haiku {
+        float: left;
+        .latest_haiku_text {
+          margin-top: 7px;
+        }
+        .latest_haiku_time {
+          color: #666;
+          margin-top: 3px;
+        }
+      }
+    }
+  }
+}

@@ -137,3 +137,12 @@ textarea {
   padding: .5em;
   margin: .5em;
 }
+
+.empty_list {
+  border: 1px solid #ccc;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 10px;
+}

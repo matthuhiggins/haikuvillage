@@ -3,3 +3,13 @@
     border-top: 1px solid #ccc
   }
 }
+
+#journal.subjects {
+  .subject-list {
+    margin: 10px 0 0 10px;
+
+    li {
+      margin-top: 4px;
+    }
+  }
+}

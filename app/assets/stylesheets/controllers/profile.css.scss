@@ -1,0 +1,22 @@
+#profile.avatar {
+//  .avatar {
+//    overflow: hidden;
+//  }
+
+  .gravatar img {
+    float: left;
+    margin-right: 11px;
+  }
+
+  .gravatar .change-avatar {
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 4px;
+    padding-top: 10px;
+  }
+
+  .gravatar .avatar-note {
+    color: #444;
+    font-style: italic;
+  }
+}
