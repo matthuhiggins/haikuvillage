@@ -24,10 +24,11 @@ class Author < ActiveRecord::Base
   validates_uniqueness_of :username, :email
   validates_format_of :username, :with => /\A[a-z0-9]+\Z/i, :message => 'can only contain numbers and letters', :on => :create
   
-  SubjectSummary = Struct.new(:name, :count)
-  def subject_summary
-    records = haikus.count(group: :subject_name, conditions: 'subject_name is not null', order: 'count_all desc')
-    records.map { |record| SubjectSummary.new(*record) }
+  def subject_summaries
+    records = haikus.where('subject_id is not null').order('count_all desc').group(:subject_id).count
+    records.map do |(subject_id, haiku_count)|
+      [Subject.find(subject_id), haiku_count]
+    end
   end
   
   private

@@ -1,10 +1,10 @@
 <%= render layout: 'layout' do %>
-  <% if @subjects.any? %>
+  <% if @subject_summaries.any? %>
     <ul class="subject-list">
-      <% @subjects.each do |subject| %>
+      <% @subject_summaries.each do |subject, haiku_count| %>
       <li>
         <%= link_to subject.name, subject %>
-        <%= " (#{subject.count})" %>
+        <%= " (#{haiku_count})" %>
       </li>
       <% end %>
     </ul>
