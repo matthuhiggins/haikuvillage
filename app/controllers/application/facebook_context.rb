@@ -1,7 +1,7 @@
 module Application
   module FacebookContext
     extend ActiveSupport::Concern
-    
+
     included do
       before_filter :configure_facebook_author, if: :facebook_connected?
 
@@ -40,6 +40,8 @@ module Application
       def facebook_cookie
         return @facebook_cookie if instance_variable_defined?(:@facebook_cookie)
         @facebook_cookie ||= facebook_oauth.get_user_info_from_cookie(cookies)
+      rescue Koala::Facebook::OAuthTokenRequestError
+        nil
       end
 
       def facebook_oauth
