@@ -4,15 +4,15 @@ module AvatarHelper
     'medium'  => 32,
     'large'   => 64
   }
-  
+
   def small_avatar_image(author)
     avatar_image(author, 'small')
   end
-  
+
   def medium_avatar_image(author)
     avatar_image(author, 'medium')
   end
-  
+
   def large_avatar_image(author)
     avatar_image(author, 'large')
   end
@@ -30,6 +30,6 @@ module AvatarHelper
     default_path = image_path("default_avatars/#{size}.png")
     default_url = "http://haikuvillage.com/#{default_path}"
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{SIZE_TO_PIXELS[size]}&d=#{CGI.escape(default_url)}"
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{SIZE_TO_PIXELS[size]}&d=#{CGI.escape(default_url)}".html_safe
   end
 end
