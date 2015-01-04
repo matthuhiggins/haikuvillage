@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   include Application::DeferredHaiku
   include Application::LoginFilter
-  include Application::NoSubdomain
   include Application::RecordNotFound
   include Application::Rss
   include Application::Session
